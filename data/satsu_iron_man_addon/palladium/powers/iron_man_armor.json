@@ -2,6 +2,22 @@
   "name": "Interpolation Animation Test",
   "icon": "minecraft:iron_ingot",
   "abilities": {
+    "commands": {
+      "type": "palladium:command",
+      "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
+      "title": "Omnitrix Skill tree",
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, -1],
+      "description": "This is the skill tree that will allow you to unlock your various Omnitrix skills.",
+      "first_tick_commands": [
+        "scoreboard objectives add satsu.iron.man.armor dummy",
+        "scoreboard objectives add satsu.iron.man.armor.actived dummy",
+        "scoreboard objectives add satsu.iron.man.armor.anim dummy",
+        "scoreboard players set @s satsu.iron.man.armor.anim 0"
+      ],
+      "commands": [""]
+    },
     "Omnitrix_powers_stat_upgrades": {
       "type": "palladium:dummy",
       "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
@@ -15,16 +31,39 @@
       "type": "palladium:render_layer",
       "render_layer": "satsu_iron_man_addon:interpolate_test"
     },
-    "interpolate": {
-      "type": "palladium:shrink_body_overlay",
-      "max_value": 16,
+    "command": {
+      "type": "palladium:command",
+      "icon": "minecraft:iron_ingot",
       "hidden": false,
       "hidden_in_bar": false,
-      "icon": "minecraft:iron_ingot",
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.armor.actived 1",
+        "scoreboard players add @s[scores={satsu.iron.man.armor.anim=0..16}] satsu.iron.man.armor.anim 1"
+      ],
+      "last_tick_commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.actived",
+        "scoreboard players set @s satsu.iron.man.armor.anim 0"
+      ],
       "conditions": {
         "enabling": [
           {
             "type": "palladium:toggle"
+          }
+        ]
+      }
+    },
+    "interpolate": {
+      "type": "palladium:shrink_body_overlay",
+      "icon": "minecraft:iron_ingot",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "max_value": 3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "command"
           }
         ]
       }
