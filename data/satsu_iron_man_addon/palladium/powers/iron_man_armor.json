@@ -442,6 +442,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "null",
                 "ability": "hands_laser_arm_one"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "projectile.1"
               }
             ]
           }
@@ -463,6 +468,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "null",
                 "ability": "hands_laser_two"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "projectile.1"
               }
             ]
           }
@@ -499,8 +509,58 @@
                 "type": "palladium:ability_enabled",
                 "power": "null",
                 "ability": "water_projectile_middle"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "projectile.1"
               }
             ]
+          }
+        ]
+      }
+    },
+    "projectile.1": {
+      "type": "palladium:repeating_animation_timer",
+      "icon": "m_ten:textures/gui/omnitrix/powers/orishan_bubble.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": "Water Shoot",
+      "description": "Throws a water projectile (5 damage)",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 3,
+      "gui_position": [2, -1],
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 6,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Omnitrix_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 16,
+            "max": 16
           }
         ]
       }
@@ -511,6 +571,8 @@
       "entity_type": "palladium:custom_projectile",
       "title": "Water Shoot",
       "description": "Throws a water projectile (5 damage)",
+      "hidden": true,
+      "hidden_in_bar": true,
       "list_index": 3,
       "gui_position": [2, -1],
       "velocity": 2.5,
@@ -536,31 +598,48 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
+            "type": "palladium:animation_timer_ability",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
-          },
+            "ability": "projectile.1",
+            "min": 5,
+            "max": 5
+          }
+        ]
+      }
+    },
+    "water_projectile_other_arm": {
+      "type": "palladium:projectile",
+      "entity_type": "palladium:custom_projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "entity_data": {
+        "KnockbackStrength": 1.5,
+        "Damage": 5,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 80,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
+        "CommandOnBlockHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
+        "Appearances": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived",
-            "min_score": 1,
-            "max_score": 1
-          },
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:iron_man_armor",
-            "ability": "interpolate",
-            "property": "value",
-            "min": 16,
-            "max": 16
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "projectile.1",
+            "min": 10,
+            "max": 10
           }
         ]
       }
