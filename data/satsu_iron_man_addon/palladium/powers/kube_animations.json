@@ -3,7 +3,7 @@
   "persistent_data": true,
   "icon": "minecraft:arrow",
   "abilities": {
-    "omnitrix_main_arms_aim_one": {
+    "personalization": {
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": true,
@@ -20,6 +20,23 @@
         ]
       }
     },
+    "personalization_armor": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.set",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
     "show_both_arms": {
       "type": "palladium:show_both_arms",
       "hidden": true,
@@ -27,10 +44,21 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.personalize.things",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.personalize.things",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.set",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
           }
         ]
       }
@@ -173,7 +201,7 @@
         ]
       }
     },
-    "biomnitrix_main_arms_aim_one": {
+    "bipersonalization": {
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": true,

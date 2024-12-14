@@ -5,7 +5,7 @@ PalladiumEvents.registerAnimations((event) => {
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:kube_animations",
-      "test",
+      "personalization",
       builder.getPartialTicks()
     );
 
@@ -55,7 +55,7 @@ PalladiumEvents.registerAnimations((event) => {
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:kube_animations",
-      "omnitrix_main_arms_aim_one",
+      "personalization_armor",
       builder.getPartialTicks()
     );
 

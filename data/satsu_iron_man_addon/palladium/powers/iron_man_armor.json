@@ -657,11 +657,7 @@
       "gui_position": [0, -1],
       "description": "",
       "commands": [
-        "scoreboard players add @s satsu.iron.man.personalize.things 1",
-        "execute as @s[scores={satsu.iron.man.personalize.things=1}] run title @s actionbar [\"\",{\"text\":\"Personalize on\",\"color\":\"blue\"}]",
-        "execute as @s[scores={satsu.iron.man.personalize.things=2..}] run title @s actionbar [\"\",{\"text\":\"Personalize off\",\"color\":\"blue\"}]",
-        "execute as @s[scores={satsu.iron.man.flight.set=1..}] run scoreboard players operation @s satsu.iron.man.flight.set = @s satsu.iron.man.personalize.things",
-        "execute as @s[scores={satsu.iron.man.personalize.things=2..}] run scoreboard players reset @s satsu.iron.man.personalize.things",
+        "function satsu_iron_man_addon:remove_personalizate",
         "ability lock @s satsu_iron_man_addon:iron_man_armor dummy"
       ],
       "conditions": {
@@ -686,11 +682,7 @@
       "gui_position": [0, -1],
       "description": "",
       "commands": [
-        "scoreboard players add @s satsu.iron.man.personalize.things 1",
-        "execute as @s[scores={satsu.iron.man.personalize.things=1}] run title @s actionbar [\"\",{\"text\":\"Personalize on\",\"color\":\"blue\"}]",
-        "execute as @s[scores={satsu.iron.man.personalize.things=2..}] run title @s actionbar [\"\",{\"text\":\"Personalize off\",\"color\":\"blue\"}]",
-        "execute as @s[scores={satsu.iron.man.flight.set=1..}] run scoreboard players operation @s satsu.iron.man.flight.set = @s satsu.iron.man.personalize.things",
-        "execute as @s[scores={satsu.iron.man.personalize.things=2..}] run scoreboard players reset @s satsu.iron.man.personalize.things",
+        "function satsu_iron_man_addon:remove_personalizate",
         "ability lock @s satsu_iron_man_addon:iron_man_armor dummy"
       ],
       "conditions": {
@@ -721,6 +713,7 @@
       "commands": [
         "scoreboard players add @s satsu.iron.man.flight.set 1",
         "execute as @s[scores={satsu.iron.man.flight.set=2..}] run scoreboard players reset @s satsu.iron.man.flight.set",
+        "function satsu_iron_man_addon:remove_personalizate",
         "ability lock @s satsu_iron_man_addon:iron_man_armor flight_unlock"
       ],
       "conditions": {
@@ -858,6 +851,7 @@
         "execute as @s[scores={satsu.iron.man.failsafe.set=1}] run title @s actionbar [\"\",{\"text\":\"Failsafe on\",\"color\":\"blue\"}]",
         "execute as @s[scores={satsu.iron.man.failsafe.set=2..}] run title @s actionbar [\"\",{\"text\":\"Failsafe off\",\"color\":\"blue\"}]",
         "execute as @s[scores={satsu.iron.man.failsafe.set=2..}] run scoreboard players reset @s satsu.iron.man.failsafe.set",
+        "function satsu_iron_man_addon:remove_personalizate",
         "ability lock @s satsu_iron_man_addon:iron_man_armor failsafe_unlock"
       ],
       "conditions": {
@@ -912,6 +906,131 @@
         ]
       }
     },
+    "choose_armor": {
+      "type": "palladium:command",
+      "icon": "minecraft:book",
+      "title": "Choose Armor",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 8,
+      "gui_position": [0, -0.5],
+      "description": "",
+      "commands": [
+        "scoreboard players add @s satsu.iron.man.armor.set 1",
+        "execute as @s[scores={satsu.iron.man.armor.set=1}] run title @s actionbar [\"\",{\"text\":\"Choose Armor on\",\"color\":\"blue\"}]",
+        "execute as @s[scores={satsu.iron.man.armor.set=2..}] run title @s actionbar [\"\",{\"text\":\"Choose Armor off\",\"color\":\"blue\"}]",
+        "execute as @s[scores={satsu.iron.man.armor.set=2..}] run scoreboard players reset @s satsu.iron.man.armor.set",
+        "function satsu_iron_man_addon:remove_personalizate",
+        "ability lock @s satsu_iron_man_addon:iron_man_armor choose_armor"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.personalize.things",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
+    "choose.armor.move": {
+      "type": "palladium:command",
+      "icon": "minecraft:iron_ingot",
+      "title": "Choose",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 15,
+      "description": "This is the skill tree that will allow you to unlock your various Omnitrix skills.",
+      "commands": [
+        "execute as @s unless score @s satsu.prev.iron.man.armor matches 0.. run scoreboard players set @s satsu.prev.iron.man.armor 0"
+      ],
+      "last_tick_commands": [
+        "execute as @s run scoreboard players operation @s satsu.iron.man.armor = @s satsu.prev.iron.man.armor",
+        "scoreboard players reset @s satsu.iron.man.armor.set"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.set",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Omnitrix_powers_stat_upgrades"
+          }
+        ]
+      }
+    },
+    "choose.armor.1": {
+      "type": "palladium:command",
+      "icon": "minecraft:iron_ingot",
+      "title": "Next armor",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 16,
+      "description": "This is the skill tree that will allow you to unlock your various Omnitrix skills.",
+      "first_tick_commands": [],
+      "commands": [
+        "execute as @s[scores={satsu.iron.man.armor.set=0..}] run scoreboard players add @s satsu.prev.iron.man.armor 1"
+      ],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "choose.armor.move"
+          }
+        ]
+      }
+    },
+    "choose.armor.2": {
+      "type": "palladium:command",
+      "icon": "minecraft:iron_ingot",
+      "title": "Prev armor",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 17,
+      "description": "This is the skill tree that will allow you to unlock your various Omnitrix skills.",
+      "first_tick_commands": [],
+      "commands": [
+        "execute as @s[scores={satsu.iron.man.armor.set=0..}] run scoreboard players remove @s satsu.prev.iron.man.armor 1"
+      ],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "choose.armor.move"
+          }
+        ]
+      }
+    },
     "commands_armor": {
       "type": "palladium:command",
       "hidden": true,
@@ -932,9 +1051,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [],
-      "commands": [
-        "scoreboard players set @s satsu.iron.man.armor 0"
-      ],
+      "commands": ["scoreboard players set @s satsu.iron.man.armor 0"],
       "conditions": {
         "enabling": [
           {
@@ -950,9 +1067,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [],
-      "commands": [
-        "scoreboard players set @s satsu.iron.man.armor 1"
-      ],
+      "commands": ["scoreboard players set @s satsu.iron.man.armor 1"],
       "conditions": {
         "enabling": [
           {
