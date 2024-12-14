@@ -133,6 +133,74 @@
         "slim": "satsu_iron_man_addon:geo/player_slim.geo.json"
       },
       "texture": "satsu_iron_man_addon:textures/models/iron_man_suit_reactor_lights_1.png"
+    },
+    {
+      "type": "geckolib:default",
+      "model": {
+        "normal": "satsu_iron_man_addon:geo/flames.geo.json",
+        "slim": "satsu_iron_man_addon:geo/flames_slim.geo.json"
+      },
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/flame_#X_#Y.png",
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "flames",
+            "property": "value"
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.flame",
+            "min_score": 0
+          }
+        }
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:is_hovering_or_flying"
+        },
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:ability_enabled",
+              "power": "satsu_iron_man_addon:iron_man_armor",
+              "ability": "animation.projectile.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": {
+        "normal": "satsu_iron_man_addon:geo/flames_down.geo.json",
+        "slim": "satsu_iron_man_addon:geo/flames_down_slim.geo.json"
+      },
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/flame_#X_#Y.png",
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "flames",
+            "property": "value"
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.flame",
+            "min_score": 0
+          }
+        }
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:is_hovering_or_flying"
+        }
+      ]
     }
   ]
 }
