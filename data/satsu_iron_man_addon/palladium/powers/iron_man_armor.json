@@ -3,7 +3,7 @@
   "persistent_data": true,
   "ability_bar_texture": "m_ten:textures/gui/ability_bars/new_ability_bar.png",
   "background": "m_ten:textures/block/black.png",
-  "icon": "minecraft:iron_ingot",
+  "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
   "gui_display_type": "tree",
   "abilities": {
     "commands": {
@@ -1868,6 +1868,47 @@
         "execute as @s[scores={satsu.iron.man.armor=6}] run scoreboard players set @s satsu.iron.man.strength 13",
         "execute as @s[scores={satsu.iron.man.armor=6}] run scoreboard players set @s satsu.iron.man.strength 7"
       ]
+    },
+    "remove_ark_reactor": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
+      "title": "remove ark reactor",
+      "bar_color": "green",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [0, -3.5],
+      "first_tick_commands": [],
+      "commands": [
+        "give @s satsu_iron_man_addon:ark_reactor",
+        "superpower remove satsu_iron_man_addon:iron_man_armor @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.remove.ark",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": []
+              }
+            ]
+          }
+        ]
+      }
     }
   }
 }
