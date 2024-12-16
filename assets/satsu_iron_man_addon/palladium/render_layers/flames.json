@@ -86,6 +86,38 @@
           "type": "palladium:is_hovering_or_flying"
         }
       ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_boost_flames.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/flame_#X_#Y.png",
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "flames",
+            "property": "value"
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.flame",
+            "min_score": 0
+          }
+        }
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:is_hovering_or_flying"
+        },
+        {
+          "type": "palladium:objective_score",
+          "objective": "satsu.iron.man.flight.set",
+          "min_score": 1,
+          "max_score": 1
+        }
+      ]
     }
   ]
 }
