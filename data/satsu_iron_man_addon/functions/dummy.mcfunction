@@ -1,5 +1,5 @@
 scoreboard objectives add satsu.iron.man.flight_speed dummy
-
+scoreboard objectives add satsu.iron.man.flight_speed_max dummy
 scoreboard objectives add satsu.iron.man.armor dummy
 scoreboard objectives add satsu.iron.man.armor.actived dummy
 scoreboard objectives add satsu.iron.man.armor.anim dummy
@@ -21,3 +21,6 @@ scoreboard objectives add satsu.iron.man.remove.ark dummy
 scoreboard objectives add satsu.iron.man.closed.armors dummy
 scoreboard objectives add satsu.iron.man.superpower dummy
 scoreboard objectives add satsu.iron.man.break dummy
+scoreboard objectives add satsu.iron.man.armor.sword dummy
+scoreboard objectives add satsu.iron.man.armor.ark.energy dummy
+scoreboard objectives add satsu.iron.man.armor.ark.energy.max dummy

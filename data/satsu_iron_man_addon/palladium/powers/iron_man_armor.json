@@ -5,6 +5,44 @@
   "background": "m_ten:textures/block/black.png",
   "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
   "gui_display_type": "tree",
+  "energy_bars": {
+    "flight_speed": {
+      "max": {
+        "type": "score",
+        "objective": "satsu.iron.man.flight_speed_max",
+        "fallback": 0
+      },
+      "color": "#0fffbd",
+      "max_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.flight_speed_max",
+        "fallback": 10
+      },
+      "synced_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.flight_speed",
+        "fallback": 0
+      }
+    },
+    "energy_ark": {
+      "max": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy.max",
+        "fallback": 0
+      },
+      "color": "#0fffbd",
+      "max_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy.max",
+        "fallback": 10
+      },
+      "synced_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy",
+        "fallback": 0
+      }
+    }
+  },
   "abilities": {
     "commands": {
       "type": "palladium:command",
@@ -18,6 +56,9 @@
         "scoreboard objectives add satsu.iron.man.mask dummy",
         "scoreboard objectives add satsu.iron.man.armor.actived.perm dummy",
         "scoreboard players set @s satsu.iron.man.flight_speed 6",
+        "scoreboard players set @s satsu.iron.man.flight_speed_max 24",
+        "scoreboard players set @s satsu.iron.man.armor.ark.energy.max 10000",
+        "scoreboard players set @s satsu.iron.man.armor.ark.energy 10000",
         "scoreboard players set @s satsu.iron.man.superpower 0"
       ],
       "commands": [""],
@@ -1273,8 +1314,7 @@
       "description": "This is the skill tree that will allow you to unlock your various Omnitrix skills.",
       "first_tick_commands": [],
       "commands": [
-        "execute as @s[scores={satsu.iron.man.flight_speed=6..}] run scoreboard players add @s satsu.iron.man.flight_speed 3",
-        "execute as @s[scores={satsu.iron.man.flight_speed=25..}] run scoreboard players set @s satsu.iron.man.flight_speed 6"
+        "execute as @s[scores={satsu.iron.man.flight_speed=6..}] run scoreboard players add @s satsu.iron.man.flight_speed 3"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -1293,6 +1333,11 @@
             "type": "palladium:ability_enabled",
             "power": "null",
             "ability": "flight_speed.move"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.flight_speed",
+            "max_score": 21
           }
         ]
       }
@@ -1879,6 +1924,12 @@
             "ability": "Omnitrix_powers_stat_upgrades"
           },
           {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.energy.beams",
+            "min_score": 0,
+            "max_score": 1
+          },
+          {
             "type": "palladium:or",
             "conditions": [
               {
@@ -2257,6 +2308,96 @@
         ]
       }
     },
+    "sword_anim": {
+      "type": "palladium:animation_timer",
+      "icon": "m_ten:textures/gui/omnitrix/powers/orishan_bubble.png",
+      "title": "Fireworks",
+      "description": "Throws a water projectile (5 damage)",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 24,
+      "gui_position": [2, -1],
+      "start_value": 0,
+      "max_value": 16,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 50,
+            "cooldown": 80,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Omnitrix_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "arms.move"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 16,
+            "max": 16
+          }
+        ]
+      }
+    },
+    "sword_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["scoreboard players add @s satsu.iron.man.armor.sword 1"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "sword_anim"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Omnitrix_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 16,
+            "max": 16
+          }
+        ]
+      }
+    },
     "commands_armor": {
       "type": "palladium:command",
       "hidden": true,
@@ -2328,6 +2469,16 @@
           }
         ]
       }
+    },
+    "Remove_ark_energy": {
+      "type": "palladium:command",
+      "icon": "m_ten:textures/gui/omnitrix/ov_core.png",
+      "title": "Timer",
+      "bar_color": "green",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [1, -2],
+      "commands": ["function satsu_iron_man_addon:remove_ark_energy"]
     },
     "remove_ark_reactor": {
       "type": "palladium:command",
