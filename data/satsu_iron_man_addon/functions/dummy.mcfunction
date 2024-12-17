@@ -24,3 +24,4 @@ scoreboard objectives add satsu.iron.man.break dummy
 scoreboard objectives add satsu.iron.man.armor.sword dummy
 scoreboard objectives add satsu.iron.man.armor.ark.energy dummy
 scoreboard objectives add satsu.iron.man.armor.ark.energy.max dummy
+scoreboard objectives add satsu.iron.man.armor.ark_energy_full_or_off dummy
