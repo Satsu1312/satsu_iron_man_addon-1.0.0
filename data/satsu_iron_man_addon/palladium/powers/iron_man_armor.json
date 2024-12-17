@@ -115,10 +115,20 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.flight.set",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.flight.set",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.flight_speed",
+                "min_score": 7
+              }
+            ]
           },
           {
             "type": "palladium:objective_score",
@@ -1102,14 +1112,9 @@
     },
     "water_projectile": {
       "type": "palladium:projectile",
-      "icon": "m_ten:textures/gui/omnitrix/powers/orishan_bubble.png",
-      "entity_type": "palladium:custom_projectile",
-      "title": "Water Shoot",
-      "description": "Throws a water projectile (5 damage)",
       "hidden": true,
       "hidden_in_bar": true,
-      "list_index": 3,
-      "gui_position": [2, -1],
+      "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
       "entity_data": {
@@ -1120,8 +1125,8 @@
         "Lifetime": 80,
         "DieOnEntityHit": true,
         "DieOnBlockHit": true,
-        "CommandOnEntityHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
-        "CommandOnBlockHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
+        "CommandOnEntityHit": "function satsu_iron_man_addon:pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:pulse",
         "Appearances": [
           {
             "Type": "laser",
@@ -1144,9 +1149,9 @@
     },
     "water_projectile_other_arm": {
       "type": "palladium:projectile",
-      "entity_type": "palladium:custom_projectile",
       "hidden": true,
       "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
       "entity_data": {
@@ -1157,8 +1162,8 @@
         "Lifetime": 80,
         "DieOnEntityHit": true,
         "DieOnBlockHit": true,
-        "CommandOnEntityHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
-        "CommandOnBlockHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
+        "CommandOnEntityHit": "function satsu_iron_man_addon:pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:pulse",
         "Appearances": [
           {
             "Type": "laser",
@@ -1294,6 +1299,11 @@
                 "objective": "satsu.iron.man.flight.set",
                 "min_score": 1,
                 "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.flight_speed",
+                "min_score": 7
               }
             ]
           },
@@ -2117,8 +2127,8 @@
         "Lifetime": 80,
         "DieOnEntityHit": true,
         "DieOnBlockHit": true,
-        "CommandOnEntityHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
-        "CommandOnBlockHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
+        "CommandOnEntityHit": "function satsu_iron_man_addon:fire_work",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:fire_work",
         "Appearances": [
           {
             "Type": "renderLayer",
@@ -2152,8 +2162,8 @@
         "Lifetime": 80,
         "DieOnEntityHit": true,
         "DieOnBlockHit": true,
-        "CommandOnEntityHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
-        "CommandOnBlockHit": "particle explosion_emitter ~ ~ ~ 0 0 0 1 0 normal",
+        "CommandOnEntityHit": "function satsu_iron_man_addon:fire_work",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:fire_work",
         "Appearances": [
           {
             "Type": "renderLayer",
@@ -2356,13 +2366,30 @@
       "hidden_in_bar": true,
       "commands": ["tag @s add maximum.pulse"],
       "conditions": {
-        "enabling": [
+        "unlocking": [
           {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "maximun.pulse.animation",
-            "min": 50,
-            "max": 50
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "power": "null",
+                "ability": "maximun.pulse.animation",
+                "min": 50,
+                "max": 50
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "power": "null",
+                "ability": "animation.projectile.1",
+                "min": 0
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "power": "null",
+                "ability": "animation.projectile.2",
+                "min": 0
+              }
+            ]
           }
         ]
       }
