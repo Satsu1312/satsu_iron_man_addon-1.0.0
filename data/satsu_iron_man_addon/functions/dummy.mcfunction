@@ -26,3 +26,11 @@ scoreboard objectives add satsu.iron.man.armor.ark.energy dummy
 scoreboard objectives add satsu.iron.man.armor.ark.energy.max dummy
 scoreboard objectives add satsu.iron.man.armor.ark_energy_full_or_off dummy
 scoreboard objectives add satsu.iron.man.rbg.on.off dummy
+
+scoreboard objectives add SatsuIronManArmorSkillPoint dummy
+scoreboard objectives add SatsuIronManArmorExp dummy
+scoreboard objectives add SatsuIronManArmorMobKills minecraft.custom:minecraft.mob_kills
+scoreboard objectives add SatsuIronManArmorDragonKills minecraft.killed:minecraft.ender_dragon
+scoreboard objectives add SatsuIronManArmorWitherKills minecraft.killed:minecraft.wither
+scoreboard objectives add SatsuIronManArmorWardenKills minecraft.killed:minecraft.warden
+scoreboard objectives add SatsuIronManArmorGuardianKills minecraft.killed:minecraft.guardian
