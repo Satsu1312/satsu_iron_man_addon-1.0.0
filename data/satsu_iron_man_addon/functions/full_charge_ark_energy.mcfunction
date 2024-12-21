@@ -1,0 +1,1 @@
+execute as @s[scores={satsu.iron.man.armor.ark.energy=10000}] run title @a actionbar {"text":"IA: Energy Full Recharged","color":"#00aaaa"}
