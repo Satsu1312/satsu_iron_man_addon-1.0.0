@@ -3456,7 +3456,7 @@
     },
     "arms_unlock": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/heart.png",
+      "icon": "satsu_iron_man_addon:textures/gui/iron_man/energy_sword.png",
       "title": "arms Edit",
       "hidden": false,
       "hidden_in_bar": false,
@@ -4256,9 +4256,9 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_unlocked",
-            "power": "null",
-            "ability": "unlock_sword"
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.unlock_sword",
+            "min_score": 0
           },
           {
             "type": "palladium:or",
@@ -4337,9 +4337,9 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_unlocked",
-            "power": "null",
-            "ability": "unlock_sword"
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.unlock_sword",
+            "min_score": 0
           },
           {
             "type": "palladium:or",
@@ -4392,11 +4392,13 @@
       }
     },
     "unlock_sword": {
-      "type": "palladium:dummy",
+      "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/models/energy_sword.png",
       "title": "Unlock sword",
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": true,
+      "gui_position": [3, -0.5],
+      "commands": ["scoreboard players set @s satsu.iron.man.unlock_sword 1"],
       "conditions": {
         "unlocking": [
           {
@@ -4405,6 +4407,134 @@
             "score": 35,
             "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
             "description": { "text": "Omnitrix Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Omnitrix_powers_stat_upgrades"
+          }
+        ]
+      }
+    },
+    "force_field": {
+      "type": "palladium:command",
+      "icon": "m_ten:textures/gui/omnitrix/powers/crystalsapien_force_field.png",
+      "title": "force field",
+      "description": "Creates a force field",
+      "bar_color": "green",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 101,
+      "gui_position": [-3, -0.5],
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 3",
+        "fill ~20 ~10 ~-20 ~20 ~ ~20 air replace stwr:force_block",
+        "fill ~-20 ~-10 ~-20 ~-20 ~ ~20 air replace stwr:force_block",
+        "fill ~-20 ~-10 ~20 ~20 ~ ~20 air replace stwr:force_block",
+        "fill ~-20 ~13 ~20 ~20 ~ ~-20 air replace stwr:force_block",
+        "fill ~-20 ~-13 ~20 ~20 ~ ~-20 air replace stwr:force_block",
+        "fill ^20 ^10 ^-20 ^20 ^ ^20 air replace stwr:force_block",
+        "fill ^-20 ^-10 ^-20 ^-20 ^ ^20 air replace stwr:force_block",
+        "fill ^-20 ^-10 ^20 ^20 ^ ^20 air replace stwr:force_block",
+        "fill ^-20 ^10 ^20 ^20 ^ ^-20 air replace stwr:force_block",
+        "fill ^-20 ^-1 ^-20 ^1 ^-1 ^20 air replace stwr:force_block",
+        "fill ^20 ^-1 ^20 ^1 ^-1 ^20 air replace stwr:force_block",
+        "fill ~-2 ~-2 ~-2 ~2 ~-2 ~2 stwr:force_block replace minecraft:air",
+        "fill ~-3 ~3 ~-3 ~3 ~3 ~3 stwr:force_block replace minecraft:air",
+        "fill ~-2 ~-2 ~-2 ~-2 ~2 ~2 stwr:force_block replace minecraft:air",
+        "fill ~2 ~-2 ~-2 ~2 ~2 ~2 stwr:force_block replace minecraft:air",
+        "fill ~-2 ~-2 ~-2 ~2 ~2 ~-2 stwr:force_block replace minecraft:air",
+        "fill ~-2 ~-2 ~2 ~2 ~2 ~2 stwr:force_block replace minecraft:air"
+      ],
+      "last_tick_commands": [
+        "fill ~20 ~10 ~-20 ~20 ~ ~20 air replace stwr:force_block",
+        "fill ~-20 ~-10 ~-20 ~-20 ~ ~20 air replace stwr:force_block",
+        "fill ~-20 ~-10 ~20 ~20 ~ ~20 air replace stwr:force_block",
+        "fill ~-20 ~13 ~20 ~20 ~ ~-20 air replace stwr:force_block",
+        "fill ~-20 ~-13 ~20 ~20 ~ ~-20 air replace stwr:force_block",
+        "fill ^20 ^10 ^-20 ^20 ^ ^20 air replace stwr:force_block",
+        "fill ^-20 ^-10 ^-20 ^-20 ^ ^20 air replace stwr:force_block",
+        "fill ^-20 ^-10 ^20 ^20 ^ ^20 air replace stwr:force_block",
+        "fill ^-20 ^10 ^20 ^20 ^ ^-20 air replace stwr:force_block",
+        "fill ^-20 ^-1 ^-20 ^1 ^-1 ^20 air replace stwr:force_block",
+        "fill ^20 ^-1 ^20 ^1 ^-1 ^20 air replace stwr:force_block"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 80,
+            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
+            "description": { "text": "Omnitrix Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Omnitrix_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "arms.move"
+          }
+        ]
+      }
+    },
+    "cook_ark": {
+      "type": "palladium:command",
+      "icon": "minecraft:beef",
+      "title": "Cook Ark",
+      "description": "Creates a force field",
+      "bar_color": "green",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 102,
+      "gui_position": [4, -0.5],
+      "commands": [""],
+      "last_tick_commands": [
+        "function satsu_iron_man_addon:cook",
+        "function satsu_iron_man_addon:cook",
+        "function satsu_iron_man_addon:cook",
+        "function satsu_iron_man_addon:cook",
+        "function satsu_iron_man_addon:cook",
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 50"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 25,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 20,
+            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
+            "description": { "text": "Omnitrix Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Omnitrix_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "arms.move"
           }
         ]
       }
