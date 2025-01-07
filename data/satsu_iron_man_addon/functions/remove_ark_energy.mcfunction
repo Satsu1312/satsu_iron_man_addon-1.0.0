@@ -1,7 +1,6 @@
 execute as @s unless score @s satsu.iron.man.armor.actived.perm matches 1 as @s[scores={satsu.iron.man.armor.ark.energy=0..9999}] as @s[scores={satsu.iron.man.ark.upgraded=1}] run scoreboard players add @s satsu.iron.man.armor.ark.energy 1
 execute as @s[scores={satsu.iron.man.armor.ark.energy=0..9998}] as @s[scores={satsu.iron.man.ark.upgraded=2}] run scoreboard players add @s satsu.iron.man.armor.ark.energy 2
-execute as @s[scores={satsu.iron.man.armor.actived.perm=1}] as @s[scores={satsu.iron.man.armor.ark.energy=1..}] as @s[scores={satsu.iron.man.armor=0}] run scoreboard players remove @s satsu.iron.man.armor.ark.energy 1
-execute as @s[scores={satsu.iron.man.armor.actived.perm=1}] as @s[scores={satsu.iron.man.armor.ark.energy=1..}] as @s[scores={satsu.iron.man.armor=2..11}] run scoreboard players remove @s satsu.iron.man.armor.ark.energy 1
+execute as @s[scores={satsu.iron.man.armor.actived.perm=1}] as @s[scores={satsu.iron.man.armor.ark.energy=1..}] as @s run scoreboard players remove @s satsu.iron.man.armor.ark.energy 1
 execute as @s[scores={satsu.iron.man.armor.ark.energy=0}] run title @a actionbar {"text":"IA: Energy low","color":"#00aaaa"}
 execute as @s[scores={satsu.iron.man.armor.ark.energy=10500..}] run title @a actionbar {"text":"IA: Energy Overcharged","color":"#00aaaa"}
 execute as @s[scores={satsu.iron.man.armor.ark.energy=9998..10000}] run scoreboard players set @s satsu.iron.man.armor.ark_energy_full_or_off 1

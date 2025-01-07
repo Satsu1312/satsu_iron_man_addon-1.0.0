@@ -15,3 +15,4 @@ execute as @s[scores={satsu.prev.iron.man.armor=9}] run title @s actionbar {"tex
 execute as @s[scores={satsu.prev.iron.man.armor=10}] run title @s actionbar {"text":"unknow Armor","color":"blue"}
 execute as @s[scores={satsu.prev.iron.man.armor=11}] run title @s actionbar {"text":"MK 50","color":"blue"}
 execute as @s[scores={satsu.prev.iron.man.armor=12}] run title @s actionbar {"text":"unknow Armor (X)","color":"blue"}
+execute as @s[scores={satsu.prev.iron.man.armor=13}] run title @s actionbar {"text":"MK1 ","color":"blue"}

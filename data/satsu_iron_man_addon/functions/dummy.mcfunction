@@ -26,6 +26,7 @@ scoreboard objectives add satsu.iron.man.armor.sword dummy
 scoreboard objectives add satsu.iron.man.armor.ark.energy dummy
 scoreboard objectives add satsu.iron.man.armor.ark.energy.max dummy
 scoreboard objectives add satsu.iron.man.armor.ark_energy_full_or_off dummy
+scoreboard objectives add satsu.iron.man.scan.enemies dummy
 scoreboard objectives add satsu.iron.man.armor.47.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.superior.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.43.unlock dummy
@@ -39,6 +40,7 @@ scoreboard objectives add satsu.iron.man.armor.9.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.10.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.11.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.12.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk1.unlock dummy
 scoreboard objectives add satsu.iron.man.rbg.on.off dummy
 scoreboard objectives add satsu.iron.man.speed dummy
 scoreboard objectives add satsu.iron.man.ark.upgraded dummy

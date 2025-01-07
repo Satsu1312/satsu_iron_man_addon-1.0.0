@@ -1,8 +1,8 @@
 {
   "name": "Armors",
   "persistent_data": true,
-  "ability_bar_texture": "m_ten:textures/gui/ability_bars/new_ability_bar.png",
-  "background": "m_ten:textures/block/black.png",
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
   "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
   "gui_display_type": "tree",
   "energy_bars": {
@@ -46,7 +46,7 @@
       "commands": [""],
       "last_tick_commands": [""]
     },
-    "omnitrix_xp_points": {
+    "armor_xp_points.mk1": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -65,11 +65,46 @@
             "objective": "SatsuIronManArmorExp",
             "min_score": 5000,
             "max_score": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 13,
+            "max_score": 13
           }
         ]
       }
     },
-    "omnitrix_xp_points_com": {
+    "armor_xp_points": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorSkillPoint 1",
+        "scoreboard players set @s SatsuIronManArmorExp 0"
+      ],
+      "last_tick_commands": [],
+      "commands": [
+        "title @s actionbar [\"\",{\"text\":\"You have earned 1 Armor Skill point\",\"color\":\"blue\"}]"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorExp",
+            "min_score": 500000,
+            "max_score": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 0,
+            "max_score": 12
+          }
+        ]
+      }
+    },
+    "armor_xp_points_com": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -83,13 +118,16 @@
         "scoreboard objectives add SatsuIronManArmorGuardianKills minecraft.killed:minecraft.guardian"
       ],
       "last_tick_commands": [],
-      "commands": ["scoreboard players add @s SatsuIronManArmorExp 1"],
+      "commands": [
+        "execute as @s unless score @s SatsuIronManArmorSkillPoint matches ..30 run scoreboard players add @s[scores={satsu.iron.man.armor=13}] SatsuIronManArmorExp 30",
+        "execute as @s run scoreboard players add @s[scores={satsu.iron.man.armor=0..12}] SatsuIronManArmorExp 1"
+      ],
       "conditions": {
         "unlocking": [
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -132,7 +170,7 @@
         ]
       }
     },
-    "omnitrix_xp_points_Mobkills_com": {
+    "armor_xp_points_Mobkills_com": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -153,7 +191,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -196,7 +234,7 @@
         ]
       }
     },
-    "omnitrix_xp_points_EnderDragonKills_com": {
+    "armor_xp_points_EnderDragonKills_com": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -217,7 +255,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -260,7 +298,7 @@
         ]
       }
     },
-    "omnitrix_xp_points_Wither_com": {
+    "armor_xp_points_Wither_com": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -281,7 +319,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -324,7 +362,7 @@
         ]
       }
     },
-    "omnitrix_xp_points_Warden_com": {
+    "armor_xp_points_Warden_com": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -345,7 +383,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -388,7 +426,7 @@
         ]
       }
     },
-    "omnitrix_xp_points_Guardian_com": {
+    "armor_xp_points_Guardian_com": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -411,7 +449,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -454,7 +492,7 @@
         ]
       }
     },
-    "Omnitrix_powers_stat_upgrades": {
+    "Armor_powers_stat_upgrades": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
       "title": "Armors Skill tree",
@@ -505,7 +543,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               }
             ]
           }
@@ -547,7 +585,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:has_tag",
@@ -601,7 +639,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:has_tag",
@@ -661,7 +699,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -877,7 +915,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -951,7 +989,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1029,7 +1067,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1094,7 +1132,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1142,7 +1180,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -1162,9 +1200,132 @@
         ]
       }
     },
+    "size": {
+      "type": "palladium:size",
+      "icon": "palladium:textures/icon/size.png",
+      "bar_color": "green",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scale": 1.1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "null",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 13,
+                "max_score": 13
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "size.mk1": {
+      "type": "palladium:size",
+      "icon": "palladium:textures/icon/size.png",
+      "bar_color": "green",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scale": 1.3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "null",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 13,
+            "max_score": 13
+          }
+        ]
+      }
+    },
     "health": {
       "type": "palladium:attribute_modifier",
-      "icon": "m_ten:textures/gui/omnitrix/heart.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/heart.png",
       "title": "health",
       "description": "Receives a health increase with diferents armors",
       "hidden": false,
@@ -1182,7 +1343,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1241,7 +1402,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1281,7 +1442,7 @@
     },
     "strength": {
       "type": "gravestone:stat_ability",
-      "icon": "m_ten:textures/gui/omnitrix/strength.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
       "title": "strength",
       "description": "Receives a strength increase with diferents armors",
       "hidden": false,
@@ -1300,7 +1461,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1358,7 +1519,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1398,7 +1559,7 @@
     },
     "fall_resistance": {
       "type": "palladium:attribute_modifier",
-      "icon": "m_ten:textures/gui/omnitrix/placeholder.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
       "title": "fall resistance",
       "description": "You are quite resistant to falls",
       "hidden": false,
@@ -1416,7 +1577,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1463,34 +1624,24 @@
       "list_index": 0,
       "gui_position": [0, -2],
       "description": "This is the skill tree that will allow you to unlock your various Iron man armors",
-      "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.armor.actived.perm",
-        "scoreboard players add @s satsu.iron.man.armor.actived.perm 1",
-        "scoreboard players add @s satsu.iron.man.armor.actived 1"
-      ],
       "commands": [
-        "scoreboard players set @s satsu.iron.man.armor.actived 1",
-        "scoreboard players add @s[scores={satsu.iron.man.armor.anim=0..16}] satsu.iron.man.armor.anim 1"
-      ],
-      "last_tick_commands": [
         "scoreboard players add @s satsu.iron.man.armor.actived.perm 1",
         "scoreboard players add @s satsu.iron.man.armor.actived 1",
         "scoreboard players reset @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.armor.actived.perm=2..}] satsu.iron.man.armor.actived.perm",
-        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.armor.actived=2..}] satsu.iron.man.armor.actived",
-        "scoreboard players reset @s satsu.iron.man.armor.actived",
-        "scoreboard players set @s satsu.iron.man.armor.actived 0"
+        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.armor.actived=2..}] satsu.iron.man.armor.actived"
       ],
+      "last_tick_commands": [""],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle"
+            "type": "palladium:action"
           }
         ],
         "unlocking": [
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:not",
@@ -1528,7 +1679,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:crouching"
@@ -1549,7 +1700,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1598,7 +1749,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1700,7 +1851,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -1742,7 +1893,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1808,7 +1959,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -1862,7 +2013,7 @@
     },
     "energy_beam": {
       "type": "palladium:energy_beam",
-      "icon": "m_ten:textures/gui/omnitrix/powers/chronosapien_freeze.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/powers/chronosapien_freeze.png",
       "title": "temporal laser     ",
       "bar_color": "green",
       "hidden": false,
@@ -1880,18 +2031,40 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
+            "type": "palladium:held",
             "cooldown": 500
           },
           {
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:animation_timer_ability",
-                "power": "null",
-                "ability": "animation.projectile.1",
-                "min": 5,
-                "max": 5
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "power": "null",
+                    "ability": "animation.projectile.1",
+                    "min": 5,
+                    "max": 5
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "power": "null",
+                    "ability": "animation.projectile.3",
+                    "min": 5,
+                    "max": 5
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "animation.projectile.mk1.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "animation.projectile.mk1.3"
+                  }
+                ]
               }
             ]
           }
@@ -1900,7 +2073,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -1953,7 +2126,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -2016,7 +2189,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -2070,7 +2243,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -2124,7 +2297,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -2157,7 +2330,7 @@
     },
     "no-list:show_both_arms": {
       "type": "palladium:show_both_arms",
-      "icon": "m_ten:textures/gui/omnitrix/placeholder.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
       "bar_color": "green",
       "hidden": true,
       "hidden_in_bar": false,
@@ -2170,12 +2343,12 @@
               {
                 "type": "palladium:ability_enabled",
                 "power": "null",
-                "ability": "animation.projectile.1"
+                "ability": "animation.projectile.3"
               },
               {
                 "type": "palladium:ability_enabled",
                 "power": "null",
-                "ability": "animation.projectile.3"
+                "ability": "animation.projectile.mk1.3"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -2206,6 +2379,11 @@
               {
                 "type": "palladium:ability_enabled",
                 "power": "null",
+                "ability": "animation.projectile.mk1.3"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
                 "ability": "maximun.pulse.animation"
               }
             ]
@@ -2232,6 +2410,11 @@
               {
                 "type": "palladium:ability_enabled",
                 "power": "null",
+                "ability": "animation.projectile.mk1.1"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
                 "ability": "maximun.pulse.animation"
               },
               {
@@ -2246,7 +2429,7 @@
     },
     "Energy.Pulse": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/powers/orishan_bubble.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/powers/orishan_bubble.png",
       "entity_type": "palladium:custom_projectile",
       "title": "Energy Pulse",
       "description": "By activating this the armor will be able to throw energy from the hands (with right or left click)",
@@ -2276,7 +2459,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -2328,7 +2511,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:activation",
+            "type": "palladium:held",
             "ticks": 6,
             "cooldown": 0,
             "key_type": "right_click",
@@ -2343,7 +2526,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -2389,6 +2572,17 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "satsu.iron.man.enable.sword"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 13,
+                "max_score": 13
               }
             ]
           }
@@ -2404,7 +2598,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:activation",
+            "type": "palladium:held",
             "ticks": 6,
             "cooldown": 0,
             "key_type": "left_click",
@@ -2419,7 +2613,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -2467,6 +2661,181 @@
                 "tag": "satsu.iron.man.enable.sword"
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 13,
+                "max_score": 13
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "animation.projectile.mk1.1": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "ticks": 6,
+            "cooldown": 0,
+            "key_type": "right_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "energy.pulse"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 16,
+                "max": 16
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "satsu.iron.man.enable.sword"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 13,
+            "max_score": 13
+          }
+        ]
+      }
+    },
+    "animation.projectile.mk1.3": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "ticks": 6,
+            "cooldown": 0,
+            "key_type": "left_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "energy.pulse"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 16,
+                "max": 16
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "satsu.iron.man.enable.sword"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 13,
+            "max_score": 13
           }
         ]
       }
@@ -2545,6 +2914,96 @@
         ]
       }
     },
+    "mk1_flame_right": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": ["grave.core:util/ray_right"],
+      "particle_type": "minecraft:flame",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation.projectile.mk1.1"
+          }
+        ]
+      }
+    },
+    "mk1_flame_left": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": ["grave.core:util/ray_left"],
+      "particle_type": "minecraft:flame",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation.projectile.mk1.3"
+          }
+        ]
+      }
+    },
+    "energy_projectile.mk1": {
+      "type": "palladium:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 3,
+      "swinging_arm": "none",
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 5,
+        "Size": 2,
+        "Gravity": 0.0,
+        "Lifetime": 20,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "",
+        "CommandOnBlockHit": "",
+        "Appearances": []
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation.projectile.mk1.1"
+          }
+        ]
+      }
+    },
+    "energy_projectile.mk1_other_arm": {
+      "type": "palladium:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 5,
+        "Size": 2,
+        "Gravity": 0.0,
+        "Lifetime": 20,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "",
+        "CommandOnBlockHit": "",
+        "Appearances": []
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation.projectile.mk1.3"
+          }
+        ]
+      }
+    },
     "energyblast.remove.ark.energy": {
       "type": "palladium:command",
       "hidden": true,
@@ -2562,6 +3021,16 @@
                 "type": "palladium:ability_enabled",
                 "power": "null",
                 "ability": "energy_projectile"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "energy_projectile.mk1"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "energy_projectile.mk3"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -2694,14 +3163,14 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:scoreboard_score_buyable",
             "objective": "SatsuIronManArmorSkillPoint",
             "score": 0,
             "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "description": { "text": "Armor Skill Point" }
           }
         ]
       }
@@ -2731,7 +3200,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
@@ -2761,7 +3230,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -2782,7 +3251,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -2871,7 +3340,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -2910,13 +3379,24 @@
                 "max": 16
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 9,
+                "max_score": 9
+              }
+            ]
           }
         ]
       }
     },
     "flight_speed": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/speed_up.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
       "title": "Activate armor",
       "hidden": true,
       "hidden_in_bar": false,
@@ -2937,7 +3417,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_enabled",
@@ -2948,13 +3428,24 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.flight_speed",
             "max_score": 21
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 9,
+                "max_score": 9
+              }
+            ]
           }
         ]
       }
     },
     "remove.flight_speed": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/speed_down.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
       "title": "Activate armor",
       "hidden": true,
       "hidden_in_bar": false,
@@ -2975,7 +3466,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_enabled",
@@ -2986,13 +3477,24 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.flight_speed",
             "min_score": 7
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 9,
+                "max_score": 9
+              }
+            ]
           }
         ]
       }
     },
     "failsafe_unlock": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/heart.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/heart.png",
       "title": "failsafe Edit",
       "hidden": false,
       "hidden_in_bar": false,
@@ -3017,7 +3519,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -3061,7 +3563,7 @@
     },
     "stealht": {
       "type": "palladium:dummy",
-      "icon": "m_ten:textures/gui/omnitrix/invis.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
       "title": "stealht mode",
       "hidden": true,
       "hidden_in_bar": false,
@@ -3103,14 +3605,14 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
     },
     "stealht_invisibility": {
       "type": "palladium:invisibility",
-      "icon": "m_ten:textures/gui/omnitrix/invis.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
       "bar_color": "orange",
       "hidden": true,
       "hidden_in_bar": true,
@@ -3121,7 +3623,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -3169,7 +3671,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_enabled",
@@ -3189,7 +3691,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_enabled",
@@ -3209,7 +3711,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -3240,7 +3742,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -3263,7 +3765,7 @@
     },
     "Telekinesis": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/cerebrocrustacean_grab.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/cerebrocrustacean_grab.png",
       "title": "Telekinesis         ",
       "description": "By using the ability you will be able to grab objects on the ground and enemies with your mind",
       "bar_color": "green",
@@ -3312,14 +3814,14 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
     },
     "Thunder_lord": {
       "type": "palladium:energy_beam",
-      "icon": "m_ten:textures/gui/abilities/lightningray.png",
+      "icon": "satsu_iron_man_addon:textures/gui/abilities/lightningray.png",
       "hidden": true,
       "hidden_in_bar": true,
       "energy_beam": "satsu_iron_man_addon:laser_whip",
@@ -3376,7 +3878,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
@@ -3422,7 +3924,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
@@ -3461,14 +3963,14 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
     },
     "Hyper_speed": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/speed_up.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
       "title": "Increase speed",
       "hidden": true,
       "hidden_in_bar": false,
@@ -3489,7 +3991,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_unlocked",
@@ -3506,7 +4008,7 @@
     },
     "remove.Hyper_speed": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/speed_down.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
       "title": "Decrease Speed",
       "hidden": true,
       "hidden_in_bar": false,
@@ -3527,7 +4029,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_unlocked",
@@ -3569,7 +4071,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -3612,14 +4114,14 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
     },
     "choose.armor.1": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/speed_up.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
       "title": "Next armor",
       "hidden": true,
       "hidden_in_bar": false,
@@ -3628,7 +4130,7 @@
       "first_tick_commands": [],
       "commands": [
         "scoreboard players set @s satsu.prev.iron.man.armor.anim 0",
-        "execute as @s[scores={satsu.prev.iron.man.armor=0..11}] run scoreboard players add @s satsu.prev.iron.man.armor 1"
+        "execute as @s[scores={satsu.prev.iron.man.armor=0..12}] run scoreboard players add @s satsu.prev.iron.man.armor 1"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -3641,7 +4143,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_enabled",
@@ -3653,7 +4155,7 @@
     },
     "choose.armor.2": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/speed_down.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
       "title": "Prev armor",
       "hidden": true,
       "hidden_in_bar": false,
@@ -3677,7 +4179,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_enabled",
@@ -3687,21 +4189,28 @@
         ]
       }
     },
-    "Mk47": {
+    "Mk1": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/dna_badge_off.png",
-      "title": "Mark 47",
+      "title": "Mark 1",
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [0, 1],
       "description": "",
-      "commands": "scoreboard players set @s satsu.iron.man.armor.47.unlock 1",
+      "commands": "scoreboard players set @s satsu.iron.man.armor.mk1.unlock 1",
       "conditions": {
         "unlocking": [
           {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 0,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
@@ -3719,15 +4228,15 @@
         "unlocking": [
           {
             "type": "palladium:scoreboard_score_buyable",
-            "objective": "OmnitrixSkillPoint",
-            "score": 5,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 43,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
@@ -3745,93 +4254,41 @@
         "unlocking": [
           {
             "type": "palladium:scoreboard_score_buyable",
-            "objective": "OmnitrixSkillPoint",
-            "score": 5,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 40,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
     },
-    "MK50": {
+    "Mk47": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/dna_badge_off.png",
-      "title": "Mark 50",
+      "title": "Mark 47",
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [2, 1],
       "description": "",
-      "commands": "scoreboard players set @s satsu.iron.man.armor.11.unlock 1",
+      "commands": "scoreboard players set @s satsu.iron.man.armor.47.unlock 1",
       "conditions": {
         "unlocking": [
           {
             "type": "palladium:scoreboard_score_buyable",
-            "objective": "OmnitrixSkillPoint",
-            "score": 5,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 47,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
-          }
-        ]
-      }
-    },
-    "Stealh_Armor": {
-      "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/dna_badge_off.png",
-      "title": "Stealh Armor",
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [2, 1],
-      "description": "",
-      "commands": "scoreboard players set @s satsu.iron.man.armor.6.unlock 1",
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:scoreboard_score_buyable",
-            "objective": "OmnitrixSkillPoint",
-            "score": 5,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
-          }
-        ]
-      }
-    },
-    "Midas": {
-      "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/dna_badge_off.png",
-      "title": "Midas Armor",
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [2, 1],
-      "description": "",
-      "commands": "scoreboard players set @s satsu.iron.man.armor.7.unlock 1",
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:scoreboard_score_buyable",
-            "objective": "OmnitrixSkillPoint",
-            "score": 5,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
@@ -3849,15 +4306,93 @@
         "unlocking": [
           {
             "type": "palladium:scoreboard_score_buyable",
-            "objective": "OmnitrixSkillPoint",
-            "score": 5,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 50,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
+          }
+        ]
+      }
+    },
+    "Stealh_Armor": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/dna_badge_off.png",
+      "title": "Stealh Armor",
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [3, 1],
+      "description": "",
+      "commands": "scoreboard players set @s satsu.iron.man.armor.6.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 16,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Armor_powers_stat_upgrades"
+          }
+        ]
+      }
+    },
+    "MK50": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/dna_badge_off.png",
+      "title": "Mark 50",
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-3, 1],
+      "description": "",
+      "commands": "scoreboard players set @s satsu.iron.man.armor.11.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 50,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Armor_powers_stat_upgrades"
+          }
+        ]
+      }
+    },
+    "Midas": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/dna_badge_off.png",
+      "title": "Midas Armor",
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [4, 1],
+      "description": "",
+      "commands": "scoreboard players set @s satsu.iron.man.armor.8.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 8,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
@@ -3873,7 +4408,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -3916,7 +4451,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -3956,7 +4491,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -4001,7 +4536,7 @@
     },
     "arms.1": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/speed_up.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
       "title": "Next armor",
       "hidden": true,
       "hidden_in_bar": false,
@@ -4023,7 +4558,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -4046,7 +4581,7 @@
     },
     "arms.2": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/speed_down.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
       "title": "Prev armor",
       "hidden": true,
       "hidden_in_bar": false,
@@ -4070,7 +4605,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:objective_score",
@@ -4092,7 +4627,7 @@
     },
     "animation.projectile.2": {
       "type": "palladium:repeating_animation_timer",
-      "icon": "m_ten:textures/gui/omnitrix/powers/orishan_bubble.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/powers/orishan_bubble.png",
       "entity_type": "palladium:custom_projectile",
       "title": "Fireworks",
       "description": "Throws a fireworks (20 damage)",
@@ -4116,7 +4651,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -4257,21 +4792,21 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:scoreboard_score_buyable",
             "objective": "SatsuIronManArmorSkillPoint",
             "score": 0,
             "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "description": { "text": "Armor Skill Point" }
           }
         ]
       }
     },
     "maximun.pulse.animation": {
       "type": "palladium:repeating_animation_timer",
-      "icon": "m_ten:textures/gui/omnitrix/powers/orishan_bubble.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/powers/orishan_bubble.png",
       "entity_type": "palladium:custom_projectile",
       "title": "Maximum Pulse",
       "description": "Throws a Maximun pulse (800 damage)",
@@ -4295,7 +4830,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -4477,7 +5012,7 @@
     },
     "sword_anim": {
       "type": "palladium:animation_timer",
-      "icon": "m_ten:textures/gui/omnitrix/powers/orishan_bubble.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/powers/orishan_bubble.png",
       "title": "Fireworks",
       "description": "Throws a water projectile (5 damage)",
       "hidden": true,
@@ -4500,7 +5035,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -4570,7 +5105,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:or",
@@ -4905,20 +5440,20 @@
             "type": "palladium:scoreboard_score_buyable",
             "objective": "SatsuIronManArmorSkillPoint",
             "score": 35,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           }
         ]
       }
     },
     "force_field": {
       "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/powers/crystalsapien_force_field.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/powers/crystalsapien_force_field.png",
       "title": "force field",
       "description": "Creates a force field",
       "bar_color": "green",
@@ -4945,13 +5480,13 @@
             "type": "palladium:scoreboard_score_buyable",
             "objective": "SatsuIronManArmorSkillPoint",
             "score": 80,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_enabled",
@@ -4995,13 +5530,13 @@
             "type": "palladium:scoreboard_score_buyable",
             "objective": "SatsuIronManArmorSkillPoint",
             "score": 20,
-            "icon": "m_ten:textures/gui/omnitrix/ov_trix_master.png",
-            "description": { "text": "Omnitrix Skill Point" }
+            "icon": "satsu_iron_man_addon:textures/gui/armors/ov_trix_master.png",
+            "description": { "text": "Armor Skill Point" }
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Omnitrix_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades"
           },
           {
             "type": "palladium:ability_enabled",
@@ -5024,12 +5559,101 @@
       "alignment": "top_right",
       "hidden": true
     },
+    "scan_enemies_enable": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/scan.png",
+      "title": "Scan enemies",
+      "description": "Scan enemies around",
+      "bar_color": "green",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": -1,
+      "gui_position": [-4, -0.5],
+      "first_tick_commands": [""],
+      "commands": [
+        "scoreboard players add @s satsu.iron.man.scan.enemies 1",
+        "execute as @s[scores={satsu.iron.man.scan.enemies=2..}] run scoreboard players reset @s satsu.iron.man.scan.enemies"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "null",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "scan_enemies": {
+      "type": "palladium:command",
+      "hidden": true,
+      "first_tick_commands": ["tag @s add not.mee.scan"],
+      "commands": ["function satsu_iron_man_addon:ark_enemiesteam"],
+      "last_tick_commands": ["tag @s remove not.mee.scan"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.scan.enemies",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
     "commands_armor": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [],
-      "commands": ["function satsu_iron_man_addon:armor_commands_set"]
+      "commands": [
+        "function satsu_iron_man_addon:armor_commands",
+        "superpower add satsu_iron_man_addon:iron_man_armor_voice_commands"
+      ]
     },
     "recharge.ark.reactor.block": {
       "type": "palladium:command",
@@ -5096,7 +5720,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -5170,7 +5794,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
+                "ability": "Armor_powers_stat_upgrades"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -5344,672 +5968,6 @@
               "item": "satsu_iron_man_addon:reactor_ark_recharge_off"
             },
             "amount": 20
-          }
-        ]
-      }
-    },
-    "voice_command.1": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.closed.armors 1"
-      ],
-      "commands": [
-        "execute as @s[scores={satsu.iron.man.closed.armors=2..}] run scoreboard players reset @s satsu.iron.man.closed.armors"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Close armor",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
-    "voice_command.2": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.remove.ark 1"
-      ],
-      "commands": [
-        "execute as @s[scores={satsu.iron.man.remove.ark=2..}] run scoreboard players reset @s satsu.iron.man.remove.ark"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Remove ark",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
-    "voice_command.3": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.rbg.on.off 1"
-      ],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Enable RGB mode",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
-    "voice_command.4": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.rbg.on.off"
-      ],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Disable RGB mode",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
-    "voice_command_permanent_armor.5": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": ["tag @s add satsu.iron.man.permanet.armor"],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Enable Armor",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
-    "voice_command_permanent_armor.6": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": ["tag @s remove satsu.iron.man.permanet.armor"],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Disable Armor",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
-    "voice_command_permanent_sword.7": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": ["tag @s add satsu.iron.man.permanet.sword"],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Enable Sword",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
-    "voice_command_permanent_sword.8": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": ["tag @s remove satsu.iron.man.permanet.sword"],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Disable Sword",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
-    "voice_command_permanent_mask.9": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.mask 1"
-      ],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Enable mask",
-            "cooldown": 0
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "voice_command_permanent_mask.10": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.mask 0"
-      ],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_action",
-            "chat_message": "Disable mask",
-            "cooldown": 0
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "Remove_ark_energy": {
-      "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/ov_core.png",
-      "title": "Timer",
-      "bar_color": "green",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "gui_position": [1, -2],
-      "commands": ["function satsu_iron_man_addon:remove_ark_energy"]
-    },
-    "full_charge_ark_energy": {
-      "type": "palladium:command",
-      "icon": "m_ten:textures/gui/omnitrix/ov_core.png",
-      "title": "Timer",
-      "bar_color": "green",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "gui_position": [1, -2],
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:full_charge_ark_energy"
-      ],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.ark.energy",
-            "min_score": 10000
-          }
-        ]
-      }
-    },
-    "remove_ark_reactor": {
-      "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
-      "title": "remove ark reactor",
-      "bar_color": "green",
-      "hidden": true,
-      "hidden_in_bar": false,
-      "gui_position": [0, -3.5],
-      "first_tick_commands": [],
-      "commands": [
-        "give @s satsu_iron_man_addon:ark_reactor",
-        "superpower remove satsu_iron_man_addon:iron_man_armor @s",
-        "scoreboard players reset @s satsu.iron.man.superpower"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "voice_command.2"
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.remove.ark",
-            "min_score": 1,
-            "max_score": 1
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": []
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "rgb_color_anim": {
-      "type": "palladium:repeating_animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 32,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "power": "null",
-                "ability": "Omnitrix_powers_stat_upgrades"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "null",
-                "ability": "enable_armor"
-              }
-            ]
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.1": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s 00fffa"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 0,
-            "max": 5
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.2": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s df00ff"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 5,
-            "max": 7
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.3": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s ff0000"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 7,
-            "max": 10
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.4": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s ffe100"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 10,
-            "max": 12
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.5": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s ffe100"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 12,
-            "max": 16
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.6": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s 00ff5f"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 12,
-            "max": 16
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.7": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s 000fff"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 16,
-            "max": 20
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.8": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s b800ff"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 16,
-            "max": 20
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.9": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s ff00cb"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 20,
-            "max": 24
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.10": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s ff007e"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 24,
-            "max": 28
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
-    "rgb_color_set.11": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["irommanarmorcolor @s ff0000"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:animation_timer_ability",
-            "power": "null",
-            "ability": "rgb_color_anim",
-            "min": 28,
-            "max": 32
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.rbg.on.off",
-                "min_score": 0
-              }
-            ]
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived.perm",
-            "min_score": 1,
-            "max_score": 1
           }
         ]
       }
