@@ -10,10 +10,4 @@ execute as @s[scores={satsu.iron.man.armor.ark.energy=0..200}] run scoreboard pl
 execute as @s[scores={satsu.iron.man.armor.ark.energy=10000..}] run scoreboard players set @s satsu.iron.man.armor.ark_energy_full_or_off 4
 scoreboard players reset @s[scores={satsu.iron.man.armor.ark.energy=..0}] satsu.iron.man.armor.actived.perm
 scoreboard players reset @s[scores={satsu.iron.man.armor.ark.energy=..0}] satsu.iron.man.armor.actived
-
-scoreboard players set @s satsu.iron.man.armor.anim 0
-scoreboard players set @s satsu.iron.man.flight_speed 6
-scoreboard players set @s satsu.iron.man.flight_speed_max 24
-scoreboard players set @s satsu.iron.man.armor.ark.energy.max 10000
 execute as @s unless score @s satsu.iron.man.armor.ark.energy matches 0.. run scoreboard players set @s satsu.iron.man.armor.ark.energy 10000
-scoreboard players set @s satsu.iron.man.superpower 0
