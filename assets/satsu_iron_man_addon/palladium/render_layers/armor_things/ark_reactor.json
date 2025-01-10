@@ -2,7 +2,11 @@
   "type": "palladium:compound",
   "layers": [
     {
-      "type": "palladium:skin_overlay",
+      "type": "geckolib:default",
+      "model": {
+        "normal": "satsu_iron_man_addon:geo/player.geo.json",
+        "slim": "satsu_iron_man_addon:geo/player_slim.geo.json"
+      },
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man_suit_reactor_lights_#X.png",
         "variables": {
@@ -22,7 +26,51 @@
         "normal": "satsu_iron_man_addon:geo/player.geo.json",
         "slim": "satsu_iron_man_addon:geo/player_slim.geo.json"
       },
-      "texture": "satsu_iron_man_addon:textures/models/iron_man_suit_reactor_lights_1.png"
+      "texture": "#entity",
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "satsu_iron_man_addon:iron_man_armor",
+                  "ability": "interpolate",
+                  "property": "value",
+                  "min": 12,
+                  "max": 16
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "satsu_iron_man_addon:iron_man_armor",
+                  "ability": "no_nanoarmor_anim",
+                  "property": "value",
+                  "min": 16,
+                  "max": 16
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": {
+        "normal": "satsu_iron_man_addon:geo/player_head.geo.json",
+        "slim": "satsu_iron_man_addon:geo/player_head_slim.geo.json"
+      },
+      "texture": "#entity",
+      "conditions": [
+        {
+          "type": "palladium:objective_score",
+          "objective": "satsu.iron.man.mask",
+          "min": 0,
+          "max": 0
+        }
+      ]
     }
   ]
 }
