@@ -16,4 +16,5 @@ execute as @s[scores={satsu.iron.man.choose_armor=10}] run title @s actionbar {"
 execute as @s[scores={satsu.iron.man.choose_armor=11}] run title @s actionbar {"text":"MK 50","color":"blue"}
 execute as @s[scores={satsu.iron.man.choose_armor=12}] run title @s actionbar {"text":"unknow Armor (X)","color":"blue"}
 execute as @s[scores={satsu.iron.man.choose_armor=13}] run title @s actionbar {"text":"MK1 ","color":"blue"}
-execute as @s[scores={satsu.iron.man.choose_armor=14}] run title @s actionbar {"text":"MK2 ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=14}] run title @s actionbar {"text":"MK2 ","color":"blue"}execute as @s[scores={satsu.iron.man.choose_armor=14}] run title @s actionbar {"text":"MK2 ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=15}] run title @s actionbar {"text":"MK30 Uru ","color":"blue"}

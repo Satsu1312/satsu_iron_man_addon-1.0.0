@@ -1,0 +1,619 @@
+{
+  "name": "xp",
+  "persistent_data": true,
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "tree",
+  "primary_color": "#2af4f5",
+  "secondary_color": "#0aacac",
+  "energy_bars": {
+    "flight_speed": {
+      "max": {
+        "type": "score",
+        "objective": "satsu.iron.man.flight_speed_max",
+        "fallback": 0
+      },
+      "color": "#0fffbd",
+      "max_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.flight_speed_max",
+        "fallback": 10
+      },
+      "synced_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.flight_speed",
+        "fallback": 0
+      }
+    }
+  },
+  "abilities": {
+    "armor_xp_points.mk1": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorSkillPoint 1",
+        "scoreboard players set @s SatsuIronManArmorExp 0"
+      ],
+      "last_tick_commands": [],
+      "commands": [
+        "title @s actionbar [\"\",{\"text\":\"You have earned 1 Armor Skill point\",\"color\":\"blue\"}]"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorExp",
+            "min_score": 5000,
+            "max_score": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 13,
+            "max_score": 13
+          }
+        ]
+      }
+    },
+    "damage_fly": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "last_tick_commands": [],
+      "commands": ["damage @s 1 minecraft:player_attack"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.1"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.2"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @p[y=300,dy=300]"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @p[y=400,dy=400]"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @p[y=500,dy=500]"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @p[y=600,dy=600]"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @p[y=700,dy=700]"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @p[y=800,dy=800]"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @p[y=900,dy=900]"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @p[y=1000,dy=1000]"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "slow_fall_test": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "last_tick_commands": [],
+      "commands": ["say AHHH"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @s[nbt={OnGround:0b}]"
+              },
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @s[y=0..300,dy=0..300]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_xp_points": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorSkillPoint 1",
+        "scoreboard players set @s SatsuIronManArmorExp 0"
+      ],
+      "last_tick_commands": [],
+      "commands": [
+        "title @s actionbar [\"\",{\"text\":\"You have earned 1 Armor Skill point\",\"color\":\"blue\"}]"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorExp",
+            "min_score": 500000,
+            "max_score": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 0,
+            "max_score": 12
+          }
+        ]
+      }
+    },
+    "armor_xp_points_com": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scoreboard objectives add SatsuIronManArmorSkillPoint dummy",
+        "execute as @s unless score @s SatsuIronManArmorSkillPoint matches ..0 run scoreboard players set @s SatsuIronManArmorSkillPoint 0",
+        "scoreboard objectives add SatsuIronManArmorExp dummy",
+        "scoreboard objectives add SatsuIronManArmorMobKills minecraft.custom:minecraft.mob_kills",
+        "scoreboard objectives add SatsuIronManArmorDragonKills minecraft.killed:minecraft.ender_dragon",
+        "scoreboard objectives add SatsuIronManArmorWitherKills minecraft.killed:minecraft.wither",
+        "scoreboard objectives add SatsuIronManArmorWardenKills minecraft.killed:minecraft.warden",
+        "scoreboard objectives add SatsuIronManArmorGuardianKills minecraft.killed:minecraft.guardian"
+      ],
+      "last_tick_commands": [],
+      "commands": [
+        "execute as @s[scores={SatsuIronManArmorSkillPoint=..30}] run scoreboard players add @s[scores={satsu.iron.man.armor=13}] SatsuIronManArmorExp 30",
+        "execute as @s run scoreboard players add @s[scores={satsu.iron.man.armor=0..12}] SatsuIronManArmorExp 1"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 16,
+                "max": 16
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_xp_points_Mobkills_com": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "last_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorExp 500"
+      ],
+      "commands": ["scoreboard players set @s SatsuIronManArmorMobKills 0"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorMobKills",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 16,
+                "max": 16
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_xp_points_EnderDragonKills_com": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "last_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorSkillPoint 1"
+      ],
+      "commands": ["scoreboard players set @s SatsuIronManArmorDragonKills 0"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorDragonKills",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 16,
+                "max": 16
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_xp_points_Wither_com": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "last_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorExp 2000"
+      ],
+      "commands": ["scoreboard players set @s SatsuIronManArmorWitherKills 0"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorWitherKills",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 16,
+                "max": 16
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_xp_points_Warden_com": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "last_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorExp 4000"
+      ],
+      "commands": ["scoreboard players set @s SatsuIronManArmorWardenKills 0"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorWardenKills",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 16,
+                "max": 16
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_xp_points_Guardian_com": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "last_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorExp 6000"
+      ],
+      "commands": [
+        "scoreboard players set @s SatsuIronManArmorGuardianKills 0"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorGuardianKills",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 16,
+                "max": 16
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Armor_powers_stat_upgrades": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
+      "title": "Armors Skill tree",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.Armor_powers_stat_upgrades" },
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.closed.armors",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
