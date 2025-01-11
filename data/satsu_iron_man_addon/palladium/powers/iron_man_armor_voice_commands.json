@@ -6,6 +6,25 @@
   "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
   "gui_display_type": "tree",
   "abilities": {
+    "render_layer.parachutes": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:parachutes/ark_reactor",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "satsu.iron.man.parachute"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "Armor_powers_stat_upgrades": {
       "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:armor_icon_ability",
@@ -381,16 +400,61 @@
       }
     },
     "slowfall": {
-      "type": "palladium:slowfall",
+      "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add satsu.iron.man.parachute"],
+      "commands": ["effect give @s minecraft:slow_falling 10 255 true"],
+      "last_tick_commands": ["tag @s remove satsu.iron.man.parachute"],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.failsafe.set",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.failsafe.set",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.43"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.47"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.50"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.50.superior"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "satsu.iron.man.nano.armor"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:crouching"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @s[scores={motionY=..-2}]"
           },
           {
             "type": "palladium:not",
@@ -405,20 +469,77 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:on_ground"
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:crouching"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
               }
             ]
           }
         ]
       }
+    },
+    "slowfall_remove": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["effect clear @s minecraft:slow_falling"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.failsafe.set",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:crouching"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @s[scores={motionY=-1..}]"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "slowfall_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard objectives add motionY dummy",
+        "execute as @a at @s store result score @s motionY run data get entity @s Motion[1]"
+      ]
     },
     "Failsafe": {
       "type": "palladium:command",
