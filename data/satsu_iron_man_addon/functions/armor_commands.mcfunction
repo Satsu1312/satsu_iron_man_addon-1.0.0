@@ -17,3 +17,11 @@ execute as @s[scores={satsu.iron.man.armor=12}] run function satsu_iron_man_addo
 execute as @s[scores={satsu.iron.man.armor=13}] run function satsu_iron_man_addon:armors/armor_13
 execute as @s[scores={satsu.iron.man.armor=14}] run function satsu_iron_man_addon:armors/armor_14
 execute as @s[scores={satsu.iron.man.armor=15}] run function satsu_iron_man_addon:armors/armor_15
+execute as @s[scores={satsu.iron.man.armor=16}] run function satsu_iron_man_addon:armors/armor_16
+execute as @s[scores={satsu.iron.man.armor=17}] run function satsu_iron_man_addon:armors/armor_17
+execute as @s[scores={satsu.iron.man.armor=18}] run function satsu_iron_man_addon:armors/armor_18
+execute as @s[scores={satsu.iron.man.armor=19}] run function satsu_iron_man_addon:armors/armor_19
+execute as @s[scores={satsu.iron.man.armor=20}] run function satsu_iron_man_addon:armors/armor_20
+execute as @s[scores={satsu.iron.man.armor=21}] run function satsu_iron_man_addon:armors/armor_21
+execute as @s[scores={satsu.iron.man.armor=22}] run function satsu_iron_man_addon:armors/armor_22
+execute as @s[scores={satsu.iron.man.armor=23}] run function satsu_iron_man_addon:armors/armor_23

@@ -1,4 +1,5 @@
 
+scoreboard objectives add satsu.iron.man.armor.ark.beam.color.icon dummy
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.flame.thrower.icon dummy
 scoreboard objectives add satsu.iron.man.addon.altura dummy
 scoreboard objectives add satsu.iron.man.mask dummy
@@ -53,6 +54,7 @@ scoreboard objectives add satsu.iron.man.armor.12.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk1.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.15.mk30.unlock dummy
 scoreboard objectives add satsu.iron.man.symbiote.metalized dummy
+scoreboard objectives add satsu.iron.man.armor.16.unknow.blooded.armor.unlock dummy
 scoreboard objectives add satsu.iron.man.rbg.on.off dummy
 scoreboard objectives add satsu.iron.man.speed dummy
 scoreboard objectives add satsu.iron.man.ark.upgraded dummy

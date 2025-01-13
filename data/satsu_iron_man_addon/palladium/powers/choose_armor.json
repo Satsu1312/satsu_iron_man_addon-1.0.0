@@ -422,6 +422,45 @@
         ]
       }
     },
+    "choose.armor.unknow.blooded.armor": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
+      "title": "Next armor",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 1,
+      "description": "This is the skill tree that will allow you to unlock your various Iron man armors", 
+      "first_tick_commands": [],
+      "commands": ["scoreboard players set @s satsu.iron.man.choose_armor 16"],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.choose_armor.test",
+            "min_score": 10,
+            "max_score": 10
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.16.unknow.blooded.armor.unlock",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:iron_man_armor",
+            "ability": "choose.armor.move"
+          }
+        ]
+      }
+    },
     "choose.armor.1.MKSuperior": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
@@ -439,8 +478,8 @@
           {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.choose_armor.test",
-            "min_score": 10,
-            "max_score": 10
+            "min_score": 11,
+            "max_score": 11
           },
           {
             "type": "palladium:objective_score",

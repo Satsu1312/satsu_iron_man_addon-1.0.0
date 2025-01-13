@@ -18,3 +18,11 @@ execute as @s[scores={satsu.iron.man.choose_armor=12}] run title @s actionbar {"
 execute as @s[scores={satsu.iron.man.choose_armor=13}] run title @s actionbar {"text":"MK1 ","color":"blue"}
 execute as @s[scores={satsu.iron.man.choose_armor=14}] run title @s actionbar {"text":"MK2 ","color":"blue"}
 execute as @s[scores={satsu.iron.man.choose_armor=15}] run title @s actionbar {"text":"MK30 Uru ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=16}] run title @s actionbar {"text":"Blooded armor ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=17}] run title @s actionbar {"text":"Blooded armor ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=18}] run title @s actionbar {"text":"Blooded armor ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=19}] run title @s actionbar {"text":"Blooded armor ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=20}] run title @s actionbar {"text":"Blooded armor ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=21}] run title @s actionbar {"text":"Blooded armor ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=22}] run title @s actionbar {"text":"Blooded armor ","color":"blue"}
+execute as @s[scores={satsu.iron.man.choose_armor=23}] run title @s actionbar {"text":"Blooded armor ","color":"blue"}
