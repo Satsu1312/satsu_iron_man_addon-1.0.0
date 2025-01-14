@@ -4,20 +4,20 @@ ServerEvents.commandRegistry((event) => {
   event.register(
     Commands.literal("irommanarmorcolor").then(
       Commands.argument("entity", Arguments.PLAYER.create(event)).then(
-        Commands.argument("hex1", Arguments.STRING.create(event)).executes(
-            (ctx) => {
-              let target = Arguments.PLAYER.getResult(ctx, "entity");
-              let server = ctx.source.getServer();
-              let player = ctx.source.player;
-              let username = player.getGameProfile().getName();
-              const hex1 = Arguments.STRING.getResult(ctx, "hex1");
-              {
-                palladium.setProperty(target, "satsuironmanrgb", hex1);
-                return 1;
-              }
+        Commands.argument("colorhex", Arguments.STRING.create(event)).executes(
+          (ctx) => {
+            let target = Arguments.PLAYER.getResult(ctx, "entity");
+            let server = ctx.source.getServer();
+            let player = ctx.source.player;
+            let username = player.getGameProfile().getName();
+            const colorhex = Arguments.STRING.getResult(ctx, "colorhex");
+            {
+              palladium.setProperty(target, "satsuironmanrgb", colorhex);
+              return 1;
             }
-          )
+          }
         )
       )
+    )
   );
 });

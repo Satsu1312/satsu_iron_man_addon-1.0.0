@@ -557,15 +557,111 @@
         ]
       }
     },
+    "maximun.pulse.not.break": {
+      "type": "palladium:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "entity_type": "palladium:custom_projectile",
+      "entity_data": {
+        "KnockbackStrength": 10,
+        "Damage": 800,
+        "Size": 5.5,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:maximum_pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:maximum_pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 10.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.break",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:armor/iron_man_armor",
+            "ability": "maximun.pulse.animation",
+            "min": 50,
+            "max": 50
+          }
+        ]
+      }
+    },
+    "maximun.pulse.break": {
+      "type": "palladium:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "entity_type": "palladium:custom_projectile",
+      "entity_data": {
+        "ExplosionRadius": 15,
+        "ExplosionBlockInteraction": "BREAK",
+        "KnockbackStrength": 10,
+        "Damage": 800,
+        "Size": 5.5,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:maximum_pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:maximum_pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 10.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.break",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:armor/iron_man_armor",
+            "ability": "maximun.pulse.animation",
+            "min": 50,
+            "max": 50
+          }
+        ]
+      }
+    },
     "energyblast.remove.ark.energy": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.superior.color 1",
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.flame 10",
         "scoreboard players remove @s satsu.iron.man.armor.ark.energy 10",
         "scoreboard players add @s SatsuIronManArmorExp 10"
       ],
       "commands": [""],
+      "last_tick_commands": [""],
       "conditions": {
         "enabling": [
           {
@@ -614,12 +710,12 @@
               {
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
-                "ability": "maximun.function satsu_iron_man_addon:projectiles/pulse.break"
+                "ability": "maximun.pulse.break"
               },
               {
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
-                "ability": "maximun.function satsu_iron_man_addon:projectiles/pulse.not.break"
+                "ability": "maximun.pulse.not.break"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -640,9 +736,16 @@
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [""],
+      "first_tick_commands": [
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.superior.color 1",
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.flame 10"
+      ],
       "commands": [
         "scoreboard players remove @s satsu.iron.man.armor.ark.energy 1"
+      ],
+      "last_tick_commands": [
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.superior.color 0",
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.flame 8"
       ],
       "conditions": {
         "enabling": [
@@ -651,23 +754,8 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:energy_beams/energy_beams",
+                "power": "satsu_iron_man_addon:armor/iron_man_armor",
                 "ability": "energy_beam"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:energy_beams/energy_beams",
-                "ability": "energy_beam.2"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:energy_beams/energy_beams",
-                "ability": "energy_beam.3"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:energy_beams/energy_beams",
-                "ability": "energy_beam.4"
               }
             ]
           }
@@ -679,10 +767,15 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.superior.color 1",
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.flame 10",
         "scoreboard players remove @s satsu.iron.man.armor.ark.energy 15",
         "scoreboard players add @s SatsuIronManArmorExp 15"
       ],
       "commands": [""],
+      "last_tick_commands": [
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.superior.color 0"
+      ],
       "conditions": {
         "enabling": [
           {
@@ -703,15 +796,20 @@
         ]
       }
     },
-    "energyblast.remove.ark.energy.maximum_function satsu_iron_man_addon:projectiles/pulse": {
+    "energyblast.remove.ark.energy.maximum_function": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.superior.color 1",
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.flame 10",
         "scoreboard players remove @s satsu.iron.man.armor.ark.energy 300",
         "scoreboard players add @s SatsuIronManArmorExp 300"
       ],
       "commands": [""],
+      "last_tick_commands": [
+        "execute as @s[tag=mark.50.superior] run scoreboard players set @s satsu.iron.man.superior.color 0"
+      ],
       "conditions": {
         "enabling": [
           {
@@ -719,13 +817,13 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
-                "ability": "maximun.function satsu_iron_man_addon:projectiles/pulse.break"
+                "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
+                "ability": "maximun.pulse.break"
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
-                "ability": "maximun.function satsu_iron_man_addon:projectiles/pulse.not.break"
+                "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
+                "ability": "maximun.pulse.not.break"
               }
             ]
           }
@@ -777,12 +875,12 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
                 "ability": "maximun.pulse.break"
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
                 "ability": "maximun.pulse.not.break"
               }
             ]

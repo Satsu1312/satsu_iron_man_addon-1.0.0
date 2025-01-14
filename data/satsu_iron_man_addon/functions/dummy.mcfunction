@@ -1,4 +1,7 @@
 
+scoreboard objectives add satsu.iron.man.addon.damage.stealh minecraft.custom:minecraft.damage_dealt
+scoreboard objectives add satsu.iron.man.addon.damage.taken minecraft.custom:minecraft.damage_taken
+scoreboard objectives add satsu.iron.man.superior.color dummy
 scoreboard objectives add satsu.iron.man.armor.ark.beam.color.icon dummy
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.flame.thrower.icon dummy
 scoreboard objectives add satsu.iron.man.addon.altura dummy

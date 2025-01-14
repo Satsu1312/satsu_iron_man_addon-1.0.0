@@ -277,7 +277,7 @@
         ]
       }
     },
-    "right_hand": {
+    "palladium:particles_legs": {
       "type": "palladium:particles",
       "hidden": true,
       "hidden_in_bar": true,
@@ -290,6 +290,23 @@
         "enabling": [
           {
             "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "stealht.armor.anim"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                "ability": "stealht_animation_timer",
+                "property": "value",
+                "min": 20,
+                "max": 20
+              }
+            ]
           }
         ]
       }
@@ -312,41 +329,63 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
-                "ability": "animation.projectile.1"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
-                "ability": "animation.projectile.3"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
-                "ability": "animation.projectile.mk1.1"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
-                "ability": "animation.projectile.mk1.3"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor/iron_man_armor",
-                "ability": "maximun.pulse.animation"
-              },
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.personalize.things",
-                "min_score": 1,
-                "max_score": 1
-              },
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.set",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                    "ability": "animation.projectile.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                    "ability": "animation.projectile.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                    "ability": "animation.projectile.mk1.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                    "ability": "animation.projectile.mk1.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                    "ability": "maximun.pulse.animation"
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.personalize.things",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.set",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "stealht.armor.anim"
+                      },
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "power": "satsu_iron_man_addon:armor/iron_man_armor",
+                        "ability": "stealht_animation_timer",
+                        "property": "value",
+                        "min": 20,
+                        "max": 20
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -402,8 +441,16 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:has_tag",
-                "tag": "alien"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:on_ground"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
               }
             ]
           }
@@ -425,7 +472,15 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:is_fast_flying"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:on_ground"
+                  },
+                  {
+                    "type": "palladium:is_fast_flying"
+                  }
+                ]
               }
             ]
           }
