@@ -50,9 +50,55 @@
           },
           {
             "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "min_score": 30,
+            "max_score": 30
+          },
+          {
+            "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
             "min_score": 13,
             "max_score": 13
+          }
+        ]
+      }
+    },
+    "armor_xp_points.mk2": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scoreboard players add @s SatsuIronManArmorSkillPoint 1",
+        "scoreboard players set @s SatsuIronManArmorExp 0"
+      ],
+      "last_tick_commands": [],
+      "commands": [
+        "title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.earned.points\",\"color\":\"blue\"}"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorExp",
+            "min_score": 6000,
+            "max_score": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "min_score": 40,
+            "max_score": 40
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 14,
+            "max_score": 14
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+            ]
           }
         ]
       }
@@ -106,31 +152,6 @@
         ]
       }
     },
-    "slow_fall_test": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [""],
-      "last_tick_commands": [],
-      "commands": ["say AHHH"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:and",
-            "conditions": [
-              {
-                "type": "palladium:command_result",
-                "command": "execute if entity @s[nbt={OnGround:0b}]"
-              },
-              {
-                "type": "palladium:command_result",
-                "command": "execute if entity @s[y=0..300,dy=0..300]"
-              }
-            ]
-          }
-        ]
-      }
-    },
     "armor_xp_points": {
       "type": "palladium:command",
       "hidden": true,
@@ -166,7 +187,7 @@
       "hidden_in_bar": true,
       "first_tick_commands": [
         "scoreboard objectives add SatsuIronManArmorSkillPoint dummy",
-        "execute as @s unless score @s SatsuIronManArmorSkillPoint matches ..0 run scoreboard players set @s SatsuIronManArmorSkillPoint 0",
+        "execute as @s unless score @s SatsuIronManArmorSkillPoint matches 0.. run scoreboard players set @s SatsuIronManArmorSkillPoint 0",
         "scoreboard objectives add SatsuIronManArmorExp dummy",
         "scoreboard objectives add SatsuIronManArmorMobKills minecraft.custom:minecraft.mob_kills",
         "scoreboard objectives add SatsuIronManArmorDragonKills minecraft.killed:minecraft.ender_dragon",
@@ -176,8 +197,10 @@
       ],
       "last_tick_commands": [],
       "commands": [
-        "execute as @s[scores={SatsuIronManArmorSkillPoint=..30}] run scoreboard players add @s[scores={satsu.iron.man.armor=13}] SatsuIronManArmorExp 30",
-        "execute as @s run scoreboard players add @s[scores={satsu.iron.man.armor=0..12}] SatsuIronManArmorExp 1"
+        "execute as @s[scores={SatsuIronManArmorSkillPoint=0..29}] run scoreboard players add @s[scores={satsu.iron.man.armor=13}] SatsuIronManArmorExp 30",
+        "execute as @s run scoreboard players add @s[scores={satsu.iron.man.armor=0..12}] SatsuIronManArmorExp 1",
+        "execute as @s[scores={SatsuIronManArmorSkillPoint=0..39}] as @s run scoreboard players add @s[scores={satsu.iron.man.armor=14}] SatsuIronManArmorExp 1",
+        "execute as @s run scoreboard players add @s[scores={satsu.iron.man.armor=15..}] SatsuIronManArmorExp 1"
       ],
       "conditions": {
         "unlocking": [
