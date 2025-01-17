@@ -517,7 +517,7 @@
       "description": { "translate": "description.satsu.fall_resistance" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-3, -2],
+      "gui_position": [2, -2],
       "attribute": "palladium:fall_resistance",
       "uuid": "388be4fb-af04-42f2-8948-e6ccdc0d99e2",
       "amount": 259,
@@ -1649,13 +1649,20 @@
       }
     },
     "dummy": {
-      "type": "palladium:dummy",
+      "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
-      "title": { "translate": "ability.title.satsu.armor.edit" },
+      "title": { "translate": "ability.title.satsu.see.xp" },
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [0, -1.5],
-      "description": "",
+      "description": { "translate": "description.satsu.off.on" },
+      "first_tick_commands": [
+        "execute as @s run scoreboard players add @s SatsuIronManArmorSkillPoint.see 1",
+        "execute as @s[scores={SatsuIronManArmorSkillPoint.see=2..}] run scoreboard players reset @s SatsuIronManArmorSkillPoint.see",
+        "ability lock @s satsu_iron_man_addon:armor/iron_man_armor dummy"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
       "conditions": {
         "unlocking": [
           {
@@ -1713,7 +1720,7 @@
       "gui_position": [1, 0],
       "description": { "translate": "description.satsu.flight.edit" },
       "commands": [
-        "scoreboard players add @s satsu.iron.mpan.flight.set 1",
+        "scoreboard players add @s satsu.iron.man.flight.set 1",
         "execute as @s[scores={satsu.iron.man.flight.set=2..}] run scoreboard players reset @s satsu.iron.man.flight.set",
         "function satsu_iron_man_addon:remove_personalizate",
         "ability lock @s satsu_iron_man_addon:armor/iron_man_armor flight_unlock"
