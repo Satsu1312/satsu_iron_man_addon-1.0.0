@@ -6,17 +6,32 @@
   "icon": "satsu_iron_man_addon:textures/item/ia_tarjet.png",
   "gui_display_type": "tree",
   "abilities": {
-    "action": {
-      "type": "palladium:command",
+    "skill_tree": {
+      "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/item/ia_tarjet.png",
       "title": { "translate": "ability.title.satsu.ia_tarjet" },
+      "description": { "translate": "description.satsu.ia_tarjet" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "gui_position": [0, -2],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "action": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ia/ia_0.png",
+      "title": { "translate": "ability.title.satsu.ia.name.1" },
       "description": { "translate": "description.satsu.ia_tarjet" },
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 0,
       "gui_position": [0, -2],
       "commands": [
-        "scoreboard players add @s satsu.iron.man.symbiote.metalized 0",
+        "superpower add satsu_iron_man_addon:ia_stuff/ia",
+        "scoreboard players set @s satsu.iron.man.addon.ia.name 1",
         "clear @s satsu_iron_man_addon:ia_tarjet 1"
       ],
       "conditions": {
@@ -24,7 +39,7 @@
           {
             "type": "palladium:action",
             "cooldown": 0,
-            "key_type": "key_bind",
+            "key_type": "right_click",
             "needs_empty_hand": false
           }
         ],
