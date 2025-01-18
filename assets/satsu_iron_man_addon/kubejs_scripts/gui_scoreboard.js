@@ -5,7 +5,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
     "satsu_iron_man_addon:enemies",
     // Function for rendering
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (abilityUtil.isEnabled(minecraft.player, "satsu_iron_man_addon:armor/iron_man_armor", "scan_enemies")) {
+      if (abilityUtil.isEnabled(minecraft.player, "satsu_iron_man_addon:armor_principal/iron_man_armor", "scan_enemies")) {
         let username = minecraft.player.getGameProfile().getName();
         let value = Utils.server.scoreboard
           .getOrCreatePlayerScore(
@@ -32,7 +32,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
     "satsu_iron_man_addon:SatsuIronManArmorSkillPoint",
     // Function for rendering
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (abilityUtil.isEnabled(minecraft.player, "satsu_iron_man_addon:armor/iron_man_xp", "see.points")) {
+      if (abilityUtil.isEnabled(minecraft.player, "satsu_iron_man_addon:armor_principal/iron_man_xp", "see.points")) {
         let username = minecraft.player.getGameProfile().getName();
         let value = Utils.server.scoreboard
           .getOrCreatePlayerScore(
@@ -59,7 +59,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
     "satsu_iron_man_addon:SatsuIronManArmorExp",
     // Function for rendering
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (abilityUtil.isEnabled(minecraft.player, "satsu_iron_man_addon:armor/iron_man_xp", "see.points")) {
+      if (abilityUtil.isEnabled(minecraft.player, "satsu_iron_man_addon:armor_principal/iron_man_xp", "see.points")) {
         let username = minecraft.player.getGameProfile().getName();
         let value = Utils.server.scoreboard
           .getOrCreatePlayerScore(
