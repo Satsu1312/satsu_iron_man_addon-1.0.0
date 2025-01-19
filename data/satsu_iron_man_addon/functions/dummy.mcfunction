@@ -1,5 +1,10 @@
 
 scoreboard objectives add satsu.iron.man.addon.ia.name dummy
+scoreboard objectives add satsu.iron.man.addon.unlock.lock.scan.abilitie dummy
+scoreboard objectives add satsu.iron.man.addon.unlock.lock.sentinel.armor dummy
+scoreboard objectives add satsu.iron.man.addon.ia.unlock.icon.in.hud dummy
+scoreboard objectives add satsu.iron.man.addon.energy.ia.unlock.icon.in.hud dummy
+scoreboard objectives add satsu.iron.man.addon.ia.choose dummy
 scoreboard objectives add SatsuIronManArmorSkillPoint.see dummy
 scoreboard objectives add satsu.iron.man.addon.ia.unlock.skill.tree dummy
 scoreboard objectives add satsu.iron.man.addon.damage.stealh minecraft.custom:minecraft.damage_dealt
