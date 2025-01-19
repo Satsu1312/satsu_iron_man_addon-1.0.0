@@ -20,18 +20,112 @@
         "unlocking": []
       }
     },
+    "choose.ia": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:choose_armor",
+      "title": "Choose",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "description": "This is the skill tree that will allow you to unlock your various Iron man armors",
+      "first_tick_commands": [],
+      "commands": ["function satsu_iron_man_addon:ia/choose_ia"],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:items/ia_tarjet",
+            "ability": "skill_tree"
+          }
+        ]
+      }
+    },
+    "choose.ia.increase": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:choose_armor",
+      "title": "Choose",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "description": "This is the skill tree that will allow you to unlock your various Iron man armors",
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.prev.iron.man.armor.anim 0"
+      ],
+      "commands": ["function satsu_iron_man_addon:choose"],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "scroll_up",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:items/ia_tarjet",
+            "ability": "skill_tree"
+          }
+        ]
+      }
+    },
+    "choose.ia.decrease": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:choose_armor",
+      "title": "Choose",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 2,
+      "description": "This is the skill tree that will allow you to unlock your various Iron man armors",
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.prev.iron.man.armor.anim 0"
+      ],
+      "commands": ["function satsu_iron_man_addon:choose"],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "scroll_down",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:items/ia_tarjet",
+            "ability": "skill_tree"
+          }
+        ]
+      }
+    },
     "action": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/ia/ia_0.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ia/ia_1.png",
       "title": { "translate": "ability.title.satsu.ia.name.1" },
       "description": { "translate": "description.satsu.ia_tarjet" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 0,
+      "list_index": 2,
       "gui_position": [0, -2],
       "commands": [
         "superpower add satsu_iron_man_addon:ia_stuff/ia",
-        "scoreboard players set @s satsu.iron.man.addon.ia.name 1",
+        "execute as @s unless score @s satsu.iron.man.addon.ia.name matches 0.. run scoreboard players set @s satsu.iron.man.addon.ia.name 1",
         "clear @s satsu_iron_man_addon:ia_tarjet 1"
       ],
       "conditions": {
