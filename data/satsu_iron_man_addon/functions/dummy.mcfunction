@@ -1,5 +1,6 @@
 
 scoreboard objectives add satsu.iron.man.addon.ia.name dummy
+scoreboard objectives add satsu.iron.man.addon.ia.interaction dummy
 scoreboard objectives add satsu.iron.man.addon.unlock.lock.scan.abilitie dummy
 scoreboard objectives add satsu.iron.man.addon.unlock.lock.sentinel.armor dummy
 scoreboard objectives add satsu.iron.man.addon.ia.unlock.icon.in.hud dummy
