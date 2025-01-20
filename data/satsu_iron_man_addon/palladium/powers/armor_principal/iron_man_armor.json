@@ -2459,6 +2459,227 @@
         ]
       }
     },
+    "Time clock": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/time_stop.png",
+      "title": "Pause time",
+      "description": "Pass the time completely, including the enemies",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": -1,
+      "gui_position": [-2, -1],
+      "first_tick_commands": ["tag @s add chrono.time"],
+      "commands": [
+        "effect give @e[tag=!chrono.time,distance=0..10] minecraft:slowness 1 255 true"
+      ],
+      "last_tick_commands": ["tag @s remove chrono.time"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 16,
+                "max_score": 16
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "null",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Accelerate_Time": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/powers/time.png",
+      "title": "Accelerate Time",  
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": -1,
+      "gui_position": [3, -1],
+      "description": "Accelerates time completely, including enemies",
+      "first_tick_commands": ["tag @s remove chrono.time.speed"],
+      "commands": [
+        "effect give @e[tag=!chrono.time.speed,distance=0..10] minecraft:speed 1 10 true"
+      ],
+      "last_tick_commands": ["tag @s remove chrono.time.speed"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 16,
+                "max_score": 16
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "null",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Decelerate_Time": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/powers/less_time.png",
+      "title": "Decelerate Time",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": -1,
+      "gui_position": [-3, -1],
+      "description": "Slow down time completely, including enemies",
+      "first_tick_commands": ["tag @s add chrono.time.despeed"],
+      "commands": [
+        "effect give @e[tag=!chrono.time.despeed,distance=0..10] minecraft:slowness 1 3 true"
+      ],
+      "last_tick_commands": ["tag @s remove chrono.time.despeed"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 16,
+                "max_score": 16
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "null",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "chronovium_time_play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "minecraft:block.comparator.click",
+      "volume": 1,
+      "pitch": 1,
+      "looping": true,
+      "play_self": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "Decelerate_Time"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "Accelerate_Time"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "Time clock"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+        ]
+      }
+    },
     "Hyper_speed": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
