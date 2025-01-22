@@ -1,6 +1,7 @@
 
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.hand dummy
 scoreboard objectives add satsu.iron.man.addon.ia.name dummy
+scoreboard objectives add satsu.iron.man.addon.ia.name.choose dummy
 scoreboard objectives add satsu.iron.man.addon.enable.sentinel dummy
 scoreboard objectives add satsu.iron.man.addon.ia.interaction dummy
 scoreboard objectives add satsu.iron.man.addon.ia.night.vision dummy
