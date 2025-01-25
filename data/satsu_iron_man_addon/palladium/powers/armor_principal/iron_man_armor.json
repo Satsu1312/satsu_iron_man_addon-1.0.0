@@ -2558,7 +2558,7 @@
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/choose_armor.png",
       "title": { "translate": "ability.title.satsu.choose.armor" },
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": false,
       "list_index": 10,
       "gui_position": [0, 1.8],
@@ -2724,6 +2724,26 @@
         ]
       }
     },
+    "armor.skill.tree": {
+      "type": "palladium:dummy",
+      "icon": "#satsu_iron_man_addon:armor_icon_ability",
+      "title": { "translate": "ability.title.satsu.armors.branch" },
+      "description": { "translate": "description.satsu.armors.branch" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "list_index": 10,
+      "gui_position": [0, 1.5],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades_skill_tree"
+          }
+        ]
+      }
+    },
     "Satsu.Armor.13.Mk1": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_13.png",
@@ -2745,7 +2765,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
+            "ability": "Armor_powers_stat_upgrades_skill_tree"
           }
         ]
       }
@@ -2790,8 +2810,7 @@
           },
           {
             "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
+            "ability": "Satsu.Armor.13.Mk1"
           }
         ]
       }
@@ -2838,8 +2857,7 @@
           },
           {
             "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
+            "ability": "Satsu.Armor.13.Mk1"
           }
         ]
       }
@@ -3255,8 +3273,7 @@
           },
           {
             "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
+            "ability": "Satsu.Armor.13.Mk1"
           }
         ]
       }
@@ -3285,10 +3302,10 @@
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
       "title": { "translate": "ability.title.satsu.stealht.mode" },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 15,
-      "gui_position": [-1, -1],
+      "gui_position": [4, 3],
       "conditions": {
         "enabling": [
           {
@@ -3300,32 +3317,42 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 6,
-            "max_score": 6
-          },
-          {
-            "type": "palladium:or",
+            "type": "palladium:and",
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "objective": "satsu.iron.man.armor",
+                "min_score": 6,
+                "max_score": 6
               },
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived.perm",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
               }
             ]
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
+            "ability": "Satsu.Armor.6.MKStealh_Armor"
           }
         ]
       }
@@ -3335,10 +3362,10 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
       "title": { "translate": "ability.title.satsu.telekinesis" },
       "description": { "translate": "description.superior.telekinesis" },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 15,
-      "gui_position": [-2, -1],
+      "gui_position": [-3, 3],
       "first_tick_commands": [
         "scoreboard players set @s satsu.iron.man.superior.color 1",
         "scoreboard players set @s satsu.iron.man.flame 10",
@@ -3363,32 +3390,42 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 1,
-            "max_score": 1
-          },
-          {
-            "type": "palladium:or",
+            "type": "palladium:and",
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
+                "objective": "satsu.iron.man.armor",
                 "min_score": 1,
                 "max_score": 1
               },
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived.perm",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
               }
             ]
           },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
+            "ability": "Satsu.Armor.1.MKSuperior"
           }
         ]
       }
@@ -3398,10 +3435,10 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/suit_expulsion.png",
       "title": { "translate": "ability.title.satsu.suit.expulsion" },
       "description": { "translate": "description.superior.suit.expulsion" },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 16,
-      "gui_position": [-2, -1],
+      "gui_position": [-3, 3.6],
       "start_value": 0,
       "max_value": 20,
       "conditions": {
@@ -3416,32 +3453,42 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 1,
-            "max_score": 1
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
-          },
-          {
-            "type": "palladium:or",
+            "type": "palladium:and",
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived.perm",
+                "objective": "satsu.iron.man.armor",
                 "min_score": 1,
                 "max_score": 1
               },
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
               }
             ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.1.MKSuperior"
           }
         ]
       }
@@ -3451,10 +3498,10 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/time_stop.png",
       "title": { "translate": "ability.title.satsu.time.clock" },
       "description": { "translate": "description.satsu.time.clock" },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 15,
-      "gui_position": [-2, -1],
+      "gui_position": [6, 2.9],
       "first_tick_commands": ["tag @s add chrono.time"],
       "commands": [
         "effect give @e[tag=!chrono.time,distance=0..10] minecraft:slowness 1 255 true"
@@ -3481,7 +3528,7 @@
               },
               {
                 "type": "palladium:ability_unlocked",
-                "power": "null",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "Armor_powers_stat_upgrades"
               },
               {
@@ -3502,6 +3549,11 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.16.mark.unknow.blooded.armor"
           }
         ]
       }
@@ -3511,10 +3563,10 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/powers/time.png",
       "title": { "translate": "ability.title.satsu.accelerate.time" },
       "description": { "translate": "description.satsu.accelerate.time" },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 16,
-      "gui_position": [3, -1],
+      "gui_position": [6, 3.3],
       "first_tick_commands": ["tag @s remove chrono.time.speed"],
       "commands": [
         "effect give @e[tag=!chrono.time.speed,distance=0..10] minecraft:speed 1 10 true"
@@ -3541,7 +3593,7 @@
               },
               {
                 "type": "palladium:ability_unlocked",
-                "power": "null",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "Armor_powers_stat_upgrades"
               },
               {
@@ -3562,6 +3614,11 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.16.mark.unknow.blooded.armor"
           }
         ]
       }
@@ -3571,10 +3628,10 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/powers/less_time.png",
       "title": { "translate": "ability.title.satsu.decelerate.time" },
       "description": { "translate": "description.satsu.decelerate.time" },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 17,
-      "gui_position": [-3, -1],
+      "gui_position": [6, 3.8],
       "first_tick_commands": ["tag @s add chrono.time.despeed"],
       "commands": [
         "effect give @e[tag=!chrono.time.despeed,distance=0..10] minecraft:slowness 1 3 true"
@@ -3601,7 +3658,7 @@
               },
               {
                 "type": "palladium:ability_unlocked",
-                "power": "null",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "Armor_powers_stat_upgrades"
               },
               {
@@ -3622,6 +3679,11 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.16.mark.unknow.blooded.armor"
           }
         ]
       }
