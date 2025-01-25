@@ -14,9 +14,9 @@
       "title": {
         "translate": "ability.title.satsu.ia_powers_stat_upgrades"
       },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [0, -3.3],
+      "gui_position": [0, 0],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
         "execute as @s unless score @s satsu.iron.man.addon.ia.unlock.skill.tree matches 0.. run scoreboard players set @s satsu.iron.man.addon.ia.unlock.skill.tree 1"
@@ -49,7 +49,7 @@
       },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [0, -2.8],
+      "gui_position": [0, 0],
       "description": { "translate": "description.ia_skill_stat" },
       "conditions": {
         "unlocking": [
@@ -71,7 +71,7 @@
       },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [0, -2.2],
+      "gui_position": [0, 0.5],
       "first_tick_commands": [
         "execute as @s[scores={satsu.iron.man.addon.ia.unlock.skill.tree=1..}] run scoreboard players add @s satsu.iron.man.addon.ia.unlock.skill.tree 1",
         "execute as @s[scores={satsu.iron.man.addon.ia.unlock.skill.tree=3..}] run scoreboard players set @s satsu.iron.man.addon.ia.unlock.skill.tree 1",
@@ -112,9 +112,9 @@
       "description": {
         "translate": "description.satsu.unlock.lock.ia.gui"
       },
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": true,
-      "gui_position": [0, -1.2],
+      "gui_position": [0, -0.5],
       "first_tick_commands": [
         "execute as @s[scores={satsu.iron.man.addon.ia.unlock.icon.in.hud=1..}] run scoreboard players add @s satsu.iron.man.addon.ia.unlock.icon.in.hud 1",
         "execute as @s[scores={satsu.iron.man.addon.ia.unlock.icon.in.hud=3..}] run scoreboard players set @s satsu.iron.man.addon.ia.unlock.icon.in.hud 1",
@@ -140,9 +140,8 @@
         "translate": "ability.title.satsu.ia.gui"
       },
       "description": { "translate": "description.satsu.ia.gui" },
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": true,
-      "gui_position": [0, -1.7],
       "texture": "#satsu_iron_man_addon:ia_icon",
       "texture_width": 32,
       "texture_height": 32,
@@ -182,6 +181,11 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "ia_powers_stat_upgrades"
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -856,7 +860,7 @@
       },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [2, -2.2],
+      "gui_position": [1, 0],
       "first_tick_commands": [
         "execute as @s run scoreboard players add @s satsu.iron.man.addon.energy.ia.unlock.icon.in.hud 1",
         "execute as @s[scores={satsu.iron.man.addon.energy.ia.unlock.icon.in.hud=3..}] run scoreboard players set @s satsu.iron.man.addon.energy.ia.unlock.icon.in.hud 1",
@@ -865,6 +869,11 @@
       "commands": [""],
       "conditions": {
         "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "ia_powers_stat_upgrades"
+          },
           {
             "type": "palladium:scoreboard_score_buyable",
             "objective": "SatsuIronManArmorSkillPoint",
@@ -884,7 +893,6 @@
       "description": { "translate": "description.satsu.energy.gui" },
       "hidden": true,
       "hidden_in_bar": true,
-      "gui_position": [2, -1.7],
       "texture": "satsu_iron_man_addon:textures/gui/armors/gui_for_ark_energy/see_energy.png",
       "texture_width": 32,
       "texture_height": 32,
@@ -1001,9 +1009,9 @@
       "description": {
         "translate": "description.satsu.unlock.lock.ia.sentinel"
       },
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": true,
-      "gui_position": [1, -1.7],
+      "gui_position": [-1, 0],
       "first_tick_commands": [
         "execute as @s run scoreboard players add @s satsu.iron.man.addon.unlock.lock.sentinel.armor 1",
         "execute as @s[scores={satsu.iron.man.addon.unlock.lock.sentinel.armor=3..}] run scoreboard players set @s satsu.iron.man.addon.unlock.lock.sentinel.armor 1",
@@ -1012,6 +1020,11 @@
       "commands": [""],
       "conditions": {
         "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "ia_powers_stat_upgrades"
+          },
           {
             "type": "palladium:scoreboard_score_buyable",
             "objective": "SatsuIronManArmorSkillPoint",
@@ -1079,6 +1092,24 @@
         ]
       }
     },
+    "animation_timer_sentinel_dummy.in.skill.bar": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.sentinel" },
+      "description": { "translate": "description.satsu.sentinel" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-1, 0],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "ia_powers_stat_upgrades"
+          }
+        ]
+      }
+    },
     "animation_timer_sentinel_dummy": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
@@ -1087,7 +1118,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 0,
-      "gui_position": [1, -2.2],
+      "gui_position": [-2, 0.5],
       "conditions": {
         "enabling": [
           {
@@ -1101,30 +1132,40 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor"
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "animation_timer_sentinel_dummy.in.skill.bar"
           },
           {
-            "type": "palladium:not",
+            "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:has_tag",
-                "tag": "sentinel_one"
-              }
-            ]
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "power": "satsu_iron_man_addon:ia_stuff/ia",
-                "ability": "Armor_powers_stat_upgrades"
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor"
               },
               {
-                "type": "palladium:ability_unlocked",
-                "power": "satsu_iron_man_addon:ia_stuff/ia",
-                "ability": "sentinel.armor.unlock.lock"
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "sentinel_one"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "Armor_powers_stat_upgrades"
+                  },
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "sentinel.armor.unlock.lock"
+                  }
+                ]
               }
             ]
           }
@@ -1161,7 +1202,7 @@
         ]
       }
     },
-    "test_sentinel": {
+    "armor_sentinel": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -1231,7 +1272,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 1,
-      "gui_position": [-1, -2.2],
+      "gui_position": [-2, -0.5],
       "start_value": 1,
       "max_value": 20,
       "conditions": {
@@ -1247,38 +1288,48 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor"
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "animation_timer_sentinel_dummy.in.skill.bar"
           },
           {
-            "type": "palladium:has_tag",
-            "tag": "sentinel_nearest"
-          },
-          {
-            "type": "palladium:or",
+            "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.enable.sentinel",
-                "min_score": 2,
-                "max_score": 2
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor"
               },
               {
-                "type": "palladium:ability_unlocked",
-                "power": "satsu_iron_man_addon:ia_stuff/ia",
-                "ability": "Armor_powers_stat_upgrades"
+                "type": "palladium:has_tag",
+                "tag": "sentinel_nearest"
               },
               {
-                "type": "palladium:ability_unlocked",
-                "power": "satsu_iron_man_addon:ia_stuff/ia",
-                "ability": "sentinel.armor.unlock.lock"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.enable.sentinel",
+                    "min_score": 2,
+                    "max_score": 2
+                  },
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "Armor_powers_stat_upgrades"
+                  },
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "sentinel.armor.unlock.lock"
+                  }
+                ]
               }
             ]
           }
         ]
       }
     },
-    "kill_test_sentinel": {
+    "kill_armor_sentinel": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -1356,7 +1407,7 @@
       },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-2, -1.8],
+      "gui_position": [0, -2],
       "first_tick_commands": [
         "execute as @s run scoreboard players add @s satsu.iron.man.addon.unlock.lock.scan.abilitie 1",
         "execute as @s[scores={satsu.iron.man.addon.unlock.lock.scan.abilitie=3..}] run scoreboard players set @s satsu.iron.man.addon.unlock.lock.scan.abilitie 1",
@@ -1371,6 +1422,42 @@
             "score": 0,
             "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
             "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "ia_powers_stat_upgrades"
+          }
+        ]
+      }
+    },
+    "scan_enemies_enable.in.skill.tree": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/scan.png",
+      "title": {
+        "translate": "ability.title.satsu.ia.scan.abilitie"
+      },
+      "description": {
+        "translate": "description.satsu.ia.scan.abilitie"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, -0.5],
+      "conditions": {
+        "enabling": [
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "ia_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 30,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
           }
         ]
       }
@@ -1383,7 +1470,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 2,
-      "gui_position": [-2, -2.2],
+      "gui_position": [0, -1.5],
       "first_tick_commands": [""],
       "commands": [
         "scoreboard players add @s satsu.iron.man.scan.enemies 1",
@@ -1401,6 +1488,11 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "scan_enemies_enable.in.skill.tree"
+          },
           {
             "type": "palladium:not",
             "conditions": [
