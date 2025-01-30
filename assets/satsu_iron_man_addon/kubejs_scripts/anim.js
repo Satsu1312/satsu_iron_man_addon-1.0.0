@@ -1235,13 +1235,17 @@ PalladiumEvents.registerAnimations((event) => {
             .animate("InOutCubic", progress);
         } else {
           // third person animations
-          builder
+            builder
             .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
             .setZRotDegrees(-90)
             .animate("InOutCubic", progress);
           builder.get("chest").animate("InOutCubic", progress);
           builder
             .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
             .setZRotDegrees(90)
             .animate("InOutCubic", progress);
           builder.get("chest").animate("InOutCubic", progress);
