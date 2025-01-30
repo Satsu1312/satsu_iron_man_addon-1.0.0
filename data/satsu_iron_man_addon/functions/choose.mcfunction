@@ -21,7 +21,7 @@ execute as @s[scores={satsu.iron.man.choose_armor=15}] run title @s actionbar {"
 execute as @s[scores={satsu.iron.man.choose_armor=16}] run title @s actionbar {"translate":"satsu.iron.man.addon.text.mark.unknow.blooded","color":"blue","bold":true}
 execute as @s[scores={satsu.iron.man.choose_armor=17}] run title @s actionbar {"translate":"satsu.iron.man.addon.text.mark.5","color":"blue","bold":true}
 execute as @s[scores={satsu.iron.man.choose_armor=18}] run title @s actionbar {"translate":"satsu.iron.man.addon.text.mark.unknow.blooded","color":"blue","bold":true}
-execute as @s[scores={satsu.iron.man.choose_armor=19}] run title @s actionbar {"translate":"satsu.iron.man.addon.text.mark.unknow.blooded","color":"blue","bold":true}
+execute as @s[scores={satsu.iron.man.choose_armor=19}] run title @s actionbar {"translate":"satsu.iron.man.addon.text.mark.45","color":"blue","bold":true}
 execute as @s[scores={satsu.iron.man.choose_armor=20}] run title @s actionbar {"translate":"satsu.iron.man.addon.text.mark.unknow.blooded","color":"blue","bold":true}
 execute as @s[scores={satsu.iron.man.choose_armor=21}] run title @s actionbar {"translate":"satsu.iron.man.addon.text.mark.unknow.blooded","color":"blue","bold":true}
 execute as @s[scores={satsu.iron.man.choose_armor=22}] run title @s actionbar {"translate":"satsu.iron.man.addon.text.mark.unknow.blooded","color":"blue","bold":true}
