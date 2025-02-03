@@ -1,0 +1,39 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/overlay_mask.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_suit_#X_0.png",
+        "variables": {
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 6
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_suit_#X_0_#TIMER"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 6,
+          "triggers": {
+            "mask.up": "animation.minecraft:mask.up"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:objective_score",
+          "objective": "satsu.iron.man.armor.actived",
+          "min_score": 1,
+          "max_score": 1
+        }
+      ]
+    }
+  ]
+}
