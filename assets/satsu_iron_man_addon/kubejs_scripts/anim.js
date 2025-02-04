@@ -1310,14 +1310,14 @@ PalladiumEvents.registerAnimations((event) => {
 });
 PalladiumEvents.registerAnimations((event) => {
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.10",
+    "satsu_iron_man_addon/colocacion_de_armadura.mark.45.10",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "mark_anim",
+        "mark_45_anim",
         builder.getPartialTicks()
       );
 
@@ -1351,7 +1351,6 @@ PalladiumEvents.registerAnimations((event) => {
             .moveX(0)
             .moveY(0)
             .moveZ(0)
-            .scaleY(0)
             .animate("InOutCubic", progress);
           builder
             .get("right_arm")
@@ -1361,7 +1360,6 @@ PalladiumEvents.registerAnimations((event) => {
             .moveX(0)
             .moveY(0)
             .moveZ(0)
-            .scaleY(0)
             .animate("InOutCubic", progress);
           builder
             .get("head")
