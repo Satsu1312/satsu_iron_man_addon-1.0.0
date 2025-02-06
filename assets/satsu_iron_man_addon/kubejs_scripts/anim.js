@@ -402,7 +402,7 @@ PalladiumEvents.registerAnimations((event) => {
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "colocacion_de_armadura",
+        "test.1",
         builder.getPartialTicks()
       );
 
@@ -551,14 +551,14 @@ PalladiumEvents.registerAnimations((event) => {
 });
 PalladiumEvents.registerAnimations((event) => {
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.3.iron.man.standar.pose",
+    "satsu_iron_man_addon/colocacion_de_armadura.every.hand.extended.iron.man.standar.pose",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "test.1",
+        "colocacion_de_armadura",
         builder.getPartialTicks()
       );
 
@@ -570,25 +570,25 @@ PalladiumEvents.registerAnimations((event) => {
         if (builder.isFirstPerson()) {
           builder
             .get("left_arm")
-            .setXRotDegrees(49)
-            .setYRotDegrees(-30)
-            .setZRotDegrees(30)
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
             .animate("InOutCubic", progress);
         }
         if (builder.isFirstPerson()) {
           builder
             .get("right_arm")
-            .setXRotDegrees(49)
-            .setYRotDegrees(-30)
-            .setZRotDegrees(-30)
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
             .animate("InOutCubic", progress);
         } else {
           // third person animations
           builder
             .get("left_arm")
-            .setXRotDegrees(90)
-            .setYRotDegrees(-65)
-            .setZRotDegrees(-180)
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(-15)
             .moveX(0)
             .moveY(0)
             .moveZ(0)
@@ -596,18 +596,18 @@ PalladiumEvents.registerAnimations((event) => {
           builder.get("chest").animate("InOutCubic", progress);
           builder
             .get("right_arm")
-            .setXRotDegrees(90)
-            .setYRotDegrees(65)
-            .setZRotDegrees(180)
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(15)
             .moveX(0)
             .moveY(0)
             .moveZ(0)
             .animate("InOutCubic", progress);
           builder.get("chest").animate("InOutCubic", progress);
           builder
-            .get("head")
-            .setXRotDegrees(-12.5)
-            .animate("InOutCubic", progress);
+          .get("head")
+          .setXRotDegrees(-5)
+          .animate("InOutCubic", progress);
           builder.get("chest").animate("InOutCubic", progress);
           builder;
         }
