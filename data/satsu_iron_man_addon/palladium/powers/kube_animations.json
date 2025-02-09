@@ -1335,6 +1335,122 @@
           }
         ]
       }
+    },
+    "remove_ark_animation_timer": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:items/handle",
+                "ability": "remove_ark_animation_timer",
+                "property": "value",
+                "min": 1,
+                "max": 15
+              },
+              {
+                "type": "palladium:on_ground"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "sentinel_one"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "armor_sentinel_anim",
+                    "property": "value",
+                    "min": 1,
+                    "max": 6
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "superior_activaded_anim",
+                    "property": "value",
+                    "min": 1,
+                    "max": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_ark_animation_timer.2": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:items/handle",
+                "ability": "remove_ark_animation_timer",
+                "property": "value",
+                "min": 2
+              },
+              {
+                "type": "palladium:on_ground"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "sentinel_one"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_ark_animation_timer.slowness": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["effect give @s minecraft:slowness 1 255 true"],
+      "last_tick_commands": ["effect clear @s minecraft:slowness"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:kube_animations",
+                "ability": "remove_ark_animation_timer",
+                "property": "value",
+                "min": 1,
+                "max": 6
+              }
+            ]
+          }
+        ]
+      }
     }
   }
 }
