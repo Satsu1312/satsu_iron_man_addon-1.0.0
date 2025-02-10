@@ -30,7 +30,7 @@
       "list_index": 0,
       "gui_position": [0, 0.5],
       "start_value": 0,
-      "max_value": 30,  
+      "max_value": 30,
       "conditions": {
         "enabling": [
           {
@@ -75,6 +75,43 @@
             "property": "value",
             "min": 30,
             "max": 30
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:items/handle",
+            "ability": "skill_tree"
+          }
+        ]
+      }
+    },
+    "remove.ark.command.damage": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/item/handle.png",
+      "title": { "translate": "ability.title.satsu.ia.choose" },
+      "description": { "translate": "description.satsu.ia.choose" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": [0, 0.5],
+      "first_tick_commands": ["effect give @s minecraft:poison infinite 2 true"],
+      "commands": [""],
+      "last_tick_commands": ["effect clear @s minecraft:poison"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "remove_ark_animation_timer",
+            "property": "value",
+            "min": 1,
+            "max": 23
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:items/handle",
+            "ability": "remove_ark_animation_timer"
           }
         ],
         "unlocking": [
