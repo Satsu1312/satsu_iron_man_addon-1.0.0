@@ -22,6 +22,7 @@ scoreboard objectives add satsu.iron.man.armor.ark.beam.color.icon dummy
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.flame.thrower.icon dummy
 scoreboard objectives add satsu.iron.man.addon.altura dummy
 scoreboard objectives add satsu.iron.man.mask dummy
+scoreboard objectives add satsu.iron.man.animation.armor dummy
 scoreboard objectives add satsu.iron.man.armor.actived.perm dummy
 scoreboard objectives add satsu.iron.man.armor dummy
 scoreboard objectives add satsu.iron.man.armor.actived dummy
@@ -60,7 +61,7 @@ scoreboard objectives add satsu.iron.man.armor.ark_energy_full_or_off dummy
 scoreboard objectives add satsu.iron.man.scan.enemies dummy
 scoreboard objectives add satsu.iron.man.armor.47.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.superior.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.43.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.39.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.3.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.4.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.5.unlock dummy
@@ -71,10 +72,13 @@ scoreboard objectives add satsu.iron.man.armor.9.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.10.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.11.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.12.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.5.mk19.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk1.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk2.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk5.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk6.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.15.mk30.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mark.45.unlock dummy
 scoreboard objectives add satsu.iron.man.symbiote.metalized dummy
 scoreboard objectives add satsu.iron.man.armor.16.unknow.blooded.armor.unlock dummy
 scoreboard objectives add satsu.iron.man.rbg.on.off dummy

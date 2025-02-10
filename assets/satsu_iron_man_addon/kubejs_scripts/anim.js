@@ -294,6 +294,96 @@ PalladiumEvents.registerAnimations((event) => {
   });
 });
 PalladiumEvents.registerAnimations((event) => {
+  event.register(
+    "satsu_iron_man_addon/iron.man.pose.fall.flying",
+    10,
+    (builder) => {
+      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
+      const progress = animationUtil.getAnimationTimerAbilityValue(
+        builder.getPlayer(),
+        "satsu_iron_man_addon:kube_animations",
+        "fall_flying",
+        builder.getPartialTicks()
+      );
+
+      // only apply animation if progress is above 0!
+      if (progress > 0.0) {
+        const halfPi = 1.57079632679;
+
+        // if first person
+        if (builder.isFirstPerson()) {
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        }
+        if (builder.isFirstPerson()) {
+          builder
+            .get("right_arm")
+            .setXRotDegrees(49)
+            .setYRotDegrees(-30)
+            .setZRotDegrees(-30)
+            .animate("InOutCubic", progress);
+        } else {
+          // third person animations
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .moveX(0)
+            .moveY(7.8785)
+            .moveZ(-7)
+            .scaleY(1.3)
+            .animate("InOutCubic", progress);
+          builder
+            .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(80)
+            .moveX(1.3892)
+            .moveY(7.8785)
+            .moveZ(-7)
+            .animate("InOutCubic", progress);
+          builder
+            .get("head")
+            .setXRotDegrees(10)
+            .moveY(10.9693)
+            .moveZ(-9.4488)
+            .animate("InOutCubic", progress);
+          builder
+            .get("chest")
+            .moveY(8.5061)
+            .moveZ(-7.3876)
+            .setXRotDegrees(62.5)
+            .animate("InOutCubic", progress);
+          builder
+            .get("right_leg")
+            .setXRotDegrees(-22.3265)
+            .setYRotDegrees(2.8631)
+            .setZRotDegrees(6.9349)
+            .moveX(0)
+            .moveY(1.9924)
+            .moveZ(0.8257)
+            .animate("InOutCubic", progress);
+          builder
+            .get("left_leg")
+            .setXRotDegrees(28.493)
+            .setYRotDegrees(-10.5453)
+            .setZRotDegrees(-10.7286)
+            .moveX(0)
+            .moveY(1.7071)
+            .moveZ(2.7071)
+            .animate("InOutCubic", progress);
+          builder;
+        }
+      }
+    }
+  );
+});
+PalladiumEvents.registerAnimations((event) => {
   event.register("satsu_iron_man_addon/ark_decharge.2", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
@@ -402,7 +492,7 @@ PalladiumEvents.registerAnimations((event) => {
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "colocacion_de_armadura",
+        "test.1",
         builder.getPartialTicks()
       );
 
@@ -551,14 +641,14 @@ PalladiumEvents.registerAnimations((event) => {
 });
 PalladiumEvents.registerAnimations((event) => {
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.3.iron.man.standar.pose",
+    "satsu_iron_man_addon/colocacion_de_armadura.every.hand.extended.iron.man.standar.pose",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "test.1",
+        "colocacion_de_armadura",
         builder.getPartialTicks()
       );
 
@@ -570,25 +660,25 @@ PalladiumEvents.registerAnimations((event) => {
         if (builder.isFirstPerson()) {
           builder
             .get("left_arm")
-            .setXRotDegrees(49)
-            .setYRotDegrees(-30)
-            .setZRotDegrees(30)
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
             .animate("InOutCubic", progress);
         }
         if (builder.isFirstPerson()) {
           builder
             .get("right_arm")
-            .setXRotDegrees(49)
-            .setYRotDegrees(-30)
-            .setZRotDegrees(-30)
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
             .animate("InOutCubic", progress);
         } else {
           // third person animations
           builder
             .get("left_arm")
-            .setXRotDegrees(90)
-            .setYRotDegrees(-65)
-            .setZRotDegrees(-180)
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(-15)
             .moveX(0)
             .moveY(0)
             .moveZ(0)
@@ -596,18 +686,18 @@ PalladiumEvents.registerAnimations((event) => {
           builder.get("chest").animate("InOutCubic", progress);
           builder
             .get("right_arm")
-            .setXRotDegrees(90)
-            .setYRotDegrees(65)
-            .setZRotDegrees(180)
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(15)
             .moveX(0)
             .moveY(0)
             .moveZ(0)
             .animate("InOutCubic", progress);
           builder.get("chest").animate("InOutCubic", progress);
           builder
-            .get("head")
-            .setXRotDegrees(-12.5)
-            .animate("InOutCubic", progress);
+          .get("head")
+          .setXRotDegrees(-5)
+          .animate("InOutCubic", progress);
           builder.get("chest").animate("InOutCubic", progress);
           builder;
         }
@@ -624,7 +714,7 @@ PalladiumEvents.registerAnimations((event) => {
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "armor_sentinel_anim",
+        "test.4",
         builder.getPartialTicks()
       );
 
@@ -702,15 +792,15 @@ PalladiumEvents.registerAnimations((event) => {
         if (builder.isFirstPerson()) {
           builder
             .get("left_arm")
-            .setXRotDegrees(49)
-            .setYRotDegrees(-30)
-            .setZRotDegrees(30)
+            .setXRotDegrees(90)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
             .animate("InOutCubic", progress);
         }
         if (builder.isFirstPerson()) {
           builder
             .get("right_arm")
-            .setXRotDegrees(49)
+            .setXRotDegrees(80)
             .setYRotDegrees(-30)
             .setZRotDegrees(-30)
             .animate("InOutCubic", progress);
@@ -768,15 +858,15 @@ PalladiumEvents.registerAnimations((event) => {
         if (builder.isFirstPerson()) {
           builder
             .get("left_arm")
-            .setXRotDegrees(49)
-            .setYRotDegrees(-30)
+            .setXRotDegrees(0)
+            .setYRotDegrees(30)
             .setZRotDegrees(30)
             .animate("InOutCubic", progress);
         }
         if (builder.isFirstPerson()) {
           builder
             .get("right_arm")
-            .setXRotDegrees(-40)
+            .setXRotDegrees(0)
             .setYRotDegrees(-30)
             .setZRotDegrees(-30)
             .animate("InOutCubic", progress);
@@ -784,9 +874,9 @@ PalladiumEvents.registerAnimations((event) => {
           // third person animations
           builder
             .get("left_arm")
-            .setXRotDegrees(-70.0709)
-            .setYRotDegrees(31.772)
-            .setZRotDegrees(25.7009)
+            .setXRotDegrees(-90)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
             .moveX(0)
             .moveY(0)
             .moveZ(0)
@@ -794,9 +884,62 @@ PalladiumEvents.registerAnimations((event) => {
           builder.get("chest").animate("InOutCubic", progress);
           builder
             .get("right_arm")
-            .setXRotDegrees(-67.5709)
-            .setYRotDegrees(-31.772)
-            .setZRotDegrees(-25.7009)
+            .setXRotDegrees(-90)
+            .setYRotDegrees(-0)
+            .setZRotDegrees(-0)
+            .moveX(0)
+            .moveY(0)
+            .moveZ(0)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder;
+        }
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon/colocacion_de_armadura.6.blooded.mark.pose.2",
+    10,
+    (builder) => {
+      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
+      const progress = animationUtil.getAnimationTimerAbilityValue(
+        builder.getPlayer(),
+        "satsu_iron_man_addon:kube_animations",
+        "blooded_activaded_anim.2",
+        builder.getPartialTicks()
+      );
+
+      // only apply animation if progress is above 0!
+      if (progress > 0.0) {
+        const halfPi = 1.57079632679;
+
+        // if first person
+        if (builder.isFirstPerson()) {
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(30)
+            .setZRotDegrees(30)
+            .animate("InOutCubic", progress);
+        }
+        if (builder.isFirstPerson()) {
+          builder
+            .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(-30)
+            .setZRotDegrees(-30)
+            .animate("InOutCubic", progress);
+        } else {
+          // third person animations
+          builder
+            .get("left_arm")
+            .moveX(0)
+            .moveY(0)
+            .moveZ(-3)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder
+            .get("right_arm")
             .moveX(0)
             .moveY(0)
             .moveZ(0)
@@ -810,14 +953,14 @@ PalladiumEvents.registerAnimations((event) => {
 });
 PalladiumEvents.registerAnimations((event) => {
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.7.mark.47.part.1",
+    "satsu_iron_man_addon/colocacion_de_armadura.7.mark.50.part.1",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "mark_47_anim",
+        "mark_50_anim",
         builder.getPartialTicks(),
         0,
         3
@@ -871,14 +1014,14 @@ PalladiumEvents.registerAnimations((event) => {
     }
   );
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.7.mark.47.part.2",
+    "satsu_iron_man_addon/colocacion_de_armadura.7.mark.50.part.2",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "mark_47_anim",
+        "mark_50_anim",
         builder.getPartialTicks(),
         4,
         6
@@ -934,17 +1077,15 @@ PalladiumEvents.registerAnimations((event) => {
 });
 PalladiumEvents.registerAnimations((event) => {
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.8.mark.5.part.1",
+    "satsu_iron_man_addon/colocacion_de_armadura.8.mark.47.part.1",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "mark.5_anim",
-        builder.getPartialTicks(),
-        0,
-        3
+        "mark_47_anim",
+        builder.getPartialTicks()
       );
 
       // only apply animation if progress is above 0!
@@ -963,9 +1104,188 @@ PalladiumEvents.registerAnimations((event) => {
         if (builder.isFirstPerson()) {
           builder
             .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        } else {
+          // third person animations
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .moveX(0)
+            .moveY(0)
+            .moveZ(0)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder
+            .get("right_arm")
+            .setXRotDegrees(-85)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .moveX(0)
+            .moveY(0)
+            .moveZ(0)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder;
+        }
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon/colocacion_de_armadura.7.mark.47.part.2",
+    10,
+    (builder) => {
+      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
+      const progress = animationUtil.getAnimationTimerAbilityValue(
+        builder.getPlayer(),
+        "satsu_iron_man_addon:kube_animations",
+        "mark_47_anim.2",
+        builder.getPartialTicks()
+      );
+
+      // only apply animation if progress is above 0!
+      if (progress > 0.0) {
+        const halfPi = 1.57079632679;
+
+        // if first person
+        if (builder.isFirstPerson()) {
+          builder
+            .get("left_arm")
             .setXRotDegrees(49)
             .setYRotDegrees(-30)
+            .setZRotDegrees(30)
+            .animate("InOutCubic", progress);
+        }
+        if (builder.isFirstPerson()) {
+          builder
+            .get("right_arm")
+            .setXRotDegrees(-85)
+            .setYRotDegrees(-30)
             .setZRotDegrees(-30)
+            .animate("InOutCubic", progress);
+        } else {
+          // third person animations
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .moveX(0)
+            .moveY(0)
+            .moveZ(0)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder
+            .get("right_arm")
+            .setXRotDegrees(-80.7517)
+            .setYRotDegrees(-57.1594)
+            .setZRotDegrees(-7.7901)
+            .moveX(0)
+            .moveY(0)
+            .moveZ(0)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder;
+        }
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon/colocacion_de_armadura.7.mark.47.part.3",
+    10,
+    (builder) => {
+      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
+      const progress = animationUtil.getAnimationTimerAbilityValue(
+        builder.getPlayer(),
+        "satsu_iron_man_addon:kube_animations",
+        "mark_47_anim.3",
+        builder.getPartialTicks()
+      );
+
+      // only apply animation if progress is above 0!
+      if (progress > 0.0) {
+        const halfPi = 1.57079632679;
+
+        // if first person
+        if (builder.isFirstPerson()) {
+          builder
+            .get("left_arm")
+            .setXRotDegrees(90)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        }
+        if (builder.isFirstPerson()) {
+          builder
+            .get("right_arm")
+            .setXRotDegrees(80)
+            .setYRotDegrees(-30)
+            .setZRotDegrees(-30)
+            .animate("InOutCubic", progress);
+        } else {
+          // third person animations
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(-75)
+            .moveX(0)
+            .moveY(0)
+            .moveZ(0)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder
+            .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(75)
+            .moveX(0)
+            .moveY(0)
+            .moveZ(0)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder;
+        }
+      }
+    }
+  );
+});
+PalladiumEvents.registerAnimations((event) => {
+  event.register(
+    "satsu_iron_man_addon/colocacion_de_armadura.9.mark.5.part.1",
+    10,
+    (builder) => {
+      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
+      const progress = animationUtil.getAnimationTimerAbilityValue(
+        builder.getPlayer(),
+        "satsu_iron_man_addon:kube_animations",
+        "mark.5_anim",
+        builder.getPartialTicks()
+      );
+
+      // only apply animation if progress is above 0!
+      if (progress > 0.0) {
+        const halfPi = 1.57079632679;
+
+        // if first person
+        if (builder.isFirstPerson()) {
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        }
+        if (builder.isFirstPerson()) {
+          builder
+            .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(55)
+            .setZRotDegrees(0)
             .animate("InOutCubic", progress);
         } else {
           // third person animations
@@ -1025,93 +1345,6 @@ PalladiumEvents.registerAnimations((event) => {
     }
   );
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.8.mark.5.part.2",
-    10,
-    (builder) => {
-      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
-      const progress = animationUtil.getAnimationTimerAbilityValue(
-        builder.getPlayer(),
-        "satsu_iron_man_addon:kube_animations",
-        "mark.5_anim",
-        builder.getPartialTicks(),
-        3,
-        6
-      );
-
-      // only apply animation if progress is above 0!
-      if (progress > 0.0) {
-        const halfPi = 1.57079632679; // if first person
-        if (builder.isFirstPerson()) {
-          builder
-            .get("left_arm")
-            .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
-            .animate("InOutCubic", progress);
-        }
-        if (builder.isFirstPerson()) {
-          builder
-            .get("right_arm")
-            .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
-            .animate("InOutCubic", progress);
-        } else {
-          // third person animations
-          builder
-            .get("left_arm")
-            .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
-            .setX(0)
-            .setY(0)
-            .setZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("right_arm")
-            .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
-            .setX(0)
-            .setY(0)
-            .setZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("head")
-            .setXRotDegrees(0)
-            .setY(0)
-            .setZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("chest")
-            .setXRotDegrees(0)
-            .setY(0)
-            .setZ(0)
-            .animate("InOutCubic", progress);
-            builder
-              .get("right_leg")
-              .setXRotDegrees(0)
-              .setYRotDegrees(0)
-              .setZRotDegrees(0)
-              .moveX(0)
-              .moveY(0)
-              .setZ(0)
-              .animate("InOutCubic", progress);
-            builder
-              .get("left_leg")
-              .setXRotDegrees(0)
-              .setYRotDegrees(0)
-              .setZRotDegrees(0)
-              .moveX(0)
-              .moveY(0)
-              .setZ(0)
-              .animate("InOutCubic", progress);
-          builder;
-        }
-      }
-    }
-  );
-  event.register(
     "satsu_iron_man_addon/colocacion_de_armadura.8.mark.5.part.3",
     10,
     (builder) => {
@@ -1119,10 +1352,8 @@ PalladiumEvents.registerAnimations((event) => {
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:kube_animations",
-        "mark.5_anim",
-        builder.getPartialTicks(),
-        3,
-        6
+        "mark.5_anim.3",
+        builder.getPartialTicks()
       );
 
       // only apply animation if progress is above 0!
@@ -1141,7 +1372,7 @@ PalladiumEvents.registerAnimations((event) => {
         if (builder.isFirstPerson()) {
           builder
             .get("right_arm")
-            .setXRotDegrees(49)
+            .setXRotDegrees(80)
             .setYRotDegrees(-30)
             .setZRotDegrees(-30)
             .animate("InOutCubic", progress);
@@ -1152,11 +1383,65 @@ PalladiumEvents.registerAnimations((event) => {
             .setXRotDegrees(0)
             .setYRotDegrees(0)
             .setZRotDegrees(-90)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder
+            .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(90)
+            .animate("InOutCubic", progress);
+          builder.get("chest").animate("InOutCubic", progress);
+          builder;
+        }
+      }
+    }
+  );
+});
+PalladiumEvents.registerAnimations((event) => {
+  event.register(
+    "satsu_iron_man_addon/colocacion_de_armadura.mark.45.10",
+    10,
+    (builder) => {
+      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
+      const progress = animationUtil.getAnimationTimerAbilityValue(
+        builder.getPlayer(),
+        "satsu_iron_man_addon:kube_animations",
+        "mark_45_anim",
+        builder.getPartialTicks()
+      );
+
+      // only apply animation if progress is above 0!
+      if (progress > 0.0) {
+        const halfPi = 1.57079632679;
+
+        // if first person
+        if (builder.isFirstPerson()) {
+          builder
+            .get("left_arm")
+            .setXRotDegrees(90)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        }
+        if (builder.isFirstPerson()) {
+          builder
+            .get("right_arm")
+            .setXRotDegrees(80)
+            .setYRotDegrees(-30)
+            .setZRotDegrees(-30)
+            .animate("InOutCubic", progress);
+        } else {
+          // third person animations
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
             .moveX(0)
             .moveY(0)
             .moveZ(0)
             .animate("InOutCubic", progress);
-          builder.get("chest").animate("InOutCubic", progress);
           builder
             .get("right_arm")
             .setXRotDegrees(0)
@@ -1166,7 +1451,6 @@ PalladiumEvents.registerAnimations((event) => {
             .moveY(0)
             .moveZ(0)
             .animate("InOutCubic", progress);
-          builder.get("chest").animate("InOutCubic", progress);
           builder
             .get("head")
             .setXRotDegrees(0)
@@ -1176,9 +1460,6 @@ PalladiumEvents.registerAnimations((event) => {
           builder
             .get("chest")
             .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
-            .moveX(0)
             .moveY(0)
             .moveZ(0)
             .animate("InOutCubic", progress);
