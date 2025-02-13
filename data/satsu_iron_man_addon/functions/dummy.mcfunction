@@ -79,6 +79,8 @@ scoreboard objectives add satsu.iron.man.armor.mk3.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk5.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk6.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk7.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk.extremis.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk.1873.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.15.mk30.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mark.45.unlock dummy
 scoreboard objectives add satsu.iron.man.symbiote.metalized dummy
