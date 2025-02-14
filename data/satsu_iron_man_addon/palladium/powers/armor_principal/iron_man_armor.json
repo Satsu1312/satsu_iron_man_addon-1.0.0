@@ -4921,13 +4921,8 @@
     },
     "Mark.25.drill.ground.command": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
-      "title": { "translate": "ability.title.satsu.telekinesis" },
-      "description": { "translate": "description.superior.telekinesis" },
       "hidden": true,
       "hidden_in_bar": true,
-      "list_index": 15,
-      "gui_position": [4, 3],
       "first_tick_commands": ["tag @s add striker.ground.drill"],
       "commands": [
         "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
@@ -4951,13 +4946,8 @@
     },
     "Mark.25.drill.ground.play_sound": {
       "type": "palladium:play_sound",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
-      "title": { "translate": "ability.title.satsu.telekinesis" },
-      "description": { "translate": "description.superior.telekinesis" },
       "hidden": true,
       "hidden_in_bar": true,
-      "list_index": 15,
-      "gui_position": [4, 3],
       "sound": "satsu_iron_man_addon:striker.dig",
       "volume": 1,
       "pitch": 1,
@@ -4972,6 +4962,194 @@
           }
         ],
         "unlocking": []
+      }
+    },
+    "mark.1873.throw.smoke": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/throw_smoke.png",
+      "title": { "translate": "ability.title.satsu.telekinesis" },
+      "description": { "translate": "description.superior.telekinesis" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 15,
+      "gui_position": [7, 3],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 90,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.1.MKSuperior"
+          }
+        ]
+      }
+    },
+    "mark.1873.clap_smoke_hands": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/clap_hands_smoke.png",
+      "title": { "translate": "ability.title.satsu.telekinesis" },
+      "description": { "translate": "description.superior.telekinesis" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 16,
+      "gui_position": [7, 3],
+      "start_value": 0,
+      "max_value": 32,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 33,
+            "cooldown": 60,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.1.MKSuperior"
+          }
+        ]
+      }
+    },
+    "mark.1873.clap_smoke_hands.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "tag @s add mark.1873.clap_smoke_hands",
+        "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30"
+      ],
+      "commands": [
+        "execute as @e[tag=!mark.1873.clap_smoke_hands,distance=0..8] run effect give @s minecraft:wither 5 2 true",
+        "particle minecraft:large_smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
+        "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30"
+      ],
+      "last_tick_commands": [
+        "particle minecraft:large_smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
+        "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
+        "particle smoke ~ ~1 ~ 5 2 5 0.01 1500 force",
+        "tag @s remove mark.1873.clap_smoke_hands"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "mark.1873.clap_smoke_hands",
+            "min": 32,
+            "max": 32
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.1.MKSuperior"
+          }
+        ]
       }
     },
     "Telekinesis": {
