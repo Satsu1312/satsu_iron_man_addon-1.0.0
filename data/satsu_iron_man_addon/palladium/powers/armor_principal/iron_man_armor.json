@@ -1780,6 +1780,10 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.3"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.25"
               }
             ]
           },
@@ -4855,6 +4859,136 @@
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "Satsu.Armor.6.MKStealh_Armor"
+          }
+        ]
+      }
+    },
+    "Mark.25.drill.ground": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
+      "title": { "translate": "ability.title.satsu.telekinesis" },
+      "description": { "translate": "description.superior.telekinesis" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 15,
+      "gui_position": [4, 3],
+      "start_value": 0,
+      "max_value": 32,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "tick": 32,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.25"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Mark.25.drill.ground.command": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
+      "title": { "translate": "ability.title.satsu.telekinesis" },
+      "description": { "translate": "description.superior.telekinesis" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 15,
+      "gui_position": [4, 3],
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.superior.color 1",
+        "scoreboard players set @s satsu.iron.man.flame 10",
+        "tag @s add superior.shockwave"
+      ],
+      "commands": [
+        "execute at @s as @e run effect give @e[tag=!superior.shockwave,distance=..5] minecraft:slowness 1 255 true"
+      ],
+      "last_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.superior.color 0",
+        "scoreboard players set @s satsu.iron.man.flame 8",
+        "tag @s remove superior.shockwave"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "tick": 32,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.1.MKSuperior"
           }
         ]
       }
