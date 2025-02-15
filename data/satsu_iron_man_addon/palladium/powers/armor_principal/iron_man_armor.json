@@ -981,7 +981,7 @@
               },
               {
                 "type": "palladium:has_tag",
-                "tag": "sentinel_nearest"
+                "tag": "sentinel.false.nearest"
               }
             ]
           },
@@ -1090,7 +1090,7 @@
                   },
                   {
                     "type": "palladium:has_tag",
-                    "tag": "sentinel_nearest"
+                    "tag": "sentinel.false.nearest"
                   }
                 ]
               }
@@ -3719,6 +3719,11 @@
       "gui_position": [0, 1.8],
       "description": { "translate": "description.satsu.choose.armor" },
       "commands": [
+        "scoreboard players set @s satsu.iron.man.animation.armor 2",
+        "execute unless entity @e[tag=sentinel,distance=0..30] run tag @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] add mecano.sentinel.on.ground",
+        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] satsu.iron.man.animation.armor",
+        "execute unless entity @e[tag=sentinel,distance=0..30] run tag @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] add mecano.sentinel.on.ground",
+        "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] satsu.iron.man.animation.armor",
         "scoreboard players add @s satsu.iron.man.armor.set 1",
         "execute as @s[scores={satsu.iron.man.armor.set=1}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.choose.armor.on\",\"color\":\"blue\"}}",
         "execute as @s[scores={satsu.iron.man.armor.set=2..}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.choose.armor.off\",\"color\":\"blue\"}}",
@@ -6877,6 +6882,17 @@
         "superpower add satsu_iron_man_addon:reactor_ark_power/ark_reactor_charge",
         "execute as @s unless score @s satsu.iron.man.armor.energy.pulse.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.pulse.hand 1"
       ]
+    },
+    "sentinel.false.nearest": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [
+        "execute if entity @e[tag=sentinel,sort=nearest,distance=0..3] run tag @s add sentinel.false.nearest",
+        "execute unless entity @e[tag=sentinel,distance=0..3] run tag @s remove sentinel.false.nearest"
+      ],
+      "last_tick_commands": [""]
     },
     "reset.satsu.iron.man.animation.armor": {
       "type": "palladium:command",
