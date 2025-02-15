@@ -1878,7 +1878,7 @@
         "enabling": [
           {
             "type": "palladium:action",
-             "cooldown": 50
+            "cooldown": 50
           }
         ],
         "unlocking": [
@@ -3764,8 +3764,7 @@
             "ability": "choose_armor"
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "choose_armor.sentinel.on.ground": {
@@ -4978,8 +4977,8 @@
             "type": "palladium:and",
             "conditions": [
               {
-              "type": "palladium:has_tag",
-              "tag": "mark.extremis"
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
               },
               {
                 "type": "palladium:ability_unlocked",
@@ -5250,7 +5249,8 @@
         "particle minecraft:large_smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
         "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
         "particle smoke ~ ~1 ~ 5 2 5 0.01 1500 force",
-        "tag @s remove mark.1873.clap_smoke_hands"
+        "tag @s remove mark.1873.clap_smoke_hands",
+        "tag @s add mark.1873.clap_smoke_hands.later"
       ],
       "conditions": {
         "enabling": [
@@ -5300,6 +5300,84 @@
             "ability": "Satsu.Armor.1.MKSuperior"
           }
         ]
+      }
+    },
+    "mark.1873.clap_smoke_hands.later": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/clap_hands_smoke.png",
+      "title": { "translate": "ability.title.satsu.telekinesis" },
+      "description": { "translate": "description.superior.telekinesis" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 16,
+      "gui_position": [7, 3],
+      "start_value": 0,
+      "max_value": 41,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "mark.1873.clap_smoke_hands.later"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.1.MKSuperior"
+          }
+        ]
+      }
+    },
+    "mark.1873.clap_smoke_hands.later.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": ["particle smoke ~ ~1 ~ 5 2 5 0.01 300 force"],
+      "last_tick_commands": ["tag @s remove mark.1873.clap_smoke_hands.later"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "mark.1873.clap_smoke_hands.later",
+            "min": 1,
+            "max": 40
+          }
+        ],
+        "unlocking": []
       }
     },
     "Telekinesis": {
@@ -7037,7 +7115,59 @@
         "execute if entity @e[tag=sentinel,sort=nearest,distance=0..3] run tag @s add sentinel.false.nearest",
         "execute unless entity @e[tag=sentinel,distance=0..3] run tag @s remove sentinel.false.nearest"
       ],
-      "last_tick_commands": [""]
+      "last_tick_commands": [""],
+      "conditons": [
+        {
+          "type": "palladium:and",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.6"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.7"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.16"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.19.tiger"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.21"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.30.iron.destroyer"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.39"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.40"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.45"
+                },
+                {
+                  "type": "palladium:has_tag",
+                  "tag": "mark.47"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "reset.satsu.iron.man.animation.armor": {
       "type": "palladium:command",
