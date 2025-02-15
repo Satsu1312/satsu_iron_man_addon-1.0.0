@@ -3720,11 +3720,6 @@
       "gui_position": [0, 1.8],
       "description": { "translate": "description.satsu.choose.armor" },
       "commands": [
-        "scoreboard players set @s satsu.iron.man.animation.armor 2",
-        "execute unless entity @e[tag=sentinel,distance=0..30] run tag @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] add mecano.sentinel.on.ground",
-        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] satsu.iron.man.animation.armor",
-        "execute unless entity @e[tag=sentinel,distance=0..30] run tag @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] add mecano.sentinel.on.ground",
-        "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] satsu.iron.man.animation.armor",
         "scoreboard players add @s satsu.iron.man.armor.set 1",
         "execute as @s[scores={satsu.iron.man.armor.set=1}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.choose.armor.on\",\"color\":\"blue\"}}",
         "execute as @s[scores={satsu.iron.man.armor.set=2..}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.choose.armor.off\",\"color\":\"blue\"}}",
@@ -3750,6 +3745,98 @@
             "objective": "satsu.iron.man.personalize.things",
             "min_score": 1,
             "max_score": 1
+          }
+        ]
+      }
+    },
+    "choose_armor.not.armor": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.animation.armor 2"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "choose_armor"
+          }
+        ],
+        "unlocking": [
+        ]
+      }
+    },
+    "choose_armor.sentinel.on.ground": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.animation.armor 2",
+        "execute unless entity @e[tag=sentinel,distance=0..30] run tag @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] add mecano.sentinel.on.ground",
+        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] satsu.iron.man.animation.armor",
+        "execute unless entity @e[tag=sentinel,distance=0..30] run tag @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] add mecano.sentinel.on.ground",
+        "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=2..}] satsu.iron.man.animation.armor"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "choose_armor"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.6"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.7"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.16"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.19.tiger"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.21"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.30.iron.destroyer"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.39"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.40"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.45"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.47"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
