@@ -4868,6 +4868,63 @@
         ]
       }
     },
+    "extremis.stealht": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 15,
+      "gui_position": [-3, 3],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+              "type": "palladium:has_tag",
+              "tag": "mark.extremis"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.6.MKStealh_Armor"
+          }
+        ]
+      }
+    },
     "Mark.25.drill.ground": {
       "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
