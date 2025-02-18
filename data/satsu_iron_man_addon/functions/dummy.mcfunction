@@ -1,4 +1,7 @@
 
+scoreboard objectives add satsu.iron.man.addon.ark.skin.max dummy
+scoreboard objectives add satsu.iron.man.addon.ark.skin.choose dummy
+scoreboard objectives add satsu.iron.man.addon.ark.skin dummy
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.or.energy.beam dummy
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.hand dummy
 scoreboard objectives add satsu.iron.man.addon.unlocking.set.block dummy
@@ -51,6 +54,7 @@ scoreboard objectives add satsu.prev.iron.man.armor.anim dummy
 scoreboard objectives add satsu.iron.man.arms.set dummy
 scoreboard objectives add satsu.iron.man.armor.energy.beams dummy
 scoreboard objectives add satsu.iron.man.remove.ark dummy
+scoreboard objectives add satsu.iron.man.dampened dummy
 scoreboard objectives add satsu.iron.man.closed.armors dummy
 scoreboard objectives add satsu.iron.man.superpower dummy
 scoreboard objectives add satsu.iron.man.break dummy
@@ -79,6 +83,8 @@ scoreboard objectives add satsu.iron.man.armor.mk3.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk5.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk6.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk7.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk.extremis.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk.1873.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.15.mk30.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mark.45.unlock dummy
 scoreboard objectives add satsu.iron.man.symbiote.metalized dummy
@@ -89,8 +95,4 @@ scoreboard objectives add satsu.iron.man.ark.upgraded dummy
 scoreboard objectives add satsu.iron.man.ark.upgraded.max.energy dummy
 scoreboard objectives add SatsuIronManArmorSkillPoint dummy
 scoreboard objectives add SatsuIronManArmorExp dummy
-scoreboard objectives add SatsuIronManArmorMobKills minecraft.custom:minecraft.mob_kills
-scoreboard objectives add SatsuIronManArmorDragonKills minecraft.killed:minecraft.ender_dragon
-scoreboard objectives add SatsuIronManArmorWitherKills minecraft.killed:minecraft.wither
-scoreboard objectives add SatsuIronManArmorWardenKills minecraft.killed:minecraft.warden
-scoreboard objectives add SatsuIronManArmorGuardianKills minecraft.killed:minecraft.guardian
+scoreboard objectives add satsu.iron.man.skil.point.kill.mob minecraft.custom:minecraft.mob_kills

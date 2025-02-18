@@ -176,12 +176,12 @@
                   {
                     "type": "palladium:ability_enabled",
                     "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
-                    "ability": "energy_projectile.mk50.superior"
+                    "ability": "energy_projectile.damage.18"
                   },
                   {
                     "type": "palladium:ability_enabled",
                     "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
-                    "ability": "energy_projectile_other_arm.mk50.superior"
+                    "ability": "energy_projectile_other_arm.damage.18"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -450,14 +450,39 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
-          },
-          {
-            "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "stealht"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "Armor_powers_stat_upgrades"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "stealht"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "Armor_powers_stat_upgrades"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "extremis.stealht"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -472,12 +497,62 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:armor_set/armors",
-            "ability": "stealht_animation_timer",
-            "property": "value",
-            "min": 20,
-            "max": 20
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_set/armors",
+                "ability": "stealht_animation_timer",
+                "property": "value",
+                "min": 20,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_set/armors",
+                "ability": "extremis.stealht_animation_timer",
+                "property": "value",
+                "min": 20,
+                "max": 20
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "stealht_invis_command.extremis": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.stealht 1"
+      ],
+      "commands": ["effect give @s minecraft:invisibility 1 255 true"],
+      "last_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.stealht 0"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_set/armors",
+                "ability": "stealht_animation_timer",
+                "property": "value",
+                "min": 20,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_set/armors",
+                "ability": "extremis.stealht_animation_timer",
+                "property": "value",
+                "min": 20,
+                "max": 20
+              }
+            ]
           }
         ]
       }
@@ -824,16 +899,18 @@
         ]
       }
     },
-    "set.scoreboard.armor.10": {
+    "set.scoreboard.armor.10.mark.extremis": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [""],
+      "first_tick_commands": ["tag @s add mark.extremis"],
       "commands": [
-        "execute as @s[scores={satsu.iron.man.armor=10}] run scoreboard players set @s satsu.iron.man.flame 7",
-        "execute as @s[scores={satsu.iron.man.armor=10}] run scoreboard players set @s satsu.iron.man.durability 28"
+        "scoreboard players set @s satsu.iron.man.flame 2",
+        "scoreboard players set @s satsu.iron.man.durability 750",
+        "scoreboard players set @s satsu.iron.man.strength 520",
+        "scoreboard players set @s satsu.iron.man.pickaxe.velocity 120"
       ],
-      "last_tick_commands": [""],
+      "last_tick_commands": ["tag @s remove mark.extremis"],
       "conditions": {
         "enabling": [
           {
@@ -1135,7 +1212,61 @@
         ]
       }
     },
-    "set.scoreboard.armor.23": {
+    "set.scoreboard.armor.23.mark.25": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add mark.25"],
+      "commands": [""],
+      "last_tick_commands": ["tag @s remove mark.25"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 23,
+            "max_score": 23
+          }
+        ]
+      }
+    },
+    "set.scoreboard.armor.24.mark.8": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add mark.8"],
+      "commands": [""],
+      "last_tick_commands": ["tag @s remove mark.8"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 24,
+            "max_score": 24
+          }
+        ]
+      }
+    },
+    "set.scoreboard.armor.25.mark.9": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add mark.9"],
+      "commands": [""],
+      "last_tick_commands": ["tag @s remove mark.9"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 25,
+            "max_score": 25
+          }
+        ]
+      }
+    },
+    "set.scoreboard.armor.26": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -1147,8 +1278,80 @@
           {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
-            "min_score": 23,
-            "max_score": 23
+            "min_score": 26,
+            "max_score": 26
+          }
+        ]
+      }
+    },
+    "set.scoreboard.armor.27": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 27,
+            "max_score": 27
+          }
+        ]
+      }
+    },
+    "set.scoreboard.armor.28": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 28,
+            "max_score": 28
+          }
+        ]
+      }
+    },
+    "set.scoreboard.armor.29": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 29,
+            "max_score": 29
+          }
+        ]
+      }
+    },
+    "set.scoreboard.armor.30": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 30,
+            "max_score": 30
           }
         ]
       }

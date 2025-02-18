@@ -146,6 +146,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "Telekinesis"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mark.1873.throw.smoke"
               }
             ]
           }
@@ -180,6 +185,59 @@
             "type": "palladium:ability_enabled",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "animation.projectile.mk1.3"
+          }
+        ]
+      }
+    },
+    "mk.1873_test": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": ["satsu_iron_man_addon:mark_1873/mark_1873_right"],
+      "particle_type": "minecraft:smoke",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "mark.1873.throw.smoke"
+          }
+        ]
+      }
+    },
+    "mk.1873_test.projectile": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 0,
+        "Damage": 3,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/mark_1873_smoke_hand",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/mark_1873_smoke_hand",
+        "Appearances": []
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "mark.1873.throw.smoke"
           }
         ]
       }
@@ -255,16 +313,23 @@
       }
     },
     "energy_projectile": {
-      "type": "palladium:projectile",
+      "type": "gravestone:projectile",
       "hidden": true,
-      "hidden_in_bar": true,
+      "hidden_in_bar": false,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 0,
-        "Damage": 5,
+        "Damage": 3,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -290,24 +355,15 @@
             "max": 5
           },
           {
-            "type": "palladium:not",
+            "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor",
-                    "min_score": 16,
-                    "max_score": 16
-                  }
-                ]
+                "type": "palladium:has_tag",
+                "tag": "mark.2"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.3"
               }
             ]
           }
@@ -315,16 +371,23 @@
       }
     },
     "energy_projectile_other_arm": {
-      "type": "palladium:projectile",
+      "type": "gravestone:projectile",
       "hidden": true,
-      "hidden_in_bar": true,
+      "hidden_in_bar": false,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 0,
-        "Damage": 5,
+        "Damage": 3,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -350,41 +413,211 @@
             "max": 5
           },
           {
-            "type": "palladium:not",
+            "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor",
-                    "min_score": 16,
-                    "max_score": 16
-                  }
-                ]
+                "type": "palladium:has_tag",
+                "tag": "mark.2"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.3"
               }
             ]
           }
         ]
       }
     },
-    "energy_projectile.mk50.superior": {
-      "type": "palladium:projectile",
+    "energy_projectile.damage.6": {
+      "type": "gravestone:projectile",
       "hidden": true,
-      "hidden_in_bar": true,
+      "hidden_in_bar": false,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 0,
-        "Damage": 10,
+        "Damage": 6,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "animation.projectile.1",
+            "min": 5,
+            "max": 5
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.5"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.6"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.7"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.16"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.19.tiger"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.21"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.39"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.40"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.45"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy_projectile_other_arm.damage.6": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 8,
+        "KnockbackStrength": 0,
+        "Damage": 6,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "animation.projectile.3",
+            "min": 5,
+            "max": 5
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.5"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.6"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.7"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.16"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.19.tiger"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.21"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.39"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.40"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.45"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy_projectile.damage.18": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 8,
+        "KnockbackStrength": 0,
+        "Damage": 18,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -410,25 +643,47 @@
             "max": 5
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.47"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.50"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.50.superior"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
+              }
+            ]
           }
         ]
       }
     },
-    "energy_projectile_other_arm.mk50.superior": {
-      "type": "palladium:projectile",
+    "energy_projectile_other_arm.damage.18": {
+      "type": "gravestone:projectile",
       "hidden": true,
-      "hidden_in_bar": true,
+      "hidden_in_bar": false,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 0,
-        "Damage": 10,
+        "Damage": 18,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -454,25 +709,47 @@
             "max": 5
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.47"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.50"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.50.superior"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
+              }
+            ]
           }
         ]
       }
     },
     "energy_projectile.mk.blooded": {
-      "type": "palladium:projectile",
+      "type": "gravestone:projectile",
       "hidden": true,
-      "hidden_in_bar": true,
+      "hidden_in_bar": false,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 0,
-        "Damage": 6,
+        "Damage": 18,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -507,16 +784,23 @@
       }
     },
     "energy_projectile_other_arm.mk.blooded": {
-      "type": "palladium:projectile",
+      "type": "gravestone:projectile",
       "hidden": true,
-      "hidden_in_bar": true,
+      "hidden_in_bar": false,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 0,
-        "Damage": 6,
+        "Damage": 18,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -546,6 +830,108 @@
             "objective": "satsu.iron.man.armor",
             "min_score": 16,
             "max_score": 16
+          }
+        ]
+      }
+    },
+    "energy_projectile.mk.1873": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 8,
+        "KnockbackStrength": 0,
+        "Damage": 6,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/blooded_iron_man_pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/blooded_iron_man_pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#c17000"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "animation.projectile.1",
+            "min": 5,
+            "max": 5
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 18,
+            "max_score": 18
+          }
+        ]
+      }
+    },
+    "energy_projectile_other_arm.mk.1873": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 8,
+        "KnockbackStrength": 0,
+        "Damage": 6,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/blooded_iron_man_pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/blooded_iron_man_pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#c17000"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "animation.projectile.3",
+            "min": 5,
+            "max": 5
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 18,
+            "max_score": 18
           }
         ]
       }
@@ -581,12 +967,19 @@
       }
     },
     "energy_projectile.mk1_other_arm": {
-      "type": "palladium:projectile",
+      "type": "gravestone:projectile",
       "hidden": true,
-      "hidden_in_bar": true,
+      "hidden_in_bar": false,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 3,
         "KnockbackStrength": 0,
@@ -735,12 +1128,12 @@
               {
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
-                "ability": "energy_projectile.mk50.superior"
+                "ability": "energy_projectile.damage.18"
               },
               {
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
-                "ability": "energy_projectile_other_arm.mk50.superior"
+                "ability": "energy_projectile_other_arm.damage.18"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -923,12 +1316,32 @@
               {
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
-                "ability": "energy_projectile.mk50.superior"
+                "ability": "energy_projectile.damage.6"
               },
               {
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
-                "ability": "energy_projectile_other_arm.mk50.superior"
+                "ability": "energy_projectile_other_arm.damage.6"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
+                "ability": "energy_projectile.damage.18"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
+                "ability": "energy_projectile_other_arm.damage.18"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
+                "ability": "energy_projectile.mk.1873"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:projectiles_armor/projectiles",
+                "ability": "energy_projectile_other_arm.mk.1873"
               },
               {
                 "type": "palladium:ability_enabled",
