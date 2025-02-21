@@ -1,0 +1,67 @@
+{
+  "name": "Armors",
+  "persistent_data": true,
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "tree",
+  "primary_color": "#2af4f5",
+  "secondary_color": "#0aacac",
+  "abilities": {
+    "armor_xp_points.set": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [],
+      "last_tick_commands": [],
+      "commands": [""]
+    },
+    "render_layer_armor": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:ia/remote_human"
+    },
+    "Armor_powers_stat_upgrades": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
+      "title": {
+        "translate": "ability.title.satsu.Armor_powers_stat_upgrades"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.Armor_powers_stat_upgrades" },
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.closed.armors",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [""]
+    }
+  }
+}

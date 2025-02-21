@@ -212,16 +212,16 @@
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
-        "summon minecraft:armor_stand ~ ~ ~ {Tags:[\"sentinel.test\"]}",
+        "function satsu_iron_man_addon:sentinels/spawn_remote_sentinel",
         "execute as @e[tag=sentinel.test] run scoreboard players operation @s satsu.iron.man.addon.uuid = @e[type=minecraft:player,sort=nearest] satsu.iron.man.addon.uuid",
         "scoreboard players set @s satsu.iron.man.armor.remote 1"
       ],
       "commands": [""],
       "last_tick_commands": [
+        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "execute as @e[tag=sentinel.test] if score @s satsu.iron.man.addon.uuid = @p satsu.iron.man.addon.uuid run function satsu_iron_man_addon:ia/swap_sentinels",
         "execute as @e[tag=sentinel.test] if score @s satsu.iron.man.addon.uuid = @p satsu.iron.man.addon.uuid run kill @s",
-        "scoreboard players reset @s satsu.iron.man.armor.remote",
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease"
+        "scoreboard players reset @s satsu.iron.man.armor.remote"
       ],
       "conditions": {
         "enabling": [
