@@ -212,12 +212,17 @@
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
+        "execute unless score @s[tag=sentinel.false] satsu.iron.man.animation.armor matches 1 run function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "function satsu_iron_man_addon:sentinels/spawn_remote_sentinel",
         "execute as @e[tag=sentinel.test] run scoreboard players operation @s satsu.iron.man.addon.uuid = @e[type=minecraft:player,sort=nearest] satsu.iron.man.addon.uuid",
-        "scoreboard players set @s satsu.iron.man.armor.remote 1"
+        "scoreboard players set @s satsu.iron.man.armor.remote 1",
+        "execute unless score @s[tag=!sentinel.false] satsu.iron.man.animation.armor matches 1 run function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
+        "execute as @s[tag=sentinel.false] as @e[tag=sentinel] run function satsu_iron_man_addon:ia/swap_sentinels",
+        "execute as @s[tag=sentinel.false] as @e[tag=sentinel] run function satsu_iron_man_addon:sentinels/kill_one_sentinel"
       ],
       "commands": [""],
       "last_tick_commands": [
+        "execute if entity @e[tag=sentinel.test,distance=0..30] run function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground",
         "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "execute as @e[tag=sentinel.test] if score @s satsu.iron.man.addon.uuid = @p satsu.iron.man.addon.uuid run function satsu_iron_man_addon:ia/swap_sentinels",
         "execute as @e[tag=sentinel.test] if score @s satsu.iron.man.addon.uuid = @p satsu.iron.man.addon.uuid run kill @s",
@@ -271,14 +276,25 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived",
+                        "min_score": 1,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived.perm",
+                        "min_score": 1,
+                        "max_score": 1
+                      }
+                    ]
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "objective": "satsu.iron.man.addon.glasses.equip",
                     "min_score": 1,
                     "max_score": 1
                   }
