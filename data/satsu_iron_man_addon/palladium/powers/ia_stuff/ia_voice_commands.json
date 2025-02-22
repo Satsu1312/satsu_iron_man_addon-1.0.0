@@ -223,6 +223,7 @@
       "commands": [""],
       "last_tick_commands": [
         "execute if entity @e[tag=sentinel.test,distance=0..30] run function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground",
+        "execute if entity @e[tag=sentinel.test,distance=0..30] run tag @s add give.sentinel.one",
         "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "execute as @e[tag=sentinel.test] if score @s satsu.iron.man.addon.uuid = @p satsu.iron.man.addon.uuid run function satsu_iron_man_addon:ia/swap_sentinels",
         "execute as @e[tag=sentinel.test] if score @s satsu.iron.man.addon.uuid = @p satsu.iron.man.addon.uuid run kill @s",
@@ -305,6 +306,114 @@
         ]
       }
     },
+    "enabled_remote_slowness.timer": {
+      "type": "palladium:animation_timer",
+      "icon": "#satsu_iron_man_addon:ia_icon",
+      "title": {
+        "translate": "ability.title.satsu.ia_powers_stat_upgrades"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.ia_skill_stat" },
+      "start_value": 0,
+      "max_value": 16,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:ia_stuff/ia_voice_commands",
+            "ability": "enabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:or",
+                        "conditions": [
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.ark.energy",
+                            "min_score": 100,
+                            "max_score": 101
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.ia.interaction",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived",
+                        "min_score": 1,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived.perm",
+                        "min_score": 1,
+                        "max_score": 1
+                      }
+                    ]
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.glasses.equip",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_remote_slowness.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["effect give @s minecraft:slowness 1 255 true"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:ia_stuff/ia_voice_commands",
+            "ability": "enabled_remote_slowness.timer",
+            "property": "value",
+            "min": 1,
+            "max": 15
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "enabled_remote.tag.sentinel": {
       "type": "palladium:command",
       "hidden": true,
@@ -366,6 +475,57 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.47"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_remote.tag.sentinel_one": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [
+        "tag @s add sentinel_one",
+        "tag @s remove give.sentinel.one"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "give.sentinel.one"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.50"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.50.superior"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.unknow.blooded.armor"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.1873"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.extremis"
                   }
                 ]
               }
