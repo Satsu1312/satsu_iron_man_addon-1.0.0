@@ -212,6 +212,7 @@
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
+        "attribute @s minecraft:generic.max_health base set 10",
         "execute unless score @s[tag=sentinel.false] satsu.iron.man.animation.armor matches 1 run function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "function satsu_iron_man_addon:sentinels/spawn_remote_sentinel",
         "execute as @e[tag=sentinel.test] run scoreboard players operation @s grave.ID = @e[type=minecraft:player,sort=nearest] grave.ID",
@@ -326,6 +327,7 @@
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
+        "attribute @s minecraft:generic.max_health base set 20",
         "execute if entity @e[tag=sentinel.test,distance=0..30] run function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground",
         "execute if entity @e[tag=sentinel.test,distance=0..30] run tag @s add give.sentinel.one",
         "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
@@ -339,7 +341,7 @@
         "enabling": [
           {
             "type": "palladium:chat_action",
-            "chat_message": "remote",
+            "chat_message": "disable remote",
             "cooldown": 0
           },
           {
