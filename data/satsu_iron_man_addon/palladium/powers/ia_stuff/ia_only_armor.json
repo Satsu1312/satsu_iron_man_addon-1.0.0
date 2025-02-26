@@ -1,0 +1,109 @@
+{
+  "name": { "translate": "ability.title.satsu.ia" },
+  "persistent_data": true,
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "#satsu_iron_man_addon:ia_icon",
+  "gui_display_type": "tree",
+  "primary_color": "#2af4f5",
+  "secondary_color": "#0aacac",
+  "abilities": {
+    "ia_powers_stat_upgrades": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:ia_icon",
+      "title": {
+        "translate": "ability.title.satsu.ia_powers_stat_upgrades"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, 0],
+      "description": { "translate": "description.ia_skill_stat" },
+      "first_tick_commands": [""],
+      "commands": [
+        "superpower add satsu_iron_man_addon:ia_stuff/ia @s",
+        "superpower add satsu_iron_man_addon:ia_stuff/ia_voice_commands @s"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.ia.name.power",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.animation.armor",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.glasses.equip",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "sentinel_one"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_ia": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:ia_icon",
+      "title": {
+        "translate": "ability.title.satsu.ia_powers_stat_upgrades"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, 0],
+      "description": { "translate": "description.ia_skill_stat" },
+      "first_tick_commands": [""],
+      "commands": [
+        "superpower remove satsu_iron_man_addon:ia_stuff/ia @s",
+        "superpower remove satsu_iron_man_addon:ia_stuff/ia_voice_commands @s"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.ia.name.power",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.animation.armor",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.glasses.equip",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

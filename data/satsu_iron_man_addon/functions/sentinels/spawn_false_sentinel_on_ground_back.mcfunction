@@ -5,7 +5,7 @@ execute if entity @s[tag=grave.facing.east] run summon wolf ~-1 ~ ~ {CustomNameV
 execute if entity @s[tag=grave.facing.west] run summon wolf ~1 ~ ~ {CustomNameVisible:1b,CustomName:'{"translate":"satsu.iron.man.addon.entity.name.armor.sentinel"}',Silent:1b,Tags:["tamed_wolf","new","sentinel"]}
 execute if entity @s[tag=grave.facing.south] run summon wolf ~ ~ ~-1 {CustomNameVisible:1b,CustomName:'{"translate":"satsu.iron.man.addon.entity.name.armor.sentinel"}',Silent:1b,Tags:["tamed_wolf","new","sentinel"]}
 execute if entity @s[tag=grave.facing.north] run summon wolf ~ ~ ~1 {CustomNameVisible:1b,CustomName:'{"translate":"satsu.iron.man.addon.entity.name.armor.sentinel"}',Silent:1b,Tags:["tamed_wolf","new","sentinel"]}
-execute as @e[type=wolf] run superpower add satsu_iron_man_addon:ia_stuff/sentinel_stats @s
+execute as @e[type=wolf,tag=sentinel] run superpower add satsu_iron_man_addon:ia_stuff/sentinel_stats @s
 function satsu_iron_man_addon:spawn_armor_sentinel
 execute if entity @s[tag=grave.facing.east] run summon armor_stand ~-1 ~ ~ {Marker:1b,Invisible:1b,Invulnerable:1b,Silent:1b,NoBasePlate:1b,CustomName:'{"translate":"satsu.iron.man.addon.entity.name.armor.sentinel"}',NoGravity:1b,Tags:["sentinel"],Pose:{Body:[0f,0f,0f],LeftArm:[0f,0f,0f],RightArm:[0f,0f,0f],LeftLeg:[0f,0f,0f],RightLeg:[0f,0f,0f],Head:[0f,0f,0f]}}
 execute if entity @s[tag=grave.facing.west] run summon armor_stand ~1 ~ ~ {Marker:1b,Invisible:1b,Invulnerable:1b,Silent:1b,NoBasePlate:1b,CustomName:'{"translate":"satsu.iron.man.addon.entity.name.armor.sentinel"}',NoGravity:1b,Tags:["sentinel"],Pose:{Body:[0f,0f,0f],LeftArm:[0f,0f,0f],RightArm:[0f,0f,0f],LeftLeg:[0f,0f,0f],RightLeg:[0f,0f,0f],Head:[0f,0f,0f]}}

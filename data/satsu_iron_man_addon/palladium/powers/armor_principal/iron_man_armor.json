@@ -58,6 +58,10 @@
                   },
                   {
                     "type": "palladium:has_tag",
+                    "tag": "dampened"
+                  },
+                  {
+                    "type": "palladium:has_tag",
                     "tag": "sentinel_one"
                   }
                 ]
@@ -124,7 +128,7 @@
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.enable_armor" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 0,
       "first_tick_commands": [
         "tag @s add satsu.iron.man.enable.armor",
@@ -183,7 +187,7 @@
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.Disable_armor" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 0,
       "first_tick_commands": [
         "tag @s remove satsu.iron.man.enable.armor",
@@ -343,6 +347,33 @@
       "gui_position": [2.8, 0.5],
       "conditions": {
         "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:or",
             "conditions": [
@@ -560,6 +591,33 @@
       "Attribute_Mod": "addition",
       "conditions": {
         "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:or",
             "conditions": [
@@ -873,8 +931,47 @@
             "type": "palladium:not",
             "conditions": [
               {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
                 "type": "palladium:or",
                 "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.1"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.2"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.3"
+                  },
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.6"
@@ -882,6 +979,22 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.7"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.8"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.9"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.10"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.11"
                   },
                   {
                     "type": "palladium:has_tag",
@@ -926,17 +1039,159 @@
                 "type": "palladium:ability_unlocked",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "Armor_powers_stat_upgrades"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "enable_armor"
               }
             ]
           },
           {
             "type": "palladium:and",
             "conditions": []
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_activate.stand.armor.animation_timer.command": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:enable_armor_icon",
+      "title": { "translate": "ability.title.satsu.enable_armor" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "commands": [
+        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:command_result",
+            "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:armored_construct"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.2"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.3"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.6"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.7"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.8"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.9"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.10"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.11"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.16"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.19.tiger"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.21"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.30.iron.destroyer"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.39"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.40"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.45"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.47"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": []
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
           }
         ]
       }
@@ -977,7 +1232,7 @@
               },
               {
                 "type": "palladium:has_tag",
-                "tag": "sentinel_nearest"
+                "tag": "sentinel.false.nearest"
               }
             ]
           },
@@ -994,6 +1249,22 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.7"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.8"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.9"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.10"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.11"
                   },
                   {
                     "type": "palladium:has_tag",
@@ -1038,11 +1309,17 @@
                 "type": "palladium:ability_unlocked",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "Armor_powers_stat_upgrades"
-              },
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
               {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "enable_armor"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
               }
             ]
           }
@@ -1075,6 +1352,33 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:and",
             "conditions": [
               {
@@ -1086,7 +1390,7 @@
                   },
                   {
                     "type": "palladium:has_tag",
-                    "tag": "sentinel_nearest"
+                    "tag": "sentinel.false.nearest"
                   }
                 ]
               }
@@ -1105,6 +1409,22 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.7"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.8"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.9"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.10"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.11"
                   },
                   {
                     "type": "palladium:has_tag",
@@ -1149,11 +1469,180 @@
                 "type": "palladium:ability_unlocked",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "Armor_powers_stat_upgrades"
-              },
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
               {
-                "type": "palladium:ability_enabled",
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_activate.animation_timer.command.mecano.not.nearest.mecano.post.sentinel": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:enable_armor_icon",
+      "title": { "translate": "ability.title.satsu.enable_armor" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.actived",
+        "scoreboard players reset @s satsu.iron.man.armor.actived.perm",
+        "tag @s[tag=mecano.post.sentinel] add mecano.sentinel.on.ground"
+      ],
+      "last_tick_commands": ["tag @s remove mecano.post.sentinel"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:has_tag",
+            "tag": "mecano.post.sentinel"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "sentinel.false"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "sentinel.false.nearest"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.6"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.7"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.8"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.9"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.10"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.11"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.16"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.19.tiger"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.21"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.30.iron.destroyer"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.39"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.40"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.45"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.47"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "enable_armor"
+                "ability": "Armor_powers_stat_upgrades"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
               }
             ]
           }
@@ -1491,15 +1980,11 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.armor.actived.perm 1",
-        "scoreboard players add @s satsu.iron.man.armor.actived 1",
-        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.armor.actived.perm=2..}] satsu.iron.man.armor.actived.perm",
-        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.armor.actived=2..}] satsu.iron.man.armor.actived",
-        "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.armor.actived.perm=2..}] satsu.iron.man.armor.actived.perm",
-        "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.armor.actived=2..}] satsu.iron.man.armor.actived"
+        "scoreboard players set @s satsu.iron.man.armor.actived.perm 1",
+        "scoreboard players set @s satsu.iron.man.armor.actived 1"
       ],
       "commands": [""],
-      "last_tick_commands": [""],
+      "last_tick_commands": [],
       "conditions": {
         "enabling": [
           {
@@ -1567,6 +2052,49 @@
         "unlocking": []
       }
     },
+    "not.armor_activate.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [
+        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor] satsu.iron.man.armor.actived.perm",
+        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor] satsu.iron.man.armor.actived",
+        "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor] satsu.iron.man.armor.actived.perm",
+        "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor] satsu.iron.man.armor.actived"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.animation.armor.reset",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "test": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [
+        "scoreboard players operation @s satsu.iron.man.animation.armor.reset = @s satsu.iron.man.animation.armor"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
     "sword_animation": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -1597,10 +2125,6 @@
                 "conditions": [
                   {
                     "type": "palladium:has_tag",
-                    "tag": "mark.47"
-                  },
-                  {
-                    "type": "palladium:has_tag",
                     "tag": "mark.50"
                   },
                   {
@@ -1610,6 +2134,14 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.unknow.blooded.armor"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.1873"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.extremis"
                   }
                 ]
               }
@@ -1682,6 +2214,10 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.1873"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.extremis"
                   }
                 ]
               }
@@ -1737,7 +2273,7 @@
                 "type": "palladium:objective_score",
                 "objective": "satsu.iron.man.armor",
                 "min_score": 2,
-                "max_score": 10
+                "max_score": 9
               },
               {
                 "type": "palladium:objective_score",
@@ -1755,7 +2291,39 @@
               },
               {
                 "type": "palladium:has_tag",
+                "tag": "mark.7"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.8"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.9"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.10"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.11"
+              },
+              {
+                "type": "palladium:has_tag",
                 "tag": "mark.45"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.7"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.3"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.25"
               }
             ]
           },
@@ -1849,10 +2417,38 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action"
+            "type": "palladium:action",
+            "cooldown": 50
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
@@ -1906,6 +2502,10 @@
                     "conditions": [
                       {
                         "type": "palladium:has_tag",
+                        "tag": "mark.1"
+                      },
+                      {
+                        "type": "palladium:has_tag",
                         "tag": "mark.50.superior"
                       },
                       {
@@ -1919,6 +2519,10 @@
                       {
                         "type": "palladium:has_tag",
                         "tag": "mark.1873"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.extremis"
                       }
                     ]
                   }
@@ -2080,6 +2684,33 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "armor_activate_skil_tree_dummy_close_armor"
@@ -2216,6 +2847,33 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "armor_activate_skil_tree_dummy_close_armor"
@@ -2316,6 +2974,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -2423,6 +3108,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -2724,6 +3436,33 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "armor_activate_skil_tree_dummy_close_armor"
@@ -2836,6 +3575,33 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:and",
             "conditions": [
               {
@@ -2936,6 +3702,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -3082,6 +3875,33 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "Armor_powers_stat_upgrades"
@@ -3170,6 +3990,14 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.unknow.blooded.armor"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
               }
             ]
           },
@@ -3292,10 +4120,6 @@
               },
               {
                 "type": "palladium:has_tag",
-                "tag": "mark.40"
-              },
-              {
-                "type": "palladium:has_tag",
                 "tag": "mark.47"
               },
               {
@@ -3309,6 +4133,14 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.unknow.blooded.armor"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
               }
             ]
           },
@@ -3360,6 +4192,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.flight.set",
@@ -3435,6 +4294,14 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.unknow.blooded.armor"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
               }
             ]
           },
@@ -3502,6 +4369,33 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "Armor_powers_stat_upgrades"
@@ -3550,6 +4444,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
@@ -3688,6 +4609,28 @@
             "objective": "satsu.iron.man.personalize.things",
             "min_score": 1,
             "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -3822,13 +4765,24 @@
             "type": "palladium:ability_enabled",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "choose.armor.move"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.choose_armor.test",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
           }
         ]
       }
     },
     "choose.armor.set": {
       "type": "palladium:dummy",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/on.png",
       "title": { "translate": "ability.title.satsu.set.armor" },
       "hidden": true,
       "hidden_in_bar": false,
@@ -3884,16 +4838,12 @@
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [0, 2.5],
-      "commands": "scoreboard players set @s satsu.iron.man.armor.mk1.unlock 1",
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.armor.mk1.unlock 1",
+        "advancement grant @s only satsu_iron_man_addon:mark_1"
+      ],
       "conditions": {
         "unlocking": [
-          {
-            "type": "palladium:scoreboard_score_buyable",
-            "objective": "SatsuIronManArmorSkillPoint",
-            "score": 0,
-            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
-            "description": { "text": "Armor Skill Point" }
-          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
@@ -3930,7 +4880,10 @@
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [1, 2.5],
-      "commands": "scoreboard players set @s satsu.iron.man.armor.mk2.unlock 1",
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.armor.mk2.unlock 1",
+        "advancement grant @s only satsu_iron_man_addon:mark_2"
+      ],
       "conditions": {
         "unlocking": [
           {
@@ -3969,6 +4922,56 @@
         ]
       }
     },
+    "Satsu.Armor.22.Mk3": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_22.png",
+      "title": { "translate": "ability.title.satsu.mark.3" },
+      "description": { "translate": "description.iron.man.mark.3" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-1, 2.5],
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.armor.mk3.unlock 1",
+        "advancement grant @s only satsu_iron_man_addon:mark_3"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 40,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "not.Satsu.Armor.22.Mk3": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.mk3.unlock"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Satsu.Armor.22.Mk3"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "Satsu.Armor.17.mk5": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_17.png",
@@ -3976,14 +4979,14 @@
       "description": { "translate": "description.iron.man.mark.5" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-1, 2.5],
+      "gui_position": [2, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.mk5.unlock 1",
       "conditions": {
         "unlocking": [
           {
             "type": "palladium:scoreboard_score_buyable",
             "objective": "SatsuIronManArmorSkillPoint",
-            "score": 40,
+            "score": 50,
             "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
             "description": { "text": "Armor Skill Point" }
           },
@@ -4023,7 +5026,7 @@
       "description": { "translate": "description.iron.man.mark.6" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [2, 2.5],
+      "gui_position": [-2, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.mk6.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4063,6 +5066,241 @@
         ]
       }
     },
+    "Satsu.Armor.3.mk7": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_20.png",
+      "title": { "translate": "ability.title.satsu.mark.7" },
+      "description": { "translate": "description.iron.man.mark.7" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [3, 2.5],
+      "commands": "scoreboard players set @s satsu.iron.man.armor.mk7.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 70,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "not.Satsu.Armor.3.mk7": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.mk7.unlock"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Satsu.Armor.3.mk7"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Satsu.Armor.24.mk8": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_24.png",
+      "title": { "translate": "ability.title.satsu.mark.8" },
+      "description": { "translate": "description.iron.man.mark.8" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-3, 2.5],
+      "commands": "scoreboard players set @s satsu.iron.man.armor.mk8.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 80,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "not.Satsu.Armor.24.mk8": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.mk8.unlock"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Satsu.Armor.24.mk8"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Satsu.Armor.25.mk9": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_25.png",
+      "title": { "translate": "ability.title.satsu.mark.9" },
+      "description": { "translate": "description.iron.man.mark.9" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [4, 2.5],
+      "commands": "scoreboard players set @s satsu.iron.man.armor.mk9.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 90,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "not.Satsu.Armor.25.mk9": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.mk9.unlock"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Satsu.Armor.25.mk9"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Satsu.Armor.26.mk10": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_26.png",
+      "title": { "translate": "ability.title.satsu.mark.10" },
+      "description": { "translate": "description.iron.man.mark.10" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-4, 2.5],
+      "commands": "scoreboard players set @s satsu.iron.man.armor.mk10.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 100,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "not.Satsu.Armor.26.mk10": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.mk10.unlock"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Satsu.Armor.26.mk10"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Satsu.Armor.27.mk11": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_27.png",
+      "title": { "translate": "ability.title.satsu.mark.11" },
+      "description": { "translate": "description.iron.man.mark.11" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [5, 2.5],
+      "commands": "scoreboard players set @s satsu.iron.man.armor.mk11.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 110,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "not.Satsu.Armor.27.mk11": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.mk11.unlock"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Satsu.Armor.27.mk11"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "Satsu.Armor.6.MKStealh_Armor": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_6.png",
@@ -4070,7 +5308,7 @@
       "description": { "translate": "description.iron.man.mark.Stealh" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-2, 2.5],
+      "gui_position": [-5, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.6.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4115,7 +5353,7 @@
       "description": { "translate": "description.iron.man.mark.19.tiger" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [3, 2.5],
+      "gui_position": [6, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.5.mk19.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4160,7 +5398,7 @@
       "description": { "translate": "description.iron.man.mark.21.midas" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-3, 2.5],
+      "gui_position": [-6, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.8.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4205,7 +5443,7 @@
       "description": { "translate": "description.iron.man.mark.39" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [4, 2.5],
+      "gui_position": [7, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.39.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4250,7 +5488,7 @@
       "description": { "translate": "description.iron.man.mark.40" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-4, 2.5],
+      "gui_position": [-7, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.9.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4295,7 +5533,7 @@
       "description": { "translate": "description.iron.man.mark.45" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [5, 2.5],
+      "gui_position": [8, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.mark.45.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4340,7 +5578,7 @@
       "description": { "translate": "description.iron.man.mark.47" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-5, 2.5],
+      "gui_position": [-8, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.47.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4385,7 +5623,7 @@
       "description": { "translate": "description.iron.man.superior.armor" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [6, 2.5],
+      "gui_position": [9, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.superior.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4435,7 +5673,7 @@
       "description": { "translate": "description.iron.man.mark.50" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-6, 2.5],
+      "gui_position": [-9, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.11.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4482,7 +5720,7 @@
       },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [7, 2.5],
+      "gui_position": [10, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.15.mk30.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4529,7 +5767,7 @@
       },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-7, 2.5],
+      "gui_position": [-10, 2.5],
       "commands": "scoreboard players set @s satsu.iron.man.armor.16.unknow.blooded.armor.unlock 1",
       "conditions": {
         "unlocking": [
@@ -4567,14 +5805,361 @@
         ]
       }
     },
+    "Satsu.Armor.10.mark.extremis": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_10.png",
+      "title": { "translate": "ability.title.satsu.mark.extremis" },
+      "description": {
+        "translate": "description.iron.man.mark.extremis"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [11, 2.5],
+      "commands": "scoreboard players set @s satsu.iron.man.armor.mk.extremis.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 890,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "not.Satsu.Armor.10.mark.extremis": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": "scoreboard players reset @s satsu.iron.man.armor.mk.extremis.unlock",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Satsu.Armor.10.mark.extremis"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Satsu.Armor.18.mark.1873": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_18.png",
+      "title": { "translate": "ability.title.satsu.mark.1873" },
+      "description": {
+        "translate": "description.iron.man.mark.1873"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-11, 2.5],
+      "commands": "scoreboard players set @s satsu.iron.man.armor.mk.1873.unlock 1",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "SatsuIronManArmorSkillPoint",
+            "score": 700,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "not.Satsu.Armor.18.mark.1873": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": "scoreboard players reset @s satsu.iron.man.armor.mk.1873.unlock",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Satsu.Armor.18.mark.1873"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mini_fireworks": {
+      "type": "palladium:repeating_animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.fireworks" },
+      "description": { "translate": "description.Fireworks" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 15,
+      "gui_position": [-4, -0.5],
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 8,
+            "cooldown": 100,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.6"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.7"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.8"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.9"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.10"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.11"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.12"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.13"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.14"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.15"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.16"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.17"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.18"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.19.tiger"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.20"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.21"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.22"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.23"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.24"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.25"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.26"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.27"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.28"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.29"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.30"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.31"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.32"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.33"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.34"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.35"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.36"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.37"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.38"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.39"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.40"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.41"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.42"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.43"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.44"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.45"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.46"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.47"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "stealht": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
       "title": { "translate": "ability.title.satsu.stealht.mode" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 15,
-      "gui_position": [-2, 3],
+      "list_index": 16,
+      "gui_position": [-5, 3],
       "conditions": {
         "enabling": [
           {
@@ -4585,6 +6170,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -4626,15 +6238,737 @@
         ]
       }
     },
-    "Telekinesis": {
-      "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
-      "title": { "translate": "ability.title.satsu.telekinesis" },
-      "description": { "translate": "description.superior.telekinesis" },
+    "mk.11.stealht": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 16,
+      "gui_position": [5, 3],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 120,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.11"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.27.mk11"
+          }
+        ]
+      }
+    },
+    "extremis.stealht": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 15,
+      "gui_position": [11, 2.9],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.10.mark.extremis"
+          }
+        ]
+      }
+    },
+    "extremis.regen": {
+      "type": "palladium:healing",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/heart.png",
+      "title": { "translate": "ability.title.satsu.healing" },
+      "description": { "translate": "description.satsu.extremis.healing" },
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 15,
-      "gui_position": [6, 3],
+      "gui_position": [11, 2.9],
+      "frequency": 10,
+      "amount": 0.8,
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.10.mark.extremis"
+          }
+        ]
+      }
+    },
+    "extremis.durability": {
+      "type": "palladium:attribute_modifier",
+      "icon": "minecraft:iron_chestplate",
+      "title": { "translate": "ability.title.satsu.durability" },
+      "description": { "translate": "description.satsu.extremis.durability" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [11, 3.3],
+      "attribute": "minecraft:generic.armor",
+      "amount": 35,
+      "operation": 0,
+      "uuid": "b679de99-9744-4cd1-83ca-ed123bb07291",
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.10.mark.extremis"
+          }
+        ]
+      }
+    },
+    "extremis.strength": {
+      "type": "palladium:attribute_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+      "title": { "translate": "ability.title.satsu.strength" },
+      "description": { "translate": "description.satsu.extremis.strength" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [11, 3.6],
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 15,
+      "operation": 0,
+      "uuid": "f732d74f-5bab-432d-b60d-0748e5788bd8",
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.10.mark.extremis"
+          }
+        ]
+      }
+    },
+    "Mark.25.drill.ground": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
+      "title": { "translate": "ability.title.satsu.telekinesis" },
+      "description": { "translate": "description.superior.telekinesis" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 16,
+      "gui_position": [4, 3],
+      "start_value": 0,
+      "max_value": 32,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "tick": 32,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.25"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Mark.25.drill.ground.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add striker.ground.drill"],
+      "commands": [
+        "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[tag=!striker.ground.drill,distance=..8] run damage @s 2 minecraft:player_attack",
+        "execute as @e[tag=!striker.ground.drill,distance=..8] run effect give @s slowness 1 2 true"
+      ],
+      "last_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.break=1}] run fill ~-2 ~-1 ~-2 ~2 ~-5 ~2 minecraft:air destroy",
+        "tag @s remove striker.ground.drill"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Mark.25.drill.ground"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "Mark.25.drill.ground.play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:striker.dig",
+      "volume": 1,
+      "pitch": 1,
+      "looping": true,
+      "play_self": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Mark.25.drill.ground"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "mark.1873.throw.smoke": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/throw_smoke.png",
+      "title": { "translate": "ability.title.satsu.throw.smoke" },
+      "description": { "translate": "description.satsu.throw.smoke" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 15,
+      "gui_position": [-11, 2.9],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 90,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.18.mark.1873"
+          }
+        ]
+      }
+    },
+    "mark.1873.clap_smoke_hands": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/clap_hands_smoke.png",
+      "title": { "translate": "ability.title.satsu.clap_smoke_hands" },
+      "description": { "translate": "description.satsu.clap_smoke_hands" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 16,
+      "gui_position": [-11, 3.3],
+      "start_value": 0,
+      "max_value": 32,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 33,
+            "cooldown": 190,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.18.mark.1873"
+          }
+        ]
+      }
+    },
+    "mark.1873.clap_smoke_hands.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "tag @s add mark.1873.clap_smoke_hands",
+        "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30"
+      ],
+      "commands": [
+        "execute as @e[tag=!mark.1873.clap_smoke_hands,distance=0..8] run effect give @s minecraft:wither 5 2 true",
+        "particle minecraft:large_smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
+        "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30"
+      ],
+      "last_tick_commands": [
+        "particle minecraft:large_smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
+        "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
+        "particle smoke ~ ~1 ~ 5 2 5 0.01 1500 force",
+        "tag @s remove mark.1873.clap_smoke_hands",
+        "tag @s add mark.1873.clap_smoke_hands.later"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "mark.1873.clap_smoke_hands",
+            "min": 32,
+            "max": 32
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.1.MKSuperior"
+          }
+        ]
+      }
+    },
+    "mark.1873.clap_smoke_hands.later": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "start_value": 0,
+      "max_value": 41,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "mark.1873.clap_smoke_hands.later"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.1.MKSuperior"
+          }
+        ]
+      }
+    },
+    "mark.1873.clap_smoke_hands.later.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": ["particle smoke ~ ~1 ~ 5 2 5 0.01 300 force"],
+      "last_tick_commands": ["tag @s remove mark.1873.clap_smoke_hands.later"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "mark.1873.clap_smoke_hands.later",
+            "min": 1,
+            "max": 40
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "Telekinesis": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/5bolts.png",
+      "title": { "translate": "ability.title.satsu.electrokinesis" },
+      "description": { "translate": "description.superior.electrokinesis" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 15,
+      "gui_position": [9, 3],
       "first_tick_commands": [
         "scoreboard players set @s satsu.iron.man.superior.color 1",
         "scoreboard players set @s satsu.iron.man.flame 10",
@@ -4658,6 +6992,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -4707,7 +7068,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 16,
-      "gui_position": [6, 3.6],
+      "gui_position": [9, 3.6],
       "start_value": 0,
       "max_value": 20,
       "conditions": {
@@ -4721,6 +7082,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -4770,7 +7158,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 15,
-      "gui_position": [-7, 2.9],
+      "gui_position": [-10, 2.9],
       "first_tick_commands": ["tag @s add chrono.time"],
       "commands": [
         "effect give @e[tag=!chrono.time,distance=0..10] minecraft:slowness 1 255 true"
@@ -4786,6 +7174,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -4835,7 +7250,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 16,
-      "gui_position": [-7, 3.3],
+      "gui_position": [-10, 3.3],
       "first_tick_commands": ["tag @s remove chrono.time.speed"],
       "commands": [
         "effect give @e[tag=!chrono.time.speed,distance=0..10] minecraft:speed 1 10 true"
@@ -4851,6 +7266,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -4900,7 +7342,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 17,
-      "gui_position": [-7, 3.8],
+      "gui_position": [-10, 3.8],
       "first_tick_commands": ["tag @s add chrono.time.despeed"],
       "commands": [
         "effect give @e[tag=!chrono.time.despeed,distance=0..10] minecraft:slowness 1 3 true"
@@ -4916,6 +7358,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -5003,7 +7472,7 @@
       "title": { "translate": "ability.title.satsu.Increase.Speed" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 15,
+      "list_index": 16,
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [],
       "commands": [
@@ -5018,6 +7487,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
@@ -5042,7 +7538,7 @@
       "title": { "translate": "ability.title.satsu.decrease.Speed" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 16,
+      "list_index": 17,
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [],
       "commands": [
@@ -5057,6 +7553,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
@@ -5081,7 +7604,7 @@
       "title": { "translate": "ability.title.satsu.Increase.Speed" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 15,
+      "list_index": 16,
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [],
       "commands": [
@@ -5096,6 +7619,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
@@ -5120,7 +7670,7 @@
       "title": { "translate": "ability.title.satsu.decrease.Speed" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 16,
+      "list_index": 17,
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [],
       "commands": [
@@ -5135,6 +7685,33 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
@@ -5178,7 +7755,7 @@
       "title": { "translate": "ability.title.satsu.arms.edit" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 18,
+      "list_index": 19,
       "description": { "translate": "description.satsu.arms.edit" },
       "commands": [
         "scoreboard players add @s satsu.iron.man.arms.set 1",
@@ -5196,23 +7773,38 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:or",
             "conditions": [
               {
                 "type": "palladium:has_tag",
                 "tag": "satsu.iron.man.nano.armor"
-              },
-              {
-                "type": "palladium:has_tag",
-                "tag": "mark.21"
-              },
-              {
-                "type": "palladium:has_tag",
-                "tag": "mark.40"
-              },
-              {
-                "type": "palladium:has_tag",
-                "tag": "mark.47"
               },
               {
                 "type": "palladium:has_tag",
@@ -5225,6 +7817,14 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.unknow.blooded.armor"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
               }
             ]
           },
@@ -5288,7 +7888,7 @@
       "title": { "translate": "ability.title.satsu.beams.edit" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 19,
+      "list_index": 20,
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [
         "execute as @s unless score @s satsu.iron.man.armor.energy.beams matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.beams 0"
@@ -5303,23 +7903,38 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:or",
             "conditions": [
               {
                 "type": "palladium:has_tag",
                 "tag": "satsu.iron.man.nano.armor"
-              },
-              {
-                "type": "palladium:has_tag",
-                "tag": "mark.21"
-              },
-              {
-                "type": "palladium:has_tag",
-                "tag": "mark.40"
-              },
-              {
-                "type": "palladium:has_tag",
-                "tag": "mark.47"
               },
               {
                 "type": "palladium:has_tag",
@@ -5332,6 +7947,14 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.unknow.blooded.armor"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.1873"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.extremis"
               }
             ]
           },
@@ -5417,7 +8040,7 @@
       "title": { "translate": "ability.title.satsu.beams.next" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 20,
+      "list_index": 21,
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [],
       "commands": [
@@ -5462,7 +8085,7 @@
       "title": { "translate": "ability.title.satsu.beams.prev" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 21,
+      "list_index": 22,
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [
         "scoreboard players set @s satsu.prev.iron.man.anim 0"
@@ -5510,7 +8133,7 @@
       "description": { "translate": "description.Fireworks" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 22,
+      "list_index": 23,
       "gui_position": [-4, -0.5],
       "start_value": 0,
       "max_value": 20,
@@ -5628,7 +8251,7 @@
       "description": { "translate": "description.maximun.pulse.animation" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 23,
+      "list_index": 24,
       "gui_position": [-4, -0],
       "start_value": 0,
       "max_value": 50,
@@ -6002,7 +8625,7 @@
       "title": { "translate": "ability.title.satsu.sword.enable" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 24,
+      "list_index": 25,
       "first_tick_commands": ["tag @s add satsu.iron.man.enable.sword"],
       "commands": [""],
       "last_tick_commands": [""],
@@ -6083,7 +8706,7 @@
       "title": { "translate": "ability.title.satsu.sword.enable" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 24,
+      "list_index": 25,
       "first_tick_commands": ["tag @s remove satsu.iron.man.enable.sword"],
       "commands": [""],
       "last_tick_commands": [""],
@@ -6185,7 +8808,7 @@
       "description": { "translate": "description.force_field" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 25,
+      "list_index": 26,
       "gui_position": [-5, -0],
       "first_tick_commands": ["tag @s add ark.decharge"],
       "commands": ["function satsu_iron_man_addon:force_field"],
@@ -6229,7 +8852,7 @@
       "description": { "translate": "description.satsu.cook.ark" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 26,
+      "list_index": 27,
       "gui_position": [-5.5, -0.3],
       "commands": [""],
       "last_tick_commands": [
@@ -6296,6 +8919,33 @@
       "conditions": {
         "enabling": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "Armor_powers_stat_upgrades"
@@ -6336,30 +8986,457 @@
         "execute as @s unless score @s satsu.iron.man.armor.energy.pulse.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.pulse.hand 1"
       ]
     },
-    "reset.satsu.iron.man.animation.armor": {
+    "aquatic_breath": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.animation.armor"
+      "first_tick_commands": [],
+      "commands": ["effect give @s minecraft:water_breathing 1 2 true"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:in_water"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.mask",
+                    "min_score": 0,
+                    "max_score": 0
+                  },
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:or",
+                        "conditions": [
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.1"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.2"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.3"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.4"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.5"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.6"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.7"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.8"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.9"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.10"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.11"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.12"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.13"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.14"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.15"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.16"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.17"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.18"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.19.tiger"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.20"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.21"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.22"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.23"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.24"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.25"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.26"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.27"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.28"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.29"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.30"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.31"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.32"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.33"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.34"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.35"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.36"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.37"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.38"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.39"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.40"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.41"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.42"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.43"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.44"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.45"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.46"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.47"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.48"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.49"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.50"
+                          },
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.1873"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "aquatic_breath_remote": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [],
+      "commands": ["effect give @s minecraft:water_breathing 1 2 true"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:in_water"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "sentinel.false.nearest": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [
+        "execute if entity @e[tag=sentinel,sort=nearest,distance=0..3] run tag @s add sentinel.false.nearest",
+        "execute unless entity @e[tag=sentinel,distance=0..3] run tag @s remove sentinel.false.nearest"
       ],
-      "commands": [""],
+      "last_tick_commands": [""],
       "conditions": {
         "enabling": [
           {
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
-              },
+                "type": "palladium:has_tag",
+                "tag": "sentinel_one"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove.sentine.false.not.mecano.armors": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": ["tag @s remove sentinel.false"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived.perm",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.6"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.7"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.8"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.9"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.10"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.11"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.16"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.19.tiger"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.21"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.30.iron.destroyer"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.39"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.40"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.45"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.47"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove.sentine.false.has.sentinel.one": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s remove sentinel.false"],
+      "commands": [""],
+      "last_tick_commands": ["tag @s add mecano.post.sentinel"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "sentinel_one"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.6"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.7"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.8"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.9"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.10"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.11"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.16"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.19.tiger"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.21"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.30.iron.destroyer"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.39"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.40"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.45"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.47"
+                  }
+                ]
               }
             ]
           }
@@ -6449,6 +9526,35 @@
         ]
       }
     },
+    "not.ark.upgrade.max.energy.1": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [],
+      "commands": [
+        "execute as @s run scoreboard players reset @s satsu.iron.man.addon.ark.skin"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "ark.upgrade.max.energy.1"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "ark_upgrades"
+          }
+        ]
+      }
+    },
     "ark.upgrade.max.energy.1": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:reactor_ark_recharge_on",
@@ -6461,7 +9567,8 @@
       },
       "first_tick_commands": [],
       "commands": [
-        "execute as @s run scoreboard players set @s satsu.iron.man.ark.upgraded.max.energy 1"
+        "execute as @s run scoreboard players set @s satsu.iron.man.ark.upgraded.max.energy 1",
+        "execute as @s unless score @s satsu.iron.man.addon.ark.skin.choose matches 0.. as @s run scoreboard players set @s satsu.iron.man.addon.ark.skin 1"
       ],
       "conditions": {
         "enabling": [
@@ -6503,7 +9610,8 @@
       },
       "first_tick_commands": [],
       "commands": [
-        "execute as @s run scoreboard players set @s satsu.iron.man.ark.upgraded.max.energy 2"
+        "execute as @s run scoreboard players set @s satsu.iron.man.ark.upgraded.max.energy 2",
+        "execute as @s unless score @s satsu.iron.man.addon.ark.skin.choose matches 0.. as @s run scoreboard players set @s satsu.iron.man.addon.ark.skin 2"
       ],
       "conditions": {
         "unlocking": [

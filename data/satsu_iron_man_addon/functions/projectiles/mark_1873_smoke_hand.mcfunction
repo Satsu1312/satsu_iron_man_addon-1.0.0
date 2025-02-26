@@ -1,0 +1,2 @@
+execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..5] run damage @s 3 minecraft:player_attack
+execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..5] run effect give @s minecraft:slowness 10 2
