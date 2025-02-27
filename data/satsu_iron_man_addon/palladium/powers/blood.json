@@ -1,0 +1,76 @@
+{
+  "name": { "translate": "ability.title.blooded" },
+  "persistent_data": true,
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "tree",
+  "primary_color": "#2af4f5",
+  "secondary_color": "#0aacac",
+  "abilities": {
+    "timer": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 100,
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "blood.timer": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 50,
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "blood.damage": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "damage @s 1",
+        "effect give @s minecraft:slowness 1 1",
+        "particle dust_color_transition 1 0 0 1 0.44 0 0 ~ ~1 ~ 0 0 0 0.01 100 force @a"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "blood.timer",
+            "property": "value",
+            "min": 30,
+            "max": 30
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "remove": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["superpower remove satsu_iron_man_addon:blood"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "timer",
+            "property": "value",
+            "min": 100,
+            "max": 100
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}
