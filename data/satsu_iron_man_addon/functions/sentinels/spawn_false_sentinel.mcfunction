@@ -19,3 +19,4 @@ execute as @s run scoreboard players operation @e[type=minecraft:wolf,tag=sentin
 scale set pehkui:hitbox_height 2 @e[type=wolf,tag=sentinel,sort=nearest,limit=1]
 ride @e[type=minecraft:armor_stand,tag=sentinel,limit=1,sort=nearest] mount @e[type=minecraft:wolf,tag=sentinel,limit=1,sort=nearest]
 scale set pehkui:hitbox_width 2 @e[type=wolf,tag=sentinel,sort=nearest,limit=1]
+execute as @e[tag=sentinel,sort=nearest] run scoreboard players operation @s grave.ID = @p grave.ID
