@@ -1,3 +1,3 @@
-execute as @e[tag=!design_armor_stand,tag=!sentinel,tag=!iron.legion,type=!palladium:custom_projectile,sort=nearest,limit=1,distance=0..3] run scoreboard players operation @s satsu.iron.man.armor = @e[type=minecraft:player,sort=nearest,limit=1] satsu.iron.man.choose_armor
-execute as @e[tag=!design_armor_stand,tag=!sentinel,tag=!iron.legion,type=!palladium:custom_projectile,sort=nearest,limit=1,distance=0..3] run superpower add satsu_iron_man_addon:armor_stand_design/armorstand_armor @s
+execute as @e[type=!minecraft:player,tag=!design_armor_stand,tag=!sentinel,tag=!iron.legion,sort=nearest,limit=1,distance=0..1.8] run scoreboard players operation @s satsu.iron.man.armor = @e[type=minecraft:player,sort=nearest,limit=1] satsu.iron.man.choose_armor
+execute as @e[type=!minecraft:player,tag=!design_armor_stand,tag=!sentinel,tag=!iron.legion,sort=nearest,limit=1,distance=0..1.8] run superpower add satsu_iron_man_addon:armor_stand_design/armorstand_armor @s
 execute as @e[tag=design_armor_stand] run tag @s remove design_armor_stand
