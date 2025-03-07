@@ -8,14 +8,6 @@
   "primary_color": "#2af4f5",
   "secondary_color": "#0aacac",
   "abilities": {
-    "armor_xp_points.set": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [],
-      "last_tick_commands": [],
-      "commands": [""]
-    },
     "render_layer_armor": {
       "type": "palladium:render_layer",
       "hidden": true,
@@ -31,22 +23,6 @@
                 "command": "execute if entity @p if score @s satsu.iron.man.armor = @p satsu.iron.man.armor if score @s grave.ID = @p grave.ID"
               }
             ]
-          }
-        ]
-      }
-    },
-    "render_layer.the_x_armor": {
-      "type": "palladium:render_layer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "render_layer": "satsu_iron_man_addon:the_x_armor",
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 12,
-            "max_score": 12
           }
         ]
       }
@@ -69,97 +45,6 @@
           }
         ]
       }
-    },
-    "render_layer.x_armor_mask": {
-      "type": "palladium:render_layer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "render_layer": "satsu_iron_man_addon:x_armor_mask",
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min_score": 12,
-            "max_score": 12
-          }
-        ]
-      }
-    },
-    "interpolate": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "max_value": 16
-    },
-    "Armor_powers_stat_upgrades": {
-      "type": "palladium:dummy",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
-      "title": {
-        "translate": "ability.title.satsu.Armor_powers_stat_upgrades"
-      },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [0, -2.8],
-      "description": { "translate": "description.Armor_powers_stat_upgrades" },
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.closed.armors",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "alien"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "glow": {
-      "type": "palladium:command",
-      "hidden": true,
-      "last_tick_commands": [
-        "fill ~5 ~5 ~5 ~-5 ~-5 ~-5 air replace light[level=10]"
-      ],
-      "commands": [
-        "fill ~5 ~5 ~5 ~-5 ~-5 ~-5 air replace light[level=10]",
-        "setblock ~ ~1 ~ minecraft:light[level=10] keep",
-        "setblock ~ ~ ~ minecraft:light[level=10] keep",
-        "kill @e[type=minecraft:arrow,distance=0..2]"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor",
-                "min_score": 13,
-                "max_score": 13
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "command": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": [""]
     }
   }
 }
