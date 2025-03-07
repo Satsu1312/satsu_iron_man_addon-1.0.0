@@ -193,6 +193,53 @@
         ]
       }
     },
+    "revert_remote_0_health": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "attribute @s minecraft:generic.max_health base set 20",
+        "execute if entity @e[tag=sentinel.test,distance=0..30] run function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground",
+        "execute if entity @e[tag=sentinel.test,distance=0..30] run tag @s add give.sentinel.one",
+        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
+        "execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run function satsu_iron_man_addon:ia/swap_sentinels",
+        "execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run kill @s",
+        "effect give @s minecraft:instant_health 10 2",
+        "scoreboard players reset @s satsu.iron.man.armor.remote"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Health",
+            "min_score": 0,
+            "max_score": 2
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.remote",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
+    "immortality": {
+      "type": "palladium:immortality",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.remote",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
     "uuid_command": {
       "type": "palladium:command",
       "hidden": true,
@@ -212,6 +259,7 @@
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
+        "spawnpoint @s",
         "attribute @s minecraft:generic.max_health base set 10",
         "execute unless score @s[tag=sentinel.false] satsu.iron.man.animation.armor matches 1 run function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "function satsu_iron_man_addon:sentinels/spawn_remote_sentinel",
@@ -227,7 +275,7 @@
         "enabling": [
           {
             "type": "palladium:chat_action",
-            "chat_message": "remote",
+            "chat_message": "remote on",
             "cooldown": 0
           },
           {
@@ -341,7 +389,7 @@
         "enabling": [
           {
             "type": "palladium:chat_action",
-            "chat_message": "disable remote",
+            "chat_message": "remote off",
             "cooldown": 0
           },
           {
@@ -576,7 +624,31 @@
                   },
                   {
                     "type": "palladium:has_tag",
+                    "tag": "mark.12"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.13"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.14"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.15"
+                  },
+                  {
+                    "type": "palladium:has_tag",
                     "tag": "mark.16"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.17"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.18"
                   },
                   {
                     "type": "palladium:has_tag",
@@ -584,7 +656,23 @@
                   },
                   {
                     "type": "palladium:has_tag",
+                    "tag": "mark.20"
+                  },
+                  {
+                    "type": "palladium:has_tag",
                     "tag": "mark.21"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.22"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.23"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.25"
                   },
                   {
                     "type": "palladium:has_tag",

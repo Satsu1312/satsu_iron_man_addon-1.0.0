@@ -352,22 +352,6 @@
         ]
       }
     },
-    "im_superior": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 6,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:chat_toggle",
-            "chat_message": "Im superior",
-            "cooldown": 0
-          }
-        ]
-      }
-    },
     "colocacion_de_armadura": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -1460,6 +1444,92 @@
         ]
       }
     },
+    "mark.taken_activaded_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_activate.animation_timer.mark.taken",
+                "property": "value",
+                "min": 1,
+                "max": 23
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_activate.animation_timer.mark.taken"
+              },
+              {
+                "type": "palladium:on_ground"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "sentinel_one"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "armor_sentinel_anim",
+                    "property": "value",
+                    "min": 1,
+                    "max": 6
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "blooded_activaded_anim",
+                    "property": "value",
+                    "min": 1,
+                    "max": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mark.taken_activaded_anim_slowness": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["effect give @s minecraft:slowness 1 255 true"],
+      "last_tick_commands": ["effect clear @s minecraft:slowness"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:kube_animations",
+                "ability": "mark.taken_activaded_anim",
+                "property": "value",
+                "min": 1,
+                "max": 6
+              }
+            ]
+          }
+        ]
+      }
+    },
     "armor_sentinel_anim": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -1512,93 +1582,6 @@
                 "max": 6
               }
             ]
-          }
-        ]
-      }
-    },
-    "test": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 6,
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:has_tag",
-            "tag": "light.saber.on"
-          }
-        ]
-      }
-    },
-    "test.1": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 6,
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:has_tag",
-            "tag": "light.saber.on"
-          }
-        ]
-      }
-    },
-    "ark_decharge": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 10,
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:has_tag",
-            "tag": "ark.decharge"
-          }
-        ]
-      }
-    },
-    "ark_decharge.1": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 5,
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:has_tag",
-            "tag": "ark.decharge"
-          },
-          {
-            "type": "palladium:animation_timer_ability",
-            "ability": "ark_decharge",
-            "min": 0,
-            "max": 5
-          }
-        ]
-      }
-    },
-    "ark_decharge.2": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 10,
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:has_tag",
-            "tag": "ark.decharge"
-          },
-          {
-            "type": "palladium:animation_timer_ability",
-            "ability": "ark_decharge",
-            "min": 5,
-            "max": 10
           }
         ]
       }

@@ -92,6 +92,10 @@ scoreboard objectives add satsu.iron.man.armor.mk8.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk9.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk10.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk11.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk12.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk13.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk14.unlock dummy
+scoreboard objectives add satsu.iron.man.armor.mk25.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk.extremis.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.mk.1873.unlock dummy
 scoreboard objectives add satsu.iron.man.armor.15.mk30.unlock dummy
@@ -105,3 +109,4 @@ scoreboard objectives add satsu.iron.man.ark.upgraded.max.energy dummy
 scoreboard objectives add SatsuIronManArmorSkillPoint dummy
 scoreboard objectives add SatsuIronManArmorExp dummy
 scoreboard objectives add satsu.iron.man.skil.point.kill.mob minecraft.custom:minecraft.mob_kills
+scoreboard objectives add Health health

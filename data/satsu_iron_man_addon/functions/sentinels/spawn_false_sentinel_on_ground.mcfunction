@@ -16,6 +16,8 @@ execute as @s run scoreboard players operation @e[type=minecraft:armor_stand,tag
 execute as @s run scoreboard players operation @e[type=minecraft:armor_stand,tag=sentinel] satsu.iron.man.mask = @s satsu.iron.man.mask
 execute as @s run scoreboard players operation @e[type=minecraft:wolf,tag=sentinel] satsu.iron.man.durability = @s satsu.iron.man.durability
 execute as @s run scoreboard players operation @e[type=minecraft:wolf,tag=sentinel] satsu.iron.man.strength = @s satsu.iron.man.strength
+execute as @s run scoreboard players operation @e[type=minecraft:wolf,tag=sentinel] satsu.iron.man.armor = @s satsu.iron.man.armor
 scale set pehkui:hitbox_height 2 @e[type=wolf,tag=sentinel,sort=nearest,limit=1]
 ride @e[type=minecraft:armor_stand,tag=sentinel,limit=1,sort=nearest] mount @e[type=minecraft:wolf,tag=sentinel,limit=1,sort=nearest]
 scale set pehkui:hitbox_width 2 @e[type=wolf,tag=sentinel,sort=nearest,limit=1]
+execute as @e[tag=sentinel,sort=nearest] run scoreboard players operation @s grave.ID = @p grave.ID
