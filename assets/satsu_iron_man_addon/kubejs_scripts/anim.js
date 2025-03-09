@@ -1602,9 +1602,9 @@ PalladiumEvents.registerAnimations((event) => {
       if (builder.isFirstPerson()) {
         builder
           .get("right_arm")
-          .setXRotDegrees(49)
-          .setYRotDegrees(-30)
-          .setZRotDegrees(-30)
+          .setXRotDegrees(0)
+          .setYRotDegrees(0)
+          .setZRotDegrees(0)
           .animate("InOutCubic", progress);
       } else {
         // third person animations
