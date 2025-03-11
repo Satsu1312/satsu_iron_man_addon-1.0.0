@@ -2,7 +2,7 @@
 PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
     // ID for the overlay
-    "satsu_iron_man_addon:SatsuIronManArmorSkillPoint",
+    "satsu_iron_man_addon:satsu.iron.man.addon.skill.point",
     // Function for rendering
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
       if (
@@ -16,7 +16,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         let value = Utils.server.scoreboard
           .getOrCreatePlayerScore(
             username,
-            Utils.server.scoreboard.getObjective("SatsuIronManArmorSkillPoint")
+            Utils.server.scoreboard.getObjective("satsu.iron.man.addon.skill.point")
           )
           .getScore();
 
@@ -35,7 +35,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
 PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
     // ID for the overlay
-    "satsu_iron_man_addon:SatsuIronManArmorExp",
+    "satsu_iron_man_addon:satsu.iron.man.addon.xp",
     // Function for rendering
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
       if (
@@ -49,7 +49,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         let value = Utils.server.scoreboard
           .getOrCreatePlayerScore(
             username,
-            Utils.server.scoreboard.getObjective("SatsuIronManArmorExp")
+            Utils.server.scoreboard.getObjective("satsu.iron.man.addon.xp")
           )
           .getScore();
 
