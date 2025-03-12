@@ -1,1 +1,1 @@
-execute unless score @e[distance=0..1.5,type=!palladium:custom_projectile,limit=1,sort=nearest] grave.ID = @s grave.ID as @e[type=!palladium:custom_projectile,sort=nearest,limit=1,distance=0..1.5] run superpower add satsu_iron_man_addon:blood @s
+execute as @e[distance=0..1.5,type=!palladium:custom_projectile,limit=1,sort=nearest] unless score @s grave.ID = @p grave.ID run superpower add satsu_iron_man_addon:blood @s
