@@ -1,4 +1,5 @@
 
+scoreboard objectives add satsu.iron.man.addon.Ymotion dummy
 scoreboard objectives add satsu.iron.man.armor.stealh.night dummy
 scoreboard objectives add satsu.iron.man.addon.uuid dummy
 scoreboard objectives add satsu.iron.man.armor.remote dummy
