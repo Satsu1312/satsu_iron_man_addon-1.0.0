@@ -22,7 +22,7 @@
       },
       "synced_value": {
         "type": "score",
-        "objective": "satsu.iron.man.flight_speed",
+        "objective": "satsu.iron.man.flight_speed.choose",
         "fallback": 0
       }
     }
@@ -458,6 +458,117 @@
       "Division_Amount": "10",
       "Attribute_Type": "palladium:flight_speed",
       "UUID": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
+      "Attribute_Mod": "addition",
+      "gui_position": [2.8, 0.5],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived.perm",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 17,
+                "max": 17
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 15,
+                "max": 16
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "flight_choose": {
+      "type": "gravestone:stat_ability",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "score_value": "satsu.iron.man.flight_speed.choose",
+      "Division_Amount": "400",
+      "Attribute_Type": "palladium:flight_speed",
+      "UUID": "e85d2ec9-1558-43b9-a8ff-60b7045ddc92",
       "Attribute_Mod": "addition",
       "gui_position": [2.8, 0.5],
       "conditions": {
@@ -9255,7 +9366,7 @@
       "first_tick_commands": [],
       "commands": [
         "execute as @s[scores={satsu.iron.man.speed=0..}] run scoreboard players add @s satsu.iron.man.speed 3",
-        "execute as @s[scores={satsu.iron.man.flight_speed=6..}] run scoreboard players add @s satsu.iron.man.flight_speed 3"
+        "execute as @s[scores={satsu.iron.man.flight_speed.choose=6..}] run scoreboard players add @s satsu.iron.man.flight_speed.choose 3"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -9332,7 +9443,7 @@
       "first_tick_commands": [],
       "commands": [
         "execute as @s[scores={satsu.iron.man.speed=3..}] run scoreboard players remove @s satsu.iron.man.speed 3",
-        "execute as @s[scores={satsu.iron.man.flight_speed=9..}] run scoreboard players remove @s satsu.iron.man.flight_speed 3"
+        "execute as @s[scores={satsu.iron.man.flight_speed.choose=9..}] run scoreboard players remove @s satsu.iron.man.flight_speed.choose 3"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -9409,7 +9520,7 @@
       "first_tick_commands": [],
       "commands": [
         "execute as @s[scores={satsu.iron.man.speed=0..}] run scoreboard players add @s satsu.iron.man.speed 3",
-        "execute as @s[scores={satsu.iron.man.flight_speed=6..}] run scoreboard players add @s satsu.iron.man.flight_speed 3"
+        "execute as @s[scores={satsu.iron.man.flight_speed.choose=6..}] run scoreboard players add @s satsu.iron.man.flight_speed.choose 3"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -9486,7 +9597,7 @@
       "first_tick_commands": [],
       "commands": [
         "execute as @s[scores={satsu.iron.man.speed=3..}] run scoreboard players remove @s satsu.iron.man.speed 3",
-        "execute as @s[scores={satsu.iron.man.flight_speed=9..}] run scoreboard players remove @s satsu.iron.man.flight_speed 3"
+        "execute as @s[scores={satsu.iron.man.flight_speed.choose=9..}] run scoreboard players remove @s satsu.iron.man.flight_speed.choose 3"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -9563,7 +9674,7 @@
       "first_tick_commands": [],
       "commands": [
         "execute as @s[scores={satsu.iron.man.speed=0..}] run scoreboard players add @s satsu.iron.man.speed 3",
-        "execute as @s[scores={satsu.iron.man.flight_speed=6..}] run scoreboard players add @s satsu.iron.man.flight_speed 3"
+        "execute as @s[scores={satsu.iron.man.flight_speed.choose=6..}] run scoreboard players add @s satsu.iron.man.flight_speed.choose 3"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -9635,7 +9746,7 @@
       "first_tick_commands": [],
       "commands": [
         "execute as @s[scores={satsu.iron.man.speed=3..}] run scoreboard players remove @s satsu.iron.man.speed 3",
-        "execute as @s[scores={satsu.iron.man.flight_speed=9..}] run scoreboard players remove @s satsu.iron.man.flight_speed 3"
+        "execute as @s[scores={satsu.iron.man.flight_speed.choose=9..}] run scoreboard players remove @s satsu.iron.man.flight_speed.choose 3"
       ],
       "last_tick_commands": [],
       "conditions": {
