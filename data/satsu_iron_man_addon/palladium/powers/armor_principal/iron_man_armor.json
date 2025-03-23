@@ -314,7 +314,7 @@
                     "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "interpolate",
                     "property": "value",
-                    "min": 17,
+                    "min": 2,
                     "max": 17
                   },
                   {
@@ -322,7 +322,7 @@
                     "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "no_nanoarmor_anim",
                     "property": "value",
-                    "min": 16,
+                    "min": 2,
                     "max": 16
                   }
                 ]
@@ -8631,6 +8631,117 @@
         ]
       }
     },
+    "color_change_mode.mk6": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/change_color.png",
+      "title": { "translate": "ability.title.satsu.color.change.mode" },
+      "description": { "translate": "description.satsu.color.change.mode" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 17,
+      "gui_position": [-7, 3.7],
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.armor.stealh.night 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.stealh.night"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.16"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.stealh.night",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:night"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.6.MKStealh_Armor"
+          }
+        ]
+      }
+    },
     "mk.11.stealht": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
@@ -9130,6 +9241,112 @@
                     "objective": "satsu.iron.man.armor.actived.perm",
                     "min_score": 1,
                     "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "color_change_mode.mk.18": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/change_color.png",
+      "title": { "translate": "ability.title.satsu.color.change.mode" },
+      "description": { "translate": "description.satsu.color.change.mode" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 19,
+      "gui_position": [-8, 4],
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.armor.stealh.night 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "scoreboard players reset @s satsu.iron.man.armor.stealh.night"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.18"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.stealh.night",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:night"
                   }
                 ]
               }
@@ -10005,6 +10222,165 @@
         "unlocking": []
       }
     },
+    "Mark.25.ground.attack": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/striker_hammer.png",
+      "title": { "translate": "ability.title.satsu.ground.attack" },
+      "description": { "translate": "description.satsu.ground.attack" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 18,
+      "gui_position": [12, 3.8],
+      "start_value": 0,
+      "max_value": 12,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 12,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.25"
+              },
+              {
+                "type": "palladium:on_ground"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Mark.25.ground.attack.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a ~ ~ ~ 1 1.5",
+        "tag @s add striker.ground.attack"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 0 normal",
+        "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run damage @s 6 minecraft:player_attack",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.break=1}] run fill ~-1 ~-1 ~-2 ~1 ~-2 ~2 minecraft:air destroy",
+        "tag @s remove striker.ground.attack"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Mark.25.ground.attack",
+                "property": "value",
+                "min": 12,
+                "max": 12
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Mark.25.ground.attack"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "Mark.25.ground.attack.aoe_knockback": {
+      "type": "gravestone:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "knockback": 1,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Mark.25.ground.attack",
+                "property": "value",
+                "min": 12,
+                "max": 12
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Mark.25.ground.attack"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "Mark.26.drill.ground": {
       "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/striker_hammer_green.png",
@@ -10131,6 +10507,165 @@
             "type": "palladium:ability_enabled",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "Mark.26.drill.ground"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "Mark.26.ground.attack": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/striker_hammer.png",
+      "title": { "translate": "ability.title.satsu.ground.attack" },
+      "description": { "translate": "description.satsu.ground.attack" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 18,
+      "gui_position": [12, 3.8],
+      "start_value": 0,
+      "max_value": 12,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 12,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.26"
+              },
+              {
+                "type": "palladium:on_ground"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Armor_powers_stat_upgrades"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived.perm",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Mark.26.ground.attack.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a ~ ~ ~ 1 1.5",
+        "tag @s add striker.ground.attack"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 0 normal",
+        "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run damage @s 6 minecraft:player_attack",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.break=1}] run fill ~-1 ~-1 ~-2 ~1 ~-2 ~2 minecraft:air destroy",
+        "tag @s remove striker.ground.attack"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Mark.26.ground.attack",
+                "property": "value",
+                "min": 12,
+                "max": 12
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Mark.26.ground.attack"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "Mark.26.ground.attack.aoe_knockback": {
+      "type": "gravestone:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "knockback": 1,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Mark.26.ground.attack",
+                "property": "value",
+                "min": 12,
+                "max": 12
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "Mark.26.ground.attack"
+              }
+            ]
           }
         ],
         "unlocking": []
@@ -11887,7 +12422,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "attribute": "palladium:punch_damage",
-      "amount": 3,
+      "amount": 8,
       "operation": 0,
       "uuid": "123be4fb-af04-42f2-8948-e6ccdc0d99e1",
       "conditions": {
