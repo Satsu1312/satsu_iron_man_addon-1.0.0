@@ -471,20 +471,50 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
+            "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:has_tag",
-                "tag": "mark.16"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.16"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.18"
+                  }
+                ]
               },
               {
-                "type": "palladium:has_tag",
-                "tag": "mark.18"
+                "type": "palladium:night"
               }
             ]
           },
           {
-            "type": "palladium:night"
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                        "ability": "color_change_mode.mk6"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
+                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                        "ability": "color_change_mode.mk.18"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
