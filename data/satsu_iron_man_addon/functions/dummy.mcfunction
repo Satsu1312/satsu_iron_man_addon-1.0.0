@@ -1,4 +1,5 @@
 
+scoreboard objectives add satsu.iron.man.addon.raycast_distance dummy
 scoreboard objectives add satsu.iron.man.addon.Ymotion dummy
 scoreboard objectives add satsu.iron.man.armor.stealh.night dummy
 scoreboard objectives add satsu.iron.man.addon.uuid dummy
