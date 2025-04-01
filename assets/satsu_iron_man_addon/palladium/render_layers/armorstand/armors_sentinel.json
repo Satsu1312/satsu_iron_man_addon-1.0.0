@@ -3,7 +3,7 @@
   "layers": [
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/player.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_stand/armor.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_suit_#X_0.png",
         "variables": {
@@ -17,7 +17,7 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
             "min": 0,
-            "max": 40
+            "max": 46
           },
           "Y": {
             "type": "palladium:objective_score",
@@ -27,11 +27,35 @@
           }
         },
         "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_#X_0_#TIMER"
-      }
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 42,
+                  "max_score": 42
+                },
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 45,
+                  "max_score": 45
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/player.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_stand/armor.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_suit_lights_#X_0.png",
         "variables": {
@@ -45,12 +69,36 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
             "min": 0,
-            "max": 40
+            "max": 46
           }
         },
         "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_lights_#X_0_#TIMER"
       },
-      "render_type": "glow"
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 42,
+                  "max_score": 42
+                },
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 45,
+                  "max_score": 45
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "geckolib:default",
@@ -70,7 +118,7 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
             "min": 0,
-            "max": 40
+            "max": 46
           }
         }
       },
@@ -89,6 +137,167 @@
               "objective": "satsu.iron.man.armor",
               "min_score": 38,
               "max_score": 38
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/mark_striker_hammers_left.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_suit_#X_0_hammers.png",
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 0,
+            "max": 10
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 46
+          }
+        }
+      },
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 41,
+              "max_score": 41
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_stand/pincher.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/pinchers/iron_man_suit_#X_0.png",
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 0,
+            "max": 10
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 46
+          }
+        }
+      },
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 46,
+              "max_score": 46
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_stand/silver_centurion.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_suit_#X_0.png",
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man_sentinel",
+            "ability": "interpolate",
+            "property": "value"
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 46
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_#X_0_#TIMER"
+      },
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 42,
+              "max_score": 42
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 45,
+              "max_score": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_stand/silver_centurion.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_suit_lights_#X_0.png",
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man_sentinel",
+            "ability": "interpolate",
+            "property": "value"
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 46
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_lights_#X_0_#TIMER"
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 42,
+              "max_score": 42
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 45,
+              "max_score": 45
             }
           ]
         }
@@ -116,7 +325,7 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
             "min": 0,
-            "max": 40
+            "max": 46
           },
           "Y": {
             "type": "palladium:objective_score",
@@ -128,6 +337,28 @@
         "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_mask_#Y_#TIMER"
       },
       "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 42,
+                  "max_score": 42
+                },
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 45,
+                  "max_score": 45
+                }
+              ]
+            }
+          ]
+        },
         {
           "type": "palladium:objective_score",
           "objective": "satsu.iron.man.armor",
@@ -164,7 +395,7 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
             "min": 0,
-            "max": 40
+            "max": 46
           },
           "Y": {
             "type": "palladium:objective_score",
@@ -176,6 +407,28 @@
         "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_mask_#Y_#TIMER"
       },
       "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 42,
+                  "max_score": 42
+                },
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 45,
+                  "max_score": 45
+                }
+              ]
+            }
+          ]
+        },
         {
           "type": "palladium:objective_score",
           "objective": "satsu.iron.man.armor",
@@ -212,7 +465,7 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
             "min": 0,
-            "max": 40
+            "max": 46
           },
           "Y": {
             "type": "palladium:objective_score",
@@ -230,6 +483,28 @@
         "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_mask_#Y_0_glow_#TIMER"
       },
       "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 42,
+                  "max_score": 42
+                },
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 45,
+                  "max_score": 45
+                }
+              ]
+            }
+          ]
+        },
         {
           "type": "palladium:objective_score",
           "objective": "satsu.iron.man.armor",
@@ -267,7 +542,7 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor",
             "min": 0,
-            "max": 40
+            "max": 46
           },
           "Y": {
             "type": "palladium:objective_score",
@@ -285,6 +560,28 @@
         "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_mask_#Y_0_glow_#TIMER"
       },
       "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 42,
+                  "max_score": 42
+                },
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.armor",
+                  "min_score": 45,
+                  "max_score": 45
+                }
+              ]
+            }
+          ]
+        },
         {
           "type": "palladium:objective_score",
           "objective": "satsu.iron.man.armor",
