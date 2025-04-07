@@ -323,10 +323,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.remote",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.38"
+              }
+            ]
           }
         ]
       }
@@ -6118,22 +6127,6 @@
             ]
           }
         ]
-      }
-    },
-    "choose_armor.not.armor": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "choose_armor"
-          }
-        ],
-        "unlocking": []
       }
     },
     "choose.armor.move": {
