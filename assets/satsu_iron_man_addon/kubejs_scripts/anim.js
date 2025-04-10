@@ -2072,7 +2072,7 @@ PalladiumEvents.registerAnimations((event) => {
             .moveY(0)
             .moveZ(0)
             .animate("InOutCubic", progress);
-            builder
+          builder
             .get("right_arm")
             .setXRotDegrees(0)
             .setYRotDegrees(0)
@@ -2159,7 +2159,7 @@ PalladiumEvents.registerAnimations((event) => {
             .moveY(7.8785)
             .moveZ(-7)
             .animate("InOutCubic", progress);
-            builder
+          builder
             .get("right_arm")
             .setXRotDegrees(0)
             .setYRotDegrees(0)
@@ -2284,7 +2284,7 @@ PalladiumEvents.registerAnimations((event) => {
         builder
           .get("right_arm")
           .setXRotDegrees(-15)
-          .setYRotDegrees(0)  
+          .setYRotDegrees(0)
           .setZRotDegrees(2)
           .animate("InOutCubic", progress);
       } else {
@@ -2355,12 +2355,142 @@ PalladiumEvents.registerAnimations((event) => {
   });
 });
 PalladiumEvents.registerAnimations((event) => {
-  event.register("satsu_iron_man_addon/no_swim_mark_animation.mark.37", 10, (builder) => {
+  event.register(
+    "satsu_iron_man_addon/no_swim_mark_animation.mark.37",
+    10,
+    (builder) => {
+      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
+      const progress = animationUtil.getAnimationTimerAbilityValue(
+        builder.getPlayer(),
+        "satsu_iron_man_addon:kube_animations",
+        "no_swim_mark_animation",
+        builder.getPartialTicks()
+      );
+
+      // only apply animation if progress is above 0!
+      if (progress > 0.0) {
+        const halfPi = 1.57079632679;
+
+        // if first person
+        if (builder.isFirstPerson()) {
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        }
+        if (builder.isFirstPerson()) {
+          builder
+            .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        } else {
+          // third person animations
+          builder
+            .get("right_arm")
+            .setXRotDegrees(12.3265)
+            .setYRotDegrees(-2.8631)
+            .setZRotDegrees(6.9349)
+            .animate("InOutCubic", progress);
+          builder
+            .get("left_arm")
+            .setXRotDegrees(12.3265)
+            .setYRotDegrees(2.8631)
+            .setZRotDegrees(-6.9349)
+            .animate("InOutCubic", progress);
+          builder
+            .get("right_leg")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .animate("InOutCubic", progress);
+          builder
+            .get("left_leg")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .animate("InOutCubic", progress);
+          builder
+            .get("body")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+          builder;
+        }
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon/movement_underwater_skill.mark.37",
+    10,
+    (builder) => {
+      // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
+      const progress = animationUtil.getAnimationTimerAbilityValue(
+        builder.getPlayer(),
+        "satsu_iron_man_addon:kube_animations",
+        "movement_underwater_skill",
+        builder.getPartialTicks()
+      );
+
+      // only apply animation if progress is above 0!
+      if (progress > 0.0) {
+        const halfPi = 1.57079632679;
+
+        // if first person
+        if (builder.isFirstPerson()) {
+          builder
+            .get("left_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        }
+        if (builder.isFirstPerson()) {
+          builder
+            .get("right_arm")
+            .setXRotDegrees(0)
+            .setYRotDegrees(0)
+            .setZRotDegrees(0)
+            .animate("InOutCubic", progress);
+        } else {
+          // third person animations
+          builder
+            .get("right_arm")
+            .setXRotDegrees(22.3265)
+            .setYRotDegrees(-2.8631)
+            .setZRotDegrees(6.9349)
+            .animate("InOutCubic", progress);
+          builder
+            .get("left_arm")
+            .setXRotDegrees(22.3265)
+            .setYRotDegrees(2.8631)
+            .setZRotDegrees(-6.9349)
+            .animate("InOutCubic", progress);
+          builder
+            .get("right_leg")
+            .setXRotDegrees(25)
+            .setYRotDegrees(0)
+            .animate("InOutCubic", progress);
+          builder
+            .get("left_leg")
+            .setXRotDegrees(25)
+            .setYRotDegrees(0)
+            .animate("InOutCubic", progress);
+          builder;
+        }
+      }
+    }
+  );
+});
+PalladiumEvents.registerAnimations((event) => {
+  event.register("satsu_iron_man_addon/igor_grab", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:kube_animations",
-      "no_swim_mark_animation",
+      "igor_grab",
       builder.getPartialTicks()
     );
 
@@ -2373,103 +2503,88 @@ PalladiumEvents.registerAnimations((event) => {
         builder
           .get("left_arm")
           .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
+          .setYRotDegrees(30)
+          .setZRotDegrees(30)
           .animate("InOutCubic", progress);
       }
       if (builder.isFirstPerson()) {
         builder
           .get("right_arm")
           .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
+          .setYRotDegrees(-30)
+          .setZRotDegrees(-30)
           .animate("InOutCubic", progress);
       } else {
         // third person animations
         builder
-          .get("right_arm")
-          .setXRotDegrees(12.3265)
-          .setYRotDegrees(-2.8631)
-          .setZRotDegrees(6.9349)
-          .animate("InOutCubic", progress);
-        builder
           .get("left_arm")
-          .setXRotDegrees(12.3265)
-          .setYRotDegrees(2.8631)
-          .setZRotDegrees(-6.9349)
-          .animate("InOutCubic", progress);
-        builder
-          .get("right_leg")
-          .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder
-          .get("left_leg")
-          .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder
-          .get("body")
-          .setXRotDegrees(0)
+          .setXRotDegrees(-90)
           .setYRotDegrees(0)
           .setZRotDegrees(0)
+          .moveX(0)
+          .moveY(0)
+          .moveZ(0)
+          .animate("InOutCubic", progress);
+        builder
+          .get("right_arm")
+          .setXRotDegrees(-90)
+          .setYRotDegrees(0)
+          .setZRotDegrees(0)
+          .moveX(0)
+          .moveY(0)
+          .moveZ(0)
           .animate("InOutCubic", progress);
         builder;
       }
     }
   });
-  event.register("satsu_iron_man_addon/movement_underwater_skill.mark.37", 10, (builder) => {
+  event.register("satsu_iron_man_addon/igor_crush", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:kube_animations",
-      "movement_underwater_skill",
+      "igor_crush",
       builder.getPartialTicks()
     );
 
     // only apply animation if progress is above 0!
     if (progress > 0.0) {
       const halfPi = 1.57079632679;
-
       // if first person
       if (builder.isFirstPerson()) {
         builder
           .get("left_arm")
-          .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
+          .setXRotDegrees(-26)
+          .setYRotDegrees(30)
+          .setZRotDegrees(30)
           .animate("InOutCubic", progress);
       }
       if (builder.isFirstPerson()) {
         builder
           .get("right_arm")
-          .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
+          .setXRotDegrees(-26)
+          .setYRotDegrees(-30)
+          .setZRotDegrees(-30)
           .animate("InOutCubic", progress);
       } else {
         // third person animations
         builder
-          .get("right_arm")
-          .setXRotDegrees(22.3265)
-          .setYRotDegrees(-2.8631)
-          .setZRotDegrees(6.9349)
-          .animate("InOutCubic", progress);
-        builder
           .get("left_arm")
-          .setXRotDegrees(22.3265)
-          .setYRotDegrees(2.8631)
-          .setZRotDegrees(-6.9349)
+          .setXRotDegrees(-90)
+          .setYRotDegrees(25)
+          .setZRotDegrees(0)
+          .moveX(0)
+          .moveY(0)
+          .moveZ(0)
           .animate("InOutCubic", progress);
         builder
-          .get("right_leg")
-          .setXRotDegrees(25)
-          .setYRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder
-          .get("left_leg")
-          .setXRotDegrees(25)
-          .setYRotDegrees(0)
+          .get("right_arm")
+          .setXRotDegrees(-90)
+          .setYRotDegrees(-25)
+          .setZRotDegrees(0)
+          .moveX(0)
+          .moveY(0)
+          .moveZ(0)
           .animate("InOutCubic", progress);
         builder;
       }
