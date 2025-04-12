@@ -2204,7 +2204,7 @@
           },
           {
             "type": "palladium:not",
-            "conditions":[
+            "conditions": [
               {
                 "type": "palladium:and",
                 "conditions": [
@@ -2252,7 +2252,8 @@
                     ]
                   }
                 ]
-              }]
+              }
+            ]
           }
         ]
       }
@@ -2368,7 +2369,7 @@
           },
           {
             "type": "palladium:not",
-            "conditions":[
+            "conditions": [
               {
                 "type": "palladium:and",
                 "conditions": [
@@ -2416,7 +2417,8 @@
                     ]
                   }
                 ]
-              }]
+              }
+            ]
           }
         ]
       }
@@ -2918,6 +2920,269 @@
             "property": "value",
             "min": 1,
             "max": 20
+          }
+        ]
+      }
+    },
+    "no_swim_mark_animation": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_under_water"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.37"
+              },
+              {
+                "type": "palladium:is_swimming"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "movement_underwater_skill": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:is_swimming"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_under_water"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.37"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mk.37.water_movement"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "igor_grab": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 2,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "mk.38.pick_entity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "igor_crush": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "mk.38.crush",
+                    "property": "value",
+                    "min": 0,
+                    "max": 6
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "mk.38.crush"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bones_colocation_left_arm": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "armor_activate.animation_timer.mark.41-42",
+                    "property": "value",
+                    "min": 1,
+                    "max": 12
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "armor_activate.animation_timer.mark.41-42"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bones_colocation_right_arm": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "armor_activate.animation_timer.mark.41-42",
+                    "property": "value",
+                    "min": 13,
+                    "max": 29
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "armor_activate.animation_timer.mark.41-42"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bones_colocation_left_leg": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "armor_activate.animation_timer.mark.41-42",
+                    "property": "value",
+                    "min": 30,
+                    "max": 38
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "armor_activate.animation_timer.mark.41-42"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bones_colocation_right_leg": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "armor_activate.animation_timer.mark.41-42",
+                    "property": "value",
+                    "min": 39,
+                    "max": 50
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "armor_activate.animation_timer.mark.41-42"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

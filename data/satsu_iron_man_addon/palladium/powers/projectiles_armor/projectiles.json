@@ -201,6 +201,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "mk.15.sonic_dampened"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mk.36.sonic_dampened"
               }
             ]
           }
@@ -702,9 +707,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "mk.15.sonic_dampened"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mk.15.sonic_dampened"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mk.36.sonic_dampened"
+              }
+            ]
           }
         ]
       }
@@ -745,13 +760,37 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "mk.15.sonic_dampened"
-          },
-          {
-            "type": "palladium:has_tag",
-            "tag": "mark.15"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "mk.15.sonic_dampened"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.15"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "mk.36.sonic_dampened"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.36"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
