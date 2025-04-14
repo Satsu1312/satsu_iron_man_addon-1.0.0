@@ -85,6 +85,70 @@
         "unlocking": []
       }
     },
+    "dummy": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
+      "title": { "translate": "ability.title.satsu.see.xp" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 0.5],
+      "description": { "translate": "description.satsu.off.on" },
+      "first_tick_commands": [
+        "execute as @s run scoreboard players add @s satsu.iron.man.addon.skill.point.see 1",
+        "execute as @s[scores={satsu.iron.man.addon.skill.point.see=2..}] run scoreboard players reset @s satsu.iron.man.addon.skill.point.see",
+        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "satsu.iron.man.addon.skill.point",
+            "score": 0,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          }
+        ]
+      }
+    },
+    "dummy_gui": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
+      "title": { "translate": "ability.title.satsu.see.xp" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0.5, 0],
+      "description": { "translate": "description.satsu.off.on" },
+      "first_tick_commands": [
+        "execute as @s run scoreboard players add @s satsu.iron.man.addon.skill.point.see 1",
+        "execute as @s[scores={satsu.iron.man.addon.skill.point.see=2..}] run scoreboard players reset @s satsu.iron.man.addon.skill.point.see",
+        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          },
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "satsu.iron.man.addon.skill.point",
+            "score": 0,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          }
+        ]
+      }
+    },
     "enable_armor": {
       "type": "palladium:dummy",
       "hidden": true,
@@ -5511,38 +5575,6 @@
                 ]
               }
             ]
-          }
-        ]
-      }
-    },
-    "dummy": {
-      "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
-      "title": { "translate": "ability.title.satsu.see.xp" },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [0, 0.5],
-      "description": { "translate": "description.satsu.off.on" },
-      "first_tick_commands": [
-        "execute as @s run scoreboard players add @s satsu.iron.man.addon.skill.point.see 1",
-        "execute as @s[scores={satsu.iron.man.addon.skill.point.see=2..}] run scoreboard players reset @s satsu.iron.man.addon.skill.point.see",
-        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_powers_stat_upgrades"
-          },
-          {
-            "type": "palladium:scoreboard_score_buyable",
-            "objective": "satsu.iron.man.addon.skill.point",
-            "score": 0,
-            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
-            "description": { "text": "Armor Skill Point" }
           }
         ]
       }
@@ -15924,6 +15956,47 @@
       "scale": [1, 1, 2.5],
       "alignment": "top_right",
       "hidden": true
+    },
+    "center": {
+      "type": "palladium:gui_overlay",
+      "description": { "translate": "description.iron.man.energy.pulse" },
+      "texture": "satsu_iron_man_addon:textures/gui/hud/test_gui.png",
+      "texture_width": 256,
+      "texture_height": 256,
+      "translate": [0, 0, 0],
+      "rotate": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "alignment": "stretch",
+      "hidden": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 1,
+                "max": 17
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "no_nanoarmor_anim",
+                "property": "value",
+                "min": 13,
+                "max": 16
+              }
+            ]
+          },
+          {
+            "type": "palladium:has_tag",
+            "tag": "gui.pass"
+          }
+        ]
+      }
     },
     "top_right": {
       "type": "palladium:gui_overlay",
