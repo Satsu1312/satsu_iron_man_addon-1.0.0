@@ -372,7 +372,7 @@
       "title": { "translate": "ability.title.satsu.Flight" },
       "description": { "translate": "description.flight" },
       "score_value": "satsu.iron.man.flight_speed",
-      "Division_Amount": "10",
+      "Division_Amount": "100",
       "Attribute_Type": "palladium:flight_speed",
       "UUID": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
       "Attribute_Mod": "addition",
@@ -5809,7 +5809,7 @@
               },
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.flight_speed",
+                "objective": "satsu.iron.man.flight_speed.choose",
                 "min_score": 7
               }
             ]
@@ -6109,7 +6109,9 @@
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [],
       "commands": [
-        "execute as @s[scores={satsu.iron.man.flight_speed=6..}] run scoreboard players add @s satsu.iron.man.flight_speed 3"
+        "execute as @s[scores={satsu.iron.man.speed=0..}] run scoreboard players add @s satsu.iron.man.speed 21",
+        "execute as @s[scores={satsu.iron.man.flight_speed=64..}] run scoreboard players add @s satsu.iron.man.flight_speed 3",
+        "execute as @s[scores={satsu.iron.man.flight_speed.choose=6..}] run scoreboard players add @s satsu.iron.man.flight_speed.choose 3"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -6157,18 +6159,13 @@
             "ability": "flight_speed.move"
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.flight_speed",
-            "max_score": 21
-          },
-          {
             "type": "palladium:not",
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor",
-                "min_score": 9,
-                "max_score": 9
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 27,
+                "max_score": 27
               }
             ]
           }
@@ -6185,7 +6182,9 @@
       "description": { "translate": "description.Armor_powers_stat_upgrades" },
       "first_tick_commands": [],
       "commands": [
-        "execute as @s[scores={satsu.iron.man.flight_speed=9..}] run scoreboard players remove @s satsu.iron.man.flight_speed 3"
+        "execute as @s[scores={satsu.iron.man.speed=3..}] run scoreboard players remove @s satsu.iron.man.speed 3",
+        "execute as @s[scores={satsu.iron.man.flight_speed=68..}] run scoreboard players remove @s satsu.iron.man.flight_speed 3",
+        "execute as @s[scores={satsu.iron.man.flight_speed.choose=9..}] run scoreboard players remove @s satsu.iron.man.flight_speed.choose 3"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -6233,18 +6232,13 @@
             "ability": "flight_speed.move"
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.flight_speed",
-            "min_score": 7
-          },
-          {
             "type": "palladium:not",
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor",
-                "min_score": 9,
-                "max_score": 9
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 6,
+                "max_score": 6
               }
             ]
           }
