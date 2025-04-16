@@ -5,6 +5,7 @@
   "background": "satsu_iron_man_addon:textures/gui/block/background.png",
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "gui_display_type": "tree",
+  "allow_bar_shrinking": true,
   "primary_color": "#2af4f5",
   "secondary_color": "#0aacac",
   "energy_bars": {
@@ -118,7 +119,7 @@
       }
     },
     "dummy_gui": {
-      "type": "palladium:command",
+      "type": "palladium:ability_wheel",
       "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
       "title": { "translate": "ability.title.satsu.config_gui" },
       "hidden": false,
@@ -130,6 +131,11 @@
       ],
       "commands": [""],
       "last_tick_commands": [""],
+      "abilities": [
+        "First_person_gui_option",
+        "third_person_gui_option",
+        "none_gui_option"
+      ],
       "conditions": {
         "unlocking": [
           {
@@ -149,6 +155,10 @@
     },
     "First_person_gui_option": {
       "type": "palladium:command",
+      "title": {
+        "translate": "satsu.iron.man.addon.text.select_config_gui_hud.1"
+      },
+      "description": { "translate": "description.satsu.config_gui" },
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
@@ -161,20 +171,18 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
-            "chat_message": "1",
+            "type": "palladium:ability_wheel",
             "cooldown": 0
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "dummy_gui"
           }
         ]
       }
     },
     "third_person_gui_option": {
       "type": "palladium:command",
+      "title": {
+        "translate": "satsu.iron.man.addon.text.select_config_gui_hud.2"
+      },
+      "description": { "translate": "description.satsu.config_gui" },
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
@@ -187,20 +195,18 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
-            "chat_message": "2",
+            "type": "palladium:ability_wheel",
             "cooldown": 0
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "dummy_gui"
           }
         ]
       }
     },
     "none_gui_option": {
       "type": "palladium:command",
+      "title": {
+        "translate": "satsu.iron.man.addon.text.select_config_gui_hud.3"
+      },
+      "description": { "translate": "description.satsu.config_gui" },
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
@@ -213,14 +219,8 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
-            "chat_message": "3",
+            "type": "palladium:ability_wheel",
             "cooldown": 0
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "dummy_gui"
           }
         ]
       }
