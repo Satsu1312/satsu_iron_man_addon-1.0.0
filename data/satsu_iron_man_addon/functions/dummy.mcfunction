@@ -1,4 +1,5 @@
 
+scoreboard objectives add satsu.iron.man.addon.gui.overlay.armor dummy
 scoreboard objectives add satsu.iron.man.addon.raycast_distance dummy
 scoreboard objectives add satsu.iron.man.addon.punch minecraft.custom:minecraft.damage_dealt
 scoreboard objectives add satsu.iron.man.addon.Ymotion dummy
@@ -75,58 +76,58 @@ scoreboard objectives add satsu.iron.man.armor.ark.energy dummy
 scoreboard objectives add satsu.iron.man.armor.ark.energy.max dummy
 scoreboard objectives add satsu.iron.man.armor.ark_energy_full_or_off dummy
 scoreboard objectives add satsu.iron.man.scan.enemies dummy
-scoreboard objectives add satsu.iron.man.armor.47.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.superior.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.39.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.3.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.4.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.5.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.6.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.7.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.8.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.9.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.10.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.11.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.12.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.5.mk19.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk1.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk2.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk3.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk5.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk6.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk7.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk8.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk9.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk10.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk11.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk12.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk13.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk14.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk15.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk17.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk18.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk20.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk22.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk23.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk24.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk25.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk26.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk27.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk28.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk29.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk30.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk31.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk32.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk33.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk34.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk35.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk36.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk37.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk38.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk.extremis.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mk.1873.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.15.mk30.unlock dummy
-scoreboard objectives add satsu.iron.man.armor.mark.45.unlock dummy
+scoreboard objectives remove satsu.iron.man.armor.47.unlock
+scoreboard objectives remove satsu.iron.man.armor.superior.unlock
+scoreboard objectives remove satsu.iron.man.armor.39.unlock
+scoreboard objectives remove satsu.iron.man.armor.3.unlock
+scoreboard objectives remove satsu.iron.man.armor.4.unlock
+scoreboard objectives remove satsu.iron.man.armor.5.unlock
+scoreboard objectives remove satsu.iron.man.armor.6.unlock
+scoreboard objectives remove satsu.iron.man.armor.7.unlock
+scoreboard objectives remove satsu.iron.man.armor.8.unlock
+scoreboard objectives remove satsu.iron.man.armor.9.unlock
+scoreboard objectives remove satsu.iron.man.armor.10.unlock
+scoreboard objectives remove satsu.iron.man.armor.11.unlock
+scoreboard objectives remove satsu.iron.man.armor.12.unlock
+scoreboard objectives remove satsu.iron.man.armor.5.mk19.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk1.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk2.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk3.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk5.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk6.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk7.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk8.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk9.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk10.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk11.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk12.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk13.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk14.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk15.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk17.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk18.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk20.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk22.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk23.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk24.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk25.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk26.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk27.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk28.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk29.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk30.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk31.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk32.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk33.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk34.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk35.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk36.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk37.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk38.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk.extremis.unlock
+scoreboard objectives remove satsu.iron.man.armor.mk.1873.unlock
+scoreboard objectives remove satsu.iron.man.armor.15.mk30.unlock
+scoreboard objectives remove satsu.iron.man.armor.mark.45.unlock
 scoreboard objectives add satsu.iron.man.symbiote.metalized dummy
 scoreboard objectives add satsu.iron.man.armor.16.unknow.blooded.armor.unlock dummy
 scoreboard objectives add satsu.iron.man.rbg.on.off dummy
