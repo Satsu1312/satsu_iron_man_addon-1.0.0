@@ -42,6 +42,544 @@
         ]
       }
     },
+    "ability_wheel": {
+      "type": "palladium:ability_wheel",
+      "icon": "#satsu_iron_man_addon:ia_icon",
+      "title": {
+        "translate": "ability.title.satsu.ia_powers_stat_upgrades"
+      },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": [0, 0],
+      "description": { "translate": "description.ia_skill_stat" },
+      "commands": [""],
+      "abilities": [
+        "ability_wheel.enabled_remote",
+        "ability_wheel.night_vision",
+        "ability_wheel.animation_timer_sentinel_dummy",
+        "ability_wheel.scan_enemies_enable"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:or",
+                        "conditions": [
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.actived",
+                            "min_score": 1,
+                            "max_score": 1
+                          },
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.actived.perm",
+                            "min_score": 1,
+                            "max_score": 1
+                          }
+                        ]
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "sentinel_one"
+                      },
+                      {
+                        "type": "palladium:not",
+                        "conditions": [
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.addon.glasses.equip",
+                            "min_score": 1,
+                            "max_score": 1
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived",
+                        "min_score": 1,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived.perm",
+                        "min_score": 1,
+                        "max_score": 1
+                      }
+                    ]
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.glasses.equip",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "Armor_powers_stat_upgrades"
+                  },
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "sentinel.armor.unlock.lock"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ability_wheel.enabled_remote": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:ia_icon",
+      "title": {
+        "translate": "ability.title.satsu.ia_powers_stat_upgrades"
+      },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": [0, 0],
+      "description": { "translate": "description.ia_skill_stat" },
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.addon.ia.wheel.things 1"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:and",
+                        "conditions": [
+                          {
+                            "type": "palladium:or",
+                            "conditions": [
+                              {
+                                "type": "palladium:objective_score",
+                                "objective": "satsu.iron.man.armor.ark.energy",
+                                "min_score": 100,
+                                "max_score": 101
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "sentinel_one"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.addon.glasses.equip",
+                        "min_score": 1,
+                        "max_score": 1
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "Armor_powers_stat_upgrades"
+                  },
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "sentinel.armor.unlock.lock"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ability_wheel.night_vision": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:ia_icon",
+      "title": {
+        "translate": "ability.title.satsu.ia_powers_stat_upgrades"
+      },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": [0, 0],
+      "description": { "translate": "description.ia_skill_stat" },
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.addon.ia.wheel.things 2"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:or",
+                        "conditions": [
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.actived",
+                            "min_score": 1,
+                            "max_score": 1
+                          },
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.actived.perm",
+                            "min_score": 1,
+                            "max_score": 1
+                          }
+                        ]
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "sentinel_one"
+                      },
+                      {
+                        "type": "palladium:not",
+                        "conditions": [
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.addon.glasses.equip",
+                            "min_score": 1,
+                            "max_score": 1
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived",
+                        "min_score": 1,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived.perm",
+                        "min_score": 1,
+                        "max_score": 1
+                      }
+                    ]
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.glasses.equip",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "Armor_powers_stat_upgrades"
+                  },
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "sentinel.armor.unlock.lock"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ability_wheel.animation_timer_sentinel_dummy": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.enable.sentinel" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": [0, 0],
+      "description": { "translate": "description.ia_skill_stat" },
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.addon.ia.wheel.things 3"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.50"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.50.superior"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.unknow.blooded.armor"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.1873"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.extremis"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:ia_stuff/ia",
+                "ability": "animation_timer_sentinel_dummy.in.skill.bar"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor"
+                  },
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_unlocked",
+                        "power": "satsu_iron_man_addon:ia_stuff/ia",
+                        "ability": "Armor_powers_stat_upgrades"
+                      },
+                      {
+                        "type": "palladium:ability_unlocked",
+                        "power": "satsu_iron_man_addon:ia_stuff/ia",
+                        "ability": "sentinel.armor.unlock.lock"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ability_wheel.scan_enemies_enable": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/scan.png",
+      "title": { "translate": "ability.title.satsu.scan.enemies" },
+      "description": { "translate": "description.scan_enemies_enable" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": [0, 0],
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.addon.ia.wheel.things 4"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:or",
+                        "conditions": [
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.actived",
+                            "min_score": 1,
+                            "max_score": 1
+                          },
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.actived.perm",
+                            "min_score": 1,
+                            "max_score": 1
+                          }
+                        ]
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "sentinel_one"
+                      },
+                      {
+                        "type": "palladium:not",
+                        "conditions": [
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.addon.glasses.equip",
+                            "min_score": 1,
+                            "max_score": 1
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "scan_enemies_enable.in.skill.tree"
+                  },
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_unlocked",
+                        "power": "satsu_iron_man_addon:ia_stuff/ia",
+                        "ability": "Armor_powers_stat_upgrades"
+                      },
+                      {
+                        "type": "palladium:ability_unlocked",
+                        "power": "satsu_iron_man_addon:ia_stuff/ia",
+                        "ability": "scan.abiltie.unlock.lock"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:or",
+                        "conditions": [
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.actived",
+                            "min_score": 1,
+                            "max_score": 1
+                          },
+                          {
+                            "type": "palladium:objective_score",
+                            "objective": "satsu.iron.man.armor.actived.perm",
+                            "min_score": 1,
+                            "max_score": 1
+                          }
+                        ]
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.addon.glasses.equip",
+                        "min_score": 1,
+                        "max_score": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "remove.ia.tarjet": {
       "type": "palladium:command",
       "icon": "#satsu_iron_man_addon:ia_icon",
@@ -285,7 +823,7 @@
       },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 3,
+      "list_index": 1,
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
@@ -319,6 +857,12 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.ia.wheel.things",
+            "min_score": 1,
+            "max_score": 1
+          },
           {
             "type": "palladium:not",
             "conditions": [
@@ -842,7 +1386,7 @@
       },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 4,
+      "list_index": 1,
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "commands": ["effect give @s minecraft:night_vision infinite 2 true"],
@@ -856,6 +1400,12 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.ia.wheel.things",
+            "min_score": 2,
+            "max_score": 2
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -2415,7 +2965,7 @@
       "description": { "translate": "description.satsu.enable.sentinel" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 0,
+      "list_index": 1,
       "gui_position": [-2, 0.5],
       "conditions": {
         "enabling": [
@@ -2429,6 +2979,12 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.ia.wheel.things",
+            "min_score": 3,
+            "max_score": 3
+          },
           {
             "type": "palladium:or",
             "conditions": [
@@ -2625,6 +3181,12 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.ia.wheel.things",
+            "min_score": 3,
+            "max_score": 3
+          },
           {
             "type": "palladium:not",
             "conditions": [
@@ -2853,7 +3415,7 @@
       "description": { "translate": "description.scan_enemies_enable" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 2,
+      "list_index": 1,
       "gui_position": [0, -1.5],
       "first_tick_commands": [""],
       "commands": [
@@ -2872,6 +3434,12 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.ia.wheel.things",
+            "min_score": 4,
+            "max_score": 4
+          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:ia_stuff/ia",
