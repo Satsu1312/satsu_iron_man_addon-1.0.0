@@ -1,4 +1,5 @@
 
+scoreboard objectives add satsu.iron.man.addon.nano.armor.things dummy
 scoreboard objectives add satsu.iron.man.addon.gui.overlay.armor dummy
 scoreboard objectives add satsu.iron.man.addon.raycast_distance dummy
 scoreboard objectives add satsu.iron.man.addon.punch minecraft.custom:minecraft.damage_dealt

@@ -5780,12 +5780,31 @@
         ]
       }
     },
+    "Armor_edit_dummy": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/personalizate_things.png",
+      "title": { "translate": "ability.title.satsu.armor.edit" },
+      "description": { "translate": "description.satsu.armor.edit" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-2, -0],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Armor_powers_stat_upgrades"
+          }
+        ]
+      }
+    },
     "Armor_edit": {
       "type": "palladium:ability_wheel",
       "icon": "satsu_iron_man_addon:textures/gui/armors/personalizate_things.png",
       "title": { "translate": "ability.title.satsu.armor.edit" },
       "description": { "translate": "description.satsu.armor.edit" },
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": false,
       "list_index": 4,
       "gui_position": [-2, -0],
@@ -5913,7 +5932,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_edit"
+            "ability": "Armor_edit_dummy"
           },
           {
             "type": "palladium:and",
@@ -15763,7 +15782,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "Armor_edit"
+            "ability": "Armor_edit_dummy"
           }
         ]
       }
@@ -15896,7 +15915,7 @@
       }
     },
     "arms.move": {
-      "type": "palladium:command",
+      "type": "palladium:ability_wheel",
       "icon": "satsu_iron_man_addon:textures/gui/armors/on.png",
       "title": { "translate": "ability.title.satsu.beams.edit" },
       "hidden": true,
@@ -15908,10 +15927,19 @@
       ],
       "commands": [""],
       "last_tick_commands": [],
+      "abilities": [
+        "arms.1",
+        "arms.2",
+        "arms.move_wheel_rockets",
+        "arms.move_wheel.maximum.pulse",
+        "arms.move_wheel.sword",
+        "arms.move_wheel.force_field",
+        "arms.move_wheel.cook_ark"
+      ],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle"
+            "type": "palladium:held"
           }
         ],
         "unlocking": [
@@ -16047,6 +16075,113 @@
         ]
       }
     },
+    "arms.move_wheel_rockets": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.fireworks" },
+      "description": { "translate": "description.Fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 1"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "arms.move_wheel.maximum.pulse": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/maximum_pulse.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.fireworks" },
+      "description": { "translate": "description.Fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 2"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "arms.move_wheel.sword": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/energy_sword.png",
+      "title": { "translate": "ability.title.satsu.sword.enable" },
+      "description": { "translate": "description.Fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 3"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "arms.move_wheel.force_field": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
+      "title": { "translate": "ability.title.satsu.force.field" },
+      "description": { "translate": "description.force_field" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 4"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "arms.move_wheel.cook_ark": {
+      "type": "palladium:command",
+      "icon": "minecraft:beef",
+      "title": { "translate": "ability.title.satsu.cook.ark" },
+      "description": { "translate": "description.satsu.cook.ark" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 5"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "arms.1": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
@@ -16146,7 +16281,7 @@
       "description": { "translate": "description.Fireworks" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 23,
+      "list_index": 21,
       "gui_position": [-4, -0.5],
       "start_value": 0,
       "max_value": 20,
@@ -16174,12 +16309,18 @@
             "ability": "arms_unlock_skill_tree"
           },
           {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms.move"
+          },
+          {
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "arms.move"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.armor.things",
+                "min_score": 1,
+                "max_score": 1
               }
             ]
           },
@@ -16264,7 +16405,7 @@
       "description": { "translate": "description.maximun.pulse.animation" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 24,
+      "list_index": 21,
       "gui_position": [-4, -0],
       "start_value": 0,
       "max_value": 50,
@@ -16292,12 +16433,18 @@
             "ability": "arms_unlock_skill_tree"
           },
           {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms.move"
+          },
+          {
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "arms.move"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.armor.things",
+                "min_score": 2,
+                "max_score": 2
               }
             ]
           },
@@ -16638,7 +16785,7 @@
       "title": { "translate": "ability.title.satsu.sword.enable" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 25,
+      "list_index": 21,
       "first_tick_commands": ["tag @s add satsu.iron.man.enable.sword"],
       "commands": [""],
       "last_tick_commands": [""],
@@ -16666,9 +16813,20 @@
                 "tag": "satsu.iron.man.permanet.sword"
               },
               {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "arms.move"
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "arms.move"
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.nano.armor.things",
+                    "min_score": 3,
+                    "max_score": 3
+                  }
+                ]
               }
             ]
           },
@@ -16719,7 +16877,7 @@
       "title": { "translate": "ability.title.satsu.sword.enable" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 25,
+      "list_index": 21,
       "first_tick_commands": ["tag @s remove satsu.iron.man.enable.sword"],
       "commands": [""],
       "last_tick_commands": [""],
@@ -16747,9 +16905,20 @@
                 "tag": "satsu.iron.man.permanet.sword"
               },
               {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "arms.move"
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "arms.move"
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.nano.armor.things",
+                    "min_score": 3,
+                    "max_score": 3
+                  }
+                ]
               }
             ]
           },
@@ -16821,7 +16990,7 @@
       "description": { "translate": "description.force_field" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 26,
+      "list_index": 21,
       "gui_position": [-5, -0],
       "conditions": {
         "enabling": [
@@ -16846,9 +17015,15 @@
             "ability": "arms_unlock_skill_tree"
           },
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "arms.move"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 4,
+            "max_score": 4
           }
         ]
       }
@@ -16860,7 +17035,7 @@
       "description": { "translate": "description.satsu.cook.ark" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 27,
+      "list_index": 21,
       "gui_position": [-5.5, -0.3],
       "commands": [""],
       "last_tick_commands": [
@@ -16895,9 +17070,15 @@
             "ability": "arms_unlock_skill_tree"
           },
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "arms.move"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 5,
+            "max_score": 5
           }
         ]
       }
