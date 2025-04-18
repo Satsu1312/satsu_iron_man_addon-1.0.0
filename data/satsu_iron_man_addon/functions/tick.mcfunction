@@ -1,3 +1,4 @@
+kill @e[tag=sentinel_kill]
 function satsu_iron_man_addon:dummy
 function satsu_iron_man_addon:ia/tp_sentinel
 superpower add satsu_iron_man_addon:kube_animations @p[scores={satsu.iron.man.superpower=0}]

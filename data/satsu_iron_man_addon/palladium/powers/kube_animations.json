@@ -32,8 +32,12 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:has_tag",
-                "tag": "fall.flying"
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor_voice_commands",
+                "ability": "flight.fall.animation",
+                "property": "value",
+                "min": 1,
+                "max": 20
               },
               {
                 "type": "palladium:on_ground"
@@ -56,9 +60,7 @@
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "playsound minecraft:block.anvil.place master @a ~ ~ ~ 1"
-      ],
+      "first_tick_commands": [""],
       "commands": ["effect give @s minecraft:slowness 1 255 true"],
       "last_tick_commands": ["effect clear @s minecraft:slowness"],
       "conditions": {
@@ -212,8 +214,15 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:has_tag",
-            "tag": "Fast.fliyng"
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_fast_flying"
+              },
+              {
+                "type": "palladium:is_hovering_or_flying"
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -263,8 +272,15 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:has_tag",
-            "tag": "Fast.fliyng"
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_fast_flying"
+              },
+              {
+                "type": "palladium:is_hovering_or_flying"
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -292,6 +308,11 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "force_field.shield.animation_timer"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
                     "ability": "mark.1873.clap_smoke_hands"
                   }
                 ]
@@ -310,8 +331,31 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:has_tag",
-            "tag": "fliyng"
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "palladium:is_moving"
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:on_ground"
+                      },
+                      {
+                        "type": "palladium:is_fast_flying"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -343,6 +387,11 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "force_field.shield.animation_timer"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
                     "ability": "mark.1873.clap_smoke_hands"
                   }
                 ]
@@ -361,8 +410,31 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:has_tag",
-            "tag": "fliyng"
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "palladium:is_moving"
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:on_ground"
+                      },
+                      {
+                        "type": "palladium:is_fast_flying"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -3183,6 +3255,22 @@
                 ]
               }
             ]
+          }
+        ]
+      }
+    },
+    "mark_1_fly": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "mk.1.fly"
           }
         ]
       }

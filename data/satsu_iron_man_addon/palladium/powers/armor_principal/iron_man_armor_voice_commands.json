@@ -6,14 +6,14 @@
   "icon": "satsu_iron_man_addon:textures/gui/iron_man/armor.png",
   "gui_display_type": "tree",
   "abilities": {
-    "Armor_powers_stat_upgrades": {
+    "Armor_skill_bar": {
       "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:armor_icon_ability",
       "title": "Armors Skill tree",
+      "description": "This is the skill tree that will allow you to unlock your various Iron man armors",
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
-      "description": "This is the skill tree that will allow you to unlock your various Iron man armors",
       "conditions": {
         "unlocking": [
           {
@@ -305,7 +305,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "Armor_powers_stat_upgrades"
+                "ability": "Armor_skill_bar"
               }
             ]
           },
@@ -392,7 +392,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Armor_powers_stat_upgrades"
+                "ability": "Armor_skill_bar"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -440,7 +440,7 @@
           {
             "type": "palladium:ability_unlocked",
             "power": "null",
-            "ability": "Armor_powers_stat_upgrades"
+            "ability": "Armor_skill_bar"
           },
           {
             "type": "palladium:objective_score",
@@ -474,7 +474,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Armor_powers_stat_upgrades"
+                "ability": "Armor_skill_bar"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -536,7 +536,7 @@
               {
                 "type": "palladium:ability_unlocked",
                 "power": "null",
-                "ability": "Armor_powers_stat_upgrades"
+                "ability": "Armor_skill_bar"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -596,7 +596,17 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:is_hovering_or_flying"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mk.1.fly"
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -672,7 +682,17 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:is_hovering_or_flying"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mk.1.fly"
+              }
+            ]
           },
           {
             "type": "palladium:or",
@@ -992,173 +1012,12 @@
         ]
       }
     },
-    "flight_armors_fast_flying": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["tag @s add Fast.fliyng"],
-      "last_tick_commands": ["tag @s remove Fast.fliyng"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:and",
-            "conditions": [
-              {
-                "type": "palladium:is_fast_flying"
-              }
-            ]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:and",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_unlocked",
-                    "power": "null",
-                    "ability": "Armor_powers_stat_upgrades"
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "power": "null",
-                    "ability": "enable_armor"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived.perm",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
-                  }
-                ]
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:on_ground"
-                      },
-                      {
-                        "type": "palladium:has_tag",
-                        "tag": "alien"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "flight_armors_flying": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["tag @s add fliyng"],
-      "last_tick_commands": ["tag @s remove fliyng"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:and",
-            "conditions": [
-              {
-                "type": "palladium:is_hovering_or_flying"
-              },
-              {
-                "type": "palladium:is_moving"
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:on_ground"
-                      },
-                      {
-                        "type": "palladium:is_fast_flying"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:and",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_unlocked",
-                    "power": "null",
-                    "ability": "Armor_powers_stat_upgrades"
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "power": "null",
-                    "ability": "enable_armor"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived.perm",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
-                  }
-                ]
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "alien"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
     "flight.fall.animation": {
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 80,
+      "max_value": 20,
       "conditions": {
         "enabling": [
           {
@@ -1166,21 +1025,6 @@
           }
         ],
         "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "power": "null",
-                "ability": "Armor_powers_stat_upgrades"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "null",
-                "ability": "enable_armor"
-              }
-            ]
-          },
           {
             "type": "palladium:or",
             "conditions": [
@@ -1206,37 +1050,8 @@
                 "tag": "alien"
               }
             ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:on_ground"
-              }
-            ]
           }
         ]
-      }
-    },
-    "flight.fall.animation.command": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": ["tag @s add fall.flying"],
-      "commands": [""],
-      "last_tick_commands": ["tag @s remove fall.flying"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor_voice_commands",
-            "ability": "flight.fall.animation",
-            "property": "value",
-            "min": 70,
-            "max": 80
-          }
-        ],
-        "unlocking": []
       }
     },
     "remove_ark_reactor": {
@@ -1294,21 +1109,6 @@
       ],
       "conditions": {
         "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "power": "null",
-                "ability": "Armor_powers_stat_upgrades"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "null",
-                "ability": "enable_armor"
-              }
-            ]
-          },
           {
             "type": "palladium:or",
             "conditions": [
