@@ -3,13 +3,12 @@
   "layers": [
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armored_energy_beams.geo.json",
+      "model": "satsu_iron_man_addon:geo/nano_armors/energy_cannons.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_0.png",
-        "transformers": [
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/nano_boost_energy_beams/no_light/iron_man_suit_#X_0.png",        "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/nano_boost_energy_beams/transformation_#TIMER.png"
           }
         ],
         "variables": {
@@ -34,8 +33,54 @@
             "max": 1
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_#X_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/nano_boost_energy_beams/iron_man_suit_#X_0_#TIMER"
       },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+          "ability": "propulsor_anim",
+          "property": "value",
+          "min": 1,
+          "max": 16
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nano_armors/energy_cannons.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/nano_boost_energy_beams/light/iron_man_suit_#X_0.png",        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/nano_boost_energy_beams/transformation_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "propulsor_anim",
+            "property": "value",
+            "min": 1,
+            "max": 16
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 51
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/nano_boost_energy_beams/iron_man_suit_#X_0_#TIMER"
+      },
+      "render_type": "glow",
       "conditions": [
         {
           "type": "palladium:ability_integer_property",
