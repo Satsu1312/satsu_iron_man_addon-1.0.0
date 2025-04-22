@@ -4379,6 +4379,16 @@
                 "type": "palladium:not",
                 "conditions": [
                   {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_mallet"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
                     "type": "palladium:objective_score",
                     "objective": "satsu.iron.man.armor",
                     "min_score": 13,
@@ -4580,6 +4590,16 @@
                     "type": "palladium:ability_enabled",
                     "power": "null",
                     "ability": "enable_sword"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_mallet"
                   }
                 ]
               },
@@ -16034,6 +16054,7 @@
         "arms.2",
         "arms.move_wheel_rockets",
         "arms.move_wheel.maximum.pulse",
+        "arms.move_wheel.nano_mallet",
         "arms.move_wheel.nano_rial",
         "arms.move_wheel.sword",
         "arms.move_wheel.nano.katar",
@@ -16338,6 +16359,27 @@
       "hidden_in_bar": false,
       "first_tick_commands": [
         "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 8"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "arms.move_wheel.nano_mallet": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet.png",
+      "title": { "translate": "ability.title.satsu.nano_mallet" },
+      "description": { "translate": "description.satsu.nano_mallet" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 9"
       ],
       "commands": [""],
       "conditions": {
@@ -17642,6 +17684,183 @@
                 "max": 16
               }
             ]
+          }
+        ]
+      }
+    },
+    "nano_mallet": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet.png",
+      "title": { "translate": "ability.title.satsu.nano_mallet" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 21,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms.move"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 9,
+            "max_score": 9
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_wallet.destroy_speed": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [-1, -2],
+      "attribute": "palladium:destroy_speed",
+      "amount": 20,
+      "operation": 0,
+      "uuid": "312be4fb-af04-42f2-8948-e6ccdc0d99e1",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          }
+        ]
+      }
+    },
+    "nano_wallet.punch_damage": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:punch_damage",
+      "amount": 10,
+      "operation": 0,
+      "uuid": "534be4fb-af04-42f2-6588-e6ccdc0d99e1",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          }
+        ]
+      }
+    },
+    "nano_wallet.no.objects.in.main.hand": {
+      "type": "palladium:restrict_slots",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slots": ["mainhand"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          }
+        ]
+      }
+    },
+    "nano_mallet.smash": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet.smash.png",
+      "title": { "translate": "ability.title.satsu.nano_mallet.smash" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 22,
+      "start_value": 0,
+      "max_value": 16,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 17,
+            "cooldown": 30,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_mallet.smash_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["function satsu_iron_man_addon:raycast/mallet_smash/main"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_mallet.smash",
+                    "property": "value",
+                    "min": 15,
+                    "max": 15
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_mallet.smash"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": []
           }
         ]
       }
