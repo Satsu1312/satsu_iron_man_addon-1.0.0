@@ -15655,7 +15655,7 @@
       "description": { "translate": "description.satsu.accelerate.time" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 17,
+      "list_index": 16,
       "gui_position": [-22, 3.3],
       "first_tick_commands": ["tag @s remove chrono.time.speed"],
       "commands": [
@@ -15747,7 +15747,7 @@
       "description": { "translate": "description.satsu.decelerate.time" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 18,
+      "list_index": 17,
       "gui_position": [-22, 3.8],
       "first_tick_commands": ["tag @s add chrono.time.despeed"],
       "commands": [
@@ -16040,8 +16040,8 @@
         "arms.move_wheel.maximum.pulse",
         "arms.move_wheel.nano_mallet",
         "arms.move_wheel.nano_rial",
-        "arms.move_wheel.sword",
-        "arms.move_wheel.nano.katar",
+        "arms.move_wheel.nano_sword",
+        "arms.move_wheel.nano_katar",
         "arms.move_wheel.nano_hand_blade",
         "arms.move_wheel.force_field",
         "arms.move_wheel.cook_ark"
@@ -16229,7 +16229,7 @@
         "unlocking": []
       }
     },
-    "arms.move_wheel.sword": {
+    "arms.move_wheel.nano_sword": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/energy_sword.png",
       "title": { "translate": "ability.title.satsu.sword.enable" },
@@ -16292,11 +16292,11 @@
         "unlocking": []
       }
     },
-    "arms.move_wheel.nano.katar": {
+    "arms.move_wheel.nano_katar": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/nano_katar.png",
-      "title": { "translate": "ability.title.satsu.nano.katar" },
-      "description": { "translate": "description.satsu.nano.katar" },
+      "title": { "translate": "ability.title.satsu.nano_katar" },
+      "description": { "translate": "description.satsu.nano_katar" },
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
@@ -16780,7 +16780,7 @@
         ]
       }
     },
-    "sword.destroy_speed": {
+    "nano_sword.destroy_speed": {
       "type": "palladium:attribute_modifier",
       "hidden": true,
       "hidden_in_bar": true,
@@ -16808,7 +16808,7 @@
         ]
       }
     },
-    "sword.punch_damage": {
+    "nano_sword.punch_damage": {
       "type": "palladium:attribute_modifier",
       "hidden": true,
       "hidden_in_bar": true,
@@ -16835,7 +16835,7 @@
         ]
       }
     },
-    "sword.no.objects.in.main.hand": {
+    "nano_sword.no.objects.in.main.hand": {
       "type": "palladium:restrict_slots",
       "hidden": true,
       "hidden_in_bar": true,
@@ -17783,10 +17783,25 @@
         "execute as @s unless score @s satsu.iron.man.armor.energy.pulse.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.pulse.hand 1"
       ],
       "commands": [
-        "function satsu_iron_man_addon:remove_ark_energy",
-        "scoreboard players operation @s satsu.iron.man.animation.armor.reset = @s satsu.iron.man.animation.armor",
-        "execute as @e[type=palladium:custom_projectile,sort=nearest] unless score @s grave.ID matches 0.. run scoreboard players operation @s grave.ID = @p grave.ID"
+        "scoreboard players operation @s satsu.iron.man.animation.armor.reset = @s satsu.iron.man.animation.armor"
       ]
+    },
+    "set_scoreboard_projectiles": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [],
+      "commands": [
+        "scoreboard players operation @e[type=palladium:custom_projectile,sort=nearest,limit=1,distance=0..3] grave.ID = @p grave.ID"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @e[type=palladium:custom_projectile,sort=nearest,distance=0..3] unless score @e[type=palladium:custom_projectile,limit=1,sort=nearest] grave.ID matches 0.."
+          }
+        ]
+      }
     },
     "commands_projectiles": {
       "type": "palladium:command",
