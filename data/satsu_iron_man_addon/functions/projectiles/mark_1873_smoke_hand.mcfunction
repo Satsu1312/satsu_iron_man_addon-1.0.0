@@ -1,2 +1,2 @@
-execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..5] run damage @s 3 minecraft:player_attack
-execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..5] run effect give @s minecraft:slowness 10 2
+execute as @e[sort=nearest,distance=0..5] unless score @s grave.ID = @e[type=palladium:custom_projectile,limit=1,sort=nearest] grave.ID run damage @s 3 minecraft:player_attack
+execute as @e[sort=nearest,distance=0..5] unless score @s grave.ID = @e[type=palladium:custom_projectile,limit=1,sort=nearest] grave.ID run effect give @s minecraft:slowness 10 2
