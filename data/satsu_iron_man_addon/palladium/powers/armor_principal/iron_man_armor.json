@@ -637,7 +637,7 @@
       "title": { "translate": "ability.title.satsu.Flight" },
       "description": { "translate": "description.flight" },
       "score_value": "satsu.iron.man.flight_speed",
-      "Division_Amount": "89",
+      "Division_Amount": "90",
       "Attribute_Type": "palladium:flight_speed",
       "UUID": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
       "Attribute_Mod": "addition",
@@ -4654,6 +4654,11 @@
                         "type": "palladium:ability_enabled",
                         "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                         "ability": "nano_fireworks"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
+                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                        "ability": "nano_flares_flames"
                       }
                     ]
                   }
@@ -4892,6 +4897,11 @@
                         "type": "palladium:ability_enabled",
                         "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                         "ability": "nano_fireworks"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
+                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                        "ability": "nano_flares_flames"
                       }
                     ]
                   }
@@ -16339,6 +16349,7 @@
         "waepons.choose_wheel.nano_rial",
         "waepons.choose_wheel.nano_sword",
         "waepons.choose_wheel_nano_rockets",
+        "waepons.choose_wheel_nano_flares_flames",
         "waepons.choose_wheel.nano_katar",
         "waepons.choose_wheel.nano_hand_blade",
         "waepons.choose_wheel.force_field",
@@ -16705,6 +16716,27 @@
       "hidden_in_bar": false,
       "first_tick_commands": [
         "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 11"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "waepons.choose_wheel_nano_flares_flames": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
+      "title": { "translate": "ability.title.satsu.flare.flame" },
+      "description": { "translate": "description.satsu.flare.flame" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 12"
       ],
       "commands": [""],
       "conditions": {
@@ -17176,6 +17208,14 @@
               {
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_flares_flames",
+                "property": "value",
+                "min": 1,
+                "max": 5
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "uni.beam.hand.1",
                 "property": "value",
                 "min": 1,
@@ -17360,6 +17400,14 @@
                     "type": "palladium:ability_enabled",
                     "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "flares_flames",
+                    "property": "value",
+                    "min": 1,
+                    "max": 5
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_flares_flames",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -18228,6 +18276,7 @@
       "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet.png",
       "title": { "translate": "ability.title.satsu.nano_mallet" },
+      "description": { "translate": "description.satsu.nano_mallet" },
       "hidden": false,
       "hidden_in_bar": false,
       "gui_position": [-8, -0],
@@ -18431,6 +18480,7 @@
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/nano_grenade_launcher.png",
       "title": { "translate": "ability.title.satsu.nano_grenade_launcher" },
+      "description": { "translate": "description.satsu.nano_grenade_launcher" },
       "hidden": false,
       "hidden_in_bar": false,
       "gui_position": [-8, -0.5],
@@ -18900,7 +18950,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 21,
-      "gui_position": [-8.5, -0.3],
+      "gui_position": [-9, -0],
       "start_value": 0,
       "max_value": 20,
       "conditions": {
@@ -18936,6 +18986,63 @@
             "objective": "satsu.iron.man.addon.nano.armor.things",
             "min_score": 11,
             "max_score": 11
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_flares_flames": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
+      "title": { "translate": "ability.title.satsu.flare.flame" },
+      "description": { "translate": "description.satsu.flare.flame" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [-9, -0.5],
+      "list_index": 21,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 80,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:scoreboard_score_buyable",
+            "objective": "satsu.iron.man.addon.skill.point",
+            "score": 60,
+            "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_8.png",
+            "description": { "text": "Armor Skill Point" }
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 12,
+            "max_score": 12
           },
           {
             "type": "palladium:not",
@@ -19195,6 +19302,14 @@
               {
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_flares_flames",
+                "property": "value",
+                "min": 1,
+                "max": 5
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "uni.beam.hand.1",
                 "property": "value",
                 "min": 1,
@@ -19417,6 +19532,11 @@
                   {
                     "type": "palladium:ability_enabled",
                     "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_sword"
                   }
                 ]
@@ -19551,6 +19671,11 @@
                     "type": "palladium:ability_enabled",
                     "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_flares_flames"
                   }
                 ]
               }
