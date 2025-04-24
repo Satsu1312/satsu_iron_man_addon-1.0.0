@@ -1,5 +1,5 @@
 
-scoreboard players set @s satsu.iron.man.addon.ia.name.power 1
+superpower add satsu_iron_man_addon:ia_stuff/ia_only_armor @s
 execute if entity @p[nbt={SelectedItem:{id:"satsu_iron_man_addon:ia_tarjet_1"}}] run clear @s satsu_iron_man_addon:ia_tarjet_1 1
 execute if entity @p[nbt={SelectedItem:{id:"satsu_iron_man_addon:ia_tarjet_2"}}] run clear @s satsu_iron_man_addon:ia_tarjet_2 1
 execute if entity @p[nbt={SelectedItem:{id:"satsu_iron_man_addon:ia_tarjet_3"}}] run clear @s satsu_iron_man_addon:ia_tarjet_3 1
