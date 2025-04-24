@@ -21,7 +21,7 @@ scoreboard objectives remove satsu.iron.man.addon.ia.name.power
 scoreboard objectives add satsu.iron.man.addon.ia.name.choose dummy
 scoreboard objectives add satsu.iron.man.addon.enable.sentinel dummy
 scoreboard objectives remove satsu.iron.man.addon.ia.interaction
-scoreboard objectives add satsu.iron.man.addon.ia.night.vision dummy
+scoreboard objectives remove satsu.iron.man.addon.ia.night.vision
 scoreboard objectives add satsu.iron.man.addon.unlock.lock.scan.abilitie dummy
 scoreboard objectives add satsu.iron.man.addon.unlock.lock.sentinel.armor dummy
 scoreboard objectives add satsu.iron.man.addon.ia.unlock.icon.in.hud dummy
@@ -72,7 +72,7 @@ scoreboard objectives add satsu.iron.man.dampened dummy
 scoreboard objectives add satsu.iron.man.closed.armors dummy
 scoreboard objectives add satsu.iron.man.superpower dummy
 scoreboard objectives add satsu.iron.man.break dummy
-scoreboard objectives add satsu.iron.man.armor.sword dummy
+scoreboard objectives remove satsu.iron.man.armor.sword
 scoreboard objectives add satsu.iron.man.armor.ark.energy.anim dummy
 scoreboard objectives add satsu.iron.man.armor.ark.energy dummy
 scoreboard objectives add satsu.iron.man.armor.ark.energy.max dummy
