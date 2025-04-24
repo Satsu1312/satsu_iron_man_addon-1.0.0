@@ -134,7 +134,7 @@ scoreboard objectives add satsu.iron.man.symbiote.metalized dummy
 scoreboard objectives remove satsu.iron.man.armor.16.unknow.blooded.armor.unlock
 scoreboard objectives add satsu.iron.man.rbg.on.off dummy
 scoreboard objectives add satsu.iron.man.speed dummy
-scoreboard objectives add satsu.iron.man.ark.upgraded dummy
+scoreboard objectives remove satsu.iron.man.ark.upgraded
 scoreboard objectives add satsu.iron.man.ark.upgraded.max.energy dummy
 scoreboard objectives add satsu.iron.man.addon.xp dummy
 scoreboard objectives add satsu.iron.man.skil.point.kill.mob minecraft.custom:minecraft.mob_kills
