@@ -3,7 +3,7 @@ scoreboard objectives add satsu.iron.man.addon.ia.wheel.things dummy
 scoreboard objectives add satsu.iron.man.addon.nano.armor.things dummy
 scoreboard objectives add satsu.iron.man.addon.gui.overlay.armor dummy
 scoreboard objectives add satsu.iron.man.addon.raycast_distance dummy
-scoreboard objectives add satsu.iron.man.addon.punch minecraft.custom:minecraft.damage_dealt
+scoreboard objectives remove satsu.iron.man.addon.punch
 scoreboard objectives add satsu.iron.man.addon.Ymotion dummy
 scoreboard objectives remove satsu.iron.man.armor.stealh.night
 scoreboard objectives remove satsu.iron.man.addon.uuid
