@@ -39,7 +39,7 @@ scoreboard objectives remove satsu.iron.man.addon.altura
 scoreboard objectives add satsu.iron.man.mask dummy
 scoreboard objectives add satsu.iron.man.animation.armor dummy
 scoreboard objectives add satsu.iron.man.animation.armor.reset dummy
-scoreboard objectives add satsu.iron.man.armor.actived.perm dummy
+scoreboard objectives remove satsu.iron.man.armor.actived.perm
 scoreboard objectives add satsu.iron.man.armor dummy
 scoreboard objectives add satsu.iron.man.armor.actived dummy
 scoreboard objectives add satsu.iron.man.armor.anim dummy
@@ -49,10 +49,8 @@ scoreboard objectives add satsu.iron.man.choose_armor dummy
 scoreboard objectives add satsu.iron.man.choose_armor.test dummy
 scoreboard objectives add satsu.iron.man.flight_speed_max dummy
 scoreboard objectives add satsu.iron.man.unlock_sword dummy
-scoreboard objectives add satsu.iron.man.armor.actived dummy
 scoreboard objectives add satsu.iron.man.armor.anim dummy
 scoreboard objectives add satsu.iron.man.mask dummy
-scoreboard objectives add satsu.iron.man.armor.actived.perm dummy
 scoreboard objectives add satsu.iron.man.flight.set dummy
 scoreboard objectives remove satsu.iron.man.failsafe.set
 scoreboard objectives add satsu.iron.man.armor.set dummy

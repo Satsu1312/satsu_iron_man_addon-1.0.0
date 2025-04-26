@@ -1,5 +1,4 @@
 
-scoreboard players reset @s satsu.iron.man.armor.actived.perm
 scoreboard players reset @s satsu.iron.man.armor.actived
 
 
