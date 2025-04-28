@@ -1,2 +1,2 @@
-execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..5] run damage @s 3 minecraft:player_attack
-execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..5] run effect give @s minecraft:slowness 10 2
+execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..4.5,type=!palladium:custom_projectile,limit=1] run damage @s 3 minecraft:player_attack
+execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..4.5,type=!palladium:custom_projectile,limit=1] run effect give @s minecraft:slowness 10 2

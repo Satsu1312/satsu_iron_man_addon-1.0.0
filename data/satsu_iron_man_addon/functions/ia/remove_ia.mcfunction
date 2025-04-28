@@ -14,7 +14,6 @@ execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run give @s satsu_iron_m
 execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run give @s satsu_iron_man_addon:ia_tarjet_11 1
 execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run give @s satsu_iron_man_addon:ia_tarjet_12 1
 execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run give @s satsu_iron_man_addon:ia_tarjet_13 1
-execute run scoreboard players reset @s satsu.iron.man.addon.ia.name.power
 execute as @s run superpower remove satsu_iron_man_addon:ia_stuff/ia_only_armor @s
 execute as @s run superpower remove satsu_iron_man_addon:ia_stuff/ia @s
 execute as @s run superpower remove satsu_iron_man_addon:ia_stuff/ia_voice_commands @s

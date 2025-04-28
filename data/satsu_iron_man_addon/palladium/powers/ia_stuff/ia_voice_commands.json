@@ -8,39 +8,6 @@
   "primary_color": "#2af4f5",
   "secondary_color": "#0aacac",
   "abilities": {
-    "ia_skill_bar": {
-      "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
-      "hidden": true,
-      "hidden_in_bar": true,
-      "gui_position": [0, -3.3],
-      "description": { "translate": "description.ia_skill_stat" },
-      "first_tick_commands": [
-        "execute as @s unless score @s satsu.iron.man.addon.ia.unlock.skill.tree matches 0.. run scoreboard players set @s satsu.iron.man.addon.ia.unlock.skill.tree 1"
-      ],
-      "commands": [""],
-      "conditions": {
-        "unlocking": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "alien"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
     "armor_skill_bar": {
       "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:ia_icon",
@@ -62,50 +29,6 @@
         ]
       }
     },
-    "reset.interaction": {
-      "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
-      "description": { "translate": "description.ia_skill_stat" },
-      "hidden": true,
-      "hidden_in_bar": true,
-      "gui_position": [0, -2.8],
-      "first_tick_commands": [
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.1\",\"color\":\"#ffa500\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.2\",\"color\":\"#ffb6c1\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.3\",\"color\":\"#9370db\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.4\",\"color\":\"#708090\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.5\",\"color\":\"#00bfff\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.6\",\"color\":\"#ffe800\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.7\",\"color\":\"#09f42c\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.8\",\"color\":\"#98fb98\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.9\",\"color\":\"#55fb9e\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.10\",\"color\":\"#fe0f0f\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.11\",\"color\":\"#4682b4\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.12\",\"color\":\"#0067fe\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.13\",\"color\":\"#c0c0c0\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=2..}] run scoreboard players reset @s satsu.iron.man.addon.ia.interaction"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:and",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 2,
-                "max_score": 2
-              }
-            ]
-          }
-        ]
-      }
-    },
     "first_interaction": {
       "type": "palladium:command",
       "icon": "#satsu_iron_man_addon:ia_icon",
@@ -117,38 +40,41 @@
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.addon.ia.interaction 1",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.1\",\"color\":\"#ffa500\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.2\",\"color\":\"#ffb6c1\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.3\",\"color\":\"#9370db\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.4\",\"color\":\"#708090\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.5\",\"color\":\"#00bfff\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.6\",\"color\":\"#ffe800\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.7\",\"color\":\"#09f42c\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.8\",\"color\":\"#98fb98\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.9\",\"color\":\"#55fb9e\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.10\",\"color\":\"#fe0f0f\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.11\",\"color\":\"#4682b4\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.12\",\"color\":\"#0067fe\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.interaction=1}] as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.13\",\"color\":\"#c0c0c0\"}"
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.13\",\"color\":\"#c0c0c0\"}"
       ],
       "commands": [""],
+      "last_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.bye.13\",\"color\":\"#c0c0c0\"}"
+      ],
       "conditions": {
         "enabling": [
           {
             "type": "palladium:and",
             "conditions": [
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.ia.interaction",
-                    "min_score": 2,
-                    "max_score": 2
-                  }
-                ]
-              },
               {
                 "type": "palladium:or",
                 "conditions": [
@@ -322,6 +248,15 @@
             "type": "palladium:not",
             "conditions": [
               {
+                "type": "palladium:has_tag",
+                "tag": "mark.1"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
                 "type": "palladium:or",
                 "conditions": [
                   {
@@ -355,12 +290,6 @@
                     "objective": "satsu.iron.man.armor.actived",
                     "min_score": 1,
                     "max_score": 1
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived.perm",
-                    "min_score": 1,
-                    "max_score": 1
                   }
                 ]
               }
@@ -370,10 +299,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:or",
@@ -457,10 +450,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:or",
@@ -471,12 +528,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -556,10 +607,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:objective_score",
@@ -576,12 +691,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -661,10 +770,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:or",
@@ -675,12 +848,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -697,25 +864,6 @@
             ]
           }
         ]
-      }
-    },
-    "enabled_remote_slowness.command": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": ["effect give @s minecraft:slowness 1 255 true"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:ia_stuff/ia_voice_commands",
-            "ability": "enabled_remote_slowness.timer",
-            "property": "value",
-            "min": 1,
-            "max": 15
-          }
-        ],
-        "unlocking": []
       }
     },
     "enabled_remote.tag.sentinel": {
@@ -1044,40 +1192,37 @@
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.addon.ia.night.vision 1",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] run tag @s add night_vision",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.1\",\"color\":\"#ffa500\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.2\",\"color\":\"#ffb6c1\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.3\",\"color\":\"#9370db\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.4\",\"color\":\"#708090\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.5\",\"color\":\"#00bfff\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.6\",\"color\":\"#ffe800\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.7\",\"color\":\"#09f42c\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.8\",\"color\":\"#98fb98\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.9\",\"color\":\"#55fb9e\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.10\",\"color\":\"#fe0f0f\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.11\",\"color\":\"#4682b4\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.12\",\"color\":\"#0067fe\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=1}] as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.13\",\"color\":\"#c0c0c0\"}"
+        "tag @s add night_vision",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.night.vision.13\",\"color\":\"#c0c0c0\"}"
       ],
-      "commands": [""],
+      "commands": ["effect give @s minecraft:night_vision infinite 2 true"],
       "last_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.addon.ia.night.vision 1",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] run tag @s remove night_vision",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.1\",\"color\":\"#ffa500\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.2\",\"color\":\"#ffb6c1\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.3\",\"color\":\"#9370db\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.4\",\"color\":\"#708090\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.5\",\"color\":\"#00bfff\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.6\",\"color\":\"#ffe800\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.7\",\"color\":\"#09f42c\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.8\",\"color\":\"#98fb98\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.9\",\"color\":\"#55fb9e\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.10\",\"color\":\"#fe0f0f\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.11\",\"color\":\"#4682b4\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.12\",\"color\":\"#0067fe\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2}] as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.13\",\"color\":\"#c0c0c0\"}",
-        "execute as @s[scores={satsu.iron.man.addon.ia.night.vision=2..}] run scoreboard players reset @s satsu.iron.man.addon.ia.night.vision"
+        "effect clear @s minecraft:night_vision",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.night.vision.13\",\"color\":\"#c0c0c0\"}"
       ],
       "conditions": {
         "enabling": [
@@ -1119,109 +1264,72 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
-              },
-              {
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
-                        "min_score": 1,
-                        "max_score": 1
-                      }
-                    ]
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
                   },
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.glasses.equip",
-                    "min_score": 1,
-                    "max_score": 1
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "night_vision": {
-      "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
-      "hidden": true,
-      "hidden_in_bar": true,
-      "gui_position": [0, -2.8],
-      "description": { "translate": "description.ia_skill_stat" },
-      "first_tick_commands": [
-        "effect give @s minecraft:night_vision infinite 2 true"
-      ],
-      "commands": [""],
-      "last_tick_commands": ["effect clear @s minecraft:night_vision"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:has_tag",
-            "tag": "night_vision"
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:and",
-            "conditions": [
-              {
-                "type": "palladium:not",
-                "conditions": [
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
                   {
-                    "type": "palladium:and",
-                    "conditions": [
-                      {
-                        "type": "palladium:or",
-                        "conditions": [
-                          {
-                            "type": "palladium:objective_score",
-                            "objective": "satsu.iron.man.armor.actived",
-                            "min_score": 1,
-                            "max_score": 1
-                          },
-                          {
-                            "type": "palladium:objective_score",
-                            "objective": "satsu.iron.man.armor.actived.perm",
-                            "min_score": 1,
-                            "max_score": 1
-                          }
-                        ]
-                      },
-                      {
-                        "type": "palladium:has_tag",
-                        "tag": "sentinel_one"
-                      },
-                      {
-                        "type": "palladium:not",
-                        "conditions": [
-                          {
-                            "type": "palladium:objective_score",
-                            "objective": "satsu.iron.man.addon.glasses.equip",
-                            "min_score": 1,
-                            "max_score": 1
-                          }
-                        ]
-                      }
-                    ]
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
                   }
                 ]
               },
@@ -1234,12 +1342,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1269,38 +1371,35 @@
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.scan.enemies 1",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.1\",\"color\":\"#ffa500\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.2\",\"color\":\"#ffb6c1\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.3\",\"color\":\"#9370db\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.4\",\"color\":\"#708090\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.5\",\"color\":\"#00bfff\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.6\",\"color\":\"#ffe800\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.7\",\"color\":\"#09f42c\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.8\",\"color\":\"#98fb98\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.9\",\"color\":\"#55fb9e\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.10\",\"color\":\"#fe0f0f\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.11\",\"color\":\"#4682b4\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.12\",\"color\":\"#0067fe\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=1}] as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.13\",\"color\":\"#c0c0c0\"}"
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.scan.13\",\"color\":\"#c0c0c0\"}"
       ],
       "commands": [""],
       "last_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.scan.enemies 1",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.1\",\"color\":\"#ffa500\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.2\",\"color\":\"#ffb6c1\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.3\",\"color\":\"#9370db\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.4\",\"color\":\"#708090\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.5\",\"color\":\"#00bfff\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.6\",\"color\":\"#ffe800\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.7\",\"color\":\"#09f42c\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.8\",\"color\":\"#98fb98\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.9\",\"color\":\"#55fb9e\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.10\",\"color\":\"#fe0f0f\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.11\",\"color\":\"#4682b4\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.12\",\"color\":\"#0067fe\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2}] as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.13\",\"color\":\"#c0c0c0\"}",
-        "execute as @s[scores={satsu.iron.man.scan.enemies=2..}] run scoreboard players reset @s satsu.iron.man.scan.enemies"
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.scan.13\",\"color\":\"#c0c0c0\"}"
       ],
       "conditions": {
         "enabling": [
@@ -1342,10 +1441,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:or",
@@ -1356,12 +1519,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1437,10 +1594,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:or",
@@ -1451,12 +1672,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1504,10 +1719,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:or",
@@ -1518,12 +1797,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1618,10 +1891,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:or",
@@ -1657,12 +1994,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1756,10 +2087,74 @@
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.ia.interaction",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "ia.13"
+                  }
+                ]
               },
               {
                 "type": "palladium:or",
@@ -1770,12 +2165,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1802,7 +2191,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Jarvis",
             "cooldown": 0
           }
@@ -1826,12 +2215,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1858,7 +2241,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Pepper",
             "cooldown": 0
           }
@@ -1882,12 +2265,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1914,7 +2291,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Friday",
             "cooldown": 0
           }
@@ -1938,12 +2315,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -1970,7 +2341,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Edith",
             "cooldown": 0
           }
@@ -1994,12 +2365,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2026,7 +2391,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Karen",
             "cooldown": 0
           }
@@ -2050,12 +2415,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2082,7 +2441,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Katie",
             "cooldown": 0
           }
@@ -2106,12 +2465,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2138,7 +2491,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Helen",
             "cooldown": 0
           }
@@ -2162,12 +2515,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2194,7 +2541,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Tadashi",
             "cooldown": 0
           }
@@ -2218,12 +2565,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2250,7 +2591,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Placa Madre",
             "cooldown": 0
           }
@@ -2274,12 +2615,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2306,7 +2641,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Tony",
             "cooldown": 0
           }
@@ -2330,12 +2665,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2362,7 +2691,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Veronica",
             "cooldown": 0
           }
@@ -2386,12 +2715,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2418,7 +2741,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Ultron",
             "cooldown": 0
           }
@@ -2442,12 +2765,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }
@@ -2474,7 +2791,7 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:chat_action",
+            "type": "palladium:chat_toggle",
             "chat_message": "Jocasta",
             "cooldown": 0
           }
@@ -2498,12 +2815,6 @@
                       {
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      },
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived.perm",
                         "min_score": 1,
                         "max_score": 1
                       }

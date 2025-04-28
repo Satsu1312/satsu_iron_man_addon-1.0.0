@@ -13,8 +13,6 @@ execute as @e[type=minecraft:armor_stand,tag=sentinel,limit=1,sort=nearest] run 
 execute as @e[tag=sentinel,sort=nearest] unless score @s grave.ID matches 0.. run scoreboard players operation @s grave.ID = @p grave.ID
 execute as @e[tag=sentinel,sort=nearest] if score @s grave.ID = @p grave.ID unless score @s satsu.iron.man.armor matches 0.. run scoreboard players operation @s satsu.iron.man.armor = @p satsu.iron.man.armor
 execute as @e[tag=sentinel,sort=nearest] if score @s grave.ID = @p grave.ID unless score @s satsu.iron.man.mask matches 0.. run scoreboard players operation @s satsu.iron.man.mask = @p satsu.iron.man.mask
-execute as @e[tag=sentinel,sort=nearest] if score @s grave.ID = @p grave.ID unless score @s satsu.iron.man.durability matches 0.. run scoreboard players operation @s satsu.iron.man.durability = @p satsu.iron.man.durability
-execute as @e[tag=sentinel,sort=nearest] if score @s grave.ID = @p grave.ID unless score @s satsu.iron.man.strength matches 0.. run scoreboard players operation @s satsu.iron.man.strength = @p satsu.iron.man.strength
 scale set pehkui:hitbox_height 2 @e[type=wolf,sort=nearest,limit=1]
 ride @e[type=minecraft:armor_stand,tag=sentinel,limit=1,sort=nearest] mount @e[type=minecraft:wolf,tag=sentinel,limit=1,sort=nearest]
 scale set pehkui:hitbox_width 2 @e[type=wolf,sort=nearest,limit=1]
