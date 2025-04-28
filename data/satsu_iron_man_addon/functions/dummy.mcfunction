@@ -132,6 +132,6 @@ scoreboard objectives add satsu.iron.man.rbg.on.off dummy
 scoreboard objectives add satsu.iron.man.speed dummy
 scoreboard objectives remove satsu.iron.man.ark.upgraded
 scoreboard objectives remove satsu.iron.man.ark.upgraded.max.energy
-scoreboard objectives add satsu.iron.man.addon.xp dummy
+scoreboard objectives remove satsu.iron.man.addon.xp
 scoreboard objectives remove satsu.iron.man.skil.point.kill.mob
 scoreboard objectives add Health health
