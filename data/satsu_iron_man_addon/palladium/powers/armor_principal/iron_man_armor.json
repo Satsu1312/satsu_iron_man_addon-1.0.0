@@ -380,7 +380,45 @@
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 4
+      "max_value": 4,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_levitating"
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
     },
     "hide_player": {
       "type": "palladium:hide_body_part",
@@ -481,6 +519,10 @@
                       {
                         "type": "palladium:or",
                         "conditions": [
+                          {
+                            "type": "palladium:has_tag",
+                            "tag": "mark.30.iron.destroyer"
+                          },
                           {
                             "type": "palladium:has_tag",
                             "tag": "mark.50"
@@ -1868,10 +1910,6 @@
                           },
                           {
                             "type": "palladium:has_tag",
-                            "tag": "mark.30.iron.destroyer"
-                          },
-                          {
-                            "type": "palladium:has_tag",
                             "tag": "mark.31"
                           },
                           {
@@ -2212,10 +2250,6 @@
                   },
                   {
                     "type": "palladium:has_tag",
-                    "tag": "mark.30.iron.destroyer"
-                  },
-                  {
-                    "type": "palladium:has_tag",
                     "tag": "mark.31"
                   },
                   {
@@ -2477,10 +2511,6 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.30"
-                  },
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "mark.30.iron.destroyer"
                   },
                   {
                     "type": "palladium:has_tag",
@@ -3096,11 +3126,11 @@
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [""],
-      "commands": [
+      "first_tick_commands": [
         "scoreboard players reset @s[tag=satsu.iron.man.enable.armor] satsu.iron.man.armor.actived",
         "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor] satsu.iron.man.armor.actived"
       ],
+      "commands": [""],
       "last_tick_commands": [""],
       "conditions": {
         "enabling": [
@@ -3162,6 +3192,10 @@
               {
                 "type": "palladium:or",
                 "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.30.iron.destroyer"
+                  },
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.50"
@@ -3333,10 +3367,6 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.30"
-              },
-              {
-                "type": "palladium:has_tag",
-                "tag": "mark.30.iron.destroyer"
               },
               {
                 "type": "palladium:has_tag",
@@ -3552,6 +3582,10 @@
                       {
                         "type": "palladium:has_tag",
                         "tag": "mark.1"
+                      },
+                      {
+                        "type": "palladium:has_tag",
+                        "tag": "mark.30.iron.destroyer"
                       },
                       {
                         "type": "palladium:has_tag",
@@ -6575,6 +6609,10 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.50"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.30.iron.destroyer"
               },
               {
                 "type": "palladium:has_tag",
@@ -22416,10 +22454,6 @@
                   },
                   {
                     "type": "palladium:has_tag",
-                    "tag": "mark.30.iron.destroyer"
-                  },
-                  {
-                    "type": "palladium:has_tag",
                     "tag": "mark.31"
                   },
                   {
@@ -22601,10 +22635,6 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.30"
-                  },
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "mark.30.iron.destroyer"
                   },
                   {
                     "type": "palladium:has_tag",
