@@ -12854,6 +12854,227 @@
         ]
       }
     },
+    "nano_pincher.pick_entity": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/pincher_red.png",
+      "title": { "translate": "ability.title.satsu.pincher_both" },
+      "description": { "translate": "description.satsu.pincher_both" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [17, 3],
+      "list_index": 22,
+      "first_tick_commands": [
+        "execute anchored eyes run function satsu_iron_man_addon:raycast/pick_two_entities/main"
+      ],
+      "commands": [
+        "execute anchored feet rotated ~ 0 if entity @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] run tp @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] ^ ^0.4 ^1.2",
+        "execute if entity @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] run tag @s add grave.pick.grabbing",
+        "execute unless entity @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] run scoreboard players add @s grave.pick.timer 1"
+      ],
+      "last_tick_commands": [
+        "tag @s remove grave.pick.grabbing",
+        "tag @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] remove grave.pick.picked",
+        "scoreboard players set @s grave.pick.timer 0"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "grave.pick.timer",
+                "min_score": 1
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": []
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_pincher"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "pick_entity_off_arms": {
+      "type": "palladium:aim",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "time": 5,
+      "arm": "off_arm",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @s[tag=grave.pick.grabbing]",
+            "comparison": "==",
+            "compare_to": 1,
+            "log": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.38"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "pick_entity_main_arms": {
+      "type": "palladium:aim",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "time": 5,
+      "arm": "main_arm",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @s[tag=grave.pick.grabbing]",
+            "comparison": "==",
+            "compare_to": 1,
+            "log": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.infinity.ultron"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "pick_entity_throw": {
+      "type": "palladium:projectile",
+      "entity_type": "palladium:custom_projectile",
+      "list_index": 1,
+      "velocity": 1.5,
+      "entity_data": {
+        "Damage": 0,
+        "Gravity": 0.015,
+        "Size": 0.5,
+        "Lifetime": 3000,
+        "DieOnEntityHit": false,
+        "DieOnBlockHit": true,
+        "Appearances": []
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 20,
+            "key_type": "left_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_pincher.pick_entity"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "pick_entity_throw_effects": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "tag @e[type=palladium:custom_projectile,sort=nearest,limit=1] add grave.pick.throw",
+        "execute as @e[sort=nearest,limit=1,tag=grave.pick.picked,distance=0..9] at @s run scoreboard players set @s grave.pick.throw 1",
+        "tag @e[sort=nearest,limit=1,tag=grave.pick.picked,distance=0..9] remove grave.pick.picked"
+      ],
+      "last_tick_commands": [
+        ""
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "pick_entity_throw"
+          }
+        ]
+      }
+    },
     "top_left": {
       "type": "palladium:gui_overlay",
       "texture": "#satsu_iron_man_addon:ark_energy",
