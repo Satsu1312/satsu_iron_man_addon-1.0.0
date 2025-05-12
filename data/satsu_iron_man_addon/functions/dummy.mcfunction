@@ -1,4 +1,5 @@
 
+scoreboard objectives add satsu.iron.man.addon.model.prime.color.black dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.color.plate dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.color dummy
 scoreboard objectives add satsu.iron.man.addon.energy.beam.powerfull dummy
