@@ -1,0 +1,86 @@
+{
+  "name": "Model prime",
+  "persistent_data": true,
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "tree",
+  "abilities": {
+    "set.scoreboard.armor.17.mark.5": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "tag @s add satsu.iron.man.suit.set",
+        "tag @s add mark.5",
+        "scoreboard players set @s satsu.iron.man.armor 17",
+        "scoreboard players set @s satsu.iron.man.flame 0",
+        "scoreboard players set @s satsu.iron.man.durability 6",
+        "scoreboard players set @s satsu.iron.man.flight_speed 59",
+        "scoreboard players set @s satsu.iron.man.strength 4",
+        "scoreboard players set @s satsu.iron.man.pickaxe.velocity 20"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "tag @s remove mark.5",
+        "tag @s remove satsu.iron.man.suit.set",
+        "scoreboard players set @s satsu.iron.man.animation.armor 0"
+      ],
+      "conditions": {
+        "enabling": []
+      }
+    },
+    "render_layer.mark.5.maletin": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/mark_5_maletin",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate.animation_timer.mark.5",
+            "property": "value",
+            "min": 0,
+            "max": 6
+          },
+          {
+            "type": "palladium:has_tag",
+            "tag": "mark.5"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.set",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.personalize.things",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
