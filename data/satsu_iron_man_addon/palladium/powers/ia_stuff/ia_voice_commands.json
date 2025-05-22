@@ -570,10 +570,24 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.ark.energy",
-            "min_score": 0,
-            "max_score": 101
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.ark.energy",
+                "min_score": 0,
+                "max_score": 101
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @s[nbt={Inventory:[{Slot:102b}]}]"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "unlocking": [
