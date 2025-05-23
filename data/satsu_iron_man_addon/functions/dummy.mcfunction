@@ -1,4 +1,12 @@
 
+scoreboard objectives add satsu.iron.man.addon.model.prime.additaments.choose dummy
+scoreboard objectives add satsu.iron.man.addon.model.prime.additaments dummy
+scoreboard objectives add satsu.iron.man.addon.model.prime.color.black.choose dummy
+scoreboard objectives add satsu.iron.man.addon.model.prime.color.plate.choose dummy
+scoreboard objectives add satsu.iron.man.addon.model.prime.color.choose dummy
+scoreboard objectives add satsu.iron.man.addon.model.prime.color.black dummy
+scoreboard objectives add satsu.iron.man.addon.model.prime.color.plate dummy
+scoreboard objectives add satsu.iron.man.addon.model.prime.color dummy
 scoreboard objectives add satsu.iron.man.addon.energy.beam.powerfull dummy
 scoreboard objectives add satsu.iron.man.addon.ia.wheel.things dummy
 scoreboard objectives add satsu.iron.man.addon.nano.armor.things dummy
@@ -65,7 +73,7 @@ scoreboard objectives add satsu.prev.iron.man.armor.anim dummy
 scoreboard objectives add satsu.iron.man.arms.set dummy
 scoreboard objectives add satsu.iron.man.armor.energy.beams dummy
 scoreboard objectives remove satsu.iron.man.remove.ark
-scoreboard objectives add satsu.iron.man.dampened dummy
+scoreboard objectives remove satsu.iron.man.dampened
 scoreboard objectives add satsu.iron.man.closed.armors dummy
 scoreboard objectives remove satsu.iron.man.superpower
 scoreboard objectives add satsu.iron.man.break dummy

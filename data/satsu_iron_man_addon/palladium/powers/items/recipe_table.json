@@ -1,0 +1,81 @@
+{
+  "name": { "translate": "ability.title.satsu.recipe_table" },
+  "persistent_data": true,
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
+  "gui_display_type": "tree",
+  "allow_bar_shrinking": true,
+  "primary_color": "#2af4f5",
+  "secondary_color": "#0aacac",
+  "abilities": {
+    "armor.skill.tree": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
+      "title": { "translate": "ability.title.satsu.recipe_table" },
+      "description": { "translate": "description.satsu.recipe_table" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 0],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "Satsu.Armor.model.prime": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_60.png",
+      "title": { "translate": "ability.title.satsu.mark.model.prime" },
+      "description": { "translate": "description.iron.man.mark.model.prime" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 1.5],
+      "commands": [""],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:experience_level_buyable",
+            "xp_level": 39,
+            "flat_levels": true
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "Satsu.Armor.11.MK50"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:items/recipe_table",
+            "ability": "armor.skill.tree"
+          }
+        ]
+      }
+    },
+    "Satsu.Armor.model.prime.recipe_give": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/item/instruction.png",
+      "title": { "translate": "ability.title.satsu.give.recipe" },
+      "description": { "translate": "description.satsu.give.recipe" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 1.8],
+      "commands": [
+        "give @s satsu_iron_man_addon:recipes/model_prime/main",
+        "ability lock @s satsu_iron_man_addon:items/recipe_table Satsu.Armor.model.prime.recipe_give"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:experience_level_buyable",
+            "xp_level": 0,
+            "flat_levels": true
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.model.prime"
+          }
+        ]
+      }
+    }
+  }
+}
