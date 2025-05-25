@@ -459,6 +459,1573 @@
         ]
       }
     },
+    "waepons.choose": {
+      "type": "palladium:ability_wheel",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/on.png",
+      "title": { "translate": "ability.title.satsu.beams.edit" },
+      "description": { "translate": "description.armor_skill_bar" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.armor.energy.beams matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.beams 0"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "abilities": [
+        "increase_chest_beam",
+        "decrease_chest_beam",
+        "waepons.choose_wheel_rockets",
+        "waepons.choose_wheel.nano_grenade_launcher",
+        "waepons.choose_wheel.maximum.pulse",
+        "waepons.choose_wheel.nano_mallet",
+        "waepons.choose_wheel.nano_rial",
+        "waepons.choose_wheel.nano_sword",
+        "waepons.choose_wheel_nano_rockets",
+        "waepons.choose_wheel_nano_flares_flames",
+        "waepons.choose_wheel.nano_katar",
+        "waepons.choose_wheel.nano_hand_blade",
+        "waepons.choose_wheel.force_field",
+        "waepons.choose_wheel.cook_ark"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.arms.set",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_skill_bar"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 1,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel_rockets": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.back.fireworks" },
+      "description": { "translate": "description.satsu.back.fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 1"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.maximum.pulse": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/maximum_pulse.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.fireworks" },
+      "description": { "translate": "description.Fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 2"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.nano_sword": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/energy_sword.png",
+      "title": { "translate": "ability.title.satsu.sword.enable" },
+      "description": { "translate": "description.Fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 3"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.force_field": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
+      "title": { "translate": "ability.title.satsu.force.field" },
+      "description": { "translate": "description.force_field" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 4"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.cook_ark": {
+      "type": "palladium:command",
+      "icon": "minecraft:beef",
+      "title": { "translate": "ability.title.satsu.cook.ark" },
+      "description": { "translate": "description.satsu.cook.ark" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 5"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.nano_katar": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_katar.png",
+      "title": { "translate": "ability.title.satsu.nano_katar" },
+      "description": { "translate": "description.satsu.nano_katar" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 6"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.nano_hand_blade": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_hand_blade.png",
+      "title": { "translate": "ability.title.satsu.nano_hand_blade" },
+      "description": { "translate": "description.satsu.nano_hand_blade" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 7"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.nano_rial": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_rial.png",
+      "title": { "translate": "ability.title.satsu.nano_rial" },
+      "description": { "translate": "description.satsu.nano_rial" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 8"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.nano_mallet": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet.png",
+      "title": { "translate": "ability.title.satsu.nano_mallet" },
+      "description": { "translate": "description.satsu.nano_mallet" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 9"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.nano_grenade_launcher": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_grenade_launcher.png",
+      "title": { "translate": "ability.title.satsu.nano_grenade_launcher" },
+      "description": { "translate": "description.satsu.nano_grenade_launcher" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 10"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel_nano_rockets": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.fireworks" },
+      "description": { "translate": "description.satsu.fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 11"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel_nano_flares_flames": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
+      "title": { "translate": "ability.title.satsu.flare.flame" },
+      "description": { "translate": "description.satsu.flare.flame" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 12"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "nano_fireworks.back": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
+      "title": { "translate": "ability.title.satsu.back.fireworks" },
+      "description": { "translate": "description.satsu.back.fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-4, -0.5],
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 280,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.armor.things",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "maximun.pulse.animation": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/maximum_pulse.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.maximum.pulse" },
+      "description": { "translate": "description.maximun.pulse.animation" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-4, -0],
+      "start_value": 0,
+      "max_value": 50,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 50,
+            "cooldown": 480,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.armor.things",
+                "min_score": 2,
+                "max_score": 2
+              }
+            ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "nano_sword": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/energy_sword.png",
+      "title": { "translate": "ability.title.satsu.sword.enable" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-5, -0.5],
+      "list_index": 1,
+      "start_value": 0,
+      "max_value": 18,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "arms_unlock_skill_tree"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "waepons.choose"
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.armor.things",
+                "min_score": 3,
+                "max_score": 3
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_sword.destroy_speed": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [-1, -2],
+      "attribute": "palladium:destroy_speed",
+      "amount": 20,
+      "operation": 0,
+      "uuid": "312be4fb-af04-42f2-8948-e6ccdc0d99e1",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "nano_sword"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_sword.punch_damage": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:punch_damage",
+      "amount": 8,
+      "operation": 0,
+      "uuid": "123be4fb-af04-42f2-8948-e6ccdc0d99e1",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "nano_sword"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_sword.no.objects.in.main.hand": {
+      "type": "palladium:restrict_slots",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slots": ["mainhand"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "nano_sword"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "nano_hand_blade"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "force_field": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
+      "title": { "translate": "ability.title.satsu.force.field" },
+      "description": { "translate": "description.force_field" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-5, -0],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 4,
+            "max_score": 4
+          }
+        ]
+      }
+    },
+    "cook_ark": {
+      "type": "palladium:command",
+      "icon": "minecraft:beef",
+      "title": { "translate": "ability.title.satsu.cook.ark" },
+      "description": { "translate": "description.satsu.cook.ark" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-6, -0],
+      "commands": [""],
+      "last_tick_commands": [
+        "item modify entity @s weapon.mainhand satsu_iron_man_addon:smelt",
+        "item modify entity @s weapon.mainhand satsu_iron_man_addon:smelt",
+        "item modify entity @s weapon.mainhand satsu_iron_man_addon:smelt",
+        "item modify entity @s weapon.mainhand satsu_iron_man_addon:smelt",
+        "item modify entity @s weapon.mainhand satsu_iron_man_addon:smelt",
+        "xp add @s 1",
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 100"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 25,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 5,
+            "max_score": 5
+          }
+        ]
+      }
+    },
+    "nano_katar": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_katar.png",
+      "title": { "translate": "ability.title.satsu.throw.blades" },
+      "description": { "translate": "description.satsu.throw.blades" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-6, -0.5],
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 6,
+            "max_score": 6
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "nano_katar.attack": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/vribranuim_blades_attack.png",
+      "title": { "translate": "ability.title.satsu.throw.blades.attack" },
+      "description": { "translate": "description.satsu.throw.blades.attack" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 2,
+      "gui_position": [16, 3.5],
+      "start_value": 0,
+      "max_value": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 15,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_katar"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_katar.attack_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "execute as @s anchored eyes run particle minecraft:sweep_attack ^ ^ ^1 0.1 0.1 0.1 0 1 normal",
+        "playsound minecraft:entity.player.attack.crit master @p ~ ~ ~ 1 1",
+        "function satsu_iron_man_addon:raycast/nano_katar/main"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_katar.attack",
+                    "property": "value",
+                    "min": 15,
+                    "max": 15
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_katar.attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": []
+          }
+        ]
+      }
+    },
+    "nano_katar.attribute": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "f690d74f-5bab-432d-b60d-0748e3208bd8",
+      "amount": 3.1,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_katar"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_hand_blade": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_hand_blade.png",
+      "title": { "translate": "ability.title.satsu.nano_hand_blade" },
+      "description": { "translate": "description.satsu.nano_hand_blade" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-7, -0],
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 7,
+            "max_score": 7
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "nano_hand_blade.attribute": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "f285d74f-5bab-432d-b60d-0748e3208bd8",
+      "amount": 5.0,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_hand_blade"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_hand_blade.destroy_speed": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [-1, -2],
+      "attribute": "palladium:destroy_speed",
+      "amount": 13,
+      "operation": 0,
+      "uuid": "561be4fb-af04-42f2-3498-e6ccdc0d99e1",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_hand_blade"
+          }
+        ]
+      }
+    },
+    "nano_hand_blade.FlashParticle": {
+      "type": "palladium:command",
+      "first_tick_commands": [
+        "execute as @s anchored eyes run particle minecraft:sweep_attack ^ ^ ^1 0.1 0.1 0.1 0 1 normal",
+        "execute as @s anchored eyes run particle minecraft:sweep_attack ^ ^ ^1 0.1 0.1 0.1 0 1 normal",
+        "scoreboard players reset @s satsu.iron.man.addon.damage.stealh"
+      ],
+      "commands": [""],
+      "hidden": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:command_result",
+            "command": "execute if score @s satsu.iron.man.addon.damage.stealh matches 1.."
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_hand_blade"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_hand_blade.attack_speed": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [4.3, 0.5],
+      "attribute": "minecraft:generic.attack_speed",
+      "uuid": "388be4fb-af04-42f2-8948-e6ccdc0d99e2",
+      "amount": 3,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_hand_blade"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_rial": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_rial.png",
+      "title": { "translate": "ability.title.satsu.nano_rial" },
+      "description": { "translate": "description.satsu.nano_rial" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-7, -0.5],
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 8,
+            "max_score": 8
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "nano_mallet": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet.png",
+      "title": { "translate": "ability.title.satsu.nano_mallet" },
+      "description": { "translate": "description.satsu.nano_mallet" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-8, -0],
+      "list_index": 1,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 9,
+            "max_score": 9
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_wallet.destroy_speed": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [-1, -2],
+      "attribute": "palladium:destroy_speed",
+      "amount": 20,
+      "operation": 0,
+      "uuid": "348be4fb-af04-42f2-3788-e6ccdc0d99e1",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          }
+        ]
+      }
+    },
+    "nano_wallet.punch_damage": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:punch_damage",
+      "amount": 10,
+      "operation": 0,
+      "uuid": "534be4fb-af04-42f2-6588-e6ccdc0d99e1",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          }
+        ]
+      }
+    },
+    "nano_wallet.attack_knockback": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_knockback",
+      "amount": 1.3,
+      "operation": 0,
+      "uuid": "267be4fb-af04-42f2-8598-e6ccdc0d99e1",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          }
+        ]
+      }
+    },
+    "nano_wallet.no.objects.in.main.hand": {
+      "type": "palladium:restrict_slots",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slots": ["mainhand"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          }
+        ]
+      }
+    },
+    "nano_mallet.smash": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet_smash.png",
+      "title": { "translate": "ability.title.satsu.nano_mallet.smash" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 2,
+      "start_value": 0,
+      "max_value": 16,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 17,
+            "cooldown": 30,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_mallet"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_mallet.smash_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["function satsu_iron_man_addon:raycast/mallet_smash/main"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_mallet.smash",
+                    "property": "value",
+                    "min": 15,
+                    "max": 15
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_mallet.smash"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": []
+          }
+        ]
+      }
+    },
+    "nano_grenade_launcher": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_grenade_launcher.png",
+      "title": { "translate": "ability.title.satsu.nano_grenade_launcher" },
+      "description": { "translate": "description.satsu.nano_grenade_launcher" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-8, -0.5],
+      "list_index": 1,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 10,
+            "max_score": 10
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_fireworks": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.fireworks" },
+      "description": { "translate": "description.Fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-9, -0],
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 21,
+            "cooldown": 100,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 11,
+            "max_score": 11
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_flares_flames": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
+      "title": { "translate": "ability.title.satsu.flare.flame" },
+      "description": { "translate": "description.satsu.flare.flame" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-9, -0.5],
+      "list_index": 1,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 80,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 12,
+            "max_score": 12
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "tool_hands": {
+      "type": "palladium:tool_hands",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "drop_block_tags": [
+        "minecraft:mineable/pickaxe",
+        "minecraft:needs_iron_tool"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_sword"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_katar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_hand_blade"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "no-list:aim_off_arm": {
       "type": "palladium:aim",
       "hidden": true,
@@ -565,6 +2132,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "nano_flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_katar.attack"
               }
             ]
           }
@@ -803,6 +2374,72 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_katar"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_ark_energy.nano_sword": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 2"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_sword"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_ark_energy.nano_hand_blade": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 3"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_hand_blade"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_ark_energy.nano_mallet": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 1"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_mallet"
               }
             ]
           }
