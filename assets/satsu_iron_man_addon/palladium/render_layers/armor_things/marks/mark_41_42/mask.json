@@ -1,0 +1,154 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 0,
+            "max": 16
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 51
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask/iron_man_suit_#X_0_#TIMER"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "animation.minecraft:mask.up",
+            "mask.on": "animation.minecraft:mask.down"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:objective_score",
+          "objective": "satsu.iron.man.addon.armor.head",
+          "min_score": 0,
+          "max_score": 0
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 0,
+            "max": 16
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 51
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask/iron_man_suit_lights_#X_0_#TIMER"
+      },
+      "render_type": "glow",
+      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "animation.minecraft:mask.up",
+            "mask.on": "animation.minecraft:mask.down"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:objective_score",
+          "objective": "satsu.iron.man.addon.armor.head",
+          "min_score": 0,
+          "max_score": 0
+        },
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor.ark.energy",
+              "min_score": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/shield/repulser_shield.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/shields/repulser_shield.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/shields/repulser_shield/animation_#SHIELD.png"
+          }
+        ],
+        "variables": {
+          "SHIELD": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "force_field.shield.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 6
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/shields/repulser_shield_in_mask/animation_#SHIELD"
+      },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+          "ability": "force_field.animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        }
+      ]
+    }
+  ]
+}
