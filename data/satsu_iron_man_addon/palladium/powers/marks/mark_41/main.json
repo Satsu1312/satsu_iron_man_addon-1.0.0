@@ -41,6 +41,14 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.addon.armor.left.arm matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.arm 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.right.arm matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.arm 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.left.shoulder matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.shoulder 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.right.shoulder matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.shoulder 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.left.leg matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.leg 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.right.leg matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.leg 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.head matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.head 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.chest matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.chest 0",
         "tag @s add satsu.iron.man.suit.set",
         "tag @s add mark.41",
         "scoreboard players set @s satsu.iron.man.armor 51",
@@ -112,6 +120,97 @@
           }
         ],
         "unlocking": []
+      }
+    },
+    "geckolib:render_layer_animation.ensamble_armor.mark.7.to.more.mask.up": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/marks/mark_41_42/mask",
+      "controller": "mask.up",
+      "animation_trigger": "mask.up",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.mask",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mask_activate"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "geckolib:render_layer_animation.ensamble_armor.mark.7.to.more.mask.on": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/marks/mark_41_42/mask",
+      "controller": "mask.up",
+      "animation_trigger": "mask.on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.mask",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "mask_activate"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.mask",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "no_nanoarmor_anim",
+                    "property": "value",
+                    "min": 12,
+                    "max": 13
+                  },
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived",
+                        "min_score": 1,
+                        "max_score": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     },
     "particles.right_hand.left_hand": {
