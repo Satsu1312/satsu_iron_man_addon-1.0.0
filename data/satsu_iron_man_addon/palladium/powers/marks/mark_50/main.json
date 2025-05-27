@@ -2173,6 +2173,96 @@
         ]
       }
     },
+    "energy_projectile.damage.18": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 8,
+        "KnockbackStrength": 0,
+        "Damage": 18,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/superior_iron_man_pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/superior_iron_man_pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "energy.pulse_right",
+            "min": 5,
+            "max": 5
+          }
+        ]
+      }
+    },
+    "energy_projectile.left.damage.18": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 8,
+        "KnockbackStrength": 0,
+        "Damage": 18,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/superior_iron_man_pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/superior_iron_man_pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "energy.pulse_left",
+            "min": 5,
+            "max": 5
+          }
+        ]
+      }
+    },
     "no-list:aim_off_arm": {
       "type": "palladium:aim",
       "hidden": true,
@@ -2184,6 +2274,11 @@
           {
             "type": "palladium:or",
             "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "energy.pulse_left"
+              },
               {
                 "type": "palladium:ability_enabled",
                 "ability": "nano_grenade_launcher_left"
@@ -2216,6 +2311,11 @@
           {
             "type": "palladium:or",
             "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "energy.pulse_right"
+              },
               {
                 "type": "palladium:ability_enabled",
                 "ability": "nano_grenade_launcher_right"
