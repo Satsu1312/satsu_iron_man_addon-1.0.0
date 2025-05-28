@@ -2602,7 +2602,7 @@
                   {
                     "type": "palladium:animation_timer_ability",
                     "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                    "ability": "mini.gun.right",
+                    "ability": "mini.gun.left",
                     "min": 10,
                     "max": 10
                   },
@@ -2633,6 +2633,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "energy.pulse_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mini.gun.left"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -2671,6 +2676,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "energy.pulse_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mini.gun.right"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -3039,6 +3049,42 @@
             ]
           }
         ]
+      }
+    },
+    "minigun.remove.ark.energy": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "xp add @s 1"
+      ],
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 12"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mini.gun.right",
+                "min": 1,
+                "max": 10
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "mini.gun.left",
+                "min": 1,
+                "max": 10
+              }
+            ]
+          }
+        ],
+        "unlocking": []
       }
     }
   }
