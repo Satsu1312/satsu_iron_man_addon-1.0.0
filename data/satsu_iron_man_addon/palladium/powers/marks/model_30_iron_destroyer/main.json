@@ -404,6 +404,67 @@
         ]
       }
     },
+    "durability.remote": {
+      "type": "gravestone:stat_ability",
+      "icon": "minecraft:iron_chestplate",
+      "title": { "translate": "ability.title.satsu.durability" },
+      "description": { "translate": "description.satsu.durability" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [2.8, -1],
+      "score_value": "satsu.iron.man.durability",
+      "Division_Amount": "0",
+      "Attribute_Type": "minecraft:generic.armor",
+      "UUID": "b679de99-9744-4cd1-83ca-ed123bb07291",
+      "Attribute_Mod": "addition",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.remote",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
     "armor_toughness": {
       "type": "gravestone:stat_ability",
       "icon": "minecraft:iron_chestplate",
