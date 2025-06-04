@@ -2439,6 +2439,7 @@
         "waepons.choose_wheel.nano_katar",
         "waepons.choose_wheel.nano_hand_blade",
         "waepons.choose_wheel.force_field",
+        "waepons.choose_wheel_nano_energy_boosters",
         "waepons.choose_wheel.cook_ark"
       ],
       "conditions": {
@@ -2801,6 +2802,32 @@
       "hidden_in_bar": false,
       "first_tick_commands": [
         "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 12"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel_nano_energy_boosters": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/energy_boosters.png",
+      "title": { "translate": "ability.title.satsu.energy.boosters" },
+      "description": { "translate": "description.satsu.energy.boosters" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 13"
       ],
       "commands": [""],
       "conditions": {
@@ -4084,7 +4111,7 @@
     },
     "nano_energy_boosters": {
       "type": "palladium:dummy",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/energy_boosters.png",
       "title": { "translate": "ability.title.satsu.energy.boosters" },
       "description": { "translate": "description.satsu.energy.boosters" },
       "hidden": true,
@@ -4139,6 +4166,28 @@
       "last_tick_commands": [
         "superpower remove satsu_iron_man_addon:marks/mark_85/beams/energy_boosters/beam @s"
       ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "nano_energy_boosters",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "energy_boosters.chest.remove.ark.energy": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 20"
+      ],
+      "last_tick_commands": [""],
       "conditions": {
         "enabling": [
           {
