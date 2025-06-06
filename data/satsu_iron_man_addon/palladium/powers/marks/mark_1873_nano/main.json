@@ -1,10 +1,26 @@
 {
   "name": { "translate": "ability.title.satsu.mark.1873" },
   "persistent_data": true,
+  "allow_bar_shrinking": true,
   "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
   "background": "satsu_iron_man_addon:textures/gui/block/background.png",
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "gui_display_type": "list",
+  "energy_bars": {
+    "energy": {
+      "max": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy.max",
+        "fallback": 0
+      },
+      "color": "#8ffffd",
+      "synced_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy",
+        "fallback": 0
+      }
+    }
+  },
   "abilities": {
     "flight": {
       "type": "gravestone:stat_ability",
@@ -4267,11 +4283,10 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
-        "tag @s add mark.1873.clap_smoke_hands",
         "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30"
       ],
       "commands": [
-        "execute as @e[tag=!mark.1873.clap_smoke_hands,distance=0..8] run effect give @s minecraft:wither 5 2 true",
+        "execute as @e[distance=0.1..8] run effect give @s minecraft:wither 5 2 true",
         "particle minecraft:large_smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
         "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30"
       ],
@@ -4279,7 +4294,6 @@
         "particle minecraft:large_smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
         "particle minecraft:smoke ~ ~1 ~ 0.3 0.3 0.3 0.01 30",
         "particle smoke ~ ~1 ~ 5 2 5 0.01 1500 force",
-        "tag @s remove mark.1873.clap_smoke_hands",
         "tag @s add mark.1873.clap_smoke_hands.later"
       ],
       "conditions": {
@@ -5123,23 +5137,6 @@
         ]
       }
     },
-    "remove_ark_energy.blades": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": [
-        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 1"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "nano_katar"
-          }
-        ]
-      }
-    },
     "remove_ark_energy.nano_sword": {
       "type": "palladium:command",
       "hidden": true,
@@ -5184,7 +5181,7 @@
         ]
       }
     },
-    "remove_ark_energy.nano_mallet": {
+    "remove_ark_energy.nano_mallet.blades": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -5200,6 +5197,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_mallet"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_katar"
               }
             ]
           }

@@ -1,10 +1,26 @@
 {
   "name": { "translate": "ability.title.satsu.mark.30.iron.destroyer" },
   "persistent_data": true,
+  "allow_bar_shrinking": true,
   "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
   "background": "satsu_iron_man_addon:textures/gui/block/background.png",
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "gui_display_type": "list",
+  "energy_bars": {
+    "energy": {
+      "max": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy.max",
+        "fallback": 0
+      },
+      "color": "#8ffffd",
+      "synced_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy",
+        "fallback": 0
+      }
+    }
+  },
   "abilities": {
     "flight": {
       "type": "gravestone:stat_ability",
@@ -3079,23 +3095,6 @@
         ]
       }
     },
-    "remove_ark_energy.blades": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": [
-        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 1"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "nano_katar"
-          }
-        ]
-      }
-    },
     "remove_ark_energy.nano_sword": {
       "type": "palladium:command",
       "hidden": true,
@@ -3140,7 +3139,7 @@
         ]
       }
     },
-    "remove_ark_energy.nano_mallet": {
+    "remove_ark_energy.nano_mallet.blades": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -3156,6 +3155,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_mallet"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_katar"
               }
             ]
           }
