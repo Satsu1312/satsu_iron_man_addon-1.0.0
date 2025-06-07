@@ -4110,18 +4110,22 @@
       }
     },
     "damage_taken": {
-      "type": "palladium:dummy",
+      "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
       "title": { "translate": "ability.title.satsu.flare.flame" },
       "description": { "translate": "description.satsu.flare.flame" },
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 16,
-      "max_distance": 5,
+      "commands": [
+        "particle satsu_iron_man_addon:taken ~ ~ ~ 2 3 2 0.01 10 normal @a",
+        "effect give @e[distance=0.1..10] minecraft:nausea 3",
+        "effect give @e[distance=0.1..10] minecraft:slowness 3 1"
+      ],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
+            "type": "palladium:toggle",
             "ticks": 20,
             "cooldown": 0,
             "key_type": "key_bind",
@@ -4142,6 +4146,54 @@
                 "tag": "alien"
               }
             ]
+          }
+        ]
+      }
+    },
+    "damage_taken.vibrate": {
+      "type": "palladium:vibrate",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "damage_taken"
+          }
+        ]
+      }
+    },
+    "damage_taken.damage": {
+      "type": "gravestone:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 8,
+      "damage": 3,
+      "fire_seconds": 0,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "damage_taken"
+          }
+        ]
+      }
+    },
+    "damage_taken.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:taken_damage",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "damage_taken"
           }
         ]
       }
