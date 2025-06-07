@@ -4202,13 +4202,73 @@
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": true,
-      "start_value":0,
-      "max_value":10,
+      "start_value": 0,
+      "max_value": 10,
       "conditions": {
         "enabling": [
           {
             "type": "palladium:ability_enabled",
             "ability": "damage_taken"
+          }
+        ]
+      }
+    },
+    "taken_increase": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.flare.flame" },
+      "description": { "translate": "description.satsu.flare.flame" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 17,
+      "max_distance": 5,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "ticks": 20,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "taken_increase.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scale": 1.35,
+      "first_tick_commands": [
+        "superpower add satsu_iron_man_addon:marks/mark_taken/hulkbuster/main"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "superpower remove satsu_iron_man_addon:marks/mark_taken/hulkbuster/main"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "taken_increase"
           }
         ]
       }
