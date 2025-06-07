@@ -16,7 +16,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
         const max_distance = entry.getPropertyByName("max_distance");
         let username = entity.getGameProfile().getName();
         entity.runCommandSilent(
-          `execute as ${username} run tp ^ ^ ^${max_distance}`
+          `execute as ${username} at ${username} run tp ^ ^ ^${max_distance}`
         );
       }
     });
