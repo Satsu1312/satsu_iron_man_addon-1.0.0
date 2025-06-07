@@ -1,11 +1,25 @@
 {
   "name": { "translate": "ability.title.satsu.mark.21" },
   "persistent_data": true,
+  "allow_bar_shrinking": true,
   "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
   "background": "satsu_iron_man_addon:textures/gui/block/background.png",
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "gui_display_type": "list",
   "energy_bars": {
+    "energy": {
+      "max": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy.max",
+        "fallback": 0
+      },
+      "color": "#8ffffd",
+      "synced_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy",
+        "fallback": 0
+      }
+    },
     "flight_speed": {
       "max": {
         "type": "score",
@@ -962,6 +976,33 @@
             "property": "value",
             "min": 15,
             "max": 16
+          }
+        ]
+      }
+    },
+    "after_image": {
+      "type": "palladium:trail",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "trail": "satsu_iron_man_addon:marks/mark_21/main",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "palladium:sprinting"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
           }
         ]
       }
