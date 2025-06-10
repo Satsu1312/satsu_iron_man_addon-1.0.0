@@ -919,7 +919,6 @@
                   },
                   {
                     "type": "palladium:ability_integer_property",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "mini.gun.right",
                     "property": "value",
                     "min": "1",
@@ -927,7 +926,6 @@
                   },
                   {
                     "type": "palladium:ability_integer_property",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "mini.gun.left",
                     "property": "value",
                     "min": "1",
@@ -2525,7 +2523,6 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "interpolate",
                     "property": "value",
                     "min": 17,
@@ -4280,12 +4277,10 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "mini.gun.left"
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "mini.gun.right"
               }
             ]
@@ -4329,12 +4324,10 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "mini.gun.left"
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "mini.gun.right"
                   }
                 ]
@@ -4647,6 +4640,39 @@
             "max_score": 2
           }
         ]
+      }
+    },
+    "glow": {
+      "type": "palladium:command",
+      "hidden": true,
+      "last_tick_commands": [
+        "fill ~5 ~5 ~5 ~-5 ~-5 ~-5 air replace light[level=10]"
+      ],
+      "commands": [
+        "fill ~5 ~5 ~5 ~-5 ~-5 ~-5 air replace light[level=10]",
+        "setblock ~ ~1 ~ minecraft:light[level=10] keep",
+        "setblock ~ ~ ~ minecraft:light[level=10] keep",
+        "kill @e[type=minecraft:arrow,distance=0..2]"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
       }
     }
   }
