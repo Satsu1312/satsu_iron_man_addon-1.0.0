@@ -419,6 +419,14 @@
                   },
                   {
                     "type": "palladium:has_tag",
+                    "tag": "mark.80"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.85"
+                  },
+                  {
+                    "type": "palladium:has_tag",
                     "tag": "mark.50.superior"
                   },
                   {
@@ -2315,8 +2323,7 @@
       "hidden_in_bar": true,
       "gui_position": [-1, 0],
       "conditions": {
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "animation_timer_sentinel_dummy": {
@@ -2379,6 +2386,14 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.50"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.80"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.85"
               },
               {
                 "type": "palladium:has_tag",
@@ -2458,6 +2473,14 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "mark.50"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.80"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mark.85"
               },
               {
                 "type": "palladium:has_tag",
@@ -2555,17 +2578,13 @@
       "hidden_in_bar": false,
       "list_index": 1,
       "gui_position": [-2, -0.5],
-      "start_value": 1,
+      "start_value": 0,
       "max_value": 20,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:activation",
-            "cooldown": 0,
-            "ticks": 21,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
+            "type": "palladium:has_tag",
+            "tag": "sentinel.not.anim"
           }
         ],
         "unlocking": [
@@ -2637,15 +2656,147 @@
         ]
       }
     },
+    "passing_animation_sentinel": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0.1..0.5] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
+            "comparison": "==",
+            "compare_to": 1,
+            "log": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": 0,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.ark.energy",
+                        "min_score": -10000,
+                        "max_score": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "sentinel.false"
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "animation_timer_sentinel_dummy.in.skill.bar_2"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor"
+              },
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..3] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.enable.sentinel",
+                    "min_score": 2,
+                    "max_score": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "passing_animation_sentinel_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["tag @s add sentinel.not.anim"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "passing_animation_sentinel",
+            "property": "value",
+            "min": 1,
+            "max": 20
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "animation_timer_sentinel_dummy.in.skill.bar_2"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.enable.sentinel",
+                    "min_score": 2,
+                    "max_score": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "kill_armor_sentinel": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "commands": [
+      "commands": [],
+      "last_tick_commands": [
         "execute as @e[tag=sentinel,limit=2,sort=nearest,distance=0..3] run tag @s add sentinel_kill",
         "execute as @e[tag=sentinel,limit=2,distance=0..3] run data modify entity @s Owner set value [I; 0, 0, 0, 0]",
         "execute as @e[tag=sentinel,limit=2,distance=0..3] run tp @s ~ ~-1000 ~",
         "scoreboard players reset @s satsu.iron.man.addon.enable.sentinel",
+        "tag @s remove sentinel.not.anim",
         "tag @s remove sentinel_one"
       ],
       "conditions": {
@@ -2655,8 +2806,8 @@
             "power": "satsu_iron_man_addon:ia_stuff/ia",
             "ability": "animation_timer_kill_sentinel",
             "property": "value",
-            "min": 19,
-            "max": 20
+            "min": 1,
+            "max": 9
           }
         ],
         "unlocking": [

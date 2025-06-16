@@ -7,6 +7,8 @@ scoreboard objectives add satsu.iron.man.addon.armor.right.shoulder dummy
 scoreboard objectives add satsu.iron.man.addon.armor.left.shoulder dummy
 scoreboard objectives add satsu.iron.man.addon.armor.right.leg dummy
 scoreboard objectives add satsu.iron.man.addon.armor.left.leg dummy
+scoreboard objectives add satsu.iron.man.armor.85.nano.mask dummy
+scoreboard objectives add satsu.iron.man.armor.85.old.mask dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.additaments.choose dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.additaments dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.color.black.choose dummy
