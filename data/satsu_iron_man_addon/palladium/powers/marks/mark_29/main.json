@@ -30,8 +30,7 @@
       "hidden_in_bar": true,
       "gui_position": [0, 0],
       "conditions": {
-        "enabling": [
-        ],
+        "enabling": [],
         "unlocking": [
           {
             "type": "palladium:ability_unlocked",
@@ -966,8 +965,7 @@
             ]
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "remove_armor": {
@@ -1432,7 +1430,9 @@
       "abilities": [
         "energy_beam_increase_wheel_1",
         "energy_beam_increase_wheel_2",
-        "energy_beam_increase_wheel_3"
+        "energy_beam_increase_wheel_3",
+        "energy_beam_increase_wheel_4",
+        "energy_beam_increase_wheel_5"
       ],
       "texture": "null",
       "disable_mouse_scrolling": false,
@@ -1549,6 +1549,54 @@
       "hidden_in_bar": false,
       "commands": [
         "scoreboard players set @s satsu.iron.man.addon.energy.beam.powerfull 2"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "energy_beam_increase_wheel"
+          }
+        ]
+      }
+    },
+    "energy_beam_increase_wheel_4": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_beam_powerfull_3.png",
+      "title": { "translate": "ability.title.satsu.energy_beam.4" },
+      "description": { "translate": "description.energy_beam" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.addon.energy.beam.powerfull 3"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "energy_beam_increase_wheel"
+          }
+        ]
+      }
+    },
+    "energy_beam_increase_wheel_5": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_beam_powerfull_4.png",
+      "title": { "translate": "ability.title.satsu.energy_beam.5" },
+      "description": { "translate": "description.energy_beam" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "commands": [
+        "scoreboard players set @s satsu.iron.man.addon.energy.beam.powerfull 4"
       ],
       "conditions": {
         "enabling": [
@@ -2334,7 +2382,7 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.addon.energy.beam.powerfull",
             "min_score": 2,
-            "max_score": 2
+            "max_score": 4
           }
         ]
       }
@@ -2446,7 +2494,7 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.addon.energy.beam.powerfull",
             "min_score": 2,
-            "max_score": 2
+            "max_score": 4
           }
         ],
         "unlocking": []
@@ -4253,7 +4301,7 @@
                         "type": "palladium:objective_score",
                         "objective": "satsu.iron.man.addon.energy.beam.powerfull",
                         "min_score": 1,
-                        "max_score": 2
+                        "max_score": 4
                       }
                     ]
                   }
@@ -4329,13 +4377,77 @@
         "unlocking": []
       }
     },
+    "commands_energy_beams_powerfull_3": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "superpower add satsu_iron_man_addon:marks/mark_29/beams/chest/energy_beams_powerfull_3"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "superpower remove satsu_iron_man_addon:marks/mark_29/beams/chest/energy_beams_powerfull_3"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_beam"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.energy.beam.powerfull",
+            "min_score": 3,
+            "max_score": 3
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "commands_energy_beams_powerfull_4": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "superpower add satsu_iron_man_addon:marks/mark_29/beams/chest/energy_beams_powerfull_4"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "superpower remove satsu_iron_man_addon:marks/mark_29/beams/chest/energy_beams_powerfull_4"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_beam"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.energy.beam.powerfull",
+            "min_score": 4,
+            "max_score": 4
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "energybeam-chest.remove.ark.energy": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [""],
       "commands": [
-        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 3"
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 2"
       ],
       "last_tick_commands": [""],
       "conditions": {
@@ -4369,7 +4481,7 @@
       "hidden_in_bar": true,
       "first_tick_commands": [""],
       "commands": [
-        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 6"
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 4"
       ],
       "last_tick_commands": [""],
       "conditions": {
@@ -4398,7 +4510,7 @@
       "hidden_in_bar": true,
       "first_tick_commands": [""],
       "commands": [
-        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 12"
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 8"
       ],
       "last_tick_commands": [""],
       "conditions": {
@@ -4417,6 +4529,64 @@
             "objective": "satsu.iron.man.addon.energy.beam.powerfull",
             "min_score": 2,
             "max_score": 2
+          }
+        ]
+      }
+    },
+    "energybeam-chest.remove.ark.energy_3": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 12"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_beam"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.energy.beam.powerfull",
+            "min_score": 3,
+            "max_score": 3
+          }
+        ]
+      }
+    },
+    "energybeam-chest.remove.ark.energy_4": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 18"
+      ],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_beam"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.energy.beam.powerfull",
+            "min_score": 4,
+            "max_score": 4
           }
         ]
       }
