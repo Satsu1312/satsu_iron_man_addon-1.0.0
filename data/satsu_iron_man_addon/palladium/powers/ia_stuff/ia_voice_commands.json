@@ -380,6 +380,36 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "sentinel.false"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=2..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
+                    "comparison": "==",
+                    "compare_to": 1,
+                    "log": false
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "sentinel.false"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -565,15 +595,6 @@
                 "objective": "satsu.iron.man.armor.ark.energy",
                 "min_score": -1000000000,
                 "max_score": 101
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:command_result",
-                    "command": "execute if entity @s[nbt={Inventory:[{Slot:102b}]}]"
-                  }
-                ]
               }
             ]
           }
@@ -705,6 +726,48 @@
                     "max_score": 1
                   }
                 ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "disabled_remote_nothing_in_chest": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:ia_icon",
+      "title": {
+        "translate": "ability.title.satsu.ia_skill_bar"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.ia_skill_stat" },
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/disable_emergency"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @s[nbt={Inventory:[{Slot:102b}]}]"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
               }
             ]
           }
