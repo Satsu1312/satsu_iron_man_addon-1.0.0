@@ -380,6 +380,36 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "sentinel.false"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=2..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
+                    "comparison": "==",
+                    "compare_to": 1,
+                    "log": false
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "sentinel.false"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -565,15 +595,6 @@
                 "objective": "satsu.iron.man.armor.ark.energy",
                 "min_score": -1000000000,
                 "max_score": 101
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:command_result",
-                    "command": "execute if entity @s[nbt={Inventory:[{Slot:102b}]}]"
-                  }
-                ]
               }
             ]
           }
