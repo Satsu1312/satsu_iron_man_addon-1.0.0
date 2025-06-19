@@ -2860,6 +2860,7 @@
         "waepons.choose_wheel_nano_flares_flames",
         "waepons.choose_wheel.nano_katar",
         "waepons.choose_wheel.nano_hand_blade",
+        "waepons.choose_wheel_stealth",
         "waepons.choose_wheel.force_field",
         "waepons.choose_wheel.cook_ark"
       ],
@@ -3200,6 +3201,31 @@
       "hidden_in_bar": false,
       "first_tick_commands": [
         "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 12"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel_stealth": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 13"
       ],
       "commands": [""],
       "conditions": {
@@ -4717,6 +4743,54 @@
             "objective": "satsu.iron.man.addon.nano.armor.things",
             "min_score": 12,
             "max_score": 12
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "stealth": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-9, -0.5],
+      "list_index": 11,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "ticks": 20,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 13,
+            "max_score": 13
           },
           {
             "type": "palladium:not",
