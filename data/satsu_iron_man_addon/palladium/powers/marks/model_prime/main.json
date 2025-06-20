@@ -30,8 +30,7 @@
       "hidden_in_bar": true,
       "gui_position": [0, 0],
       "conditions": {
-        "enabling": [
-        ],
+        "enabling": [],
         "unlocking": [
           {
             "type": "palladium:ability_unlocked",
@@ -1606,15 +1605,6 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "nano_sword"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
                     "ability": "nano_mallet"
                   }
                 ]
@@ -1730,15 +1720,6 @@
                 "property": "value",
                 "min": 17,
                 "max": 17
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "nano_sword"
-                  }
-                ]
               },
               {
                 "type": "palladium:not",
@@ -1902,15 +1883,6 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "nano_sword"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
                     "ability": "nano_mallet"
                   }
                 ]
@@ -1987,15 +1959,6 @@
                 "property": "value",
                 "min": 17,
                 "max": 17
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "nano_sword"
-                  }
-                ]
               },
               {
                 "type": "palladium:not",
@@ -2312,15 +2275,6 @@
                 "type": "palladium:not",
                 "conditions": [
                   {
-                    "type": "palladium:ability_enabled",
-                    "ability": "nano_sword"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
                     "type": "palladium:or",
                     "conditions": [
                       {
@@ -2399,15 +2353,6 @@
                 "property": "value",
                 "min": 17,
                 "max": 17
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "nano_sword"
-                  }
-                ]
               },
               {
                 "type": "palladium:not",
@@ -2851,13 +2796,15 @@
         "increase_chest_beam",
         "decrease_chest_beam",
         "waepons.choose_wheel_rockets",
-        "waepons.choose_wheel.nano_grenade_launcher",
         "waepons.choose_wheel.maximum.pulse",
-        "waepons.choose_wheel.nano_mallet",
-        "waepons.choose_wheel.nano_rial",
-        "waepons.choose_wheel.nano_sword",
         "waepons.choose_wheel_nano_rockets",
         "waepons.choose_wheel_nano_flares_flames",
+        "waepons.choose_wheel_nano_energy_boosters",
+        "waepons.choose_wheel.cook_ark",
+        "waepons.choose_wheel.nano_grenade_launcher",
+        "waepons.choose_wheel.nano_rial",
+        "waepons.choose_wheel.nano_mallet",
+        "waepons.choose_wheel.nano_sword",
         "waepons.choose_wheel.nano_katar",
         "waepons.choose_wheel.nano_hand_blade",
         "waepons.choose_wheel_stealth",
@@ -2965,7 +2912,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 3"
+        "function satsu_iron_man_addon:nano_weapons/sword"
       ],
       "commands": [""],
       "conditions": {
@@ -3043,7 +2990,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 6"
+        "function satsu_iron_man_addon:nano_weapons/katars"
       ],
       "commands": [""],
       "conditions": {
@@ -3069,7 +3016,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 7"
+        "function satsu_iron_man_addon:nano_weapons/large_sword"
       ],
       "commands": [""],
       "conditions": {
@@ -3095,7 +3042,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 8"
+        "function satsu_iron_man_addon:nano_weapons/rial"
       ],
       "commands": [""],
       "conditions": {
@@ -3121,7 +3068,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 9"
+        "function satsu_iron_man_addon:nano_weapons/hammer"
       ],
       "commands": [""],
       "conditions": {
@@ -3147,7 +3094,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.nano.armor.things 10"
+        "function satsu_iron_man_addon:nano_weapons/grenade_launcher"
       ],
       "commands": [""],
       "conditions": {
@@ -3429,6 +3376,16 @@
             "property": "value",
             "min": 17,
             "max": 17
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.weapon.hammer",
+                "min_score": 1
+              }
+            ]
           }
         ]
       }
@@ -3446,11 +3403,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.weapon.sword",
+            "min_score": 1,
+            "max_score": 1
           }
         ],
         "unlocking": [
@@ -3465,12 +3421,6 @@
               {
                 "type": "palladium:ability_unlocked",
                 "ability": "waepons.choose"
-              },
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.nano.armor.things",
-                "min_score": 3,
-                "max_score": 3
               },
               {
                 "type": "palladium:not",
@@ -3732,6 +3682,32 @@
         "unlocking": []
       }
     },
+    "force_field.knockback_not_damage": {
+      "type": "palladium:attribute_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
+      "title": { "translate": "ability.title.satsu.force.field" },
+      "description": { "translate": "description.force_field" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 17,
+      "gui_position": [-8, 3],
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "1556b88d-bf11-462f-8dc1-cc854edfc0c1",
+      "amount": -1000000000000,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "force_field.shield.animation_timer",
+            "property": "value",
+            "min": 7,
+            "max": 7
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "force_field.command": {
       "type": "palladium:command",
       "hidden": true,
@@ -3853,11 +3829,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.weapon.katar",
+            "min_score": 1
           }
         ],
         "unlocking": [
@@ -3874,12 +3848,6 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "waepons.choose"
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 6,
-            "max_score": 6
           },
           {
             "type": "palladium:ability_integer_property",
@@ -4002,11 +3970,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.weapon.large.sword",
+            "min_score": 1
           }
         ],
         "unlocking": [
@@ -4023,12 +3989,6 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "waepons.choose"
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 7,
-            "max_score": 7
           },
           {
             "type": "palladium:ability_integer_property",
@@ -4127,19 +4087,17 @@
       "title": { "translate": "ability.title.satsu.nano_rial" },
       "description": { "translate": "description.satsu.nano_rial" },
       "hidden": true,
-      "hidden_in_bar": false,
-      "list_index": 11,
+      "hidden_in_bar": true,
+      "list_index": 13,
       "gui_position": [-7, -0.5],
       "start_value": 0,
       "max_value": 8,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.weapon.rial",
+            "min_score": 1
           }
         ],
         "unlocking": [
@@ -4158,10 +4116,15 @@
             "ability": "waepons.choose"
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 8,
-            "max_score": 8
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.weapon.hammer",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
           },
           {
             "type": "palladium:ability_integer_property",
@@ -4187,11 +4150,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.weapon.hammer",
+            "min_score": 1
           }
         ],
         "unlocking": [
@@ -4203,12 +4164,6 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "waepons.choose"
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 9,
-            "max_score": 9
           },
           {
             "type": "palladium:not",
@@ -4370,22 +4325,31 @@
       "title": { "translate": "ability.title.satsu.nano_grenade_launcher" },
       "description": { "translate": "description.satsu.nano_grenade_launcher" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "gui_position": [-8, -0.5],
-      "list_index": 11,
+      "list_index": 14,
       "start_value": 0,
       "max_value": 8,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.weapon.grenade_launcher",
+            "min_score": 1
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.weapon.hammer",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
           {
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
@@ -4394,12 +4358,6 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "waepons.choose"
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 10,
-            "max_score": 10
           },
           {
             "type": "palladium:not",
@@ -4444,6 +4402,10 @@
                 "min_score": 1
               },
               {
+                "type": "palladium:has_tag",
+                "tag": "energy.pulse"
+              },
+              {
                 "type": "palladium:objective_score",
                 "objective": "satsu.iron.man.armor.energy.pulse.hand",
                 "min_score": 1
@@ -4470,16 +4432,6 @@
                 "property": "value",
                 "min": 17,
                 "max": 17
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "power": "null",
-                    "ability": "nano_sword"
-                  }
-                ]
               },
               {
                 "type": "palladium:not",
@@ -4549,6 +4501,10 @@
                 "min_score": 1
               },
               {
+                "type": "palladium:has_tag",
+                "tag": "energy.pulse"
+              },
+              {
                 "type": "palladium:objective_score",
                 "objective": "satsu.iron.man.armor.energy.pulse.hand",
                 "min_score": 1,
@@ -4576,16 +4532,6 @@
                 "property": "value",
                 "min": 17,
                 "max": 17
-              },
-              {
-                "type": "palladium:not",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "power": "null",
-                    "ability": "nano_sword"
-                  }
-                ]
               },
               {
                 "type": "palladium:not",
@@ -4703,6 +4649,16 @@
                 "tag": "alien"
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.weapon.hammer",
+                "min_score": 1
+              }
+            ]
           }
         ]
       }
@@ -4750,6 +4706,16 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.weapon.hammer",
+                "min_score": 1
               }
             ]
           }
