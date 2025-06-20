@@ -863,7 +863,7 @@
         ]
       }
     },
-    "strength": {
+    "strength.right.arm": {
       "type": "palladium:attribute_modifier",
       "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
       "title": { "translate": "ability.title.satsu.strength" },
@@ -873,7 +873,7 @@
       "gui_position": [3.5, 0.5],
       "attribute": "minecraft:generic.attack_damage",
       "uuid": "f780d74f-5bab-432d-b60d-0748e5788bd8",
-      "amount": 12.5,
+      "amount": 6.25,
       "operation": 0,
       "conditions": {
         "enabling": [
@@ -897,6 +897,72 @@
             "objective": "satsu.iron.man.armor.actived",
             "min_score": 1,
             "max_score": 1
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.right.arm",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "strength.left.arm": {
+      "type": "palladium:attribute_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+      "title": { "translate": "ability.title.satsu.strength" },
+      "description": { "translate": "description.satsu.strength" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [3.5, 0.5],
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "48b453d4-7e07-4950-83dd-b58d5fcf8a30",
+      "amount": 6.25,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.left.arm",
+            "min_score": 0,
+            "max_score": 0
           },
           {
             "type": "palladium:not",
