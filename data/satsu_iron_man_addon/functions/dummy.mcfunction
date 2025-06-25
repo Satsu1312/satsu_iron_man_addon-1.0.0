@@ -1,4 +1,13 @@
 
+scoreboard objectives add satsu.iron.man.addon.nano.stabilizer dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.hammer dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.sword dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.large.sword dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.katar dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.grenade_launcher dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.rial dummy
+scoreboard objectives add satsu.iron.man.armor.85.nano.mask dummy
+scoreboard objectives add satsu.iron.man.armor.85.old.mask dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.additaments.choose dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.additaments dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.color.black.choose dummy
@@ -64,9 +73,9 @@ scoreboard objectives remove satsu.iron.man.failsafe.set
 scoreboard objectives add satsu.iron.man.armor.set dummy
 scoreboard objectives add satsu.iron.man.personalize.things dummy
 scoreboard objectives add satsu.iron.man.flame dummy
-scoreboard objectives add satsu.iron.man.strength dummy
+scoreboard objectives remove satsu.iron.man.strength
 scoreboard objectives remove satsu.iron.man.strength.health
-scoreboard objectives add satsu.iron.man.durability dummy
+scoreboard objectives remove satsu.iron.man.durability
 scoreboard objectives add satsu.iron.man.pickaxe.velocity dummy
 scoreboard objectives add satsu.prev.iron.man.armor dummy
 scoreboard objectives add satsu.prev.iron.man.armor.anim dummy
