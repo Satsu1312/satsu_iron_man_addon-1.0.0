@@ -2469,6 +2469,60 @@
         ]
       }
     },
+    "Satsu.Armor.mark.taken": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/new_icon/mark_head_icon_21.png",
+      "title": { "translate": "ability.title.satsu.mark.taken" },
+      "description": {
+        "translate": "description.iron.man.mark.taken"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-12, 3.8],
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.armor.mk.extremis.unlock 1"
+      ],
+      "commands": [""],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:experience_level_buyable",
+            "xp_level": 180,
+            "flat_levels": true
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.13.Mk1"
+          }
+        ]
+      }
+    },
+    "Satsu.Armor.mark.taken.recipe_give": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/item/instruction.png",
+      "title": { "translate": "ability.title.satsu.give.recipe" },
+      "description": { "translate": "description.satsu.give.recipe" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-12, 4.35],
+      "commands": [
+        "give @s satsu_iron_man_addon:recipes/mark_taken/main",
+        "ability lock @s satsu_iron_man_addon:items/recipe_table Satsu.Armor.mark.taken.recipe_give"
+      ],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:experience_level_buyable",
+            "xp_level": 0,
+            "flat_levels": true
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "Satsu.Armor.mark.taken"
+          }
+        ]
+      }
+    },
     "Satsu.Armor.18.mark.1873": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/new_icon/mark_head_icon_18.png",
@@ -2575,7 +2629,7 @@
     },
     "mk.1.fly": {
       "type": "gravestone:movement",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/5fly.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/fly.png",
       "title": { "translate": "ability.title.satsu.Flight.mark.1" },
       "description": { "translate": "description.flight.mark.1" },
       "hidden": false,

@@ -1,4 +1,11 @@
 
+scoreboard objectives add satsu.iron.man.addon.nano.stabilizer dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.hammer dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.sword dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.large.sword dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.katar dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.grenade_launcher dummy
+scoreboard objectives add satsu.iron.man.addon.nano.weapon.rial dummy
 scoreboard objectives add satsu.iron.man.addon.armor.choose dummy
 scoreboard objectives add satsu.iron.man.addon.armor.chest dummy
 scoreboard objectives add satsu.iron.man.addon.armor.head dummy
