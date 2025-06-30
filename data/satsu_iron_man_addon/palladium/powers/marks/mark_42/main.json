@@ -2298,7 +2298,14 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/mecano_calll",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.left.arm matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.arm 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.right.arm matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.arm 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.left.shoulder matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.shoulder 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.right.shoulder matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.shoulder 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.left.leg matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.leg 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.right.leg matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.leg 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.head matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.head 0",
+        "execute as @s unless score @s satsu.iron.man.addon.armor.chest matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.chest 0",
         "tag @s add satsu.iron.man.suit.set",
         "tag @s add mark.42",
         "scoreboard players set @s satsu.iron.man.armor 52",
@@ -2309,9 +2316,7 @@
       "commands": [""],
       "last_tick_commands": [
         "tag @s remove mark.42",
-        "tag @s remove satsu.iron.man.suit.set",
-        "superpower remove satsu_iron_man_addon:marks/mecano_calll",
-        "execute if entity @e[tag=sentinel] run function satsu_iron_man_addon:sentinels/kill_one_sentinel"
+        "tag @s remove satsu.iron.man.suit.set"
       ],
       "conditions": {
         "enabling": []
@@ -2824,12 +2829,309 @@
         "unlocking": []
       }
     },
+    "call": {
+      "type": "palladium:ability_wheel",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/on.png",
+      "title": { "translate": "ability.title.satsu.beams.edit" },
+      "description": { "translate": "description.armor_skill_bar" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "abilities": [
+        "call.all",
+        "call.chest",
+        "call.head",
+        "call.right_arm",
+        "call.left_arm",
+        "call.right_shoulder",
+        "call.left_shoulder",
+        "call.right_leg",
+        "call.left_leg"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.ark.energy",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.arms.set",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_skill_bar"
+          }
+        ]
+      }
+    },
+    "call.all": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.all" },
+      "description": { "translate": "description.satsu.part.all" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/give_all/main"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.chest": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_41/throw/chest.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.chest" },
+      "description": { "translate": "description.satsu.part.chest" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/chest/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.head": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_41/throw/head.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.head" },
+      "description": { "translate": "description.satsu.part.head" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/head/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.right_arm": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_41/throw/right_arm.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.right_arm" },
+      "description": { "translate": "description.satsu.part.right_arm" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/right_arm/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.left_arm": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_41/throw/left_arm.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.left_arm" },
+      "description": { "translate": "description.satsu.part.left_arm" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/left_arm/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.right_shoulder": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_41/throw/right_shoulder.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.right_shoulder" },
+      "description": { "translate": "description.satsu.part.right_shoulder" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/right_shoulder/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.left_shoulder": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_41/throw/left_shoulder.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.left_shoulder" },
+      "description": { "translate": "description.satsu.part.left_shoulder" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/left_shoulder/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.right_leg": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_41/throw/right_leg.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.right_leg" },
+      "description": { "translate": "description.satsu.part.right_leg" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/right_leg/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.left_leg": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_41/throw/left_leg.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.left_leg" },
+      "description": { "translate": "description.satsu.part.left_leg" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/left_leg/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call"
+          }
+        ]
+      }
+    },
     "remove_armor": {
       "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.enable_armor" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 0,
       "conditions": {
         "enabling": [
