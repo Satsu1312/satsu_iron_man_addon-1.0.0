@@ -3655,7 +3655,7 @@
       }
     },
     "call.all": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/all.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.all" },
@@ -3679,6 +3679,41 @@
           {
             "type": "palladium:ability_enabled",
             "ability": "call"
+          }
+        ]
+      }
+    },
+    "call.all_method.1": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/all.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.all" },
+      "description": { "translate": "description.satsu.part.all" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 1",
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/give_all/main"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call.all"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call.all"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.all",
+            "min_score": 1,
+            "max_score": 1
           },
           {
             "type": "palladium:or",
@@ -3794,6 +3829,101 @@
         ]
       }
     },
+    "call.all_method.2": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/all.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.part.all" },
+      "description": { "translate": "description.satsu.part.all" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/call_parts/give_all/main"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 1"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call.all"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "call.all"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.armor.head",
+                    "min_score": 0,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.armor.chest",
+                    "min_score": 0,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.armor.right.arm",
+                    "min_score": 0,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.armor.left.arm",
+                    "min_score": 0,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.armor.right.shoulder",
+                    "min_score": 0,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.armor.left.shoulder",
+                    "min_score": 0,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.armor.right.leg",
+                    "min_score": 0,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.armor.left.leg",
+                    "min_score": 0,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.all",
+            "min_score": 0,
+            "max_score": 0
+          }
+        ]
+      }
+    },
     "call.chest": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/chest.png",
@@ -3803,7 +3933,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.armor.all",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
         "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
         "function satsu_iron_man_addon:marks_parts/throw_parts/chest/throw"
       ],
@@ -3832,7 +3962,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.armor.all",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
         "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
         "function satsu_iron_man_addon:marks_parts/throw_parts/head/throw"
       ],
@@ -3861,7 +3991,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.armor.all",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
         "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
         "function satsu_iron_man_addon:marks_parts/throw_parts/right_arm/throw"
       ],
@@ -3890,7 +4020,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.armor.all",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
         "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
         "function satsu_iron_man_addon:marks_parts/throw_parts/left_arm/throw"
       ],
@@ -3919,7 +4049,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.armor.all",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
         "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
         "function satsu_iron_man_addon:marks_parts/throw_parts/right_shoulder/throw"
       ],
@@ -3948,7 +4078,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.armor.all",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
         "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
         "function satsu_iron_man_addon:marks_parts/throw_parts/left_shoulder/throw"
       ],
@@ -3977,7 +4107,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.armor.all",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
         "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
         "function satsu_iron_man_addon:marks_parts/throw_parts/right_leg/throw"
       ],
@@ -4006,7 +4136,7 @@
       "hidden": true,
       "hidden_in_bar": false,
       "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.armor.all",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
         "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
         "function satsu_iron_man_addon:marks_parts/throw_parts/left_leg/throw"
       ],
