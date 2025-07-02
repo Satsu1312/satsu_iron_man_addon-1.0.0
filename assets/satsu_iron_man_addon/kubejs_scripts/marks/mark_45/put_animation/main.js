@@ -8,7 +8,7 @@ PalladiumEvents.registerAnimations((event) => {
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:marks/mark_45/main",
-        "bones_colocation_right_arm",
+        "mark_45_anim",
         builder.getPartialTicks()
       );
 
