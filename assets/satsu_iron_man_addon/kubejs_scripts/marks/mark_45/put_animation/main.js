@@ -52,36 +52,6 @@ PalladiumEvents.registerAnimations((event) => {
             .moveY(0)
             .moveZ(0)
             .animate("InOutCubic", progress);
-          builder
-            .get("head")
-            .setXRotDegrees(0)
-            .moveY(0)
-            .moveZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("chest")
-            .setXRotDegrees(0)
-            .moveY(0)
-            .moveZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("right_leg")
-            .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
-            .moveX(0)
-            .moveY(0)
-            .moveZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("left_leg")
-            .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
-            .moveX(0)
-            .moveY(0)
-            .moveZ(0)
-            .animate("InOutCubic", progress);
           builder;
         }
       }
