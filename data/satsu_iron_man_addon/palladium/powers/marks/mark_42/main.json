@@ -3114,14 +3114,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
-        "execute as @s unless score @s satsu.iron.man.addon.armor.left.arm matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.arm 0",
-        "execute as @s unless score @s satsu.iron.man.addon.armor.right.arm matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.arm 0",
-        "execute as @s unless score @s satsu.iron.man.addon.armor.left.shoulder matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.shoulder 0",
-        "execute as @s unless score @s satsu.iron.man.addon.armor.right.shoulder matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.shoulder 0",
-        "execute as @s unless score @s satsu.iron.man.addon.armor.left.leg matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.left.leg 0",
-        "execute as @s unless score @s satsu.iron.man.addon.armor.right.leg matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.right.leg 0",
-        "execute as @s unless score @s satsu.iron.man.addon.armor.head matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.head 0",
-        "execute as @s unless score @s satsu.iron.man.addon.armor.chest matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.chest 0",
+        "function satsu_iron_man_addon:marks_parts/unless_scores/main",
         "tag @s add satsu.iron.man.suit.set",
         "tag @s add mark.42",
         "scoreboard players set @s satsu.iron.man.armor 52",
@@ -3132,8 +3125,8 @@
       "commands": [""],
       "last_tick_commands": [
         "tag @s remove mark.42",
-        "function satsu_iron_man_addon:marks_parts/throw_parts/give_all/main",
-        "tag @s remove satsu.iron.man.suit.set"
+        "tag @s remove satsu.iron.man.suit.set",
+        "execute if entity @e[tag=sentinel] run function satsu_iron_man_addon:sentinels/kill_one_sentinel"
       ],
       "conditions": {
         "enabling": []
@@ -3476,7 +3469,7 @@
       }
     },
     "particles.right_hand.left_hand": {
-      "type": "palladium:particles",
+      "type": "palladium:dummy",
       "hidden": true,
       "hidden_in_bar": true,
       "emitter": [
@@ -3523,24 +3516,6 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "uni.beam.hand.left"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.personalize.things",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.set",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.arms.set",
-                    "min_score": 1,
-                    "max_score": 1
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -4227,8 +4202,7 @@
     },
     "call.sentinel": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
-      "entity_type": "palladium:custom_projectile",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/sentinel.png",
       "title": { "translate": "ability.title.satsu.enable.sentinel" },
       "description": { "translate": "description.satsu.enable.sentinel" },
       "hidden": true,
@@ -4835,7 +4809,7 @@
               },
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.armor.right.arm",
+                "objective": "satsu.iron.man.addon.armor.left.arm",
                 "min_score": 0,
                 "max_score": 0
               }
@@ -5792,7 +5766,7 @@
                 "type": "palladium:objective_score",
                 "objective": "satsu.iron.man.flight_speed",
                 "min_score": 64,
-                "max_score": 83
+                "max_score": 126
               }
             ]
           }
@@ -5841,7 +5815,7 @@
                 "type": "palladium:objective_score",
                 "objective": "satsu.iron.man.flight_speed",
                 "min_score": 65,
-                "max_score": 84
+                "max_score": 127
               }
             ]
           }

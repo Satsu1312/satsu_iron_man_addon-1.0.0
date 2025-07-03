@@ -361,7 +361,7 @@
     },
     "ability_wheel.animation_timer_sentinel_dummy": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/sentinel.png",
       "title": { "translate": "ability.title.satsu.enable.sentinel" },
       "hidden": false,
       "hidden_in_bar": false,
@@ -846,6 +846,7 @@
         "execute unless score @s[tag=sentinel.false] satsu.iron.man.animation.armor matches 1 run function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "function satsu_iron_man_addon:sentinels/spawn_remote_sentinel",
         "scoreboard players set @s satsu.iron.man.armor.remote 1",
+        "function satsu_iron_man_addon:marks_parts/call_parts/give_all/main",
         "execute unless score @s[tag=!sentinel.false] satsu.iron.man.animation.armor matches 1 run function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "execute unless score @s[tag=sentinel.false] satsu.iron.man.animation.armor matches 1 run function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
         "execute as @s[tag=sentinel.false] as @e[tag=sentinel] run function satsu_iron_man_addon:ia/swap_sentinels",
@@ -853,7 +854,8 @@
       ],
       "commands": [""],
       "last_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/disable"
+        "function satsu_iron_man_addon:remote_mode/disable",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/give_all/main"
       ],
       "conditions": {
         "enabling": [
@@ -2358,7 +2360,7 @@
     },
     "animation_timer_sentinel_dummy": {
       "type": "palladium:dummy",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/sentinel.png",
       "title": { "translate": "ability.title.satsu.enable.sentinel" },
       "description": { "translate": "description.satsu.enable.sentinel" },
       "hidden": false,
