@@ -1080,41 +1080,86 @@
         ]
       }
     },
-    "pickaxe.velocity": {
-      "type": "gravestone:stat_ability",
+    "pickaxe.velocity.right.arm": {
+      "type": "palladium:attribute_modifier",
       "icon": "minecraft:golden_pickaxe",
       "title": { "translate": "ability.title.satsu.pickaxe.velocity" },
       "description": { "translate": "description.satsu.pickaxe.velocity" },
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [-1, 1.5],
-      "score_value": "satsu.iron.man.pickaxe.velocity",
-      "Division_Amount": "10",
-      "Attribute_Type": "palladium:destroy_speed",
-      "UUID": "f517d74f-5bab-432d-b60d-0890e6448bd8",
-      "Attribute_Mod": "addition",
+      "attribute": "palladium:destroy_speed",
+      "uuid": "f517d74f-5bab-432d-b60d-0890e6448bd8",
+      "amount": 44.5,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "armor_skill_bar"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "enable_armor"
-              }
-            ]
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
           },
           {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor.actived",
             "min_score": 1,
             "max_score": 1
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.right.arm",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "pickaxe.velocity.left.arm": {
+      "type": "palladium:attribute_modifier",
+      "icon": "minecraft:golden_pickaxe",
+      "title": { "translate": "ability.title.satsu.pickaxe.velocity" },
+      "description": { "translate": "description.satsu.pickaxe.velocity" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [-1, 1.5],
+      "attribute": "palladium:destroy_speed",
+      "uuid": "329b91fa-64f6-4a73-b5f4-216e81666ceb",
+      "amount": 44.5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.left.arm",
+            "min_score": 0,
+            "max_score": 0
           },
           {
             "type": "palladium:not",
@@ -1298,10 +1343,10 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
+            "ability": "head_animation",
             "property": "value",
-            "min": 1,
-            "max": 16
+            "min": 4,
+            "max": 20
           },
           {
             "type": "palladium:objective_score",
@@ -2326,8 +2371,7 @@
         "tag @s add mark.41",
         "scoreboard players set @s satsu.iron.man.armor 51",
         "scoreboard players set @s satsu.iron.man.flame 0",
-        "scoreboard players set @s satsu.iron.man.flight_speed 65",
-        "scoreboard players set @s satsu.iron.man.pickaxe.velocity 89"
+        "scoreboard players set @s satsu.iron.man.flight_speed 65"
       ],
       "commands": [""],
       "last_tick_commands": [
