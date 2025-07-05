@@ -2481,7 +2481,7 @@
         ]
       }
     },
-    "flight_speed": {
+    "increase.flight_speed": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
       "title": { "translate": "ability.title.satsu.Increase.Speed" },
@@ -2490,7 +2490,7 @@
       "hidden_in_bar": false,
       "list_index": 6,
       "first_tick_commands": [],
-      "commands": ["scoreboard players add @s satsu.iron.man.flight_speed.choose 2"],
+      "commands": ["function satsu_iron_man_addon:flight/increase"],
       "last_tick_commands": [],
       "conditions": {
         "enabling": [
@@ -2519,9 +2519,9 @@
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.flight_speed",
-                "min_score": 60,
-                "max_score": 79
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 0,
+                "max_score": 158
               }
             ]
           }
@@ -2538,7 +2538,7 @@
       "list_index": 7,
       "first_tick_commands": [],
       "commands": [
-        "scoreboard players remove @s satsu.iron.man.flight_speed.choose 2"
+        "function satsu_iron_man_addon:flight/decrease"
       ],
       "last_tick_commands": [],
       "conditions": {
@@ -2568,9 +2568,9 @@
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.flight_speed",
-                "min_score": 61,
-                "max_score": 80
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 2,
+                "max_score": 160
               }
             ]
           }
