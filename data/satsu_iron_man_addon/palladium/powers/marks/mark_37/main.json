@@ -43,8 +43,12 @@
     "puting": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
-      "title": { "translate": "ability.title.satsu.metodo.de.colocacion.mark.7" },
-      "description": { "translate": "description.satsu.metodo.de.colocacion.mark.7" },
+      "title": {
+        "translate": "ability.title.satsu.metodo.de.colocacion.mark.7"
+      },
+      "description": {
+        "translate": "description.satsu.metodo.de.colocacion.mark.7"
+      },
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [0.5, 1],
@@ -1072,8 +1076,7 @@
             ]
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "remove_armor": {
@@ -3095,6 +3098,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "torpedos"
                   }
                 ]
               }
@@ -3184,6 +3191,75 @@
             "property": "value",
             "min": 7,
             "max": 7
+          }
+        ]
+      }
+    },
+    "torpedos": {
+      "type": "palladium:repeating_animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/torpedos.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.torpedos" },
+      "description": { "translate": "description.satsu.torpedos" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 12,
+      "gui_position": [0, 3.99],
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 180,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.ark.energy",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:is_under_water"
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                        "ability": "nano_katar.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -3327,6 +3403,10 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "torpedos"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
               }
             ]
@@ -3356,6 +3436,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "mini_fireworks"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "torpedos"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -3460,6 +3544,116 @@
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "mini_fireworks",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_fireworks",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "torpedos.projectile": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 10,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -50,
+      "pitchOffset": 55,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 10,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/torpedo",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/torpedo",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "torpedos",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_fireworks",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "torpedos.projectile.2": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 10,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 50,
+      "pitchOffset": 55,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 10,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/torpedo",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/torpedo",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "torpedos",
                 "property": "value",
                 "min": 8,
                 "max": 20
@@ -3628,6 +3822,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "torpedos"
               }
             ]
           }
@@ -3661,6 +3859,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "mini_fireworks"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "torpedos"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -3708,6 +3910,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "mini_fireworks"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "torpedos"
                   },
                   {
                     "type": "palladium:ability_enabled",
