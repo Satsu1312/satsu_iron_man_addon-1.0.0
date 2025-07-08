@@ -8,7 +8,7 @@ PalladiumEvents.registerAnimations((event) => {
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:marks/mark_45/main",
-        "mark_45_anim",
+        "bones_colocation_right_arm",
         builder.getPartialTicks()
       );
 
@@ -48,36 +48,6 @@ PalladiumEvents.registerAnimations((event) => {
             .setXRotDegrees(0)
             .setYRotDegrees(0)
             .setZRotDegrees(90)
-            .moveX(0)
-            .moveY(0)
-            .moveZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("head")
-            .setXRotDegrees(0)
-            .moveY(0)
-            .moveZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("chest")
-            .setXRotDegrees(0)
-            .moveY(0)
-            .moveZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("right_leg")
-            .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
-            .moveX(0)
-            .moveY(0)
-            .moveZ(0)
-            .animate("InOutCubic", progress);
-          builder
-            .get("left_leg")
-            .setXRotDegrees(0)
-            .setYRotDegrees(0)
-            .setZRotDegrees(0)
             .moveX(0)
             .moveY(0)
             .moveZ(0)
