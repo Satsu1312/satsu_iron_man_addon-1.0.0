@@ -3188,6 +3188,59 @@
             "type": "palladium:and",
             "conditions": [
               {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.head",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.chest",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.arm",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.arm",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.shoulder",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.shoulder",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.leg",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.leg",
+                "min_score": 0,
+                "max_score": 0
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
                 "type": "palladium:mod_loaded",
                 "mod_id": "ad_astra"
               },
@@ -3213,6 +3266,59 @@
       "commands": ["execute in cosmos:solar_system run tp ~ ~ ~"],
       "conditions": {
         "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.head",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.chest",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.arm",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.arm",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.shoulder",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.shoulder",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.leg",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.leg",
+                "min_score": 0,
+                "max_score": 0
+              }
+            ]
+          },
           {
             "type": "palladium:and",
             "conditions": [
@@ -3270,6 +3376,12 @@
                 "type": "palladium:objective_score",
                 "objective": "satsu.iron.man.mask",
                 "min_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.head",
+                "min_score": 0,
+                "max_score": 0
               }
             ]
           }
@@ -3677,11 +3789,11 @@
         "call.all",
         "call.chest",
         "call.head",
+        "call.right_leg",
         "call.right_arm",
         "call.right_shoulder",
         "call.left_arm",
         "call.left_shoulder",
-        "call.right_leg",
         "call.left_leg",
         "call.sentinel"
       ],
@@ -3718,7 +3830,7 @@
     },
     "call.all": {
       "type": "palladium:dummy",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/all.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/all.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.all" },
       "description": { "translate": "description.satsu.part.all" },
@@ -3747,12 +3859,8 @@
     },
     "call.all_method.1": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/all.png",
-      "entity_type": "palladium:custom_projectile",
-      "title": { "translate": "ability.title.satsu.part.all" },
-      "description": { "translate": "description.satsu.part.all" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "first_tick_commands": [
         "function satsu_iron_man_addon:sentinels/kill_one_sentinel_same_score_same_armor",
         "tag @s remove sentinel.false",
@@ -3895,12 +4003,8 @@
     },
     "call.all_method.2": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/all.png",
-      "entity_type": "palladium:custom_projectile",
-      "title": { "translate": "ability.title.satsu.part.all" },
-      "description": { "translate": "description.satsu.part.all" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "first_tick_commands": [
         "function satsu_iron_man_addon:sentinels/kill_one_sentinel_same_score_same_armor",
         "tag @s remove sentinel.false",
@@ -3992,7 +4096,7 @@
     },
     "call.chest": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/chest.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/chest.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.chest" },
       "description": { "translate": "description.satsu.part.chest" },
@@ -4023,7 +4127,7 @@
     },
     "call.head": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/head.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/head.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.head" },
       "description": { "translate": "description.satsu.part.head" },
@@ -4054,7 +4158,7 @@
     },
     "call.right_arm": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/right_arm.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/right_arm.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.right_arm" },
       "description": { "translate": "description.satsu.part.right_arm" },
@@ -4085,7 +4189,7 @@
     },
     "call.left_arm": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/left_arm.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/left_arm.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.left_arm" },
       "description": { "translate": "description.satsu.part.left_arm" },
@@ -4116,7 +4220,7 @@
     },
     "call.right_shoulder": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/right_shoulder.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/right_shoulder.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.right_shoulder" },
       "description": { "translate": "description.satsu.part.right_shoulder" },
@@ -4147,7 +4251,7 @@
     },
     "call.left_shoulder": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/left_shoulder.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/left_shoulder.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.left_shoulder" },
       "description": { "translate": "description.satsu.part.left_shoulder" },
@@ -4178,7 +4282,7 @@
     },
     "call.right_leg": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/right_leg.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/right_leg.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.right_leg" },
       "description": { "translate": "description.satsu.part.right_leg" },
@@ -4209,7 +4313,7 @@
     },
     "call.left_leg": {
       "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/mark_42/throw/left_leg.png",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/left_leg.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.part.left_leg" },
       "description": { "translate": "description.satsu.part.left_leg" },

@@ -1,1 +1,1 @@
-execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..1.5,type=!palladium:custom_projectile,limit=1] run superpower add satsu_iron_man_addon:blood @s
+execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..1.5,type=!palladium:custom_projectile,limit=1] at @s if entity @s[type=!#satsu_iron_man_addon:items] run superpower add satsu_iron_man_addon:blood @s
