@@ -1,0 +1,610 @@
+{
+  "name": { "translate": "ability.title.satsu.mark.50.superior" },
+  "persistent_data": false,
+  "allow_bar_shrinking": true,
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
+  "background": "minecraft:textures/block/iron_block.png",
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "list",
+  "energy_bars": {
+    "energy": {
+      "max": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy.max",
+        "fallback": 0
+      },
+      "color": "#8ffffd",
+      "synced_value": {
+        "type": "score",
+        "objective": "satsu.iron.man.armor.ark.energy",
+        "fallback": 0
+      }
+    }
+  },
+  "abilities": {
+    "remove.energy": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "scoreboard players remove @s satsu.iron.man.armor.ark.energy 3"
+      ],
+      "conditions": {
+        "enabling": []
+      }
+    },
+    "durability": {
+      "type": "palladium:attribute_modifier",
+      "icon": "minecraft:iron_chestplate",
+      "title": { "translate": "ability.title.satsu.durability" },
+      "description": { "translate": "description.satsu.durability" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [2.8, -1],
+      "attribute": "minecraft:generic.armor",
+      "uuid": "b732de99-9744-4cd1-83ca-ed123bb07291",
+      "amount": 15,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "durability.remote": {
+      "type": "palladium:attribute_modifier",
+      "icon": "minecraft:iron_chestplate",
+      "title": { "translate": "ability.title.satsu.durability" },
+      "description": { "translate": "description.satsu.durability" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [2.8, -1],
+      "attribute": "minecraft:generic.armor",
+      "uuid": "b623de99-9744-4cd1-83ca-ed123bb07291",
+      "amount": 2,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.remote",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "armor_toughness": {
+      "type": "palladium:attribute_modifier",
+      "icon": "minecraft:iron_chestplate",
+      "title": { "translate": "ability.title.satsu.durability" },
+      "description": { "translate": "description.satsu.durability" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [3.5, -1],
+      "attribute": "minecraft:generic.armor_toughness",
+      "uuid": "b719de99-9744-4cd1-83ca-ed123bb07291",
+      "amount": 20,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.ark.energy",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "strength": {
+      "type": "palladium:attribute_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+      "title": { "translate": "ability.title.satsu.strength" },
+      "description": { "translate": "description.satsu.strength" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [3.5, 0.5],
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "f734d74f-5bab-432d-b60d-0748e5788bd8",
+      "amount": 6,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "strength_knockback": {
+      "type": "palladium:attribute_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+      "title": { "translate": "ability.title.satsu.strength" },
+      "description": { "translate": "description.satsu.strength" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [3.5, 0.5],
+      "attribute": "minecraft:generic.attack_knockback",
+      "uuid": "f250d74f-5bab-432d-b60d-0748e5788bd8",
+      "amount": 2,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "knockback_resistance": {
+      "type": "palladium:attribute_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+      "title": { "translate": "ability.title.satsu.strength" },
+      "description": { "translate": "description.satsu.strength" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [3.5, 0.5],
+      "attribute": "minecraft:generic.knockback_resistance",
+      "uuid": "f129d74f-5bab-432d-b60d-0328e5788bd8",
+      "amount": 2,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "pickaxe.velocity": {
+      "type": "gravestone:stat_ability",
+      "icon": "minecraft:golden_pickaxe",
+      "title": { "translate": "ability.title.satsu.pickaxe.velocity" },
+      "description": { "translate": "description.satsu.pickaxe.velocity" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [5.8, -1],
+      "score_value": "satsu.iron.man.pickaxe.velocity",
+      "Division_Amount": "10",
+      "Attribute_Type": "palladium:destroy_speed",
+      "UUID": "f212d74f-5bab-432d-b60d-0890e6448bd8",
+      "Attribute_Mod": "addition",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy"
+          }
+        ]
+      }
+    },
+    "hulkbuster.size": {
+      "type": "palladium:size",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scale": 1.35,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:marks/model_50/main",
+            "ability": "hulkbuster"
+          }
+        ]
+      }
+    },
+    "sonic_clap": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.hulkbuster" },
+      "description": { "translate": "description.satsu.hulkbuster" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 11,
+      "max_distance": 5,
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:marks/model_50/main",
+            "ability": "hulkbuster_sonic_clap"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "sonic_clap.projectile_no_break": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 1,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 5,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 1.8,
+        "Damage": 18,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "",
+        "CommandOnBlockHit": "",
+        "Appearances": [
+          {
+            "Type": "particles",
+            "ParticleType": "satsu_iron_man_addon:sonic_clap",
+            "Spread": 0.1
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "sonic_clap",
+            "property": "value",
+            "min": 9,
+            "max": 9
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "sonic_clap"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.break",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "sonic_clap.projectile.destroy": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 1.8,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 5,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "ExplosionRadius": 4,
+        "ExplosionBlockInteraction": "BREAK",
+        "KnockbackStrength": 1.8,
+        "Damage": 18,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "",
+        "CommandOnBlockHit": "",
+        "Appearances": [
+          {
+            "Type": "particles",
+            "ParticleType": "satsu_iron_man_addon:sonic_clap",
+            "Spread": 0.1
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "sonic_clap",
+            "property": "value",
+            "min": 9,
+            "max": 9
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "sonic_clap"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.break",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
+    "sound": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a ~ ~ ~ 1 1.8"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "sonic_clap"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1343,10 +1343,10 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "head_animation",
+            "ability": "armor_activate.animation_timer.mark.41-42",
             "property": "value",
-            "min": 4,
-            "max": 20
+            "min": 45,
+            "max": 64
           },
           {
             "type": "palladium:objective_score",
@@ -2810,6 +2810,12 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.animation.armor",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
             "type": "palladium:and",
             "conditions": [
               {
@@ -3406,6 +3412,17 @@
                 "max_score": 0
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.unlocking.set.block",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
           }
         ]
       }
@@ -3595,16 +3612,10 @@
       "title": { "translate": "ability.title.satsu.armor.edit" },
       "description": { "translate": "description.satsu.armor.edit" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 4,
       "gui_position": [-2, -0],
-      "commands": [
-        "function satsu_iron_man_addon:remove_personalizate",
-        "execute as @s[scores={satsu.iron.man.personalize.things=1}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.personalizate.on\",\"color\":\"blue\"}",
-        "execute as @s[scores={satsu.iron.man.personalize.things=2..}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.personalizate.off\",\"color\":\"blue\"}}",
-        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy"
-      ],
-      "abilities": ["flight_unlock", "arms_unlock"],
+      "abilities": [ "arms_unlock"],
       "conditions": {
         "enabling": [
           {
@@ -3746,14 +3757,13 @@
         ]
       }
     },
-    "ark_beam_for_hands": {
+    "test_wheel.ark_beam_for_hands": {
       "type": "palladium:command",
       "icon": "#satsu_iron_man_addon:ark_beam_hand",
       "title": { "translate": "ability.title.satsu.ark.beam.for.hands" },
       "description": { "translate": "description.satsu.ark.beam.for.hands" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 4,
       "gui_position": [0, 2.55],
       "first_tick_commands": [
         "scoreboard objectives add satsu.iron.man.armor.uni.beam.hand dummy",
@@ -3769,10 +3779,8 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
           }
         ],
         "unlocking": [
@@ -3785,20 +3793,6 @@
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "armor_activate_skil_tree_dummy_close_armor"
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.unlocking.set.block",
-            "min_score": 1,
-            "max_score": 2
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:crouching"
-              }
-            ]
           },
           {
             "type": "palladium:and",
@@ -4214,7 +4208,7 @@
         "unlocking": []
       }
     },
-    "flight_unlock": {
+    "test_wheel.flight_unlock": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fly.png",
       "title": { "translate": "ability.title.satsu.flight.edit" },

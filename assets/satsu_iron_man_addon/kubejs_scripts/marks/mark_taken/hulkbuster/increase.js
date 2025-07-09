@@ -1,6 +1,6 @@
 // Register custom animations
 PalladiumEvents.registerAnimations((event) => {
-  event.register("satsu_iron_man_addon/increase", 10, (builder) => {
+  event.register("satsu_iron_man_addon/marks/mark_taken/main/hulkbuster", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
