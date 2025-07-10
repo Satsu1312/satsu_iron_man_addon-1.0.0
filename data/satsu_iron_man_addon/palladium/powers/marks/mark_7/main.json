@@ -59,17 +59,16 @@
       }
     },
     "flight": {
-      "type": "gravestone:stat_ability",
+      "type": "palladium:attribute_modifier",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fly.png",
       "title": { "translate": "ability.title.satsu.Flight" },
       "description": { "translate": "description.flight" },
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": true,
-      "score_value": "satsu.iron.man.flight_speed",
-      "Division_Amount": "95",
-      "Attribute_Type": "palladium:flight_speed",
-      "UUID": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
-      "Attribute_Mod": "addition",
+      "attribute": "palladium:flight_speed",
+      "uuid": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
+      "amount": 0.62,
+      "operation": 0,
       "gui_position": [1, 0.5],
       "conditions": {
         "enabling": [
@@ -172,7 +171,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "score_value": "satsu.iron.man.flight_speed.choose",
-      "Division_Amount": "400",
+      "Division_Amount": "200",
       "Attribute_Type": "palladium:flight_speed",
       "UUID": "e85d2ec9-1558-43b9-a8ff-60b7045ddc92",
       "Attribute_Mod": "addition",
@@ -681,7 +680,6 @@
         "tag @s add mark.7",
         "scoreboard players set @s satsu.iron.man.armor 20",
         "scoreboard players set @s satsu.iron.man.flame 0",
-        "scoreboard players set @s satsu.iron.man.flight_speed 59",
         "scoreboard players set @s satsu.iron.man.pickaxe.velocity 36"
       ],
       "commands": [],
@@ -689,7 +687,8 @@
         "tag @s remove mark.7",
         "tag @s remove satsu.iron.man.suit.set",
         "superpower remove satsu_iron_man_addon:marks/mecano_calll",
-        "execute if entity @e[tag=sentinel] run function satsu_iron_man_addon:sentinels/kill_one_sentinel"
+        "execute if entity @e[tag=sentinel] run function satsu_iron_man_addon:sentinels/kill_one_sentinel",
+        "function satsu_iron_man_addon:flight/set_0"
       ],
       "conditions": {
         "enabling": []
@@ -1655,6 +1654,15 @@
                     "min_score": 1
                   }
                 ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams"
+                  }
+                ]
               }
             ]
           }
@@ -1723,13 +1731,22 @@
                     "min_score": 1
                   }
                 ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams"
+                  }
+                ]
               }
             ]
           }
         ]
       }
     },
-    "test_wheel": {
+    "weapons_wheel": {
       "type": "palladium:ability_wheel",
       "icon": "satsu_iron_man_addon:textures/gui/armors/personalizate_things.png",
       "title": { "translate": "ability.title.satsu.weapons.choose" },
@@ -1739,10 +1756,11 @@
       "list_index": 3,
       "gui_position": [4.3, -1],
       "abilities": [
-        "test_wheel.rockets",
-        "test_wheel.flares",
-        "test_wheel.ark_beam_for_hands",
-        "test_wheel.flight_unlock"
+        "weapons_wheel.rockets",
+        "weapons_wheel.flares",
+        "weapons_wheel.ark_beam_for_hands",
+        "weapons_wheel.red_beams",
+        "weapons_wheel.flight_unlock"
       ],
       "texture": "null",
       "disable_mouse_scrolling": false,
@@ -1785,7 +1803,7 @@
         ]
       }
     },
-    "test_wheel.rockets": {
+    "weapons_wheel.rockets": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
       "title": { "translate": "ability.title.satsu.fireworks" },
@@ -1838,7 +1856,7 @@
         ]
       }
     },
-    "test_wheel.flares": {
+    "weapons_wheel.flares": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
       "title": { "translate": "ability.title.satsu.flare.flame" },
@@ -1849,6 +1867,59 @@
       "gui_position": [4.3, -1],
       "first_tick_commands": [
         "scoreboard players set @s satsu.iron.man.armor.weapon 2"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.unlocking.set.block",
+            "min_score": 1,
+            "max_score": 2
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.ark.energy",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy_close_armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          }
+        ]
+      }
+    },
+    "weapons_wheel.red_beams": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/red_mini_beam.png",
+      "title": { "translate": "ability.title.satsu.red.mini.beams" },
+      "description": { "translate": "description.satsu.red.mini.beams" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 3,
+      "gui_position": [4.3, -1],
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.armor.weapon 3"
       ],
       "commands": [""],
       "conditions": {
@@ -2074,12 +2145,12 @@
         ]
       }
     },
-    "test_wheel.ark_beam_for_hands": {
+    "weapons_wheel.ark_beam_for_hands": {
       "type": "palladium:command",
       "icon": "#satsu_iron_man_addon:ark_beam_hand",
       "title": { "translate": "ability.title.satsu.ark.beam.for.hands" },
       "description": { "translate": "description.satsu.ark.beam.for.hands" },
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": false,
       "gui_position": [0, 2.55],
       "first_tick_commands": [
@@ -2210,6 +2281,15 @@
                     "ability": "nano_sword"
                   }
                 ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams"
+                  }
+                ]
               }
             ]
           }
@@ -2285,6 +2365,15 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "nano_sword"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams"
                   }
                 ]
               }
@@ -2510,7 +2599,28 @@
         "unlocking": []
       }
     },
-    "test_wheel.flight_unlock": {
+    "commands_energy_beams.red_beams": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "superpower add satsu_iron_man_addon:marks/mark_7/beams/hands/red/energy_beams_hands"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "superpower remove satsu_iron_man_addon:marks/mark_7/beams/hands/red/energy_beams_hands"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "red_beams"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "weapons_wheel.flight_unlock": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fly.png",
       "title": { "translate": "ability.title.satsu.flight.edit" },
@@ -2602,7 +2712,7 @@
         ]
       }
     },
-    "flight_speed": {
+    "increase.flight_speed": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
       "title": { "translate": "ability.title.satsu.Increase.Speed" },
@@ -2611,12 +2721,12 @@
       "hidden_in_bar": false,
       "list_index": 6,
       "first_tick_commands": [],
-      "commands": ["scoreboard players add @s satsu.iron.man.flight_speed 1"],
+      "commands": ["function satsu_iron_man_addon:flight/increase"],
       "last_tick_commands": [],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
+            "type": "palladium:action",
             "key_type": "scroll_up"
           }
         ],
@@ -2640,9 +2750,9 @@
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.flight_speed",
-                "min_score": 59,
-                "max_score": 68
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 0,
+                "max_score": 136
               }
             ]
           }
@@ -2659,13 +2769,13 @@
       "list_index": 7,
       "first_tick_commands": [],
       "commands": [
-        "scoreboard players remove @s satsu.iron.man.flight_speed 1"
+        "function satsu_iron_man_addon:flight/decrease"
       ],
       "last_tick_commands": [],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
+            "type": "palladium:action",
             "key_type": "scroll_down"
           }
         ],
@@ -2689,9 +2799,9 @@
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.flight_speed",
-                "min_score": 60,
-                "max_score": 69
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 2,
+                "max_score": 138
               }
             ]
           }
@@ -2842,6 +2952,97 @@
         ]
       }
     },
+    "red_beams": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/red_mini_beam.png",
+      "title": { "translate": "ability.title.satsu.red.mini.beams" },
+      "description": { "translate": "description.satsu.red.mini.beams" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "gui_position": [-1, 3.99],
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 100,
+            "cooldown": 200,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.weapon",
+            "min_score": 3,
+            "max_score": 3
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.ark.energy",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                        "ability": "nano_katar.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "red_beams.sound": {
+      "type": "palladium:play_sound",
+      "sound": "satsu_iron_man_addon:red_laser",
+      "looping": true,
+      "volume": 1,
+      "pitch": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "red_beams"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "energy_projectile.damage.6": {
       "type": "gravestone:projectile",
       "hidden": true,
@@ -2982,6 +3183,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "red_beams"
               }
             ]
           }
@@ -3014,6 +3219,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "red_beams"
               }
             ]
           }
@@ -3282,6 +3491,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "red_beams"
               }
             ]
           }
@@ -3389,7 +3602,7 @@
         "enabling": [
           {
             "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:marks/mark_6/main",
+            "power": "satsu_iron_man_addon:marks/mark_7/main",
             "ability": "no_projectile_effect.animation_remove",
             "property": "value",
             "min": 15,

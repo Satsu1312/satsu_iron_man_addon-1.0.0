@@ -1,0 +1,1 @@
+scoreboard players set @s satsu.iron.man.flight_speed.choose 0

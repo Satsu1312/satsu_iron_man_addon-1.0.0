@@ -79,17 +79,16 @@
       }
     },
     "flight": {
-      "type": "gravestone:stat_ability",
+      "type": "palladium:attribute_modifier",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fly.png",
       "title": { "translate": "ability.title.satsu.Flight" },
       "description": { "translate": "description.flight" },
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": true,
-      "score_value": "satsu.iron.man.flight_speed",
-      "Division_Amount": "83",
-      "Attribute_Type": "palladium:flight_speed",
-      "UUID": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
-      "Attribute_Mod": "addition",
+      "attribute": "palladium:flight_speed",
+      "uuid": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
+      "amount": 0.77,
+      "operation": 0,
       "gui_position": [1, 0.5],
       "conditions": {
         "enabling": [
@@ -192,7 +191,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "score_value": "satsu.iron.man.flight_speed.choose",
-      "Division_Amount": "400",
+      "Division_Amount": "200",
       "Attribute_Type": "palladium:flight_speed",
       "UUID": "e85d2ec9-1558-43b9-a8ff-60b7045ddc92",
       "Attribute_Mod": "addition",
@@ -947,7 +946,6 @@
         "tag @s add satsu.iron.man.suit.set",
         "tag @s add mark.50.superior",
         "scoreboard players set @s satsu.iron.man.armor 1",
-        "scoreboard players set @s satsu.iron.man.flight_speed 64",
         "scoreboard players set @s satsu.iron.man.pickaxe.velocity 90",
         "scoreboard players set @s satsu.iron.man.flame 8"
       ],
@@ -955,7 +953,8 @@
       "last_tick_commands": [
         "tag @s remove mark.50.superior",
         "scoreboard players set @s satsu.iron.man.superior.color 0",
-        "tag @s remove satsu.iron.man.suit.set"
+        "tag @s remove satsu.iron.man.suit.set",
+        "function satsu_iron_man_addon:flight/set_0"
       ],
       "conditions": {
         "enabling": []
@@ -3119,7 +3118,7 @@
         ]
       }
     },
-    "flight_speed": {
+    "increase.flight_speed": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
       "title": { "translate": "ability.title.satsu.Increase.Speed" },
@@ -3128,12 +3127,12 @@
       "hidden_in_bar": false,
       "list_index": 6,
       "first_tick_commands": [],
-      "commands": ["scoreboard players add @s satsu.iron.man.flight_speed 1"],
+      "commands": ["function satsu_iron_man_addon:flight/increase"],
       "last_tick_commands": [],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
+            "type": "palladium:action",
             "key_type": "scroll_up"
           }
         ],
@@ -3157,9 +3156,9 @@
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.flight_speed",
-                "min_score": 64,
-                "max_score": 204
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 0,
+                "max_score": 408
               }
             ]
           }
@@ -3176,13 +3175,13 @@
       "list_index": 7,
       "first_tick_commands": [],
       "commands": [
-        "scoreboard players remove @s satsu.iron.man.flight_speed 1"
+        "function satsu_iron_man_addon:flight/decrease"
       ],
       "last_tick_commands": [],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
+            "type": "palladium:action",
             "key_type": "scroll_down"
           }
         ],
@@ -3206,9 +3205,9 @@
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.flight_speed",
-                "min_score": 65,
-                "max_score": 205
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 2,
+                "max_score": 410
               }
             ]
           }
