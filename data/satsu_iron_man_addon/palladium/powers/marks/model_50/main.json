@@ -902,6 +902,31 @@
         ]
       }
     },
+    "interpolate.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:superior_enable",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "interpolate",
+                "min": "1",
+                "max": "16"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "mask_animation_timer": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -1649,6 +1674,7 @@
       "first_tick_commands": [""],
       "commands": [
         "scoreboard players add @s satsu.iron.man.mask 1",
+        "playsound satsu_iron_man_addon:nanomask player @a[distance=0..5] ~ ~ ~ 1 1 1",
         "title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.on\",\"color\":\"blue\"}",
         "execute as @s[scores={satsu.iron.man.mask=2}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.off\",\"color\":\"blue\"}",
         "execute as @s[scores={satsu.iron.man.mask=2}] run scoreboard players set @s satsu.iron.man.mask 0",
