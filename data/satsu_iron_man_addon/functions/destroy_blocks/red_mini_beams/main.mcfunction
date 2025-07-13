@@ -1,0 +1,22 @@
+
+ execute as @s unless block ^ ^1 ^0.6 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^0.5 ^ ^1 ^0.5 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^1.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^1 ^ ^1 ^1 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^2.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^2 ^ ^1 ^2 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^3.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^3 ^ ^1 ^3 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^4.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^4 ^ ^1 ^4 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^5.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^5 ^ ^1 ^5 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^6.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^6 ^ ^1 ^6 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^7.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^7 ^ ^1 ^7 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^8.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^8 ^ ^1 ^8 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^9.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^9 ^ ^1 ^9 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^10.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^10 ^ ^1 ^10 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^11.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^11 ^ ^1 ^11 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^12.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^12 ^ ^1 ^12 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^13.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^13 ^ ^1 ^13 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^14.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^14 ^ ^1 ^14 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^15.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^15 ^ ^1 ^15 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^16.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^16 ^ ^1 ^16 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^17.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^17 ^ ^1 ^17 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^18.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^18 ^ ^1 ^18 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^19.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^19 ^ ^1 ^19 minecraft:air destroy 
+ execute as @s unless block ^ ^1 ^20.1 #satsu_iron_man_addon:no_destroy run fill ^ ^1 ^20 ^ ^1 ^20 minecraft:air destroy
