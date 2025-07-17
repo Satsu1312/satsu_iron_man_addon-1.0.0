@@ -42,6 +42,71 @@
         ]
       }
     },
+    "walk.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.walk.sound",
+      "volume": 0.3,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "walk.sound.animation_timer",
+            "property": "value",
+            "min": 2,
+            "max": 9
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "walk.sound.animation_timer"
+          }
+        ]
+      }
+    },
+    "walk.sound.animation_timer": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 9,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_movement_input"
+          },
+          {
+            "type": "palladium:on_ground"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "class": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/item/nanoparticle.png",
@@ -699,6 +764,31 @@
               {
                 "type": "palladium:entity_type",
                 "entity_type": "minecraft:armor_stand"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "interpolate.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:mcunano",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "interpolate",
+                "min": "1",
+                "max": "16"
               }
             ]
           }
@@ -2912,6 +3002,108 @@
         ]
       }
     },
+    "nano_things_sounds": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:nano_weapons",
+      "volume": 0.2,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "propulsor_anim",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "8"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "flight_anim",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "8"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_sword",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "8"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_katar",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "8"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_hand_blade",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "8"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_rial",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "7"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_grenade_launcher_anim",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "7"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_mallet",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "7"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_fireworks",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "7"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_flares_flames",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "7"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_energy_boosters",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "min": "1",
+                "max": "8"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_stabilizer",
+                "min": "1",
+                "max": "8"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "tool_hands": {
       "type": "palladium:tool_hands",
       "hidden": true,
@@ -3438,6 +3630,7 @@
       "first_tick_commands": [""],
       "commands": [
         "scoreboard players add @s satsu.iron.man.mask 1",
+        "playsound satsu_iron_man_addon:nanomask player @a[distance=0..5] ~ ~ ~ 1 1 1",
         "title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.on\",\"color\":\"blue\"}",
         "execute as @s[scores={satsu.iron.man.mask=2}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.off\",\"color\":\"blue\"}",
         "execute as @s[scores={satsu.iron.man.mask=2}] run scoreboard players set @s satsu.iron.man.mask 0",
@@ -3770,6 +3963,81 @@
             "max": 17
           }
         ]
+      }
+    },
+    "repulsor": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "uni.beam.hand.right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "uni.beam.hand.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mini.gun.right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mini.gun.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_grenade_launcher_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_grenade_launcher_left"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "repulsor.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.repulsor",
+      "volume": 1,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "repulsor",
+            "property": "value",
+            "min": 1,
+            "max": 7
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "repulsor"
+          }
+        ],
+        "unlocking": []
       }
     },
     "energy.pulse_right": {
