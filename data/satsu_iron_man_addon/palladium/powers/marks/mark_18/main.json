@@ -1931,12 +1931,12 @@
         ]
       }
     },
-    "weapons_wheel.Energy.Pulse": {
+    "Energy.Pulse": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ark_disable_enable",
+      "icon": "#satsu_iron_man_addon:energy_pulse",
       "title": { "translate": "ability.title.satsu.Energy.Pulse" },
       "description": { "translate": "description.Energy.Pulse" },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 3,
       "gui_position": [-1, 2.5],
@@ -1952,8 +1952,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_wheel",
-            "cooldown": 0
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
           }
         ],
         "unlocking": [
@@ -1983,6 +1985,17 @@
             "property": "value",
             "min": 15,
             "max": 16
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.unlocking.set.block",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
           }
         ]
       }
@@ -2213,7 +2226,6 @@
         "weapons_wheel.flares",
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser",
-        "weapons_wheel.Energy.Pulse",
         "weapons_wheel.flight_unlock"
       ],
       "texture": "null",
@@ -2225,6 +2237,12 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.unlocking.set.block",
+            "min_score": 1,
+            "max_score": 1
+          },
           {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor.ark.energy",
@@ -2274,6 +2292,12 @@
         "unlocking": [
           {
             "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.unlocking.set.block",
+            "min_score": 1,
+            "max_score": 2
+          },
+          {
+            "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor.ark.energy",
             "min_score": 1
           },
@@ -2319,6 +2343,12 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.unlocking.set.block",
+            "min_score": 1,
+            "max_score": 2
+          },
           {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor.ark.energy",
@@ -2531,6 +2561,20 @@
             "ability": "armor_activate_skil_tree_dummy_close_armor"
           },
           {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.unlocking.set.block",
+            "min_score": 1,
+            "max_score": 2
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          },
+          {
             "type": "palladium:and",
             "conditions": [
               {
@@ -2584,6 +2628,20 @@
             "type": "palladium:ability_unlocked",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "armor_activate_skil_tree_dummy_close_armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.unlocking.set.block",
+            "min_score": 1,
+            "max_score": 2
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
           },
           {
             "type": "palladium:and",
