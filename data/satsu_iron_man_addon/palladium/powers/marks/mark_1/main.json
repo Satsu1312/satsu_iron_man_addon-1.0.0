@@ -40,6 +40,65 @@
         ]
       }
     },
+    "walk.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.walk.sound",
+      "volume": 0.3,
+      "pitch": 0,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "walk.sound.animation_timer",
+            "property": "value",
+            "min": 2,
+            "max": 9
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "walk.sound.animation_timer"
+          }
+        ]
+      }
+    },
+    "walk.sound.animation_timer": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 9,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_movement_input"
+          },
+          {
+            "type": "palladium:on_ground"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "puting": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
@@ -509,7 +568,7 @@
         "tag @s add satsu.iron.man.suit.set",
         "tag @s add mark.1",
         "scoreboard players set @s satsu.iron.man.armor 13",
-        "scoreboard players set @s satsu.iron.man.flame 9",
+        "scoreboard players set @s satsu.iron.man.flame 0",
         "scoreboard players set @s satsu.iron.man.pickaxe.velocity 5",
         "scoreboard players set @s satsu.iron.man.armor.energy.pulse.flame.thrower.icon 1"
       ],
@@ -522,6 +581,29 @@
       ],
       "conditions": {
         "enabling": []
+      }
+    },
+    "projectile_resistance": {
+      "type": "palladium:damage_immunity",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": ["minecraft:arrow", "minecraft:barrier"]
+      },
+      "title": { "translate": "ability.title.satsu.projectile_resistance" },
+      "description": { "translate": "description.iron.man.projectile_resistance" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 3.25],
+      "damage_sources": ["minecraft:is_projectile"],
+      "conditions": {
+        "enabling": [
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          }
+        ]
       }
     },
     "mask.up.trigger": {

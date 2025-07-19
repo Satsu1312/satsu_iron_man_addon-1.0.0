@@ -42,6 +42,71 @@
         ]
       }
     },
+    "walk.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.walk.sound",
+      "volume": 0.3,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "walk.sound.animation_timer",
+            "property": "value",
+            "min": 2,
+            "max": 9
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "walk.sound.animation_timer"
+          }
+        ]
+      }
+    },
+    "walk.sound.animation_timer": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 9,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_movement_input"
+          },
+          {
+            "type": "palladium:on_ground"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "puting": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
@@ -687,6 +752,31 @@
         ]
       }
     },
+    "interpolate.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:mcunano",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "interpolate",
+                "min": "1",
+                "max": "16"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "mask_animation_timer": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -877,6 +967,44 @@
         "minecraft:ignites_armor_stands",
         "minecraft:is_freezing"
       ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          }
+        ]
+      }
+    },
+    "projectile_resistance": {
+      "type": "palladium:damage_immunity",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": ["minecraft:arrow", "minecraft:barrier"]
+      },
+      "title": { "translate": "ability.title.satsu.projectile_resistance" },
+      "description": { "translate": "description.iron.man.projectile_resistance" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 3.25],
+      "damage_sources": ["minecraft:is_projectile"],
       "conditions": {
         "enabling": [
           {
@@ -1530,6 +1658,81 @@
             "max": 17
           }
         ]
+      }
+    },
+    "repulsor": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "uni.beam.hand.right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "uni.beam.hand.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mini.gun.right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mini.gun.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_grenade_launcher_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_grenade_launcher_left"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "repulsor.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.repulsor",
+      "volume": 1,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "repulsor",
+            "property": "value",
+            "min": 1,
+            "max": 7
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "repulsor"
+          }
+        ],
+        "unlocking": []
       }
     },
     "energy.pulse_right": {
@@ -2438,16 +2641,11 @@
       }
     },
     "commands_energy_beams.hands": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/model_30_iron_destroyer/beams/hands/energy_beams_hands"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/model_30_iron_destroyer/beams/hands/energy_beams_hands"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/model_30_iron_destroyer/beams/hands/energy_beams_hands",
       "conditions": {
         "enabling": [
           {
@@ -2479,16 +2677,11 @@
       }
     },
     "commands_energy_beams.hands_powerfull.1": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/model_30_iron_destroyer/beams/hands/energy_beams_hands_powerfull_1"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/model_30_iron_destroyer/beams/hands/energy_beams_hands_powerfull_1"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/model_30_iron_destroyer/beams/hands/energy_beams_hands_powerfull_1",
       "conditions": {
         "enabling": [
           {
@@ -2515,16 +2708,11 @@
       }
     },
     "commands_energy_beams.hands_powerfull.2": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/model_30_iron_destroyer/beams/hands/energy_beams_hands_powerfull_2"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/model_30_iron_destroyer/beams/hands/energy_beams_hands_powerfull_2"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/model_30_iron_destroyer/beams/hands/energy_beams_hands_powerfull_2",
       "conditions": {
         "enabling": [
           {

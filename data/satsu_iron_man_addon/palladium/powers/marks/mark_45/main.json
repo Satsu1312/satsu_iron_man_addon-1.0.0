@@ -40,6 +40,83 @@
         ]
       }
     },
+    "walk.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.walk.sound",
+      "volume": 0.3,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "walk.sound.animation_timer",
+            "property": "value",
+            "min": 2,
+            "max": 9
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "walk.sound.animation_timer"
+          }
+        ]
+      }
+    },
+    "walk.sound.animation_timer": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 9,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_movement_input"
+          },
+          {
+            "type": "palladium:on_ground"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.right.leg",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.left.leg",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "puting": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
@@ -103,11 +180,23 @@
             "max_score": 1
           },
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 15,
-            "max": 16
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_leg_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_leg_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              }
+            ]
           },
           {
             "type": "palladium:objective_score",
@@ -1198,10 +1287,10 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
+            "ability": "chest_animation",
             "property": "value",
-            "min": 2,
-            "max": 16
+            "min": 1,
+            "max": 17
           },
           {
             "type": "palladium:objective_score",
@@ -1222,10 +1311,10 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
+            "ability": "right_leg_animation",
             "property": "value",
-            "min": 2,
-            "max": 16
+            "min": 1,
+            "max": 18
           },
           {
             "type": "palladium:objective_score",
@@ -1246,10 +1335,10 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
+            "ability": "left_leg_animation",
             "property": "value",
-            "min": 2,
-            "max": 16
+            "min": 1,
+            "max": 18
           },
           {
             "type": "palladium:objective_score",
@@ -1270,10 +1359,17 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
+            "ability": "right_arm_animation",
             "property": "value",
-            "min": 2,
-            "max": 16
+            "min": 1,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "right_shoulder_animation",
+            "property": "value",
+            "min": 1,
+            "max": 18
           },
           {
             "type": "palladium:objective_score",
@@ -1300,10 +1396,17 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
+            "ability": "left_arm_animation",
             "property": "value",
-            "min": 2,
-            "max": 16
+            "min": 1,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "left_shoulder_animation",
+            "property": "value",
+            "min": 1,
+            "max": 18
           },
           {
             "type": "palladium:objective_score",
@@ -1329,11 +1432,65 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 2,
-            "max": 16
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_arm_animation",
+                "property": "value",
+                "min": 1,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_arm_animation",
+                "property": "value",
+                "min": 1,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_leg_animation",
+                "property": "value",
+                "min": 1,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_leg_animation",
+                "property": "value",
+                "min": 1,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_shoulder_animation",
+                "property": "value",
+                "min": 1,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_shoulder_animation",
+                "property": "value",
+                "min": 1,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "chest_animation",
+                "property": "value",
+                "min": 1,
+                "max": 17
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "head_animation",
+                "property": "value",
+                "min": 1,
+                "max": 19
+              }
+            ]
           }
         ]
       }
@@ -1651,6 +1808,10 @@
                     "max_score": 0
                   }
                 ]
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -1668,6 +1829,10 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           },
@@ -1737,6 +1902,10 @@
                     "max_score": 0
                   }
                 ]
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -1754,6 +1923,10 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           },
@@ -1769,7 +1942,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 13,
+      "max_value": 18,
       "conditions": {
         "enabling": [
           {
@@ -1823,6 +1996,10 @@
                     "max_score": 0
                   }
                 ]
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -1840,6 +2017,10 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           },
@@ -1855,7 +2036,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 16,
+      "max_value": 18,
       "conditions": {
         "enabling": [
           {
@@ -1915,6 +2096,10 @@
                     "max_score": 0
                   }
                 ]
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -1932,6 +2117,10 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           },
@@ -1947,7 +2136,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 8,
+      "max_value": 18,
       "conditions": {
         "enabling": [
           {
@@ -2001,6 +2190,10 @@
                     "max_score": 0
                   }
                 ]
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -2018,6 +2211,10 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           },
@@ -2033,7 +2230,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 11,
+      "max_value": 18,
       "conditions": {
         "enabling": [
           {
@@ -2087,6 +2284,10 @@
                     "max_score": 0
                   }
                 ]
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -2104,6 +2305,10 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           },
@@ -2173,6 +2378,10 @@
                     "max_score": 0
                   }
                 ]
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -2190,6 +2399,10 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           },
@@ -2259,6 +2472,10 @@
                     "max_score": 0
                   }
                 ]
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -2276,6 +2493,10 @@
                 "type": "palladium:ability_enabled",
                 "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:entity_type",
+                "entity_type": "minecraft:armor_stand"
               }
             ]
           },
@@ -2368,7 +2589,7 @@
         "unlocking": []
       }
     },
-    "bones_alpha_mask_left_arm.trigger": {
+    "left_arm_animation.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -2445,7 +2666,7 @@
         ]
       }
     },
-    "bones_alpha_mask_right_arm.trigger": {
+    "right_arm_animation.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -2464,8 +2685,8 @@
                     "type": "palladium:ability_integer_property",
                     "ability": "right_arm_animation",
                     "property": "value",
-                    "min": 14,
-                    "max": 14
+                    "min": 1,
+                    "max": 1
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -2484,7 +2705,7 @@
         ]
       }
     },
-    "bones_alpha_mask_left_leg.trigger": {
+    "left_leg_animation.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -2523,7 +2744,7 @@
         ]
       }
     },
-    "bones_alpha_mask_right_leg.trigger": {
+    "right_leg_animation.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -2562,91 +2783,7 @@
         ]
       }
     },
-    "bones_alpha_mask_left_arm": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 18,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "left_arm_animation",
-                    "property": "value",
-                    "min": 1,
-                    "max": 13
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "left_arm_animation"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.armor.left.arm",
-                    "min_score": 0,
-                    "max_score": 0
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "bones_alpha_mask_left_shoulder": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 18,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "left_shoulder_animation",
-                    "property": "value",
-                    "min": 1,
-                    "max": 18
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "left_shoulder_animation"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.armor.left.shoulder",
-                    "min_score": 0,
-                    "max_score": 0
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "bones_alpha_mask_left_shoulder.trigger": {
+    "left_shoulder_animation.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -2689,91 +2826,7 @@
         ]
       }
     },
-    "bones_alpha_mask_right_arm": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 18,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "right_arm_animation",
-                    "property": "value",
-                    "min": 14,
-                    "max": 16
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "right_arm_animation"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.armor.right.arm",
-                    "min_score": 0,
-                    "max_score": 0
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "bones_alpha_mask_right_shoulder": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 18,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "right_shoulder_animation",
-                    "property": "value",
-                    "min": 1,
-                    "max": 18
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "right_shoulder_animation"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.armor.right.shoulder",
-                    "min_score": 0,
-                    "max_score": 0
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "bones_alpha_mask_right_shoulder.trigger": {
+    "right_shoulder_animation.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -2816,133 +2869,7 @@
         ]
       }
     },
-    "bones_alpha_mask_left_leg": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 18,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "left_leg_animation",
-                    "property": "value",
-                    "min": 1,
-                    "max": 8
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "left_leg_animation"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.armor.left.leg",
-                    "min_score": 0,
-                    "max_score": 0
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "bones_alpha_mask_right_leg": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 18,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "right_leg_animation",
-                    "property": "value",
-                    "min": 1,
-                    "max": 11
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "right_leg_animation"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.armor.right.leg",
-                    "min_score": 0,
-                    "max_score": 0
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "bones_alpha_mask_chest": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 15,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "chest_animation",
-                    "property": "value",
-                    "min": 1,
-                    "max": 16
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "chest_animation"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.armor.chest",
-                    "min_score": 0,
-                    "max_score": 0
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "bones_alpha_mask_chest.trigger": {
+    "chest_animation.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -2981,49 +2908,7 @@
         ]
       }
     },
-    "bones_alpha_mask_head": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 18,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "head_animation",
-                    "property": "value",
-                    "min": 1,
-                    "max": 19
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "head_animation"
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.armor.head",
-                    "min_score": 0,
-                    "max_score": 0
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "bones_alpha_mask_head.trigger": {
+    "head_animation.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -3062,7 +2947,7 @@
         ]
       }
     },
-    "bones_alpha_mask_front.trigger": {
+    "head_animation_front.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -3079,7 +2964,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_head",
+                    "ability": "head_animation",
                     "property": "value",
                     "min": 16,
                     "max": 17
@@ -3122,7 +3007,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_head",
+                    "ability": "head_animation",
                     "property": "value",
                     "min": 15,
                     "max": 17
@@ -3162,7 +3047,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_right_arm",
+                    "ability": "right_arm_animation",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -3186,7 +3071,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_right_shoulder",
+                    "ability": "right_shoulder_animation",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -3210,7 +3095,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_left_arm",
+                    "ability": "left_arm_animation",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -3234,7 +3119,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_left_shoulder",
+                    "ability": "left_shoulder_animation",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -3277,7 +3162,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_right_leg",
+                    "ability": "right_leg_animation",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -3301,7 +3186,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_left_leg",
+                    "ability": "left_leg_animation",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -3344,7 +3229,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_chest",
+                    "ability": "chest_animation",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -3387,7 +3272,7 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "ability": "bones_alpha_mask_head",
+                    "ability": "head_animation",
                     "property": "value",
                     "min": 1,
                     "max": 5
@@ -3435,56 +3320,6 @@
               {
                 "type": "palladium:has_tag",
                 "tag": "alien"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "no_nanoarmor_anim": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 16,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "satsu.iron.man.suit.set"
-                  },
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:ability_unlocked",
-                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                        "ability": "armor_skill_bar"
-                      },
-                      {
-                        "type": "palladium:ability_enabled",
-                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                        "ability": "enable_armor"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
-                  }
-                ]
-              },
-              {
-                "type": "palladium:entity_type",
-                "entity_type": "minecraft:armor_stand"
               }
             ]
           }
@@ -3818,6 +3653,97 @@
         ]
       }
     },
+    "projectile_resistance": {
+      "type": "palladium:damage_immunity",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": ["minecraft:arrow", "minecraft:barrier"]
+      },
+      "title": { "translate": "ability.title.satsu.projectile_resistance" },
+      "description": { "translate": "description.iron.man.projectile_resistance" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 3.25],
+      "damage_sources": ["minecraft:is_projectile"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.head",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.chest",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.arm",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.arm",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.shoulder",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.shoulder",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.right.leg",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.left.leg",
+                "min_score": 0,
+                "max_score": 0
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          }
+        ]
+      }
+    },
     "aquatic_breath": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/aquatic_breath.png",
@@ -3962,35 +3888,6 @@
                     "ability": "mask_activate"
                   }
                 ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.mask",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "no_nanoarmor_anim",
-                    "property": "value",
-                    "min": 12,
-                    "max": 13
-                  },
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      }
-                    ]
-                  }
-                ]
               }
             ]
           }
@@ -4036,11 +3933,23 @@
             "max_score": 1
           },
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 15,
-            "max": 16
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -4130,11 +4039,23 @@
             "max_score": 1
           },
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 15,
-            "max": 16
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_leg_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_leg_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              }
+            ]
           }
         ]
       }
@@ -4988,10 +4909,10 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "bones_alpha_mask_head",
+            "ability": "head_animation",
             "property": "value",
-            "min": 18,
-            "max": 18
+            "min": 19,
+            "max": 19
           },
           {
             "type": "palladium:objective_score",
@@ -5077,10 +4998,10 @@
           },
           {
             "type": "palladium:ability_integer_property",
-            "ability": "bones_alpha_mask_chest",
+            "ability": "chest_animation",
             "property": "value",
-            "min": 15,
-            "max": 15
+            "min": 16,
+            "max": 16
           },
           {
             "type": "palladium:objective_score",
@@ -5097,13 +5018,6 @@
             "objective": "satsu.iron.man.armor.actived",
             "min_score": 1,
             "max_score": 1
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 15,
-            "max": 16
           },
           {
             "type": "palladium:not",
@@ -5204,9 +5118,9 @@
           },
           {
             "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
+            "ability": "chest_animation",
             "property": "value",
-            "min": 15,
+            "min": 16,
             "max": 16
           }
         ]
@@ -5333,11 +5247,23 @@
             "max_score": 1
           },
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 15,
-            "max": 16
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              }
+            ]
           },
           {
             "type": "palladium:or",
@@ -5368,6 +5294,65 @@
             ]
           }
         ]
+      }
+    },
+    "repulsor": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "uni.beam.hand.right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "uni.beam.hand.left"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "repulsor.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.repulsor",
+      "volume": 1,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "repulsor",
+            "property": "value",
+            "min": 1,
+            "max": 7
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "repulsor"
+          }
+        ],
+        "unlocking": []
       }
     },
     "energy.pulse_right": {
@@ -5423,10 +5408,10 @@
               },
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "no_nanoarmor_anim",
+                "ability": "right_arm_animation",
                 "property": "value",
-                "min": 15,
-                "max": 16
+                "min": 18,
+                "max": 18
               },
               {
                 "type": "palladium:not",
@@ -5497,10 +5482,10 @@
               },
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "no_nanoarmor_anim",
+                "ability": "left_arm_animation",
                 "property": "value",
-                "min": 15,
-                "max": 16
+                "min": 18,
+                "max": 18
               },
               {
                 "type": "palladium:not",
@@ -5565,11 +5550,37 @@
             "max_score": 1
           },
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 15,
-            "max": 16
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_leg_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_leg_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              }
+            ]
           }
         ]
       }
@@ -5630,11 +5641,23 @@
             "max_score": 1
           },
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 15,
-            "max": 16
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              }
+            ]
           }
         ]
       }
@@ -5695,11 +5718,23 @@
             "max_score": 1
           },
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 15,
-            "max": 16
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_arm_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              }
+            ]
           }
         ]
       }
@@ -5741,7 +5776,7 @@
       "hidden_in_bar": true,
       "list_index": 4,
       "gui_position": [-2, -0],
-      "abilities": [ "arms_unlock"],
+      "abilities": ["arms_unlock"],
       "conditions": {
         "enabling": [
           {
@@ -5941,11 +5976,23 @@
                 "max_score": 1
               },
               {
-                "type": "palladium:ability_integer_property",
-                "ability": "no_nanoarmor_anim",
-                "property": "value",
-                "min": 15,
-                "max": 16
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "right_arm_animation",
+                    "property": "value",
+                    "min": 18,
+                    "max": 18
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "left_arm_animation",
+                    "property": "value",
+                    "min": 18,
+                    "max": 18
+                  }
+                ]
               }
             ]
           },
@@ -6027,11 +6074,23 @@
                 "max_score": 1
               },
               {
-                "type": "palladium:ability_integer_property",
-                "ability": "no_nanoarmor_anim",
-                "property": "value",
-                "min": 15,
-                "max": 16
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "right_arm_animation",
+                    "property": "value",
+                    "min": 18,
+                    "max": 18
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "left_arm_animation",
+                    "property": "value",
+                    "min": 18,
+                    "max": 18
+                  }
+                ]
               }
             ]
           }
@@ -6091,10 +6150,10 @@
               },
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "no_nanoarmor_anim",
+                "ability": "right_arm_animation",
                 "property": "value",
-                "min": 15,
-                "max": 16
+                "min": 18,
+                "max": 18
               },
               {
                 "type": "palladium:not",
@@ -6170,10 +6229,10 @@
               },
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "no_nanoarmor_anim",
+                "ability": "left_arm_animation",
                 "property": "value",
-                "min": 15,
-                "max": 16
+                "min": 18,
+                "max": 18
               },
               {
                 "type": "palladium:not",
@@ -6285,16 +6344,11 @@
       }
     },
     "commands_energy_beams.hands": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/mark_45/beams/hands/energy_beams_hands"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/mark_45/beams/hands/energy_beams_hands"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/mark_45/beams/hands/energy_beams_hands",
       "conditions": {
         "enabling": [
           {
@@ -6326,16 +6380,11 @@
       }
     },
     "commands_energy_beams.hands_powerfull.1": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/mark_45/beams/hands/energy_beams_hands_powerfull_1"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/mark_45/beams/hands/energy_beams_hands_powerfull_1"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/mark_45/beams/hands/energy_beams_hands_powerfull_1",
       "conditions": {
         "enabling": [
           {
@@ -6362,16 +6411,11 @@
       }
     },
     "commands_energy_beams.hands_powerfull.2": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/mark_45/beams/hands/energy_beams_hands_powerfull_2"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/mark_45/beams/hands/energy_beams_hands_powerfull_2"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/mark_45/beams/hands/energy_beams_hands_powerfull_2",
       "conditions": {
         "enabling": [
           {
@@ -6481,11 +6525,23 @@
             "max_score": 1
           },
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "no_nanoarmor_anim",
-            "property": "value",
-            "min": 1,
-            "max": 16
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "right_leg_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_leg_animation",
+                "property": "value",
+                "min": 18,
+                "max": 18
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -7380,16 +7436,11 @@
       }
     },
     "commands_energy_beams": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/mark_45/beams/chest/beam"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/mark_45/beams/chest/beam"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/mark_45/beams/chest/beam",
       "conditions": {
         "enabling": [
           {
@@ -7422,16 +7473,11 @@
       }
     },
     "commands_energy_beams_powerfull_1": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/mark_45/beams/chest/energy_beams_powerfull_1"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/mark_45/beams/chest/energy_beams_powerfull_1"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/mark_45/beams/chest/energy_beams_powerfull_1",
       "conditions": {
         "enabling": [
           {
@@ -7454,16 +7500,11 @@
       }
     },
     "commands_energy_beams_powerfull_2": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:marks/mark_45/beams/chest/energy_beams_powerfull_2"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:marks/mark_45/beams/chest/energy_beams_powerfull_2"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "marks/mark_45/beams/chest/energy_beams_powerfull_2",
       "conditions": {
         "enabling": [
           {
