@@ -386,6 +386,50 @@
           }
         ]
       }
+    },
+    "flight.fall.sound": {
+      "type": "palladium:play_sound",
+      "sound": "satsu_iron_man_addon:entity.armor.land",
+      "volume": 1,
+      "pitch": 1,
+      "looping": true,
+      "play_self": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor_voice_commands",
+                "ability": "flight.fall.animation",
+                "property": "value",
+                "min": 44,
+                "max": 50
+              },
+              {
+                "type": "palladium:on_ground"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "sentinel_one"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
     }
   }
 }

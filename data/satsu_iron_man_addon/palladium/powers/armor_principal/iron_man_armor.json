@@ -390,7 +390,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 4,
+      "max_value": 7,
       "conditions": {
         "enabling": [
           {
@@ -584,6 +584,10 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "mark.42"
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "mark.43"
                   },
                   {
                     "type": "palladium:has_tag",
@@ -819,27 +823,6 @@
         ]
       }
     },
-    "reset.score.ark_beam_for_hands": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [""],
-      "commands": [
-        "tag @s remove hand.uni.beam",
-        "scoreboard players reset @s satsu.iron.man.armor.uni.beam.hand",
-        "scoreboard players reset @s satsu.iron.man.armor.energy.pulse.or.energy.beam"
-      ],
-      "last_tick_commands": [""],
-      "conditions": {
-        "enabling": [],
-        "unlocking": [
-          {
-            "type": "palladium:has_tag",
-            "tag": "mark.1"
-          }
-        ]
-      }
-    },
     "vibranuim.blades": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -922,9 +905,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 2044
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -937,9 +919,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 204
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -952,9 +933,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 214
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -967,9 +947,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 66,
-                    "max_score": 205
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -982,9 +961,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 204
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -997,9 +975,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 204
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -1012,9 +989,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 204
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -1027,9 +1003,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 204
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -1042,9 +1017,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 214
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               },
@@ -1057,9 +1031,8 @@
                   },
                   {
                     "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.flight_speed",
-                    "min_score": 65,
-                    "max_score": 207
+                    "objective": "satsu.iron.man.flight_speed.choose",
+                    "min_score": 2
                   }
                 ]
               }
@@ -2360,6 +2333,21 @@
             "min_score": 1,
             "max_score": 1
           }
+        ],
+        "unlocking": []
+      }
+    },
+    "set_satsu.iron.man.armor.uni.beam.hand": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "execute as @s unless score @s satsu.iron.man.armor.uni.beam.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.uni.beam.hand 0"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
         ],
         "unlocking": []
       }

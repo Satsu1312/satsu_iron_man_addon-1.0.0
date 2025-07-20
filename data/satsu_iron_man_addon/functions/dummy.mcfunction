@@ -1,4 +1,5 @@
 
+scoreboard objectives add satsu.iron.man.armor.weapon dummy
 scoreboard objectives add satsu.iron.man.armor.model.prime.stealth dummy
 scoreboard objectives add satsu.iron.man.addon.nano.stabilizer dummy
 scoreboard objectives add satsu.iron.man.addon.nano.weapon.hammer dummy
@@ -72,7 +73,7 @@ scoreboard objectives remove satsu.iron.man.armor.actived.perm
 scoreboard objectives add satsu.iron.man.armor dummy
 scoreboard objectives add satsu.iron.man.armor.actived dummy
 scoreboard objectives remove satsu.iron.man.armor.anim
-scoreboard objectives add satsu.iron.man.flight_speed dummy
+scoreboard objectives remove satsu.iron.man.flight_speed
 scoreboard objectives add satsu.iron.man.flight_speed.choose dummy
 scoreboard objectives add satsu.iron.man.choose_armor dummy
 scoreboard objectives add satsu.iron.man.choose_armor.test dummy
