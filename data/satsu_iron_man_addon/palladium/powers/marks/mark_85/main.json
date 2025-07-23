@@ -2492,10 +2492,21 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.uni.beam.hand",
-            "min_score": 0,
-            "max_score": 0
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.uni.beam.hand",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.uni.beam.hand",
+                "min_score": 2,
+                "max_score": 2
+              }
+            ]
           },
           {
             "type": "palladium:objective_score",
@@ -2555,10 +2566,21 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.uni.beam.hand",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.uni.beam.hand",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.uni.beam.hand",
+                "min_score": 2,
+                "max_score": 2
+              }
+            ]
           },
           {
             "type": "palladium:objective_score",
@@ -2592,7 +2614,7 @@
       }
     },
     "weapons_wheel.red_beams": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_scoreboard",
       "icon": "satsu_iron_man_addon:textures/gui/armors/red_mini_beam.png",
       "title": { "translate": "ability.title.satsu.red.mini.beams" },
       "description": { "translate": "description.satsu.red.mini.beams" },
@@ -2600,16 +2622,8 @@
       "hidden_in_bar": false,
       "list_index": 3,
       "gui_position": [4.3, -1],
-      "first_tick_commands": [
-        "scoreboard objectives add satsu.iron.man.armor.uni.beam.hand dummy",
-        "scoreboard players add @s satsu.iron.man.armor.uni.beam.hand 2",
-        "scoreboard players add @s satsu.iron.man.armor.energy.pulse.or.energy.beam 1",
-        "execute as @s[scores={satsu.iron.man.armor.uni.beam.hand=1..}] run tag @s add hand.uni.beam",
-        "execute as @s[scores={satsu.iron.man.armor.uni.beam.hand=4..}] run tag @s remove hand.uni.beam",
-        "execute as @s[scores={satsu.iron.man.armor.uni.beam.hand=4..}] run scoreboard players set @s satsu.iron.man.armor.uni.beam.hand 0",
-        "execute as @s[scores={satsu.iron.man.armor.energy.pulse.or.energy.beam=4..}] run scoreboard players set @s satsu.iron.man.armor.energy.pulse.or.energy.beam 0"
-      ],
-      "commands": [""],
+      "scoreboard_name": "satsu.iron.man.armor.uni.beam.hand",
+      "quantity": 2,
       "conditions": {
         "enabling": [
           {
@@ -2618,6 +2632,23 @@
           }
         ],
         "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.uni.beam.hand",
+                "min_score": 0,
+                "max_score": 0
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.uni.beam.hand",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
           {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor.ark.energy",
