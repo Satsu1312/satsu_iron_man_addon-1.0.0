@@ -1737,20 +1737,13 @@
       }
     },
     "weapons_wheel.Energy.Pulse": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:ark_disable_enable",
-      "title": { "translate": "ability.title.satsu.disable.energy.beam.or.pulse" },
+      "title": {
+        "translate": "ability.title.satsu.disable.energy.beam.or.pulse"
+      },
       "hidden": true,
       "hidden_in_bar": false,
-      "first_tick_commands": [
-        "scoreboard objectives add satsu.iron.man.armor.energy.pulse dummy",
-        "scoreboard players add @s satsu.iron.man.armor.energy.pulse 1",
-        "execute as @s[scores={satsu.iron.man.armor.energy.pulse=1}] run tag @s add energy.pulse",
-        "execute as @s[scores={satsu.iron.man.armor.energy.pulse=2..}] run tag @s remove energy.pulse",
-        "execute as @s[scores={satsu.iron.man.armor.energy.pulse=2..}] run scoreboard players reset @s satsu.iron.man.armor.energy.pulse"
-      ],
-      "commands": [""],
-      "last_tick_commands": [],
       "conditions": {
         "enabling": [
           {
@@ -1785,6 +1778,57 @@
             "property": "value",
             "min": 15,
             "max": 16
+          }
+        ]
+      }
+    },
+    "energy.pulse.actived": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "scoreboard_name": "satsu.iron.man.armor.energy.pulse",
+      "quantity": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "weapons_wheel.Energy.Pulse"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.energy.pulse",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse.disable"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy.pulse.disable": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "scoreboard_name": "satsu.iron.man.armor.energy.pulse",
+      "quantity": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "weapons_wheel.Energy.Pulse"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.energy.pulse",
+            "min_score": 1,
+            "max_score": 1
           }
         ]
       }
@@ -1920,8 +1964,10 @@
                 "min_score": 1
               },
               {
-                "type": "palladium:has_tag",
-                "tag": "energy.pulse"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse",
+                "min_score": 1,
+                "max_score": 1
               },
               {
                 "type": "palladium:ability_unlocked",
@@ -2002,8 +2048,10 @@
                 "max_score": 1
               },
               {
-                "type": "palladium:has_tag",
-                "tag": "energy.pulse"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse",
+                "min_score": 1,
+                "max_score": 1
               },
               {
                 "type": "palladium:ability_unlocked",
@@ -2391,8 +2439,10 @@
                 "min_score": 1
               },
               {
-                "type": "palladium:has_tag",
-                "tag": "energy.pulse"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse",
+                "min_score": 1,
+                "max_score": 1
               },
               {
                 "type": "palladium:ability_unlocked",
@@ -2478,8 +2528,10 @@
                 "max_score": 1
               },
               {
-                "type": "palladium:has_tag",
-                "tag": "energy.pulse"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse",
+                "min_score": 1,
+                "max_score": 1
               },
               {
                 "type": "palladium:ability_unlocked",
