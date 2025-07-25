@@ -119,37 +119,21 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .documentationDescription(
       "Add,set or remove a specific power to the player when the ability is active."
     )
-    .addProperty(
-      "power_path",
-      "string",
-      "palladium",
-      "Path of the power to add"
-    )
-    .addProperty("powerid", "string", "test_power", "ID of the power to add")
+    .addProperty("power", "string", "test:example_power", "power")
     .addProperty("capacity", "string", "add", "set,add or remove")
     // Handler for what happens during EVERY tick of the ability being active, make sure to check the 'enabled' parameter
     .tick((entity, entry, holder, enabled) => {
       if (enabled) {
-        const power_path = entry.getPropertyByName("power_path");
-        const powerid = entry.getPropertyByName("powerid");
+        const power = entry.getPropertyByName("power");
         let capacity = entry.getPropertyByName("capacity");
         if (capacity === "add") {
-          palladium.superpowers.addSuperpower(
-            entity,
-            `${power_path}:${powerid}`
-          );
+          palladium.superpowers.addSuperpower(entity, `${power}`);
         }
         if (capacity === "remove") {
-          palladium.superpowers.removeSuperpower(
-            entity,
-            `${power_path}:${powerid}`
-          );
+          palladium.superpowers.removeSuperpower(entity, `${power}`);
         }
         if (capacity === "set") {
-          palladium.superpowers.setSuperpower(
-            entity,
-            `${power_path}:${powerid}`
-          );
+          palladium.superpowers.setSuperpower(entity, `${power}`);
         }
       }
     });
