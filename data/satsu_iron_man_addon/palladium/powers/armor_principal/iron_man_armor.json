@@ -684,14 +684,11 @@
       }
     },
     "armor_activate.command": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_scoreboard",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.armor.actived 1"
-      ],
-      "commands": [""],
-      "last_tick_commands": [],
+      "scoreboard_name": "satsu.iron.man.armor.actived",
+      "quantity": 1,
       "conditions": {
         "enabling": [
           {
@@ -726,15 +723,11 @@
       }
     },
     "not.armor_activate.command": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_scoreboard",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players reset @s[tag=satsu.iron.man.enable.armor] satsu.iron.man.armor.actived",
-        "scoreboard players reset @s[tag=!satsu.iron.man.enable.armor] satsu.iron.man.armor.actived"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
+      "scoreboard_name": "satsu.iron.man.armor.actived",
+      "quantity": 0,
       "conditions": {
         "enabling": [
           {
@@ -742,7 +735,7 @@
             "conditions": [
               {
                 "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.animation.armor.reset",
+                "objective": "satsu.iron.man.animation.armor",
                 "min_score": 1,
                 "max_score": 1
               }
@@ -2266,37 +2259,6 @@
         ]
       }
     },
-    "commands_armor": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players operation @s satsu.iron.man.animation.armor.reset = @s satsu.iron.man.animation.armor",
-        "superpower remove satsu_iron_man_addon:armor_principal/iron_man_xp"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "scoreboard players operation @s satsu.iron.man.animation.armor.reset = @s satsu.iron.man.animation.armor"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.animation.armor",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.animation.armor",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
     "decrease_scoreboard_armor": {
       "type": "palladium:command",
       "hidden": true,
@@ -2337,32 +2299,12 @@
         "unlocking": []
       }
     },
-    "set_satsu.iron.man.armor.uni.beam.hand": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "execute as @s unless score @s satsu.iron.man.armor.uni.beam.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.uni.beam.hand 0"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
-      "conditions": {
-        "enabling": [
-        ],
-        "unlocking": []
-      }
-    },
     "commands_projectiles": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:projectiles_armor/projectiles"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "superpower remove satsu_iron_man_addon:projectiles_armor/projectiles"
-      ],
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "projectiles_armor/projectiles",
       "conditions": {
         "enabling": [
           {
@@ -2439,20 +2381,31 @@
       }
     },
     "unlocking.set.block": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:increase_scoreboard",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.addon.unlocking.set.block 1"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "execute as @s[scores={satsu.iron.man.addon.unlocking.set.block=2..}] run scoreboard players reset @s satsu.iron.man.addon.unlocking.set.block"
-      ],
+      "scoreboard_name": "satsu.iron.man.addon.unlocking.set.block",
+      "quantity": 1,
       "conditions": {
         "enabling": [
           {
             "type": "palladium:crouching"
+          }
+        ]
+      }
+    },
+    "reset.set.block": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.addon.unlocking.set.block",
+      "quantity": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.unlocking.set.block",
+            "min_score": 2
           }
         ]
       }

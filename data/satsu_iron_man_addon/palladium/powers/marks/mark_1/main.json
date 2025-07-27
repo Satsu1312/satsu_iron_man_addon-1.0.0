@@ -52,28 +52,6 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "walk.sound.animation_timer",
-            "property": "value",
-            "min": 2,
-            "max": 9
-          },
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "walk.sound.animation_timer"
-          }
-        ]
-      }
-    },
-    "walk.sound.animation_timer": {
-      "type": "palladium:repeating_animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 9,
-      "conditions": {
-        "enabling": [
-          {
             "type": "palladium:has_movement_input"
           },
           {
@@ -1186,22 +1164,13 @@
       }
     },
     "mask_activate": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:mask_icon",
       "title": { "translate": "ability.title.satsu.enable_mask" },
       "description": { "translate": "description.armor_skill_bar" },
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 1,
-      "first_tick_commands": [""],
-      "commands": [
-        "scoreboard players add @s satsu.iron.man.mask 1",
-        "title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.on\",\"color\":\"blue\"}",
-        "execute as @s[scores={satsu.iron.man.mask=2}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.off\",\"color\":\"blue\"}",
-        "execute as @s[scores={satsu.iron.man.mask=2}] run scoreboard players set @s satsu.iron.man.mask 0",
-        "execute as @s[scores={satsu.iron.man.mask=3..}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.on\",\"color\":\"blue\"}",
-        "execute as @s[scores={satsu.iron.man.mask=3..}] run scoreboard players reset @s satsu.iron.man.mask"
-      ],
       "conditions": {
         "enabling": [
           {
@@ -1225,6 +1194,66 @@
             "objective": "satsu.iron.man.armor.actived",
             "min_score": 1,
             "max_score": 1
+          }
+        ]
+      }
+    },
+    "mask_set.0": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.mask",
+      "quantity": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "mask_activate"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mask_set.1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mask_set.1": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.mask",
+      "quantity": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "mask_activate"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mask_set.0"
+              }
+            ]
           }
         ]
       }

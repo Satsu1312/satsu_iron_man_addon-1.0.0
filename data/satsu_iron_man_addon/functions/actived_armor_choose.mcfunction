@@ -1,5 +1,5 @@
 
-scoreboard players reset @s satsu.iron.man.armor.actived
+scoreboard players set @s satsu.iron.man.armor.actived 0
 
 
 

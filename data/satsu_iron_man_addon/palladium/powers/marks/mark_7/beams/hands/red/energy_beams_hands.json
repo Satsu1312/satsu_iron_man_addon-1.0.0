@@ -2,7 +2,37 @@
   "name": "energy_beams_hands",
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "abilities": {
-    "energybeam.remove.ark.energy_beam_hand_uni_bram": {
+    "destroy_block": {
+      "type": "satsu_iron_man_addon:destroy_block",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "range": 20,
+      "excluded_tag": "#satsu_iron_man_addon:no_destroy",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_beam_hand_uni_bram"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_beam_hand_uni_bram.left"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.break",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
+    "remove.energy.red_beams": {
       "type": "satsu_iron_man_addon:decrease_scoreboard",
       "hidden": true,
       "hidden_in_bar": true,
@@ -11,9 +41,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:marks/mark_7/main",
-            "ability": "red_beams"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:marks/mark_7/main",
+                "ability": "red_beams.right_arm"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:marks/mark_7/main",
+                "ability": "red_beams.left_arm"
+              }
+            ]
           }
         ]
       }
@@ -34,11 +74,10 @@
           {
             "type": "palladium:ability_enabled",
             "power": "satsu_iron_man_addon:marks/mark_7/main",
-            "ability": "red_beams"
+            "ability": "red_beams.right_arm"
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "energy_beam_hand_uni_bram.left": {
@@ -57,11 +96,10 @@
           {
             "type": "palladium:ability_enabled",
             "power": "satsu_iron_man_addon:marks/mark_7/main",
-            "ability": "red_beams"
+            "ability": "red_beams.left_arm"
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     }
   }
