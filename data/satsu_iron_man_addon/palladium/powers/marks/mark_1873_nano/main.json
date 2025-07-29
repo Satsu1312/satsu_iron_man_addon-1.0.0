@@ -1152,7 +1152,6 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "maximun.pulse.animation"
                   },
                   {
@@ -2013,7 +2012,6 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_rial"
                   }
                 ]
@@ -2031,12 +2029,10 @@
                       },
                       {
                         "type": "palladium:ability_enabled",
-                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                         "ability": "nano_fireworks"
                       },
                       {
                         "type": "palladium:ability_enabled",
-                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                         "ability": "nano_flares_flames"
                       }
                     ]
@@ -2136,7 +2132,6 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_rial"
                   }
                 ]
@@ -2154,12 +2149,10 @@
                       },
                       {
                         "type": "palladium:ability_enabled",
-                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                         "ability": "nano_fireworks"
                       },
                       {
                         "type": "palladium:ability_enabled",
-                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                         "ability": "nano_flares_flames"
                       }
                     ]
@@ -2298,7 +2291,6 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_rial"
               },
               {
@@ -2382,7 +2374,6 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_rial"
               },
               {
@@ -3818,6 +3809,84 @@
         ]
       }
     },
+    "propulsor_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 16,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_skill_bar"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.beams",
+                "min_score": 1
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_fireworks.back"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "maximun.pulse.animation"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
+    "flight_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 16,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_skill_bar"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "palladium:is_fast_flying"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.flight_speed.choose",
+            "min_score": 2
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
     "waepons.choose_wheel_nano_stabilizer": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/stabilizer.png",
@@ -3972,7 +4041,7 @@
       }
     },
     "nano_sword": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/energy_sword.png",
       "title": { "translate": "ability.title.satsu.sword.enable" },
       "hidden": true,
@@ -4230,12 +4299,10 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_fireworks"
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_flares_flames"
                   }
                 ]
@@ -4404,7 +4471,7 @@
       }
     },
     "nano_katar": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/nano_katar.png",
       "title": { "translate": "ability.title.satsu.throw.blades" },
       "description": { "translate": "description.satsu.throw.blades" },
@@ -4587,7 +4654,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_katar"
           }
         ],
@@ -4595,7 +4661,7 @@
       }
     },
     "nano_hand_blade": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/nano_hand_blade.png",
       "title": { "translate": "ability.title.satsu.nano_hand_blade" },
       "description": { "translate": "description.satsu.nano_hand_blade" },
@@ -4650,7 +4716,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_hand_blade"
           }
         ],
@@ -4670,7 +4735,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_hand_blade"
           }
         ]
@@ -4693,7 +4757,6 @@
           },
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_hand_blade"
           }
         ]
@@ -4712,7 +4775,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_hand_blade"
           }
         ],
@@ -4720,7 +4782,7 @@
       }
     },
     "nano_rial": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/nano_rial.png",
       "title": { "translate": "ability.title.satsu.nano_rial" },
       "description": { "translate": "description.satsu.nano_rial" },
@@ -4775,7 +4837,7 @@
       }
     },
     "nano_mallet": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet.png",
       "title": { "translate": "ability.title.satsu.nano_mallet" },
       "description": { "translate": "description.satsu.nano_mallet" },
@@ -4828,7 +4890,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_mallet"
           }
         ]
@@ -4846,7 +4907,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_mallet"
           }
         ]
@@ -4864,7 +4924,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_mallet"
           }
         ]
@@ -4879,7 +4938,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_mallet"
           }
         ]
@@ -4908,7 +4966,6 @@
         "unlocking": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_mallet"
           },
           {
@@ -5016,6 +5073,31 @@
         ]
       }
     },
+    "nano_grenade_launcher_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_grenade_launcher"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "maximun.pulse.animation"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "nano_grenade_launcher_right": {
       "type": "palladium:repeating_animation_timer",
       "hidden": true,
@@ -5035,7 +5117,6 @@
         "unlocking": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_grenade_launcher"
           },
           {
@@ -5249,7 +5330,7 @@
       }
     },
     "nano_fireworks": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.fireworks" },
@@ -5313,8 +5394,114 @@
         ]
       }
     },
+    "mini_fireworks.firework_projectile": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -50,
+      "pitchOffset": 55,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 10,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:fire_work",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:fire_work",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_fireworks",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_fireworks",
+                "property": "value"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mini_fireworks.firework_projectile.2": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 50,
+      "pitchOffset": 55,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 10,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:fire_work",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:fire_work",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_fireworks",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_fireworks",
+                "property": "value"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "nano_flares_flames": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
       "title": { "translate": "ability.title.satsu.flare.flame" },
       "description": { "translate": "description.satsu.flare.flame" },
@@ -5371,6 +5558,130 @@
                 "type": "palladium:objective_score",
                 "objective": "satsu.iron.man.addon.nano.weapon.hammer",
                 "min_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "flares_flames.": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 3,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -50,
+      "pitchOffset": 55,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 0,
+        "Size": 0.1,
+        "Gravity": 0.3,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:flame_flare",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:flame_flare",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:flame_flare"
+          },
+          {
+            "Type": "particles",
+            "ParticleType": "minecraft:firework",
+            "Spread": 0.1
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_flares_flames",
+                    "property": "value",
+                    "min": 19,
+                    "max": 19
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "flares_flames.2": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 3,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 50,
+      "pitchOffset": 55,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 0,
+        "Size": 0.1,
+        "Gravity": 0.3,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:flame_flare",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:flame_flare",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:flame_flare"
+          },
+          {
+            "Type": "particles",
+            "ParticleType": "minecraft:firework",
+            "Spread": 0.1
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_flares_flames",
+                    "property": "value",
+                    "min": 19,
+                    "max": 19
+                  }
+                ]
               }
             ]
           }
@@ -5453,70 +5764,60 @@
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "propulsor_anim",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "8"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "flight_anim",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "8"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_sword",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "8"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_katar",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "8"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_hand_blade",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "8"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_rial",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "7"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_grenade_launcher_anim",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "7"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_mallet",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "7"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_fireworks",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "7"
               },
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_flares_flames",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "min": "1",
                 "max": "7"
               },
@@ -5553,17 +5854,14 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_sword"
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_katar"
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_hand_blade"
               }
             ]
@@ -5961,7 +6259,6 @@
           },
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_rial"
           }
         ]
@@ -6010,7 +6307,6 @@
           },
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_rial"
           }
         ]
@@ -6170,7 +6466,6 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_rial"
                   }
                 ]
@@ -6186,7 +6481,6 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_rial"
                   }
                 ]
@@ -6388,17 +6682,14 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_flares_flames"
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_fireworks"
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_fireworks.back"
               },
               {
@@ -6419,7 +6710,6 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "maximun.pulse.animation"
               },
               {
@@ -6459,12 +6749,10 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_flares_flames"
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "nano_fireworks"
                   },
                   {
@@ -6490,7 +6778,6 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                     "ability": "maximun.pulse.animation"
                   },
                   {
@@ -6538,7 +6825,6 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_katar"
               },
               {
@@ -6567,7 +6853,6 @@
           },
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_katar"
           }
         ]
@@ -6586,7 +6871,6 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_sword"
               }
             ]
@@ -6604,7 +6888,6 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "nano_hand_blade"
           }
         ]
@@ -6623,12 +6906,10 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_mallet"
               },
               {
                 "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
                 "ability": "nano_katar"
               }
             ]
