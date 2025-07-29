@@ -360,7 +360,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0xffa500
         );
       }
@@ -390,7 +390,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0xffb6c1
         );
       }
@@ -420,7 +420,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0x9370db
         );
       }
@@ -450,7 +450,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0x708090
         );
       }
@@ -480,7 +480,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0x00bfff
         );
       }
@@ -510,7 +510,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0xffe800
         );
       }
@@ -540,7 +540,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0x09f42c
         );
       }
@@ -570,7 +570,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0x98fb98
         );
       }
@@ -600,7 +600,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0x55fb9e
         );
       }
@@ -630,7 +630,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0xfe0f0f
         );
       }
@@ -660,7 +660,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0x4682b4
         );
       }
@@ -690,7 +690,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
           poseStack,
           Component.string("Energy: " + value),
           50,
-          180,
+          30,
           0x0067fe
         );
       }
