@@ -4389,7 +4389,15 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_anim_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "nano_grenade_launcher_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_anim_left"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -4526,6 +4534,15 @@
                 "type": "palladium:not",
                 "conditions": [
                   {
+                    "type": "palladium:ability_enabled",
+                    "ability": "grab_cannon_anim"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
                     "type": "palladium:or",
                     "conditions": [
                       {
@@ -4639,6 +4656,15 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "nano_rial"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "grab_cannon_anim"
                   }
                 ]
               },
@@ -6451,6 +6477,32 @@
           {
             "type": "palladium:ability_enabled",
             "ability": "waepons.choose"
+          }
+        ]
+      }
+    },
+    "waepons.choose_wheel.grab_cannon": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.grab_cannon" },
+      "description": { "translate": "description.satsu.grab_cannon" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:nano_weapons/grab_cannon"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "weapons_wheel"
           }
         ]
       }
@@ -8708,6 +8760,344 @@
         ]
       }
     },
+    "grab_cannon_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.weapon.grab_cannon",
+            "min_score": 1
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.nano.weapon.hammer",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "arms_unlock_skill_tree"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "grab_cannon_anim_right": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "ticks": 6,
+            "cooldown": 80,
+            "key_type": "right_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "grab_cannon_anim"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.ark.energy",
+                "min_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse.hand",
+                "min_score": 1
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "right_arm_animation",
+                    "property": "value",
+                    "min": 17,
+                    "max": 17
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "left_arm_animation",
+                    "property": "value",
+                    "min": 17,
+                    "max": 17
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.uni.beam.hand",
+                    "min_score": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "nano_katar.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "grab_cannon_anim_left": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "ticks": 6,
+            "cooldown": 80,
+            "key_type": "left_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "grab_cannon_anim"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.ark.energy",
+                "min_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse.hand",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "left_arm_animation",
+                "property": "value",
+                "min": 17,
+                "max": 17
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.uni.beam.hand",
+                    "min_score": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "nano_katar.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "grab_cannon.particle.right_arm": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": [
+        "satsu_iron_man_addon:grab_cannon/right_hand"
+      ],
+      "particle_type": "minecraft:flash",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "grab_cannon_anim_right",
+                "min": 13,
+                "max": 13
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "grab_cannon.particle.left_arm": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": [
+        "satsu_iron_man_addon:grab_cannon/left_hand"
+      ],
+      "particle_type": "minecraft:flash",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "grab_cannon_anim_left",
+                "min": 13,
+                "max": 13
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "grab_cannon.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:decrease_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.armor.ark.energy",
+      "quantity": 30,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "grab_cannon_anim_right",
+                "min": 13,
+                "max": 13
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "grab_cannon_anim_left",
+                "min": 13,
+                "max": 13
+              }
+            ]
+          }
+        ]
+      }
+    },
     "nano_things_sounds": {
       "type": "palladium:play_sound",
       "hidden": true,
@@ -8761,6 +9151,12 @@
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "nano_grenade_launcher_anim",
+                "min": "1",
+                "max": "7"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "grab_cannon_anim",
                 "min": "1",
                 "max": "7"
               },
@@ -9127,6 +9523,94 @@
         ]
       }
     },
+    "grab_cannon_projectile": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 3,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 3,
+        "KnockbackStrength": 1.2,
+        "Damage": 18,
+        "Size": 0.4,
+        "Gravity": 0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/grab_cannon_launcher",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/grab_cannon_launcher",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "grab_cannon_anim_right",
+            "min": 13,
+            "max": 13
+          }
+        ]
+      }
+    },
+    "grab_cannon_projectile.left": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 3,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 3,
+        "KnockbackStrength": 1.2,
+        "Damage": 18,
+        "Size": 0.4,
+        "Gravity": 0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/grab_cannon_launcher",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/grab_cannon_launcher",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 0.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "grab_cannon_anim_left",
+            "min": 13,
+            "max": 13
+          }
+        ]
+      }
+    },
     "energyblast.throw.sound": {
       "type": "palladium:command",
       "hidden": true,
@@ -9163,6 +9647,14 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "nano_grenade_projectile.left.damage.18"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_projectile"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_projectile.left"
               }
             ]
           }
@@ -9250,6 +9742,10 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_anim_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "maximun.pulse.animation"
               },
               {
@@ -9298,6 +9794,10 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_anim_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "maximun.pulse.animation"
               },
               {
@@ -9343,6 +9843,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "nano_grenade_launcher_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_anim_left"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -9415,7 +9919,15 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_anim_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "nano_grenade_launcher_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "grab_cannon_anim_right"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -9479,6 +9991,14 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "nano_grenade_launcher_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "grab_cannon_anim_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "grab_cannon_anim_left"
                   },
                   {
                     "type": "palladium:ability_enabled",
