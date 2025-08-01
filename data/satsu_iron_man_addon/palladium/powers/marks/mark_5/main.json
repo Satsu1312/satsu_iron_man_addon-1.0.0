@@ -21,6 +21,163 @@
     }
   },
   "abilities": {
+    "hud_armor": {
+      "type": "palladium:gui_overlay",
+      "texture": "#satsu_iron_man_addon:armor_hud/armor_hud",
+      "texture_width": 256,
+      "texture_height": 256,
+      "translate": [0, 0, 0],
+      "rotate": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "alignment": "stretch",
+      "hidden": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "no_nanoarmor_anim",
+                    "property": "value",
+                    "min": 13,
+                    "max": 16
+                  },
+                  {
+                    "type": "gravestone:perspective",
+                    "looking": "FIRST_PERSON"
+                  },
+                  {
+                    "type": "palladium:not",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.mask",
+                        "min_score": 0,
+                        "max_score": 0
+                      }
+                    ]
+                  },
+                  {
+                    "type": "palladium:not",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.addon.gui.overlay.armor",
+                        "min_score": 1,
+                        "max_score": 1
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "no_nanoarmor_anim",
+                    "property": "value",
+                    "min": 13,
+                    "max": 16
+                  },
+                  {
+                    "type": "palladium:not",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.mask",
+                        "min_score": 0,
+                        "max_score": 0
+                      }
+                    ]
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.gui.overlay.armor",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.gui.overlay.armor",
+                "min_score": 2,
+                "max_score": 2
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.glasses.equip",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "hud_armor_variable.enable": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.armor.hud.enabled",
+      "quantity": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hud_armor"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hud_armor_variable.disable": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.armor.hud.enabled",
+      "quantity": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hud_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.glasses.equip",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "armor": {
       "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:armor_icon_ability",
@@ -49,28 +206,6 @@
       "pitch": 1,
       "looping": true,
       "play_self": true,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "walk.sound.animation_timer",
-            "property": "value",
-            "min": 2,
-            "max": 9
-          },
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "walk.sound.animation_timer"
-          }
-        ]
-      }
-    },
-    "walk.sound.animation_timer": {
-      "type": "palladium:repeating_animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 9,
       "conditions": {
         "enabling": [
           {
@@ -243,7 +378,7 @@
       }
     },
     "flight_choose": {
-      "type": "gravestone:stat_ability",
+      "type": "gravecore:dynamic_attribute_modifier",
       "hidden": true,
       "hidden_in_bar": true,
       "score_value": "satsu.iron.man.flight_speed.choose",
@@ -566,7 +701,7 @@
       }
     },
     "pickaxe.velocity": {
-      "type": "gravestone:stat_ability",
+      "type": "gravecore:dynamic_attribute_modifier",
       "icon": "minecraft:golden_pickaxe",
       "title": { "translate": "ability.title.satsu.pickaxe.velocity" },
       "description": { "translate": "description.satsu.pickaxe.velocity" },
@@ -906,14 +1041,11 @@
       }
     },
     "armor_activate.command": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_scoreboard",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.armor.actived 1"
-      ],
-      "commands": [""],
-      "last_tick_commands": [],
+      "scoreboard_name": "satsu.iron.man.armor.actived",
+      "quantity": 1,
       "conditions": {
         "enabling": [
           {
@@ -1174,10 +1306,10 @@
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [""],
-      "commands": [
+      "first_tick_commands": [
         "playsound satsu_iron_man_addon:new_mask_sound ambient @a ~ ~ ~ 1"
       ],
+      "commands": [""],
       "conditions": {
         "enabling": [
           {
@@ -1239,7 +1371,11 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "mini_fireworks"
+                    "ability": "shoulder_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "rocket"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -1381,22 +1517,13 @@
       }
     },
     "mask_activate": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:mask_icon",
       "title": { "translate": "ability.title.satsu.enable_mask" },
       "description": { "translate": "description.armor_skill_bar" },
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 1,
-      "first_tick_commands": [""],
-      "commands": [
-        "scoreboard players add @s satsu.iron.man.mask 1",
-        "title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.on\",\"color\":\"blue\"}",
-        "execute as @s[scores={satsu.iron.man.mask=2}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.off\",\"color\":\"blue\"}",
-        "execute as @s[scores={satsu.iron.man.mask=2}] run scoreboard players set @s satsu.iron.man.mask 0",
-        "execute as @s[scores={satsu.iron.man.mask=3..}] run title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.mask.on\",\"color\":\"blue\"}",
-        "execute as @s[scores={satsu.iron.man.mask=3..}] run scoreboard players reset @s satsu.iron.man.mask"
-      ],
       "conditions": {
         "enabling": [
           {
@@ -1420,6 +1547,66 @@
             "objective": "satsu.iron.man.armor.actived",
             "min_score": 1,
             "max_score": 1
+          }
+        ]
+      }
+    },
+    "mask_set.0": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.mask",
+      "quantity": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "mask_activate"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mask_set.1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mask_set.1": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.mask",
+      "quantity": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "mask_activate"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mask_set.0"
+              }
+            ]
           }
         ]
       }
@@ -1506,7 +1693,11 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "mini_fireworks"
+                    "ability": "shoulder_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "rocket"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -1600,15 +1791,14 @@
       }
     },
     "energy_beam_increase_wheel_1": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_scoreboard",
       "icon": "satsu_iron_man_addon:textures/gui/armors/ark_beam_0.png",
       "title": { "translate": "ability.title.satsu.energy_beam" },
       "description": { "translate": "description.energy_beam" },
       "hidden": true,
       "hidden_in_bar": false,
-      "commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.energy.beam.powerfull"
-      ],
+      "scoreboard_name": "satsu.iron.man.addon.energy.beam.powerfull",
+      "quantity": 0,
       "conditions": {
         "enabling": [
           {
@@ -1624,15 +1814,14 @@
       }
     },
     "energy_beam_increase_wheel_2": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_scoreboard",
       "icon": "satsu_iron_man_addon:textures/gui/armors/ark_beam_powerfull_1.png",
       "title": { "translate": "ability.title.satsu.energy_beam.2" },
       "description": { "translate": "description.energy_beam" },
       "hidden": true,
       "hidden_in_bar": false,
-      "commands": [
-        "scoreboard players set @s satsu.iron.man.addon.energy.beam.powerfull 1"
-      ],
+      "scoreboard_name": "satsu.iron.man.addon.energy.beam.powerfull",
+      "quantity": 1,
       "conditions": {
         "enabling": [
           {
@@ -1648,15 +1837,14 @@
       }
     },
     "energy_beam_increase_wheel_3": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_scoreboard",
       "icon": "satsu_iron_man_addon:textures/gui/armors/ark_beam_powerfull_2.png",
       "title": { "translate": "ability.title.satsu.energy_beam.3" },
       "description": { "translate": "description.energy_beam" },
       "hidden": true,
       "hidden_in_bar": false,
-      "commands": [
-        "scoreboard players set @s satsu.iron.man.addon.energy.beam.powerfull 2"
-      ],
+      "scoreboard_name": "satsu.iron.man.addon.energy.beam.powerfull",
+      "quantity": 2,
       "conditions": {
         "enabling": [
           {
@@ -1755,6 +1943,26 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "uni.beam.hand.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "red_beams.right_arm"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "red_beams.left_arm"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shoulder_rockets"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "rocket"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "flares_flames"
               }
             ]
           }
@@ -1819,8 +2027,10 @@
                 "min_score": 1
               },
               {
-                "type": "palladium:has_tag",
-                "tag": "energy.pulse"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse",
+                "min_score": 1,
+                "max_score": 1
               },
               {
                 "type": "palladium:ability_unlocked",
@@ -1887,8 +2097,10 @@
                 "max_score": 1
               },
               {
-                "type": "palladium:has_tag",
-                "tag": "energy.pulse"
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.energy.pulse",
+                "min_score": 1,
+                "max_score": 1
               },
               {
                 "type": "palladium:ability_unlocked",
@@ -2019,7 +2231,7 @@
       "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
-        "KnockbackStrength": 0,
+        "KnockbackStrength": 1.5,
         "Damage": 6,
         "Size": 0.1,
         "Gravity": 0.0,
@@ -2063,7 +2275,7 @@
       "count": 1,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
-        "KnockbackStrength": 0,
+        "KnockbackStrength": 1.5,
         "Damage": 6,
         "Size": 0.1,
         "Gravity": 0.0,
@@ -2433,48 +2645,6 @@
             "max_score": 2
           }
         ]
-      }
-    },
-    "glow": {
-      "type": "palladium:command",
-      "hidden": true,
-      "last_tick_commands": [
-        "fill ~5 ~5 ~5 ~-5 ~-5 ~-5 air replace light[level=10]"
-      ],
-      "commands": [
-        "fill ~5 ~5 ~5 ~-5 ~-5 ~-5 air replace light[level=10]",
-        "setblock ~ ~1 ~ minecraft:light[level=10] keep",
-        "setblock ~ ~ ~ minecraft:light[level=10] keep",
-        "kill @e[type=minecraft:arrow,distance=0..2]"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived",
-            "min_score": 1,
-            "max_score": 1
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:has_tag",
-                "tag": "alien"
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:has_tag",
-                "tag": "sentinel_one"
-              }
-            ]
-          }
-        ],
-        "unlocking": []
       }
     }
   }

@@ -35,7 +35,17 @@
       "type": "palladium:render_layer",
       "hidden": true,
       "hidden_in_bar": true,
-      "render_layer": "satsu_iron_man_addon:ia/superior_mask_armors_sentinel"
+      "render_layer": "satsu_iron_man_addon:ia/superior_mask_armors_sentinel",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
     },
     "interpolate": {
       "type": "palladium:animation_timer",
@@ -81,35 +91,6 @@
                     "tag": "alien"
                   }
                 ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "glow": {
-      "type": "palladium:command",
-      "hidden": true,
-      "last_tick_commands": [
-        "fill ~5 ~5 ~5 ~-5 ~-5 ~-5 air replace light[level=10]"
-      ],
-      "commands": [
-        "fill ~5 ~5 ~5 ~-5 ~-5 ~-5 air replace light[level=10]",
-        "setblock ~ ~1 ~ minecraft:light[level=10] keep",
-        "setblock ~ ~ ~ minecraft:light[level=10] keep",
-        "kill @e[type=minecraft:arrow,distance=0..2]",
-        "execute as @s unless entity @e[type=wolf,tag=sentinel,sort=nearest] run kill @s"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor",
-                "min_score": 13,
-                "max_score": 13
               }
             ]
           }

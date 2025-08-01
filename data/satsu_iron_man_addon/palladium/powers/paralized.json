@@ -1,0 +1,151 @@
+{
+  "name": { "translate": "ability.title.blooded" },
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "abilities": {
+    "shader_effect_white": {
+      "type": "palladium:shader_effect",
+      "icon": "satsu_iron_man_addon:reactor_ark_recharge_on",
+      "title": { "translate": "ability.title.ark.upgrade.max.energy.2" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, -3],
+      "shader": "satsu_iron_man_addon:shaders/post/white.json",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:blind",
+            "ability": "timer_white",
+            "property": "value",
+            "min": 1,
+            "max": 25
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "timer_white": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 25,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "timer",
+            "property": "value",
+            "min": 0,
+            "max": 50
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "shader_effect_phosphor": {
+      "type": "palladium:shader_effect",
+      "icon": "satsu_iron_man_addon:reactor_ark_recharge_on",
+      "title": { "translate": "ability.title.ark.upgrade.max.energy.2" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, -3],
+      "shader": "satsu_iron_man_addon:shaders/post/phosphor.json",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:blind",
+            "ability": "timer_phosphor",
+            "property": "value",
+            "min": 1,
+            "max": 25
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "timer_phosphor": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 25,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "timer",
+            "property": "value",
+            "min": 50,
+            "max": 100
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "timer": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 100,
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "blood.timer": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "blood.damage": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:paralized/main",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "blood.timer",
+            "property": "value",
+            "min": 1,
+            "max": 19
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "remove": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:paralized",
+      "capacity": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "timer",
+            "property": "value",
+            "min": 100,
+            "max": 100
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}
