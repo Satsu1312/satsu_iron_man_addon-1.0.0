@@ -1341,7 +1341,11 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "mini_fireworks"
+                    "ability": "shoulder_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "rocket"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -1826,7 +1830,11 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "mini_fireworks"
+                    "ability": "shoulder_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "rocket"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -2163,7 +2171,11 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "mini_fireworks"
+                "ability": "shoulder_rockets"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "rocket"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -2357,6 +2369,7 @@
       "gui_position": [4.3, -1],
       "abilities": [
         "weapons_wheel.rockets",
+        "weapons_wheel.rocket",
         "weapons_wheel.flares",
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser",
@@ -2525,6 +2538,48 @@
               }
             ]
           },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.ark.energy",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_activate_skil_tree_dummy_close_armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          }
+        ]
+      }
+    },
+    "weapons_wheel.rocket": {
+      "type": "satsu_iron_man_addon:set_scoreboard",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/one_rocket.png",
+      "title": { "translate": "ability.title.satsu.fireworks" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "scoreboard_name": "satsu.iron.man.armor.weapon",
+      "quantity": 3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
           {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor.ark.energy",
@@ -3249,7 +3304,83 @@
         ]
       }
     },
-    "mini_fireworks": {
+    "rocket": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/one_rocket.png",
+      "title": { "translate": "ability.title.satsu.one.rocket" },
+      "description": { "translate": "description.satsu.one.rocket" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "gui_position": [0, 3.99],
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 220,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.energy.pulse",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.weapon",
+            "min_score": 3,
+            "max_score": 3
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.ark.energy",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                        "ability": "nano_katar.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "shoulder_rockets": {
       "type": "palladium:repeating_animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
       "entity_type": "palladium:custom_projectile",
@@ -3736,10 +3867,6 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "mini_fireworks"
-              },
-              {
-                "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
               },
               {
@@ -3772,7 +3899,7 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "mini_fireworks"
+                "ability": "rocket"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -3787,6 +3914,49 @@
         ]
       }
     },
+    "rocket.projectile": {
+      "type": "gravestone:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOverride": -999,
+      "pitchOverride": -999,
+      "yawOffset": 50,
+      "pitchOffset": 55,
+      "yawInaccuracy": 0,
+      "pitchInaccuracy": 0,
+      "count": 1,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 20,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/rocket",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/rocket",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "rocket",
+            "property": "value",
+            "min": 19,
+            "max": 19
+          }
+        ]
+      }
+    },
     "mini_fireworks.firework_projectile": {
       "type": "gravestone:projectile",
       "hidden": true,
@@ -3796,14 +3966,14 @@
       "swinging_arm": "none",
       "yawOverride": -999,
       "pitchOverride": -999,
-      "yawOffset": -50,
+      "yawOffset": -35,
       "pitchOffset": 55,
       "yawInaccuracy": 0,
       "pitchInaccuracy": 0,
       "count": 1,
       "entity_data": {
         "KnockbackStrength": 0,
-        "Damage": 10,
+        "Damage": 8,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -3825,7 +3995,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "mini_fireworks",
+                "ability": "shoulder_rockets",
                 "property": "value",
                 "min": 8,
                 "max": 20
@@ -3851,14 +4021,14 @@
       "swinging_arm": "none",
       "yawOverride": -999,
       "pitchOverride": -999,
-      "yawOffset": 50,
+      "yawOffset": 35,
       "pitchOffset": 55,
       "yawInaccuracy": 0,
       "pitchInaccuracy": 0,
       "count": 1,
       "entity_data": {
         "KnockbackStrength": 0,
-        "Damage": 10,
+        "Damage": 8,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -3880,7 +4050,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "mini_fireworks",
+                "ability": "shoulder_rockets",
                 "property": "value",
                 "min": 8,
                 "max": 20
@@ -4044,10 +4214,6 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "mini_fireworks"
-              },
-              {
-                "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
               },
               {
@@ -4085,7 +4251,11 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "mini_fireworks"
+                "ability": "shoulder_rockets"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "rocket"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -4132,7 +4302,11 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "mini_fireworks"
+                    "ability": "shoulder_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "rocket"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -4181,7 +4355,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "mini_fireworks",
+                "ability": "shoulder_rockets",
                 "property": "value",
                 "min": 8,
                 "max": 20
@@ -4194,6 +4368,25 @@
                 "max": 20
               }
             ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "rocket.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:decrease_scoreboard",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scoreboard_name": "satsu.iron.man.armor.ark.energy",
+      "quantity": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "rocket",
+            "property": "value",
+            "min": 19,
+            "max": 19
           }
         ],
         "unlocking": []
