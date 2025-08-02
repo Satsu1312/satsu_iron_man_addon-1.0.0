@@ -1124,15 +1124,12 @@
       }
     },
     "armor_activate.animation_timer.command": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.enable_armor" },
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 0,
-      "commands": [
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease"
-      ],
       "conditions": {
         "enabling": [
           {
@@ -1165,6 +1162,41 @@
             ]
           }
         ]
+      }
+    },
+    "satsu.iron.man.animation.armor.1": {
+      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "score": "satsu.iron.man.animation.armor",
+      "adjustment_type": "add",
+      "adjustment_amount": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "armor_activate.animation_timer.command"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "satsu.iron.man.animation.armor.0": {
+      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "score": "satsu.iron.man.animation.armor",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.animation.armor",
+            "min_score": 2
+          }
+        ],
+        "unlocking": []
       }
     },
     "mask_activate": {

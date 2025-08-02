@@ -1496,15 +1496,12 @@
       }
     },
     "armor_activate.animation_timer.command": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.enable_armor" },
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 0,
-      "commands": [
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease"
-      ],
       "conditions": {
         "enabling": [
           {
@@ -1561,6 +1558,41 @@
             ]
           }
         ]
+      }
+    },
+    "satsu.iron.man.animation.armor.1": {
+      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "score": "satsu.iron.man.animation.armor",
+      "adjustment_type": "add",
+      "adjustment_amount": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "armor_activate.animation_timer.command"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "satsu.iron.man.animation.armor.0": {
+      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "score": "satsu.iron.man.animation.armor",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.animation.armor",
+            "min_score": 2
+          }
+        ],
+        "unlocking": []
       }
     },
     "mask_activate": {
@@ -4352,11 +4384,10 @@
       "hidden": true,
       "hidden_in_bar": true,
       "list_index": 21,
-      "first_tick_commands": [],
-      "commands": [
+      "first_tick_commands": [
         "scoreboard players set @s satsu.prev.iron.man.anim 0",
-        "execute as @s[scores={satsu.iron.man.armor.energy.beams=0..1}] run scoreboard players add @s satsu.iron.man.armor.energy.beams 1"
-      ],
+        "execute as @s[scores={satsu.iron.man.armor.energy.beams=0..1}] run scoreboard players add @s satsu.iron.man.armor.energy.beams 1"],
+      "commands": [""],
       "last_tick_commands": [],
       "conditions": {
         "enabling": [
@@ -4404,12 +4435,11 @@
       "hidden_in_bar": true,
       "list_index": 22,
       "first_tick_commands": [
-        "scoreboard players set @s satsu.prev.iron.man.anim 0"
-      ],
-      "commands": [
+        "scoreboard players set @s satsu.prev.iron.man.anim 0",
         "scoreboard players set @s satsu.prev.iron.man.anim 0",
         "execute as @s[scores={satsu.iron.man.armor.energy.beams=1..3}] run scoreboard players remove @s satsu.iron.man.armor.energy.beams 1"
       ],
+      "commands": [""],
       "last_tick_commands": [],
       "conditions": {
         "enabling": [
@@ -5277,10 +5307,11 @@
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "commands": [
+      "first_tick_commands": [
         "execute as @s anchored eyes run particle minecraft:sweep_attack ^ ^ ^1 0.1 0.1 0.1 0 1 normal",
         "playsound minecraft:entity.player.attack.crit master @p ~ ~ ~ 1 1"
       ],
+      "commands": [""],
       "conditions": {
         "enabling": [
           {

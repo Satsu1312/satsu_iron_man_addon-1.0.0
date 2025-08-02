@@ -1,7 +1,7 @@
 //Made by Bosatron04
 StartupEvents.registry("palladium:abilities", (event) => {
   event
-    .create("bossman:scoreboard_ability")
+    .create("satsu_iron_man_addon:scoreboard_ability")
     .icon(palladium.createItemIcon("minecraft:blaze_rod"))
     .addProperty(
       "score",
