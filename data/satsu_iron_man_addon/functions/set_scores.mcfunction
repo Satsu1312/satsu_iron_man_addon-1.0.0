@@ -1,5 +1,6 @@
 
 function satsu_iron_man_addon:marks_parts/unless_scores/main
+execute as @s unless score @s satsu.iron.man.animation.armor matches 0.. run scoreboard players set @s satsu.iron.man.animation.armor 0
 execute as @s unless score @s satsu.iron.man.armor.uni.beam.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.uni.beam.hand 0
 execute as @s unless score @s satsu.iron.man.armor.energy.pulse.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.pulse.hand 1
 execute as @s unless score @s satsu.iron.man.armor.energy.pulse matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.pulse 1
