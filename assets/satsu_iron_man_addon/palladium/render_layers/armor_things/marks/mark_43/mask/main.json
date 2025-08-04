@@ -1,0 +1,144 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/head/#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/mark_43/main",
+            "ability": "head_animation",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 54
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask/iron_man_suit_#X_0_#TIMER"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "animation.minecraft:mask.up",
+            "mask.on": "animation.minecraft:mask.down",
+            "call.part": "animation.minecraft:call.front"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.addon.armor.head",
+              "min_score": 0,
+              "max_score": 0
+            },
+            {
+              "type": "palladium:entity_type",
+              "entity_type": "minecraft:armor_stand"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/head/#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/mark_43/main",
+            "ability": "head_animation",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 52
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask/iron_man_suit_lights_#X_0_#TIMER"
+      },
+      "render_type": "glow",
+      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "animation.minecraft:mask.up",
+            "mask.on": "animation.minecraft:mask.down",
+            "call.part": "animation.minecraft:call.front"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.addon.armor.head",
+              "min_score": 0,
+              "max_score": 0
+            },
+            {
+              "type": "palladium:entity_type",
+              "entity_type": "minecraft:armor_stand"
+            }
+          ]
+        },
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor.ark.energy",
+              "min_score": 1
+            },
+            {
+              "type": "palladium:entity_type",
+              "entity_type": "minecraft:armor_stand"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,12 +1,6 @@
 {
   "name": { "translate": "ability.title.blooded" },
-  "persistent_data": true,
-  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
-  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
-  "gui_display_type": "tree",
-  "primary_color": "#2af4f5",
-  "secondary_color": "#0aacac",
   "abilities": {
     "shader_effect_white": {
       "type": "palladium:shader_effect",
@@ -108,7 +102,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 50,
+      "max_value": 20,
       "conditions": {
         "enabling": [],
         "unlocking": []
@@ -118,7 +112,7 @@
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "commands": [],
+      "commands": ["particle minecraft:effect ~ ~1 ~ 0 0 0 0.01 3 force @a"],
       "conditions": {
         "enabling": [
           {
@@ -126,18 +120,19 @@
             "power": "null",
             "ability": "blood.timer",
             "property": "value",
-            "min": 30,
-            "max": 30
+            "min": 1,
+            "max": 15
           }
         ],
         "unlocking": []
       }
     },
     "remove": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:superpower",
       "hidden": true,
       "hidden_in_bar": true,
-      "commands": ["superpower remove satsu_iron_man_addon:blind"],
+      "power": "satsu_iron_man_addon:blind",
+      "capacity": "remove",
       "conditions": {
         "enabling": [
           {

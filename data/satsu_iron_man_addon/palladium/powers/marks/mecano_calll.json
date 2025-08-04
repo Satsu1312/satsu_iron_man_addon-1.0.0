@@ -1,0 +1,52 @@
+{
+  "name": { "translate": "ability.title.satsu.mark.32" },
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "list",
+  "abilities": {
+    "give_sentinel": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:armor_icon_ability",
+      "title": { "translate": "ability.title.satsu.call.sentinel" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:sentinels/spawn_false_sentinel"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @s[scores={satsu.iron.man.animation.armor=0}]",
+            "comparison": "==",
+            "compare_to": 1,
+            "log": false
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
+                "comparison": "==",
+                "compare_to": 1,
+                "log": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

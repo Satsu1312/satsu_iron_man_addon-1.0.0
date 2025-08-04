@@ -1,0 +1,109 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/separado_body_without_mask_front/right_shoulder.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/right_shoulder/#RIGHT_SHOULDER.png"
+          }
+        ],
+        "variables": {
+          "RIGHT_SHOULDER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/mark_43/main",
+            "ability": "right_shoulder_animation",
+            "property": "value",
+            "min": 0,
+            "max": 18
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 54
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_right_shoulder/iron_man_suit_#X_0_#RIGHT_SHOULDER"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.right.shoulder"
+          }
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/separado_body_without_mask_front/right_shoulder.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/right_shoulder/#RIGHT_SHOULDER.png"
+          }
+        ],
+        "variables": {
+          "RIGHT_SHOULDER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/mark_43/main",
+            "ability": "right_shoulder_animation",
+            "property": "value",
+            "min": 0,
+            "max": 18
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 52
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_right_shoulder/iron_man_suit_lights_#X_0_#RIGHT_SHOULDER"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.right.shoulder"
+          }
+        }
+      ],
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor.ark.energy",
+              "min_score": 1
+            },
+            {
+              "type": "palladium:entity_type",
+              "entity_type": "minecraft:armor_stand"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

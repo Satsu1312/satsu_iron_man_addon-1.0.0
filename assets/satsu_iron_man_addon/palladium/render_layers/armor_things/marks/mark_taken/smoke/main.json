@@ -1,0 +1,36 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nano_armors/marks/taken/particle_in_armor/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/taken_armor/#TIMER.png",
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/mark_taken/main",
+            "ability": "taken_smoke_animation",
+            "property": "value"
+          }
+        }
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:and",
+          "conditions": [
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "satsu_iron_man_addon:marks/mark_taken/main",
+              "ability": "armor_activate.animation_timer.mark.taken",
+              "property": "value",
+              "min": 1,
+              "max": 32
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

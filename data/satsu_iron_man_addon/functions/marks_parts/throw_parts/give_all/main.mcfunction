@@ -1,0 +1,8 @@
+function satsu_iron_man_addon:marks_parts/throw_parts/head/throw
+function satsu_iron_man_addon:marks_parts/throw_parts/chest/throw
+function satsu_iron_man_addon:marks_parts/throw_parts/left_arm/throw
+function satsu_iron_man_addon:marks_parts/throw_parts/right_arm/throw
+function satsu_iron_man_addon:marks_parts/throw_parts/left_shoulder/throw
+function satsu_iron_man_addon:marks_parts/throw_parts/right_shoulder/throw
+function satsu_iron_man_addon:marks_parts/throw_parts/left_leg/throw
+function satsu_iron_man_addon:marks_parts/throw_parts/right_leg/throw

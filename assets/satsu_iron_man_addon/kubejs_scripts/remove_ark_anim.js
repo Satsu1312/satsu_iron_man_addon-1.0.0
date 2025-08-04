@@ -4,8 +4,8 @@ PalladiumEvents.registerAnimations((event) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
-      "satsu_iron_man_addon:kube_animations",
-      "remove_ark_animation_timer",
+      "satsu_iron_man_addon:items/handle",
+      "remove_ark_animation_timer_moving",
       builder.getPartialTicks()
     );
 
@@ -52,8 +52,8 @@ PalladiumEvents.registerAnimations((event) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
-      "satsu_iron_man_addon:kube_animations",
-      "remove_ark_animation_timer.2",
+      "satsu_iron_man_addon:items/handle",
+      "remove_ark_animation_timer_moving.2",
       builder.getPartialTicks()
     );
 
@@ -102,8 +102,8 @@ PalladiumEvents.registerAnimations((event) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
-      "satsu_iron_man_addon:kube_animations",
-      "dampened_ark_animation_timer",
+      "satsu_iron_man_addon:items/dampened_ark",
+      "dampened_ark_animation_timer_moving",
       builder.getPartialTicks()
     );
 
@@ -150,8 +150,8 @@ PalladiumEvents.registerAnimations((event) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
-      "satsu_iron_man_addon:kube_animations",
-      "dampened_ark_animation_timer.2",
+      "satsu_iron_man_addon:items/dampened_ark",
+      "dampened_ark_animation_timer_moving.2",
       builder.getPartialTicks()
     );
 

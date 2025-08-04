@@ -1,0 +1,8 @@
+function satsu_iron_man_addon:marks_parts/call_parts/head/call
+function satsu_iron_man_addon:marks_parts/call_parts/chest/call
+function satsu_iron_man_addon:marks_parts/call_parts/left_arm/call
+function satsu_iron_man_addon:marks_parts/call_parts/right_arm/call
+function satsu_iron_man_addon:marks_parts/call_parts/left_shoulder/call
+function satsu_iron_man_addon:marks_parts/call_parts/right_shoulder/call
+function satsu_iron_man_addon:marks_parts/call_parts/left_leg/call
+function satsu_iron_man_addon:marks_parts/call_parts/right_leg/call
