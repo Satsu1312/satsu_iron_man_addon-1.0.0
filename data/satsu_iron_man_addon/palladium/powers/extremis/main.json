@@ -1,7 +1,6 @@
 {
   "name": { "translate": "ability.title.satsu.extremis.power" },
   "persistent_data": true,
-  "allow_bar_shrinking": false,
   "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/powers.png",
   "background": "minecraft:textures/block/yellow_terracotta.png",
   "icon": {
@@ -16,9 +15,8 @@
   "secondary_color": "#ffd500",
   "energy_bars": {
     "extremis_energy": {
-      "max": 8000,
-      "auto_increase_per_tick": -50,
-      "auto_increase_interval": 100,
+      "max": 80000,
+      "auto_increase_per_tick": 30,
       "color": "#f77630"
     }
   },
@@ -422,7 +420,7 @@
         "enabling": [
           {
             "type": "palladium:held",
-            "cooldown": 20,
+            "cooldown": 80,
             "key_type": "right_click",
             "needs_empty_hand": false
           }
@@ -431,8 +429,18 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "armor"
+          },
+          {
+            "type": "palladium:energy_bar",
+            "power": "satsu_iron_man_addon:extremis/main",
+            "energy_bar": "extremis_energy",
+            "min": 1000
           }
         ]
+      },
+      "energy_bar_usage": {
+        "energy_bar": "extremis_energy",
+        "amount": 40
       }
     },
     "fire_sound": {
