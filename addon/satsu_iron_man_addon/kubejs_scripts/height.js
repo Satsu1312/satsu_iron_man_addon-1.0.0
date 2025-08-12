@@ -7,7 +7,6 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
 
     .test((entity, properties) => {
       const height = properties.get("max_height");
-      console.error(entity.getY() >= height);
       return entity.getY() >= height;
     });
 });
