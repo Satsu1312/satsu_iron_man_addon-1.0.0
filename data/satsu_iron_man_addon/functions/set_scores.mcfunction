@@ -1,5 +1,7 @@
 
 function satsu_iron_man_addon:marks_parts/unless_scores/main
+execute as @s unless score @s satsu.iron.man.addon.armor.all matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.all 0
+execute as @s unless score @s satsu.iron.man.armor.hud.enabled matches 0.. run scoreboard players set @s satsu.iron.man.armor.hud.enabled 0
 execute as @s unless score @s satsu.iron.man.animation.armor matches 0.. run scoreboard players set @s satsu.iron.man.animation.armor 0
 execute as @s unless score @s satsu.iron.man.armor.uni.beam.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.uni.beam.hand 0
 execute as @s unless score @s satsu.iron.man.armor.energy.pulse.hand matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.pulse.hand 1
@@ -17,4 +19,4 @@ execute as @s unless score @s satsu.iron.man.addon.energy.beam.powerfull matches
 execute as @s unless score @s satsu.iron.man.flight.set matches 0.. run scoreboard players set @s satsu.iron.man.flight.set 0
 execute as @s unless score @s satsu.iron.man.addon.nano.armor.things matches 0.. run scoreboard players set @s satsu.iron.man.addon.nano.armor.things 0
 execute as @s unless score @s satsu.iron.man.armor.weapon matches 0.. run scoreboard players set @s satsu.iron.man.armor.weapon 0
-execute as @s unless score @s satsu.iron.man.armor matches 0.. run scoreboard players set @s satsu.iron.man.armor 13
+execute as @s unless score @s satsu.iron.man.armor matches 0.. run scoreboard players set @s satsu.iron.man.armor 1

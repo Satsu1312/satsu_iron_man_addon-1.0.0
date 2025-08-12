@@ -3,13 +3,13 @@
   "layers": [
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_31_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/normal_mask/normal_mask_#TIMER.png"
           }
         ],
         "variables": {
@@ -34,16 +34,16 @@
             "max": 1
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask/iron_man_suit_#X_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_31_0_#TIMER"
       },
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
       "animation_controller": [
         {
           "name": "mask.up",
           "transition_tick_time": 10,
           "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
+            "mask.up": "open",
+            "mask.on": "close"
           }
         }
       ],
@@ -51,13 +51,13 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_light_31_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/normal_mask/normal_mask_#TIMER.png"
           }
         ],
         "variables": {
@@ -76,17 +76,17 @@
             "max": 59
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask/iron_man_suit_lights_#X_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_light_31_0_#TIMER"
       },
       "render_type": "glow",
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
       "animation_controller": [
         {
           "name": "mask.up",
           "transition_tick_time": 10,
           "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
+            "mask.up": "open",
+            "mask.on": "close"
           }
         }
       ],
@@ -109,13 +109,13 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_1.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_31_1.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/stealh_modes/transformation_#STEALH.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/stealth_mode_mask/stealth_mask_#STEALH.png"
           }
         ],
         "variables": {
@@ -140,64 +140,72 @@
             "max": 1
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask_stealh/iron_man_suit_#X_1_#STEALH"
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_31_1_#STEALH"
       },
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
       "animation_controller": [
         {
           "name": "mask.up",
           "transition_tick_time": 10,
           "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
+            "mask.up": "open",
+            "mask.on": "close"
           }
         }
       ],
       "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:armor_set/armors",
+          "ability": "stealht_animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 17
+        },
         {
           "type": "palladium:or",
           "conditions": [
             {
               "type": "palladium:objective_score",
               "objective": "satsu.iron.man.armor",
-              "min_score": 6,
-              "max_score": 6
+              "min_score": 16,
+              "max_score": 16
             },
             {
               "type": "palladium:objective_score",
               "objective": "satsu.iron.man.armor",
-              "min_score": 25,
-              "max_score": 25
+              "min_score": 9,
+              "max_score": 9
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 11,
+              "max_score": 11
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 15,
+              "max_score": 15
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 18,
+              "max_score": 18
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 23,
+              "max_score": 23
             },
             {
               "type": "palladium:objective_score",
               "objective": "satsu.iron.man.armor",
               "min_score": 27,
               "max_score": 27
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 31,
-              "max_score": 31
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 33,
-              "max_score": 33
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 36,
-              "max_score": 36
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 39,
-              "max_score": 39
             }
           ]
         }
@@ -205,13 +213,13 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_1.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_light_31_1.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/stealh_modes/transformation_#STEALH.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/stealth_mode_mask/stealth_mask_#STEALH.png"
           }
         ],
         "variables": {
@@ -230,17 +238,17 @@
             "max": 59
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask_stealh/iron_man_suit_lights_#X_1_#STEALH"
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_light_31_1_#STEALH"
       },
       "render_type": "glow",
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
       "animation_controller": [
         {
           "name": "mask.up",
           "transition_tick_time": 10,
           "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
+            "mask.up": "open",
+            "mask.on": "close"
           }
         }
       ],
@@ -260,348 +268,57 @@
           ]
         },
         {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:armor_set/armors",
+          "ability": "stealht_animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 17
+        },
+        {
           "type": "palladium:or",
           "conditions": [
             {
               "type": "palladium:objective_score",
               "objective": "satsu.iron.man.armor",
-              "min_score": 6,
-              "max_score": 6
+              "min_score": 16,
+              "max_score": 16
             },
             {
               "type": "palladium:objective_score",
               "objective": "satsu.iron.man.armor",
-              "min_score": 25,
-              "max_score": 25
+              "min_score": 9,
+              "max_score": 9
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 11,
+              "max_score": 11
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 15,
+              "max_score": 15
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 18,
+              "max_score": 18
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor",
+              "min_score": 23,
+              "max_score": 23
             },
             {
               "type": "palladium:objective_score",
               "objective": "satsu.iron.man.armor",
               "min_score": 27,
               "max_score": 27
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 31,
-              "max_score": 31
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 33,
-              "max_score": 33
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 36,
-              "max_score": 36
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 39,
-              "max_score": 39
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
-      "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_2.png",
-        "transformers": [
-          {
-            "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/stealh_modes/transformation_#STEALH_night.png"
-          }
-        ],
-        "variables": {
-          "STEALH_night": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:armor_set/armors",
-            "ability": "stealht_night_animation_timer",
-            "property": "value",
-            "min": 0,
-            "max": 17
-          },
-          "X": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min": 0,
-            "max": 59
-          },
-          "Y": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.mask",
-            "min": 0,
-            "max": 1
-          }
-        },
-
-        "output": "satsu_iron_man_addon:textures/models/armor/stealht_night_mask/iron_man_suit_#X_2_#STEALH_night"
-      },
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
-      "animation_controller": [
-        {
-          "name": "mask.up",
-          "transition_tick_time": 10,
-          "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
-          }
-        }
-      ],
-      "conditions": [
-        {
-          "type": "palladium:or",
-          "conditions": [
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 6,
-              "max_score": 6
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 33,
-              "max_score": 33
-            }
-          ]
-        },
-        {
-          "type": "palladium:ability_integer_property",
-          "power": "satsu_iron_man_addon:marks/mark_31/main",
-          "ability": "no_nanoarmor_anim",
-          "property": "value",
-          "min": 1,
-          "max": 16
-        }
-      ]
-    },
-    {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
-      "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_2.png",
-        "transformers": [
-          {
-            "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/stealh_modes/transformation_#STEALH_night.png"
-          }
-        ],
-        "variables": {
-          "STEALH_night": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:armor_set/armors",
-            "ability": "stealht_night_animation_timer",
-            "property": "value",
-            "min": 0,
-            "max": 17
-          },
-          "X": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min": 0,
-            "max": 59
-          }
-        },
-        "output": "satsu_iron_man_addon:textures/models/armor/stealht_night_mask/iron_man_suit_lights_#X_2_#STEALH_night"
-      },
-      "render_type": "glow",
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
-      "animation_controller": [
-        {
-          "name": "mask.up",
-          "transition_tick_time": 10,
-          "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
-          }
-        }
-      ],
-      "conditions": [
-        {
-          "type": "palladium:or",
-          "conditions": [
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor.ark.energy",
-              "min_score": 1
-            },
-            {
-              "type": "palladium:entity_type",
-              "entity_type": "minecraft:armor_stand"
-            }
-          ]
-        },
-        {
-          "type": "palladium:or",
-          "conditions": [
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 6,
-              "max_score": 6
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 33,
-              "max_score": 33
-            }
-          ]
-        },
-        {
-          "type": "palladium:ability_integer_property",
-          "power": "satsu_iron_man_addon:marks/mark_31/main",
-          "ability": "no_nanoarmor_anim",
-          "property": "value",
-          "min": 1,
-          "max": 16
-        }
-      ]
-    },
-    {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
-      "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_3.png",
-        "transformers": [
-          {
-            "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/stealh_modes/transformation_#STEALH.png"
-          }
-        ],
-        "variables": {
-          "STEALH": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:armor_set/armors",
-            "ability": "stealht_animation_timer",
-            "property": "value",
-            "min": 0,
-            "max": 17
-          },
-          "X": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min": 0,
-            "max": 59
-          },
-          "Y": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.mask",
-            "min": 0,
-            "max": 1
-          }
-        },
-        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask_stealh_night/iron_man_suit_#X_3_#STEALH"
-      },
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
-      "animation_controller": [
-        {
-          "name": "mask.up",
-          "transition_tick_time": 10,
-          "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
-          }
-        }
-      ],
-      "conditions": [
-        {
-          "type": "palladium:or",
-          "conditions": [
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 6,
-              "max_score": 6
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 33,
-              "max_score": 33
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
-      "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_3.png",
-        "transformers": [
-          {
-            "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/stealh_modes/transformation_#STEALH.png"
-          }
-        ],
-        "variables": {
-          "STEALH": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:armor_set/armors",
-            "ability": "stealht_animation_timer",
-            "property": "value",
-            "min": 0,
-            "max": 17
-          },
-          "X": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min": 0,
-            "max": 59
-          }
-        },
-        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask_stealh_night/iron_man_suit_lights_#X_3_#STEALH"
-      },
-      "render_type": "glow",
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
-      "animation_controller": [
-        {
-          "name": "mask.up",
-          "transition_tick_time": 10,
-          "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
-          }
-        }
-      ],
-      "conditions": [
-        {
-          "type": "palladium:or",
-          "conditions": [
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor.ark.energy",
-              "min_score": 1
-            },
-            {
-              "type": "palladium:entity_type",
-              "entity_type": "minecraft:armor_stand"
-            }
-          ]
-        },
-        {
-          "type": "palladium:or",
-          "conditions": [
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 6,
-              "max_score": 6
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor",
-              "min_score": 33,
-              "max_score": 33
             }
           ]
         }

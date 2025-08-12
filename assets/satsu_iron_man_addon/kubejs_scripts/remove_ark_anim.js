@@ -32,13 +32,6 @@ PalladiumEvents.registerAnimations((event) => {
       } else {
         // third person animations
         builder
-          .get("left_arm")
-          .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder.get("chest").animate("InOutCubic", progress);
-        builder
           .get("right_arm")
           .setXRotDegrees(-135)
           .setYRotDegrees(0)
@@ -79,13 +72,6 @@ PalladiumEvents.registerAnimations((event) => {
           .animate("InOutCubic", progress);
       } else {
         // third person animations
-        builder
-          .get("left_arm")
-          .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder.get("chest").animate("InOutCubic", progress);
         builder
           .get("right_arm")
           .setXRotDegrees(-137.2658)
@@ -130,13 +116,6 @@ PalladiumEvents.registerAnimations((event) => {
       } else {
         // third person animations
         builder
-          .get("left_arm")
-          .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder.get("chest").animate("InOutCubic", progress);
-        builder
           .get("right_arm")
           .setXRotDegrees(-135)
           .setYRotDegrees(0)
@@ -177,13 +156,6 @@ PalladiumEvents.registerAnimations((event) => {
           .animate("InOutCubic", progress);
       } else {
         // third person animations
-        builder
-          .get("left_arm")
-          .setXRotDegrees(0)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder.get("chest").animate("InOutCubic", progress);
         builder
           .get("right_arm")
           .setXRotDegrees(-137.2658)
