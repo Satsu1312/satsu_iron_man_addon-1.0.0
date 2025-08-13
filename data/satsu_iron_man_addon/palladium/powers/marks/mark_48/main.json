@@ -904,8 +904,11 @@
                 "type": "palladium:and",
                 "conditions": [
                   {
-                    "type": "palladium:has_tag",
-                    "tag": "satsu.iron.man.suit.set"
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "tag": "satsu_iron_man_addon:armors"
+                    },
+                    "slot": "chest"
                   },
                   {
                     "type": "palladium:or",
@@ -970,7 +973,6 @@
       "hidden_in_bar": true,
       "first_tick_commands": [
         "superpower add satsu_iron_man_addon:marks/mecano_calll",
-        "tag @s add satsu.iron.man.suit.set",
         "tag @s add mark.48",
         "scoreboard players set @s satsu.iron.man.armor 48",
         "scoreboard players set @s satsu.iron.man.flame 0",
@@ -979,7 +981,6 @@
       "commands": [""],
       "last_tick_commands": [
         "tag @s remove mark.48",
-        "tag @s remove satsu.iron.man.suit.set",
         "superpower remove satsu_iron_man_addon:marks/mecano_calll",
         "execute if entity @e[tag=sentinel] run function satsu_iron_man_addon:sentinels/kill_one_sentinel",
         "function satsu_iron_man_addon:flight/set_0"
