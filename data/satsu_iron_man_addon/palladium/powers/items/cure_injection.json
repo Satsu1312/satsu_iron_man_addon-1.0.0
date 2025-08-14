@@ -1,0 +1,50 @@
+{
+  "name": { "translate": "ability.title.satsu.ia" },
+  "icon": "satsu_iron_man_addon:ia_glases",
+  "abilities": {
+    "dummy": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "right_click",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:extremis/main"
+          }
+        ]
+      }
+    },
+    "give.blood.normal": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "first_tick_commands": [
+        "clear @s satsu_iron_man_addon:extremis/cure_injection 1",
+        "superpower remove satsu_iron_man_addon:extremis/main"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "dummy"
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}
