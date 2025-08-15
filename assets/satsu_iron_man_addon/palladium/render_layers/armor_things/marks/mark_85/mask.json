@@ -3,13 +3,13 @@
   "layers": [
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nano_armors/marks/mask_front_without_body/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_85_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/nano_mask_new_model/nano_mask_#TIMER.png"
           }
         ],
         "variables": {
@@ -34,98 +34,16 @@
             "max": 1
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/armor/mask_front_without_body/iron_man_suit_#X_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_85_0_#TIMER"
       },
-      "conditions": []
-    },
-    {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nano_armors/marks/mask_front_without_body/main.geo.json",
-      "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_0.png",
-        "transformers": [
-          {
-            "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit/transformation_#TIMER.png"
-          }
-        ],
-        "variables": {
-          "TIMER": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:marks/mark_85/main",
-            "ability": "mask_animation_timer",
-            "property": "value"
-          },
-          "X": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min": 0,
-            "max": 59
-          }
-        },
-        "output": "satsu_iron_man_addon:textures/models/armor/mask_front_without_body/iron_man_suit_lights_#X_0_#TIMER"
-      },
-      "render_type": "glow",
-      "conditions": [
-        {
-          "type": "palladium:or",
-          "conditions": [
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.armor.ark.energy",
-              "min_score": 1
-            },
-            {
-              "type": "palladium:entity_type",
-              "entity_type": "minecraft:armor_stand"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
-      "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_#X_0.png",
-        "transformers": [
-          {
-            "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit/transformation_#TIMER.png"
-          }
-        ],
-        "variables": {
-          "TIMER": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:marks/mark_85/main",
-            "ability": "mask_animation_timer",
-            "property": "value",
-            "min": 0,
-            "max": 17
-          },
-          "X": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min": 0,
-            "max": 59
-          },
-          "Y": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.mask",
-            "min": 0,
-            "max": 1
-          }
-        },
-        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask_front/iron_man_suit_#X_0_#TIMER"
-      },
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
       "animation_controller": [
         {
           "name": "mask.up",
           "transition_tick_time": 10,
           "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
+            "mask.up": "open",
+            "mask.on": "close"
           }
         }
       ],
@@ -133,13 +51,13 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/mask_front/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_#X_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_light_85_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/nano_mask_new_model/nano_mask_#TIMER.png"
           }
         ],
         "variables": {
@@ -156,19 +74,25 @@
             "objective": "satsu.iron.man.armor",
             "min": 0,
             "max": 59
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/mask_front/iron_man_suit_lights_#X_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_lights_85_0_#TIMER"
       },
       "render_type": "glow",
-      "animation_file": "satsu_iron_man_addon:animations/overlay_mask_animation.geo.json",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
       "animation_controller": [
         {
           "name": "mask.up",
           "transition_tick_time": 10,
           "triggers": {
-            "mask.up": "animation.minecraft:mask.up",
-            "mask.on": "animation.minecraft:mask.down"
+            "mask.up": "open",
+            "mask.on": "close"
           }
         }
       ],

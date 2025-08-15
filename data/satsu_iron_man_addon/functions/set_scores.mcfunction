@@ -19,4 +19,4 @@ execute as @s unless score @s satsu.iron.man.addon.energy.beam.powerfull matches
 execute as @s unless score @s satsu.iron.man.flight.set matches 0.. run scoreboard players set @s satsu.iron.man.flight.set 0
 execute as @s unless score @s satsu.iron.man.addon.nano.armor.things matches 0.. run scoreboard players set @s satsu.iron.man.addon.nano.armor.things 0
 execute as @s unless score @s satsu.iron.man.armor.weapon matches 0.. run scoreboard players set @s satsu.iron.man.armor.weapon 0
-execute as @s unless score @s satsu.iron.man.armor matches 0.. run scoreboard players set @s satsu.iron.man.armor 13
+execute as @s unless score @s satsu.iron.man.armor matches 0.. run scoreboard players set @s satsu.iron.man.armor 1

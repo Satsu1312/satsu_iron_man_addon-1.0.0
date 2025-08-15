@@ -11,14 +11,23 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "minecraft:air",
       "name of the excluded tag"
     )
+    .addProperty(
+      "blockset",
+      "string",
+      "minecraft:air",
+      "name of the block to set"
+    )
+    .addProperty("destroy", "string", "destroy", "keep, destroy or replace")
     .tick((entity, entry, holder, enabled) => {
       if (enabled && entity.isPlayer()) {
         const excluded_tag = entry.getPropertyByName("excluded_tag");
+        const blockset = entry.getPropertyByName("blockset");
+        const destroy = entry.getPropertyByName("destroy");
         let range = entry.getPropertyByName("range");
         let block = entity.rayTrace(range).block;
         if (block !== null) {
           block.level.runCommandSilent(
-            `execute unless block ${block.x} ${block.y} ${block.z} ${excluded_tag} run setblock ${block.x} ${block.y} ${block.z} minecraft:air destroy`
+            `execute unless block ${block.x} ${block.y} ${block.z} ${excluded_tag} run setblock ${block.x} ${block.y} ${block.z} ${blockset} ${destroy}`
           );
         }
       }
