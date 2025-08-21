@@ -3,10 +3,10 @@ scoreboard objectives add satsu.iron.man.armor.hud.enabled dummy
 scoreboard objectives add satsu.iron.man.armor.weapon dummy
 scoreboard objectives add satsu.iron.man.armor.model.prime.stealth dummy
 scoreboard objectives add satsu.iron.man.addon.nano.stabilizer dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.hammer dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.sword dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.large.sword dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.katar dummy
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.hammer
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.sword
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.large.sword
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.katar
 scoreboard objectives remove satsu.iron.man.addon.nano.weapon.grenade_launcher
 scoreboard objectives remove satsu.iron.man.addon.nano.weapon.rial
 scoreboard objectives remove satsu.iron.man.addon.nano.weapon.grab_cannon
