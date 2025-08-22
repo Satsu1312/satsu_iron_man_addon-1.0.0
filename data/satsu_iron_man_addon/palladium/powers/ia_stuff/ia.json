@@ -203,10 +203,8 @@
       "title": {
         "translate": "ability.title.satsu.remote.mode"
       },
-      "description": { "translate": "description.satsu.remote.mode" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 0,
       "score": "satsu.iron.man.addon.ia.wheel.things",
       "adjustment_type": "set",
       "adjustment_amount": 1,
@@ -332,18 +330,13 @@
       }
     },
     "ability_wheel.night_vision": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/night_vision.png",
       "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
+        "translate": "ability.title.satsu.ia.night.vision"
       },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 0,
-      "description": { "translate": "description.ia_skill_stat" },
-      "score": "satsu.iron.man.addon.ia.wheel.things",
-      "adjustment_type": "set",
-      "adjustment_amount": 2,
       "conditions": {
         "enabling": [
           {
@@ -512,6 +505,66 @@
         ]
       }
     },
+    "night_vision_false": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_ia_wheel.night_vision",
+      "test": "false",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ability_wheel.night_vision"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.night_vision",
+            "property_value": "true"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "night_vision_true"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "night_vision_true": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_ia_wheel.night_vision",
+      "test": "true",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ability_wheel.night_vision"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.night_vision",
+            "property_value": "false"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "night_vision_false"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "ability_wheel.animation_timer_sentinel_dummy": {
       "type": "satsu_iron_man_addon:scoreboard_ability",
       "icon": "satsu_iron_man_addon:textures/gui/armors/sentinel.png",
@@ -624,16 +677,12 @@
       }
     },
     "ability_wheel.scan_enemies_enable": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/scan.png",
       "title": { "translate": "ability.title.satsu.scan.enemies" },
       "description": { "translate": "description.scan_enemies_enable" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 0,
-      "score": "satsu.iron.man.addon.ia.wheel.things",
-      "adjustment_type": "set",
-      "adjustment_amount": 4,
       "conditions": {
         "enabling": [
           {
@@ -817,17 +866,73 @@
         ]
       }
     },
+    "scan_false": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_ia_wheel.scan",
+      "test": "false",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ability_wheel.scan_enemies_enable"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.scan",
+            "property_value": "true"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "scan_true"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "scan_true": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_ia_wheel.scan",
+      "test": "true",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ability_wheel.scan_enemies_enable"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.scan",
+            "property_value": "false"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "scan_false"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "ability_wheel.cook": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "palladium:dummy",
       "icon": "minecraft:beef",
       "title": { "translate": "ability.title.satsu.cook.ark" },
       "description": { "translate": "description.satsu.cook.ark" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 0,
-      "score": "satsu.iron.man.addon.ia.wheel.things",
-      "adjustment_type": "set",
-      "adjustment_amount": 5,
       "conditions": {
         "enabling": [
           {
@@ -895,6 +1000,66 @@
             ]
           }
         ]
+      }
+    },
+    "cook_false": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_ia_wheel.cook",
+      "test": "false",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ability_wheel.cook"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.cook",
+            "property_value": "true"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "cook_true"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "cook_true": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_ia_wheel.cook",
+      "test": "true",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ability_wheel.cook"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.cook",
+            "property_value": "false"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "cook_false"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
       }
     },
     "remove.ia.tarjet": {
@@ -1233,11 +1398,14 @@
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/night_vision.png",
       "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
+        "translate": "ability.title.satsu.ia.night.vision"
+      },
+      "description": {
+        "translate": "description.satsu.ia.night.vision"
       },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 1,
+      "list_index": 2,
       "first_tick_commands": [
         "effect give @s minecraft:night_vision infinite 2 true"
       ],
@@ -1280,10 +1448,9 @@
             ]
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.ia.wheel.things",
-            "min_score": 2,
-            "max_score": 2
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.night_vision",
+            "property_value": "true"
           },
           {
             "type": "palladium:and",
@@ -4571,7 +4738,7 @@
       "title": { "translate": "ability.title.satsu.scan.enemies" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 1,
+      "list_index": 3,
       "conditions": {
         "enabling": [
           {
@@ -4611,10 +4778,9 @@
             ]
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.ia.wheel.things",
-            "min_score": 4,
-            "max_score": 4
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.scan",
+            "property_value": "true"
           },
           {
             "type": "palladium:ability_unlocked",
@@ -6589,7 +6755,7 @@
       "description": { "translate": "description.satsu.cook.ark" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 1,
+      "list_index": 4,
       "gui_position": [-6, -0],
       "commands": [""],
       "last_tick_commands": [
@@ -6640,10 +6806,9 @@
             ]
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.ia.wheel.things",
-            "min_score": 5,
-            "max_score": 5
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.cook",
+            "property_value": "true"
           },
           {
             "type": "palladium:ability_unlocked",
