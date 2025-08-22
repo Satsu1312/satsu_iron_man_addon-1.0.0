@@ -46,7 +46,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "Name of the Custom property, you need them in assets and addon folder"
     )
     .addProperty(
-      "test",
+      "test_value",
       "string",
       "set_value",
       "set false or true"
@@ -55,8 +55,8 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .tick((entity, entry, holder, enabled) => {
       if (enabled) {
         const name = entry.getPropertyByName("name");
-        const test = entry.getPropertyByName("test");
-        palladium.setProperty(entity, name, test);
+        const test_value = entry.getPropertyByName("test_value");
+        palladium.setProperty(entity, name, test_value);
       }
     });
 });
