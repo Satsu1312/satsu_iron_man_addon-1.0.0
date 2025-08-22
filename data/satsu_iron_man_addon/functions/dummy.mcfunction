@@ -33,7 +33,7 @@ scoreboard objectives add satsu.iron.man.addon.model.prime.color dummy
 scoreboard objectives add satsu.iron.man.addon.energy.beam.powerfull dummy
 scoreboard objectives add satsu.iron.man.addon.ia.wheel.things dummy
 scoreboard objectives add satsu.iron.man.addon.nano.armor.things dummy
-scoreboard objectives add satsu.iron.man.addon.gui.overlay.armor dummy
+scoreboard objectives remove satsu.iron.man.addon.gui.overlay.armor
 scoreboard objectives add satsu.iron.man.addon.raycast_distance dummy
 scoreboard objectives remove satsu.iron.man.addon.punch
 scoreboard objectives add satsu.iron.man.addon.Ymotion dummy

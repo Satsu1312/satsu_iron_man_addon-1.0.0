@@ -108,11 +108,6 @@
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [0.5, 0],
-      "first_tick_commands": [
-        "execute as @s run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.select_config_gui_hud\",\"color\":\"#ffa500\"}"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
       "abilities": [
         "First_person_gui_option",
         "third_person_gui_option",
@@ -134,7 +129,7 @@
       }
     },
     "First_person_gui_option": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_property_string",
       "icon": "satsu_iron_man_addon:textures/gui/armors/hud/hud_first_person.png",
       "title": {
         "translate": "satsu.iron.man.addon.text.select_config_gui_hud.1"
@@ -142,13 +137,8 @@
       "description": { "translate": "description.satsu.config_gui" },
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players reset @s satsu.iron.man.addon.gui.overlay.armor",
-        "execute as @s run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.select_config_gui_hud.1\",\"color\":\"#ffa500\"}",
-        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy_gui"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
+      "name": "satsu_iron_man_armor_hud_perspective",
+      "test_value": "first_person",
       "conditions": {
         "enabling": [
           {
@@ -166,7 +156,7 @@
       }
     },
     "third_person_gui_option": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_property_string",
       "icon": "satsu_iron_man_addon:textures/gui/armors/hud/hud_third_person.png",
       "title": {
         "translate": "satsu.iron.man.addon.text.select_config_gui_hud.2"
@@ -174,13 +164,8 @@
       "description": { "translate": "description.satsu.config_gui" },
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.gui.overlay.armor 1",
-        "execute as @s run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.select_config_gui_hud.2\",\"color\":\"#ffa500\"}",
-        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy_gui"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
+      "name": "satsu_iron_man_armor_hud_perspective",
+      "test_value": "third_person",
       "conditions": {
         "enabling": [
           {
@@ -198,7 +183,7 @@
       }
     },
     "none_gui_option": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:set_property_string",
       "icon": {
         "type": "palladium:compound",
         "icons": [
@@ -212,13 +197,8 @@
       "description": { "translate": "description.satsu.config_gui" },
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.gui.overlay.armor 2",
-        "execute as @s run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.select_config_gui_hud.3\",\"color\":\"#ffa500\"}",
-        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy_gui"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
+      "name": "satsu_iron_man_armor_hud_perspective",
+      "test_value": "false",
       "conditions": {
         "enabling": [
           {
@@ -231,6 +211,36 @@
             "type": "palladium:ability_enabled",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "dummy_gui"
+          }
+        ]
+      }
+    },
+    "gui.choose.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy_gui"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "First_person_gui_option"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "third_person_gui_option"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "none_gui_option"
+              }
+            ]
           }
         ]
       }
