@@ -417,8 +417,6 @@
       "hidden_in_bar": false,
       "gui_position": [0, 0.5],
       "first_tick_commands": [
-        "scoreboard players add @s satsu.iron.man.armor.energy.pulse.hand 1",
-        "execute as @s[scores={satsu.iron.man.armor.energy.pulse.hand=3}] run scoreboard players set @s satsu.iron.man.armor.energy.pulse.hand 1",
         "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor energy.Pulse.choose.lock.hand"
       ],
       "commands": [""],
@@ -437,6 +435,66 @@
             "ability": "armor_skill_bar"
           }
         ]
+      }
+    },
+    "left_hand_false": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_left_arm",
+      "test": "false",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "energy.Pulse.choose.lock.hand"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_left_arm",
+            "property_value": "true"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "left_hand_true"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "left_hand_true": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_left_arm",
+      "test": "true",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "energy.Pulse.choose.lock.hand"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_left_arm",
+            "property_value": "false"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "left_hand_false"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
       }
     },
     "vibranuim.blades": {
