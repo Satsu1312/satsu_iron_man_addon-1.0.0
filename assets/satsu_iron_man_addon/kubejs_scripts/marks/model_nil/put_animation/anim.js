@@ -51,14 +51,14 @@ PalladiumEvents.registerAnimations((event) => {
 });
 PalladiumEvents.registerAnimations((event) => {
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.9.mark.5.part.1",
+    "satsu_iron_man_addon/colocacion_de_armadura.9.model.nil.part.1",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:marks/model_nil/main",
-        "mark.5_anim",
+        "model.nil_anim",
         builder.getPartialTicks()
       );
 
@@ -140,14 +140,14 @@ PalladiumEvents.registerAnimations((event) => {
     }
   );
   event.register(
-    "satsu_iron_man_addon/colocacion_de_armadura.8.mark.5.part.3",
+    "satsu_iron_man_addon/colocacion_de_armadura.8.model.nil.part.3",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:marks/model_nil/main",
-        "mark.5_anim.3",
+        "model.nil_anim.3",
         builder.getPartialTicks()
       );
 
