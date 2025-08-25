@@ -633,10 +633,20 @@
             "type": "palladium:sprinting"
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.flight_speed.choose",
-            "min_score": 16,
-            "max_score": 10000000000
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.flight_speed.choose",
+                "min_score": 16,
+                "max_score": 10000000000
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_reroute_flight",
+                "property_value": "true"
+              }
+            ]
           }
         ]
       }
