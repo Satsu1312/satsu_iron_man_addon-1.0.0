@@ -4218,6 +4218,95 @@
         ]
       }
     },
+    "wings_anim": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/nil/wings.png",
+      "title": { "translate": "ability.title.satsu.wings" },
+      "description": { "translate": "description.satsu.wings" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 14,
+      "gui_position": [0, 3.99],
+      "start_value": 0,
+      "max_value": 3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.ark.energy",
+            "min_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": []
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_skill_bar"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
+    "wings.flight": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:flight_speed",
+      "uuid": "ee1d346b-34f6-4bc2-a286-78606d0411f8",
+      "amount": 0.2,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "wings_anim",
+            "property": "value",
+            "min": 3,
+            "max": 3
+          }
+        ]
+      }
+    },
+    "wings.flight_flexibility": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:flight_flexibility",
+      "uuid": "3c77dbab-0bb4-4127-a366-42dc291a35cb",
+      "amount": -1000000,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "wings_anim",
+            "property": "value",
+            "min": 3,
+            "max": 3
+          }
+        ]
+      }
+    },
     "energy_projectile.damage.6": {
       "type": "gravestone:projectile",
       "hidden": true,
