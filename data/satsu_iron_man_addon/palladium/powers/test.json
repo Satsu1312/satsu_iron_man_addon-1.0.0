@@ -2,38 +2,33 @@
   "name": { "translate": "ability.title.blooded" },
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "abilities": {
-    "energy_beam": {
-      "type": "palladium:energy_beam",
+    "remove": {
+      "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": false,
-      "energy_beam": "satsu_iron_man_addon:uni_beams_hand/red_mini/uni_beam_hand",
-      "damage": 10,
-      "max_distance": 20,
-      "speed": 0.8,
-      "set_on_fire_seconds": 1,
-      "cause_fire": false,
-      "smelt_blocks": false,
+      "commands": ["say propiedad al 0!!"],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "ability": "remove"
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_armor_weapon_system",
+            "property_value": "true"
           }
         ],
         "unlocking": []
       }
     },
-    "remove": {
-      "type": "palladium:command",
-      "hidden": true,
+    "energy.pulse.actived": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": false,
       "hidden_in_bar": false,
-      "commands": [
-        "function satsu_iron_man_addon:destroy_blocks/red_mini_beams/main"
-      ],
+      "name": "satsu_armor_weapon_system",
+      "test_value": "on",
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle"
+            "type": "palladium:action",
+            "key_type": "key_bind"
           }
         ],
         "unlocking": []

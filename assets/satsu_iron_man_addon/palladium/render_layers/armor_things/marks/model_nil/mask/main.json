@@ -1,0 +1,232 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_nil_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/normal_mask/normal_mask_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/model_nil/main",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 0,
+            "max": 16
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 59
+          },
+          "Y": {
+            "type": "palladium:integer_property",
+            "property": "satsu_mask_value",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_nil_0_#TIMER"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "open",
+            "mask.on": "close"
+          }
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_light_nil_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/normal_mask/normal_mask_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/model_nil/main",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 0,
+            "max": 16
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 59
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_light_nil_0_#TIMER"
+      },
+      "render_type": "glow",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "open",
+            "mask.on": "close"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor.ark.energy",
+              "min_score": 1
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_nil_1.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/stealth_mode_mask/stealth_mask_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_set/armors",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 59
+          },
+          "Y": {
+            "type": "palladium:integer_property",
+            "property": "satsu_mask_value",
+            "min": 0,
+            "max": 1
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "open",
+            "mask.on": "close"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:armor_set/armors",
+          "ability": "stealht_animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 17
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_nil_1.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/stealth_mode_mask/stealth_mask_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_set/armors",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 59
+          }
+        }
+      },
+      "render_type": "glow",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "open",
+            "mask.on": "close"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor.ark.energy",
+              "min_score": 1
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:armor_set/armors",
+          "ability": "stealht_animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 17
+        }
+      ]
+    }
+  ]
+}
