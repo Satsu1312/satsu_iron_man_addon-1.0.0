@@ -5020,7 +5020,7 @@
       }
     },
     "nano_fireworks.back": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fire_work.png",
       "title": { "translate": "ability.title.satsu.back.fireworks" },
       "description": { "translate": "description.satsu.back.fireworks" },
@@ -5077,8 +5077,84 @@
         ]
       }
     },
+    "nano_fireworks.back.firework_projectile": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOffset": -10,
+      "pitchOffset": 25,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 10,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:fire_work",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:fire_work",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:fireworks"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_fireworks.back"
+          }
+        ]
+      }
+    },
+    "nano_fireworks.back.firework_projectile.2": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOffset": 10,
+      "pitchOffset": 25,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "Damage": 10,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:fire_work",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:fire_work",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:fireworks_2"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_fireworks.back"
+          }
+        ]
+      }
+    },
     "maximun.pulse.animation": {
-      "type": "palladium:dummy",
+      "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/maximum_pulse.png",
       "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.maximum.pulse" },
@@ -5094,7 +5170,7 @@
           {
             "type": "palladium:activation",
             "ticks": 50,
-            "cooldown": 480,
+            "cooldown": 481,
             "key_type": "key_bind",
             "needs_empty_hand": false
           }
@@ -5140,6 +5216,125 @@
                 "type": "palladium:objective_score",
                 "objective": "satsu.iron.man.addon.nano.weapon.hammer",
                 "min_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "maximun.pulse.not.break": {
+      "type": "palladium:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "entity_type": "palladium:custom_projectile",
+      "entity_data": {
+        "SetEntityOnFireSeconds": 30,
+        "KnockbackStrength": 10,
+        "Damage": 290,
+        "Size": 5.5,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:maximum_pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:maximum_pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 10.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.break",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "maximun.pulse.animation",
+            "min": 50,
+            "max": 50
+          }
+        ]
+      }
+    },
+    "maximun.pulse.break": {
+      "type": "palladium:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "entity_type": "palladium:custom_projectile",
+      "entity_data": {
+        "SetEntityOnFireSeconds": 30,
+        "ExplosionRadius": 15,
+        "ExplosionBlockInteraction": "BREAK",
+        "KnockbackStrength": 10,
+        "Damage": 290,
+        "Size": 5.5,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:maximum_pulse",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:maximum_pulse",
+        "Appearances": [
+          {
+            "Type": "laser",
+            "Thickness": 10.1,
+            "Color": "#0377fc"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.break",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "maximun.pulse.animation",
+            "min": 50,
+            "max": 50
+          }
+        ]
+      }
+    },
+    "maximum.pulse.sound": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "execute as @s run playsound satsu_iron_man_addon:new_blast ambient @a[distance=0..10] ~ ~ ~ 1 1"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "maximun.pulse.break"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "maximun.pulse.not.break"
               }
             ]
           }
@@ -7354,6 +7549,42 @@
         ]
       }
     },
+    "energyblast.throw.sound.multiple": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:energyblast.throw",
+      "volume": 1,
+      "pitch": 0,
+      "looping": true,
+      "play_self": true,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_fireworks.back.firework_projectile"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_fireworks.back.firework_projectile.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mini_fireworks.firework_projectile"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mini_fireworks.firework_projectile.2"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "tool_hands": {
       "type": "palladium:tool_hands",
       "hidden": true,
@@ -8379,6 +8610,77 @@
             "property": "value",
             "min": 15,
             "max": 15
+          }
+        ]
+      }
+    },
+    "fireworks.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "score": "satsu.iron.man.armor.ark.energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shoulder_rockets",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_fireworks",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_fireworks.back",
+                "property": "value",
+                "min": 8,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "rocket",
+                "property": "value",
+                "min": 19,
+                "max": 19
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "energyblast.remove.ark.energy.maximum_function": {
+      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "score": "satsu.iron.man.armor.ark.energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 300,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "maximun.pulse.break"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "maximun.pulse.not.break"
+              }
+            ]
           }
         ]
       }
