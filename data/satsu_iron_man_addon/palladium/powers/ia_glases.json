@@ -1,51 +1,8 @@
 {
   "name": { "translate": "ability.title.satsu.ia_glases" },
-  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/ability_bar_iron_man.png",
-  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
   "icon": "satsu_iron_man_addon:ia_glases",
   "gui_display_type": "tree",
   "abilities": {
-    "render_layer.glases": {
-      "type": "palladium:render_layer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "render_layer": "satsu_iron_man_addon:glases",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.remote",
-                "min_score": 1,
-                "max_score": 1
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:has_tag",
-                "tag": "alien"
-              }
-            ]
-          }
-        ]
-      }
-    },
     "hud_armor": {
       "type": "palladium:gui_overlay",
       "texture": "#satsu_iron_man_addon:armor_hud/armor_hud",
@@ -69,15 +26,9 @@
                     "looking": "FIRST_PERSON"
                   },
                   {
-                    "type": "palladium:not",
-                    "conditions": [
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.addon.gui.overlay.armor",
-                        "min_score": 1,
-                        "max_score": 1
-                      }
-                    ]
+                    "type": "satsu_iron_man_addon:has_property",
+                    "property": "satsu_iron_man_armor_hud_perspective",
+                    "property_value": "first_person"
                   }
                 ]
               },
@@ -85,10 +36,9 @@
                 "type": "palladium:and",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.addon.gui.overlay.armor",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "satsu_iron_man_addon:has_property",
+                    "property": "satsu_iron_man_armor_hud_perspective",
+                    "property_value": "third_person"
                   }
                 ]
               }
@@ -98,10 +48,9 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.gui.overlay.armor",
-                "min_score": 2,
-                "max_score": 2
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_armor_hud_perspective",
+                "property_value": "false"
               }
             ]
           }
@@ -109,12 +58,11 @@
       }
     },
     "hud_armor_variable.enable": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "satsu_iron_man_addon:set_property_string",
       "hidden": true,
       "hidden_in_bar": true,
-      "score": "satsu.iron.man.armor.hud.enabled",
-      "adjustment_type": "set",
-      "adjustment_amount": 1,
+      "name": "satsu_iron_man_armor_hud_enabled",
+      "test_value": "true",
       "conditions": {
         "enabling": [
           {
@@ -126,12 +74,11 @@
       }
     },
     "hud_armor_variable.disable": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "satsu_iron_man_addon:set_property_string",
       "hidden": true,
       "hidden_in_bar": true,
-      "score": "satsu.iron.man.armor.hud.enabled",
-      "adjustment_type": "set",
-      "adjustment_amount": 0,
+      "name": "satsu_iron_man_armor_hud_enabled",
+      "test_value": "false",
       "conditions": {
         "enabling": [
           {

@@ -1,0 +1,87 @@
+{
+  "name": { "translate": "ability.title.satsu.mark.85" },
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "abilities": {
+    "mask.up.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/marks/mark_81/mask",
+      "controller": "mask.up",
+      "animation_trigger": "mask.up",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_mask_value",
+            "min": 0,
+            "max": 0
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:marks/mark_81/main",
+            "ability": "mask_activate_old"
+          }
+        ]
+      }
+    },
+    "mask.on.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/marks/mark_81/mask",
+      "controller": "mask.up",
+      "animation_trigger": "mask.on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_mask_value",
+                    "min": 1,
+                    "max": 1
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:marks/mark_81/main",
+                    "ability": "mask_activate_old"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_mask_value",
+                    "min": 1,
+                    "max": 1
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "mask_animation_timer",
+                    "power": "satsu_iron_man_addon:marks/mark_81/main",
+                    "property": "value",
+                    "min": 13,
+                    "max": 13
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

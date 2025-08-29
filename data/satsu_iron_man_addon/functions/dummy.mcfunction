@@ -1,15 +1,15 @@
 
-scoreboard objectives add satsu.iron.man.armor.hud.enabled dummy
-scoreboard objectives add satsu.iron.man.armor.weapon dummy
+scoreboard objectives remove satsu.iron.man.armor.hud.enabled
+scoreboard objectives remove satsu.iron.man.armor.weapon
 scoreboard objectives add satsu.iron.man.armor.model.prime.stealth dummy
-scoreboard objectives add satsu.iron.man.addon.nano.stabilizer dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.hammer dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.sword dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.large.sword dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.katar dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.grenade_launcher dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.rial dummy
-scoreboard objectives add satsu.iron.man.addon.nano.weapon.grab_cannon dummy
+scoreboard objectives remove satsu.iron.man.addon.nano.stabilizer
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.hammer
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.sword
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.large.sword
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.katar
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.grenade_launcher
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.rial
+scoreboard objectives remove satsu.iron.man.addon.nano.weapon.grab_cannon
 scoreboard objectives add satsu.iron.man.addon.armor.choose dummy
 scoreboard objectives add satsu.iron.man.addon.armor.all dummy
 scoreboard objectives add satsu.iron.man.addon.armor.chest dummy
@@ -33,7 +33,7 @@ scoreboard objectives add satsu.iron.man.addon.model.prime.color dummy
 scoreboard objectives add satsu.iron.man.addon.energy.beam.powerfull dummy
 scoreboard objectives add satsu.iron.man.addon.ia.wheel.things dummy
 scoreboard objectives add satsu.iron.man.addon.nano.armor.things dummy
-scoreboard objectives add satsu.iron.man.addon.gui.overlay.armor dummy
+scoreboard objectives remove satsu.iron.man.addon.gui.overlay.armor
 scoreboard objectives add satsu.iron.man.addon.raycast_distance dummy
 scoreboard objectives remove satsu.iron.man.addon.punch
 scoreboard objectives add satsu.iron.man.addon.Ymotion dummy
@@ -45,10 +45,10 @@ scoreboard objectives remove satsu.iron.man.addon.ark.skin.max
 scoreboard objectives remove satsu.iron.man.addon.give.ia.tarjet
 scoreboard objectives add satsu.iron.man.addon.ark.skin.choose dummy
 scoreboard objectives add satsu.iron.man.addon.ark.skin dummy
-scoreboard objectives add satsu.iron.man.armor.uni.beam.hand dummy
-scoreboard objectives add satsu.iron.man.armor.energy.pulse.or.energy.beam dummy
-scoreboard objectives add satsu.iron.man.armor.energy.pulse.hand dummy
-scoreboard objectives add satsu.iron.man.armor.energy.pulse dummy
+scoreboard objectives remove satsu.iron.man.armor.uni.beam.hand
+scoreboard objectives remove satsu.iron.man.armor.energy.pulse.or.energy.beam
+scoreboard objectives remove satsu.iron.man.armor.energy.pulse.hand
+scoreboard objectives remove satsu.iron.man.armor.energy.pulse
 scoreboard objectives add satsu.iron.man.addon.unlocking.set.block dummy
 scoreboard objectives add satsu.iron.man.addon.ia.name dummy
 scoreboard objectives remove satsu.iron.man.addon.ia.name.power
@@ -70,7 +70,7 @@ scoreboard objectives add satsu.iron.man.superior.color dummy
 scoreboard objectives add satsu.iron.man.armor.ark.beam.color.icon dummy
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.flame.thrower.icon dummy
 scoreboard objectives remove satsu.iron.man.addon.altura
-scoreboard objectives add satsu.iron.man.mask dummy
+scoreboard objectives remove satsu.iron.man.mask
 scoreboard objectives add satsu.iron.man.animation.armor dummy
 scoreboard objectives add satsu.iron.man.animation.armor.reset dummy
 scoreboard objectives remove satsu.iron.man.armor.actived.perm
@@ -83,7 +83,6 @@ scoreboard objectives add satsu.iron.man.choose_armor dummy
 scoreboard objectives add satsu.iron.man.choose_armor.test dummy
 scoreboard objectives add satsu.iron.man.flight_speed_max dummy
 scoreboard objectives add satsu.iron.man.unlock_sword dummy
-scoreboard objectives add satsu.iron.man.mask dummy
 scoreboard objectives add satsu.iron.man.flight.set dummy
 scoreboard objectives remove satsu.iron.man.failsafe.set
 scoreboard objectives add satsu.iron.man.armor.set dummy
