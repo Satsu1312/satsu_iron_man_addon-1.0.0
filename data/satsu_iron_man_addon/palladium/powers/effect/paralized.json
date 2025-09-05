@@ -1,0 +1,51 @@
+{
+  "name": { "translate": "ability.title.paralizeded" },
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "abilities": {
+    "paralized.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["effect give @s minecraft:slowness infinite 255 true"],
+      "commands": [""],
+      "last_tick_commands": ["effect clear @s minecraft:slowness"],
+      "conditions": {
+        "enabling": [
+        ],
+        "unlocking": []
+      }
+    },
+    "paralized.render_layer": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:paralized/main",
+      "conditions": {
+        "enabling": [
+        ],
+        "unlocking": []
+      }
+    },
+    "remove": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:effect/paralized",
+      "capacity": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:paralized"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}
