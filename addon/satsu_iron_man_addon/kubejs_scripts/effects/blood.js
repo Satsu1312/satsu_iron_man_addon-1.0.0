@@ -2,7 +2,7 @@
 StartupEvents.registry("mob_effect", (event) => {
   event
     .create("satsu_iron_man_addon:blood")
-    .displayName("Blooding")
+    .displayName("Bleeding")
     .effectTick((entity, lvl) => {
       if (!entity.server) return;
       //This line allows your effect to grant a specific power when enabled and will not be removed unless you code it to do so in the given power
