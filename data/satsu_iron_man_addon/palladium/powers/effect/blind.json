@@ -14,7 +14,7 @@
         "enabling": [
           {
             "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:blind",
+            "power": "satsu_iron_man_addon:effect/blind",
             "ability": "timer_white",
             "property": "value",
             "min": 1,
@@ -56,7 +56,7 @@
         "enabling": [
           {
             "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:blind",
+            "power": "satsu_iron_man_addon:effect/blind",
             "ability": "timer_phosphor",
             "property": "value",
             "min": 1,
@@ -108,40 +108,22 @@
         "unlocking": []
       }
     },
-    "blood.damage": {
-      "type": "palladium:render_layer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "render_layer": "satsu_iron_man_addon:paralized/main",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "blood.timer",
-            "property": "value",
-            "min": 1,
-            "max": 19
-          }
-        ],
-        "unlocking": []
-      }
-    },
     "remove": {
       "type": "satsu_iron_man_addon:superpower",
       "hidden": true,
       "hidden_in_bar": true,
-      "power": "satsu_iron_man_addon:paralized",
+      "power": "satsu_iron_man_addon:effect/blind",
       "capacity": "remove",
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "timer",
-            "property": "value",
-            "min": 100,
-            "max": 100
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:blind"
+              }
+            ]
           }
         ],
         "unlocking": []
