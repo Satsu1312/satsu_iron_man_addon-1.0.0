@@ -3842,12 +3842,15 @@
       "title": { "translate": "ability.title.satsu.Choose.Speed" },
       "description": { "translate": "description.armor_skill_bar" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 5,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle"
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.flight.set",
+            "min_score": 1,
+            "max_score": 1
           }
         ],
         "unlocking": [
@@ -3855,12 +3858,6 @@
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor.ark.energy",
             "min_score": 1
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.flight.set",
-            "min_score": 1,
-            "max_score": 1
           },
           {
             "type": "palladium:ability_unlocked",
@@ -3889,7 +3886,7 @@
       "title": { "translate": "ability.title.satsu.Increase.Speed" },
       "description": { "translate": "description.armor_skill_bar" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 6,
       "score": "satsu.iron.man.flight_speed.choose",
       "adjustment_type": "add",
@@ -3917,6 +3914,9 @@
             "ability": "flight_speed.move"
           },
           {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.flight_speed.choose",
             "min_score": 0,
@@ -3931,7 +3931,7 @@
       "title": { "translate": "ability.title.satsu.decrease.Speed" },
       "description": { "translate": "description.armor_skill_bar" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 7,
       "score": "satsu.iron.man.flight_speed.choose",
       "adjustment_type": "subtract",
@@ -3959,6 +3959,9 @@
             "ability": "flight_speed.move"
           },
           {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.flight_speed.choose",
             "min_score": 2,
@@ -3972,7 +3975,7 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
       "title": { "translate": "ability.title.satsu.Increase.Speed" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 8,
       "score": "satsu.iron.man.flight_speed.choose",
       "adjustment_type": "set",
@@ -3981,7 +3984,11 @@
         "enabling": [
           {
             "type": "palladium:action",
-            "key_type": "key_bind"
+            "key_type": "scroll_up",
+            "allow_scrolling_when_crouching": false
+          },
+          {
+            "type": "palladium:crouching"
           }
         ],
         "unlocking": [
@@ -3998,6 +4005,9 @@
           {
             "type": "palladium:ability_enabled",
             "ability": "flight_speed.move"
+          },
+          {
+            "type": "palladium:is_hovering_or_flying"
           },
           {
             "type": "palladium:has_power",
@@ -4017,7 +4027,7 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
       "title": { "translate": "ability.title.satsu.decrease.Speed" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 9,
       "score": "satsu.iron.man.flight_speed.choose",
       "adjustment_type": "set",
@@ -4026,7 +4036,11 @@
         "enabling": [
           {
             "type": "palladium:action",
-            "key_type": "key_bind"
+            "key_type": "scroll_down",
+            "allow_scrolling_when_crouching": false
+          },
+          {
+            "type": "palladium:crouching"
           }
         ],
         "unlocking": [
@@ -4043,6 +4057,9 @@
           {
             "type": "palladium:ability_enabled",
             "ability": "flight_speed.move"
+          },
+          {
+            "type": "palladium:is_hovering_or_flying"
           },
           {
             "type": "palladium:has_power",
