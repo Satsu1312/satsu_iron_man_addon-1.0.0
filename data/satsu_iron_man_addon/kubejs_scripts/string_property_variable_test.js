@@ -107,15 +107,6 @@ PalladiumEvents.registerProperties((event) => {
   }
 });
 
-
-
-
-
-
-
-
-
-
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player") {

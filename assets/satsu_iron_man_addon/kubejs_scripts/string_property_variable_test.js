@@ -104,15 +104,6 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
       event.registerProperty('satsu_iron_man_addon_beam_core_color', 'string', "d9f1ff");
     }
 });
-
-
-
-
-
-
-
-
-
 PalladiumEvents.registerPropertiesClientSided((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player") {
