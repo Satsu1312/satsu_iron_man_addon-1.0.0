@@ -24,7 +24,9 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const armor_piece = properties.get("armor_piece");
       const divider = properties.get("divider");
       const operation_type = properties.get("operation_type");
-      const slot = entity.getInventory().getArmor(armor_piece);
+      if (entity.getInventory != null) {
+        const slot = entity.getInventory().getArmor(armor_piece);
+    
       if (!slot.isEmpty() && divider > 0) {
         const maxDurability = slot.maxDamage;
         const currentDamage = slot.damageValue;
@@ -39,6 +41,7 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
         } else if (operation_type == "<") {
           return durabilityLeft < requiredDurability;
         }
+      }
       }
       return false;
     });
