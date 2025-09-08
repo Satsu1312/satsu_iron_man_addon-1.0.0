@@ -30,7 +30,7 @@
       "hidden_in_bar": true,
       "commands": [
         "damage @s 1",
-        "effect give @s minecraft:slowness 1 1",
+        "effect give @s minecraft:slowness 1 1 true",
         "particle dust_color_transition 1 0 0 1 0.44 0 0 ~ ~1 ~ 0 0 0 0.01 100 force @a"
       ],
       "conditions": {
@@ -47,21 +47,38 @@
         "unlocking": []
       }
     },
+    "weakness": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "effect give @s minecraft:weakness infinite 2"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "effect clear @s minecraft:weakness"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
     "remove": {
       "type": "satsu_iron_man_addon:superpower",
       "hidden": true,
       "hidden_in_bar": true,
-      "power": "satsu_iron_man_addon:blood",
+      "power": "satsu_iron_man_addon:effect/blood",
       "capacity": "remove",
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "timer",
-            "property": "value",
-            "min": 100,
-            "max": 100
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:blood"
+              }
+            ]
           }
         ],
         "unlocking": []
