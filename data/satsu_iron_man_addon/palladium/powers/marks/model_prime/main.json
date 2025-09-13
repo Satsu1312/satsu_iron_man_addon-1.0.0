@@ -1916,7 +1916,6 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:armor_set/armors",
                 "ability": "stealht_animation_timer",
                 "property": "value",
                 "min": 20,
@@ -8060,6 +8059,67 @@
                 ]
               }
             ]
+          }
+        ]
+      }
+    },
+    "stealht_animation_timer": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:marks/model_prime/main",
+                "ability": "stealth"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "stealht_invisibility": {
+      "type": "palladium:invisibility",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "gui_position": [-1, -1],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "stealht_invis_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["effect give @s minecraft:invisibility 1 255 true"],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 20,
+            "max": 20
           }
         ]
       }

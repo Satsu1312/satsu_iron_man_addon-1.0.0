@@ -286,7 +286,6 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:armor_set/armors",
                 "ability": "stealht_animation_timer",
                 "property": "value",
                 "min": 20,
@@ -361,7 +360,6 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:armor_set/armors",
                 "ability": "stealht_animation_timer",
                 "property": "value",
                 "min": 20,
@@ -1617,7 +1615,7 @@
       "description": { "translate": "description.iron.man.aquatic_breath" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [1.35, -2.30],
+      "gui_position": [1.35, -2.3],
       "first_tick_commands": [
         "effect give @s minecraft:water_breathing infinite 2 true"
       ],
@@ -1804,7 +1802,6 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:armor_set/armors",
                 "ability": "stealht_animation_timer",
                 "property": "value",
                 "min": 20,
@@ -1907,7 +1904,6 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:armor_set/armors",
                 "ability": "stealht_animation_timer",
                 "property": "value",
                 "min": 20,
@@ -3955,6 +3951,67 @@
         ]
       }
     },
+    "stealht_animation_timer": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:marks/model_nil/main",
+                "ability": "stealth"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "stealht_invisibility": {
+      "type": "palladium:invisibility",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "gui_position": [-1, -1],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "stealht_invis_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["effect give @s minecraft:invisibility 1 255 true"],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
     "Mark.33.vibranuim.blades": {
       "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/vribranuim_blades.png",
@@ -4836,7 +4893,6 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:armor_set/armors",
                 "ability": "stealht_animation_timer",
                 "property": "value",
                 "min": 20,
