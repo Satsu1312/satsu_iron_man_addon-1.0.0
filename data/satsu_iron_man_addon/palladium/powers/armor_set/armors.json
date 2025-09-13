@@ -195,6 +195,122 @@
           }
         ]
       }
+    },
+    "choose.armor.set.animation_timer": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 2,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mecano.comprobacion"
+              },
+              {
+                "type": "palladium:has_tag",
+                "tag": "mecano.sentinel.on.ground"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor",
+                    "min_score": "6",
+                    "max_score": "49"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_skill_bar"
+          }
+        ]
+      }
+    },
+    "spawn.armor.fall": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 2,
+      "first_tick_commands": [
+        "tag @s add sentinel.false",
+        "function satsu_iron_man_addon:sentinels/spawn_false_sentinel",
+        "tag @s remove mecano.comprobacion"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mecano.sentinel.on.ground"
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_set/armors",
+            "ability": "choose.armor.set.animation_timer",
+            "property": "value",
+            "min": 8,
+            "max": 8
+          }
+        ]
+      }
+    },
+    "spawn.armor.on.ground": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 2,
+      "first_tick_commands": [
+        "tag @s add sentinel.false",
+        "function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground_back",
+        "tag @s remove mecano.sentinel.on.ground"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "mecano.sentinel.on.ground"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor_set/armors",
+            "ability": "choose.armor.set.animation_timer",
+            "property": "value",
+            "min": 8,
+            "max": 8
+          }
+        ]
+      }
     }
   }
 }
