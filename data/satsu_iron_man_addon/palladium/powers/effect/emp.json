@@ -1,0 +1,65 @@
+{
+  "name": { "translate": "ability.title.paralizeded" },
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "abilities": {
+    "emp.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["effect give @s dampened:emp 1 255 true"],
+      "commands": [""],
+      "last_tick_commands": ["effect clear @s dampened:emp"],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "closed.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "tag @s add satsu.iron.man.enable.armor"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "tag @s remove satsu.iron.man.enable.armor"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "emp.render_layer": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:paralized/main",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "remove": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:effect/emp",
+      "capacity": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:emp"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}
