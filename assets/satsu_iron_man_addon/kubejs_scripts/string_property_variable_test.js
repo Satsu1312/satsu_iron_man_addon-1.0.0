@@ -132,3 +132,17 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
       event.registerProperty('satsu.model_50.color', 'string', "acf4fd");
     }
 });
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu.iron.man.armor.arc.energy', 'integer', 10000);
+    }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu.iron.man.armor.arc.energy.max', 'integer', 10000);
+    }
+});
