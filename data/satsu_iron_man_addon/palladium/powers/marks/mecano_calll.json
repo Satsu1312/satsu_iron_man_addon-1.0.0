@@ -49,6 +49,67 @@
                 "log": false
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:is_falling",
+                "distance": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_armor.falling": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:armor_icon_ability",
+      "title": { "translate": "ability.title.satsu.call.sentinel" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease_nano"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_skill_bar"
+          },
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @s[scores={satsu.iron.man.animation.armor=0}]",
+            "comparison": "==",
+            "compare_to": 1,
+            "log": false
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
+                "comparison": "==",
+                "compare_to": 1,
+                "log": false
+              }
+            ]
+          },
+          {
+            "type": "satsu_iron_man_addon:is_falling",
+            "distance": 5
           }
         ]
       }
@@ -123,10 +184,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.ark.energy",
-            "min_score": 1,
-            "max_score": 150000
+            "type": "satsu_iron_man_addon:has_property_min",
+            "property": "satsu.iron.man.armor.arc.energy",
+            "property_value_min": 1,
+            "property_value_max": 150000
           },
           {
             "type": "palladium:not",

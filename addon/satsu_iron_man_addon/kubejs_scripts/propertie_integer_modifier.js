@@ -1,4 +1,5 @@
-// Made by FSang18
+//Made by FSang18
+
 StartupEvents.registry("palladium:abilities", (event) => {
   event
     .create("satsu_iron_man_addon:palladium_property_modifier")
@@ -25,7 +26,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
         } else if (adjustType === "subtract") {
           palladium.setProperty(entity, sbName, currentScore - adjustAmt);
         } else if (adjustType === "set") {
-          palladium.setProperty(entity, sbName, currentScore);
+          palladium.setProperty(entity, sbName, adjustAmt);
         }
       }
     });

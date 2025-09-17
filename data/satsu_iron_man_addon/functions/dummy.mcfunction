@@ -102,9 +102,8 @@ scoreboard objectives add satsu.iron.man.closed.armors dummy
 scoreboard objectives remove satsu.iron.man.superpower
 scoreboard objectives add satsu.iron.man.break dummy
 scoreboard objectives remove satsu.iron.man.armor.sword
-scoreboard objectives add satsu.iron.man.armor.ark.energy.anim dummy
-scoreboard objectives add satsu.iron.man.armor.ark.energy dummy
-scoreboard objectives add satsu.iron.man.armor.ark.energy.max dummy
+scoreboard objectives remove satsu.iron.man.armor.ark.energy
+scoreboard objectives remove satsu.iron.man.armor.ark.energy.max
 scoreboard objectives remove satsu.iron.man.armor.ark_energy_full_or_off
 scoreboard objectives remove satsu.iron.man.scan.enemies
 scoreboard objectives remove satsu.iron.man.armor.47.unlock

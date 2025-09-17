@@ -11,20 +11,20 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
     .addProperty(
       "property_value_min",
       "integer",
-      0,
+      1,
       "The value of the property to return"
     )
     .addProperty(
       "property_value_max",
       "integer",
-      1,
+      1000000000000000000000000000000000000000000000000000000000000000000,
       "The value of the property to return"
     )
     .test((entity, props) => {
       let PallProp = props.get("property");
       let MinValue = props.get("property_value_min");
       let MaxValue = props.get("property_value_max");
-      if (palladium.getProperty(entity, PallProp) == MinValue || palladium.getProperty(entity, PallProp) == MaxValue  ) {
+      if (palladium.getProperty(entity, PallProp) >= MinValue && palladium.getProperty(entity, PallProp) <= MaxValue  ) {
         return true;
       } else {
         return false;

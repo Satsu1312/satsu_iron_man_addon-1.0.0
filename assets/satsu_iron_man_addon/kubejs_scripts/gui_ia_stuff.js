@@ -11,7 +11,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -34,7 +34,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -57,7 +57,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -80,7 +80,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -103,7 +103,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -126,7 +126,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -149,7 +149,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -172,7 +172,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -195,7 +195,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -218,7 +218,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -241,7 +241,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
@@ -264,7 +264,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         )
       ) {
         let username = minecraft.player;
-        let value = palladium.scoreboard.getScore(username, "satsu.iron.man.armor.ark.energy");
+        let value = palladium.getProperty(username, "satsu.iron.man.armor.arc.energy")
         guiUtil.drawString(
           poseStack,
           Component.string("Energy: " + value),
