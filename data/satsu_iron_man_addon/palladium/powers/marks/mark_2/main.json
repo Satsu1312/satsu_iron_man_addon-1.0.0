@@ -216,6 +216,10 @@
             "effect": "satsu_iron_man_addon:emp"
           },
           {
+            "type": "satsu_iron_man_addon:dampened_by",
+            "effect": "satsu_iron_man_addon:armor_freeze"
+          },
+          {
             "type": "palladium:not",
             "conditions": [
               {
@@ -837,15 +841,6 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              }
-            ]
-          },
-          {
             "type": "palladium:objective_score",
             "objective": "satsu.iron.man.armor.actived",
             "min_score": 1,
@@ -870,17 +865,7 @@
             ]
           }
         ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-            "ability": "armor_activate_skil_tree_dummy"
-          }
-        ]
+        "unlocking": []
       }
     },
     "pickaxe.velocity": {
@@ -1063,14 +1048,15 @@
         "icons": ["minecraft:arrow", "minecraft:barrier"]
       },
       "title": { "translate": "ability.title.satsu.projectile_resistance" },
-      "description": { "translate": "description.iron.man.projectile_resistance" },
+      "description": {
+        "translate": "description.iron.man.projectile_resistance"
+      },
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [1.35, -1.25],
       "damage_sources": ["minecraft:is_projectile"],
       "conditions": {
-        "enabling": [
-        ],
+        "enabling": [],
         "unlocking": [
           {
             "type": "palladium:ability_unlocked",
@@ -2153,7 +2139,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [""],
-      "commands": ["damage @s 1 minecraft:player_attack"],
+      "commands": ["effect give @s satsu_iron_man_addon:armor_freeze 5"],
       "last_tick_commands": [],
       "conditions": {
         "enabling": [
