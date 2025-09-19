@@ -14,10 +14,9 @@ ServerEvents.commandRegistry((event) => {
         // Get arguments
         const player = Arguments.PLAYER.getResult(ctx, "player");
         let number = Arguments.INTEGER.getResult(ctx, "number");
-
         palladium.setProperty(
           player,
-          satsu_iron_man_flight_speed_choose,
+          "satsu_iron_man_flight_speed_choose",
           number
         );
       })
