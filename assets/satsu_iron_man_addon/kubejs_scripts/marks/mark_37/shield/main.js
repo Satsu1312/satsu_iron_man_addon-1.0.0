@@ -17,24 +17,24 @@ PalladiumEvents.registerAnimations((event) => {
       if (builder.isFirstPerson()) {
         builder
           .get("left_arm")
-          .setXRotDegrees(0)
+          .setXRotDegrees(-80)
           .setYRotDegrees(0)
-          .setZRotDegrees(0)
+          .setZRotDegrees(100)
           .animate("InOutCubic", progress);
       }
       if (builder.isFirstPerson()) {
         builder
           .get("right_arm")
-          .setXRotDegrees(-80)
+          .setXRotDegrees(0)
           .setYRotDegrees(0)
-          .setZRotDegrees(-100)
+          .setZRotDegrees(0)
           .animate("InOutCubic", progress);
       } else {
         // third person animations
         builder
-          .get("right_arm")
+          .get("left_arm")
           .setXRotDegrees(-90)
-          .setYRotDegrees(-40)
+          .setYRotDegrees(40)
           .animate("InOutCubic", progress);
         builder;
       }

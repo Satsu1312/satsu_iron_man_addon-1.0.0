@@ -1680,6 +1680,23 @@
         ]
       }
     },
+    "fire_resistance_no_burn": {
+      "type": "gravecore:no_burn",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "fire_resistance"
+          },
+          {
+            "type": "palladium:is_on_fire"
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "projectile_resistance": {
       "type": "palladium:damage_immunity",
       "icon": {
@@ -6356,19 +6373,19 @@
                 "conditions": [
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "energy.pulse_right"
+                    "ability": "energy.pulse_left"
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "mini.gun.right"
+                    "ability": "mini.gun.left"
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "nano_grenade_launcher_right"
+                    "ability": "nano_grenade_launcher_left"
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "grab_cannon_anim_right"
+                    "ability": "grab_cannon_anim_left"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -6376,7 +6393,7 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "uni.beam.hand.right"
+                    "ability": "uni.beam.hand.left"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -6449,9 +6466,39 @@
       "type": "gravecore:forcefield",
       "hidden": true,
       "hidden_in_bar": true,
-      "max_health": 220,
+      "max_health": 440,
       "scoreboard": "null",
       "regen_rate": 1,
+      "damage_sources": [
+        "minecraft:damages_helmet",
+        "minecraft:bypasses_armor",
+        "minecraft:bypasses_shield",
+        "minecraft:bypasses_invulnerability",
+        "minecraft:bypasses_cooldown",
+        "minecraft:bypasses_effects",
+        "minecraft:bypasses_resistance",
+        "minecraft:bypasses_enchantments",
+        "minecraft:is_fire",
+        "minecraft:is_projectile",
+        "minecraft:witch_resistant_to",
+        "minecraft:is_explosion",
+        "minecraft:is_fall",
+        "minecraft:is_drowning",
+        "minecraft:is_freezing",
+        "minecraft:is_lightning",
+        "minecraft:no_anger",
+        "minecraft:no_impact",
+        "minecraft:always_most_significant_fall",
+        "minecraft:wither_immune_to",
+        "minecraft:ignites_armor_stands",
+        "minecraft:burns_armor_stands",
+        "minecraft:avoids_guardian_thorns",
+        "minecraft:always_triggers_silverfish",
+        "minecraft:always_hurts_ender_dragons",
+        "satsu_iron_man_addon:all",
+        "satsu_iron_man_addon:mob",
+        "satsu_iron_man_addon:player"
+      ],
       "conditions": {
         "enabling": [
           {
@@ -9607,6 +9654,13 @@
                 "ability": "nano_katar.attack"
               },
               {
+                "type": "palladium:ability_integer_property",
+                "ability": "force_field.shield.animation_timer",
+                "property": "value",
+                "min": 1,
+                "max": 7
+              },
+              {
                 "type": "palladium:ability_enabled",
                 "ability": "hulkbuster_sonic_clap"
               }
@@ -9832,6 +9886,26 @@
                 "max": 19
               }
             ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "flare_flames.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "nano_flares_flames",
+            "property": "value",
+            "min": 19,
+            "max": 19
           }
         ],
         "unlocking": []
