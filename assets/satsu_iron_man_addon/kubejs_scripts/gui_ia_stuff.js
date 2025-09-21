@@ -5,7 +5,7 @@ function energy_label(minecraft) {
   const energy_value = palladium.getProperty(username, "satsu_iron_man_armor_arc_energy");
   return Component.join("", energy_text, energy_value);
 }
-function speed_velocity(minecraft) {
+function velocity_label(minecraft) {
   let username = minecraft.player;
   const velocity_text = Component.translate("satsu.iron.man.addon.text.velocity_on_hud");
   const velocity_value = palladium.scoreboard.getScore(username, "satsu.iron.man.flight_speed.choose");
@@ -278,7 +278,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0xffa500
@@ -299,7 +299,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0xffb6c1
@@ -320,7 +320,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0x9370db
@@ -341,7 +341,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0x708090
@@ -362,7 +362,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0x00bfff
@@ -383,7 +383,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0xffe800
@@ -404,7 +404,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0x09f42c
@@ -425,7 +425,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0x98fb98
@@ -446,7 +446,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0x55fb9e
@@ -467,7 +467,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0xfe0f0f
@@ -488,7 +488,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0x4682b4
@@ -509,7 +509,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          speed_velocity(minecraft),
+          velocity_label(minecraft),
           8,
           30,
           0x0067fe
