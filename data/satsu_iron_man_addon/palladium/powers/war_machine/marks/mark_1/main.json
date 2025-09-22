@@ -43,8 +43,8 @@
                     "type": "palladium:ability_integer_property",
                     "ability": "no_nanoarmor_anim",
                     "property": "value",
-                    "min": 13,
-                    "max": 16
+                    "min": 18,
+                    "max": 18
                   },
                   {
                     "type": "gravestone:perspective",
@@ -75,8 +75,8 @@
                     "type": "palladium:ability_integer_property",
                     "ability": "no_nanoarmor_anim",
                     "property": "value",
-                    "min": 13,
-                    "max": 16
+                    "min": 18,
+                    "max": 18
                   },
                   {
                     "type": "palladium:not",
@@ -457,8 +457,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ],
         "unlocking": []
@@ -503,8 +503,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -578,8 +578,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -1119,7 +1119,7 @@
             "ability": "no_nanoarmor_anim",
             "property": "value",
             "min": 2,
-            "max": 16
+            "max": 18
           }
         ]
       }
@@ -1136,7 +1136,7 @@
             "ability": "no_nanoarmor_anim",
             "property": "value",
             "min": 1,
-            "max": 16
+            "max": 18
           }
         ]
       }
@@ -1184,7 +1184,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 16,
+      "max_value": 18,
       "conditions": {
         "enabling": [
           {
@@ -1246,7 +1246,7 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "min": "1",
-            "max": "15"
+            "max": "17"
           }
         ]
       }
@@ -1266,8 +1266,8 @@
                 "type": "palladium:ability_integer_property",
                 "ability": "no_nanoarmor_anim",
                 "property": "value",
-                "min": 15,
-                "max": 16
+                "min": 18,
+                "max": 18
               },
               {
                 "type": "palladium:or",
@@ -1335,7 +1335,6 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": [
-        "superpower add satsu_iron_man_addon:iron_man/marks/mecano_calll",
         "tag @s add mark.18",
         "scoreboard players set @s satsu.iron.man.armor 18",
         "scoreboard players set @s satsu.iron.man.flame 0"
@@ -1343,7 +1342,6 @@
       "commands": [""],
       "last_tick_commands": [
         "tag @s remove mark.18",
-        "superpower remove satsu_iron_man_addon:iron_man/marks/mecano_calll",
         "execute if entity @e[tag=sentinel] run function satsu_iron_man_addon:sentinels/kill_one_sentinel",
         "satsu_set_flight_speed 0"
       ],
@@ -1462,8 +1460,8 @@
                     "type": "palladium:ability_integer_property",
                     "ability": "no_nanoarmor_anim",
                     "property": "value",
-                    "min": 12,
-                    "max": 13
+                    "min": 18,
+                    "max": 18
                   },
                   {
                     "type": "palladium:objective_score",
@@ -1522,8 +1520,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -1652,8 +1650,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -1712,90 +1710,7 @@
         "unlocking": []
       }
     },
-    "colocacion_de_armadura": {
-      "type": "palladium:animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 6,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "armor_activate.animation_timer.every",
-            "property": "value",
-            "min": 1,
-            "max": 19
-          },
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "armor_activate.animation_timer.every"
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:has_tag",
-                "tag": "sentinel_one"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:kube_animations",
-                "ability": "armor_sentinel_anim",
-                "property": "value",
-                "min": 1,
-                "max": 6
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.remote",
-                "min_score": 1,
-                "max_score": 1
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "armor_activate.animation_timer.command.mecano": {
-      "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:enable_armor_icon",
-      "title": { "translate": "ability.title.satsu.enable_armor" },
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease_nano",
-        "execute as @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=1}] run tag @s remove sentinel.false",
-        "execute as @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=1}] run function satsu_iron_man_addon:sentinels/kill_one_sentinel",
-        "execute as @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=1}] run tag @s remove sentinel.false",
-        "execute as @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=1}] run function satsu_iron_man_addon:sentinels/kill_one_sentinel"
-      ],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "remove_armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "give_armor_nearest"
-              }
-            ]
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "remove_armor": {
+    "armor_activate.animation_timer.command": {
       "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.enable_armor" },
@@ -1814,73 +1729,14 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:ability_unlocked",
-                        "ability": "armor"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_iron_man_armor_arc_energy",
-                    "min": 1,
-                    "max": 2147483647
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:and",
-                    "conditions": [
-                      {
-                        "type": "palladium:not",
-                        "conditions": [
-                          {
-                            "type": "palladium:has_tag",
-                            "tag": "sentinel.false"
-                          },
-                          {
-                            "type": "palladium:command_result",
-                            "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..3] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:ability_unlocked",
-                        "ability": "armor"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:command_result",
+            "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:armored_construct"
           },
           {
             "type": "palladium:not",
@@ -1896,104 +1752,39 @@
         ]
       }
     },
-    "give_armor_nearest": {
-      "type": "palladium:dummy",
+    "satsu.iron.man.animation.armor.1": {
+      "type": "satsu_iron_man_addon:scoreboard_ability",
       "hidden": true,
       "hidden_in_bar": true,
+      "score": "satsu.iron.man.animation.armor",
+      "adjustment_type": "add",
+      "adjustment_amount": 1,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:command_result",
-            "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0.1..0.5] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
-            "comparison": "==",
-            "compare_to": 1,
-            "log": false
+            "type": "palladium:ability_enabled",
+            "ability": "armor_activate.animation_timer.command"
           }
         ],
-        "unlocking": [
+        "unlocking": []
+      }
+    },
+    "satsu.iron.man.animation.armor.0": {
+      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "score": "satsu.iron.man.animation.armor",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 0,
-                    "max_score": 0
-                  },
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:ability_unlocked",
-                        "ability": "armor"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_iron_man_armor_arc_energy",
-                    "min": 1,
-                    "max": 2147483647
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:and",
-                    "conditions": [
-                      {
-                        "type": "palladium:not",
-                        "conditions": [
-                          {
-                            "type": "palladium:objective_score",
-                            "objective": "satsu.iron.man.animation.armor",
-                            "min_score": 1,
-                            "max_score": 1
-                          },
-                          {
-                            "type": "palladium:command_result",
-                            "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..3] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:ability_unlocked",
-                        "ability": "armor"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.remote",
-                "min_score": 1,
-                "max_score": 1
-              }
-            ]
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.animation.armor",
+            "min_score": 2
           }
-        ]
+        ],
+        "unlocking": []
       }
     },
     "mask_activate": {
@@ -2170,8 +1961,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -2271,8 +2062,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -2433,8 +2224,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -2519,8 +2310,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -2638,8 +2429,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 16,
-            "max": 17
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -2706,8 +2497,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 16,
-            "max": 17
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -2803,8 +2594,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -2880,8 +2671,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -2959,8 +2750,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -3004,8 +2795,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -3049,8 +2840,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -3099,8 +2890,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -3149,8 +2940,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -3199,8 +2990,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -3252,8 +3043,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -3319,8 +3110,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
-            "min": 15,
-            "max": 16
+            "min": 18,
+            "max": 18
           },
           {
             "type": "palladium:not",
@@ -3622,7 +3413,7 @@
             "ability": "no_nanoarmor_anim",
             "property": "value",
             "min": 1,
-            "max": 16
+            "max": 18
           }
         ]
       }
