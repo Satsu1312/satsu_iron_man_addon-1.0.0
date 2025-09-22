@@ -10,6 +10,12 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "Name of the Palladium property to use for value"
     )
     .addProperty(
+      "Division_Amount",
+      "string",
+      "1",
+      "The amount the scoreboard value will be divided by"
+    )
+    .addProperty(
       "Attribute_Type",
       "string",
       "palladium:levitation_speed",
@@ -30,6 +36,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
     .lastTick((entity, entry, holder, enabled) => {
       if (enabled) {
+        const division = entry.getPropertyByName("Division_Amount");
         const attribute = entry.getPropertyByName("Attribute_Type");
         const uuid = entry.getPropertyByName("UUID");
         const attribute_mod = entry.getPropertyByName("Attribute_Mod");
@@ -46,6 +53,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .tick((entity, entry, holder, enabled) => {
       if (enabled) {
         if (entity.isPlayer()) {
+          const division = entry.getPropertyByName("Division_Amount");
           const attribute = entry.getPropertyByName("Attribute_Type");
           const uuid = entry.getPropertyByName("UUID");
           const attribute_mod = entry.getPropertyByName("Attribute_Mod");
@@ -57,7 +65,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
             entity.modifyAttribute(
               attribute,
               UUID,
-              scoreboard_obj,
+              scoreboard_obj / division,
               attribute_mod
             );
           }
