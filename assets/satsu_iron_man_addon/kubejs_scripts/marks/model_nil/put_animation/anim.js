@@ -4,7 +4,7 @@ PalladiumEvents.registerAnimations((event) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
-      "satsu_iron_man_addon:marks/model_nil/main",
+      "satsu_iron_man_addon:iron_man/marks/model_nil/main",
       "personalization",
       builder.getPartialTicks()
     );
@@ -57,7 +57,7 @@ PalladiumEvents.registerAnimations((event) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
-        "satsu_iron_man_addon:marks/model_nil/main",
+        "satsu_iron_man_addon:iron_man/marks/model_nil/main",
         "model.nil_anim",
         builder.getPartialTicks()
       );
@@ -146,7 +146,7 @@ PalladiumEvents.registerAnimations((event) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
-        "satsu_iron_man_addon:marks/model_nil/main",
+        "satsu_iron_man_addon:iron_man/marks/model_nil/main",
         "model.nil_anim.3",
         builder.getPartialTicks()
       );

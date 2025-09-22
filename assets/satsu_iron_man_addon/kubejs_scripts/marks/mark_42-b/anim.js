@@ -7,7 +7,7 @@ PalladiumEvents.registerAnimations((event) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
-        "satsu_iron_man_addon:marks/mark_42-b/main",
+        "satsu_iron_man_addon:iron_man/marks/mark_42-b/main",
         "bones_colocation_left_arm",
         builder.getPartialTicks()
       );
@@ -73,7 +73,7 @@ PalladiumEvents.registerAnimations((event) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
-        "satsu_iron_man_addon:marks/mark_42-b/main",
+        "satsu_iron_man_addon:iron_man/marks/mark_42-b/main",
         "bones_colocation_right_arm",
         builder.getPartialTicks()
       );
@@ -139,7 +139,7 @@ PalladiumEvents.registerAnimations((event) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
-        "satsu_iron_man_addon:marks/mark_42-b/main",
+        "satsu_iron_man_addon:iron_man/marks/mark_42-b/main",
         "bones_colocation_left_leg",
         builder.getPartialTicks()
       );
@@ -217,7 +217,7 @@ PalladiumEvents.registerAnimations((event) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
-        "satsu_iron_man_addon:marks/mark_42-b/main",
+        "satsu_iron_man_addon:iron_man/marks/mark_42-b/main",
         "bones_colocation_right_leg",
         builder.getPartialTicks()
       );
