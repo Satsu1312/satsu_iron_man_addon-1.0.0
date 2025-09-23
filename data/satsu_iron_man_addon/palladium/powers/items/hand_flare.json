@@ -1,0 +1,40 @@
+{
+  "name": { "translate": "ability.title.satsu.ia" },
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "satsu_iron_man_addon:textures/item/handle.png",
+  "gui_display_type": "tree",
+  "abilities": {
+    "skill_tree": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
+      "title": { "translate": "ability.title.satsu.flare.flame" },
+      "description": { "translate": "description.satsu.flare.flame" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": [0, 0],
+      "commands": [
+        "particle minecraft:flash ~ ~ ~",
+        "particle minecraft:flash ~ ~ ~",
+        "particle minecraft:flash ~ ~ ~",
+        "playsound minecraft:entity.generic.explode neutral @p[distance=0..5] ~ ~ ~",
+        "execute as @e[sort=nearest,distance=0.1..5] at @s if entity @s[type=!#satsu_iron_man_addon:items] run effect give @s satsu_iron_man_addon:blind 5 255 false",
+        "execute as @e[sort=nearest,distance=0.1..5] at @s if entity @s[type=!#satsu_iron_man_addon:items] run effect give @s minecraft:slowness 5 255 true",
+        "clear @s satsu_iron_man_addon:hand_flare 1"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 100,
+            "key_type": "right_click",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

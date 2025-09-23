@@ -2,87 +2,6 @@
   "name": { "translate": "ability.title.satsu.armors" },
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "abilities": {
-    "reset_when_energy_is_0": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "advancement grant @s only satsu_iron_man_addon:turnoff"
-      ],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.ark.energy",
-                "min_score": 0,
-                "max_score": 1
-              },
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.ark.energy",
-                "min_score": -10000,
-                "max_score": 0
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "remove_ark_energy": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "score": "satsu.iron.man.armor.ark.energy",
-      "adjustment_type": "subtract",
-      "adjustment_amount": 1,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.ark.energy",
-            "min_score": 1
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived",
-            "min_score": 1,
-            "max_score": 1
-          },
-          {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "ark.upgrade.thing.2"
-              },
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "alien"
-                  },
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "sentinel_one"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
     "give_update_0": {
       "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
@@ -181,8 +100,13 @@
       "hidden": true,
       "hidden_in_bar": true,
       "first_tick_commands": ["tag @s add ark.recharge"],
-      "commands": ["function satsu_iron_man_addon:ark_recharge"],
-      "last_tick_commands": ["tag @s remove ark.recharge"],
+      "commands": [
+        "superpower add satsu_iron_man_addon:reactor_ark_power/ark_reactor_charge_on"
+      ],
+      "last_tick_commands": [
+        "superpower remove satsu_iron_man_addon:reactor_ark_power/ark_reactor_charge_on",
+        "tag @s remove ark.recharge"
+      ],
       "conditions": {
         "enabling": [
           {
@@ -223,9 +147,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.ark.energy",
-                "min_score": 10000
+                "type": "palladium:integer_property",
+                "property": "satsu_iron_man_armor_arc_energy",
+                "min": 10000,
+                "max": 2147483647
               }
             ]
           }
@@ -235,11 +160,30 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.ark.energy",
-                "min_score": 10000
+                "type": "palladium:integer_property",
+                "property": "satsu_iron_man_armor_arc_energy",
+                "min": 10000,
+                "max": 2147483647
               }
             ]
+          }
+        ]
+      }
+    },
+    "set_0.-1": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": -2147483647,
+            "max": -1
           }
         ]
       }

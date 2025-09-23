@@ -2,9 +2,7 @@
 function satsu_iron_man_addon:marks_parts/unless_scores/main
 execute as @s unless score @s satsu.iron.man.addon.armor.all matches 0.. run scoreboard players set @s satsu.iron.man.addon.armor.all 0
 execute as @s unless score @s satsu.iron.man.animation.armor matches 0.. run scoreboard players set @s satsu.iron.man.animation.armor 0
-execute as @s unless score @s satsu.iron.man.armor.85.old.mask matches 0.. run scoreboard players set @s satsu.iron.man.armor.85.old.mask 1
-execute as @s unless score @s satsu.iron.man.armor.ark.energy matches 0.. run scoreboard players set @s satsu.iron.man.armor.ark.energy 10000
-execute as @s unless score @s satsu.iron.man.armor.ark.energy.max matches 0.. run scoreboard players set @s satsu.iron.man.armor.ark.energy.max 10000        
+execute as @s unless score @s satsu.iron.man.armor.85.old.mask matches 0.. run scoreboard players set @s satsu.iron.man.armor.85.old.mask 1   
 execute as @s unless score @s satsu.iron.man.addon.unlocking.set.block matches 0.. run scoreboard players set @s satsu.iron.man.addon.unlocking.set.block 0
 execute as @s unless score @s satsu.iron.man.choose_armor.test matches 0.. run scoreboard players set @s satsu.iron.man.choose_armor.test 2
 execute as @s unless score @s satsu.iron.man.armor.energy.beams matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.beams 0

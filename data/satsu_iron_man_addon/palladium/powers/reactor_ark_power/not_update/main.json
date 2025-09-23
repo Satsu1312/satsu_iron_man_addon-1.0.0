@@ -3,10 +3,10 @@
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "abilities": {
     "ark_recharge_0_update": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "score": "satsu.iron.man.armor.ark.energy",
+      "property_name": "satsu_iron_man_armor_arc_energy",
       "adjustment_type": "add",
       "adjustment_amount": 1,
       "conditions": {
@@ -38,26 +38,98 @@
             ]
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.ark.energy",
-            "min_score": 1,
-            "max_score": 10000
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 10000
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "set_energy_10000..": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [""],
-      "commands": [
-        "execute as @s[scores={satsu.iron.man.armor.ark.energy=10000..}] run scoreboard players set @s satsu.iron.man.armor.ark.energy 10000"
-      ],
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "set",
+      "adjustment_amount": 10000,
       "conditions": {
         "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 10000,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:items/reactor_ark_recharge_on",
+                "ability": "toggle"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "ark.upgrade.max.energy.1"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:items/reactor_ark_recharge_on",
+                "ability": "toggle"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "ark.upgrade.max.energy.1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "set_energy_10000..max": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy_max",
+      "adjustment_type": "set",
+      "adjustment_amount": 10000,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 0,
+            "max": 2147483647
+          },
           {
             "type": "palladium:or",
             "conditions": [
