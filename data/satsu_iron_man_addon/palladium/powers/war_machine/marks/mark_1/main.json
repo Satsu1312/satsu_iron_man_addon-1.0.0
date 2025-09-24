@@ -2597,6 +2597,7 @@
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser",
         "weapons_wheel.bullet",
+        "weapons_wheel.torruet",
         "weapons_wheel.Energy.Pulse",
         "weapons_wheel.flight_unlock"
       ],
@@ -2636,7 +2637,7 @@
         ]
       }
     },
-   "weapons_wheel.shoulder_rockets": {
+    "weapons_wheel.shoulder_rockets": {
       "type": "satsu_iron_man_addon:set_property",
       "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/shoulder_rocket.png",
       "title": { "translate": "ability.title.satsu.fireworks" },
@@ -2874,6 +2875,109 @@
             "max": 18
           }
         ]
+      }
+    },
+    "weapons_wheel.torruet": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/repulser/tourret.png",
+      "title": { "translate": "ability.title.satsu.tourret" },
+      "description": { "translate": "description.satsu.tourret" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [0, -3],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          }
+        ]
+      }
+    },
+    "torret.on": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_war_machine_tourret",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "weapons_wheel.torruet"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_war_machine_tourret",
+            "property_value": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "torret.1"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "torret.1": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_war_machine_tourret",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "weapons_wheel.torruet"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_war_machine_tourret",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "torret.on"
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_war_machine_tourret",
+                "property_value": "off"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
       }
     },
     "uni.beam.hand.right": {
@@ -3536,6 +3640,71 @@
         ]
       }
     },
+    "torruet.projectile": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 3,
+      "swinging_arm": "none",
+      "yawOffset": 45,
+      "pitchOffset": 35,
+      "inaccuracy": 2,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 0,
+        "Damage": 2,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 70,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/bullet",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/bullet",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:bullet"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_left"
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "mini.gun.right",
+                "min": 10,
+                "max": 10
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "mini.gun.left",
+                "min": 10,
+                "max": 10
+              }
+            ]
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_war_machine_tourret",
+            "property_value": "on"
+          }
+        ]
+      }
+    },
     "minigun.throw.sound": {
       "type": "palladium:play_sound",
       "hidden": true,
@@ -3561,6 +3730,10 @@
                 "ability": "mini.gun.left",
                 "min": 1,
                 "max": 10
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "torruet.projectile"
               }
             ]
           },
