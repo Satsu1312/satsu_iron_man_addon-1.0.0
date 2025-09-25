@@ -2141,6 +2141,14 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "shotgun_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shotgun_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "uni.beam.hand.right"
               },
               {
@@ -2244,6 +2252,11 @@
                 "type": "satsu_iron_man_addon:has_property",
                 "property": "satsu_iron_man_addon_repulser",
                 "property_value": "bullet"
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "shotgun"
               }
             ]
           }
@@ -2312,6 +2325,11 @@
                 "type": "satsu_iron_man_addon:has_property",
                 "property": "satsu_iron_man_addon_repulser",
                 "property_value": "bullet"
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "shotgun"
               }
             ]
           }
@@ -2496,6 +2514,157 @@
         ]
       }
     },
+    "shotgun_right": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "ticks": 6,
+            "cooldown": 20,
+            "key_type": "right_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_armor_weapon_system",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_repulser",
+            "property_value": "shotgun"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "beam"
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "bullet"
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "repulser"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "shotgun_left": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "ticks": 6,
+            "cooldown": 20,
+            "key_type": "left_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_left_arm",
+            "property_value": "true"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_repulser",
+            "property_value": "shotgun"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_armor_weapon_system",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "beam"
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "bullet"
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "repulser"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "weapons_wheel": {
       "type": "palladium:ability_wheel",
       "icon": {
@@ -2517,6 +2686,7 @@
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser",
         "weapons_wheel.bullet",
+        "weapons_wheel.shotgun",
         "weapons_wheel.grenade_launcher",
         "weapons_wheel.torruet",
         "weapons_wheel.Energy.Pulse",
@@ -2773,6 +2943,56 @@
                 "type": "satsu_iron_man_addon:has_property",
                 "property": "satsu_iron_man_addon_repulser",
                 "property_value": "bullet"
+              }
+            ]
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          }
+        ]
+      }
+    },
+    "weapons_wheel.shotgun": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/repulser/shotgun_0_on.png",
+      "title": { "translate": "ability.title.satsu.shotgun" },
+      "description": { "translate": "description.satsu.minigun" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [0, -3],
+      "name": "satsu_iron_man_addon_repulser",
+      "test_value": "shotgun",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_repulser",
+                "property_value": "shotgun"
               }
             ]
           },
@@ -3480,77 +3700,6 @@
         ]
       }
     },
-    "shotgun": {
-      "type": "palladium:repeating_animation_timer",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/shotgun.png",
-      "entity_type": "palladium:custom_projectile",
-      "title": { "translate": "ability.title.satsu.shotgun" },
-      "description": { "translate": "description.satsu.shotgun" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "list_index": 4,
-      "start_value": 0,
-      "max_value": 20,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:activation",
-            "ticks": 20,
-            "cooldown": 290,
-            "key_type": "key_bind",
-            "needs_empty_hand": false
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_armor_weapon",
-            "min": 4,
-            "max": 4
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "satsu_iron_man_addon:has_property",
-            "property": "satsu_armor_weapon_system",
-            "property_value": "on"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived",
-            "min_score": 1,
-            "max_score": 1
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                    "ability": "nano_katar.attack"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
     "energy_pulse_projectile.right": {
       "type": "gravecore:projectile",
       "hidden": true,
@@ -3797,6 +3946,14 @@
                 "ability": "mini.gun.left",
                 "min": 10,
                 "max": 10
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shotgun_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shotgun_left"
               }
             ]
           },
@@ -3806,6 +3963,23 @@
             "property_value": "on"
           }
         ]
+      }
+    },
+    "torruet.projectile.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "torruet.projectile"
+          }
+        ],
+        "unlocking": []
       }
     },
     "minigun.throw.sound": {
@@ -3837,6 +4011,161 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "torruet.projectile"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "nano_rial"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "shotgun.projectile.right": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 5,
+      "swinging_arm": "none",
+      "yawOffset": 90,
+      "pitchOffset": 55,
+      "inaccuracy": 2,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 0,
+        "Damage": 21,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 15,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/bullet",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/bullet",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:bullet"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "shotgun_right",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "shotgun.projectile.left": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 5,
+      "swinging_arm": "none",
+      "yawOffset": -90,
+      "pitchOffset": 55,
+      "inaccuracy": 2,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 0,
+        "Damage": 21,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 15,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/bullet",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/bullet",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:bullet"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "shotgun_left",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "shotgun.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shotgun_right",
+                "property": "value",
+                "min": 1,
+                "max": 20
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shotgun_left",
+                "property": "value",
+                "min": 1,
+                "max": 20
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "shotgun.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.shotgun.sound",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "shotgun_right",
+                "min": 20,
+                "max": 20
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "shotgun_left",
+                "min": 20,
+                "max": 20
               }
             ]
           },
@@ -3935,6 +4264,25 @@
         ]
       }
     },
+    "grenade_launcher.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "grenade_launcher",
+            "min": 15,
+            "max": 20
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "no-list:aim_off_arm": {
       "type": "palladium:aim",
       "hidden": true,
@@ -3957,6 +4305,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "mini.gun.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shotgun_left"
               }
             ]
           }
@@ -3985,6 +4337,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "mini.gun.right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shotgun_right"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -4125,6 +4481,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "uni.beam.hand.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shotgun_left"
               }
             ]
           }
@@ -4158,6 +4518,14 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "mini.gun.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shotgun_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "shotgun_left"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -4213,6 +4581,14 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "mini.gun.left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shotgun_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shotgun_left"
                   },
                   {
                     "type": "palladium:ability_enabled",
