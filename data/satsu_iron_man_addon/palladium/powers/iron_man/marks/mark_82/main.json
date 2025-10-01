@@ -10534,6 +10534,182 @@
         ]
       }
     },
+    "stealht": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 13,
+      "gui_position": [4.5, 4.5],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "mask_animation_timer",
+            "property": "value",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "chest_animation",
+            "property": "value",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "left_arm_animation",
+            "property": "value",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "left_shoulder_animation",
+            "property": "value",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "right_arm_animation",
+            "property": "value",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "right_shoulder_animation",
+            "property": "value",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "right_leg_animation",
+            "property": "value",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "left_leg_animation",
+            "property": "value",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "stealht_animation_timer": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "stealht"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "stealht_invisibility": {
+      "type": "palladium:invisibility",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "gui_position": [-1, -1],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "stealht_invis_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": ["effect give @s minecraft:invisibility 1 255 true"],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "stealht_mode.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 4,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "stealht_animation_timer",
+                "property": "value",
+                "min": 20,
+                "max": 20
+              }
+            ]
+          }
+        ]
+      }
+    },
     "nano_things_sounds": {
       "type": "palladium:play_sound",
       "hidden": true,
