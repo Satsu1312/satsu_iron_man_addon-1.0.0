@@ -8,18 +8,18 @@ ServerEvents.commandRegistry((event) => {
   // Command with arguments
   event.register(
     Commands.literal("satsu_set_ai_color").then(
-      Commands.argument("color", Arguments.STRING.create(event)).then(
-        Commands.argument("color2", Arguments.STRING.create(event)).executes(
+      Commands.argument("hud_color", Arguments.STRING.create(event)).then(
+        Commands.argument("background_color", Arguments.STRING.create(event)).executes(
           (ctx) => {
             // Get the player from context
             const player = ctx.source.player;
-            const value = Arguments.STRING.getResult(ctx, "color");
-            const value2 = Arguments.STRING.getResult(ctx, "color2");
+            const hud_value = Arguments.STRING.getResult(ctx, "hud_color");
+            const background_value = Arguments.STRING.getResult(ctx, "background_color");
             // Send confirmation message
-            palladium.setProperty(player, "satsu_iron_man_ia_color", value);
-            palladium.setProperty(player, "satsu_iron_man_ia_color_background", value2);
+            palladium.setProperty(player, "satsu_iron_man_ia_color", hud_value);
+            palladium.setProperty(player, "satsu_iron_man_ia_color_background", background_value);
 
-            return value;
+            return hud_value;
           }
         )
       )
