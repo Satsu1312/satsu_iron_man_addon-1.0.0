@@ -29,8 +29,8 @@ PalladiumEvents.registerGuiOverlays((event) => {
         guiUtil.drawString(
           poseStack,
           energy_label(player),
-          8,
-          20,
+          30,
+          30,
           ia_color(player)
         );
       }
@@ -52,8 +52,8 @@ PalladiumEvents.registerGuiOverlays((event) => {
         guiUtil.drawString(
           poseStack,
           velocity_label(player),
-          8,
           30,
+          40,
           ia_color(player)
         );
       }
