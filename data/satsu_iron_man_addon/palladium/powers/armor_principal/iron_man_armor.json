@@ -254,6 +254,106 @@
         ]
       }
     },
+    "dummy_gui_horizon_lock": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/mark/mark_head_icon_11.png",
+      "title": { "translate": "ability.title.satsu.config_gui_horizon_lock" },
+      "description": { "translate": "description.satsu.config_gui_lock" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [1, 0],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "ability": "armor_skill_bar"
+          },
+          {
+            "type": "palladium:experience_level_buyable",
+            "xp_level": 0,
+            "flat_levels": true
+          }
+        ]
+      }
+    },
+    "horizon_lock_off": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_hud_horizon_lock",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "dummy_gui_horizon_lock"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_hud_horizon_lock",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "horizon_lock_on"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "horizon_lock_on": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_hud_horizon_lock",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "dummy_gui_horizon_lock"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_hud_horizon_lock",
+            "property_value": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "horizon_lock_off"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "dummy_gui_horizon_lock.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "ability lock @s satsu_iron_man_addon:armor_principal/iron_man_armor dummy_gui_horizon_lock"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "dummy_gui_horizon_lock"
+          }
+        ]
+      }
+    },
     "enable_armor": {
       "type": "palladium:dummy",
       "hidden": true,
@@ -735,8 +835,7 @@
       "commands": [""],
       "last_tick_commands": [""],
       "conditions": {
-        "enabling": [
-        ],
+        "enabling": [],
         "unlocking": []
       }
     },
@@ -750,23 +849,7 @@
       "commands": [""],
       "last_tick_commands": [""],
       "conditions": {
-        "enabling": [
-        ],
-        "unlocking": []
-      }
-    },
-    "give.curse_of_binding.trinkets": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "trinkets set chest arc_reactor 0 satsu_iron_man_addon:arc_reactor{Enchantments:[{lvl:1,id:binding_curse}],HideFlags:1}"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
-      "conditions": {
-        "enabling": [
-        ],
+        "enabling": [],
         "unlocking": []
       }
     },

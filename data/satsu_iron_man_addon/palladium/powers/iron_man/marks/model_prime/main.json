@@ -112,23 +112,121 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:or",
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "item": "satsu_iron_man_addon:ia_glases"
+                },
+                "slot": "curios:head"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "hud_armor_fly": {
+      "type": "palladium:gui_overlay",
+      "texture": "#satsu_iron_man_addon:armor_hud/armor_hud_fly",
+      "texture_width": 256,
+      "texture_height": 256,
+      "translate": [0, 0, 0],
+      "rotate": [0, 0, 0],
+      "scale": [1, 1, 1],
+      "alignment": "stretch",
+      "hidden": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_hud_horizon_lock",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
                 "conditions": [
                   {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:ia_glases"
-                    },
-                    "slot": "curios:head"
+                    "type": "palladium:ability_integer_property",
+                    "ability": "interpolate",
+                    "property": "value",
+                    "min": 17,
+                    "max": 17
                   },
                   {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:ia_glases"
-                    },
-                    "slot": "trinkets:head/face"
+                    "type": "gravestone:perspective",
+                    "looking": "FIRST_PERSON"
+                  },
+                  {
+                    "type": "palladium:not",
+                    "conditions": [
+                      {
+                        "type": "palladium:integer_property",
+                        "property": "satsu_mask_value",
+                        "min": 0,
+                        "max": 0
+                      }
+                    ]
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:has_property",
+                    "property": "satsu_iron_man_armor_hud_perspective",
+                    "property_value": "first_person"
                   }
                 ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "interpolate",
+                    "property": "value",
+                    "min": 17,
+                    "max": 17
+                  },
+                  {
+                    "type": "palladium:not",
+                    "conditions": [
+                      {
+                        "type": "palladium:integer_property",
+                        "property": "satsu_mask_value",
+                        "min": 0,
+                        "max": 0
+                      }
+                    ]
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:has_property",
+                    "property": "satsu_iron_man_armor_hud_perspective",
+                    "property_value": "third_person"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_armor_hud_perspective",
+                "property_value": "false"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "item": "satsu_iron_man_addon:ia_glases"
+                },
+                "slot": "curios:head"
               }
             ]
           }
@@ -172,23 +270,11 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:ia_glases"
-                    },
-                    "slot": "curios:head"
-                  },
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:ia_glases"
-                    },
-                    "slot": "trinkets:head/face"
-                  }
-                ]
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "item": "satsu_iron_man_addon:ia_glases"
+                },
+                "slot": "curios:head"
               }
             ]
           }
@@ -2446,12 +2532,35 @@
         ]
       }
     },
-    "looping_sound": {
+    "energy_beam_chest_sound": {
       "type": "palladium:play_sound",
       "sound": "satsu_iron_man_addon:rivals_chest_beam",
       "looping": true,
       "volume": 1,
       "pitch": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "energy_beam",
+                "property": "value",
+                "min": 6,
+                "max": 6
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy_beam_hands_sound": {
+      "type": "palladium:play_sound",
+      "sound": "satsu_iron_man_addon:rivals_chest_beam",
+      "looping": true,
+      "volume": 1,
+      "pitch": 1.35,
       "conditions": {
         "enabling": [
           {
@@ -2464,13 +2573,6 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "uni.beam.hand.left"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "energy_beam",
-                "property": "value",
-                "min": 6,
-                "max": 6
               }
             ]
           }
@@ -4090,7 +4192,7 @@
       "texture": "satsu_iron_man_addon:textures/gui/armors/fly.png",
       "texture_width": 16,
       "texture_height": 16,
-      "translate": [5, 45, 0],
+      "translate": [30, 50, 0],
       "rotate": [0, 0, 0],
       "scale": [1, 1, 2.5],
       "alignment": "top_left",
@@ -9024,7 +9126,7 @@
     "energy_pulse_projectile.right": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
@@ -9065,7 +9167,7 @@
     "energy_pulse_projectile.left": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
@@ -9106,7 +9208,7 @@
     "nano_rial_blue.projectile.right": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
@@ -9151,7 +9253,7 @@
     "nano_rial_blue.projectile.left": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
@@ -9196,7 +9298,7 @@
     "nano_grenade_projectile.right": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
@@ -9237,7 +9339,7 @@
     "nano_grenade_projectile.left": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
@@ -9278,7 +9380,7 @@
     "grab_cannon_projectile.right": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 3,
       "swinging_arm": "none",
@@ -9319,7 +9421,7 @@
     "grab_cannon_projectile.left": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 3,
       "swinging_arm": "none",
