@@ -18,8 +18,14 @@ function armor_durability(player) {
   return Component.join("",armor_text, maxDurability, slash, durabilityLeft);
 }
 function show_label(player, property_name, property_value){
-  const text_property = Component.translate("satsu.iron.man.addon.text." + property_name)
-  const value = palladium.getProperty(player, property_value);
+  const text_property = Component.translate("satsu.iron.man.addon.text." + property_name);
+  let value = palladium.getProperty(player, property_value);
+
+  if (property_name == "energy_on_hud") {
+    const max_value = palladium.getProperty(player, property_value + "_max");
+    value = Math.trunc((value / max_value) * 100);
+  }
+
   return Component.join("", text_property, value);
 }
 PalladiumEvents.registerGuiOverlays((event) => {
