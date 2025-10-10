@@ -1,0 +1,93 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/full_body_without_mask_front_thin/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/iron_man_suit_41_0.png"
+      },
+      "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/nonano_armor/marks/full_body_without_mask_front_thin/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man_lights/iron_man_suit_lights_41_0.png"
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main_thin.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_41_0.png"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "open",
+            "mask.on": "close"
+          }
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main_thin.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_armors/iron_man/mask/iron_man_mask_light_41_0.png"
+      },
+      "render_type": "glow",
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "open",
+            "mask.on": "close"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
