@@ -4188,7 +4188,7 @@
       "title": { "translate": "ability.title.satsu.nano.health.spray" },
       "description": { "translate": "description.satsu.nano.health.spray" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 4,
       "start_value": 0,
       "max_value": 5,
@@ -4268,7 +4268,7 @@
       "title": { "translate": "ability.title.satsu.nano.health.spray" },
       "description": { "translate": "description.satsu.nano.health.spray" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "list_index": 4,
       "start_value": 0,
       "max_value": 5,
@@ -4336,6 +4336,190 @@
           }
         ],
         "unlocking": []
+      }
+    },
+    "electro_magnetic_shield": {
+      "type": "gravecore:aoe_knockback",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
+      "title": { "translate": "ability.title.satsu.force.field" },
+      "description": { "translate": "description.force_field" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "radius": 3,
+      "knockback": 0.2,
+      "invert": false,
+      "cone": false,
+      "crush": false,
+      "is_charged": false,
+      "scoreboard": "Score.Board",
+      "scoreboard_max": "Score.Board.Max",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 60,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "energy_beam",
+                    "property": "value",
+                    "min": 6,
+                    "max": 6
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shoulder_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "rocket"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "flares_flames"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          }
+        ]
+      }
+    },
+    "electro_magnetic_shield.command": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
+      "title": { "translate": "ability.title.satsu.force.field" },
+      "description": { "translate": "description.force_field" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "commands": [
+        "effect give @e[distance=0.1..3] satsu_iron_man_addon:emp 5"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_72/main",
+            "ability": "electro_magnetic_shield"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "electro_magnetic_shield.shield": {
+      "type": "gravecore:forcefield",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "max_health": 440,
+      "scoreboard": "null",
+      "regen_rate": 1,
+      "damage_sources": [
+        "minecraft:damages_helmet",
+        "minecraft:bypasses_armor",
+        "minecraft:bypasses_shield",
+        "minecraft:bypasses_invulnerability",
+        "minecraft:bypasses_cooldown",
+        "minecraft:bypasses_effects",
+        "minecraft:bypasses_resistance",
+        "minecraft:bypasses_enchantments",
+        "minecraft:is_fire",
+        "minecraft:is_projectile",
+        "minecraft:witch_resistant_to",
+        "minecraft:is_explosion",
+        "minecraft:is_fall",
+        "minecraft:is_drowning",
+        "minecraft:is_freezing",
+        "minecraft:is_lightning",
+        "minecraft:no_anger",
+        "minecraft:no_impact",
+        "minecraft:always_most_significant_fall",
+        "minecraft:wither_immune_to",
+        "minecraft:ignites_armor_stands",
+        "minecraft:burns_armor_stands",
+        "minecraft:avoids_guardian_thorns",
+        "minecraft:always_triggers_silverfish",
+        "minecraft:always_hurts_ender_dragons",
+        "satsu_iron_man_addon:all",
+        "satsu_iron_man_addon:mob",
+        "satsu_iron_man_addon:player"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "electro_magnetic_shield.shield"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "electro_magnetic_shield.shield",
+            "property": "value",
+            "min": 7,
+            "max": 7
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "electro_magnetic_shield.damage_immunity": {
+      "type": "palladium:damage_immunity",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "damage_sources": ["minecraft:is_projectile", "minecraft:is_explosion"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "electro_magnetic_shield.shield",
+            "property": "value",
+            "min": 7,
+            "max": 7
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "remove_ark_energy.electro_magnetic_shield": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 12,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "electro_magnetic_shield"
+          }
+        ]
       }
     },
     "red_beams.right_arm": {
@@ -4547,7 +4731,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -4588,7 +4772,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
