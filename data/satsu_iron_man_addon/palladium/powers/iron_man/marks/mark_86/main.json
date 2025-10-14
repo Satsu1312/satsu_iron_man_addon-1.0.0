@@ -10957,7 +10957,7 @@
         ]
       }
     },
-    "nano_decrease_size": {
+    "nano_increase_size_bigger": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/nano_health_spray_other.png",
       "title": { "translate": "ability.title.satsu.nano.health.spray" },
@@ -10966,6 +10966,71 @@
       "hidden_in_bar": false,
       "list_index": 16,
       "first_tick_commands": [
+        "scale add pehkui:height 4",
+        "scale add pehkui:width 4",
+        "scale add pehkui:motion 4"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "scale subtract pehkui:height 4",
+        "scale subtract pehkui:width 4",
+        "scale reset pehkui:motion"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "right_arm_animation",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:extremis/main"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/nano_health_spray_other.png",
+      "title": { "translate": "ability.title.satsu.nano.health.spray" },
+      "description": { "translate": "description.satsu.nano.health.spray" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 17,
+      "first_tick_commands": [
         "scale subtract pehkui:height 0.8",
         "scale subtract pehkui:width 0.8"
       ],
@@ -10973,6 +11038,70 @@
       "last_tick_commands": [
         "scale add pehkui:height 0.8",
         "scale add pehkui:width 0.8",
+        "scale reset pehkui:motion"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "right_arm_animation",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:extremis/main"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/nano_health_spray_other.png",
+      "title": { "translate": "ability.title.satsu.nano.health.spray" },
+      "description": { "translate": "description.satsu.nano.health.spray" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 18,
+      "first_tick_commands": [
+        "scale subtract pehkui:height 0.5",
+        "scale subtract pehkui:width 0.5"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "scale add pehkui:height 0.5",
+        "scale add pehkui:width 0.5",
         "scale reset pehkui:motion"
       ],
       "conditions": {
