@@ -1,6 +1,6 @@
 StartupEvents.registry("palladium:abilities", (event) => {
   event
-    .create("posthuman:mastery_prop")
+    .create("satsu_iron_man_addon:mastery_prop")
     .addProperty(
       "mastery",
       "string",
