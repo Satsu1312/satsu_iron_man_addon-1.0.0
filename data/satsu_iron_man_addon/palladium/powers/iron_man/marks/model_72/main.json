@@ -4613,33 +4613,18 @@
         "unlocking": []
       }
     },
-    "call": {
-      "type": "palladium:ability_wheel",
+    "activate_armor.non_crouching": {
+      "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.call.armor" },
       "description": { "translate": "description.armor_skill_bar" },
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 0,
-      "abilities": [
-        "call.all",
-        "call.chest",
-        "call.head",
-        "call.right_leg",
-        "call.right_arm",
-        "call.right_shoulder",
-        "call.left_arm",
-        "call.left_shoulder",
-        "call.left_leg",
-        "call.sentinel"
-      ],
-      "texture": "null",
-      "disable_mouse_scrolling": false,
-      "disable_center_icon": false,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:held"
+            "type": "palladium:action"
           }
         ],
         "unlocking": [
@@ -4663,40 +4648,19 @@
                 "max_score": 1
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
           }
         ]
       }
     },
-    "call.all": {
-      "type": "palladium:dummy",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/all.png",
-      "entity_type": "palladium:custom_projectile",
-      "title": { "translate": "ability.title.satsu.part.all" },
-      "description": { "translate": "description.satsu.part.all" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.addon.armor.all 1",
-        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
-        "function satsu_iron_man_addon:marks_parts/throw_parts/give_all/main"
-      ],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_wheel",
-            "cooldown": 0
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "call"
-          }
-        ]
-      }
-    },
-    "call.all_method.1": {
+    "activate_armor.non_crouching_method.1": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -4712,13 +4676,13 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "ability": "call.all"
+            "ability": "activate_armor.non_crouching"
           }
         ],
         "unlocking": [
           {
             "type": "palladium:ability_enabled",
-            "ability": "call.all"
+            "ability": "activate_armor.non_crouching"
           },
           {
             "type": "palladium:objective_score",
@@ -4840,7 +4804,7 @@
         ]
       }
     },
-    "call.all_method.2": {
+    "activate_armor.non_crouching_method.2": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -4858,13 +4822,13 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "ability": "call.all"
+            "ability": "activate_armor.non_crouching"
           }
         ],
         "unlocking": [
           {
             "type": "palladium:ability_enabled",
-            "ability": "call.all"
+            "ability": "activate_armor.non_crouching"
           },
           {
             "type": "palladium:and",
@@ -4929,6 +4893,62 @@
             "objective": "satsu.iron.man.addon.armor.all",
             "min_score": 0,
             "max_score": 0
+          }
+        ]
+      }
+    },
+    "call": {
+      "type": "palladium:ability_wheel",
+      "icon": "#satsu_iron_man_addon:enable_armor_icon",
+      "title": { "translate": "ability.title.satsu.call.armor" },
+      "description": { "translate": "description.armor_skill_bar" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "abilities": [
+        "call.chest",
+        "call.head",
+        "call.right_leg",
+        "call.right_arm",
+        "call.right_shoulder",
+        "call.left_arm",
+        "call.left_shoulder",
+        "call.left_leg",
+        "call.sentinel"
+      ],
+      "texture": "null",
+      "disable_mouse_scrolling": false,
+      "disable_center_icon": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:crouching"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
           }
         ]
       }
