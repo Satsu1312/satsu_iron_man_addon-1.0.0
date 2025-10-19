@@ -1,6 +1,7 @@
 // Register custom animations
 PalladiumEvents.registerAnimations((event) => {
-  event.register("satsu_iron_man_addon/personalization_mode", 10, (builder) => {
+  event.registerForPower("satsu_iron_man_addon/personalization_mode",
+      "satsu_iron_man_addon:iron_man/marks/model_nil/main", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
@@ -50,8 +51,9 @@ PalladiumEvents.registerAnimations((event) => {
   });
 });
 PalladiumEvents.registerAnimations((event) => {
-  event.register(
+  event.registerForPower(
     "satsu_iron_man_addon/colocacion_de_armadura.9.model.nil.part.1",
+        "satsu_iron_man_addon:iron_man/marks/model_nil/main",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
@@ -139,8 +141,9 @@ PalladiumEvents.registerAnimations((event) => {
       }
     }
   );
-  event.register(
+  event.registerForPower(
     "satsu_iron_man_addon/colocacion_de_armadura.8.model.nil.part.3",
+        "satsu_iron_man_addon:iron_man/marks/model_nil/main",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0

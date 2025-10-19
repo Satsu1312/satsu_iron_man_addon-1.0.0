@@ -1,7 +1,8 @@
 // Register custom animations
 PalladiumEvents.registerAnimations((event) => {
-  event.register(
+  event.registerForPower(
     "satsu_iron_man_addon/marks/mark_42-b/main-left-arm",
+        "satsu_iron_man_addon:iron_man/marks/mark_42-b/main",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
@@ -66,8 +67,9 @@ PalladiumEvents.registerAnimations((event) => {
       }
     }
   );
-  event.register(
+  event.registerForPower(
     "satsu_iron_man_addon/marks/mark_42-b/main-right-arm",
+        "satsu_iron_man_addon:iron_man/marks/mark_42-b/main",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
@@ -132,8 +134,9 @@ PalladiumEvents.registerAnimations((event) => {
       }
     }
   );
-  event.register(
+  event.registerForPower(
     "satsu_iron_man_addon/marks/mark_42-b/main-left-leg",
+        "satsu_iron_man_addon:iron_man/marks/mark_42-b/main",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
@@ -210,8 +213,9 @@ PalladiumEvents.registerAnimations((event) => {
       }
     }
   );
-  event.register(
+  event.registerForPower(
     "satsu_iron_man_addon/marks/mark_42-b/main-right-leg",
+        "satsu_iron_man_addon:iron_man/marks/mark_42-b/main",
     10,
     (builder) => {
       // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0

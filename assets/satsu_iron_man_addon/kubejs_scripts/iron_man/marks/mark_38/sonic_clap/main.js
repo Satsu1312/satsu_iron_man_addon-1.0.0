@@ -1,6 +1,7 @@
 // Register custom animations
 PalladiumEvents.registerAnimations((event) => {
-  event.register("satsu_iron_man_addon/marks/mark_38/sonic_clap1", 10, (builder) => {
+  event.registerForPower("satsu_iron_man_addon/marks/mark_38/sonic_clap1",
+      "satsu_iron_man_addon:iron_man/marks/mark_38/main", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
@@ -46,7 +47,8 @@ PalladiumEvents.registerAnimations((event) => {
       }
     }
   });
-  event.register("satsu_iron_man_addon/marks/mark_38/sonic_clap2", 10, (builder) => {
+  event.registerForPower("satsu_iron_man_addon/marks/mark_38/sonic_clap2",
+      "satsu_iron_man_addon:iron_man/marks/mark_38/main", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
