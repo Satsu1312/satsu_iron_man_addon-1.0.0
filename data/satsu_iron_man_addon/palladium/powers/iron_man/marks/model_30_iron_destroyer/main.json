@@ -6,6 +6,19 @@
   "icon": "satsu_iron_man_addon:textures/gui/armors/new_icon/mark_head_icon_301.png",
   "gui_display_type": "tree",
   "energy_bars": {
+    "nanites": {
+      "max": {
+        "type": "palladium_property",
+        "property": "satsu_iron_man_nano_counts_max",
+        "fallback": 0
+      },
+      "color": "#ad0505",
+      "synced_value": {
+        "type": "palladium_property",
+        "property": "satsu_iron_man_nano_counts",
+        "fallback": 0
+      }
+    },
     "energy": {
       "max": {
         "type": "palladium_property",
@@ -5064,6 +5077,12 @@
       "conditions": {
         "enabling": [
           {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_nano_counts",
+            "min": 400,
+            "max": 2147483647
+          },
+          {
             "type": "satsu_iron_man_addon:armor_durability",
             "armor_piece": 2,
             "divider": 1,
@@ -5076,6 +5095,40 @@
                 "type": "palladium:is_hovering_or_flying"
               }
             ]
+          }
+        ]
+      }
+    },
+    "set_max.satsu_iron_man_nano_counts_max": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_nano_counts_max",
+      "adjustment_type": "set",
+      "adjustment_amount": 21000,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "ability": "armor"
+          }
+        ]
+      }
+    },
+    "set.satsu_iron_man_nano_counts": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_nano_counts",
+      "adjustment_type": "set",
+      "adjustment_amount": 21000,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_nano_counts",
+            "min": 21001,
+            "max": 2147483647
           }
         ]
       }
