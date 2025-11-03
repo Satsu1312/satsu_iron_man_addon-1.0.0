@@ -4866,6 +4866,15 @@
           {
             "type": "palladium:ability_enabled",
             "ability": "call"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_increase_decrease"
+              }
+            ]
           }
         ]
       }
@@ -5088,6 +5097,15 @@
             "property": "satsu_iron_man_armor_arc_energy",
             "min": 1,
             "max": 2147483647
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_increase_decrease"
+              }
+            ]
           }
         ]
       }
@@ -5101,14 +5119,33 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "ability": "mask_activate_old"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_mask_value",
-            "min": 0,
-            "max": 0
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "mask_activate_old"
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_mask_value",
+                    "min": 0,
+                    "max": 0
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_increase_decrease"
+                  }
+                ]
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -14253,96 +14290,97 @@
           },
           {
             "type": "palladium:not",
-            "conditions":[
-          {
-            "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:ability_integer_property",
-                "ability": "propulsor_anim",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "flight_anim",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_sword",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_katar",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_hand_blade",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_rial",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_grenade_launcher_anim",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "rocket",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "grab_cannon_anim",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_mallet",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_fireworks",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_flares_flames",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_energy_boosters",
-                "min": "1",
-                "max": "200"
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_stabilizer",
-                "min": "1",
-                "max": "200"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "propulsor_anim",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "flight_anim",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_sword",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_katar",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_hand_blade",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_rial",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_grenade_launcher_anim",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "rocket",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "grab_cannon_anim",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_mallet",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_fireworks",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_flares_flames",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_energy_boosters",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_stabilizer",
+                    "min": "1",
+                    "max": "200"
+                  }
+                ]
               }
             ]
-          }]
           }
         ]
       }

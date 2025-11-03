@@ -2,6 +2,39 @@
   "name": { "translate": "ability.title.satsu.mark.86" },
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "abilities": {
+    "return.head": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:sentinels/kill_one_sentinel_same_score_same_armor",
+        "tag @s remove sentinel.false",
+        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
+        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
+        "function satsu_iron_man_addon:marks_parts/throw_parts/head/throw"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.armor.head",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/marks/mark_86/main",
+                "ability": "nano_increase_decrease"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "mask.up.animation_timer": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -94,6 +127,16 @@
                     "objective": "satsu.iron.man.armor.actived",
                     "min_score": 1,
                     "max_score": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:iron_man/marks/mark_86/main",
+                    "ability": "nano_increase_decrease"
                   }
                 ]
               }
