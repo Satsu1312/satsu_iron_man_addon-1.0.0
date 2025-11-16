@@ -1,0 +1,56 @@
+{
+  "name": { "translate": "item.satsu_iron_man_addon.kirbon_extractor" },
+  "icon": "satsu_iron_man_addon:kirbon_extractor",
+  "energy_bars": {
+    "kirbon_extractor": {
+      "max": 500000000,
+      "auto_increase_per_tick": 100,
+      "color": "#0ae8f4"
+    }
+  },
+  "abilities": {
+    "dummy": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:kirbon_extractor",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "right_click",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "give.blood.normal": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "first_tick_commands": [""],
+      "commands": ["give @s satsu_iron_man_addon:kirbon_particle 1"],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:energy_bar",
+            "energy_bar": "kirbon_extractor",
+            "min": 500000000,
+            "max": 500000000
+          }
+        ],
+        "unlocking": []
+      },
+      "energy_bar_usage": {
+        "energy_bar": "kirbon_extractor",
+        "amount": 500000000
+      }
+    }
+  }
+}
