@@ -277,6 +277,20 @@ PalladiumEvents.registerProperties((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
     // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_mark_86_pym_particle", "integer", 100);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_mark_86_pym_particle_max", "integer", 100);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_ia.pickaxe_velocity", "string", "normal");
   }
 });
