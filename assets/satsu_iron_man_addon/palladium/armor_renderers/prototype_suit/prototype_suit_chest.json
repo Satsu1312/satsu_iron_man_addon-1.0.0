@@ -6,6 +6,78 @@
       "model_layer": "satsu_iron_man_addon:main",
       "texture": "satsu_iron_man_addon:textures/models/prototype_suit/prototype_suit_light_chest.png",
       "render_type": "glow"
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/flames.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_0/#X.png",
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:prototype_suit/chest",
+            "ability": "flames",
+            "property": "value"
+          },
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.flame",
+            "min_score": 0
+          }
+        }
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:is_hovering_or_flying"
+        },
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:prototype_suit/feet",
+                  "ability": "energy.pulse_right"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:prototype_suit/feet",
+                  "ability": "energy.pulse_left"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:prototype_suit/feet",
+                  "ability": "red_beams.right_arm"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:prototype_suit/feet",
+                  "ability": "red_beams.left_arm"
+                },
+                {
+                  "type": "palladium:objective_score",
+                  "objective": "satsu.iron.man.arms.set",
+                  "min_score": 1,
+                  "max_score": 1
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:prototype_suit/feet",
+                  "ability": "mini_fireworks"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:prototype_suit/feet",
+                  "ability": "flares_flames"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "hide_second_layer": true
