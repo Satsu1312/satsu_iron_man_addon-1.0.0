@@ -87,7 +87,6 @@ scoreboard objectives add satsu.iron.man.flight.set dummy
 scoreboard objectives remove satsu.iron.man.failsafe.set
 scoreboard objectives add satsu.iron.man.armor.set dummy
 scoreboard objectives add satsu.iron.man.personalize.things dummy
-scoreboard objectives add satsu.iron.man.flame dummy
 scoreboard objectives remove satsu.iron.man.strength
 scoreboard objectives remove satsu.iron.man.strength.health
 scoreboard objectives remove satsu.iron.man.durability
