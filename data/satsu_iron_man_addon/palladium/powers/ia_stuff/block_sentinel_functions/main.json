@@ -1,0 +1,53 @@
+{
+  "name": { "translate": "ability.title.satsu.ia" },
+  "icon": "#satsu_iron_man_addon:ia_icon",
+  "abilities": {
+    "dummy": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.animation.armor",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "power": "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main",
+      "capacity": "remove",
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
