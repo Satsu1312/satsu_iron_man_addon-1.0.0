@@ -214,22 +214,62 @@
         ]
       }
     },
-    "mask_no_eat": {
-      "type": "satsu_iron_man_addon:prevent_eat",
+    "set.scoreboard.armor.24.mark.8": {
+      "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "item": "minecraft:apple",
-      "tag": "satsu_iron_man_addon:food",
+      "first_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.animation.armor 1",
+        "scoreboard players set @s satsu.iron.man.armor.actived 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "scoreboard players set @s satsu.iron.man.animation.armor 0",
+        "scoreboard players set @s satsu.iron.man.armor.actived 0",
+        "execute if entity @e[tag=sentinel] run function satsu_iron_man_addon:sentinels/kill_one_sentinel",
+        "satsu_set_flight_speed 0"
+      ],
+      "conditions": {
+        "enabling": []
+      }
+    },
+    "no_armor.bracelet": {
+      "type": "palladium:restrict_slots",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slots": [
+        "curios:bracelet"
+      ],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_mask_value",
-            "min": 1,
-            "max": 1
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
           }
-        ],
-        "unlocking": []
+        ]
       }
     },
     "flight": {
