@@ -212,3 +212,27 @@ PalladiumEvents.registerGuiOverlays((event) => {
     }
   );
 });
+
+PalladiumEvents.registerGuiOverlays((event) => {
+  event.register(
+    "satsu_iron_man_addon:ia_name",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player;
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "see.energy.unlock.lock.1"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "ia_name", "satsu_iron_man_ia_name"),
+          540,
+          45,
+          ia_color(player)
+        );
+      }
+    }
+  );
+});
