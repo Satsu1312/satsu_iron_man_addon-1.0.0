@@ -22,6 +22,41 @@
     }
   },
   "abilities": {
+    "no_armor": {
+      "type": "palladium:restrict_slots",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slots": [
+        "curios:body"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "remove.energy": {
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
@@ -436,7 +471,7 @@
       "type": "palladium:size",
       "hidden": true,
       "hidden_in_bar": true,
-      "scale": 1.35,
+      "scale": 1.6,
       "conditions": {
         "enabling": [
           {
