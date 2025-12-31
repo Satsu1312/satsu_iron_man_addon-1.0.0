@@ -4880,7 +4880,52 @@
         ]
       }
     },
-    "recharge_energy": {
+    "recharge_energy.night": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 50,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:night"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:command_result",
+            "command": "execute if entity @e[tag=sentinel,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
+            "comparison": "==",
+            "compare_to": 1,
+            "log": false
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 100000
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "recharge_energy.day": {
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
       "hidden_in_bar": true,
@@ -4889,6 +4934,9 @@
       "adjustment_amount": 100,
       "conditions": {
         "enabling": [
+          {
+            "type": "palladium:day"
+          },
           {
             "type": "palladium:not",
             "conditions": [
