@@ -1,0 +1,214 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/#X_mark_3.png"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mask/iron_man_mask_43_0.png"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/chest.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/#X_mark_3.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/chesst/#CHEST.png"
+          }
+        ],
+        "variables": {
+          "CHEST": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:war_machine/marks/mark_3/main",
+            "ability": "chest_animation",
+            "property": "value",
+            "min": 0,
+            "max": 15
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_chest/iron_man_suit_43_0_#CHEST"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.body"
+          }
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/chest.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/light/#X_mark_3.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/chesst/#CHEST.png"
+          }
+        ],
+        "variables": {
+          "CHEST": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:war_machine/marks/mark_3/main",
+            "ability": "chest_animation",
+            "property": "value",
+            "min": 0,
+            "max": 15
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.body"
+          }
+        }
+      ],
+      "render_type": "glow",
+      "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/war_machine/modules/war_machine_3_module.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/#X_mark_3.png",
+        "variables": {
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/war_machine/torret_mark_3/torret_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "torret",
+          "transition_tick_time": 10,
+          "triggers": {
+            "start_on": "start_on",
+            "end": "end",
+            "start": "start"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:war_machine/marks/mark_3/main",
+          "ability": "chest_animation",
+          "property": "value",
+          "min": 16,
+          "max": 16
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/war_machine/modules/war_machine_3_module.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/light/#X_mark_3.png",
+        "variables": {
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/war_machine/torret_mark_3/torret_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "torret",
+          "transition_tick_time": 10,
+          "triggers": {
+            "start_on": "start_on",
+            "end": "end",
+            "start": "start"
+          }
+        }
+      ],
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:war_machine/marks/mark_3/main",
+          "ability": "chest_animation",
+          "property": "value",
+          "min": 16,
+          "max": 16
+        }
+      ]
+    }
+  ]
+}
