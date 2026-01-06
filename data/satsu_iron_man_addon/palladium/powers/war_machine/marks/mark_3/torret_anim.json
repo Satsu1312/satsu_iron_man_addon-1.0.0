@@ -1,0 +1,132 @@
+{
+  "name": { "translate": "ability.title.satsu.war_machine.mark.1" },
+  "allow_bar_shrinking": true,
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/ability_bar_iron_man.png",
+  "background": "minecraft:textures/block/iron_block.png",
+  "icon": "#satsu_iron_man_addon:war_machine/armor_icon_ability",
+  "gui_display_type": "tree",
+  "abilities": {
+    "satsu_iron_man_war_machine_tourret.on": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 2,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_war_machine_tourret",
+            "property_value": "on"
+          }
+        ]
+      }
+    },
+    "satsu_iron_man_war_machine_tourret.off": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 2,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_war_machine_tourret",
+            "property_value": "off"
+          }
+        ]
+      }
+    },
+    "start_on": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/war_machine/marks/mark_3/armor/chest/main",
+      "controller": "torret",
+      "animation_trigger": "start",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "satsu_iron_man_war_machine_tourret.on",
+            "property": "value",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "satsu_iron_man_war_machine_tourret.on"
+          }
+        ]
+      }
+    },
+    "end": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/war_machine/marks/mark_3/armor/chest/main",
+      "controller": "torret",
+      "animation_trigger": "end",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "satsu_iron_man_war_machine_tourret.off",
+            "property": "value",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "satsu_iron_man_war_machine_tourret.off"
+          }
+        ]
+      }
+    },
+    "torret.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.war_machine.mark.torret",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "start_on"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "end"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
