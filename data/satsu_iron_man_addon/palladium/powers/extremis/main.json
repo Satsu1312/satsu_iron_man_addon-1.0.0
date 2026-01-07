@@ -298,7 +298,7 @@
       "hidden_in_bar": true,
       "gui_position": [0.5, -2.5],
       "attribute": "minecraft:generic.armor",
-      "amount": 2,
+      "amount": 7,
       "operation": 0,
       "uuid": "23643973-95a4-42ad-a235-9928a0ca764b",
       "conditions": {
@@ -548,7 +548,7 @@
       "hidden_in_bar": true,
       "gui_position": [-1.8, -2],
       "attribute": "minecraft:generic.attack_damage",
-      "amount": 1,
+      "amount": 2,
       "operation": 0,
       "uuid": "135a977e-3ae3-41fc-9952-7c1807b8f19d",
       "conditions": {
@@ -753,6 +753,65 @@
             "ability": "right_beam_buy.2"
           },
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "right_beam_buy.3"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "fire_aspect"
+              },
+              {
+                "type": "palladium:energy_bar",
+                "power": "satsu_iron_man_addon:extremis/main",
+                "energy_bar": "extremis_energy",
+                "min": 1000
+              }
+            ]
+          }
+        ]
+      },
+      "energy_bar_usage": {
+        "energy_bar": "extremis_energy",
+        "amount": 60
+      }
+    },
+    "right_beam.3": {
+      "type": "palladium:dummy",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/extremis/extremis_hand_beam.png",
+          "satsu_iron_man_addon:textures/gui/extremis/2.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.extremis.beam.hand" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-0.5, 1.7],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 220,
+            "key_type": "right_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "right_beam_buy.3"
+          },
+          {
             "type": "palladium:and",
             "conditions": [
               {
@@ -875,7 +934,92 @@
         "amount": 60
       }
     },
+    "left_beam.3": {
+      "type": "palladium:dummy",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/extremis/extremis_hand_beam.png",
+          "satsu_iron_man_addon:textures/gui/extremis/2.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.extremis.beam.hand" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 2,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 220,
+            "key_type": "left_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "right_beam_buy.3"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "fire_aspect"
+              },
+              {
+                "type": "palladium:energy_bar",
+                "power": "satsu_iron_man_addon:extremis/main",
+                "energy_bar": "extremis_energy",
+                "min": 1000
+              }
+            ]
+          }
+        ]
+      },
+      "energy_bar_usage": {
+        "energy_bar": "extremis_energy",
+        "amount": 60
+      }
+    },
     "right_beam_buy.3": {
+      "type": "palladium:dummy",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/extremis/extremis_hand_beam.png",
+          "satsu_iron_man_addon:textures/gui/extremis/2.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.extremis.beam.hand.2" },
+      "description": { "translate": "description.iron.man.extremis.beam.4" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-0.5, 2.2],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 120,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:experience_level_buyable",
+            "xp_level": 40,
+            "flat_levels": true
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "right_beam_buy.2"
+          }
+        ]
+      }
+    },
+    "lava_touch_buy": {
       "type": "palladium:dummy",
       "icon": {
         "type": "palladium:compound",
@@ -887,7 +1031,7 @@
       "description": { "translate": "description.iron.man.extremis.beam.3" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-0.5, 2.2],
+      "gui_position": [-0.5, 2.7],
       "conditions": {
         "enabling": [
           {
@@ -905,12 +1049,12 @@
           },
           {
             "type": "palladium:ability_unlocked",
-            "ability": "right_beam_buy.2"
+            "ability": "right_beam_buy.3"
           }
         ]
       }
     },
-    "right_beam.3": {
+    "lava_touch": {
       "type": "palladium:dummy",
       "icon": {
         "type": "palladium:compound",
@@ -935,7 +1079,7 @@
         "unlocking": [
           {
             "type": "palladium:ability_unlocked",
-            "ability": "right_beam_buy.3"
+            "ability": "lava_touch_buy"
           },
           {
             "type": "palladium:and",
@@ -1262,11 +1406,19 @@
                       },
                       {
                         "type": "palladium:ability_enabled",
+                        "ability": "right_beam.3"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
                         "ability": "left_beam.1"
                       },
                       {
                         "type": "palladium:ability_enabled",
                         "ability": "left_beam.2"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "left_beam.3"
                       }
                     ]
                   }
@@ -1327,6 +1479,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "right_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "right_beam.3"
               }
             ]
           }
@@ -1359,6 +1515,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "left_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "left_beam.3"
               }
             ]
           }
@@ -1383,7 +1543,7 @@
           },
           {
             "type": "palladium:ability_enabled",
-            "ability": "right_beam.3"
+            "ability": "lava_touch"
           }
         ],
         "unlocking": []
@@ -1437,6 +1597,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "right_beam.3"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "lava_touch"
               }
             ]
           }
@@ -1468,6 +1632,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "left_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "left_beam.3"
               }
             ]
           }
@@ -1497,6 +1665,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "left_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "left_beam.3"
               }
             ]
           }
