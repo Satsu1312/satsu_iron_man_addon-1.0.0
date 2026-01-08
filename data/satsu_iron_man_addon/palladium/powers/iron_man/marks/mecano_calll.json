@@ -89,20 +89,19 @@
       }
     },
     "give_armor.falling": {
-      "type": "palladium:command",
+      "type": "palladium:animation_timer",
       "icon": "#satsu_iron_man_addon:armor_icon_ability",
       "title": { "translate": "ability.title.satsu.call.sentinel" },
       "hidden": true,
       "hidden_in_bar": false,
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease_nano"
-      ],
-      "commands": [""],
+      "start_value": 0,
+      "max_value": 20,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
+            "type": "palladium:activation",
             "cooldown": 0,
+            "ticks": 20,
             "key_type": "key_bind",
             "needs_empty_hand": false,
             "allow_scrolling_when_crouching": true
@@ -164,6 +163,35 @@
             "distance": 5
           }
         ]
+      }
+    },
+    "give_armor_command.falling": {
+      "type": "palladium:command",
+      "icon": "#satsu_iron_man_addon:armor_icon_ability",
+      "title": { "translate": "ability.title.satsu.call.sentinel" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease_nano"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "give_armor.falling"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "give_armor.falling",
+            "property": "value",
+            "min": 10,
+            "max": 10
+          }
+        ],
+        "unlocking": []
       }
     },
     "animation_falling": {
@@ -240,6 +268,51 @@
             "distance": 5
           }
         ]
+      }
+    },
+    "animation_falling.render_layer": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/falling_mark/main",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "give_armor.falling",
+            "property": "value",
+            "min": 1,
+            "max": 10
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "animation_falling.render_layer.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/falling_mark/main",
+      "controller": "call_it",
+      "animation_trigger": "call_to_you",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "give_armor.falling"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "give_armor.falling",
+            "property": "value",
+            "min": 2,
+            "max": 2
+          }
+        ],
+        "unlocking": []
       }
     },
     "dummy": {
