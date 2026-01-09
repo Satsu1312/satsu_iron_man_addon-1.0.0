@@ -3011,6 +3011,7 @@
       "abilities": [
         "weapons_wheel.shoulder_rockets",
         "weapons_wheel.upper_rockets",
+        "weapons_wheel.grenade_launcher",
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser",
         "weapons_wheel.bullet",
@@ -3110,6 +3111,50 @@
       "gui_position": [1, -3],
       "name": "satsu_armor_weapon",
       "number": 2,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          }
+        ]
+      }
+    },
+    "weapons_wheel.grenade_launcher": {
+      "type": "satsu_iron_man_addon:set_property",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/grenade_launcher.png",
+      "title": { "translate": "ability.title.satsu.grenade.launcher" },
+      "description": { "translate": "description.satsu.grenade.launcher" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [1, -3.5],
+      "name": "satsu_armor_weapon",
+      "number": 3,
       "conditions": {
         "enabling": [
           {
@@ -4372,6 +4417,128 @@
         ]
       }
     },
+    "grenade_launcher": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/grenade_launcher.png",
+      "entity_type": "palladium:custom_projectile",
+      "title": { "translate": "ability.title.satsu.grenade.launcher" },
+      "description": { "translate": "description.satsu.grenade.launcher" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 25,
+            "cooldown": 60,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_armor_weapon",
+            "min": 3,
+            "max": 3
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_armor_weapon_system",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:reactor_arc_portable/main",
+                    "ability": "nano_katar.attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "grenade_launcher_deploy": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/war_machine/marks/mark_4/main",
+      "controller": "othermodules",
+      "animation_trigger": "lowerrepulsorsdeploy",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "grenade_launcher"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "grenade_launcher",
+            "property": "value",
+            "min": 1,
+            "max": 1
+          }
+        ]
+      }
+    },
+    "grenade_launcher_fold": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/war_machine/marks/mark_4/main",
+      "controller": "othermodules",
+      "animation_trigger": "lowerrepulsorsfold",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "grenade_launcher"
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "grenade_launcher",
+            "property": "value",
+            "min": 1,
+            "max": 1
+          }
+        ]
+      }
+    },
     "mini_fireworks.firework_projectile": {
       "type": "gravecore:projectile",
       "hidden": true,
@@ -4956,6 +5123,97 @@
         ]
       }
     },
+    "grenade.right": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 0.5,
+      "swinging_arm": "none",
+      "yawOffset": 50,
+      "pitchOffset": 55,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 0,
+        "Damage": 2,
+        "Size": 0.1,
+        "Gravity": 1,
+        "Lifetime": 70,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/grenade_launcher",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/grenade_launcher",
+        "Appearances": []
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "grenade_launcher",
+            "min": 15,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "grenade.left": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 0.5,
+      "swinging_arm": "none",
+      "yawOffset": -50,
+      "pitchOffset": 55,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 0,
+        "Damage": 2,
+        "Size": 0.1,
+        "Gravity": 1,
+        "Lifetime": 70,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/grenade_launcher",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/grenade_launcher",
+        "Appearances": []
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "grenade_launcher",
+            "min": 15,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "grenade_launcher.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "grenade_launcher",
+            "min": 15,
+            "max": 20
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "no-list:aim_off_arm": {
       "type": "palladium:aim",
       "hidden": true,
@@ -5108,6 +5366,10 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "grenade_launcher"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "mini.gun.right"
               }
             ]
@@ -5164,6 +5426,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "upper_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "grenade_launcher"
                   },
                   {
                     "type": "palladium:ability_enabled",
