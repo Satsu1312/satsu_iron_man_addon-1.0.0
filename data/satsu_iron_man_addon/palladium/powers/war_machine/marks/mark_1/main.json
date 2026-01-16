@@ -5245,7 +5245,7 @@
         "unlocking": []
       }
     },
-    "ex_wife.projectile": {
+    "ex_wife.projectile-no_break": {
       "type": "gravecore:projectile",
       "hidden": true,
       "hidden_in_bar": true,
@@ -5276,6 +5276,66 @@
       },
       "conditions": {
         "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.break",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "ex_wife",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ]
+      }
+    },
+    "ex_wife.projectile-break": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOffset": 35,
+      "pitchOffset": 55,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "KnockbackStrength": 0,
+        "ExplosionRadius": 5,
+        "ExplosionBlockInteraction": "BREAK",
+        "Damage": 15,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/ex_wife",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/ex_wife",
+        "Appearances": [
+          {
+            "Type": "renderLayer",
+            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.break",
+            "min_score": 1,
+            "max_score": 1
+          },
           {
             "type": "palladium:ability_integer_property",
             "ability": "ex_wife",
