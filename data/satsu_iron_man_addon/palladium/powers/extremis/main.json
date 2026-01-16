@@ -298,7 +298,7 @@
       "hidden_in_bar": true,
       "gui_position": [0.5, -2.5],
       "attribute": "minecraft:generic.armor",
-      "amount": 2,
+      "amount": 7,
       "operation": 0,
       "uuid": "23643973-95a4-42ad-a235-9928a0ca764b",
       "conditions": {
@@ -548,7 +548,7 @@
       "hidden_in_bar": true,
       "gui_position": [-1.8, -2],
       "attribute": "minecraft:generic.attack_damage",
-      "amount": 1,
+      "amount": 2,
       "operation": 0,
       "uuid": "135a977e-3ae3-41fc-9952-7c1807b8f19d",
       "conditions": {
@@ -656,8 +656,7 @@
       "hidden_in_bar": true,
       "gui_position": [-0.5, 1.7],
       "conditions": {
-        "enabling": [
-        ],
+        "enabling": [],
         "unlocking": [
           {
             "type": "palladium:experience_level_buyable",
@@ -716,6 +715,14 @@
                 "min": 1000
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
           }
         ]
       },
@@ -753,6 +760,15 @@
             "ability": "right_beam_buy.2"
           },
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "right_beam_buy.3"
+              }
+            ]
+          },
+          {
             "type": "palladium:and",
             "conditions": [
               {
@@ -766,12 +782,186 @@
                 "min": 1000
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
           }
         ]
       },
       "energy_bar_usage": {
         "energy_bar": "extremis_energy",
         "amount": 60
+      }
+    },
+    "right_beam.3": {
+      "type": "palladium:dummy",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/extremis/extremis_hand_beam.png",
+          "satsu_iron_man_addon:textures/gui/extremis/2.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.extremis.beam.hand" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-0.5, 1.7],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 220,
+            "key_type": "right_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "right_beam_buy.3"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "fire_aspect"
+              },
+              {
+                "type": "palladium:energy_bar",
+                "power": "satsu_iron_man_addon:extremis/main",
+                "energy_bar": "extremis_energy",
+                "min": 1000
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          }
+        ]
+      },
+      "energy_bar_usage": {
+        "energy_bar": "extremis_energy",
+        "amount": 60
+      }
+    },
+    "extremis_explosion_kamikaze": {
+      "type": "palladium:animation_timer",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/extremis/extremis_lava_touch.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.extremis.beam.hand.1" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": [-0.5, 2.2],
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "lava_touch_buy"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "fire_aspect"
+              },
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "extremis_explosion_kamikaze.screenshake": {
+      "type": "gravecore:screenshake",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "intensity": 2,
+      "duration": 1,
+      "distance": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_last_tick",
+            "power": "null",
+            "ability": "extremis_explosion_kamikaze",
+            "property": "value",
+            "min": 6,
+            "max": 6
+          }
+        ]
+      }
+    },
+    "extremis_explosion_kamikaze.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [""],
+      "last_tick_commands": [
+        "execute if entity @s[scores={satsu.iron.man.armor.actived=0}] run damage @s 22 minecraft:player_attack",
+        "execute if entity @s[scores={satsu.iron.man.armor.actived=1}] run damage @s 100 minecraft:player_attack",
+        "playsound minecraft:entity.generic.explode master @p ~ ~ ~ 1 1",
+        "execute as @e[distance=0.1..10] run damage @s 22 minecraft:player_attack",
+        "execute as @e[distance=0.1..10] run data merge entity @s {Fire:300}",
+        "particle minecraft:flame ~ ~ ~ 2.5 1 2.5 0 2000 force",
+        "energybar value subtract @s satsu_iron_man_addon:extremis/main extremis_energy 2000"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "extremis_explosion_kamikaze"
+          }
+        ]
+      }
+    },
+    "extremis_explosion_kamikaze.particle_aura": {
+    "type": "gravecore:particle_aura",
+    "hidden": true,
+    "hidden_in_bar": true,
+    "count": 8,
+    "start_hex": "#ff5a00",
+    "end_hex": "#e1c100",
+    "aura_type": "aura",
+    "particle_type": "smoke",
+    "particle_size": 0.9,
+    "visibility": 0.9,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "extremis_explosion_kamikaze"
+          }
+        ]
       }
     },
     "left_beam.1": {
@@ -875,7 +1065,92 @@
         "amount": 60
       }
     },
+    "left_beam.3": {
+      "type": "palladium:dummy",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/extremis/extremis_hand_beam.png",
+          "satsu_iron_man_addon:textures/gui/extremis/2.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.extremis.beam.hand" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 2,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 220,
+            "key_type": "left_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "right_beam_buy.3"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "fire_aspect"
+              },
+              {
+                "type": "palladium:energy_bar",
+                "power": "satsu_iron_man_addon:extremis/main",
+                "energy_bar": "extremis_energy",
+                "min": 1000
+              }
+            ]
+          }
+        ]
+      },
+      "energy_bar_usage": {
+        "energy_bar": "extremis_energy",
+        "amount": 60
+      }
+    },
     "right_beam_buy.3": {
+      "type": "palladium:dummy",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/extremis/extremis_hand_beam.png",
+          "satsu_iron_man_addon:textures/gui/extremis/2.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.extremis.beam.hand.2" },
+      "description": { "translate": "description.iron.man.extremis.beam.4" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-0.5, 2.2],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 120,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:experience_level_buyable",
+            "xp_level": 40,
+            "flat_levels": true
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "right_beam_buy.2"
+          }
+        ]
+      }
+    },
+    "lava_touch_buy": {
       "type": "palladium:dummy",
       "icon": {
         "type": "palladium:compound",
@@ -887,7 +1162,7 @@
       "description": { "translate": "description.iron.man.extremis.beam.3" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [-0.5, 2.2],
+      "gui_position": [-0.5, 2.7],
       "conditions": {
         "enabling": [
           {
@@ -905,12 +1180,12 @@
           },
           {
             "type": "palladium:ability_unlocked",
-            "ability": "right_beam_buy.2"
+            "ability": "right_beam_buy.3"
           }
         ]
       }
     },
-    "right_beam.3": {
+    "lava_touch": {
       "type": "palladium:dummy",
       "icon": {
         "type": "palladium:compound",
@@ -935,7 +1210,7 @@
         "unlocking": [
           {
             "type": "palladium:ability_unlocked",
-            "ability": "right_beam_buy.3"
+            "ability": "lava_touch_buy"
           },
           {
             "type": "palladium:and",
@@ -951,12 +1226,160 @@
                 "min": 3000
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
           }
         ]
       },
       "energy_bar_usage": {
         "energy_bar": "extremis_energy",
         "amount": 100
+      }
+    },
+    "extremis_explosion": {
+      "type": "palladium:animation_timer",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/extremis/extremis_lava_touch.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.extremis.beam.hand.1" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "gui_position": [-0.5, 2.2],
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 120,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "lava_touch_buy"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "fire_aspect"
+              },
+              {
+                "type": "palladium:energy_bar",
+                "power": "satsu_iron_man_addon:extremis/main",
+                "energy_bar": "extremis_energy",
+                "min": 4000
+              },
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "extremis_explosion.screenshake": {
+      "type": "gravecore:screenshake",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "intensity": 2,
+      "duration": 1,
+      "distance": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_last_tick",
+            "power": "null",
+            "ability": "extremis_explosion",
+            "property": "value",
+            "min": 6,
+            "max": 6
+          }
+        ]
+      }
+    },
+    "extremis_explosion.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [""],
+      "last_tick_commands": [
+        "playsound minecraft:entity.generic.explode master @p ~ ~ ~ 1 1",
+        "execute as @e[distance=0.1..10] run damage @s 4 minecraft:player_attack",
+        "execute as @e[distance=0.1..10] run data merge entity @s {Fire:120}",
+        "particle minecraft:flame ~ ~ ~ 2.5 1 2.5 0 2000 force",
+        "energybar value subtract @s satsu_iron_man_addon:extremis/main extremis_energy 2000"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "extremis_explosion"
+          }
+        ]
+      }
+    },
+    "legs_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "extremis_explosion"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "extremis_explosion_kamikaze"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "legs_anim_texture": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "extremis_explosion"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "extremis_explosion_kamikaze"
+              }
+            ]
+          }
+        ]
       }
     },
     "hands_anim": {
@@ -1078,6 +1501,14 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "mouth_beam.dummy"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
           }
         ]
       },
@@ -1147,6 +1578,14 @@
             "power": "satsu_iron_man_addon:extremis/main",
             "energy_bar": "extremis_energy",
             "min": 1000
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
           }
         ]
       },
@@ -1173,6 +1612,14 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "mouth_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "extremis_explosion"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "extremis_explosion_kamikaze"
               }
             ]
           }
@@ -1201,6 +1648,60 @@
             ]
           }
         ]
+      }
+    },
+    "cook": {
+      "type": "palladium:command",
+      "icon": "minecraft:beef",
+      "title": { "translate": "ability.title.satsu.cook.ark" },
+      "description": { "translate": "description.satsu.cook.ark" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 3,
+      "gui_position": [1, -1.55],
+      "commands": [""],
+      "last_tick_commands": [
+        "particle minecraft:flame ~ ~ ~ 0.5 1 0.5 0 50 force",
+        "item modify entity @s weapon.mainhand satsu_iron_man_addon:smelt"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 25,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "right_beam_buy.1"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "fire_aspect"
+              },
+              {
+                "type": "palladium:energy_bar",
+                "power": "satsu_iron_man_addon:extremis/main",
+                "energy_bar": "extremis_energy",
+                "min": 1000
+              }
+            ]
+          },
+          {
+            "type": "palladium:crouching"
+          }
+        ]
+      },
+      "energy_bar_usage": {
+        "energy_bar": "extremis_energy",
+        "amount": 10
       }
     },
     "shader_effect_white": {
@@ -1262,11 +1763,19 @@
                       },
                       {
                         "type": "palladium:ability_enabled",
+                        "ability": "right_beam.3"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
                         "ability": "left_beam.1"
                       },
                       {
                         "type": "palladium:ability_enabled",
                         "ability": "left_beam.2"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "left_beam.3"
                       }
                     ]
                   }
@@ -1327,6 +1836,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "right_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "right_beam.3"
               }
             ]
           }
@@ -1359,6 +1872,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "left_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "left_beam.3"
               }
             ]
           }
@@ -1383,7 +1900,7 @@
           },
           {
             "type": "palladium:ability_enabled",
-            "ability": "right_beam.3"
+            "ability": "lava_touch"
           }
         ],
         "unlocking": []
@@ -1437,6 +1954,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "right_beam.3"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "lava_touch"
               }
             ]
           }
@@ -1468,6 +1989,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "left_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "left_beam.3"
               }
             ]
           }
@@ -1497,6 +2022,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "left_beam.2"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "left_beam.3"
               }
             ]
           }
@@ -1554,6 +2083,15 @@
       "hidden": true,
       "hidden_in_bar": true,
       "render_layer": "extremis:mouth",
+      "conditions": {
+        "enabling": []
+      }
+    },
+    "extremis.legs": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "extremis:legs",
       "conditions": {
         "enabling": []
       }
