@@ -6727,6 +6727,7 @@
         "weapons_wheel.bullet",
         "weapons_wheel.quad_barrel_cannon",
         "weapons_wheel.sonic_dampened",
+        "weapons_wheel.war_hammer",
         "weapons_wheel.torruet",
         "weapons_wheel.flight_unlock"
       ],
@@ -7054,6 +7055,60 @@
       "gui_position": [0, -3.5],
       "name": "satsu_armor_weapon",
       "number": 5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "right_arm_animation",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "left_arm_animation",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          }
+        ]
+      }
+    },
+    "weapons_wheel.war_hammer": {
+      "type": "satsu_iron_man_addon:set_property",
+      "icon": {
+        "type": "palladium:item",
+        "item": "satsu_iron_man_addon:war_hammer"
+      },
+      "title": { "translate": "ability.title.satsu.war_hammer" },
+      "description": { "translate": "description.satsu.war_hammer" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [0, -3.5],
+      "name": "satsu_armor_weapon",
+      "number": 6,
       "conditions": {
         "enabling": [
           {
@@ -8436,6 +8491,173 @@
             "property": "value",
             "min": 1,
             "max": 10
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "war_hammer": {
+      "type": "palladium:animation_timer",
+      "icon": {
+        "type": "palladium:item",
+        "item": "satsu_iron_man_addon:war_hammer"
+      },
+      "title": { "translate": "ability.title.satsu.war_hammer" },
+      "description": { "translate": "description.satsu.war_hammer" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 10,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_armor_weapon",
+            "min": 6,
+            "max": 6
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_armor_weapon_system",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.right.arm",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.left.arm",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.armor.chest",
+            "min_score": 0,
+            "max_score": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                    "ability": "nano_katar.attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "war_hammer.give": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [""],
+      "last_tick_commands": ["give @s satsu_iron_man_addon:war_hammer 1"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "war_hammer",
+            "property": "value",
+            "min": 9,
+            "max": 10
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:inventory_check",
+                "item": "satsu_iron_man_addon:war_hammer",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "war_hammer.remove": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [""],
+      "last_tick_commands": ["clear @s satsu_iron_man_addon:war_hammer 1"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "war_hammer",
+            "property": "value",
+            "min": 9,
+            "max": 10
+          },
+          {
+            "type": "satsu_iron_man_addon:inventory_check",
+            "item": "satsu_iron_man_addon:war_hammer",
+            "amount": 1
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "war_hammer.prevent_drop": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power_path": "satsu_iron_man_addon",
+      "powerid": "war_machine/marks/mark_3/war_hammer_prevent",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "satsu_iron_man_addon:inventory_check",
+            "item": "satsu_iron_man_addon:war_hammer",
+            "amount": 1
           }
         ],
         "unlocking": []
