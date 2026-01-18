@@ -1,0 +1,146 @@
+{
+  "name": { "translate": "ability.title.satsu.ia" },
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "satsu_iron_man_addon:textures/item/handle.png",
+  "gui_display_type": "tree",
+  "abilities": {
+    "skill_tree": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "gui_position": [0, 0],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "paint_wm": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "icon": "minecraft:bread",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": "null",
+      "description": "null",
+      "name": "satsu_iron_man_war_machine_or_iron_patriot",
+      "test_value": "war_machine",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "armor_piece": 2,
+            "divider": 1,
+            "operation_type": ">="
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:war_machine/war_machine"
+                },
+                "slot": "chest"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "paint_wm.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [],
+      "last_tick_commands": [],
+      "commands": [
+        "function satsu_iron_man_addon:paint_bucked/iron_patriot"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "paint_wm"
+          }
+        ]
+      }
+    },
+    "paint_patriot": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "icon": "minecraft:bread",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": "null",
+      "description": "null",
+      "name": "satsu_iron_man_war_machine_or_iron_patriot",
+      "test_value": "iron_patriot",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "armor_piece": 2,
+            "divider": 1,
+            "operation_type": ">="
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:war_machine/iron_patriot"
+                },
+                "slot": "chest"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "paint_patriot.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [],
+      "last_tick_commands": [],
+      "commands": [
+        "function satsu_iron_man_addon:paint_bucked/war_machine"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "paint_patriot"
+          }
+        ]
+      }
+    }
+  }
+}
