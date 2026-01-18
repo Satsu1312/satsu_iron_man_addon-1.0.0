@@ -87,11 +87,11 @@ function extractRGB(intVal) {
 
 function drawColorBar(gui, x, y, width, height, channel) {
   for (let i = 0; i < width; i++) {
-    const t = i / (width - 1);
-    const r = channel === "r" ? Math.floor(t * 255) : 0;
-    const g = channel === "g" ? Math.floor(t * 255) : 0;
-    const b = channel === "b" ? Math.floor(t * 255) : 0;
-    const col = (255 << 24) | (r << 16) | (g << 8) | b;
+    let t = i / (width - 1);
+    let r = channel === "r" ? Math.floor(t * 255) : 0;
+    let g = channel === "g" ? Math.floor(t * 255) : 0;
+    let b = channel === "b" ? Math.floor(t * 255) : 0;
+    let col = (255 << 24) | (r << 16) | (g << 8) | b;
     gui.fill(x + i, y, x + i + 1, y + height, col);
   }
 }
@@ -168,6 +168,7 @@ PalladiumEvents.renderPowerScreen((event) => {
   initSlidersFromProperty(entity, power);
 
  
+
   drawColorBar(gui, barX, yR, BAR_WIDTH, BAR_HEIGHT, "r");
   drawColorBar(gui, barX, yG, BAR_WIDTH, BAR_HEIGHT, "g");
   drawColorBar(gui, barX, yB, BAR_WIDTH, BAR_HEIGHT, "b");
