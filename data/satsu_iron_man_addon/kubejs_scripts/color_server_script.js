@@ -14,12 +14,12 @@ NetworkEvents.dataReceived('satsu_apply_color', event => {
 
   if (typeof prop !== 'string') return;
   if (rawVal === undefined || rawVal === null) return;
-
-  const allowed = [
-    'satsu_iron_man_addon.PrimaryColour',
-    'satsu_iron_man_addon.SecondaryColour',
-    'satsu_iron_man_addon.TertiaryColour'
-  ];
+const allowed = [
+  "satsu_iron_man_addon.PrimaryColour",
+  "satsu_iron_man_addon.SecondaryColour",
+  "satsu_iron_man_addon.TertiaryColour",
+  "satsu_iron_man_addon_beam_core_color" // NEW
+];
   if (!allowed.includes(prop)) return;
 
   let value = Number(rawVal);
