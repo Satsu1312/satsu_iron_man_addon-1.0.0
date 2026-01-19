@@ -269,9 +269,9 @@ PalladiumEvents.renderPowerScreen((event) => {
   );
 
   const barX = panelX + 40;
-  const yR = panelY + 180;
-  const yG = panelY + 192;
-  const yB = panelY + 204;
+  const yR = panelY + 200;
+  const yG = panelY + 210;
+  const yB = panelY + 220;
 
   initSlidersFromProperties(entity);
 
@@ -334,7 +334,7 @@ PalladiumEvents.renderPowerScreen((event) => {
   );
 
   applyButton.x = previewX - 20;
-  applyButton.y = yR + 18;
+  applyButton.y = yR + 30;
 
   modeButton.x = applyButton.x - modeButton.w - 10;
   modeButton.y = applyButton.y;
