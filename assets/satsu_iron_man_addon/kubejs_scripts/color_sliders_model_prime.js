@@ -1,10 +1,8 @@
 const Minecraft = Java.loadClass("net.minecraft.client.Minecraft");
 const RenderSystem = Java.loadClass("com.mojang.blaze3d.systems.RenderSystem");
-const ResourceLocation = Java.loadClass(
-  "net.minecraft.resources.ResourceLocation",
-);
+const ResourceLocation = Java.loadClass("net.minecraft.resources.ResourceLocation");
 const GLFW = Java.loadClass("org.lwjgl.glfw.GLFW");
-const Component = Java.loadClass("net.minecraft.network.chat.Component");
+const MCComponent = Java.loadClass("net.minecraft.network.chat.Component");
 
 const TEX = {
   panel: "satsu_iron_man_addon:textures/gui/power/hud.png",
