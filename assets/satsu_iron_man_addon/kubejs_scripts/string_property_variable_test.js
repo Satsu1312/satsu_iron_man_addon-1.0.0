@@ -286,3 +286,20 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
       event.registerProperty('satsu_iron_man_ia.pickaxe_velocity', 'string', "normal");
     }
 });
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  event.registerProperty(
+    "satsu_iron_man_addon.PrimaryColour",
+    "integer",
+    0xff4400,
+  );
+  event.registerProperty(
+    "satsu_iron_man_addon.SecondaryColour",
+    "integer",
+    0xff4400,
+  );
+  event.registerProperty(
+    "satsu_iron_man_addon.TertiaryColour",
+    "integer",
+    0xff4400,
+  );
+});

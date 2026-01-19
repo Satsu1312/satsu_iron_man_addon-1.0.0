@@ -17,19 +17,43 @@ const SLIDER_H = 8;
 const BAR_WIDTH = 140;
 const BAR_HEIGHT = 4;
 
-let sliderPos = { r: 0, g: 0, b: 0 };
+let sliderPosPrimary   = { r: 0, g: 0, b: 0 };
+let sliderPosSecondary = { r: 0, g: 0, b: 0 };
+let sliderPosTertiary  = { r: 0, g: 0, b: 0 };
+let activeMode = "Primary"; 
+
 let activeSlider = null;
 
-let slidersInitialized = false;
+let slidersInitialized = false; 
 
 function makeButton(w, h) {
   return { x: 0, y: 0, w: w, h: h, wasDown: false };
 }
 const applyButton = makeButton(60, 30);
+const modeButton  = makeButton(60, 30); 
 
 function playClickSound() {
   const p = Minecraft.getInstance().player;
   if (p) p.playSound("minecraft:ui.button.click", 1.0, 1.0);
+}
+
+function getModePropertyName() {
+  return activeMode === "Primary"
+    ? "satsu_iron_man_addon.PrimaryColour"
+    : activeMode === "Secondary"
+      ? "satsu_iron_man_addon.SecondaryColour"
+      : "satsu_iron_man_addon.TertiaryColour";
+}
+
+function sendCurrentModeColorFromSliders() {
+  const sliderSet = getModeSliderPos();
+  const rgb = calculateRGB(sliderSet);
+  const hex = (rgb.r << 16) | (rgb.g << 8) | rgb.b;
+
+  Client.player.sendData("satsu_apply_color", {
+    property: getModePropertyName(),
+    value: hex
+  });
 }
 
 function clamp(v, min, max) {
@@ -65,11 +89,17 @@ function renderButton(btn, label, gui, mx, my, leftDown) {
   return justPressed && hovered;
 }
 
-function calculateRGB() {
+function getModeSliderPos() {
+  if (activeMode === "Primary") return sliderPosPrimary;
+  if (activeMode === "Secondary") return sliderPosSecondary;
+  return sliderPosTertiary;
+}
+
+function calculateRGB(sliderSet) {
   return {
-    r: Math.round((sliderPos.r / BAR_WIDTH) * 255),
-    g: Math.round((sliderPos.g / BAR_WIDTH) * 255),
-    b: Math.round((sliderPos.b / BAR_WIDTH) * 255)
+    r: Math.round((sliderSet.r / BAR_WIDTH) * 255),
+    g: Math.round((sliderSet.g / BAR_WIDTH) * 255),
+    b: Math.round((sliderSet.b / BAR_WIDTH) * 255)
   };
 }
 
@@ -96,8 +126,8 @@ function drawColorBar(gui, x, y, width, height, channel) {
   }
 }
 
-function drawSlider(gui, barX, barY, channel) {
-  const knobX = barX + sliderPos[channel] - (SLIDER_W / 2);
+function drawSlider(gui, barX, barY, channel, sliderSet) {
+  const knobX = barX + sliderSet[channel] - (SLIDER_W / 2);
   const knobY = barY - 2;
 
   gui.blit(
@@ -109,27 +139,65 @@ function drawSlider(gui, barX, barY, channel) {
   );
 }
 
-function initSlidersFromProperty(entity, power) {
+function getColorProperty(mode) {
+  return `satsu_iron_man_addon.${mode}Colour`;
+}
+
+function initSlidersFromProperties(entity) {
   if (slidersInitialized) return;
   slidersInitialized = true;
 
-  const propName = `satsu_iron_man_addon.${power}Colour`;
-  const colourInt = (palladium.getProperty(entity, propName) | 0);
-
   const fallback = { r: 0, g: 86, b: 227 };
-  const rgb = colourInt > 0 ? extractRGB(colourInt) : fallback;
 
-  sliderPos.r = Math.round((rgb.r / 255) * BAR_WIDTH);
-  sliderPos.g = Math.round((rgb.g / 255) * BAR_WIDTH);
-  sliderPos.b = Math.round((rgb.b / 255) * BAR_WIDTH);
+  const primInt = (palladium.getProperty(entity, "satsu_iron_man_addon.PrimaryColour") | 0); 
+  if (primInt > 0) {
+    const c = extractRGB(primInt);
+    sliderPosPrimary = {
+      r: Math.round((c.r / 255) * BAR_WIDTH),
+      g: Math.round((c.g / 255) * BAR_WIDTH),
+      b: Math.round((c.b / 255) * BAR_WIDTH)
+    };
+  } else {
+    sliderPosPrimary = {
+      r: Math.round((fallback.r / 255) * BAR_WIDTH),
+      g: Math.round((fallback.g / 255) * BAR_WIDTH),
+      b: Math.round((fallback.b / 255) * BAR_WIDTH)
+    };
+  }
+
+  const secInt = (palladium.getProperty(entity, "satsu_iron_man_addon.SecondaryColour") | 0); 
+  if (secInt > 0) {
+    const c2 = extractRGB(secInt);
+    sliderPosSecondary = {
+      r: Math.round((c2.r / 255) * BAR_WIDTH),
+      g: Math.round((c2.g / 255) * BAR_WIDTH),
+      b: Math.round((c2.b / 255) * BAR_WIDTH)
+    };
+  } else {
+    sliderPosSecondary = {
+      r: Math.round((fallback.r / 255) * BAR_WIDTH),
+      g: Math.round((fallback.g / 255) * BAR_WIDTH),
+      b: Math.round((fallback.b / 255) * BAR_WIDTH)
+    };
+  }
+
+  const terInt = (palladium.getProperty(entity, "satsu_iron_man_addon.TertiaryColour") | 0); 
+  if (terInt > 0) {
+    const c3 = extractRGB(terInt);
+    sliderPosTertiary = {
+      r: Math.round((c3.r / 255) * BAR_WIDTH),
+      g: Math.round((c3.g / 255) * BAR_WIDTH),
+      b: Math.round((c3.b / 255) * BAR_WIDTH)
+    };
+  } else {
+    sliderPosTertiary = {
+      r: Math.round((fallback.r / 255) * BAR_WIDTH),
+      g: Math.round((fallback.g / 255) * BAR_WIDTH),
+      b: Math.round((fallback.b / 255) * BAR_WIDTH)
+    };
+  }
 }
 
-function getPowerColorProperty(power) {
-  return `satsu_iron_man_addon.${power}Colour`;
-}
-
-
-const APPLY_PACKET = "satsu_set_power_color";
 
 PalladiumEvents.renderPowerScreen((event) => {
   const mc = Minecraft.getInstance();
@@ -141,8 +209,6 @@ PalladiumEvents.renderPowerScreen((event) => {
   const gui = event.guiGraphics;
   const screen = event.screen;
 
-  const power = event.tab.toString().replace("satsu_iron_man_addon:", "");
-
   const cx = screen.width / 2;
   const cy = screen.height / 2;
 
@@ -150,7 +216,6 @@ PalladiumEvents.renderPowerScreen((event) => {
   const panelX = (cx - 126) | 0;
   const panelY = (cy - 100) | 0;
 
- 
   gui.blit(
     new ResourceLocation(TEX.panel),
     panelX, panelY,
@@ -159,21 +224,17 @@ PalladiumEvents.renderPowerScreen((event) => {
     size, size
   );
 
-
   const barX = panelX + 40;
   const yR = panelY + 180;
   const yG = panelY + 192;
   const yB = panelY + 204;
 
-  initSlidersFromProperty(entity, power);
-
- 
+  initSlidersFromProperties(entity); 
 
   drawColorBar(gui, barX, yR, BAR_WIDTH, BAR_HEIGHT, "r");
   drawColorBar(gui, barX, yG, BAR_WIDTH, BAR_HEIGHT, "g");
   drawColorBar(gui, barX, yB, BAR_WIDTH, BAR_HEIGHT, "b");
 
- 
   const mx = event.mouseX;
   const my = event.mouseY;
 
@@ -182,6 +243,8 @@ PalladiumEvents.renderPowerScreen((event) => {
     === GLFW.GLFW_PRESS;
 
   if (!leftDown) activeSlider = null;
+
+  const sliderPos = getModeSliderPos(); 
 
   if (leftDown && activeSlider === null) {
     ["r", "g", "b"].forEach((ch) => {
@@ -196,7 +259,6 @@ PalladiumEvents.renderPowerScreen((event) => {
     });
   }
 
-
   if (leftDown && activeSlider === null) {
     ["r", "g", "b"].forEach((ch) => {
       const yTop = (ch === "r" ? yR : (ch === "g" ? yG : yB));
@@ -207,33 +269,35 @@ PalladiumEvents.renderPowerScreen((event) => {
     });
   }
 
- 
   if (leftDown && activeSlider !== null) {
     sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
   }
 
- 
-  drawSlider(gui, barX, yR, "r");
-  drawSlider(gui, barX, yG, "g");
-  drawSlider(gui, barX, yB, "b");
+  drawSlider(gui, barX, yR, "r", sliderPos);
+  drawSlider(gui, barX, yG, "g", sliderPos);
+  drawSlider(gui, barX, yB, "b", sliderPos);
 
-  const rgb = calculateRGB();
+  const rgb = calculateRGB(sliderPos);
   const previewX = barX + BAR_WIDTH + 30;
-  const previewY = yR + 2;
-  gui.fill(previewX, previewY, previewX + 18, previewY + 18, rgbToARGB(rgb.r, rgb.g, rgb.b));
-
+  gui.fill(previewX, yR + 2, previewX + 18, yR + 20, rgbToARGB(rgb.r, rgb.g, rgb.b));
 
   applyButton.x = previewX - 20;
   applyButton.y = yR + 18;
 
-  if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) {
+  modeButton.x = applyButton.x - modeButton.w - 10;
+  modeButton.y = applyButton.y;
+
+  if (renderButton(modeButton, activeMode, gui, mx, my, leftDown)) {
     playClickSound();
-
-    const hex = (rgb.r << 16) | (rgb.g << 8) | rgb.b;
-
-    Client.player.sendData(satsu_apply_colour, {
-      property: getPowerColorProperty(power),
-      value: hex
-    });
+    activeMode =
+      activeMode === "Primary" ? "Secondary" :
+      activeMode === "Secondary" ? "Tertiary" :
+      "Primary";
   }
+
+  if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) {
+  playClickSound();
+  sendCurrentModeColorFromSliders();
+}
+
 });
