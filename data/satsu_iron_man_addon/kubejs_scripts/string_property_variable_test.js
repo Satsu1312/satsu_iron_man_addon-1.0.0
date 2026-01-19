@@ -289,17 +289,17 @@ PalladiumEvents.registerProperties((event) => {
   event.registerProperty(
     "satsu_iron_man_addon.PrimaryColour",
     "integer",
-    0xff4400,
+    0xc7001d,
   );
   event.registerProperty(
     "satsu_iron_man_addon.SecondaryColour",
     "integer",
-    0xff4400,
+    0xffce6b,
   );
   event.registerProperty(
     "satsu_iron_man_addon.TertiaryColour",
     "integer",
-    0xff4400,
+    0x1f1f1f,
   );
   event.registerProperty(
     "satsu_iron_man_addon_beam_core_color",
