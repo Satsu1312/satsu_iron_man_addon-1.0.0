@@ -241,8 +241,7 @@ PalladiumEvents.renderPowerScreen((event) => {
   const entity = mc.player;
   if (!entity) return;
 
-  if (!event.tab || !event.tab.toString().includes("satsu_iron_man_addon:"))
-    return;
+  if (!event.tab || String(event.tab) !== "satsu_iron_man_addon:iron_man/marks/model_prime/main") return;
 
   const gui = event.guiGraphics;
   const screen = event.screen;
