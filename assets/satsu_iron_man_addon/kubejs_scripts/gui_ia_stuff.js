@@ -1,3 +1,4 @@
+(function() {
 // Event for registering HUDs
 function positions(player_position, position) {
   const pos_text = Component.translate("satsu.iron.man.addon.text." + position)
@@ -236,3 +237,4 @@ PalladiumEvents.registerGuiOverlays((event) => {
     }
   );
 });
+})()
