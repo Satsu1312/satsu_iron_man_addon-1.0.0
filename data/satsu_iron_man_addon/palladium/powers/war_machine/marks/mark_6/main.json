@@ -4391,6 +4391,1178 @@
         ]
       }
     },
+    "nano_increase_wheel_option.first.tick": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 25,
+            "key_type": "scroll_up",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:crouching"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_increase_decrease"
+          }
+        ]
+      }
+    },
+    "quantum_mode": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 5,
+      "start_value": 0,
+      "max_value": 17,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          }
+        ]
+      }
+    },
+    "nano_increase_size.return": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 1",
+        "scale set pehkui:width 1",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_increase_decrease"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_increase_decrease": {
+      "type": "palladium:ability_wheel",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/nano_health_spray_other.png",
+      "title": { "translate": "ability.title.satsu.nano.change_size" },
+      "description": { "translate": "description.satsu.nano.change_size" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 6,
+      "abilities": [
+        "nano_increase_size.1",
+        "nano_increase_size.2",
+        "nano_increase_size.3",
+        "nano_increase_size.4",
+        "nano_decrease_size_small.-1",
+        "nano_decrease_size_small.-2",
+        "nano_decrease_size_small.-3",
+        "nano_decrease_size_small.-4",
+        "nano_decrease_size_small.-5",
+        "nano_decrease_size_small.-6",
+        "nano_decrease_size_small.-7",
+        "nano_decrease_size_small.-8"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "quantum_mode",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          }
+        ]
+      }
+    },
+    "nano_increase_size.1": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/1.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/more.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.1" },
+      "description": { "translate": "description.satsu.nano.size.1" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 2",
+        "scale set pehkui:width 2",
+        "scale set pehkui:motion 2"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_increase_size.2": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/2.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/more.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.2" },
+      "description": { "translate": "description.satsu.nano.size.2" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 3",
+        "scale set pehkui:width 3",
+        "scale set pehkui:motion 3"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_increase_size.3": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/3.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/more.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.3" },
+      "description": { "translate": "description.satsu.nano.size.3" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 4",
+        "scale set pehkui:width 4",
+        "scale set pehkui:motion 4"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_increase_size.4": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/4.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/more.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.4" },
+      "description": { "translate": "description.satsu.nano.size.4" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 5",
+        "scale set pehkui:width 5",
+        "scale set pehkui:motion 5"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-1": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/1.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-1" },
+      "description": { "translate": "description.satsu.nano.size.-1" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.8",
+        "scale set pehkui:width 0.8",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-2": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/2.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-2" },
+      "description": { "translate": "description.satsu.nano.size.-2" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.7",
+        "scale set pehkui:width 0.7",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-3": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/3.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-3" },
+      "description": { "translate": "description.satsu.nano.size.-3" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.6",
+        "scale set pehkui:width 0.6",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-4": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/4.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-4" },
+      "description": { "translate": "description.satsu.nano.size.-4" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.5",
+        "scale set pehkui:width 0.5",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-5": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/5.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-5" },
+      "description": { "translate": "description.satsu.nano.size.-5" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.4",
+        "scale set pehkui:width 0.4",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-6": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/6.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-6" },
+      "description": { "translate": "description.satsu.nano.size.-6" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.35",
+        "scale set pehkui:width 0.35",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-7": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/7.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-7" },
+      "description": { "translate": "description.satsu.nano.size.-7" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.3",
+        "scale set pehkui:width 0.3",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-8": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/8.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-8" },
+      "description": { "translate": "description.satsu.nano.size.-8" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.2",
+        "scale set pehkui:width 0.2",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "shrink_ability.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.mark.shrink_ability",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.1"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.2"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.3"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.4"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-1"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-2"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-3"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-4"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-5"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-6"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-7"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-8"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_increase_size.1"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_increase_size.2"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_increase_size.3"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_increase_size.4"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-1"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-2"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-3"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-4"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-5"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-6"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-7"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-8"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "take.pym_particle": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_mark_86_pym_particle",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 2,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.1"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.2"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.3"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.4"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-1"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-2"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-3"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-4"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-5"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-6"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-7"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-8"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "take.pym_particle.set.100": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_mark_86_pym_particle",
+      "adjustment_type": "set",
+      "adjustment_amount": 100,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 101,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "take.pym_particle.set.0": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_mark_86_pym_particle",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": -2147483647,
+            "max": -1
+          }
+        ]
+      }
+    },
     "energy_pulse_projectile.right": {
       "type": "gravecore:projectile",
       "hidden": true,
@@ -4524,8 +5696,7 @@
         "DieOnBlockHit": true,
         "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/bullet",
         "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/bullet",
-        "Appearances": [
-        ]
+        "Appearances": []
       },
       "conditions": {
         "enabling": [
@@ -4561,8 +5732,7 @@
         "DieOnBlockHit": true,
         "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/bullet",
         "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/bullet",
-        "Appearances": [
-        ]
+        "Appearances": []
       },
       "conditions": {
         "enabling": [
