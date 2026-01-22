@@ -98,15 +98,6 @@ PalladiumEvents.registerProperties((event) => {
     event.registerProperty("satsu_iron_man_addon_trail", "string", "true");
   }
 });
-
-PalladiumEvents.registerProperties((event) => {
-  // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
-    // Arguments: Key of the property, type of the property, default/starting value
-    event.registerProperty("satsu_iron_man_addon_beam_core_color", "string", "d9f1ff");
-  }
-});
-
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
@@ -300,4 +291,26 @@ PalladiumEvents.registerProperties((event) => {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_war_machine_or_iron_patriot", "string", "war_machine");
   }
+});
+PalladiumEvents.registerProperties((event) => {
+  event.registerProperty(
+    "satsu_iron_man_addon.PrimaryColour",
+    "integer",
+    0xc7001d,
+  );
+  event.registerProperty(
+    "satsu_iron_man_addon.SecondaryColour",
+    "integer",
+    0xffce6b,
+  );
+  event.registerProperty(
+    "satsu_iron_man_addon.TertiaryColour",
+    "integer",
+    0x1f1f1f,
+  );
+  event.registerProperty(
+    "satsu_iron_man_addon_beam_core_color",
+    "integer",
+    0xd9f1ff,
+  );
 });
