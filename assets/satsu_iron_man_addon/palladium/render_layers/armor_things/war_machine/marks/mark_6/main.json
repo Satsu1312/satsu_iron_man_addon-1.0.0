@@ -1,0 +1,466 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/war_machine_mark_6.png"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player_two"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/mask/no_light/war_machine_mask_mark_6.png"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player_two"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/light/war_machine_mark_6.png"
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player_two"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/mask/light/war_machine_mask_mark_6.png"
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player_two"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/war_machine/modules/war_machine_6_module.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/war_machine_mark_6.png",
+        "variables": {
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player_two"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/war_machine_mark_6.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:war_machine/marks/mark_6/main",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 0,
+            "max": 18
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/war_machine/modules/war_machine_6_module.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/war_machine_mark_6.png",
+        "variables": {
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/war_machine/torret_mark_6/torret_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "torret",
+          "transition_tick_time": 10,
+          "triggers": {
+            "start_on": "turretdeploymk6",
+            "end": "turretfoldmk6",
+            "start": "turretdeploymk6"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:war_machine/marks/mark_6/main",
+          "ability": "no_nanoarmor_anim",
+          "property": "value",
+          "min": 1,
+          "max": 18
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/war_machine/modules/war_machine_6_module.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/light/war_machine_mark_6.png",
+        "variables": {
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/war_machine/torret_mark_6/torret_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "torret",
+          "transition_tick_time": 10,
+          "triggers": {
+            "start_on": "turretdeploymk6",
+            "end": "turretfoldmk6",
+            "start": "turretdeploymk6"
+          }
+        }
+      ],
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:war_machine/marks/mark_6/main",
+          "ability": "no_nanoarmor_anim",
+          "property": "value",
+          "min": 1,
+          "max": 18
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/light/war_machine_mark_6.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:war_machine/marks/mark_6/main",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 0,
+            "max": 18
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        },
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type",
+              "entity_type": "minecraft:armor_stand"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/war_machine_mark_6_quantum.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/taken/armor/transformation_#QUANTUM.png"
+          }
+        ],
+        "variables": {
+          "QUANTUM": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:war_machine/marks/mark_6/main",
+            "ability": "quantum_mode",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/war_machine/no_light/war_machine_mark_6_quantum_#QUANTUM.png"
+      },
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/war_machine/modules/war_machine_6_module.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/no_light/war_machine_mark_6_quantum.png",
+        "variables": {
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/war_machine/torret_mark_6/torret_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "torret",
+          "transition_tick_time": 10,
+          "triggers": {
+            "start_on": "turretdeploymk6",
+            "end": "turretfoldmk6",
+            "start": "turretdeploymk6"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:war_machine/marks/mark_6/main",
+          "ability": "quantum_mode",
+          "property": "value",
+          "min": 1,
+          "max": 16
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/war_machine/modules/war_machine_6_module.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/light/war_machine_mark_6_quantum.png",
+        "variables": {
+          "Y": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.mask",
+            "min": 0,
+            "max": 1
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/war_machine/torret_mark_6/torret_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "torret",
+          "transition_tick_time": 10,
+          "triggers": {
+            "start_on": "turretdeploymk6",
+            "end": "turretfoldmk6",
+            "start": "turretdeploymk6"
+          }
+        }
+      ],
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:war_machine/marks/mark_6/main",
+          "ability": "quantum_mode",
+          "property": "value",
+          "min": 1,
+          "max": 16
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/war_machine/light/war_machine_mark_6_quantum.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/taken/armor/transformation_#QUANTUM.png"
+          }
+        ],
+        "variables": {
+          "QUANTUM": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:war_machine/marks/mark_6/main",
+            "ability": "quantum_mode",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_war_machine_or_iron_patriot",
+            "fallback": "war_machine"
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/war_machine/light/war_machine_mark_6_quantum_#QUANTUM.png"
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:entity_type_tag",
+          "entity_type_tag": "satsu_iron_man_addon:player"
+        },
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type",
+              "entity_type": "minecraft:armor_stand"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
