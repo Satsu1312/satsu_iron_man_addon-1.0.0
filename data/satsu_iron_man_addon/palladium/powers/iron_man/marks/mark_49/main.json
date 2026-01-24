@@ -1302,6 +1302,13 @@
         "unlocking": [
           {
             "type": "palladium:ability_integer_property",
+            "ability": "mask_animation_timer",
+            "property": "value",
+            "min": 1,
+            "max": 19
+          },
+          {
+            "type": "palladium:ability_integer_property",
             "ability": "no_nanoarmor_anim",
             "property": "value",
             "min": 1,
@@ -1821,6 +1828,43 @@
         ]
       }
     },
+    "mask_animation_timer": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 19,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_mask_value",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:entity_type_tag",
+                "entity_type_tag": "satsu_iron_man_addon:stands"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "mask.up.animation_timer": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -1855,10 +1899,10 @@
           },
           {
             "type": "palladium:ability_integer_property",
-            "ability": "mask.up.animation_timer",
+            "ability": "mask_animation_timer",
             "property": "value",
-            "min": 1,
-            "max": 1
+            "min": 18,
+            "max": 18
           }
         ]
       }
@@ -1873,46 +1917,21 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
+            "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_mask_value",
-                    "min": 1,
-                    "max": 1
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "mask_activate"
-                  }
-                ]
+                "type": "palladium:integer_property",
+                "property": "satsu_mask_value",
+                "min": 1,
+                "max": 1
               },
               {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_mask_value",
-                    "min": 1,
-                    "max": 1
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "no_nanoarmor_anim",
-                    "property": "value",
-                    "min": 12,
-                    "max": 13
-                  },
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
-                  }
-                ]
+                "type": "palladium:ability_integer_property",
+                "ability": "mask_animation_timer",
+                "power": "satsu_iron_man_addon:iron_man/marks/mark_49/main",
+                "property": "value",
+                "min": 13,
+                "max": 13
               }
             ]
           }
@@ -1923,17 +1942,27 @@
       "type": "palladium:play_sound",
       "hidden": true,
       "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:new_mask_sound",
+      "sound": "satsu_iron_man_addon:entity.armor.mark.46.mask.1",
       "volume": 1,
       "pitch": 1,
       "looping": false,
       "play_self": false,
-      "play_others": false,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "ability": "mask_activate"
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 16,
+            "max": 16
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "mask_animation_timer",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_49/main",
+            "property": "value",
+            "min": 8,
+            "max": 18
           }
         ],
         "unlocking": []
@@ -4162,6 +4191,60 @@
         ]
       }
     },
+    "energy_deployers.deploy": {
+    "type": "geckolib:render_layer_animation",
+    "icon": "minecraft:blaze_rod",
+    "title": "null",
+    "bar_color": "light_gray",
+    "hidden": true,
+    "hidden_in_bar": false,
+    "list_index": -1,
+    "gui_position": "null",
+    "description": "null",
+    "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_49/other_weapons/main",
+    "controller": "energy_deploy",
+    "animation_trigger": "deploy",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "ticks": 20,
+            "cooldown": 160,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+        ]
+      }
+    },
+    "energy_deployers.fold": {
+    "type": "geckolib:render_layer_animation",
+    "icon": "minecraft:blaze_rod",
+    "title": "null",
+    "bar_color": "light_gray",
+    "hidden": true,
+    "hidden_in_bar": false,
+    "list_index": -1,
+    "gui_position": "null",
+    "description": "null",
+    "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_49/other_weapons/main",
+    "controller": "energy_deploy",
+    "animation_trigger": "fold",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "ticks": 20,
+            "cooldown": 160,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+        ]
+      }
+    },
     "energy_pulse_projectile.right": {
       "type": "gravecore:projectile",
       "hidden": true,
@@ -4240,6 +4323,34 @@
             "ability": "energy.pulse_left",
             "min": 5,
             "max": 5
+          }
+        ]
+      }
+    },
+    "energyblast.throw.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:rivals_iron_man_blast_mcu",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_pulse_projectile.right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_pulse_projectile.left"
+              }
+            ]
           }
         ]
       }
