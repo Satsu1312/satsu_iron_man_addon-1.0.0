@@ -6,16 +6,23 @@
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/mark_49/energy_deploy.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/energy_deployers/no_light/iron_man_suit_49_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/energy_deploy/#DEPLOY.png"
+          }
+        ],
         "variables": {
-          "TIMER": {
+          "DEPLOY": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/mark_49/main",
-            "ability": "no_nanoarmor_anim",
+            "ability": "energy_deploy_animatiom_timer",
             "property": "value",
             "min": 0,
-            "max": 16
+            "max": 7
           }
-        }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/energy_deployers/no_light/iron_man_suit_49_0_#DEPLOY"
       },
       "animation_file": "satsu_iron_man_addon:animations/marks/mark_49/animation.geo.json",
       "animation_controller": [
@@ -24,7 +31,9 @@
           "transition_tick_time": 10,
           "triggers": {
             "deploy": "deploy",
-            "fold": "fold"
+            "fold": "fold",
+            "attack_deploy": "attack_front_deploy",
+            "attack_fold": "attack_front_fold"
           }
         }
       ],
@@ -35,16 +44,23 @@
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/mark_49/energy_deploy.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/energy_deployers/light/iron_man_suit_49_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/energy_deploy/#DEPLOY.png"
+          }
+        ],
         "variables": {
-          "TIMER": {
+          "DEPLOY": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/mark_49/main",
-            "ability": "no_nanoarmor_anim",
+            "ability": "energy_deploy_animatiom_timer",
             "property": "value",
             "min": 0,
-            "max": 16
+            "max": 7
           }
-        }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/energy_deployers/light/iron_man_suit_49_0_#DEPLOY"
       },
       "render_type": "glow",
       "animation_file": "satsu_iron_man_addon:animations/marks/mark_49/animation.geo.json",
@@ -54,7 +70,9 @@
           "transition_tick_time": 10,
           "triggers": {
             "deploy": "deploy",
-            "fold": "fold"
+            "fold": "fold",
+            "attack_deploy": "attack_front_deploy",
+            "attack_fold": "attack_front_fold"
           }
         }
       ],
