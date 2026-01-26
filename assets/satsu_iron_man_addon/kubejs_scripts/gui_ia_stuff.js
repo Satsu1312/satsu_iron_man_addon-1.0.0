@@ -134,6 +134,10 @@ PalladiumEvents.registerGuiOverlays((event) => {
           90,
           ia_color(player)
         );
+
+      }
+    }
+  );
   event.register(
     "satsu_iron_man_addon:get_armor",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
@@ -173,10 +177,6 @@ PalladiumEvents.registerGuiOverlays((event) => {
           45,
           ia_color(player)
         );
-      }
-    }
-  );
-
       }
     }
   );
