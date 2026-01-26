@@ -101,13 +101,6 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
       // Arguments: Key of the property, type of the property, default/starting value
-      event.registerProperty('satsu_iron_man_addon_beam_glow_color', 'string', "3ab2d7");
-    }
-});
-PalladiumEvents.registerPropertiesClientSided((event) => {
-  // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
-      // Arguments: Key of the property, type of the property, default/starting value
       event.registerProperty('satsu_iron_man_addon_watch', 'string', "off");
     }
 });
@@ -320,5 +313,10 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
     "satsu_iron_man_addon_beam_core_color",
     "integer",
     0xd9f1ff,
+  );
+  event.registerProperty(
+    "satsu_iron_man_addon_beam_glow_color",
+    "integer",
+    0x3ab2d7,
   );
 });
