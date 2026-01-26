@@ -1,0 +1,1425 @@
+{
+  "name": { "translate": "ability.title.satsu.mark.86" },
+  "allow_bar_shrinking": true,
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "background": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
+  "icon": "satsu_iron_man_addon:textures/gui/armors/new_icon/mark_head_icon_86.png",
+  "gui_display_type": "tree",
+  "energy_bars": {
+    "pym_particle": {
+      "max": {
+        "type": "palladium_property",
+        "property": "satsu_iron_man_mark_86_pym_particle_max",
+        "fallback": 0
+      },
+      "color": "#204e66",
+      "synced_value": {
+        "type": "palladium_property",
+        "property": "satsu_iron_man_mark_86_pym_particle",
+        "fallback": 0
+      }
+    }
+  },
+  "abilities": {
+    "dummy": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.active.glove" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "key_type": "key_bind"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy.pulse.actived": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_quantum_suit",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "dummy"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_quantum_suit",
+            "property_value": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse.disable"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy.pulse.disable": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_quantum_suit",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "dummy"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_quantum_suit",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse.actived"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "interpolate": {
+      "type": "palladium:animation_timer",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": "null",
+      "description": "null",
+      "start_value": 0,
+      "max_value": 18,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "glove_animation_3"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_quantum_suit",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.remote",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "glove_animation_1": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "glove_animation.pass",
+            "property": "value",
+            "min": 1,
+            "max": 15
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "glove_animation.pass"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.remote",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "glove_animation_2": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "glove_animation.pass",
+            "property": "value",
+            "min": 9,
+            "max": 15
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "glove_animation.pass"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.remote",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.armor.actived",
+                    "min_score": 1,
+                    "max_score": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "glove_animation_3": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "glove_animation.pass",
+            "property": "value",
+            "min": 15,
+            "max": 20
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "glove_animation.pass"
+          }
+        ]
+      }
+    },
+    "no-list:show_both_arms": {
+      "type": "palladium:show_both_arms",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "glove_animation.pass",
+            "property": "value",
+            "min": 1,
+            "max": 19
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "glove_animation.pass"
+          }
+        ]
+      }
+    },
+    "glove_animation.pass": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_quantum_suit",
+            "property_value": "on"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "interpolate.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:mcunano",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "interpolate",
+                "min": "1",
+                "max": "17"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mask_animation_timer": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 18,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "interpolate"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 1,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_mask_value",
+            "min": 1,
+            "max": 1
+          }
+        ]
+      }
+    },
+    "hide_player": {
+      "type": "palladium:hide_body_part",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "body_parts": [
+        "chest_overlay",
+        "right_arm_overlay",
+        "left_arm_overlay",
+        "right_leg_overlay",
+        "left_leg_overlay",
+        "cape"
+      ],
+      "affects_first_person": true,
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 2,
+            "max": 18
+          }
+        ]
+      }
+    },
+    "shrink_body_overlay": {
+      "type": "palladium:shrink_body_overlay",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "max_value": 6,
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 1,
+            "max": 18
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:integer_property",
+                "property": "satsu_mask_value",
+                "min": 0,
+                "max": 0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mask_activate": {
+      "type": "palladium:dummy",
+      "icon": "#satsu_iron_man_addon:mask_icon",
+      "title": { "translate": "ability.title.satsu.enable_mask" },
+      "description": { "translate": "description.armor_skill_bar" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_mask_value",
+                    "min": 1,
+                    "max": 1
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:iron_man/marks/mark_taken/main",
+                    "ability": "taken_increase"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mask_set.0": {
+      "type": "satsu_iron_man_addon:set_property",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_mask_value",
+      "number": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "mask_activate"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_mask_value",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mask_set.1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mask_set.1": {
+      "type": "satsu_iron_man_addon:set_property",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_mask_value",
+      "number": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "mask_activate"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_mask_value",
+            "min": 0,
+            "max": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mask_set.0"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mask_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:nanomask",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "mask_animation_timer",
+            "property": "value",
+            "min": 8,
+            "max": 17
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "attributes": {
+      "type": "satsu_iron_man_addon:multi_attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attributes": [
+        "minecraft:generic.armor",
+        "minecraft:generic.armor_toughness",
+        "palladium:fall_resistance"
+      ],
+      "amounts": ["15", "3.5", "255"],
+      "operations": ["addition", "addition", "addition"],
+      "uuids": [
+        "c1305b95-015d-4ca6-b96f-d7a7d41875d5",
+        "8955b38c-dfe6-4814-9cee-4bd97ffb8da8",
+        "b80657de-dd78-49ca-b1c6-9e2edb26347e"
+      ],
+      "dummy": "0",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 1,
+            "max": 18
+          }
+        ]
+      }
+    },
+    "nano_increase_wheel_option.first.tick": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 25,
+            "key_type": "scroll_up",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:crouching"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_increase_decrease"
+          }
+        ]
+      }
+    },
+    "nano_increase_size.return": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 1",
+        "scale set pehkui:width 1",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_increase_decrease"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_increase_decrease": {
+      "type": "palladium:ability_wheel",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/nano_health_spray_other.png",
+      "title": { "translate": "ability.title.satsu.nano.change_size" },
+      "description": { "translate": "description.satsu.nano.change_size" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 2,
+      "abilities": [
+        "nano_increase_size.1",
+        "nano_increase_size.2",
+        "nano_increase_size.3",
+        "nano_increase_size.4",
+        "nano_decrease_size_small.-1",
+        "nano_decrease_size_small.-2",
+        "nano_decrease_size_small.-3",
+        "nano_decrease_size_small.-4",
+        "nano_decrease_size_small.-5",
+        "nano_decrease_size_small.-6",
+        "nano_decrease_size_small.-7",
+        "nano_decrease_size_small.-8"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_increase_size.1": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/1.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/more.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.1" },
+      "description": { "translate": "description.satsu.nano.size.1" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 2",
+        "scale set pehkui:width 2",
+        "scale set pehkui:motion 2"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_increase_size.2": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/2.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/more.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.2" },
+      "description": { "translate": "description.satsu.nano.size.2" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 3",
+        "scale set pehkui:width 3",
+        "scale set pehkui:motion 3"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_increase_size.3": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/3.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/more.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.3" },
+      "description": { "translate": "description.satsu.nano.size.3" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 4",
+        "scale set pehkui:width 4",
+        "scale set pehkui:motion 4"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_increase_size.4": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/4.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/more.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.4" },
+      "description": { "translate": "description.satsu.nano.size.4" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 5",
+        "scale set pehkui:width 5",
+        "scale set pehkui:motion 5"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-1": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/1.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-1" },
+      "description": { "translate": "description.satsu.nano.size.-1" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.8",
+        "scale set pehkui:width 0.8",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-2": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/2.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-2" },
+      "description": { "translate": "description.satsu.nano.size.-2" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.7",
+        "scale set pehkui:width 0.7",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-3": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/3.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-3" },
+      "description": { "translate": "description.satsu.nano.size.-3" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.6",
+        "scale set pehkui:width 0.6",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-4": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/4.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-4" },
+      "description": { "translate": "description.satsu.nano.size.-4" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.5",
+        "scale set pehkui:width 0.5",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-5": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/5.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-5" },
+      "description": { "translate": "description.satsu.nano.size.-5" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.4",
+        "scale set pehkui:width 0.4",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-6": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/6.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-6" },
+      "description": { "translate": "description.satsu.nano.size.-6" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.35",
+        "scale set pehkui:width 0.35",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-7": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/7.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-7" },
+      "description": { "translate": "description.satsu.nano.size.-7" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.3",
+        "scale set pehkui:width 0.3",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "nano_decrease_size_small.-8": {
+      "type": "palladium:command",
+      "icon": {
+        "type": "palladium:compound",
+        "icons": [
+          "satsu_iron_man_addon:textures/gui/armors/symbols/8.png",
+          "satsu_iron_man_addon:textures/gui/armors/symbols/minus.png"
+        ]
+      },
+      "title": { "translate": "ability.title.satsu.nano.size.-8" },
+      "description": { "translate": "description.satsu.nano.size.-8" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:height 0.2",
+        "scale set pehkui:width 0.2",
+        "scale set pehkui:motion 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "shrink_ability.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.mark.shrink_ability",
+      "volume": 0.5,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.1"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.2"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.3"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.4"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-1"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-2"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-3"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-4"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-5"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-6"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-7"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-8"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_increase_size.1"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_increase_size.2"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_increase_size.3"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_increase_size.4"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-1"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-2"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-3"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-4"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-5"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-6"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-7"
+              },
+              {
+                "type": "palladium:ability_last_tick",
+                "ability": "nano_decrease_size_small.-8"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "take.pym_particle": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_mark_86_pym_particle",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 2,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.1"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.2"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.3"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_increase_size.4"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-1"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-2"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-3"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-4"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-5"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-6"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-7"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "ability": "nano_decrease_size_small.-8"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "take.pym_particle.set.100": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_mark_86_pym_particle",
+      "adjustment_type": "set",
+      "adjustment_amount": 100,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": 101,
+            "max": 2147483647
+          }
+        ]
+      }
+    },
+    "take.pym_particle.set.0": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_mark_86_pym_particle",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_mark_86_pym_particle",
+            "min": -2147483647,
+            "max": -1
+          }
+        ]
+      }
+    }
+  }
+}

@@ -53,8 +53,6 @@ PalladiumEvents.registerGuiOverlays((event) => {
       }
     }
   );
-});
-PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
     "satsu_iron_man_addon:speed_1",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
@@ -76,8 +74,6 @@ PalladiumEvents.registerGuiOverlays((event) => {
       }
     }
   );
-});
-PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
     "satsu_iron_man_addon:get_x",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
@@ -99,8 +95,6 @@ PalladiumEvents.registerGuiOverlays((event) => {
       }
     }
   );
-});
-PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
     "satsu_iron_man_addon:get_Y",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
@@ -122,8 +116,6 @@ PalladiumEvents.registerGuiOverlays((event) => {
       }
     }
   );
-});
-PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
     "satsu_iron_man_addon:get_Z",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
@@ -142,11 +134,10 @@ PalladiumEvents.registerGuiOverlays((event) => {
           90,
           ia_color(player)
         );
+
       }
     }
   );
-});
-PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
     "satsu_iron_man_addon:get_armor",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
@@ -168,12 +159,33 @@ PalladiumEvents.registerGuiOverlays((event) => {
       }
     }
   );
-});const InventoryScreen = Java.loadClass(
+  event.register(
+    "satsu_iron_man_addon:ia_name",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player;
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "see.energy.unlock.lock.1"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "ia_name", "satsu_iron_man_ia_name"),
+          540,
+          45,
+          ia_color(player)
+        );
+      }
+    }
+  );
+});
+PalladiumEvents.registerGuiOverlays((event) => {
+;const InventoryScreen = Java.loadClass(
   "net.minecraft.client.gui.screens.inventory.InventoryScreen"
 );
 const Quaternionf = Java.loadClass("org.joml.Quaternionf");
-
-PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
     "satsu_iron_man_addon/armor_principal/iron_man_armor_test",
     (
@@ -208,30 +220,6 @@ PalladiumEvents.registerGuiOverlays((event) => {
           new Quaternionf(Math.cos(0.5 * yaw), 0, -Math.sin(0.5 * yaw), 0),
           null,
           minecraftClient.player
-        );
-      }
-    }
-  );
-});
-
-PalladiumEvents.registerGuiOverlays((event) => {
-  event.register(
-    "satsu_iron_man_addon:ia_name",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      const player = minecraft.player;
-      if (
-        abilityUtil.isEnabled(
-          player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.1"
-        )
-      ) {
-        guiUtil.drawString(
-          poseStack,
-          show_label(player, "ia_name", "satsu_iron_man_ia_name"),
-          540,
-          45,
-          ia_color(player)
         );
       }
     }
