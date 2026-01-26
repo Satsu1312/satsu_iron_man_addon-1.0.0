@@ -1,7 +1,9 @@
 const ALLOWED = new Set([
   "satsu_iron_man_addon.PrimaryColour",
   "satsu_iron_man_addon.SecondaryColour",
-  "satsu_iron_man_addon.TertiaryColour"
+  "satsu_iron_man_addon.TertiaryColour",
+  "satsu_iron_man_addon_beam_core_color",
+  "satsu_iron_man_addon_beam_glow_color" // N
 ]);
 
 NetworkEvents.dataReceived('satsu_apply_color', event => {
@@ -18,7 +20,8 @@ const allowed = [
   "satsu_iron_man_addon.PrimaryColour",
   "satsu_iron_man_addon.SecondaryColour",
   "satsu_iron_man_addon.TertiaryColour",
-  "satsu_iron_man_addon_beam_core_color" // NEW
+  "satsu_iron_man_addon_beam_core_color" ,
+  "satsu_iron_man_addon_beam_glow_color" // NEW
 ];
   if (!allowed.includes(prop)) return;
 

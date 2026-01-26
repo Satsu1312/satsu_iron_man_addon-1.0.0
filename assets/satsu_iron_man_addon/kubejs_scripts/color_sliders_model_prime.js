@@ -21,6 +21,7 @@ let sliderPosPrimary = { r: 0, g: 0, b: 0 };
 let sliderPosSecondary = { r: 0, g: 0, b: 0 };
 let sliderPosTertiary = { r: 0, g: 0, b: 0 };
 let sliderPosQuaternary = { r: 0, g: 0, b: 0 };
+let sliderPosQuintenary = { r: 0, g: 0, b: 0 };
 let activeMode = "Primary";
 
 let activeSlider = null;
@@ -45,7 +46,9 @@ function getModePropertyName() {
       ? "satsu_iron_man_addon.SecondaryColour"
       : activeMode === "Tertiary"
         ? "satsu_iron_man_addon.TertiaryColour"
-        : "satsu_iron_man_addon_beam_core_color"; // NEW
+      : activeMode === "Quaternary"
+        ? "satsu_iron_man_addon_beam_core_color" // NEW
+      : "satsu_iron_man_addon_beam_glow_color"; // NEW
 }
 
 function sendCurrentModeColorFromSliders() {
@@ -106,7 +109,8 @@ function getModeSliderPos() {
   if (activeMode === "Primary") return sliderPosPrimary;
   if (activeMode === "Secondary") return sliderPosSecondary;
   if (activeMode === "Tertiary") return sliderPosTertiary;
-  return sliderPosQuaternary;
+  if (activeMode === "Quaternary") return sliderPosQuaternary;
+  return sliderPosQuintenary;
 }
 
 function calculateRGB(sliderSet) {
@@ -234,6 +238,23 @@ function initSlidersFromProperties(entity) {
       b: Math.round((fallback.b / 255) * BAR_WIDTH),
     };
   }
+
+  const quintInt =
+    palladium.getProperty(entity, "satsu_iron_man_addon_beam_glow_color") | 0;
+  if (quintInt > 0) {
+    const c4 = extractRGB(quintInt);
+    sliderPosQuintenary = {
+      r: Math.round((c4.r / 255) * BAR_WIDTH),
+      g: Math.round((c4.g / 255) * BAR_WIDTH),
+      b: Math.round((c4.b / 255) * BAR_WIDTH),
+    };
+  } else {
+    sliderPosQuintenary = {
+      r: Math.round((fallback.r / 255) * BAR_WIDTH),
+      g: Math.round((fallback.g / 255) * BAR_WIDTH),
+      b: Math.round((fallback.b / 255) * BAR_WIDTH),
+    };
+  }
 }
 
 PalladiumEvents.renderPowerScreen((event) => {
@@ -343,7 +364,9 @@ PalladiumEvents.renderPowerScreen((event) => {
         : activeMode === "Secondary"
           ? "Tertiary"
           : activeMode === "Tertiary"
-            ? "Quaternary" // NEW
+            ? "Quaternary"
+          : activeMode === "Quaternary"
+            ? "Quintenary"
             : "Primary";
   }
 
