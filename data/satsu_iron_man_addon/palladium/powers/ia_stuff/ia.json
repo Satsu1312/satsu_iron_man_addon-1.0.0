@@ -1416,8 +1416,74 @@
                     ]
                   }
                 ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.energy.ia.unlock.icon.in.hud",
+                    "min_score": 1,
+                    "max_score": 1
+                  },
+                  {
+                    "type": "palladium:objective_score",
+                    "objective": "satsu.iron.man.addon.ia.name",
+                    "min_score": 1,
+                    "max_score": 12
+                  },
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:objective_score",
+                        "objective": "satsu.iron.man.armor.actived",
+                        "min_score": 1,
+                        "max_score": 1
+                      },
+                      {
+                        "type": "palladium:item_in_slot",
+                        "item": {
+                          "item": "satsu_iron_man_addon:ia_glases"
+                        },
+                        "slot": "curios:head"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
+          }
+        ]
+      }
+    },
+    "unlock.lock.see.energy": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_energy_1.png",
+      "title": { "translate": "ability.title.satsu.unlock.lock.ia.gui.energy" },
+      "description": {
+        "translate": "description.satsu.unlock.lock.ia.gui.energy"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [1.5, -0.5],
+      "first_tick_commands": [
+        "execute as @s run scoreboard players add @s satsu.iron.man.addon.energy.ia.unlock.icon.in.hud 1",
+        "execute as @s[scores={satsu.iron.man.addon.energy.ia.unlock.icon.in.hud=3..}] run scoreboard players set @s satsu.iron.man.addon.energy.ia.unlock.icon.in.hud 1",
+        "ability lock @s satsu_iron_man_addon:ia_stuff/ia unlock.lock.see.energy"
+      ],
+      "commands": [""],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "armor_skill_bar"
+          },
+          {
+            "type": "palladium:experience_level_buyable",
+            "xp_level": 0,
+            "flat_levels": true
           }
         ]
       }
@@ -1718,7 +1784,7 @@
       "description": { "translate": "description.scan_enemies_enable" },
       "hidden": false,
       "hidden_in_bar": true,
-      "gui_position": [1.5, -0.5],
+      "gui_position": [1.3, -1],
       "conditions": {
         "enabling": [],
         "unlocking": [
@@ -3193,7 +3259,7 @@
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 4,
-      "gui_position": [1.3, -1],
+      "gui_position": [1, -1.55],
       "commands": [""],
       "last_tick_commands": [
         "item modify entity @s weapon.mainhand satsu_iron_man_addon:smelt"
