@@ -5,6 +5,11 @@ function positions(player_position, position) {
   player_position = Math.trunc(player_position)
   return Component.join("", pos_text, player_position);
 }
+function speed_per_block() {
+  const text = Component.translate("satsu.iron.man.addon.text.km")
+  const speed = Client.player.persistentData['speedBPS']
+  return Component.join("", text, speed);
+}
 function ia_color(player) {
   const color = palladium.getProperty(player, "satsu_iron_man_ia_color");
   return parseInt(color, 16);
@@ -195,6 +200,28 @@ PalladiumEvents.registerGuiOverlays((event) => {
           positions(player.getZ(), "Z"),
           60,
           90,
+          ia_color(player)
+        );
+
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:km",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "horizon_lock"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          speed_per_block("km"),
+          400,
+          180,
           ia_color(player)
         );
 
