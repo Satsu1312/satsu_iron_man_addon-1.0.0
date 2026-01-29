@@ -75,6 +75,69 @@ PalladiumEvents.registerGuiOverlays((event) => {
     }
   );
   event.register(
+    "satsu_iron_man_addon:left_arm",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "see.energy.unlock.lock.1"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "left_or_not", "satsu_left_arm"),
+          540,
+          60,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:break_blocks",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "see.energy.unlock.lock.1"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "break_block", "satsu_iron_man_addon_break_block_attack"),
+          540,
+          80,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:weapons_system",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "see.energy.unlock.lock.1"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "weapon_system", "satsu_armor_weapon_system"),
+          60,
+          100,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
     "satsu_iron_man_addon:get_x",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
       const player = minecraft.player
