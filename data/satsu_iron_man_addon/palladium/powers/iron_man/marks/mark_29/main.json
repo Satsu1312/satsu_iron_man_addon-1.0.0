@@ -4691,7 +4691,41 @@
         ]
       }
     },
-    "drill.ground.command": {
+    "drill.ground.command_not_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "effect give @s minecraft:slowness infinite 255 true"
+      ],
+      "commands": [
+        "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[distance=0.1..8] run effect give @s slowness 1 2 true"
+      ],
+      "last_tick_commands": [
+        "effect clear @s minecraft:slowness"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "off"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "drill.ground"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "drill.ground.command_break": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -4704,10 +4738,15 @@
       ],
       "last_tick_commands": [
         "effect clear @s minecraft:slowness",
-        "execute as @s[scores={satsu.iron.man.break=1}] unless block ~2 ~-5 ~2 #satsu_iron_man_addon:no_destroy run fill ~-2 ~-1 ~-2 ~2 ~-5 ~2 minecraft:air destroy"
+        "execute as @s unless block ~2 ~-5 ~2 #satsu_iron_man_addon:no_destroy run fill ~-2 ~-1 ~-2 ~2 ~-5 ~2 minecraft:air destroy"
       ],
       "conditions": {
         "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "on"
+          },
           {
             "type": "palladium:or",
             "conditions": [
@@ -4880,7 +4919,7 @@
         ]
       }
     },
-    "ground.attack.command": {
+    "ground.attack.command:not_break": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
@@ -4894,11 +4933,64 @@
         "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
       ],
       "last_tick_commands": [
-        "execute as @s[scores={satsu.iron.man.break=1}] unless block ~2 ~-2 ~2 #satsu_iron_man_addon:no_destroy run fill ~-1 ~-1 ~-2 ~2 ~-2 ~2 minecraft:air destroy",
         "tag @s remove striker.ground.attack"
       ],
       "conditions": {
         "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "off"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "ground.attack",
+                    "property": "value",
+                    "min": 12,
+                    "max": 12
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ground.attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "ground.attack.command_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s add striker.ground.attack"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 0 normal",
+        "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": [
+        "execute as @s unless block ~2 ~-2 ~2 #satsu_iron_man_addon:no_destroy run fill ~-1 ~-1 ~-2 ~2 ~-2 ~2 minecraft:air destroy",
+        "tag @s remove striker.ground.attack"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "on"
+          },
           {
             "type": "palladium:or",
             "conditions": [
@@ -5194,15 +5286,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.break",
-                "min_score": 1,
-                "max_score": 1
-              }
-            ]
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "off"
           },
           {
             "type": "palladium:or",
@@ -5258,15 +5344,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.break",
-                "min_score": 1,
-                "max_score": 1
-              }
-            ]
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "off"
           },
           {
             "type": "palladium:or",
@@ -5324,10 +5404,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.break",
-            "min_score": 1,
-            "max_score": 1
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "on"
           },
           {
             "type": "palladium:or",
@@ -5385,10 +5464,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.break",
-            "min_score": 1,
-            "max_score": 1
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "on"
           },
           {
             "type": "palladium:or",
