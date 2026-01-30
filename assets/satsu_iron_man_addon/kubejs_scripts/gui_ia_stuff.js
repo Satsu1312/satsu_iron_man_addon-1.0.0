@@ -5,6 +5,11 @@ function positions(player_position, position) {
   player_position = Math.trunc(player_position)
   return Component.join("", pos_text, player_position);
 }
+function speed_per_block() {
+  const text = Component.translate("satsu.iron.man.addon.text.km")
+  const speed = Client.player.persistentData['speedBPS']
+  return Component.join("", text, speed);
+}
 function ia_color(player) {
   const color = palladium.getProperty(player, "satsu_iron_man_ia_color");
   return parseInt(color, 16);
@@ -61,7 +66,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         abilityUtil.isEnabled(
           player,
           "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.1"
+          "armor_on_body"
         )
       ) {
         guiUtil.drawString(
@@ -69,6 +74,69 @@ PalladiumEvents.registerGuiOverlays((event) => {
           show_label(player, "velocity_on_hud", "satsu_iron_man_flight_speed_choose"),
           50,
           40,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:left_arm",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "armor_on_body"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "left_or_not", "satsu_left_arm"),
+          540,
+          60,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:break_blocks",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "armor_on_body"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "break_block", "satsu_iron_man_addon_break_block_attack"),
+          540,
+          80,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:weapons_system",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "armor_on_body"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "weapon_system", "satsu_armor_weapon_system"),
+          60,
+          100,
           ia_color(player)
         );
       }
@@ -139,6 +207,70 @@ PalladiumEvents.registerGuiOverlays((event) => {
     }
   );
   event.register(
+    "satsu_iron_man_addon:km",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "horizon_lock"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          speed_per_block("km"),
+          400,
+          180,
+          ia_color(player)
+        );
+
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:night_vision",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player;
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "see.energy.unlock.lock.1"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "night_vision", "satsu_iron_man_addon_enable_night_vision"),
+          60,
+          250,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:scan",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player;
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "see.energy.unlock.lock.1"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "scan", "satsu_iron_man_addon_enable_scan"),
+          60,
+          260,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
     "satsu_iron_man_addon:get_armor",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
       const player = minecraft.player
@@ -146,7 +278,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
         abilityUtil.isEnabled(
           player,
           "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.1"
+          "armor_on_body"
         )
       ) {
         guiUtil.drawString(
