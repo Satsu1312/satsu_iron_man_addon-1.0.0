@@ -33,6 +33,12 @@ function show_label(player, property_name, property_value){
     value = Math.trunc((value / max_value) * 100);
     value = Component.join("", value, percentage);
   }
+  if (property_name == "nanites_on_hud") {
+    const percentage = Component.translate("satsu.iron.man.addon.text.percentage");
+    const max_value = palladium.getProperty(player, property_value + "_max");
+    value = Math.trunc((value / max_value) * 100);
+    value = Component.join("", value, percentage);
+  }
 
   return Component.join("", text_property, value);
 }
@@ -53,6 +59,27 @@ PalladiumEvents.registerGuiOverlays((event) => {
           show_label(player, "energy_on_hud", "satsu_iron_man_armor_arc_energy"),
           50,
           30,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:nanite",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "nanites_count"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "nanites_on_hud", "satsu_iron_man_nano_counts"),
+          50,
+          200,
           ia_color(player)
         );
       }
