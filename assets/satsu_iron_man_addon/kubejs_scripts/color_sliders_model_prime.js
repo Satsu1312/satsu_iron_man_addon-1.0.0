@@ -375,3 +375,122 @@ PalladiumEvents.renderPowerScreen((event) => {
     sendCurrentModeColorFromSliders();
   }
 });
+
+PalladiumEvents.renderPowerScreen((event) => {
+  const mc = Minecraft.getInstance();
+  const entity = mc.player;
+  if (!entity) return;
+
+  if (!event.tab || String(event.tab) !== "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main") return;
+
+  const gui = event.guiGraphics;
+  const screen = event.screen;
+
+  const cx = screen.width / 2;
+  const cy = screen.height / 2;
+
+  const size = 257;
+  const panelX = (cx - 126) | 0;
+  const panelY = (cy - 100) | 0;
+
+  gui.blit(
+    new ResourceLocation(TEX.panel),
+    panelX,
+    panelY,
+    0,
+    0,
+    size,
+    size,
+    size,
+    size,
+  );
+
+  const barX = panelX + 40;
+  const yR = panelY + 200;
+  const yG = panelY + 210;
+  const yB = panelY + 220;
+
+  initSlidersFromProperties(entity);
+
+  drawColorBar(gui, barX, yR, BAR_WIDTH, BAR_HEIGHT, "r");
+  drawColorBar(gui, barX, yG, BAR_WIDTH, BAR_HEIGHT, "g");
+  drawColorBar(gui, barX, yB, BAR_WIDTH, BAR_HEIGHT, "b");
+
+  const mx = event.mouseX;
+  const my = event.mouseY;
+
+  const leftDown =
+    GLFW.glfwGetMouseButton(
+      mc.getWindow().getWindow(),
+      GLFW.GLFW_MOUSE_BUTTON_LEFT,
+    ) === GLFW.GLFW_PRESS;
+
+  if (!leftDown) activeSlider = null;
+
+  const sliderPos = getModeSliderPos();
+
+  if (leftDown && activeSlider === null) {
+    ["r", "g", "b"].forEach((ch) => {
+      if (activeSlider) return;
+      const yTop = ch === "r" ? yR : ch === "g" ? yG : yB;
+      const knobX = barX + sliderPos[ch] - SLIDER_W / 2;
+      const knobY = yTop - 2;
+
+      if (clickIn(mx, my, knobX, knobY, SLIDER_W, SLIDER_H)) {
+        activeSlider = ch;
+      }
+    });
+  }
+
+  if (leftDown && activeSlider === null) {
+    ["r", "g", "b"].forEach((ch) => {
+      const yTop = ch === "r" ? yR : ch === "g" ? yG : yB;
+      if (clickIn(mx, my, barX, yTop, BAR_WIDTH, BAR_HEIGHT)) {
+        sliderPos[ch] = clamp(mx - barX, 0, BAR_WIDTH);
+        activeSlider = ch;
+      }
+    });
+  }
+
+  if (leftDown && activeSlider !== null) {
+    sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
+  }
+
+  drawSlider(gui, barX, yR, "r", sliderPos);
+  drawSlider(gui, barX, yG, "g", sliderPos);
+  drawSlider(gui, barX, yB, "b", sliderPos);
+
+  const rgb = calculateRGB(sliderPos);
+  const previewX = barX + BAR_WIDTH + 30;
+  gui.fill(
+    previewX,
+    yR + 2,
+    previewX + 18,
+    yR + 20,
+    rgbToARGB(rgb.r, rgb.g, rgb.b),
+  );
+
+  applyButton.x = previewX - 20;
+  applyButton.y = yR + 30;
+
+  modeButton.x = applyButton.x - modeButton.w - 10;
+  modeButton.y = applyButton.y;
+  if (renderButton(modeButton, activeMode, gui, mx, my, leftDown)) {
+    playClickSound();
+    activeMode =
+      activeMode === "Primary"
+        ? "Secondary"
+        : activeMode === "Secondary"
+          ? "Tertiary"
+          : activeMode === "Tertiary"
+            ? "Quaternary"
+          : activeMode === "Quaternary"
+            ? "Quintenary"
+            : "Primary";
+  }
+
+  if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) {
+    playClickSound();
+    sendCurrentModeColorFromSliders();
+  }
+});
