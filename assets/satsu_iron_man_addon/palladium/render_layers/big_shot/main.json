@@ -101,6 +101,46 @@
           "type": "palladium:is_hovering_or_flying"
         }
       ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/nano/turbine.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/iron_man_suit_holo_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit/transformation_#water_turbine.png"
+          }
+        ],
+        "variables": {
+          "water_turbine": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:big_shot_suit/main",
+            "ability": "water_turbine",
+            "property": "value"
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light/iron_man_suit_holo_0_#water_turbine"
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
