@@ -51,7 +51,28 @@ PalladiumEvents.registerGuiOverlays((event) => {
         abilityUtil.isEnabled(
           player,
           "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.1"
+          "see.energy.im_wm"
+        )
+      ) {
+        guiUtil.drawString(
+          poseStack,
+          show_label(player, "energy_on_hud", "satsu_iron_man_armor_arc_energy"),
+          50,
+          30,
+          ia_color(player)
+        );
+      }
+    }
+  );
+  event.register(
+    "satsu_iron_man_addon:iron_heart_energy",
+    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
+      const player = minecraft.player
+      if (
+        abilityUtil.isEnabled(
+          player,
+          "satsu_iron_man_addon:ia_stuff/ia",
+          "see.energy.ih"
         )
       ) {
         guiUtil.drawString(
