@@ -978,6 +978,284 @@
         ]
       }
     },
+    "no_swim_mark_animation": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_nano_water_movement",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:is_under_water"
+          },
+          {
+            "type": "palladium:is_swimming"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "water_turbine": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 17,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_nano_water_movement",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "movement_underwater_skill": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_nano_water_movement",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:is_swimming"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:is_under_water"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "water_movement"
+              },
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.actived",
+                "min_score": 1,
+                "max_score": 1
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "interpolate",
+                "property": "value",
+                "min": 17,
+                "max": 17
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "water_movement": {
+      "type": "gravestone:movement",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/water_movement.png",
+      "title": { "translate": "ability.title.satsu.water.movement" },
+      "description": { "translate": "description.satsu.water.movement" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [-8.5, 5.5],
+      "motion_scale": 1.1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_nano_water_movement",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:is_under_water"
+          },
+          {
+            "type": "palladium:is_swimming"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:is_under_water"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "interpolate",
+            "property": "value",
+            "min": 17,
+            "max": 17
+          }
+        ]
+      }
+    },
+    "palladium_bubble:particles_legs": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": [
+        "satsu_iron_man_addon:right_leg",
+        "satsu_iron_man_addon:left_leg"
+      ],
+      "particle_type": "minecraft:bubble",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:is_under_water"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "water_movement"
+                  },
+                  {
+                    "type": "palladium:is_under_water"
+                  },
+                  {
+                    "type": "palladium:is_swimming"
+                  },
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "ability": "interpolate",
+                        "property": "value",
+                        "min": 17,
+                        "max": 17
+                      },
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "ability": "no_nanoarmor_anim",
+                        "property": "value",
+                        "min": 15,
+                        "max": 16
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "particles_bubble.right_hand.left_hand": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": [
+        "satsu_iron_man_addon:right_hand",
+        "satsu_iron_man_addon:left_hand"
+      ],
+      "particle_type": "minecraft:bubble",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:is_under_water"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "water_movement"
+                  },
+                  {
+                    "type": "palladium:is_under_water"
+                  },
+                  {
+                    "type": "palladium:is_swimming"
+                  },
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "ability": "interpolate",
+                        "property": "value",
+                        "min": 17,
+                        "max": 17
+                      },
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "ability": "no_nanoarmor_anim",
+                        "property": "value",
+                        "min": 15,
+                        "max": 16
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "durability": {
       "type": "palladium:attribute_modifier",
       "icon": "minecraft:iron_chestplate",
@@ -3372,6 +3650,7 @@
         "waepons.choose_wheel.nano_grenade_launcher",
         "waepons.choose_wheel.nano_rial",
         "waepons.choose_wheel.grab_cannon",
+        "waepons.choose_wheel.water_movement",
         "weapons_wheel.flight_unlock"
       ],
       "texture": "null",
@@ -5664,6 +5943,94 @@
         ]
       }
     },
+    "waepons.choose_wheel.water_movement": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/water_movement.png",
+      "title": { "translate": "ability.title.satsu.water.movement" },
+      "description": { "translate": "description.satsu.water.movement" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [-1, -3],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "weapons_wheel"
+          }
+        ]
+      }
+    },
+    "water_movement.set.on": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_nano_water_movement",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose_wheel.water_movement"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_nano_water_movement",
+            "property_value": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "water_movement.set.off"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "water_movement.set.off": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_nano_water_movement",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "waepons.choose_wheel.water_movement"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_nano_water_movement",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "water_movement.set.on"
+              },
+              {
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon_nano_water_movement",
+                "property_value": "off"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "flight_anim": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -5681,16 +6048,35 @@
             "ability": "waepons.choose"
           },
           {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "palladium:is_fast_flying"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_flight_speed_choose",
-            "min": 254,
-            "max": 10000000000
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:is_hovering_or_flying"
+                  },
+                  {
+                    "type": "palladium:is_fast_flying"
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_iron_man_flight_speed_choose",
+                    "min": 254,
+                    "max": 10000000000
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "water_movement"
+                  }
+                ]
+              }
+            ]
           },
           {
             "type": "palladium:objective_score",
@@ -7111,6 +7497,9 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
+                    "type": "palladium:crouching"
+                  },
+                  {
                     "type": "palladium:has_tag",
                     "tag": "alien"
                   }
@@ -7145,6 +7534,311 @@
           {
             "type": "palladium:ability_enabled",
             "ability": "nano_mallet.smash"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_mallet.ground_attack": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/nano_mallet_smash.png",
+      "title": { "translate": "ability.title.satsu.nano_mallet.smash" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 12,
+      "start_value": 0,
+      "max_value": 16,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 17,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_mallet"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:crouching"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_mallet.ground_attack.animation": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "nano_mallet.ground_attack",
+            "property": "value",
+            "min": 1,
+            "max": 6
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_mallet.ground_attack"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "armor_sentinel_anim",
+                    "property": "value",
+                    "min": 1,
+                    "max": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_mallet.ground_attack.animation_2": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "nano_mallet.ground_attack",
+            "property": "value",
+            "min": 6,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_mallet.ground_attack"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "armor_sentinel_anim",
+                    "property": "value",
+                    "min": 1,
+                    "max": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nano_mallet.ground_attack.command:not_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s add striker.nano_mallet.ground_attack"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 0 normal",
+        "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[tag=!striker.nano_mallet.ground_attack,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": ["tag @s remove striker.nano_mallet.ground_attack"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "off"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_mallet.ground_attack",
+                    "property": "value",
+                    "min": 12,
+                    "max": 12
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet.ground_attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_mallet.ground_attack.command_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s add striker.nano_mallet.ground_attack"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 0 normal",
+        "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[tag=!striker.nano_mallet.ground_attack,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": [
+        "execute as @s unless block ~2 ~-2 ~2 #satsu_iron_man_addon:no_destroy run fill ~-1 ~-1 ~-2 ~2 ~-2 ~2 minecraft:air destroy",
+        "tag @s remove striker.nano_mallet.ground_attack"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_mallet.ground_attack",
+                    "property": "value",
+                    "min": 12,
+                    "max": 12
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet.ground_attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_mallet.ground_attack.aoe_knockback": {
+      "type": "gravestone:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "knockback": 1,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_mallet.ground_attack",
+                    "property": "value",
+                    "min": 12,
+                    "max": 12
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet.ground_attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_mallet.ground_attack.aoe_damage": {
+      "type": "gravestone:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "damage": 6,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_mallet.ground_attack",
+                    "property": "value",
+                    "min": 12,
+                    "max": 12
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet.ground_attack"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "unlocking": []
@@ -9076,6 +9770,12 @@
               {
                 "type": "palladium:ability_integer_property",
                 "ability": "flight_anim",
+                "min": "1",
+                "max": "8"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "water_turbine",
                 "min": "1",
                 "max": "8"
               },
