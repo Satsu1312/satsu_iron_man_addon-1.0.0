@@ -318,7 +318,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -386,7 +386,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -454,7 +454,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -534,6 +534,170 @@
         "unlocking": []
       }
     },
+    "flames_up": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:reactor_arc_portable/main",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:reactor_arc_portable/main",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "energy.pulse_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "energy.pulse_left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "uni.beam.hand.right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "uni.beam.hand.left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams.right_arm"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams.left_arm"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "mini.gun.right",
+                    "property": "value",
+                    "min": "1",
+                    "max": "10"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "mini.gun.left",
+                    "property": "value",
+                    "min": "1",
+                    "max": "10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_grenade_launcher_left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_grenade_launcher_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_fireworks"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "maximun.pulse.animation"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "flames_down": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "flight_anim",
+                "property": "value",
+                "min": 14,
+                "max": 16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "flames_down_boost": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "flight_anim",
+            "property": "value",
+            "min": 14,
+            "max": 16
+          }
+        ]
+      }
+    },
     "flight": {
       "type": "palladium:attribute_modifier",
       "icon": "satsu_iron_man_addon:textures/gui/armors/fly.png",
@@ -582,7 +746,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -662,7 +826,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -833,7 +997,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -910,7 +1074,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -984,7 +1148,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -1046,7 +1210,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -1112,7 +1276,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -1183,7 +1347,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -1250,7 +1414,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -1334,6 +1498,58 @@
         ]
       }
     },
+    "lock": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "item modify entity @s armor.chest satsu_iron_man_addon:binding_curse/add",
+        "item modify entity @s armor.chest satsu_iron_man_addon:binding_curse/hide",
+        "stopsound @s player minecraft:item.armor.equip_generic"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "item modify entity @s armor.chest satsu_iron_man_addon:binding_curse/clear",
+        "stopsound @s player minecraft:item.armor.equip_generic"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "no_armor": {
       "type": "palladium:restrict_slots",
       "hidden": true,
@@ -1366,7 +1582,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -1695,7 +1911,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
@@ -1766,7 +1982,7 @@
               "satsu_iron_man_addon:extremis/main",
               "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
             ],
-            "namespaces": ["fsang", "fsang_hero", "gabeupsp"],
+            "namespaces": [],
             "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           },
           {
