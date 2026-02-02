@@ -19,6 +19,8 @@ PlayerEvents.tick((event) => {
   let speedBPS = speedPerTick * 20;
   Client.player.persistentData['speedBPS'] = speedBPS.toFixed(2);
 
-  lastPos[id].x = x;
-  lastPos[id].z = z;
+  event.server.scheduleInTicks(1, () => {
+    lastPos[id].x = x;
+    lastPos[id].z = z;
+  });
 });
