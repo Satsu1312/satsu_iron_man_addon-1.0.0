@@ -3,72 +3,88 @@
   "layers": [
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_leg.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_heart/no_light/mark_3.png"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mask/iron_man_mask_7_0.png"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:not_player"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_heart/no_light/mark_3.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/left_leg/#LEFT_LEG.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
           }
         ],
         "variables": {
-          "LEFT_LEG": {
+          "TIMER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_heart/marks/mark_3/main",
-            "ability": "left_leg_animation",
+            "ability": "no_nanoarmor_anim",
             "property": "value",
             "min": 0,
-            "max": 18
+            "max": 16
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_heart/no_light_left_leg/mark_3_#LEFT_LEG"
+        "output": "satsu_iron_man_addon:textures/models/iron_heart/no_light/mark_3_#TIMER"
       },
-      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
-      "animation_controller": [
-        {
-          "name": "call.part.control",
-          "transition_tick_time": 10,
-          "triggers": {
-            "call.part": "animation.minecraft:call.left.leg"
-          }
-        }
-      ],
       "conditions": []
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_leg.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_heart/light/mark_3.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/left_leg/#LEFT_LEG.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
           }
         ],
         "variables": {
-          "LEFT_LEG": {
+          "TIMER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_heart/marks/mark_3/main",
-            "ability": "left_leg_animation",
+            "ability": "no_nanoarmor_anim",
             "property": "value",
             "min": 0,
-            "max": 18
+            "max": 16
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_heart/light_left_leg/mark_3_#LEFT_LEG"
+        "output": "satsu_iron_man_addon:textures/models/iron_heart/light/mark_3_#TIMER"
       },
-      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
-      "animation_controller": [
-        {
-          "name": "call.part.control",
-          "transition_tick_time": 10,
-          "triggers": {
-            "call.part": "animation.minecraft:call.left.leg"
-          }
-        }
-      ],
       "render_type": "glow",
       "conditions": [
         {
@@ -90,72 +106,52 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armor_models/iron_heart/mark_3/left_leg.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_heart/mark_3/main.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_heart/no_light/mark_3.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#LEFT_LEG.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
           }
         ],
         "variables": {
-          "LEFT_LEG": {
+          "TIMER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_heart/marks/mark_3/main",
-            "ability": "left_leg_animation",
+            "ability": "no_nanoarmor_anim",
             "property": "value",
             "min": 0,
             "max": 16
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_heart/no_light_left_leg/mark_3_#LEFT_LEG"
+        "output": "satsu_iron_man_addon:textures/models/iron_heart/no_light/mark_3_#TIMER"
       },
-      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
-      "animation_controller": [
-        {
-          "name": "call.part.control",
-          "transition_tick_time": 10,
-          "triggers": {
-            "call.part": "animation.minecraft:call.left.leg"
-          }
-        }
-      ],
       "conditions": []
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armor_models/iron_heart/mark_3/left_leg.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_heart/mark_3/main.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_heart/light/mark_3.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#LEFT_LEG.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit_ensanble/transformation_#TIMER.png"
           }
         ],
         "variables": {
-          "LEFT_LEG": {
+          "TIMER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_heart/marks/mark_3/main",
-            "ability": "left_leg_animation",
+            "ability": "no_nanoarmor_anim",
             "property": "value",
             "min": 0,
             "max": 16
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_heart/light_left_leg/mark_3_#LEFT_LEG"
+        "output": "satsu_iron_man_addon:textures/models/iron_heart/light/mark_3_#TIMER"
       },
-      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
-      "animation_controller": [
-        {
-          "name": "call.part.control",
-          "transition_tick_time": 10,
-          "triggers": {
-            "call.part": "animation.minecraft:call.left.leg"
-          }
-        }
-      ],
       "render_type": "glow",
       "conditions": [
         {
