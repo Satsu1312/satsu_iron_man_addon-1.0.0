@@ -302,6 +302,13 @@ PalladiumEvents.registerProperties((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
     // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_nano_water_movement", "string", "off");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_iron_heart_mark_1_energy", "integer", 10000);
   }
 });
