@@ -378,6 +378,10 @@
                   {
                     "type": "palladium:has_tag",
                     "tag": "alien"
+                  },
+                  {
+                    "type": "palladium:has_effect",
+                    "effect": "satsu_iron_man_addon:armor_freeze"
                   }
                 ]
               }
@@ -457,6 +461,10 @@
                   },
                   {
                     "type": "palladium:crouching"
+                  },
+                  {
+                    "type": "palladium:has_effect",
+                    "effect": "satsu_iron_man_addon:armor_freeze"
                   }
                 ]
               }
@@ -559,6 +567,149 @@
           }
         ],
         "unlocking": []
+      }
+    },
+    "flames_up": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+                "ability": "enable_armor"
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "power": "satsu_iron_man_addon:reactor_arc_portable/main",
+                "ability": "armor_skill_bar"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:reactor_arc_portable/main",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor.actived",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "energy.pulse_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "energy.pulse_left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "uni.beam.hand.right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "uni.beam.hand.left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams.right_arm"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams.left_arm"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "mini.gun.right",
+                    "property": "value",
+                    "min": "1",
+                    "max": "10"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "mini.gun.left",
+                    "property": "value",
+                    "min": "1",
+                    "max": "10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_grenade_launcher_left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_grenade_launcher_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_fireworks"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "maximun.pulse.animation"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "flames_down": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "flight_anim",
+                "property": "value",
+                "min": 14,
+                "max": 16
+              }
+            ]
+          }
+        ]
       }
     },
     "flight": {
@@ -1921,6 +2072,15 @@
                 "max_score": 1
               }
             ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:armor_freeze"
+              }
+            ]
           }
         ]
       }
@@ -1991,6 +2151,15 @@
             "objective": "satsu.iron.man.armor.actived",
             "min_score": 1,
             "max_score": 1
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:armor_freeze"
+              }
+            ]
           }
         ]
       }
@@ -2144,6 +2313,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "flares_flames"
+                  },
+                  {
+                    "type": "palladium:has_effect",
+                    "effect": "satsu_iron_man_addon:armor_freeze"
                   }
                 ]
               }
@@ -2244,6 +2417,15 @@
             "property": "value",
             "min": 18,
             "max": 18
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:armor_freeze"
+              }
+            ]
           }
         ]
       }
@@ -2268,6 +2450,15 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:armor_freeze"
+              }
+            ]
           }
         ]
       }
@@ -2292,6 +2483,15 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:armor_freeze"
+              }
+            ]
           }
         ]
       }
@@ -2316,6 +2516,15 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:armor_freeze"
+              }
+            ]
           }
         ]
       }
@@ -2361,6 +2570,15 @@
             "property": "value",
             "min": 18,
             "max": 18
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:armor_freeze"
+              }
+            ]
           }
         ]
       }
@@ -2552,6 +2770,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "rocket"
+                  },
+                  {
+                    "type": "palladium:has_effect",
+                    "effect": "satsu_iron_man_addon:armor_freeze"
                   }
                 ]
               }
@@ -2624,6 +2846,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "rocket"
+                  },
+                  {
+                    "type": "palladium:has_effect",
+                    "effect": "satsu_iron_man_addon:armor_freeze"
                   }
                 ]
               }
@@ -2665,14 +2891,14 @@
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [""],
-      "commands": ["effect give @s satsu_iron_man_addon:armor_freeze 5"],
-      "last_tick_commands": [],
+      "first_tick_commands": ["playsound minecraft:block.powder_snow.fall master @s ~ ~ ~ 1 1"],
+      "commands": ["effect give @s satsu_iron_man_addon:armor_freeze 2"],
+      "last_tick_commands": ["playsound minecraft:block.powder_snow.fall master @s ~ ~ ~ 1 1"],
       "conditions": {
         "enabling": [
           {
             "type": "satsy_iron_man_addon:height_bool_condition",
-            "max_height": 300
+            "max_height": 366
           },
           {
             "type": "palladium:objective_score",
