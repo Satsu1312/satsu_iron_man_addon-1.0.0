@@ -33,6 +33,12 @@ function show_label(player, property_name, property_value){
     value = Math.trunc((value / max_value) * 100);
     value = Component.join("", value, percentage);
   }
+  if (property_name == "energy_on_hud_iron_heart") {
+    const percentage = Component.translate("satsu.iron.man.addon.text.percentage");
+    const max_value = palladium.getProperty(player, property_value + "_max");
+    value = Math.trunc((value / max_value) * 100);
+    value = Component.join("", value, percentage);
+  }
   if (property_name == "nanites_on_hud") {
     const percentage = Component.translate("satsu.iron.man.addon.text.percentage");
     const max_value = palladium.getProperty(player, property_value + "_max");
@@ -77,7 +83,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          show_label(player, "energy_on_hud", "satsu_iron_man_armor_arc_energy"),
+          show_label(player, "energy_on_hud_iron_heart", "satsu_iron_man_iron_heart_energy"),
           50,
           30,
           ia_color(player)
