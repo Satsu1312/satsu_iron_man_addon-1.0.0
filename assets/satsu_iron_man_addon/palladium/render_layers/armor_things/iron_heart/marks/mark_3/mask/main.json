@@ -9,20 +9,26 @@
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/normal_mask/normal_mask_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/bones_ensamble/#TIMER.png"
           }
         ],
         "variables": {
           "TIMER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_heart/marks/mark_3/main",
-            "ability": "no_nanoarmor_anim",
+            "ability": "head_animation",
             "property": "value",
             "min": 0,
-            "max": 16
+            "max": 17
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 54
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light/mask/mask/iron_man_mask_7_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_heart/no_light/mask/mark_3_#TIMER"
       },
       "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
       "animation_controller": [
@@ -31,11 +37,37 @@
           "transition_tick_time": 10,
           "triggers": {
             "mask.up": "open",
-            "mask.on": "close"
+            "mask.on": "close",
+            "call.part.head": "animation.minecraft:call.head",
+            "call.part.front": "animation.minecraft:call.front"
           }
         }
       ],
-      "conditions": []
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "satsu_iron_man_addon:iron_heart/marks/mark_3/main",
+              "ability": "head_animation",
+              "property": "value",
+              "min": 0,
+              "max": 19
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.addon.armor.head",
+              "min_score": 0,
+              "max_score": 0
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "geckolib:default",
@@ -45,17 +77,23 @@
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/normal_mask/normal_mask_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/bones_ensamble/#TIMER.png"
           }
         ],
         "variables": {
           "TIMER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_heart/marks/mark_3/main",
-            "ability": "no_nanoarmor_anim",
+            "ability": "head_animation",
             "property": "value",
             "min": 0,
-            "max": 16
+            "max": 17
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.armor",
+            "min": 0,
+            "max": 52
           }
         },
         "output": "satsu_iron_man_addon:textures/models/iron_heart/light/mask/mark_3_#TIMER"
@@ -68,11 +106,36 @@
           "transition_tick_time": 10,
           "triggers": {
             "mask.up": "open",
-            "mask.on": "close"
+            "mask.on": "close",
+            "call.part.head": "animation.minecraft:call.head",
+            "call.part.front": "animation.minecraft:call.front"
           }
         }
       ],
       "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "satsu_iron_man_addon:iron_heart/marks/mark_3/main",
+              "ability": "head_animation",
+              "property": "value",
+              "min": 0,
+              "max": 19
+            },
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.addon.armor.head",
+              "min_score": 0,
+              "max_score": 0
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        },
         {
           "type": "palladium:or",
           "conditions": [
