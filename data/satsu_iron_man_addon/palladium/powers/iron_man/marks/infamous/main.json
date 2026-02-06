@@ -6111,7 +6111,7 @@
     },
     "energy_beam_chest_sound": {
       "type": "palladium:play_sound",
-      "sound": "satsu_iron_man_addon:mcu_chest_beam",
+      "sound": "satsu_iron_man_addon:rivals_chest_beam",
       "looping": true,
       "volume": 1,
       "pitch": 1,
@@ -6126,13 +6126,6 @@
                 "property": "value",
                 "min": 6,
                 "max": 6
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_energy_boosters",
-                "property": "value",
-                "min": 20,
-                "max": 20
               }
             ]
           }
@@ -6141,7 +6134,7 @@
     },
     "energy_beam_hands_sound": {
       "type": "palladium:play_sound",
-      "sound": "satsu_iron_man_addon:mcu_chest_beam",
+      "sound": "satsu_iron_man_addon:rivals_chest_beam",
       "looping": true,
       "volume": 1,
       "pitch": 1.35,
@@ -8210,7 +8203,6 @@
       "abilities": [
         "waepons.choose_wheel_rockets",
         "waepons.choose_wheel.maximum.pulse",
-        "waepons.choose_wheel_nano_energy_boosters",
         "waepons.choose_wheel.nano_mallet",
         "waepons.choose_wheel.nano_sword",
         "waepons.choose_wheel.nano_katar",
@@ -8881,26 +8873,6 @@
       "hidden_in_bar": false,
       "name": "satsu_armor_weapon",
       "number": 2,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_wheel",
-            "cooldown": 0
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "waepons.choose_wheel_nano_energy_boosters": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/energy_boosters.png",
-      "title": { "translate": "ability.title.satsu.energy.boosters" },
-      "description": { "translate": "description.satsu.energy.boosters" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "score": "satsu.iron.man.addon.nano.armor.things",
-      "adjustment_type": "set",
-      "adjustment_amount": 6,
       "conditions": {
         "enabling": [
           {
@@ -9742,7 +9714,7 @@
       "type": "palladium:play_sound",
       "hidden": true,
       "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:rivals_iron_man_blast_mcu",
+      "sound": "satsu_iron_man_addon:new_blast",
       "volume": 1,
       "pitch": 1,
       "looping": false,
@@ -12280,111 +12252,6 @@
         ]
       }
     },
-    "nano_energy_boosters": {
-      "type": "palladium:animation_timer",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/energy_boosters.png",
-      "title": { "translate": "ability.title.satsu.energy.boosters" },
-      "description": { "translate": "description.satsu.energy.boosters" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "gui_position": [-9, -0.5],
-      "list_index": 11,
-      "start_value": 0,
-      "max_value": 20,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:toggle",
-            "cooldown": 120,
-            "key_type": "key_bind",
-            "needs_empty_hand": false
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "waepons.choose"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "chest_animation",
-            "property": "value",
-            "min": 17,
-            "max": 17
-          },
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 6,
-            "max_score": 6
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "alien"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "nano_energy_boosters_give_beams": {
-      "type": "satsu_iron_man_addon:add_power_per_tick",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "power_path": "satsu_iron_man_addon",
-      "powerid": "iron_man/marks/infamous/beams/energy_boosters/beam",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "nano_energy_boosters",
-            "property": "value",
-            "min": 20,
-            "max": 20
-          }
-        ]
-      }
-    },
-    "energy_boosters.chest.remove.ark.energy": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_armor_arc_energy",
-      "adjustment_type": "subtract",
-      "adjustment_amount": 40,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "nano_energy_boosters",
-            "property": "value",
-            "min": 20,
-            "max": 20
-          }
-        ]
-      }
-    },
     "nano_health_spray": {
       "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/nano_health_spray.png",
@@ -13029,12 +12896,6 @@
               },
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "nano_energy_boosters",
-                "min": "1",
-                "max": "8"
-              },
-              {
-                "type": "palladium:ability_integer_property",
                 "ability": "nano_stabilizer",
                 "min": "1",
                 "max": "8"
@@ -13242,24 +13103,6 @@
         ]
       }
     },
-    "remove_nanite.nano_energy_boosters": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_nano_counts",
-      "adjustment_type": "subtract",
-      "adjustment_amount": 1,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "nano_energy_boosters",
-            "min": "1",
-            "max": "1000"
-          }
-        ]
-      }
-    },
     "remove_nanite.nano_stabilizer": {
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
@@ -13360,7 +13203,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -13401,7 +13244,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -13442,7 +13285,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -13487,7 +13330,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -13532,7 +13375,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -13573,7 +13416,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -13614,7 +13457,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -13655,7 +13498,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/blue/blue"
           }
         ]
       },
@@ -13674,7 +13517,7 @@
       "type": "palladium:play_sound",
       "hidden": true,
       "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:rivals_iron_man_blast_mcu",
+      "sound": "satsu_iron_man_addon:new_blast",
       "volume": 1,
       "pitch": 1,
       "looping": false,
@@ -13702,7 +13545,7 @@
       "type": "palladium:play_sound",
       "hidden": true,
       "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:rivals_iron_man_blast_potencied_mcu",
+      "sound": "satsu_iron_man_addon:new_blast_potencied",
       "volume": 1,
       "pitch": 1,
       "looping": false,
@@ -13748,7 +13591,7 @@
       "hidden_in_bar": true,
       "first_tick_commands": [""],
       "commands": [
-        "execute as @s run playsound satsu_iron_man_addon:rivals_iron_man_blast_potencied_mcu player @a[distance=0..10] ~ ~ ~ 1 1"
+        "execute as @s run playsound satsu_iron_man_addon:new_blast_potencied player @a[distance=0..10] ~ ~ ~ 1 1"
       ],
       "conditions": {
         "enabling": [
@@ -14797,12 +14640,6 @@
                   {
                     "type": "palladium:ability_integer_property",
                     "ability": "nano_flares_flames",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_energy_boosters",
                     "min": "1",
                     "max": "200"
                   },
