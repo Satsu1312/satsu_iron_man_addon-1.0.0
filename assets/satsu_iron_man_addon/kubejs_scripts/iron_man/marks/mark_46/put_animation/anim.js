@@ -1,1 +1,0 @@
-// Register custom animations

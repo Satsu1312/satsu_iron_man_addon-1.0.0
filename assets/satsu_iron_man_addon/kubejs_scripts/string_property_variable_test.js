@@ -269,7 +269,7 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
       // Arguments: Key of the property, type of the property, default/starting value
-      event.registerProperty('satsu_iron_man_ia.pickaxe_velocity', 'string', "normal");
+      event.registerProperty('satsu_iron_man_ia.pickaxe_velocity', 'string', "low");
     }
 });
 PalladiumEvents.registerPropertiesClientSided((event) => {
@@ -298,6 +298,34 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
   if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
       // Arguments: Key of the property, type of the property, default/starting value
       event.registerProperty('satsu_iron_man_addon_break_block_attack', 'string', "off");
+    }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon_nano_water_movement', 'string', "off");
+    }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_iron_heart_energy', 'integer', 10000);
+    }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_iron_heart_energy_max', 'integer', 10000);
+    }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man.ia_enabled', 'string', "on");
     }
 });
 PalladiumEvents.registerPropertiesClientSided((event) => {

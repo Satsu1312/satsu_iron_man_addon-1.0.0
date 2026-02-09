@@ -123,116 +123,6 @@
         ]
       }
     },
-    "hud_armor_fly": {
-      "type": "palladium:gui_overlay",
-      "texture": "#satsu_iron_man_addon:armor_hud/armor_hud_fly",
-      "texture_width": 256,
-      "texture_height": 256,
-      "translate": [0, 0, 0],
-      "rotate": [0, 0, 0],
-      "scale": [1, 1, 1],
-      "alignment": "stretch",
-      "hidden": true,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "satsu_iron_man_addon:has_property",
-            "property": "satsu_iron_man_hud_horizon_lock",
-            "property_value": "on"
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "no_nanoarmor_anim",
-                    "property": "value",
-                    "min": 13,
-                    "max": 16
-                  },
-                  {
-                    "type": "gravestone:perspective",
-                    "looking": "FIRST_PERSON"
-                  },
-                  {
-                    "type": "palladium:not",
-                    "conditions": [
-                      {
-                        "type": "palladium:integer_property",
-                        "property": "satsu_mask_value",
-                        "min": 0,
-                        "max": 0
-                      }
-                    ]
-                  },
-                  {
-                    "type": "satsu_iron_man_addon:has_property",
-                    "property": "satsu_iron_man_armor_hud_perspective",
-                    "property_value": "first_person"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "no_nanoarmor_anim",
-                    "property": "value",
-                    "min": 13,
-                    "max": 16
-                  },
-                  {
-                    "type": "palladium:not",
-                    "conditions": [
-                      {
-                        "type": "palladium:integer_property",
-                        "property": "satsu_mask_value",
-                        "min": 0,
-                        "max": 0
-                      }
-                    ]
-                  },
-                  {
-                    "type": "satsu_iron_man_addon:has_property",
-                    "property": "satsu_iron_man_armor_hud_perspective",
-                    "property_value": "third_person"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "satsu_iron_man_addon:has_property",
-                "property": "satsu_iron_man_armor_hud_perspective",
-                "property_value": "false"
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:item_in_slot",
-                "item": {
-                  "item": "satsu_iron_man_addon:ia_glases"
-                },
-                "slot": "curios:head"
-              }
-            ]
-          }
-        ]
-      }
-    },
     "hud_armor_variable.enable": {
       "type": "satsu_iron_man_addon:set_property_string",
       "hidden": true,
@@ -1507,19 +1397,9 @@
       }
     },
     "lock": {
-      "type": "palladium:command",
+      "type": "palladium:lock_armor",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "item modify entity @s armor.chest satsu_iron_man_addon:binding_curse/add",
-        "item modify entity @s armor.chest satsu_iron_man_addon:binding_curse/hide",
-        "stopsound @s player minecraft:item.armor.equip_generic"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "item modify entity @s armor.chest satsu_iron_man_addon:binding_curse/clear",
-        "stopsound @s player minecraft:item.armor.equip_generic"
-      ],
       "conditions": {
         "enabling": [
           {
@@ -1627,7 +1507,7 @@
                   {
                     "type": "palladium:item_in_slot",
                     "item": {
-                      "tag": "satsu_iron_man_addon:armors"
+                      "tag": "satsu_iron_man_addon:armors/main"
                     },
                     "slot": "chest"
                   },
@@ -1652,10 +1532,6 @@
                     "max_score": 1
                   }
                 ]
-              },
-              {
-                "type": "palladium:entity_type_tag",
-                "entity_type_tag": "satsu_iron_man_addon:stands"
               }
             ]
           }
