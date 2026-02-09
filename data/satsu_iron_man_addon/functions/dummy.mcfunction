@@ -63,7 +63,6 @@ scoreboard objectives add satsu.iron.man.addon.energy.ia.unlock.icon.in.hud dumm
 scoreboard objectives add satsu.iron.man.addon.ia.choose dummy
 scoreboard objectives remove satsu.iron.man.addon.skill.point
 scoreboard objectives remove satsu.iron.man.addon.skill.point.see
-scoreboard objectives add satsu.iron.man.addon.ia.unlock.skill.tree dummy
 scoreboard objectives add satsu.iron.man.addon.damage.stealh minecraft.custom:minecraft.damage_dealt
 scoreboard objectives add satsu.iron.man.addon.damage.taken minecraft.custom:minecraft.damage_taken
 scoreboard objectives add satsu.iron.man.superior.color dummy
