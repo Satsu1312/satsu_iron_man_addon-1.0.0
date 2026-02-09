@@ -1249,6 +1249,11 @@
             "max": 2147483647
           },
           {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
+          },
+          {
             "type": "palladium:and",
             "conditions": [
               {
@@ -1347,6 +1352,11 @@
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_enable_night_vision",
             "property_value": "false"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           }
         ]
       }
@@ -1372,6 +1382,11 @@
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_enable_night_vision",
             "property_value": "true"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           }
         ]
       }
@@ -1431,6 +1446,11 @@
             "property": "satsu_iron_man_armor_arc_energy",
             "min": 1,
             "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           },
           {
             "type": "palladium:and",
@@ -1524,13 +1544,18 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
+            "type": "palladium:ability_enabled",
             "ability": "enabled_scan_enemies"
           },
           {
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_enable_scan",
             "property_value": "false"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           }
         ]
       }
@@ -1544,13 +1569,23 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_last_tick",
-            "ability": "enabled_scan_enemies"
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "enabled_scan_enemies"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_enable_scan",
             "property_value": "true"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           }
         ]
       }
