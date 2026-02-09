@@ -20,10 +20,9 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.ia.unlock.skill.tree",
-            "min_score": 1,
-            "max_score": 1
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "on"
           }
         ]
       }
@@ -211,7 +210,7 @@
           {
             "type": "palladium:item_in_slot",
             "item": {
-              "tag": "satsu_iron_man_addon:armors"
+              "tag": "satsu_iron_man_addon:armors/main"
             },
             "slot": "chest"
           },
@@ -416,7 +415,7 @@
           {
             "type": "palladium:item_in_slot",
             "item": {
-              "tag": "satsu_iron_man_addon:armors"
+              "tag": "satsu_iron_man_addon:armors/main"
             },
             "slot": "chest"
           },
@@ -1155,7 +1154,7 @@
           {
             "type": "palladium:item_in_slot",
             "item": {
-              "tag": "satsu_iron_man_addon:nano_sentinel/main"
+              "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
             },
             "slot": "chest"
           }
@@ -1183,7 +1182,7 @@
               {
                 "type": "palladium:item_in_slot",
                 "item": {
-                  "tag": "satsu_iron_man_addon:nano_sentinel/main"
+                  "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
                 },
                 "slot": "chest"
               }
@@ -1248,6 +1247,11 @@
             "property": "satsu_iron_man_armor_arc_energy",
             "min": 1,
             "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           },
           {
             "type": "palladium:and",
@@ -1348,6 +1352,11 @@
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_enable_night_vision",
             "property_value": "false"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           }
         ]
       }
@@ -1366,13 +1375,18 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "enabled_night_vision"
-              },
-              {
-                "type": "satsu_iron_man_addon:has_property",
-                "property": "satsu_iron_man_addon_enable_night_vision",
-                "property_value": "true"
               }
             ]
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_enable_night_vision",
+            "property_value": "true"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           }
         ]
       }
@@ -1432,6 +1446,11 @@
             "property": "satsu_iron_man_armor_arc_energy",
             "min": 1,
             "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           },
           {
             "type": "palladium:and",
@@ -1525,13 +1544,18 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
+            "type": "palladium:ability_enabled",
             "ability": "enabled_scan_enemies"
           },
           {
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_enable_scan",
             "property_value": "false"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           }
         ]
       }
@@ -1545,13 +1569,23 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_last_tick",
-            "ability": "enabled_scan_enemies"
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "enabled_scan_enemies"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_enable_scan",
             "property_value": "true"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "property_value": "off"
           }
         ]
       }
@@ -1915,7 +1949,7 @@
               {
                 "type": "palladium:item_in_slot",
                 "item": {
-                  "tag": "satsu_iron_man_addon:nano_sentinel/main"
+                  "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
                 },
                 "slot": "chest"
               },
@@ -1941,7 +1975,7 @@
                       {
                         "type": "palladium:item_in_slot",
                         "item": {
-                          "tag": "satsu_iron_man_addon:nano_sentinel/main"
+                          "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
                         },
                         "slot": "chest"
                       }

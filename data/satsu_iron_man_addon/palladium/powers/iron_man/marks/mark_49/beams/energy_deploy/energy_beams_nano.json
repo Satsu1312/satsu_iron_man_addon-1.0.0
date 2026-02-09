@@ -1,0 +1,114 @@
+{
+  "name": "Nano_energy_beams",
+  "persistent_data": false,
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "list",
+  "abilities": {
+    "sound": {
+      "type": "palladium:play_sound",
+      "sound": "satsu_iron_man_addon:mcu_chest_beam",
+      "looping": true,
+      "volume": 1,
+      "pitch": 1.5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/marks/mark_49/main",
+                "ability": "energy_deploy_beams"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy_beam.2": {
+      "type": "palladium:energy_beam",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "energy_beam": "satsu_iron_man_addon:blue/energy_beam_1",
+      "damage": 12,
+      "max_distance": 20,
+      "speed": 0.5,
+      "set_on_fire_seconds": 0,
+      "cause_fire": false,
+      "smelt_blocks": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_49/main",
+            "ability": "energy_deploy_beams"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:is_under_water"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy_beam.3": {
+      "type": "palladium:energy_beam",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "energy_beam": "satsu_iron_man_addon:blue/energy_beam_2",
+      "damage": 12,
+      "max_distance": 20,
+      "speed": 0.5,
+      "set_on_fire_seconds": 0,
+      "cause_fire": false,
+      "smelt_blocks": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_49/main",
+            "ability": "energy_deploy_beams"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:is_under_water"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_ark_energy": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_49/main",
+            "ability": "energy_deploy_beams"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          }
+        ]
+      }
+    }
+  }
+}

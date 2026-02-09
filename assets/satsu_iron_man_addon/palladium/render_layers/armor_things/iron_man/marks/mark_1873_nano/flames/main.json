@@ -3,204 +3,102 @@
   "layers": [
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/flames.geo.json",
+      "model": "satsu_iron_man_addon:geo/flames/upper_flames_both_arms/flames.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/flames/#SHOW_UP.png"
+          }
+        ],
         "variables": {
           "X": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "flames",
             "property": "value"
+          },
+          "SHOW_UP": {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_50/main",
+            "ability": "flames_up",
+            "property": "value",
+            "min": 0,
+            "max": 1
           }
-        }
+        },
+        "output": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X_#SHOW_UP"
       },
       "tint": "#fd9500",
       "render_type": "glow",
-      "conditions": [
-        {
-          "type": "palladium:is_hovering_or_flying"
-        },
-        {
-          "type": "palladium:or",
-          "conditions": [
-            {
-              "type": "palladium:ability_unlocked",
-              "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-              "ability": "armor_skill_bar"
-            },
-            {
-              "type": "palladium:ability_enabled",
-              "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-              "ability": "enable_armor"
-            },
-            {
-              "type": "palladium:ability_unlocked",
-              "power": "satsu_iron_man_addon:reactor_arc_portable/main",
-              "ability": "armor_skill_bar"
-            },
-            {
-              "type": "palladium:ability_enabled",
-              "power": "satsu_iron_man_addon:reactor_arc_portable/main",
-              "ability": "enable_armor"
-            }
-          ]
-        },
-        {
-          "type": "palladium:objective_score",
-          "objective": "satsu.iron.man.armor.actived",
-          "min_score": 1,
-          "max_score": 1
-        },
-        {
-          "type": "palladium:not",
-          "conditions": [
-            {
-              "type": "palladium:or",
-              "conditions": [
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "energy.pulse_right"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "energy.pulse_left"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "uni.beam.hand.right"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "uni.beam.hand.left"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "red_beams.right_arm"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "red_beams.left_arm"
-                },
-                {
-                  "type": "palladium:objective_score",
-                  "objective": "satsu.iron.man.arms.set",
-                  "min_score": 1,
-                  "max_score": 1
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "nano_mallet"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "nano_grenade_launcher_left"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "nano_grenade_launcher_right"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "nano_flares_flames"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "nano_fireworks"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "maximun.pulse.animation"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:kube_animations",
-                  "ability": "mark.1873.clap_smoke_hands"
-                },
-                {
-                  "type": "palladium:ability_enabled",
-                  "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                  "ability": "mark.1873.throw.smoke"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "conditions": []
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/flames_down.geo.json",
+      "model": "satsu_iron_man_addon:geo/flames/below_flames_both_feet/flames_down.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/flames/#SHOW_DOWN.png"
+          }
+        ],
         "variables": {
           "X": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "flames",
             "property": "value"
+          },
+          "SHOW_DOWN": {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_50/main",
+            "ability": "flames_down",
+            "property": "value",
+            "min": 0,
+            "max": 1
           }
-        }
+        },
+        "output": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X_#SHOW_DOWN"
       },
       "tint": "#fd9500",
       "render_type": "glow",
-      "conditions": [
-        {
-          "type": "palladium:is_hovering_or_flying"
-        },
-        {
-          "type": "palladium:not",
-          "conditions": [
-            {
-              "type": "palladium:ability_integer_property",
-              "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-              "ability": "flight_anim",
-              "property": "value",
-              "min": 14,
-              "max": 16
-            }
-          ]
-        }
-      ]
+      "conditions": []
     },
     {
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/flames/feet_thruster_flame.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/flames/#SHOW_DOWN.png"
+          }
+        ],
         "variables": {
           "X": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
             "ability": "flames",
             "property": "value"
+          },
+          "SHOW_DOWN": {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_50/main",
+            "ability": "flames_down_boost",
+            "property": "value",
+            "min": 0,
+            "max": 1
           }
-        }
+        },
+        "output": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X_#SHOW_DOWN"
       },
       "tint": "#fd9500",
       "render_type": "glow",
-      "conditions": [
-        {
-          "type": "palladium:ability_integer_property",
-          "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-          "ability": "flight_anim",
-          "property": "value",
-          "min": 14,
-          "max": 16
-        }
-      ]
+      "conditions": []
     }
   ]
 }
