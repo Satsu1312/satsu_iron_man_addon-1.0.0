@@ -9,13 +9,13 @@
     "energy": {
       "max": {
         "type": "palladium_property",
-        "property": "satsu_iron_man_armor_arc_energy_max",
+        "property": "satsu_iron_man_iron_heart_energy_max",
         "fallback": 0
       },
       "color": "#8ffffd",
       "synced_value": {
         "type": "palladium_property",
-        "property": "satsu_iron_man_armor_arc_energy",
+        "property": "satsu_iron_man_iron_heart_energy",
         "fallback": 0
       }
     }
@@ -350,7 +350,7 @@
         "enabling": [
           {
             "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "property": "satsu_iron_man_iron_heart_energy",
             "min": 1,
             "max": 2147483647
           },
@@ -412,7 +412,7 @@
           },
           {
             "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "property": "satsu_iron_man_iron_heart_energy",
             "min": 1,
             "max": 2147483647
           },
@@ -700,7 +700,7 @@
         "enabling": [
           {
             "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "property": "satsu_iron_man_iron_heart_energy",
             "min": 1,
             "max": 2147483647
           },
@@ -1301,7 +1301,7 @@
           },
           {
             "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "property": "satsu_iron_man_iron_heart_energy",
             "min": 1,
             "max": 2147483647
           },
@@ -1407,7 +1407,7 @@
         "unlocking": [
           {
             "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "property": "satsu_iron_man_iron_heart_energy",
             "min": 1,
             "max": 2147483647
           },
@@ -1550,7 +1550,7 @@
           },
           {
             "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "property": "satsu_iron_man_iron_heart_energy",
             "min": 1,
             "max": 2147483647
           },
@@ -1713,7 +1713,7 @@
         "unlocking": [
           {
             "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "property": "satsu_iron_man_iron_heart_energy",
             "min": 1,
             "max": 2147483647
           },
@@ -1756,7 +1756,7 @@
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_armor_arc_energy",
+      "property_name": "satsu_iron_man_iron_heart_energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 10,
       "conditions": {
@@ -2089,14 +2089,14 @@
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_armor_arc_energy",
+      "property_name": "satsu_iron_man_iron_heart_energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 1,
       "conditions": {
         "enabling": [
           {
             "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "property": "satsu_iron_man_iron_heart_energy",
             "min": 1,
             "max": 2147483647
           }
@@ -2135,7 +2135,7 @@
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_armor_arc_energy",
+      "property_name": "satsu_iron_man_iron_heart_energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 6,
       "conditions": {
@@ -2165,7 +2165,7 @@
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_armor_arc_energy",
+      "property_name": "satsu_iron_man_iron_heart_energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 9,
       "conditions": {
@@ -2190,7 +2190,7 @@
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_armor_arc_energy",
+      "property_name": "satsu_iron_man_iron_heart_energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 15,
       "conditions": {
@@ -2209,6 +2209,72 @@
             "max_score": 2
           }
         ]
+      }
+    },
+    "set_energy_10000..": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_iron_heart_energy",
+      "adjustment_type": "set",
+      "adjustment_amount": 10000,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_iron_heart_energy",
+            "min": 10001,
+            "max": 2147483647
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "recharge_energy_on_block": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_iron_heart_energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 25,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+              }
+            ]
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_iron_heart_energy",
+            "min": -2147483647,
+            "max": 10001
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "set_energy_10000..max": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_iron_heart_energy_max",
+      "adjustment_type": "set",
+      "adjustment_amount": 10000,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_iron_heart_energy",
+            "min": 0,
+            "max": 2147483647
+          }
+        ],
+        "unlocking": []
       }
     }
   }
