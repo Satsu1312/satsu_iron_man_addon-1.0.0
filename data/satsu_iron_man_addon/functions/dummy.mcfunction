@@ -70,8 +70,7 @@ scoreboard objectives add satsu.iron.man.armor.ark.beam.color.icon dummy
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.flame.thrower.icon dummy
 scoreboard objectives remove satsu.iron.man.addon.altura
 scoreboard objectives remove satsu.iron.man.mask
-scoreboard objectives add satsu.iron.man.animation.armor dummy
-scoreboard objectives add satsu.iron.man.animation.armor.reset dummy
+scoreboard objectives remove satsu.iron.man.animation.armor dummy
 scoreboard objectives remove satsu.iron.man.armor.actived.perm
 scoreboard objectives add satsu.iron.man.armor dummy
 scoreboard objectives add satsu.iron.man.armor.actived dummy

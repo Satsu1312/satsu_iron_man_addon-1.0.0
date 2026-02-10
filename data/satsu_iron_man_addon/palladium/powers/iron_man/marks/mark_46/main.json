@@ -2084,10 +2084,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.animation.armor",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
           }
         ],
         "unlocking": [
@@ -2113,10 +2113,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.animation.armor",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
           },
           {
             "type": "palladium:ability_integer_property",
@@ -2204,9 +2204,11 @@
       }
     },
     "give_armor_nearest": {
-      "type": "palladium:dummy",
+      "type": "satsu_iron_man_addon:superpower",
       "hidden": true,
       "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:armor/activated_nano",
+      "capacity": "add",
       "conditions": {
         "enabling": [
           {
@@ -2225,10 +2227,10 @@
                 "type": "palladium:and",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 0,
-                    "max_score": 0
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 0,
+                    "max": 0
                   },
                   {
                     "type": "palladium:or",
@@ -2251,10 +2253,10 @@
                     "max": 2147483647
                   },
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 1,
+                    "max": 1
                   },
                   {
                     "type": "palladium:and",
@@ -2263,10 +2265,10 @@
                         "type": "palladium:not",
                         "conditions": [
                           {
-                            "type": "palladium:objective_score",
-                            "objective": "satsu.iron.man.animation.armor",
-                            "min_score": 1,
-                            "max_score": 1
+                            "type": "palladium:integer_property",
+                            "property": "satsu_animation_armor",
+                            "min": 1,
+                            "max": 1
                           },
                           {
                             "type": "palladium:command_result",
@@ -2301,74 +2303,6 @@
             ]
           }
         ]
-      }
-    },
-    "remove_sentinel": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:sentinels/kill_one_sentinel_same_score_same_armor",
-        ""
-      ],
-      "last_tick_commands": [""],
-      "commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "satsu.iron.man.animation.armor.1"
-          },
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "give_armor_nearest"
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "satsu.iron.man.animation.armor.1": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "score": "satsu.iron.man.animation.armor",
-      "adjustment_type": "add",
-      "adjustment_amount": 1,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "armor_activate.animation_timer.command"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "give_armor_nearest"
-              }
-            ]
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "satsu.iron.man.animation.armor.0": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
-      "hidden": true,
-      "hidden_in_bar": false,
-      "score": "satsu.iron.man.animation.armor",
-      "adjustment_type": "set",
-      "adjustment_amount": 0,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.animation.armor",
-            "min_score": 2
-          }
-        ],
-        "unlocking": []
       }
     },
     "mask_activate": {

@@ -2021,10 +2021,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.animation.armor",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
           }
         ],
         "unlocking": [
@@ -2050,10 +2050,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.animation.armor",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
           },
           {
             "type": "palladium:ability_integer_property",
@@ -2117,17 +2117,13 @@
       }
     },
     "armor_activate.animation_timer.command.mecano": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:superpower",
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.enable_armor" },
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease_nano",
-        "execute as @s[tag=satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=1}] run function satsu_iron_man_addon:sentinels/kill_one_sentinel",
-        "execute as @s[tag=!satsu.iron.man.enable.armor,scores={satsu.iron.man.animation.armor=1}] run function satsu_iron_man_addon:sentinels/kill_one_sentinel"
-      ],
-      "commands": [""],
+      "power": "satsu_iron_man_addon:armor/activated_nano",
+      "capacity": "add",
       "conditions": {
         "enabling": [
           {
@@ -2178,10 +2174,10 @@
                     "max": 2147483647
                   },
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 1,
+                    "max": 1
                   },
                   {
                     "type": "palladium:or",
@@ -2204,10 +2200,10 @@
                     "max": 2147483647
                   },
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 1,
+                    "max": 1
                   },
                   {
                     "type": "palladium:and",
@@ -2276,10 +2272,10 @@
                 "type": "palladium:and",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 0,
-                    "max_score": 0
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 0,
+                    "max": 0
                   },
                   {
                     "type": "palladium:or",
@@ -2302,10 +2298,10 @@
                     "max": 2147483647
                   },
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.animation.armor",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 1,
+                    "max": 1
                   },
                   {
                     "type": "palladium:and",
@@ -2314,10 +2310,10 @@
                         "type": "palladium:not",
                         "conditions": [
                           {
-                            "type": "palladium:objective_score",
-                            "objective": "satsu.iron.man.animation.armor",
-                            "min_score": 1,
-                            "max_score": 1
+                            "type": "palladium:integer_property",
+                            "property": "satsu_animation_armor",
+                            "min": 1,
+                            "max": 1
                           },
                           {
                             "type": "palladium:command_result",
@@ -3081,7 +3077,7 @@
       "list_index": 3,
       "gui_position": [4.3, -1],
       "abilities": [
-       "weapons_wheel.shoulder_rockets",
+        "weapons_wheel.shoulder_rockets",
         "weapons_wheel.rocket",
         "weapons_wheel.flares",
         "weapons_wheel.ark_beam_for_hands",
@@ -3126,7 +3122,7 @@
         ]
       }
     },
-   "weapons_wheel.shoulder_rockets": {
+    "weapons_wheel.shoulder_rockets": {
       "type": "satsu_iron_man_addon:set_property",
       "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/shoulder_rocket.png",
       "title": { "translate": "ability.title.satsu.fireworks" },
