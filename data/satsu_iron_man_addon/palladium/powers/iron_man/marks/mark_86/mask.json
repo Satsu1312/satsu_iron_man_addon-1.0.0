@@ -3,26 +3,20 @@
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "abilities": {
     "return.head": {
-      "type": "palladium:command",
+      "type": "satsu_iron_man_addon:superpower",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:sentinels/kill_one_sentinel_same_score_same_armor",
-        "scoreboard players set @s satsu.iron.man.addon.armor.all 0",
-        "execute as @s unless score @s satsu.iron.man.animation.armor matches 1.. run scoreboard players add @s satsu.iron.man.animation.armor 1",
-        "function satsu_iron_man_addon:marks_parts/throw_parts/head/throw"
-      ],
-      "commands": [""],
+      "power": "satsu_iron_man_addon:armor/parts/throw/all/set",
+      "capacity": "add",
       "conditions": {
         "enabling": [
           {
             "type": "palladium:and",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.armor.head",
-                "min_score": 1,
-                "max_score": 1
+                "type": "satsu_iron_man_addon:has_property",
+                "property": "satsu_iron_man_addon.head",
+                "property_value": "off"
               },
               {
                 "type": "palladium:ability_enabled",

@@ -1,1 +1,0 @@
-scoreboard players set @s satsu.iron.man.addon.armor.chest 0
