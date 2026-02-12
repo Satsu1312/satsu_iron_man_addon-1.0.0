@@ -73,7 +73,7 @@ scoreboard objectives remove satsu.iron.man.mask
 scoreboard objectives remove satsu.iron.man.animation.armor
 scoreboard objectives remove satsu.iron.man.armor.actived.perm
 scoreboard objectives add satsu.iron.man.armor dummy
-scoreboard objectives add satsu.iron.man.armor.actived dummy
+scoreboard objectives remove satsu.iron.man.armor.actived
 scoreboard objectives remove satsu.iron.man.armor.anim
 scoreboard objectives remove satsu.iron.man.flight_speed
 scoreboard objectives add satsu.iron.man.flight_speed.choose dummy

@@ -291,9 +291,7 @@
         "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
         "execute as @e[distance=0.1..8] run effect give @s slowness 1 2 true"
       ],
-      "last_tick_commands": [
-        "effect clear @s minecraft:slowness"
-      ],
+      "last_tick_commands": ["effect clear @s minecraft:slowness"],
       "conditions": {
         "enabling": [
           {
@@ -465,9 +463,7 @@
         "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
         "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
       ],
-      "last_tick_commands": [
-        "tag @s remove striker.ground.attack"
-      ],
+      "last_tick_commands": ["tag @s remove striker.ground.attack"],
       "conditions": {
         "enabling": [
           {
@@ -628,25 +624,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:or",
-                    "conditions": [
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "property_value": "true"
           }
         ]
       }
