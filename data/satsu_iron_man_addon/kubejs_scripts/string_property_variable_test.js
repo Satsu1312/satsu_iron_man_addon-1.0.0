@@ -348,6 +348,13 @@ PalladiumEvents.registerProperties((event) => {
   }
 });
 PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_war_machine_bullets_grenades", "string", "off");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
   event.registerProperty(
     "satsu_iron_man_addon.PrimaryColour",
     "integer",
