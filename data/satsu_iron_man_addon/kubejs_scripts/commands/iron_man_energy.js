@@ -14,7 +14,7 @@ ServerEvents.commandRegistry((event) => {
                 const player = ctx.source.player;
                 const value = Arguments.INTEGER.getResult(ctx, 'number');
                 // Send confirmation message
-                palladium.setProperty(player, "satsu_iron_man_armor_arc_energy", value);
+                palladium.setProperty(player, "satsu_iron_man_iron_man_energy", value);
 
                 return value;
             })
