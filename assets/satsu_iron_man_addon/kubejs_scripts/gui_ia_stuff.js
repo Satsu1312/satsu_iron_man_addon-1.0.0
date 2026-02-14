@@ -50,7 +50,7 @@ function show_label(player, property_name, property_value){
 }
 PalladiumEvents.registerGuiOverlays((event) => {
   event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_1",
+    "satsu_iron_man_addon:im_wm_energy",
     (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
       const player = minecraft.player
       if (
@@ -62,7 +62,7 @@ PalladiumEvents.registerGuiOverlays((event) => {
       ) {
         guiUtil.drawString(
           poseStack,
-          show_label(player, "energy_on_hud", "satsu_iron_man_armor_arc_energy"),
+          show_label(player, "energy_on_hud", "satsu_iron_man_iron_man_energy"),
           50,
           30,
           ia_color(player)
