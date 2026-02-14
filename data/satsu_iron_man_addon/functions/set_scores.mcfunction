@@ -6,7 +6,6 @@ execute as @s unless score @s satsu.iron.man.addon.unlocking.set.block matches 0
 execute as @s unless score @s satsu.iron.man.choose_armor.test matches 0.. run scoreboard players set @s satsu.iron.man.choose_armor.test 2
 execute as @s unless score @s satsu.iron.man.armor.energy.beams matches 0.. run scoreboard players set @s satsu.iron.man.armor.energy.beams 0
 execute as @s unless score @s satsu.iron.man.mask matches 0.. run scoreboard players set @s satsu.iron.man.mask 1
-execute as @s unless score @s satsu.iron.man.armor.actived matches 0.. run scoreboard players set @s satsu.iron.man.armor.actived 0
 execute as @s unless score @s satsu.iron.man.addon.energy.beam.powerfull matches 0.. run scoreboard players set @s satsu.iron.man.addon.energy.beam.powerfull 0
 execute as @s unless score @s satsu.iron.man.flight.set matches 0.. run scoreboard players set @s satsu.iron.man.flight.set 0
 execute as @s unless score @s satsu.iron.man.addon.nano.armor.things matches 0.. run scoreboard players set @s satsu.iron.man.addon.nano.armor.things 0
