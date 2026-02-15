@@ -176,7 +176,9 @@
       "type": "palladium:dummy",
       "icon": "#satsu_iron_man_addon:armor_icon_ability",
       "title": { "translate": "ability.title.satsu.iron_legion_prototype" },
-      "description": { "translate": "description.iron.man.iron_legion_prototype" },
+      "description": {
+        "translate": "description.iron.man.iron_legion_prototype"
+      },
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [0, 0],
@@ -1098,8 +1100,7 @@
             "max_score": 1
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "armor_toughness": {
@@ -1160,8 +1161,7 @@
             ]
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "strength": {
@@ -1547,12 +1547,7 @@
       "type": "palladium:restrict_slots",
       "hidden": true,
       "hidden_in_bar": true,
-      "slots": [
-        "feet",
-        "legs",
-        "head",
-        "curios:back"
-      ],
+      "slots": ["feet", "legs", "head", "curios:back"],
       "conditions": {
         "enabling": [
           {
@@ -6635,6 +6630,37 @@
             "property": "satsu_animation_armor",
             "min": 0,
             "max": 0
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_iron_man_energy",
+            "min": -2147483647,
+            "max": 10501
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "recharge_energy.closed": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_iron_man_energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 4,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.closed.armors",
+            "min_score": 1,
+            "max_score": 1
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
           },
           {
             "type": "palladium:integer_property",
