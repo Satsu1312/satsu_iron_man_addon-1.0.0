@@ -4936,17 +4936,36 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:command_result",
-            "command": "execute at @e[tag=sentinel,limit=1,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on",
-            "comparison": "==",
-            "compare_to": 1,
-            "log": false
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 0,
-            "max": 0
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute at @e[tag=sentinel,limit=1,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on",
+                    "comparison": "==",
+                    "compare_to": 1,
+                    "log": false
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 0,
+                    "max": 0
+                  }
+                ]
+              }
+            ]
           },
           {
             "type": "palladium:integer_property",

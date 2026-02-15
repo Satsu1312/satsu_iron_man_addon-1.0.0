@@ -5463,10 +5463,35 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 0,
-            "max": 0
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_animation_armor",
+                    "min": 0,
+                    "max": 0
+                  }
+                ]
+              }
+            ]
           },
           {
             "type": "palladium:integer_property",
