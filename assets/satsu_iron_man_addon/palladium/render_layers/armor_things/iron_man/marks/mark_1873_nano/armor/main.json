@@ -316,6 +316,65 @@
           ]
         }
       ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/flames/nano_turbine/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/flames/#TURBINE_FLAME.png"
+          }
+        ],
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flames",
+            "property": "value"
+          },
+          "TURBINE_FLAME": {
+            "type": "palladium:condition",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
+                "ability": "water_turbine",
+                "property": "value",
+                "min": 13,
+                "max": 17
+              }
+            ],
+            "true_value": "1",
+            "false_value": "0"
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X_#TURBINE_FLAME"
+      },
+      "tint": "#fd9500",
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_iron_man_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
