@@ -2435,6 +2435,15 @@
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_armor_activated",
             "property_value": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "quantum_mode"
+              }
+            ]
           }
         ]
       }
@@ -2478,21 +2487,40 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "ability": "mask_activate"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_mask_value",
-            "min": 0,
-            "max": 0
-          },
-          {
-            "type": "palladium:not",
+            "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:ability_enabled",
-                "ability": "mask_set.0"
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "mask_activate"
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_mask_value",
+                    "min": 0,
+                    "max": 0
+                  },
+                  {
+                    "type": "palladium:not",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "mask_set.0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "quantum_mode"
+                  }
+                ]
               }
             ]
           }
@@ -4383,8 +4411,15 @@
     },
     "quantum_mode": {
       "type": "palladium:animation_timer",
-      "hidden": true,
+      "icon": {
+        "type": "palladium:item",
+        "item": "satsu_iron_man_addon:clothes/quantum_suit"
+      },
+      "title": { "translate": "ability.title.satsu.quantum_mode" },
+      "description": { "translate": "description.satsu.quantum_mode" },
+      "hidden": false,
       "hidden_in_bar": false,
+      "gui_position": [0.5, -3.5],
       "list_index": 5,
       "start_value": 0,
       "max_value": 17,
