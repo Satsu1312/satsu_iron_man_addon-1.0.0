@@ -7,7 +7,7 @@ let EntityClass = Java.loadClass("net.minecraft.world.entity.Entity");
 
 StartupEvents.registry("palladium:abilities", (event) => {
   event
-    .create("satsu_iron_man_addon:lightning_2d_shield_circle")
+    .create("satsu_iron_man_addon:circular_shield")
     .icon(palladium.createItemIcon("minecraft:shield"))
     .addProperty(
       "max_distance",
