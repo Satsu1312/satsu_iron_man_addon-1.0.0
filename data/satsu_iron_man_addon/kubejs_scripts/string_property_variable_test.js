@@ -432,6 +432,13 @@ PalladiumEvents.registerProperties((event) => {
     }
 });
 PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon_armor_recharge_mode', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
   event.registerProperty(
     "satsu_iron_man_addon.PrimaryColour",
     "integer",

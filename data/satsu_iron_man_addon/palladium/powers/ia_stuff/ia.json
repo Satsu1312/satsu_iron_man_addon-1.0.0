@@ -23,6 +23,7 @@
         "ability_wheel.night_vision",
         "ability_wheel.animation_timer_sentinel_dummy",
         "ability_wheel.scan_enemies_enable",
+        "ability_wheel.recharge_mode_enable",
         "ability_wheel.cook"
       ],
       "conditions": {
@@ -632,6 +633,177 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "scan_false"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "ability_wheel.recharge_mode_enable": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/recharge_mode.png",
+      "title": {
+        "translate": "ability.title.satsu.ia.recharge_mode"
+      },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_mask_value",
+                    "min": 1,
+                    "max": 1
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_iron_man_iron_man_energy",
+                    "min": 1,
+                    "max": 2147483647
+                  }
+                ]
+              },
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "item": "satsu_iron_man_addon:ia_glases"
+                },
+                "slot": "curios:head"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "satsu_iron_man_addon:has_property",
+                        "property": "satsu_iron_man_addon_armor_activated",
+                        "property_value": "on"
+                      },
+                      {
+                        "type": "palladium:command_result",
+                        "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+                      },
+                      {
+                        "type": "palladium:not",
+                        "conditions": [
+                          {
+                            "type": "palladium:item_in_slot",
+                            "item": {
+                              "item": "satsu_iron_man_addon:ia_glases"
+                            },
+                            "slot": "curios:head"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:has_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "property_value": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "armor_skill_bar"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "recharge_mode_false": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_ia_wheel.recharge_mode",
+      "test_value": "false",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ability_wheel.recharge_mode_enable"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.recharge_mode",
+            "property_value": "true"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "recharge_mode_true"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "recharge_mode_true": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_ia_wheel.recharge_mode",
+      "test_value": "true",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ability_wheel.recharge_mode_enable"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.recharge_mode",
+            "property_value": "false"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "recharge_mode_false"
               }
             ]
           }
@@ -2119,7 +2291,9 @@
       "first_tick_commands": [
         "function satsu_iron_man_addon:sentinels/spawn_sentinel"
       ],
-      "commands": ["superpower add satsu_iron_man_addon:armor/set_actived/set_on"],
+      "commands": [
+        "superpower add satsu_iron_man_addon:armor/set_actived/set_on"
+      ],
       "conditions": {
         "enabling": [
           {
@@ -3775,6 +3949,145 @@
             "type": "satsu_iron_man_addon:has_property",
             "property": "satsu_iron_man_addon_armor_activated",
             "property_value": "on"
+          }
+        ]
+      }
+    },
+    "recharge_mode_enable": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/scan.png",
+      "title": { "translate": "ability.title.satsu.scan.enemies" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_iron_man_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_ia_wheel.recharge_mode",
+            "property_value": "true"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:ia_stuff/ia",
+            "ability": "recharge_mode_enable.in.skill.tree"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:has_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "property_value": "on"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "power": "satsu_iron_man_addon:ia_stuff/ia",
+                    "ability": "armor_skill_bar"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:has_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "property_value": "on"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "recharge_mode_enable.action.actived": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_armor_recharge_mode",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "recharge_mode_enable"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_armor_recharge_mode",
+            "property_value": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "recharge_mode_enable.action.disable"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "recharge_mode_enable.action.disable": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_armor_recharge_mode",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "recharge_mode_enable"
+          },
+          {
+            "type": "satsu_iron_man_addon:has_property",
+            "property": "satsu_iron_man_addon_armor_recharge_mode",
+            "property_value": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "recharge_mode_enable.action.actived"
+              }
+            ]
           }
         ]
       }
