@@ -2,7 +2,7 @@ ServerEvents.commandRegistry(event => {
     const { commands: Commands } = event;
 
     event.register(
-        Commands.literal("satsu_test")
+        Commands.literal("satsu_armor_stand_string")
             .executes(ctx => {
                 const player = ctx.source.player;
                 let value = palladium.getProperty(player, 'satsu_iron_man_addon_mark_property');
