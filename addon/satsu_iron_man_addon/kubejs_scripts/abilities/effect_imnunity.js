@@ -9,11 +9,11 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "The effect the entity is immune to"
     )
     .tick((entity, entry, holder, enabled) => {
+      if (!enabled) return;
+
       const effect = entry.getPropertyByName("effect");
-      if (enabled) {
-        if (entity.hasEffect(effect)) {
-          entity.removeEffect(effect);
-        }
+      if (entity.hasEffect(effect)) {
+        entity.removeEffect(effect);
       }
     });
 });

@@ -19,7 +19,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
     )
     .addProperty("number", "integer", 1, "number of the amount in the property")
     // Handler for what happens during EVERY tick of the ability being active, make sure to check the 'enabled' parameter
-    .tick((entity, entry, holder, enabled) => {
+    .firstTick((entity, entry, holder, enabled) => {
       if (enabled) {
         const name = entry.getPropertyByName("name");
         const number = entry.getPropertyByName("number");
@@ -52,7 +52,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "set false or true"
     )
     // Handler for what happens during EVERY tick of the ability being active, make sure to check the 'enabled' parameter
-    .tick((entity, entry, holder, enabled) => {
+    .firstTick((entity, entry, holder, enabled) => {
       if (enabled) {
         const name = entry.getPropertyByName("name");
         const test_value = entry.getPropertyByName("test_value");
