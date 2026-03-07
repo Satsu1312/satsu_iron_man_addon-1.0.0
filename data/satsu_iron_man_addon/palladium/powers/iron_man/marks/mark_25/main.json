@@ -1389,13 +1389,18 @@
         ]
       }
     },
+    "set_mark_number_name": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_mark_property",
+      "test_value": "mark_25"
+    },
     "set.scoreboard.armor.23.mark.25": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
-      "first_tick_commands": [
-        "scoreboard players set @s satsu.iron.man.armor 25"
-      ],
+      "first_tick_commands": [""],
       "commands": [""],
       "last_tick_commands": [
         "execute if entity @e[tag=sentinel] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID run function satsu_iron_man_addon:sentinels/kill_one_sentinel",
@@ -4053,9 +4058,7 @@
         "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
         "execute as @e[distance=0.1..8] run effect give @s slowness 1 2 true"
       ],
-      "last_tick_commands": [
-        "effect clear @s minecraft:slowness"
-      ],
+      "last_tick_commands": ["effect clear @s minecraft:slowness"],
       "conditions": {
         "enabling": [
           {
@@ -4216,9 +4219,7 @@
         "execute at @a run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
         "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
       ],
-      "last_tick_commands": [
-        "tag @s remove striker.ground.attack"
-      ],
+      "last_tick_commands": ["tag @s remove striker.ground.attack"],
       "conditions": {
         "enabling": [
           {
