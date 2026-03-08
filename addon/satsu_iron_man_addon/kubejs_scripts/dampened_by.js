@@ -1,47 +1,33 @@
 /*
-    @author Hertz
-    @version 2.0
+  @author Hertz
+  @version 2.1
 */
 
-var BuiltInRegistries = Java.loadClass(
+const BuiltInRegistries = Java.loadClass(
   "net.minecraft.core.registries.BuiltInRegistries"
 );
 
 function resolveAllegedBooleanFromObject(thing) {
-  if (thing.toString() == "true") {
-    return true;
-  }
-  if (thing.toString() == "false") {
-    return false;
-  }
+  const str = thing?.toString();
+  if (str === "true") return true;
+  if (str === "false") return false;
   return null;
 }
 
 StartupEvents.registry("palladium:condition_serializer", (event) => {
   event
     .create("satsu_iron_man_addon:dampened_by")
-    .addProperty(
-      "effect",
-      "string",
-      "minecraft:health_boost",
-      "Effect to search for"
-    )
+    .addProperty("effect", "string", "minecraft:health_boost", "Effect to search for")
     .test((entity, props) => {
-      let targetEffect = props.get("effect");
-      var toReturn = false;
+      if (!props) return false;
 
-      try {
-        var fetchedEffect = BuiltInRegistries.MOB_EFFECT.get(targetEffect);
-        if (fetchedEffect == null) {
-          // throw new Error(`Target effect ${targetEffect} not found!`)
-          toReturn = false;
-        } else {
-          toReturn = entity.hasEffect(targetEffect);
-        }
-      } catch (err) {
-        console.log(err);
-      }
+      const targetEffect = props.get("effect");
+      const fetchedEffect = BuiltInRegistries.MOB_EFFECT.get(targetEffect);
 
-      return !toReturn;
+      // Si el efecto no existe → condición no válida
+      if (!fetchedEffect) return true;
+
+      // Si el entity tiene el efecto → condición fallida
+      return !entity.hasEffect(targetEffect);
     });
 });
