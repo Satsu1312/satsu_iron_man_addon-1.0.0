@@ -1370,27 +1370,17 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "tag": "satsu_iron_man_addon:armors/main"
-                    },
-                    "slot": "chest"
-                  },
-                  {
-                    "type": "palladium:string_property",
-                    "property": "satsu_iron_man_addon_armor_activated",
-                    "comparator": "equals",
-                    "compare_to": "on"
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/main"
+            },
+            "slot": "chest"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ]
       }
@@ -4525,45 +4515,35 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_29/main",
+            "ability": "ground.attack",
+            "property": "value",
+            "min": 1,
+            "max": 6
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_29/main",
+            "ability": "ground.attack"
+          },
+          {
+            "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:and",
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              },
+              {
+                "type": "palladium:or",
                 "conditions": [
                   {
                     "type": "palladium:ability_integer_property",
-                    "power": "satsu_iron_man_addon:iron_man/marks/mark_29/main",
-                    "ability": "ground.attack",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "armor_sentinel_anim",
                     "property": "value",
                     "min": 1,
                     "max": 6
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "power": "satsu_iron_man_addon:iron_man/marks/mark_29/main",
-                    "ability": "ground.attack"
-                  },
-                  {
-                    "type": "palladium:not",
-                    "conditions": [
-                      {
-                        "type": "palladium:command_result",
-                        "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
-                      },
-                      {
-                        "type": "palladium:or",
-                        "conditions": [
-                          {
-                            "type": "palladium:ability_integer_property",
-                            "power": "satsu_iron_man_addon:kube_animations",
-                            "ability": "armor_sentinel_anim",
-                            "property": "value",
-                            "min": 1,
-                            "max": 6
-                          }
-                        ]
-                      }
-                    ]
                   }
                 ]
               }
@@ -4595,25 +4575,15 @@
             "compare_to": "off"
           },
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "ground.attack",
-                    "property": "value",
-                    "min": 12,
-                    "max": 12
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "ground.attack"
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:ability_integer_property",
+            "ability": "ground.attack",
+            "property": "value",
+            "min": 12,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground.attack"
           }
         ],
         "unlocking": []
@@ -4645,25 +4615,15 @@
             "compare_to": "on"
           },
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "ground.attack",
-                    "property": "value",
-                    "min": 12,
-                    "max": 12
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "ground.attack"
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:ability_integer_property",
+            "ability": "ground.attack",
+            "property": "value",
+            "min": 12,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground.attack"
           }
         ],
         "unlocking": []
@@ -4679,25 +4639,15 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "ground.attack",
-                    "property": "value",
-                    "min": 12,
-                    "max": 12
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "ground.attack"
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:ability_integer_property",
+            "ability": "ground.attack",
+            "property": "value",
+            "min": 12,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground.attack"
           }
         ],
         "unlocking": []
@@ -4713,25 +4663,15 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "ground.attack",
-                    "property": "value",
-                    "min": 12,
-                    "max": 12
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "ground.attack"
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:ability_integer_property",
+            "ability": "ground.attack",
+            "property": "value",
+            "min": 12,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground.attack"
           }
         ],
         "unlocking": []
@@ -5184,25 +5124,15 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "flares_flames",
-                    "property": "value",
-                    "min": 19,
-                    "max": 19
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:ability_enabled",
+            "ability": "flares_flames"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "flares_flames",
+            "property": "value",
+            "min": 19,
+            "max": 19
           }
         ]
       }
@@ -5244,25 +5174,15 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "flares_flames",
-                    "property": "value",
-                    "min": 19,
-                    "max": 19
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:ability_enabled",
+            "ability": "flares_flames"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "flares_flames",
+            "property": "value",
+            "min": 19,
+            "max": 19
           }
         ]
       }
@@ -5494,25 +5414,15 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "drill.ground",
-                    "property": "value",
-                    "min": 1,
-                    "max": 32
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "drill.ground"
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:ability_integer_property",
+            "ability": "drill.ground",
+            "property": "value",
+            "min": 1,
+            "max": 32
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "drill.ground"
           }
         ]
       }
@@ -5525,30 +5435,20 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
+            "type": "palladium:ability_integer_property",
+            "ability": "energy_beam",
+            "property": "value",
+            "min": 6,
+            "max": 6
+          },
+          {
+            "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "energy_beam",
-                    "property": "value",
-                    "min": 6,
-                    "max": 6
-                  },
-                  {
-                    "type": "palladium:not",
-                    "conditions": [
-                      {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.addon.energy.beam.powerfull",
-                        "min_score": 1,
-                        "max_score": 4
-                      }
-                    ]
-                  }
-                ]
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.addon.energy.beam.powerfull",
+                "min_score": 1,
+                "max_score": 4
               }
             ]
           }
