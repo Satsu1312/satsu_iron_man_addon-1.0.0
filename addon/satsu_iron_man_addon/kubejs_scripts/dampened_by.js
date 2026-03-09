@@ -1,18 +1,9 @@
 /*
   @author Hertz
-  @version 2.1
+  @version 2.2
 */
 
-const BuiltInRegistries = Java.loadClass(
-  "net.minecraft.core.registries.BuiltInRegistries"
-);
-
-function resolveAllegedBooleanFromObject(thing) {
-  const str = thing?.toString();
-  if (str === "true") return true;
-  if (str === "false") return false;
-  return null;
-}
+const BuiltInRegistries = Java.loadClass("net.minecraft.core.registries.BuiltInRegistries");
 
 StartupEvents.registry("palladium:condition_serializer", (event) => {
   event
@@ -21,13 +12,13 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
     .test((entity, props) => {
       if (!props) return false;
 
-      const targetEffect = props.get("effect");
-      const fetchedEffect = BuiltInRegistries.MOB_EFFECT.get(targetEffect);
+      const effectId = props.get("effect");
+      const effect = BuiltInRegistries.MOB_EFFECT.get(effectId);
 
-      // Si el efecto no existe → condición no válida
-      if (!fetchedEffect) return true;
+      // Si el efecto no existe → condición válida (no bloquea)
+      if (!effect) return true;
 
-      // Si el entity tiene el efecto → condición fallida
-      return !entity.hasEffect(targetEffect);
+      // Condición válida solo si el entity NO tiene el efecto
+      return !entity.hasEffect(effectId);
     });
 });
