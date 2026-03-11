@@ -122,16 +122,15 @@
       }
     },
     "ability_wheel.enabled_remote": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "satsu_iron_man_addon:set_property_string",
       "icon": "satsu_iron_man_addon:textures/gui/armors/ia/abilities/remote.png",
       "title": {
         "translate": "ability.title.satsu.remote.mode"
       },
       "hidden": true,
       "hidden_in_bar": false,
-      "score": "satsu.iron.man.addon.ia.wheel.things",
-      "adjustment_type": "set",
-      "adjustment_amount": 1,
+      "name": "satsu_ia_wheel.stuff",
+      "test_value": "remote",
       "conditions": {
         "enabling": [
           {
@@ -385,16 +384,15 @@
       }
     },
     "ability_wheel.animation_timer_sentinel_dummy": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "satsu_iron_man_addon:set_property_string",
       "icon": "satsu_iron_man_addon:textures/gui/armors/ia/abilities/sentinel.png",
       "title": { "translate": "ability.title.satsu.enable.sentinel" },
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 0,
       "description": { "translate": "description.ia_skill_stat" },
-      "score": "satsu.iron.man.addon.ia.wheel.things",
-      "adjustment_type": "set",
-      "adjustment_amount": 3,
+      "name": "satsu_ia_wheel.stuff",
+      "test_value": "sentinel",
       "conditions": {
         "enabling": [
           {
@@ -1101,10 +1099,10 @@
             "max": 2147483647
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.ia.wheel.things",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:string_property",
+            "property": "satsu_ia_wheel.stuff",
+            "comparator": "equals",
+            "compare_to": "remote"
           },
           {
             "type": "palladium:not",
@@ -2160,10 +2158,10 @@
             "max": 2147483647
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.ia.wheel.things",
-            "min_score": 3,
-            "max_score": 3
+            "type": "palladium:string_property",
+            "property": "satsu_ia_wheel.stuff",
+            "comparator": "equals",
+            "compare_to": "sentinel"
           },
           {
             "type": "palladium:item_in_slot",
@@ -3991,7 +3989,7 @@
       },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 1,
+      "list_index": 3,
       "conditions": {
         "enabling": [
           {
