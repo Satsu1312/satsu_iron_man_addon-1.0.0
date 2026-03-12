@@ -1,0 +1,294 @@
+{
+  "name": { "translate": "ability.title.repulsor" },
+  "allow_bar_shrinking": true,
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "icon": "satsu_iron_man_addon:textures/item/watch.png",
+  "abilities": {
+    "strength.right.arm": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "ebd2289e-cb22-4076-b63d-2eb52a0e2fd9",
+      "amount": 1.5,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:arc_reactor"
+            },
+            "slot": "curios:arc_reactor"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hide_player.right.arm": {
+      "type": "palladium:hide_body_part",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "body_parts": ["right_arm_overlay"],
+      "affects_first_person": true,
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "animation_timer",
+            "property": "value",
+            "min": 1,
+            "max": 8
+          }
+        ]
+      }
+    },
+    "energy.pulse_right": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "ticks": 6,
+            "cooldown": 80,
+            "key_type": "right_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:arc_reactor"
+            },
+            "slot": "curios:arc_reactor"
+          }
+        ]
+      }
+    },
+    "energyblast.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_armor_arc_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "energy.pulse_right",
+            "min": 5,
+            "max": 5
+          }
+        ]
+      }
+    },
+    "energy_projectile.right.damage": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 1,
+        "Damage": 0.5,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse_watch",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse_watch",
+        "Appearances": [
+          {
+            "Type": "trail",
+            "Trail": "satsu_iron_man_addon:blast/yellow/main"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "energy.pulse_right",
+            "min": 5,
+            "max": 5
+          }
+        ]
+      }
+    },
+    "energyblast.throw.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:rivals_iron_man_blast_mcu",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "energy_projectile.right.damage"
+          }
+        ]
+      }
+    },
+    "no-list:aim_main_arm": {
+      "type": "palladium:aim",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "time": 1,
+      "arm": "main_arm",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "dampened"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "flash"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "no_projectile_effect.give.tag": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add maximum.pulse"],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "energy.pulse_right"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "no_projectile_effect.animation_remove": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "maximum.pulse"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse_right"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "no_projectile_effect.remove.tag": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s remove maximum.pulse"],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_projectile_effect.animation_remove",
+            "property": "value",
+            "min": 15,
+            "max": 15
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
