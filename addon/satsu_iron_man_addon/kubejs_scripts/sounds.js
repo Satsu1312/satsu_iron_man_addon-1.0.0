@@ -147,3 +147,6 @@ StartupEvents.registry("sound_event", (event) => {
 StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.armor.war_machine.mark.torret");
 });
+StartupEvents.registry("sound_event", (event) => {
+  event.create("satsu_iron_man_addon:entity.armor.alert_sound");
+});
