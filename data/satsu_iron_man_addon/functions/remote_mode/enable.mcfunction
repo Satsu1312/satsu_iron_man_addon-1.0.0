@@ -1,3 +1,4 @@
+curios replace head 0 @s with satsu_iron_man_addon:ia_glases{Enchantments:[{lvl:1,id:binding_curse}],HideFlags:1} 1
 execute as @s[tag=sentinel.false] run tag @s remove sentinel.false
 spawnpoint @s
 attribute @s minecraft:generic.max_health base set 10

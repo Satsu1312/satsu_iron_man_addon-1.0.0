@@ -6,3 +6,4 @@ execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run kill @s
 function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground
 execute if entity @e[tag=sentinel.test,distance=0..30] run tag @s add give.sentinel.one
 scoreboard players reset @s satsu.iron.man.armor.remote
+curios replace head 0 @s with satsu_iron_man_addon:ia_glases 1

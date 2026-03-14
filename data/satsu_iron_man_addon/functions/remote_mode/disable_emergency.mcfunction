@@ -7,3 +7,4 @@ superpower add satsu_iron_man_addon:armor/activated
 execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run function satsu_iron_man_addon:ia/swap_sentinels
 execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run kill @s
 scoreboard players reset @s satsu.iron.man.armor.remote
+curios replace head 0 @s with satsu_iron_man_addon:ia_glases 1
