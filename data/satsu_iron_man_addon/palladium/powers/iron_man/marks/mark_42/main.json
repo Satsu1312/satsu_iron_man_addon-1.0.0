@@ -10468,6 +10468,36 @@
         "unlocking": []
       }
     },
+    "repair_self": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/marks/mark_42/repair_self/main",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "armor_piece": 2,
+            "divider": 2,
+            "operation_type": ">"
+          },
+          {
+            "type": "palladium:command_result",
+            "command": "execute at @e[tag=sentinel,limit=1,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on",
+            "comparison": "==",
+            "compare_to": 1,
+            "log": false
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 0,
+            "max": 0
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "recharge_energy.closed": {
       "type": "satsu_iron_man_addon:palladium_property_modifier",
       "hidden": true,
