@@ -1,0 +1,121 @@
+{
+  "name": { "translate": "ability.title.satsu.extremis_3.0" },
+  "background": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
+  "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/reactor_arc.png",
+  "allow_bar_shrinking": true,
+  "abilities": {
+    "center": {
+      "type": "palladium:dummy",
+      "icon": "minecraft:bread",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": "null",
+      "description": "null",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "right_click",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ]
+      }
+    },
+    "nano_stabilizer_off": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_extremis_3_0",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "center"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_extremis_3_0",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_stabilizer_on"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_stabilizer_on": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_extremis_3_0",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "center"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_extremis_3_0",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_stabilizer_off"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "give_stun": {
+      "type": "palladium:command",
+      "icon": "minecraft:bread",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": "null",
+      "description": "null",
+      "first_tick_commands": [
+        "effect give @e[distance=0.1..30] satsu_iron_man_addon:extremis_3_0_stun infinite 255"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "effect clear @e[distance=0.1..30] satsu_iron_man_addon:extremis_3_0_stun"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 300,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ]
+      }
+    }
+  }
+}
