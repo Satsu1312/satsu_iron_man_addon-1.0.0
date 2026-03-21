@@ -2,7 +2,6 @@ NetworkEvents.dataReceived("satsu_iron_man_addon.weaponsSystemKey", event => {
     let entity = event.entity;
     const player = event.player;
     player.persistentData.putBoolean("satsu_iron_man_addon.weaponsSystemKey_pressed", true);
-    entity.setStatusMessage("pressed key");
 });
 
 // Ejemplo de uso en otro evento

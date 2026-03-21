@@ -5,7 +5,7 @@ if (Platform.isClientEnvironment()) {
     const $GLFWKey = Java.loadClass("org.lwjgl.glfw.GLFW");
 
     global["WEAPONS_SYSTEM"] = new $KeyMapping(
-      "weapons_system",
+      "satsu_iron_man_addon.keys.weapons_system",
       $GLFWKey.GLFW_KEY_UNKNOWN,
       "satsu_iron_man_addon.keys"
     );
