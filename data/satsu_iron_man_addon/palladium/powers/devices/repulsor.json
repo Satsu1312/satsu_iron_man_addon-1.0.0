@@ -43,6 +43,95 @@
         ]
       }
     },
+    "turn_off_on": {
+      "type": "palladium:dummy",
+      "icon": "#satsu_iron_man_addon:ark_disable_enable",
+      "title": {
+        "translate": "ability.title.satsu.disable.energy.beam.or.pulse"
+      },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:pdata_boolean",
+            "data": "satsu_iron_man_addon.weaponsSystemKey_pressed",
+            "value": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:arc_reactor"
+            },
+            "slot": "curios:arc_reactor"
+          }
+        ]
+      }
+    },
+    "energy.pulse.actived": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_device_repulser",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "turn_off_on"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_device_repulser",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse.disable"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy.pulse.disable": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_device_repulser",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "turn_off_on"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_device_repulser",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
     "energy.pulse_right": {
       "type": "palladium:repeating_animation_timer",
       "hidden": true,
@@ -70,6 +159,12 @@
                 "compare_to": "on"
               }
             ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_device_repulser",
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:item_in_slot",
