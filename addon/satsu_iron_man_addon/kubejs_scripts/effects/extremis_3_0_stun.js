@@ -9,5 +9,5 @@ StartupEvents.registry("mob_effect", (event) => {
       superpowerUtil.addSuperpower(entity, "satsu_iron_man_addon:effect/extremis_3_0_stun");
     })
     //Replace HEXCODE below with a color's Hex code
-    .color(0x80f29f);
+    .color(0xbad5fa);
 });
