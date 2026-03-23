@@ -1,19 +1,25 @@
 {
   "name": { "translate": "ability.title.satsu.extremis_3.0" },
-  "background": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
-  "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/reactor_arc.png",
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/extremis_3_0.png",
+  "background": "satsu_iron_man_addon:textures/block/extremis_3_0.png",
+  "icon": {
+    "type": "palladium:item",
+    "item": "satsu_iron_man_addon:extremis_3_0/phone"
+  },
   "allow_bar_shrinking": true,
   "abilities": {
-    "center": {
+    "enable_virus": {
       "type": "palladium:dummy",
-      "icon": "minecraft:bread",
-      "title": "null",
+      "icon": "satsu_iron_man_addon:textures/gui/extremis_3_0/extremis_self_enable.png",
+      "title": {
+        "translate": "ability.title.satsu.extremis_3.0.enable_virus"
+      },
+      "description": { "translate": "description.satsu.extremis_3_0.enable_virus" },
       "bar_color": "light_gray",
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 0,
       "gui_position": "null",
-      "description": "null",
       "conditions": {
         "enabling": [
           {
@@ -26,7 +32,7 @@
         ]
       }
     },
-    "nano_stabilizer_off": {
+    "virus_off": {
       "type": "satsu_iron_man_addon:set_property_string",
       "hidden": true,
       "hidden_in_bar": true,
@@ -36,7 +42,7 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "ability": "center"
+            "ability": "enable_virus"
           },
           {
             "type": "palladium:string_property",
@@ -49,7 +55,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "ability": "nano_stabilizer_on"
+                "ability": "virus_on"
               }
             ]
           }
@@ -57,7 +63,7 @@
         "unlocking": []
       }
     },
-    "nano_stabilizer_on": {
+    "virus_on": {
       "type": "satsu_iron_man_addon:set_property_string",
       "hidden": true,
       "hidden_in_bar": true,
@@ -67,7 +73,7 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "ability": "center"
+            "ability": "enable_virus"
           },
           {
             "type": "palladium:string_property",
@@ -80,7 +86,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "ability": "nano_stabilizer_off"
+                "ability": "virus_off"
               }
             ]
           }
@@ -90,14 +96,16 @@
     },
     "give_stun": {
       "type": "palladium:command",
-      "icon": "minecraft:bread",
-      "title": "null",
+      "icon": "satsu_iron_man_addon:textures/gui/extremis_3_0/extremis_stun.png",
+      "title": {
+        "translate": "ability.title.satsu.extremis_3.0.stun_virus"
+      },
+      "description": { "translate": "description.satsu.extremis_3_0.stun_virus" },
       "bar_color": "light_gray",
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 1,
       "gui_position": "null",
-      "description": "null",
       "first_tick_commands": [
         "effect give @e[distance=0.1..30] satsu_iron_man_addon:extremis_3_0_stun infinite 255"
       ],
