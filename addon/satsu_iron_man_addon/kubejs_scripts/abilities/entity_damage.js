@@ -8,7 +8,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .addProperty("damage_type", "string", "minecraft:player_attack", "Damage type")
     .addProperty("effect", "string", "null", "Potion effect applied")
     .addProperty("fire_seconds", "float", 0.0, "Seconds target burns")
-    .addProperty("potion_seconds", "integer", 0, "Potion duration")
+    .addProperty("potion_seconds", "integer", 0, "Potion duration (seconds)")
     .addProperty("potion_amplifier", "integer", 0, "Potion level")
     .addProperty("hide_particles", "boolean", false, "Hide potion particles")
     .addProperty("range", "float", 0.0, "Raytrace range")
@@ -54,12 +54,13 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       // Aplicar efecto de poción
       if (effect !== "null" && potion_seconds > 0) {
+        const durationTicks = potion_seconds * 20; // convertir segundos a ticks
         target.potionEffects.add(
-          effect,
-          potion_seconds,
-          potion_amplifier,
-          hide_particles,   // ambient
-          !hide_particles   // show particles
+          effect,               // ID del efecto, ej. "minecraft:strength"
+          durationTicks,        // duración en ticks
+          potion_amplifier,     // nivel del efecto
+          false,                // ambient (normalmente false)
+          !hide_particles       // showParticles (true si no ocultas partículas)
         );
       }
     });
