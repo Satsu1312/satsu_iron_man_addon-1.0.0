@@ -15,10 +15,18 @@
 
         if (target && target.isAlive() && target != entity) {
           let powers = palladium.powers.getPowerIds(target);
+
+          // Nombre del objetivo
           entity.server.runCommandSilent(
             `execute as ${entity.name.string} run tellraw @s [{"text":"Target: ","color":"gray"},{"text":"${target.name.string}","color":"white"}]`,
           );
 
+          // Vida actual y máxima
+          entity.server.runCommandSilent(
+            `execute as ${entity.name.string} run tellraw @s [{"text":"Health: ","color":"gray"},{"text":"${target.health} / ${target.maxHealth}","color":"red"}]`,
+          );
+
+          // Lista de poderes
           powers.forEach((power) => {
             let powerId = power.toString();
 
