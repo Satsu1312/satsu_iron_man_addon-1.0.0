@@ -462,6 +462,62 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
   }
 });
 PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.toughness", "string", "none");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.flight_speed", "string", "none");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.strenght", "string", "none");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.durability", "string", "none");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.blast", "string", "none");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.weapons.rockets", "string", "none");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.weapons.flares", "string", "none");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.weapons", "string", "none");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
   event.registerProperty(
     "satsu_iron_man_addon.PrimaryColour",
     "integer",
