@@ -14,28 +14,28 @@ StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:new_mask_sound");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:new_blast");
+  event.create("satsu_iron_man_addon:repulsor_rivals");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:new_blast_potencied");
+  event.create("satsu_iron_man_addon:repulsor_rivals_potencied");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:rivals_iron_man_blast_mcu");
+  event.create("satsu_iron_man_addon:repulsor_mcu");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:rivals_iron_man_blast_potencied_mcu");
+  event.create("satsu_iron_man_addon:repulsor_mcu_potiencied");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:rivals_iron_man_steampower_blast");
+  event.create("satsu_iron_man_addon:repulsor_steampower");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:rivals_iron_man_steampower_blast_potencied");
+  event.create("satsu_iron_man_addon:repulsor_steampower_potencied");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:rivals_iron_man_big_shot_blast");
+  event.create("satsu_iron_man_addon:repulsor_big_shot_blast");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:rivals_iron_man_big_shot_blast_potencied");
+  event.create("satsu_iron_man_addon:repulsor_big_shot_blast_potencied");
 });
 StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:rivals_chest_beam");
