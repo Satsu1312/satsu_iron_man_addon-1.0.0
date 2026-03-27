@@ -17,12 +17,19 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "satsu_iron_man_addon_mod.property",
       "The Palladium property to sync",
     )
+    .addProperty(
+      "syncMode",
+      "string",
+      "property",
+      "Sync mode (property, nbt, mixed)",
+    )
     .tick((entity, entry, holder, enabled) => {
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
       const nbtKey = entry.getPropertyByName("nbtKey");
       const propertyKey = entry.getPropertyByName("propertyKey");
+      const syncMode = entry.getPropertyByName("syncMode");
 
       let item = null;
 
@@ -55,12 +62,27 @@ StartupEvents.registry("palladium:abilities", (event) => {
       let nbtValue = itemNBT[nbtKey] != null ? parseInt(itemNBT[nbtKey]) : null;
       let propValue = palladium.getProperty(entity, propertyKey);
 
-      // Decidir valor final: si existe NBT lo usamos, si no, usamos propiedad
       let finalValue = null;
-      if (nbtValue != null && !isNaN(nbtValue)) {
-        finalValue = nbtValue;
-      } else if (propValue != null && !isNaN(propValue)) {
-        finalValue = parseInt(propValue);
+
+      // --- Modo de sincronización ---
+      switch (syncMode) {
+        case "property":
+          if (propValue != null && !isNaN(propValue)) {
+            finalValue = parseInt(propValue);
+          }
+          break;
+        case "nbt":
+          if (nbtValue != null && !isNaN(nbtValue)) {
+            finalValue = nbtValue;
+          }
+          break;
+        case "mixed":
+          if (nbtValue != null && propValue != null) {
+            finalValue = Math.min(nbtValue, propValue);
+          } else {
+            finalValue = nbtValue ?? propValue;
+          }
+          break;
       }
 
       if (finalValue == null) return;
@@ -70,18 +92,26 @@ StartupEvents.registry("palladium:abilities", (event) => {
       itemNBT[nbtKey] = finalValue;
       item = item.withNBT(itemNBT);
 
-      // Reemplazar ítem en slot
-      entity.setItemSlot(
-        slotName === "boots"
-          ? "feet"
-          : slotName === "leggings"
-            ? "legs"
-            : slotName === "chestplate"
-              ? "chest"
-              : slotName === "helmet"
-                ? "head"
-                : slotName,
-        item,
-      );
+      // Reemplazar ítem en slot (sin sonido en armaduras)
+      switch (slotName) {
+        case "mainhand":
+          entity.setItemSlot("mainhand", item);
+          break;
+        case "offhand":
+          entity.setItemSlot("offhand", item);
+          break;
+        case "boots":
+          entity.inventory.setItem(36, item); // botas
+          break;
+        case "leggings":
+          entity.inventory.setItem(37, item); // leggings
+          break;
+        case "chestplate":
+          entity.inventory.setItem(38, item); // pechera
+          break;
+        case "helmet":
+          entity.inventory.setItem(39, item); // casco
+          break;
+      }
     });
 });

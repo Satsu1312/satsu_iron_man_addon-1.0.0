@@ -26,7 +26,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       let item = null;
 
-      // Usar getItemBySlot para todos los casos
+      // Obtener ítem según slot
       switch (slotName) {
         case "mainhand":
           item = entity.getItemBySlot("mainhand");

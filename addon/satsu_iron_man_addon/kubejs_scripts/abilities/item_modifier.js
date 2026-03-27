@@ -29,10 +29,10 @@ StartupEvents.registry("palladium:abilities", (event) => {
       // Obtener ítem según slot
       switch (slotName) {
         case "mainhand":
-          item = entity.getMainHandItem();
+          item = entity.getItemBySlot("mainhand");
           break;
         case "offhand":
-          item = entity.getOffHandItem();
+          item = entity.getItemBySlot("offhand");
           break;
         case "boots":
           item = entity.getItemBySlot("feet");
@@ -66,16 +66,16 @@ StartupEvents.registry("palladium:abilities", (event) => {
           entity.setItemSlot("offhand", item);
           break;
         case "boots":
-          entity.setItemSlot("feet", item);
+          entity.inventory.setItem(36, item); // botas
           break;
         case "leggings":
-          entity.setItemSlot("legs", item);
+          entity.inventory.setItem(37, item); // leggings
           break;
         case "chestplate":
-          entity.setItemSlot("chest", item);
+          entity.inventory.setItem(38, item); // pechera
           break;
         case "helmet":
-          entity.setItemSlot("head", item);
+          entity.inventory.setItem(39, item); // casco
           break;
       }
     });

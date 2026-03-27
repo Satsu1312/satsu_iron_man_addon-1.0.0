@@ -59,18 +59,26 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       item = item.withNBT(itemNBT);
 
-      // Reemplazar ítem en slot
-      entity.setItemSlot(
-        slotName === "boots"
-          ? "feet"
-          : slotName === "leggings"
-            ? "legs"
-            : slotName === "chestplate"
-              ? "chest"
-              : slotName === "helmet"
-                ? "head"
-                : slotName,
-        item,
-      );
+      // Reemplazar ítem en slot (sin sonido en armaduras)
+      switch (slotName) {
+        case "mainhand":
+          entity.setItemSlot("mainhand", item);
+          break;
+        case "offhand":
+          entity.setItemSlot("offhand", item);
+          break;
+        case "boots":
+          entity.inventory.setItem(36, item); // botas
+          break;
+        case "leggings":
+          entity.inventory.setItem(37, item); // leggings
+          break;
+        case "chestplate":
+          entity.inventory.setItem(38, item); // pechera
+          break;
+        case "helmet":
+          entity.inventory.setItem(39, item); // casco
+          break;
+      }
     });
 });
