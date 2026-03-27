@@ -26,25 +26,25 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       let item = null;
 
-      // Mapear slotName a la API correcta
+      // Usar getItemBySlot para todos los casos
       switch (slotName) {
         case "mainhand":
-          item = entity.getMainHandItem();
+          item = entity.getItemBySlot("mainhand");
           break;
         case "offhand":
-          item = entity.getOffHandItem();
+          item = entity.getItemBySlot("offhand");
           break;
         case "boots":
-          item = entity.bootsItem;
+          item = entity.getItemBySlot("feet");
           break;
         case "leggings":
-          item = entity.leggingsItem;
+          item = entity.getItemBySlot("legs");
           break;
         case "chestplate":
-          item = entity.chestplateItem;
+          item = entity.getItemBySlot("chest");
           break;
         case "helmet":
-          item = entity.helmetItem;
+          item = entity.getItemBySlot("head");
           break;
         default:
           return;
@@ -55,7 +55,6 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const itemNBT = item.nbt;
       if (itemNBT[nbtKey] == null) return;
 
-      // Leer valor del NBT: soporta tanto números como strings numéricos
       let rawValue = itemNBT[nbtKey];
       let value = parseInt(rawValue);
 

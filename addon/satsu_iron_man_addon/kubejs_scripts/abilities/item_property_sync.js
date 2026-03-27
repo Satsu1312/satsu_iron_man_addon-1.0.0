@@ -26,25 +26,24 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       let item = null;
 
-      // Mapear slotName a la API correcta
       switch (slotName) {
         case "mainhand":
-          item = entity.getMainHandItem();
+          item = entity.getItemBySlot("mainhand");
           break;
         case "offhand":
-          item = entity.getOffHandItem();
+          item = entity.getItemBySlot("offhand");
           break;
         case "boots":
-          item = entity.bootsItem;
+          item = entity.getItemBySlot("feet");
           break;
         case "leggings":
-          item = entity.leggingsItem;
+          item = entity.getItemBySlot("legs");
           break;
         case "chestplate":
-          item = entity.chestplateItem;
+          item = entity.getItemBySlot("chest");
           break;
         case "helmet":
-          item = entity.helmetItem;
+          item = entity.getItemBySlot("head");
           break;
         default:
           return false;
@@ -68,27 +67,19 @@ StartupEvents.registry("palladium:abilities", (event) => {
         itemNBT[nbtKey] = parseInt(propertyValue);
         item = item.withNBT(itemNBT);
 
-        // Volver a colocar el ítem en el slot
-        switch (slotName) {
-          case "mainhand":
-            entity.mainHandItem = item;
-            break;
-          case "offhand":
-            entity.offHandItem = item;
-            break;
-          case "boots":
-            entity.bootsItem = item;
-            break;
-          case "leggings":
-            entity.leggingsItem = item;
-            break;
-          case "chestplate":
-            entity.chestplateItem = item;
-            break;
-          case "helmet":
-            entity.helmetItem = item;
-            break;
-        }
+        // Reemplazar ítem en slot
+        entity.setItemSlot(
+          slotName === "boots"
+            ? "feet"
+            : slotName === "leggings"
+              ? "legs"
+              : slotName === "chestplate"
+                ? "chest"
+                : slotName === "helmet"
+                  ? "head"
+                  : slotName,
+          item,
+        );
       }
     });
 });

@@ -26,25 +26,24 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       let item = null;
 
-      // Mapear slotName a la API correcta
       switch (slotName) {
         case "mainhand":
-          item = entity.getMainHandItem();
+          item = entity.getItemBySlot("mainhand");
           break;
         case "offhand":
-          item = entity.getOffHandItem();
+          item = entity.getItemBySlot("offhand");
           break;
         case "boots":
-          item = entity.inventory.getArmor(0);
+          item = entity.getItemBySlot("feet");
           break;
         case "leggings":
-          item = entity.inventory.getArmor(1);
+          item = entity.getItemBySlot("legs");
           break;
         case "chestplate":
-          item = entity.inventory.getArmor(2);
+          item = entity.getItemBySlot("chest");
           break;
         case "helmet":
-          item = entity.inventory.getArmor(3);
+          item = entity.getItemBySlot("head");
           break;
         default:
           return false;
@@ -52,37 +51,26 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       if (!item || item.isEmpty()) return;
 
-      // Leer valor de la propiedad Palladium
       let propertyValue = palladium.getProperty(entity, propertyKey);
       if (propertyValue == null) return;
 
-      // Actualizar NBT del ítem con el valor de la propiedad
       let itemNBT = item.nbt || {};
       itemNBT[nbtKey] = propertyValue;
 
-      // Reemplazar el ítem con NBT actualizado
       item = item.withNBT(itemNBT);
 
-      // Volver a colocar el ítem en el slot
-      switch (slotName) {
-        case "mainhand":
-          entity.mainHandItem = item;
-          break;
-        case "offhand":
-          entity.offHandItem = item;
-          break;
-        case "boots":
-          entity.setArmor(0, item);
-          break;
-        case "leggings":
-          entity.setArmor(1, item);
-          break;
-        case "chestplate":
-          entity.setArmor(2, item);
-          break;
-        case "helmet":
-          entity.setArmor(3, item);
-          break;
-      }
+      // Reemplazar ítem en slot
+      entity.setItemSlot(
+        slotName === "boots"
+          ? "feet"
+          : slotName === "leggings"
+            ? "legs"
+            : slotName === "chestplate"
+              ? "chest"
+              : slotName === "helmet"
+                ? "head"
+                : slotName,
+        item,
+      );
     });
 });

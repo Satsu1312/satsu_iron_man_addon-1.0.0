@@ -1,10 +1,22 @@
+// Archivo: kubejs/startup_scripts/palladium_item_modifier.js
+
 StartupEvents.registry("palladium:abilities", (event) => {
   event
     .create("satsu_iron_man_addon:item_modifier")
     .icon(palladium.createItemIcon("minecraft:diamond"))
-    .addProperty("slot", "string", "mainhand", "Slot to check (mainhand, offhand, boots, leggings, chestplate, helmet)")
+    .addProperty(
+      "slot",
+      "string",
+      "mainhand",
+      "Slot to check (mainhand, offhand, boots, leggings, chestplate, helmet)",
+    )
     .addProperty("nbtKey", "string", "CustomTag", "The NBT key to modify")
-    .addProperty("nbtValue", "string", "Active", "The value to set for the NBT key")
+    .addProperty(
+      "nbtValue",
+      "string",
+      "Active",
+      "The value to set for the NBT key",
+    )
     .tick((entity, entry, holder, enabled) => {
       if (!enabled) return;
 
@@ -14,25 +26,25 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       let item = null;
 
-      // Mapear slotName a la API correcta
+      // Obtener ítem según slot
       switch (slotName) {
         case "mainhand":
-          item = entity.mainHandItem;
+          item = entity.getMainHandItem();
           break;
         case "offhand":
-          item = entity.offHandItem;
+          item = entity.getOffHandItem();
           break;
         case "boots":
-          item = entity.getArmor(0);
+          item = entity.getItemBySlot("feet");
           break;
         case "leggings":
-          item = entity.getArmor(1);
+          item = entity.getItemBySlot("legs");
           break;
         case "chestplate":
-          item = entity.getArmor(2);
+          item = entity.getItemBySlot("chest");
           break;
         case "helmet":
-          item = entity.getArmor(3);
+          item = entity.getItemBySlot("head");
           break;
         default:
           return;
@@ -40,32 +52,30 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       if (!item || item.isEmpty()) return;
 
-      // Obtener NBT actual o crear uno nuevo
+      // Modificar NBT
       let itemNBT = item.nbt || {};
       itemNBT[nbtKey] = nbtValue;
-
-      // Reemplazar el item con NBT modificado
       item = item.withNBT(itemNBT);
 
-      // Volver a colocar el item en el slot
+      // Volver a colocar el ítem en el slot correcto
       switch (slotName) {
         case "mainhand":
-          entity.mainHandItem = item;
+          entity.setItemSlot("mainhand", item);
           break;
         case "offhand":
-          entity.offHandItem = item;
+          entity.setItemSlot("offhand", item);
           break;
         case "boots":
-          entity.setArmor(0, item);
+          entity.setItemSlot("feet", item);
           break;
         case "leggings":
-          entity.setArmor(1, item);
+          entity.setItemSlot("legs", item);
           break;
         case "chestplate":
-          entity.setArmor(2, item);
+          entity.setItemSlot("chest", item);
           break;
         case "helmet":
-          entity.setArmor(3, item);
+          entity.setItemSlot("head", item);
           break;
       }
     });
