@@ -52,34 +52,36 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (!item || item.isEmpty()) return;
 
       let itemNBT = item.nbt || {};
+      let nbtValue = itemNBT[nbtKey] != null ? parseInt(itemNBT[nbtKey]) : null;
+      let propValue = palladium.getProperty(entity, propertyKey);
 
-      // --- NBT → Propiedad ---
-      if (itemNBT[nbtKey] != null) {
-        let value = parseInt(itemNBT[nbtKey]);
-        if (!isNaN(value)) {
-          palladium.setProperty(entity, propertyKey, value);
-        }
+      // Decidir valor final: si existe NBT lo usamos, si no, usamos propiedad
+      let finalValue = null;
+      if (nbtValue != null && !isNaN(nbtValue)) {
+        finalValue = nbtValue;
+      } else if (propValue != null && !isNaN(propValue)) {
+        finalValue = parseInt(propValue);
       }
 
-      // --- Propiedad → NBT ---
-      let propertyValue = palladium.getProperty(entity, propertyKey);
-      if (propertyValue != null) {
-        itemNBT[nbtKey] = parseInt(propertyValue);
-        item = item.withNBT(itemNBT);
+      if (finalValue == null) return;
 
-        // Reemplazar ítem en slot
-        entity.setItemSlot(
-          slotName === "boots"
-            ? "feet"
-            : slotName === "leggings"
-              ? "legs"
-              : slotName === "chestplate"
-                ? "chest"
-                : slotName === "helmet"
-                  ? "head"
-                  : slotName,
-          item,
-        );
-      }
+      // --- Escribir en ambos lados ---
+      palladium.setProperty(entity, propertyKey, finalValue);
+      itemNBT[nbtKey] = finalValue;
+      item = item.withNBT(itemNBT);
+
+      // Reemplazar ítem en slot
+      entity.setItemSlot(
+        slotName === "boots"
+          ? "feet"
+          : slotName === "leggings"
+            ? "legs"
+            : slotName === "chestplate"
+              ? "chest"
+              : slotName === "helmet"
+                ? "head"
+                : slotName,
+        item,
+      );
     });
 });
