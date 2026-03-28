@@ -40,7 +40,9 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (actions[adjustType]) {
         let newValue = actions[adjustType]();
         itemNBT[nbtKey] = newValue;
-        const newItem = item.withNBT(itemNBT);
+
+        // Declarar una sola vez y asignar
+        let newItem = item.withNBT(itemNBT);
 
         // Escritura silenciosa en jugadores, universal en Armor Stand
         if (entity.inventory) {
