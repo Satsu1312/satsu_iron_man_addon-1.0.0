@@ -40,16 +40,16 @@ StartupEvents.registry("palladium:abilities", (event) => {
         case "offhand":
           item = entity.getItemBySlot("offhand");
           break;
-        case "boots":
+        case "feet":
           item = entity.getItemBySlot("feet");
           break;
-        case "leggings":
+        case "legs":
           item = entity.getItemBySlot("legs");
           break;
-        case "chestplate":
+        case "chest":
           item = entity.getItemBySlot("chest");
           break;
-        case "helmet":
+        case "head":
           item = entity.getItemBySlot("head");
           break;
         default:
@@ -100,16 +100,16 @@ StartupEvents.registry("palladium:abilities", (event) => {
         case "offhand":
           entity.setItemSlot("offhand", item);
           break;
-        case "boots":
+        case "feet":
           entity.inventory.setItem(36, item); // botas
           break;
-        case "leggings":
+        case "legs":
           entity.inventory.setItem(37, item); // leggings
           break;
-        case "chestplate":
+        case "chest":
           entity.inventory.setItem(38, item); // pechera
           break;
-        case "helmet":
+        case "head":
           entity.inventory.setItem(39, item); // casco
           break;
       }

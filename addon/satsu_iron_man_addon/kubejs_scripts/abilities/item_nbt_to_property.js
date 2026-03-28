@@ -26,7 +26,6 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       let item = null;
 
-      // Obtener ítem según slot
       switch (slotName) {
         case "mainhand":
           item = entity.getItemBySlot("mainhand");
@@ -34,16 +33,16 @@ StartupEvents.registry("palladium:abilities", (event) => {
         case "offhand":
           item = entity.getItemBySlot("offhand");
           break;
-        case "boots":
+        case "feet":
           item = entity.getItemBySlot("feet");
           break;
-        case "leggings":
+        case "legs":
           item = entity.getItemBySlot("legs");
           break;
-        case "chestplate":
+        case "chest":
           item = entity.getItemBySlot("chest");
           break;
-        case "helmet":
+        case "head":
           item = entity.getItemBySlot("head");
           break;
         default:

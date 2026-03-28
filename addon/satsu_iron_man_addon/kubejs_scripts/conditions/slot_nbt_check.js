@@ -18,16 +18,16 @@ StartupEvents.registry("palladium:condition_serializer", event => {
         case "offhand":
           item = entity.getOffHandItem();
           break;
-        case "boots":
+        case "feet":
           item = entity.inventory.getArmor(0);
           break;
-        case "leggings":
+        case "legs":
           item = entity.inventory.getArmor(1);
           break;
-        case "chestplate":
+        case "chest":
           item = entity.inventory.getArmor(2);
           break;
-        case "helmet":
+        case "head":
           item = entity.inventory.getArmor(3);
           break;
         default:
