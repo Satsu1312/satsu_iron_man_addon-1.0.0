@@ -46,10 +46,6 @@ ServerEvents.commandRegistry((event) => {
                 case "head": player.inventory.setItem(39, item); break;
               }
 
-              player.tell(Text.green(
-                `NBT modificado: ${nbtKey} = ${nbtValue} en slot ${slotName}`
-              ));
-
               return 1;
             })
           )
