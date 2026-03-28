@@ -11471,6 +11471,144 @@
         ]
       }
     },
+    "recharge.satsu_iron_man_nano_counts.timer": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "Nanites",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "recharge.satsu_iron_man_nano_counts": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Nanites",
+      "adjustment_type": "add",
+      "adjustment_amount": 25,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "recharge.satsu_iron_man_nano_counts.timer",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "propulsor_anim",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "flight_anim",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_sword",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_katar",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_hand_blade",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_rial",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_grenade_launcher_anim",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "rocket",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "grab_cannon_anim",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_mallet",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_fireworks",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_flares_flames",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_energy_boosters",
+                    "min": "1",
+                    "max": "200"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "nano_stabilizer",
+                    "min": "1",
+                    "max": "200"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "give_desestabilizer": {
       "type": "palladium:command",
       "hidden": true,
