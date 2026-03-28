@@ -17,6 +17,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "Active",
       "The value to set for the NBT key",
     )
+
     .tick((entity, entry, holder, enabled) => {
       if (!enabled) return;
 
@@ -24,38 +25,32 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const nbtKey = entry.getPropertyByName("nbtKey");
       const nbtValue = entry.getPropertyByName("nbtValue");
 
-      let item = entity.getItemBySlot(slotName);
+      const item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty()) return;
 
-      // Modificar NBT
-      let itemNBT = item.nbt || {};
-      itemNBT[nbtKey] = nbtValue;
-      item = item.withNBT(itemNBT);
+      const itemNBT = item.nbt ?? {};
 
-      // Escritura silenciosa en jugadores, universal en Armor Stand
+      // Evitar escrituras si ya tiene el valor correcto
+      if (itemNBT[nbtKey] === nbtValue) return;
+
+      itemNBT[nbtKey] = nbtValue;
+      const newItem = item.withNBT(itemNBT);
+
       if (entity.inventory) {
-        switch (slotName) {
-          case "feet":
-            entity.inventory.setItem(36, item);
-            break;
-          case "legs":
-            entity.inventory.setItem(37, item);
-            break;
-          case "chest":
-            entity.inventory.setItem(38, item);
-            break;
-          case "head":
-            entity.inventory.setItem(39, item);
-            break;
-          case "mainhand":
-            entity.setItemSlot("mainhand", item);
-            break;
-          case "offhand":
-            entity.setItemSlot("offhand", item);
-            break;
+        const slotMap = {
+          feet: 36,
+          legs: 37,
+          chest: 38,
+          head: 39,
+        };
+
+        if (slotMap[slotName]) {
+          entity.inventory.setItem(slotMap[slotName], newItem);
+        } else {
+          entity.setItemSlot(slotName, newItem);
         }
       } else {
-        entity.setItemSlot(slotName, item);
+        entity.setItemSlot(slotName, newItem);
       }
     });
 });

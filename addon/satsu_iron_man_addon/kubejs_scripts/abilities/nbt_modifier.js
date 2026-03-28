@@ -25,50 +25,50 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const adjustType = entry.getPropertyByName("adjustment_type");
       const adjustAmt = entry.getPropertyByName("adjustment_amount");
 
-      let item = entity.getItemBySlot(slotName);
+      const item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty()) return;
 
-      let itemNBT = item.nbt || {};
-      let current = itemNBT[nbtKey] != null ? parseInt(itemNBT[nbtKey]) : 0;
+      const itemNBT = item.nbt ?? {};
+      let current = Number(itemNBT[nbtKey]) || 0;
 
-      const actions = {
-        add: () => current + adjustAmt,
-        subtract: () => current - adjustAmt,
-        set: () => adjustAmt,
-      };
+      // Precalcular nuevo valor según tipo
+      let newValue;
+      switch (adjustType) {
+        case "add":
+          newValue = current + adjustAmt;
+          break;
+        case "subtract":
+          newValue = current - adjustAmt;
+          break;
+        case "set":
+          newValue = adjustAmt;
+          break;
+        default:
+          return; // si no coincide, salir
+      }
 
-      if (actions[adjustType]) {
-        let newValue = actions[adjustType]();
-        itemNBT[nbtKey] = newValue;
+      // Solo actualizar si realmente cambia
+      if (newValue === current) return;
 
-        // Declarar una sola vez y asignar
-        let newItem = item.withNBT(itemNBT);
+      itemNBT[nbtKey] = newValue;
+      const newItem = item.withNBT(itemNBT);
 
-        // Escritura silenciosa en jugadores, universal en Armor Stand
-        if (entity.inventory) {
-          switch (slotName) {
-            case "feet":
-              entity.inventory.setItem(36, newItem);
-              break;
-            case "legs":
-              entity.inventory.setItem(37, newItem);
-              break;
-            case "chest":
-              entity.inventory.setItem(38, newItem);
-              break;
-            case "head":
-              entity.inventory.setItem(39, newItem);
-              break;
-            case "mainhand":
-              entity.setItemSlot("mainhand", newItem);
-              break;
-            case "offhand":
-              entity.setItemSlot("offhand", newItem);
-              break;
-          }
+      if (entity.inventory) {
+        // Mapear slots de armadura a índices
+        const slotMap = {
+          feet: 36,
+          legs: 37,
+          chest: 38,
+          head: 39,
+        };
+
+        if (slotMap[slotName]) {
+          entity.inventory.setItem(slotMap[slotName], newItem);
         } else {
           entity.setItemSlot(slotName, newItem);
         }
+      } else {
+        entity.setItemSlot(slotName, newItem);
       }
     });
 });

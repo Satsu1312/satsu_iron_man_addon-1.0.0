@@ -17,6 +17,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "satsu_iron_man_addon_mod.skill_charge",
       "The Palladium property to read",
     )
+
     .tick((entity, entry, holder, enabled) => {
       if (!enabled) return;
 
@@ -24,40 +25,35 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const nbtKey = entry.getPropertyByName("nbtKey");
       const propertyKey = entry.getPropertyByName("propertyKey");
 
-      let item = entity.getItemBySlot(slotName);
+      const item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty()) return;
 
-      let propertyValue = palladium.getProperty(entity, propertyKey);
+      const propertyValue = palladium.getProperty(entity, propertyKey);
       if (propertyValue == null) return;
 
-      let itemNBT = item.nbt || {};
-      itemNBT[nbtKey] = propertyValue;
-      item = item.withNBT(itemNBT);
+      const itemNBT = item.nbt ?? {};
 
-      // Escritura silenciosa en jugadores, universal en Armor Stand
+      // Evitar escrituras si ya tiene el valor correcto
+      if (itemNBT[nbtKey] === propertyValue) return;
+
+      itemNBT[nbtKey] = propertyValue;
+      const newItem = item.withNBT(itemNBT);
+
       if (entity.inventory) {
-        switch (slotName) {
-          case "feet":
-            entity.inventory.setItem(36, item);
-            break;
-          case "legs":
-            entity.inventory.setItem(37, item);
-            break;
-          case "chest":
-            entity.inventory.setItem(38, item);
-            break;
-          case "head":
-            entity.inventory.setItem(39, item);
-            break;
-          case "mainhand":
-            entity.setItemSlot("mainhand", item);
-            break;
-          case "offhand":
-            entity.setItemSlot("offhand", item);
-            break;
+        const slotMap = {
+          feet: 36,
+          legs: 37,
+          chest: 38,
+          head: 39,
+        };
+
+        if (slotMap[slotName]) {
+          entity.inventory.setItem(slotMap[slotName], newItem);
+        } else {
+          entity.setItemSlot(slotName, newItem);
         }
       } else {
-        entity.setItemSlot(slotName, item);
+        entity.setItemSlot(slotName, newItem);
       }
     });
 });

@@ -1,3 +1,5 @@
+// Archivo: kubejs/startup_scripts/palladium_item_property_sync.js
+
 StartupEvents.registry("palladium:abilities", (event) => {
   event
     .create("satsu_iron_man_addon:item_property_sync")
@@ -21,6 +23,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "property",
       "Sync mode (property, nbt, mixed)",
     )
+
     .tick((entity, entry, holder, enabled) => {
       if (!enabled) return;
 
@@ -29,18 +32,18 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const propertyKey = entry.getPropertyByName("propertyKey");
       const syncMode = entry.getPropertyByName("syncMode");
 
-      let item = entity.getItemBySlot(slotName);
+      const item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty()) return;
 
-      let itemNBT = item.nbt || {};
-      let nbtValue = itemNBT[nbtKey] != null ? parseInt(itemNBT[nbtKey]) : null;
-      let propValue = palladium.getProperty(entity, propertyKey);
+      const itemNBT = item.nbt ?? {};
+      const nbtValue = itemNBT[nbtKey] != null ? Number(itemNBT[nbtKey]) : null;
+      const propValue = palladium.getProperty(entity, propertyKey);
 
-      let finalValue = null;
+      let finalValue;
       switch (syncMode) {
         case "property":
           if (propValue != null && !isNaN(propValue))
-            finalValue = parseInt(propValue);
+            finalValue = Number(propValue);
           break;
         case "nbt":
           if (nbtValue != null && !isNaN(nbtValue)) finalValue = nbtValue;
@@ -52,40 +55,38 @@ StartupEvents.registry("palladium:abilities", (event) => {
             finalValue = nbtValue ?? propValue;
           }
           break;
+        default:
+          return;
       }
 
       if (finalValue == null) return;
 
+      // Evitar escrituras innecesarias
+      if (
+        itemNBT[nbtKey] === finalValue &&
+        palladium.getProperty(entity, propertyKey) === finalValue
+      )
+        return;
+
       palladium.setProperty(entity, propertyKey, finalValue);
       itemNBT[nbtKey] = finalValue;
-      item = item.withNBT(itemNBT);
+      const newItem = item.withNBT(itemNBT);
 
-      // --- Escritura silenciosa ---
       if (entity.inventory) {
-        // Jugador: usar índices para evitar sonido
-        switch (slotName) {
-          case "feet":
-            entity.inventory.setItem(36, item);
-            break;
-          case "legs":
-            entity.inventory.setItem(37, item);
-            break;
-          case "chest":
-            entity.inventory.setItem(38, item);
-            break;
-          case "head":
-            entity.inventory.setItem(39, item);
-            break;
-          case "mainhand":
-            entity.setItemSlot("mainhand", item);
-            break;
-          case "offhand":
-            entity.setItemSlot("offhand", item);
-            break;
+        const slotMap = {
+          feet: 36,
+          legs: 37,
+          chest: 38,
+          head: 39,
+        };
+
+        if (slotMap[slotName]) {
+          entity.inventory.setItem(slotMap[slotName], newItem);
+        } else {
+          entity.setItemSlot(slotName, newItem);
         }
       } else {
-        // Armor Stand u otras entidades: solo setItemSlot
-        entity.setItemSlot(slotName, item);
+        entity.setItemSlot(slotName, newItem);
       }
     });
 });

@@ -11,42 +11,29 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
     )
     .addProperty("nbtKey", "string", "CustomTag", "The NBT key to check")
     .addProperty("nbtValue", "string", "Active", "The required NBT value")
+
     .test((entity, props) => {
       const slotName = props.get("slot");
       const nbtKey = props.get("nbtKey");
       const nbtValue = props.get("nbtValue");
 
-      let item = null;
+      // Obtener ítem directamente según slot
+      const slotMap = {
+        mainhand: () => entity.getMainHandItem(),
+        offhand: () => entity.getOffHandItem(),
+        feet: () => entity.getItemBySlot("feet"),
+        legs: () => entity.getItemBySlot("legs"),
+        chest: () => entity.getItemBySlot("chest"),
+        head: () => entity.getItemBySlot("head"),
+      };
 
-      // --- Slots vanilla (compatibles con armor stands) ---
-      switch (slotName) {
-        case "mainhand":
-          item = entity.getMainHandItem();
-          break;
-        case "offhand":
-          item = entity.getOffHandItem();
-          break;
-        case "feet":
-          item = entity.getItemBySlot("feet");
-          break;
-        case "legs":
-          item = entity.getItemBySlot("legs");
-          break;
-        case "chest":
-          item = entity.getItemBySlot("chest");
-          break;
-        case "head":
-          item = entity.getItemBySlot("head");
-          break;
-        default:
-          return false;
-      }
+      const getItem = slotMap[slotName];
+      if (!getItem) return false;
 
+      const item = getItem();
       if (!item || item.isEmpty() || !item.hasNBT()) return false;
 
       const nbt = item.getNbt();
-      if (!nbt || !nbt.contains(nbtKey)) return false;
-
-      return nbt.getString(nbtKey) === nbtValue;
+      return nbt?.contains(nbtKey) && nbt.getString(nbtKey) === nbtValue;
     });
 });
