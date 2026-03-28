@@ -24,31 +24,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const nbtKey = entry.getPropertyByName("nbtKey");
       const propertyKey = entry.getPropertyByName("propertyKey");
 
-      let item = null;
-
-      switch (slotName) {
-        case "mainhand":
-          item = entity.getItemBySlot("mainhand");
-          break;
-        case "offhand":
-          item = entity.getItemBySlot("offhand");
-          break;
-        case "feet":
-          item = entity.getItemBySlot("feet");
-          break;
-        case "legs":
-          item = entity.getItemBySlot("legs");
-          break;
-        case "chest":
-          item = entity.getItemBySlot("chest");
-          break;
-        case "head":
-          item = entity.getItemBySlot("head");
-          break;
-        default:
-          return false;
-      }
-
+      let item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty()) return;
 
       let propertyValue = palladium.getProperty(entity, propertyKey);
@@ -56,29 +32,32 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       let itemNBT = item.nbt || {};
       itemNBT[nbtKey] = propertyValue;
-
       item = item.withNBT(itemNBT);
 
-      // Reemplazar ítem en slot (sin sonido en armaduras)
-      switch (slotName) {
-        case "mainhand":
-          entity.setItemSlot("mainhand", item);
-          break;
-        case "offhand":
-          entity.setItemSlot("offhand", item);
-          break;
-        case "feet":
-          entity.inventory.setItem(36, item); // botas
-          break;
-        case "legs":
-          entity.inventory.setItem(37, item); // leggings
-          break;
-        case "chest":
-          entity.inventory.setItem(38, item); // pechera
-          break;
-        case "head":
-          entity.inventory.setItem(39, item); // casco
-          break;
+      // Escritura silenciosa en jugadores, universal en Armor Stand
+      if (entity.inventory) {
+        switch (slotName) {
+          case "feet":
+            entity.inventory.setItem(36, item);
+            break;
+          case "legs":
+            entity.inventory.setItem(37, item);
+            break;
+          case "chest":
+            entity.inventory.setItem(38, item);
+            break;
+          case "head":
+            entity.inventory.setItem(39, item);
+            break;
+          case "mainhand":
+            entity.setItemSlot("mainhand", item);
+            break;
+          case "offhand":
+            entity.setItemSlot("offhand", item);
+            break;
+        }
+      } else {
+        entity.setItemSlot(slotName, item);
       }
     });
 });

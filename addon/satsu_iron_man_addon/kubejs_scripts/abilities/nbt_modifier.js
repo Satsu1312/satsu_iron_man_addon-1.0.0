@@ -18,38 +18,14 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .addProperty("adjustment_amount", "integer", 1, "Amount to adjust")
 
     .tick((entity, entry, holder, enabled) => {
-      if (!enabled || !entity.isPlayer()) return;
+      if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
       const nbtKey = entry.getPropertyByName("nbtKey");
       const adjustType = entry.getPropertyByName("adjustment_type");
       const adjustAmt = entry.getPropertyByName("adjustment_amount");
 
-      let item = null;
-
-      switch (slotName) {
-        case "mainhand":
-          item = entity.getItemBySlot("mainhand");
-          break;
-        case "offhand":
-          item = entity.getItemBySlot("offhand");
-          break;
-        case "feet":
-          item = entity.getItemBySlot("feet");
-          break;
-        case "legs":
-          item = entity.getItemBySlot("legs");
-          break;
-        case "chest":
-          item = entity.getItemBySlot("chest");
-          break;
-        case "head":
-          item = entity.getItemBySlot("head");
-          break;
-        default:
-          return;
-      }
-
+      let item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty()) return;
 
       let itemNBT = item.nbt || {};
@@ -64,28 +40,32 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (actions[adjustType]) {
         let newValue = actions[adjustType]();
         itemNBT[nbtKey] = newValue;
-        item = item.withNBT(itemNBT);
+        const newItem = item.withNBT(itemNBT);
 
-        // Reemplazar ítem en slot
-        switch (slotName) {
-          case "mainhand":
-            entity.setItemSlot("mainhand", item);
-            break;
-          case "offhand":
-            entity.setItemSlot("offhand", item);
-            break;
-          case "boots":
-            entity.inventory.setItem(36, item); // botas
-            break;
-          case "leggings":
-            entity.inventory.setItem(37, item); // leggings
-            break;
-          case "chestplate":
-            entity.inventory.setItem(38, item); // pechera
-            break;
-          case "helmet":
-            entity.inventory.setItem(39, item); // casco
-            break;
+        // Escritura silenciosa en jugadores, universal en Armor Stand
+        if (entity.inventory) {
+          switch (slotName) {
+            case "feet":
+              entity.inventory.setItem(36, newItem);
+              break;
+            case "legs":
+              entity.inventory.setItem(37, newItem);
+              break;
+            case "chest":
+              entity.inventory.setItem(38, newItem);
+              break;
+            case "head":
+              entity.inventory.setItem(39, newItem);
+              break;
+            case "mainhand":
+              entity.setItemSlot("mainhand", newItem);
+              break;
+            case "offhand":
+              entity.setItemSlot("offhand", newItem);
+              break;
+          }
+        } else {
+          entity.setItemSlot(slotName, newItem);
         }
       }
     });
