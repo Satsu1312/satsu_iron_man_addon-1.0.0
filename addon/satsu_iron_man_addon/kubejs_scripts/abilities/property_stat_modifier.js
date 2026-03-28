@@ -7,31 +7,31 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "property_value",
       "string",
       "Palladium.Property",
-      "Name of the Palladium property to use for value"
+      "Name of the Palladium property to use for value",
     )
     .addProperty(
       "Division_Amount",
       "string",
       "1",
-      "The amount the scoreboard value will be divided by"
+      "The amount the scoreboard value will be divided by",
     )
     .addProperty(
       "Attribute_Type",
       "string",
       "palladium:levitation_speed",
-      "The attribute that will be used"
+      "The attribute that will be used",
     )
     .addProperty(
       "UUID",
       "string",
       "cc154bdc-21f8-11ee-be56-0242ac120002",
-      "The UUID used for the attribute"
+      "The UUID used for the attribute",
     )
     .addProperty(
       "Attribute_Mod",
       "string",
       "addition",
-      "addition , multiply_total , multiply_base"
+      "addition , multiply_total , multiply_base",
     )
 
     .lastTick((entity, entry, holder, enabled) => {
@@ -40,12 +40,17 @@ StartupEvents.registry("palladium:abilities", (event) => {
         const attribute = entry.getPropertyByName("Attribute_Type");
         const uuid = entry.getPropertyByName("UUID");
         const attribute_mod = entry.getPropertyByName("Attribute_Mod");
-        let username = entity.getGameProfile().getName();
-        let username_true = username.toLowerCase();
+
+        // Solo jugadores tienen GameProfile
+        if (entity.isPlayer()) {
+          let username = entity.getGameProfile().getName();
+          let username_true = username.toLowerCase();
+        }
+
         let PalladiumProperty = entry.getPropertyByName("property_value");
         let scoreboard_obj = palladium.getProperty(entity, PalladiumProperty);
         if (scoreboard_obj != null) {
-          entity.removeAttribute(attribute, UUID);
+          entity.removeAttribute(attribute, uuid);
         }
       }
     })
@@ -57,16 +62,18 @@ StartupEvents.registry("palladium:abilities", (event) => {
           const attribute = entry.getPropertyByName("Attribute_Type");
           const uuid = entry.getPropertyByName("UUID");
           const attribute_mod = entry.getPropertyByName("Attribute_Mod");
+
           let username = entity.getGameProfile().getName();
           let username_true = username.toLowerCase();
+
           let PalladiumProperty = entry.getPropertyByName("property_value");
           let scoreboard_obj = palladium.getProperty(entity, PalladiumProperty);
           if (scoreboard_obj != null) {
             entity.modifyAttribute(
               attribute,
-              UUID,
+              uuid,
               scoreboard_obj / division,
-              attribute_mod
+              attribute_mod,
             );
           }
         }
