@@ -4497,10 +4497,10 @@
         ]
       }
     },
-    "nano_rial.projectile.right": {
+    "nano_rial.projectile.right_normal": {
       "type": "gravecore:projectile",
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
@@ -4512,7 +4512,7 @@
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.6,
-        "Damage": 19,
+        "Damage": 8.3,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -4548,7 +4548,7 @@
         ]
       }
     },
-    "nano_rial.projectile.left": {
+    "nano_rial.projectile.left_normal": {
       "type": "gravecore:projectile",
       "hidden": true,
       "hidden_in_bar": false,
@@ -4563,7 +4563,7 @@
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.6,
-        "Damage": 19,
+        "Damage": 8.3,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -4599,7 +4599,109 @@
         ]
       }
     },
-    "nano_grenade_projectile.1873.damage.18": {
+    "nano_rial.projectile.right_stronger": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOffset": 20,
+      "pitchOffset": 25,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 8,
+        "KnockbackStrength": 1.6,
+        "Damage": 9,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/nano_rial",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/nano_rial",
+        "Appearances": [
+          {
+            "Type": "trail",
+            "Trail": "satsu_iron_man_addon:blast/1873/1873"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_repulser_strenght",
+            "comparator": "equals",
+            "compare_to": "stronger"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "mini.gun.right",
+            "min": 10,
+            "max": 10
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_rial"
+          }
+        ]
+      }
+    },
+    "nano_rial.projectile.left_stronger": {
+      "type": "gravecore:projectile",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOffset": -20,
+      "pitchOffset": 25,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 8,
+        "KnockbackStrength": 1.6,
+        "Damage": 9,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/nano_rial",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/nano_rial",
+        "Appearances": [
+          {
+            "Type": "trail",
+            "Trail": "satsu_iron_man_addon:blast/1873/1873"
+          }
+        ]
+      },
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_repulser_strenght",
+            "comparator": "equals",
+            "compare_to": "stronger"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "mini.gun.left",
+            "min": 10,
+            "max": 10
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_rial"
+          }
+        ]
+      }
+    },
+    "nano_grenade_projectile.right": {
       "type": "gravecore:projectile",
       "hidden": true,
       "hidden_in_bar": false,
@@ -4646,7 +4748,7 @@
         ]
       }
     },
-    "nano_grenade_projectile.1873.left.damage.18": {
+    "nano_grenade_projectile.left": {
       "type": "gravecore:projectile",
       "hidden": true,
       "hidden_in_bar": false,
@@ -4734,11 +4836,11 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "nano_grenade_projectile.1873.right.damage.18"
+                "ability": "nano_grenade_projectile.right"
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "nano_grenade_projectile.1873.left.damage.18"
+                "ability": "nano_grenade_projectile.left"
               }
             ]
           }
