@@ -17,7 +17,7 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const nbtKey = props.get("nbtKey");
       const nbtValue = props.get("nbtValue");
 
-      // Obtener ítem directamente según slot
+      // Mapear slots a funciones
       const slotMap = {
         mainhand: () => entity.getMainHandItem(),
         offhand: () => entity.getOffHandItem(),
@@ -31,9 +31,9 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       if (!getItem) return false;
 
       const item = getItem();
-      if (!item || item.isEmpty() || !item.hasNBT()) return false;
+      if (!item || item.isEmpty() || !item.nbt) return false;
 
-      const nbt = item.getNbt();
-      return nbt?.contains(nbtKey) && nbt.getString(nbtKey) === nbtValue;
+      // Acceso directo al objeto NBT expuesto por KubeJS
+      return item.nbt[nbtKey] === nbtValue;
     });
 });

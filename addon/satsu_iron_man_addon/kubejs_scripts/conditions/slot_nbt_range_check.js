@@ -19,7 +19,6 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const min = props.get("min");
       const max = props.get("max");
 
-      // Mapear slots a funciones
       const slotMap = {
         mainhand: () => entity.getMainHandItem(),
         offhand: () => entity.getOffHandItem(),
@@ -33,12 +32,11 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       if (!getItem) return false;
 
       const item = getItem();
-      if (!item || item.isEmpty() || !item.hasNBT()) return false;
+      if (!item || item.isEmpty() || !item.nbt) return false;
 
-      const nbt = item.getNbt();
-      if (!nbt?.contains(nbtKey)) return false;
+      const value = Number(item.nbt[nbtKey]);
+      if (isNaN(value)) return false;
 
-      const value = nbt.getInt(nbtKey);
       return value >= min && value <= max;
     });
 });
