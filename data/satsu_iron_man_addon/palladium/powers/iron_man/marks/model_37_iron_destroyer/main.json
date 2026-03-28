@@ -5351,8 +5351,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_nano_counts",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "Nanites",
             "min": 400,
             "max": 2147483647
           },
@@ -5389,18 +5390,65 @@
         ]
       }
     },
-    "set.satsu_iron_man_nano_counts": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
+    "satsu_iron_man_nano_counts.item_modifier": {
+      "type": "satsu_iron_man_addon:item_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_nano_counts",
+      "slot": "chest",
+      "nbtKey": "Nanites",
+      "nbtValue": "1000000",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/main"
+            },
+            "slot": "chest"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "chest",
+                "nbtKey": "Nanites",
+                "min": -2147483647,
+                "max": 2147483647
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "satsu_iron_man_nano_counts.item_property_sync": {
+      "type": "satsu_iron_man_addon:item_property_sync",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Nanites",
+      "propertyKey": "satsu_iron_man_nano_counts",
+      "syncMode": "nbt",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "set.satsu_iron_man_nano_counts": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Nanites",
       "adjustment_type": "set",
       "adjustment_amount": 21000,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_nano_counts",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "Nanites",
             "min": 21001,
             "max": 2147483647
           }
@@ -5416,8 +5464,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_nano_counts",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "Nanites",
             "min": 1,
             "max": 2147483647
           },
@@ -5431,10 +5480,11 @@
       }
     },
     "recharge.satsu_iron_man_nano_counts": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_nano_counts",
+      "slot": "chest",
+      "nbtKey": "Nanites",
       "adjustment_type": "add",
       "adjustment_amount": 50,
       "conditions": {
