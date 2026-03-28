@@ -789,8 +789,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_iron_man_energy",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
           },
@@ -981,6 +982,59 @@
                 "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
               }
             ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "item_modifier": {
+      "type": "satsu_iron_man_addon:item_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Energy",
+      "nbtValue": "1000000",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/main"
+            },
+            "slot": "chest"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "chest",
+                "nbtKey": "Energy",
+                "min": -2147483647,
+                "max": 2147483647
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "item_property_sync": {
+      "type": "satsu_iron_man_addon:item_property_sync",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Energy",
+      "propertyKey": "satsu_iron_man_iron_man_energy",
+      "syncMode": "nbt",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/main"
+            },
+            "slot": "chest"
           }
         ],
         "unlocking": []
