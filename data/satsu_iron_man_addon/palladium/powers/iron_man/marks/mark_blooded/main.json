@@ -1708,8 +1708,7 @@
       "commands": [""],
       "last_tick_commands": [
         "scoreboard players reset @s satsu.iron.man.armor.energy.pulse.flame.thrower.icon",
-        "scoreboard players reset @s satsu.iron.man.armor.ark.beam.color.icon",
-        "satsu_set_flight_speed 0"
+        "scoreboard players reset @s satsu.iron.man.armor.ark.beam.color.icon"
       ],
       "conditions": {
         "enabling": []
@@ -9213,15 +9212,55 @@
         ]
       }
     },
-    "increase.flight_speed": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
-      "title": { "translate": "ability.title.satsu.Increase.Speed" },
-      "description": { "translate": "description.armor_skill_bar" },
+    "item_modifier.flight_velocity": {
+      "type": "satsu_iron_man_addon:item_modifier",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "slot": "chest",
+      "nbtKey": "Flight_velocity",
+      "nbtValue": "0",
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "chest",
+                "nbtKey": "Flight_velocity",
+                "min": -2147483647,
+                "max": 2147483647
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "item_property_sync.flight_velocity": {
+      "type": "satsu_iron_man_addon:item_property_sync",
       "hidden": true,
       "hidden_in_bar": true,
-      "list_index": 6,
-      "property_name": "satsu_iron_man_flight_speed_choose",
+      "slot": "chest",
+      "nbtKey": "Flight_velocity",
+      "propertyKey": "satsu_iron_man_flight_speed_choose",
+      "syncMode": "nbt",
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          }
+        ]
+      }
+    },
+    "increase.flight_speed": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Flight_velocity",
       "adjustment_type": "add",
       "adjustment_amount": 2,
       "conditions": {
@@ -9260,14 +9299,11 @@
       }
     },
     "remove.flight_speed": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
-      "title": { "translate": "ability.title.satsu.decrease.Speed" },
-      "description": { "translate": "description.armor_skill_bar" },
+      "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "list_index": 7,
-      "property_name": "satsu_iron_man_flight_speed_choose",
+      "slot": "chest",
+      "nbtKey": "Flight_velocity",
       "adjustment_type": "subtract",
       "adjustment_amount": 2,
       "conditions": {
@@ -9306,13 +9342,11 @@
       }
     },
     "increase.max.flight_speed": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_up.png",
-      "title": { "translate": "ability.title.satsu.Increase.Speed" },
+      "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "list_index": 8,
-      "property_name": "satsu_iron_man_flight_speed_choose",
+      "slot": "chest",
+      "nbtKey": "Flight_velocity",
       "adjustment_type": "set",
       "adjustment_amount": 408,
       "conditions": {
@@ -9359,13 +9393,11 @@
       }
     },
     "remove.max.flight_speed": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
-      "title": { "translate": "ability.title.satsu.decrease.Speed" },
+      "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "list_index": 9,
-      "property_name": "satsu_iron_man_flight_speed_choose",
+      "slot": "chest",
+      "nbtKey": "Flight_velocity",
       "adjustment_type": "set",
       "adjustment_amount": 0,
       "conditions": {
