@@ -279,7 +279,7 @@ PalladiumEvents.registerProperties((event) => {
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player") {
+  if (event.getEntityType() === "minecraft:player" || "palladium:suit_stand" || "minecraft:armor_stand") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_war_machine_or_iron_patriot", "string", "war_machine");
   }
