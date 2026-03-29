@@ -36,21 +36,32 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (!item || item.isEmpty()) return;
 
       const itemNBT = item.nbt ?? {};
-      const nbtValue = itemNBT[nbtKey] != null ? Number(itemNBT[nbtKey]) : null;
-      const propValue = palladium.getProperty(entity, propertyKey);
+      const rawNBT = itemNBT[nbtKey];
+      const rawProp = palladium.getProperty(entity, propertyKey);
+
+      // Detectar tipo: número o string
+      const nbtValue =
+        rawNBT != null && !isNaN(Number(rawNBT)) ? Number(rawNBT) : rawNBT;
+      const propValue =
+        rawProp != null && !isNaN(Number(rawProp)) ? Number(rawProp) : rawProp;
 
       let finalValue;
       switch (syncMode) {
         case "property":
-          if (propValue != null && !isNaN(propValue))
-            finalValue = Number(propValue);
+          if (propValue != null) finalValue = propValue;
           break;
         case "nbt":
-          if (nbtValue != null && !isNaN(nbtValue)) finalValue = nbtValue;
+          if (nbtValue != null) finalValue = nbtValue;
           break;
         case "mixed":
           if (nbtValue != null && propValue != null) {
-            finalValue = Math.min(nbtValue, propValue);
+            // Si ambos son números, usar el menor
+            if (typeof nbtValue === "number" && typeof propValue === "number") {
+              finalValue = Math.min(nbtValue, propValue);
+            } else {
+              // Si son strings o tipos distintos, priorizar NBT
+              finalValue = nbtValue ?? propValue;
+            }
           } else {
             finalValue = nbtValue ?? propValue;
           }

@@ -24,41 +24,23 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const nbtKey = entry.getPropertyByName("nbtKey");
       const propertyKey = entry.getPropertyByName("propertyKey");
 
-      let item = null;
-
-      switch (slotName) {
-        case "mainhand":
-          item = entity.getItemBySlot("mainhand");
-          break;
-        case "offhand":
-          item = entity.getItemBySlot("offhand");
-          break;
-        case "feet":
-          item = entity.getItemBySlot("feet");
-          break;
-        case "legs":
-          item = entity.getItemBySlot("legs");
-          break;
-        case "chest":
-          item = entity.getItemBySlot("chest");
-          break;
-        case "head":
-          item = entity.getItemBySlot("head");
-          break;
-        default:
-          return;
-      }
-
+      const item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty() || !item.nbt) return;
 
       const itemNBT = item.nbt;
       if (itemNBT[nbtKey] == null) return;
 
-      let rawValue = itemNBT[nbtKey];
-      let value = parseInt(rawValue);
+      const rawValue = itemNBT[nbtKey];
 
-      if (!isNaN(value)) {
-        palladium.setProperty(entity, propertyKey, value);
+      // Detectar si es número o string
+      let value;
+      if (!isNaN(Number(rawValue))) {
+        value = Number(rawValue); // numérico
+      } else {
+        value = String(rawValue); // texto
       }
+
+      // Asignar directamente la propiedad con el tipo detectado
+      palladium.setProperty(entity, propertyKey, value);
     });
 });
