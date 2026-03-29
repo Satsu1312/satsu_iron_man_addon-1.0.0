@@ -1,4 +1,0 @@
-execute if entity @s[nbt={Inventory:[{Slot:102b,id:"satsu_iron_man_addon:war_machine/marks/mark_02/main"}]}] run item replace entity @s armor.chest with satsu_iron_man_addon:war_machine/marks/mark_02/iron_patriot
-execute if entity @s[nbt={Inventory:[{Slot:102b,id:"satsu_iron_man_addon:war_machine/marks/mark_03/main"}]}] run item replace entity @s armor.chest with satsu_iron_man_addon:war_machine/marks/mark_03/iron_patriot
-execute if entity @s[nbt={Inventory:[{Slot:102b,id:"satsu_iron_man_addon:war_machine/marks/mark_04/main"}]}] run item replace entity @s armor.chest with satsu_iron_man_addon:war_machine/marks/mark_04/iron_patriot
-execute if entity @s[nbt={Inventory:[{Slot:102b,id:"satsu_iron_man_addon:war_machine/marks/mark_05/main"}]}] run item replace entity @s armor.chest with satsu_iron_man_addon:war_machine/marks/mark_05/iron_patriot
