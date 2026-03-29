@@ -1,5 +1,3 @@
-// Archivo: kubejs/startup_scripts/palladium_condition_slot_nbt_range_check.js
-
 StartupEvents.registry("palladium:condition_serializer", (event) => {
   event
     .create("satsu_iron_man_addon:slot_nbt_range_check")
@@ -19,19 +17,7 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const min = props.get("min");
       const max = props.get("max");
 
-      const slotMap = {
-        mainhand: () => entity.getMainHandItem(),
-        offhand: () => entity.getOffHandItem(),
-        feet: () => entity.getItemBySlot("feet"),
-        legs: () => entity.getItemBySlot("legs"),
-        chest: () => entity.getItemBySlot("chest"),
-        head: () => entity.getItemBySlot("head"),
-      };
-
-      const getItem = slotMap[slotName];
-      if (!getItem) return false;
-
-      const item = getItem();
+      const item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty() || !item.nbt) return false;
 
       const value = Number(item.nbt[nbtKey]);

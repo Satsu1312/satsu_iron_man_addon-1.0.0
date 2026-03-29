@@ -17,23 +17,11 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const nbtKey = props.get("nbtKey");
       const nbtValue = props.get("nbtValue");
 
-      // Mapear slots a funciones
-      const slotMap = {
-        mainhand: () => entity.getMainHandItem(),
-        offhand: () => entity.getOffHandItem(),
-        feet: () => entity.getItemBySlot("feet"),
-        legs: () => entity.getItemBySlot("legs"),
-        chest: () => entity.getItemBySlot("chest"),
-        head: () => entity.getItemBySlot("head"),
-      };
-
-      const getItem = slotMap[slotName];
-      if (!getItem) return false;
-
-      const item = getItem();
+      // Obtener ítem directamente del slot
+      const item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty() || !item.nbt) return false;
 
-      // Acceso directo al objeto NBT expuesto por KubeJS
+      // Comparar valor NBT
       return item.nbt[nbtKey] === nbtValue;
     });
 });
