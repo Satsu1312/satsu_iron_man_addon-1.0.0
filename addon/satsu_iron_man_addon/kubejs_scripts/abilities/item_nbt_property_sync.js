@@ -26,29 +26,17 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
-      let item;
-
-      if (slotName.startsWith("curios:")) {
-        const CuriosApi = Java.loadClass(
-          "top.theillusivec4.curios.api.CuriosApi",
-        );
-        const curiosSlot = slotName.split(":")[1];
-        const handler = CuriosApi.getCuriosHelper()
-          .getCuriosHandler(entity)
-          .orElse(null);
-        if (!handler) return;
-        const stacks = handler.getStacksHandler(curiosSlot).orElse(null);
-        if (!stacks) return;
-        item = stacks.getStacks().getStackInSlot(0);
-      } else {
-        item = entity.getItemBySlot(slotName);
-      }
-
-      if (!item || item.isEmpty()) return;
-
       const nbtKey = entry.getPropertyByName("nbtKey");
       const propertyKey = entry.getPropertyByName("propertyKey");
       const syncMode = entry.getPropertyByName("syncMode");
+
+      const stacksOrItem = global.getItemFromSlot(entity, slotName);
+      if (!stacksOrItem) return;
+
+      const item = slotName.startsWith("curios:")
+        ? stacksOrItem.getStackInSlot(0)
+        : stacksOrItem;
+      if (!item || item.isEmpty()) return;
 
       const itemNBT = item.nbt ?? {};
       const nbtValue = itemNBT[nbtKey];
@@ -90,23 +78,6 @@ StartupEvents.registry("palladium:abilities", (event) => {
       itemNBT[nbtKey] = finalValue;
       const newItem = item.withNBT(itemNBT);
 
-      const slotMap = { feet: 36, legs: 37, chest: 38, head: 39 };
-      if (slotName.startsWith("curios:")) {
-        const CuriosApi = Java.loadClass(
-          "top.theillusivec4.curios.api.CuriosApi",
-        );
-        const curiosSlot = slotName.split(":")[1];
-        const handler = CuriosApi.getCuriosHelper()
-          .getCuriosHandler(entity)
-          .orElse(null);
-        if (!handler) return;
-        const stacks = handler.getStacksHandler(curiosSlot).orElse(null);
-        if (!stacks) return;
-        stacks.getStacks().setStackInSlot(0, newItem);
-      } else if (entity.inventory && slotMap[slotName]) {
-        entity.inventory.setItem(slotMap[slotName], newItem);
-      } else {
-        entity.setItemSlot(slotName, newItem);
-      }
+      global.setItemInSlot(entity, slotName, newItem);
     });
 });

@@ -22,25 +22,12 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const nbtValue = props.get("nbtValue");
       const mode = props.get("mode");
 
-      let item;
-      if (slotName.startsWith("curios:")) {
-        const CuriosApi = Java.loadClass(
-          "top.theillusivec4.curios.api.CuriosApi",
-        );
-        const curiosSlot = slotName.split(":")[1];
-        const handlerOpt = CuriosApi.getCuriosHelper().getCuriosHandler(entity);
-        const handler = handlerOpt.orElse(null);
-        if (!handler) return false;
+      const stacksOrItem = global.getItemFromSlot(entity, slotName);
+      if (!stacksOrItem) return false;
 
-        const stacksOpt = handler.getStacksHandler(curiosSlot);
-        const stacks = stacksOpt.orElse(null);
-        if (!stacks) return false;
-
-        item = stacks.getStacks().getStackInSlot(0); // primer slot del tipo
-      } else {
-        item = entity.getItemBySlot(slotName);
-      }
-
+      const item = slotName.startsWith("curios:")
+        ? stacksOrItem.getStackInSlot(0)
+        : stacksOrItem;
       if (!item || item.isEmpty() || !item.nbt) return false;
 
       const actualValue = item.nbt[nbtKey];

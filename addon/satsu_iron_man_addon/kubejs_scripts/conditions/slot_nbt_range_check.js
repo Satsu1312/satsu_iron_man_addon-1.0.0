@@ -24,23 +24,12 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const max = props.get("max");
       const mode = props.get("mode");
 
-      let item;
-      if (slotName.startsWith("curios:")) {
-        const CuriosApi = Java.loadClass(
-          "top.theillusivec4.curios.api.CuriosApi",
-        );
-        const curiosSlot = slotName.split(":")[1];
-        const handler = CuriosApi.getCuriosHelper()
-          .getCuriosHandler(entity)
-          .orElse(null);
-        if (!handler) return false;
-        const stacks = handler.getStacksHandler(curiosSlot).orElse(null);
-        if (!stacks) return false;
-        item = stacks.getStacks().getStackInSlot(0);
-      } else {
-        item = entity.getItemBySlot(slotName);
-      }
+      const stacksOrItem = global.getItemFromSlot(entity, slotName);
+      if (!stacksOrItem) return false;
 
+      const item = slotName.startsWith("curios:")
+        ? stacksOrItem.getStackInSlot(0)
+        : stacksOrItem;
       if (!item || item.isEmpty() || !item.nbt) return false;
 
       const value = Number(item.nbt[nbtKey]);
