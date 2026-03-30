@@ -1,5 +1,3 @@
-// Archivo: kubejs/server_scripts/satsu_item_nbt_command.js
-
 ServerEvents.commandRegistry((event) => {
   const { commands: Commands, arguments: Arguments } = event;
 
@@ -25,11 +23,9 @@ ServerEvents.commandRegistry((event) => {
             let itemNBT = item.nbt || {};
 
             if (nbtValue.toLowerCase() === "remove") {
-              // Eliminar la clave NBT
               delete itemNBT[nbtKey];
               player.tell(Text.green(`NBT '${nbtKey}' eliminado del ítem.`));
             } else {
-              // Añadir o modificar la clave NBT
               itemNBT[nbtKey] = nbtValue;
               player.tell(
                 Text.green(`NBT '${nbtKey}' actualizado a '${nbtValue}'.`),

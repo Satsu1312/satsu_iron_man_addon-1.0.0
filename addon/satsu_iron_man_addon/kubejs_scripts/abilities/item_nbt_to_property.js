@@ -1,5 +1,3 @@
-// Archivo: kubejs/startup_scripts/palladium_nbt_to_property.js
-
 StartupEvents.registry("palladium:abilities", (event) => {
   event
     .create("satsu_iron_man_addon:item_nbt_to_property")
@@ -8,7 +6,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "slot",
       "string",
       "mainhand",
-      "Slot to check (mainhand, offhand, boots, leggings, chestplate, helmet)",
+      "Slot to check (mainhand, offhand, feet, legs, chest, head)",
     )
     .addProperty("nbtKey", "string", "skillCharge", "The NBT key to read")
     .addProperty(
@@ -32,15 +30,13 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       const rawValue = itemNBT[nbtKey];
 
-      // Detectar si es número o string
       let value;
       if (!isNaN(Number(rawValue))) {
-        value = Number(rawValue); // numérico
+        value = Number(rawValue);
       } else {
-        value = String(rawValue); // texto
+        value = String(rawValue);
       }
 
-      // Asignar directamente la propiedad con el tipo detectado
       palladium.setProperty(entity, propertyKey, value);
     });
 });

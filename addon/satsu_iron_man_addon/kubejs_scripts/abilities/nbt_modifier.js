@@ -1,5 +1,3 @@
-// Archivo: kubejs/startup_scripts/palladium_nbt_modifier.js
-
 StartupEvents.registry("palladium:abilities", (event) => {
   event
     .create("satsu_iron_man_addon:nbt_modifier")
@@ -11,7 +9,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "slot",
       "string",
       "mainhand",
-      "Slot to check (mainhand, offhand, boots, leggings, chestplate, helmet)",
+      "Slot to check (mainhand, offhand, feet, legs, chest, head)",
     )
     .addProperty("nbtKey", "string", "energy", "The NBT key to modify")
     .addProperty("adjustment_type", "string", "add", "add, subtract or set")
@@ -31,7 +29,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const itemNBT = item.nbt ?? {};
       let current = Number(itemNBT[nbtKey]) || 0;
 
-      // Precalcular nuevo valor según tipo
+
       let newValue;
       switch (adjustType) {
         case "add":
@@ -44,17 +42,15 @@ StartupEvents.registry("palladium:abilities", (event) => {
           newValue = adjustAmt;
           break;
         default:
-          return; // si no coincide, salir
+          return;
       }
 
-      // Solo actualizar si realmente cambia
       if (newValue === current) return;
 
       itemNBT[nbtKey] = newValue;
       const newItem = item.withNBT(itemNBT);
 
       if (entity.inventory) {
-        // Mapear slots de armadura a índices
         const slotMap = {
           feet: 36,
           legs: 37,

@@ -1,14 +1,12 @@
-// Archivo: kubejs/startup_scripts/palladium_item_property_sync.js
-
 StartupEvents.registry("palladium:abilities", (event) => {
   event
-    .create("satsu_iron_man_addon:item_property_sync")
+    .create("satsu_iron_man_addon:item_nbt_property_sync")
     .icon(palladium.createItemIcon("minecraft:diamond"))
     .addProperty(
       "slot",
       "string",
       "mainhand",
-      "Slot to sync (mainhand, offhand, boots, leggings, chestplate, helmet)",
+      "Slot to sync (mainhand, offhand, feet, legs, chest, head)",
     )
     .addProperty("nbtKey", "string", "energy", "The NBT key to sync")
     .addProperty(
@@ -39,7 +37,6 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const rawNBT = itemNBT[nbtKey];
       const rawProp = palladium.getProperty(entity, propertyKey);
 
-      // Detectar tipo: número o string
       const nbtValue =
         rawNBT != null && !isNaN(Number(rawNBT)) ? Number(rawNBT) : rawNBT;
       const propValue =
@@ -55,11 +52,9 @@ StartupEvents.registry("palladium:abilities", (event) => {
           break;
         case "mixed":
           if (nbtValue != null && propValue != null) {
-            // Si ambos son números, usar el menor
             if (typeof nbtValue === "number" && typeof propValue === "number") {
               finalValue = Math.min(nbtValue, propValue);
             } else {
-              // Si son strings o tipos distintos, priorizar NBT
               finalValue = nbtValue ?? propValue;
             }
           } else {
@@ -72,7 +67,6 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       if (finalValue == null) return;
 
-      // Evitar escrituras innecesarias
       if (
         itemNBT[nbtKey] === finalValue &&
         palladium.getProperty(entity, propertyKey) === finalValue

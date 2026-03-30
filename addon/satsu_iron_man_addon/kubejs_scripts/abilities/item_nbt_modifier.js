@@ -1,14 +1,13 @@
-// Archivo: kubejs/startup_scripts/palladium_item_modifier.js
 
 StartupEvents.registry("palladium:abilities", (event) => {
   event
-    .create("satsu_iron_man_addon:item_modifier")
+    .create("satsu_iron_man_addon:item_nbt_modifier")
     .icon(palladium.createItemIcon("minecraft:diamond"))
     .addProperty(
       "slot",
       "string",
       "mainhand",
-      "Slot to check (mainhand, offhand, boots, leggings, chestplate, helmet)",
+      "Slot to check (mainhand, offhand, feet, legs, chest, head)",
     )
     .addProperty("nbtKey", "string", "CustomTag", "The NBT key to modify")
     .addProperty(
@@ -30,7 +29,6 @@ StartupEvents.registry("palladium:abilities", (event) => {
 
       const itemNBT = item.nbt ?? {};
 
-      // Evitar escrituras si ya tiene el valor correcto
       if (itemNBT[nbtKey] === nbtValue) return;
 
       itemNBT[nbtKey] = nbtValue;

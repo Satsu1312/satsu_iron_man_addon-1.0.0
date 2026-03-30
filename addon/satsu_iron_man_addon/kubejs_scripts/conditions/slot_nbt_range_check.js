@@ -1,5 +1,3 @@
-// Archivo: kubejs/startup_scripts/palladium_condition_slot_nbt_check_range.js
-
 StartupEvents.registry("palladium:condition_serializer", (event) => {
   event
     .create("satsu_iron_man_addon:slot_nbt_range_check")
@@ -7,7 +5,7 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       "slot",
       "string",
       "mainhand",
-      "Slot to check (mainhand, offhand, boots, leggings, chestplate, helmet)",
+      "Slot to check (mainhand, offhand, feet, legs, chest, head)",
     )
     .addProperty("nbtKey", "string", "skillCharge", "The NBT key to check")
     .addProperty("min", "integer", 0, "Minimum allowed value")
@@ -43,7 +41,7 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
           return value < max;
 
         case "equals":
-          return value === min; // aquí usas min como valor exacto
+          return value === min;
 
         case "betweenInclusive":
           return value >= min && value <= max;
