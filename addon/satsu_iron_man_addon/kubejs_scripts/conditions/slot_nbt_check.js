@@ -5,7 +5,7 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       "slot",
       "string",
       "mainhand",
-      "Slot to check (mainhand, offhand, feet, legs, chest, head)",
+      "Slot to check (mainhand, offhand, feet, legs, chest, head, curios:slot)",
     )
     .addProperty("nbtKey", "string", "CustomTag", "The NBT key to check")
     .addProperty("nbtValue", "string", "Active", "The required NBT value")
@@ -22,7 +22,25 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const nbtValue = props.get("nbtValue");
       const mode = props.get("mode");
 
-      const item = entity.getItemBySlot(slotName);
+      let item;
+      if (slotName.startsWith("curios:")) {
+        const CuriosApi = Java.loadClass(
+          "top.theillusivec4.curios.api.CuriosApi",
+        );
+        const curiosSlot = slotName.split(":")[1];
+        const handlerOpt = CuriosApi.getCuriosHelper().getCuriosHandler(entity);
+        const handler = handlerOpt.orElse(null);
+        if (!handler) return false;
+
+        const stacksOpt = handler.getStacksHandler(curiosSlot);
+        const stacks = stacksOpt.orElse(null);
+        if (!stacks) return false;
+
+        item = stacks.getStacks().getStackInSlot(0); // primer slot del tipo
+      } else {
+        item = entity.getItemBySlot(slotName);
+      }
+
       if (!item || item.isEmpty() || !item.nbt) return false;
 
       const actualValue = item.nbt[nbtKey];
@@ -31,22 +49,16 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       switch (mode) {
         case "equals":
           return actualValue === nbtValue;
-
         case "notEquals":
           return actualValue !== nbtValue;
-
         case "exists":
           return true;
-
         case "contains":
-          if (typeof actualValue === "string") {
-            return actualValue.includes(nbtValue);
-          }
-          return false;
-
+          return (
+            typeof actualValue === "string" && actualValue.includes(nbtValue)
+          );
         case "numericEquals":
           return Number(actualValue) === Number(nbtValue);
-
         default:
           return false;
       }

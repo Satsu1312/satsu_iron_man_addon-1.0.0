@@ -6,7 +6,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "slot",
       "string",
       "mainhand",
-      "Slot to sync (mainhand, offhand, feet, legs, chest, head)",
+      "Slot to sync (mainhand, offhand, feet, legs, chest, head, curios:slot)",
     )
     .addProperty("nbtKey", "string", "energy", "The NBT key to sync")
     .addProperty(
@@ -26,7 +26,24 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
-      const item = entity.getItemBySlot(slotName);
+      let item;
+
+      if (slotName.startsWith("curios:")) {
+        const CuriosApi = Java.loadClass(
+          "top.theillusivec4.curios.api.CuriosApi",
+        );
+        const curiosSlot = slotName.split(":")[1];
+        const handler = CuriosApi.getCuriosHelper()
+          .getCuriosHandler(entity)
+          .orElse(null);
+        if (!handler) return;
+        const stacks = handler.getStacksHandler(curiosSlot).orElse(null);
+        if (!stacks) return;
+        item = stacks.getStacks().getStackInSlot(0);
+      } else {
+        item = entity.getItemBySlot(slotName);
+      }
+
       if (!item || item.isEmpty()) return;
 
       const nbtKey = entry.getPropertyByName("nbtKey");
@@ -74,7 +91,19 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const newItem = item.withNBT(itemNBT);
 
       const slotMap = { feet: 36, legs: 37, chest: 38, head: 39 };
-      if (entity.inventory && slotMap[slotName]) {
+      if (slotName.startsWith("curios:")) {
+        const CuriosApi = Java.loadClass(
+          "top.theillusivec4.curios.api.CuriosApi",
+        );
+        const curiosSlot = slotName.split(":")[1];
+        const handler = CuriosApi.getCuriosHelper()
+          .getCuriosHandler(entity)
+          .orElse(null);
+        if (!handler) return;
+        const stacks = handler.getStacksHandler(curiosSlot).orElse(null);
+        if (!stacks) return;
+        stacks.getStacks().setStackInSlot(0, newItem);
+      } else if (entity.inventory && slotMap[slotName]) {
         entity.inventory.setItem(slotMap[slotName], newItem);
       } else {
         entity.setItemSlot(slotName, newItem);

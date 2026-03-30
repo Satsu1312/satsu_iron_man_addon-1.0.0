@@ -6,7 +6,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "slot",
       "string",
       "mainhand",
-      "Slot to check (mainhand, offhand, feet, legs, chest, head)",
+      "Slot to check (mainhand, offhand, feet, legs, chest, head, curios:slot)",
     )
     .addProperty("nbtKey", "string", "skillCharge", "The NBT key to set")
     .addProperty(
@@ -23,32 +23,49 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const nbtKey = entry.getPropertyByName("nbtKey");
       const propertyKey = entry.getPropertyByName("propertyKey");
 
-      const item = entity.getItemBySlot(slotName);
+      let item;
+      if (slotName.startsWith("curios:")) {
+        const CuriosApi = Java.loadClass(
+          "top.theillusivec4.curios.api.CuriosApi",
+        );
+        const curiosSlot = slotName.split(":")[1];
+        const handler = CuriosApi.getCuriosHelper()
+          .getCuriosHandler(entity)
+          .orElse(null);
+        if (!handler) return;
+        const stacks = handler.getStacksHandler(curiosSlot).orElse(null);
+        if (!stacks) return;
+        item = stacks.getStacks().getStackInSlot(0);
+      } else {
+        item = entity.getItemBySlot(slotName);
+      }
+
       if (!item || item.isEmpty()) return;
 
       const propertyValue = palladium.getProperty(entity, propertyKey);
       if (propertyValue == null) return;
 
       const itemNBT = item.nbt ?? {};
-
       if (itemNBT[nbtKey] === propertyValue) return;
 
       itemNBT[nbtKey] = propertyValue;
       const newItem = item.withNBT(itemNBT);
 
-      if (entity.inventory) {
-        const slotMap = {
-          feet: 36,
-          legs: 37,
-          chest: 38,
-          head: 39,
-        };
-
-        if (slotMap[slotName]) {
-          entity.inventory.setItem(slotMap[slotName], newItem);
-        } else {
-          entity.setItemSlot(slotName, newItem);
-        }
+      const slotMap = { feet: 36, legs: 37, chest: 38, head: 39 };
+      if (slotName.startsWith("curios:")) {
+        const CuriosApi = Java.loadClass(
+          "top.theillusivec4.curios.api.CuriosApi",
+        );
+        const curiosSlot = slotName.split(":")[1];
+        const handler = CuriosApi.getCuriosHelper()
+          .getCuriosHandler(entity)
+          .orElse(null);
+        if (!handler) return;
+        const stacks = handler.getStacksHandler(curiosSlot).orElse(null);
+        if (!stacks) return;
+        stacks.getStacks().setStackInSlot(0, newItem);
+      } else if (entity.inventory && slotMap[slotName]) {
+        entity.inventory.setItem(slotMap[slotName], newItem);
       } else {
         entity.setItemSlot(slotName, newItem);
       }
