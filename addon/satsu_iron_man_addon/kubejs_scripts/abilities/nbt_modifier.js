@@ -9,7 +9,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "slot",
       "string",
       "mainhand",
-      "Slot to check (mainhand, offhand, feet, legs, chest, head)",
+      "Slot to check (mainhand, offhand, feet, legs, chest, head, curios:slot)",
     )
     .addProperty("nbtKey", "string", "energy", "The NBT key to modify")
     .addProperty("adjustment_type", "string", "add", "add, subtract or set")
@@ -19,12 +19,17 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
-      const item = entity.getItemBySlot(slotName);
-      if (!item || item.isEmpty()) return;
-
       const nbtKey = entry.getPropertyByName("nbtKey");
       const adjustType = entry.getPropertyByName("adjustment_type");
       const adjustAmt = entry.getPropertyByName("adjustment_amount");
+
+      const stacksOrItem = global.getItemFromSlot(entity, slotName);
+      if (!stacksOrItem) return;
+
+      const item = slotName.startsWith("curios:")
+        ? stacksOrItem.getStackInSlot(0)
+        : stacksOrItem;
+      if (!item || item.isEmpty()) return;
 
       const itemNBT = item.nbt ?? {};
       const current = Number(itemNBT[nbtKey]) || 0;
@@ -40,11 +45,6 @@ StartupEvents.registry("palladium:abilities", (event) => {
       itemNBT[nbtKey] = newValue;
       const newItem = item.withNBT(itemNBT);
 
-      const slotMap = { feet: 36, legs: 37, chest: 38, head: 39 };
-      if (entity.inventory && slotMap[slotName]) {
-        entity.inventory.setItem(slotMap[slotName], newItem);
-      } else {
-        entity.setItemSlot(slotName, newItem);
-      }
+      global.setItemInSlot(entity, slotName, newItem);
     });
 });
