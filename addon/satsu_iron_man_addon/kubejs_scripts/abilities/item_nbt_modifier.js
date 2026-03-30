@@ -1,4 +1,3 @@
-
 StartupEvents.registry("palladium:abilities", (event) => {
   event
     .create("satsu_iron_man_addon:item_nbt_modifier")
@@ -21,12 +20,11 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
-      const nbtKey = entry.getPropertyByName("nbtKey");
-      const nbtValue = entry.getPropertyByName("nbtValue");
-
       const item = entity.getItemBySlot(slotName);
       if (!item || item.isEmpty()) return;
 
+      const nbtKey = entry.getPropertyByName("nbtKey");
+      const nbtValue = entry.getPropertyByName("nbtValue");
       const itemNBT = item.nbt ?? {};
 
       if (itemNBT[nbtKey] === nbtValue) return;
@@ -34,19 +32,9 @@ StartupEvents.registry("palladium:abilities", (event) => {
       itemNBT[nbtKey] = nbtValue;
       const newItem = item.withNBT(itemNBT);
 
-      if (entity.inventory) {
-        const slotMap = {
-          feet: 36,
-          legs: 37,
-          chest: 38,
-          head: 39,
-        };
-
-        if (slotMap[slotName]) {
-          entity.inventory.setItem(slotMap[slotName], newItem);
-        } else {
-          entity.setItemSlot(slotName, newItem);
-        }
+      const slotMap = { feet: 36, legs: 37, chest: 38, head: 39 };
+      if (entity.inventory && slotMap[slotName]) {
+        entity.inventory.setItem(slotMap[slotName], newItem);
       } else {
         entity.setItemSlot(slotName, newItem);
       }

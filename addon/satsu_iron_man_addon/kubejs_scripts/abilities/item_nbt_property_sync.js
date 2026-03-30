@@ -26,47 +26,43 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
+      const item = entity.getItemBySlot(slotName);
+      if (!item || item.isEmpty()) return;
+
       const nbtKey = entry.getPropertyByName("nbtKey");
       const propertyKey = entry.getPropertyByName("propertyKey");
       const syncMode = entry.getPropertyByName("syncMode");
 
-      const item = entity.getItemBySlot(slotName);
-      if (!item || item.isEmpty()) return;
-
       const itemNBT = item.nbt ?? {};
-      const rawNBT = itemNBT[nbtKey];
-      const rawProp = palladium.getProperty(entity, propertyKey);
+      const nbtValue = itemNBT[nbtKey];
+      const propValue = palladium.getProperty(entity, propertyKey);
 
-      const nbtValue =
-        rawNBT != null && !isNaN(Number(rawNBT)) ? Number(rawNBT) : rawNBT;
-      const propValue =
-        rawProp != null && !isNaN(Number(rawProp)) ? Number(rawProp) : rawProp;
+      const parsedNBT =
+        nbtValue != null && !isNaN(Number(nbtValue))
+          ? Number(nbtValue)
+          : nbtValue;
+      const parsedProp =
+        propValue != null && !isNaN(Number(propValue))
+          ? Number(propValue)
+          : propValue;
 
       let finalValue;
-      switch (syncMode) {
-        case "property":
-          if (propValue != null) finalValue = propValue;
-          break;
-        case "nbt":
-          if (nbtValue != null) finalValue = nbtValue;
-          break;
-        case "mixed":
-          if (nbtValue != null && propValue != null) {
-            if (typeof nbtValue === "number" && typeof propValue === "number") {
-              finalValue = Math.min(nbtValue, propValue);
-            } else {
-              finalValue = nbtValue ?? propValue;
-            }
-          } else {
-            finalValue = nbtValue ?? propValue;
-          }
-          break;
-        default:
-          return;
-      }
+      if (syncMode === "property" && parsedProp != null) {
+        finalValue = parsedProp;
+      } else if (syncMode === "nbt" && parsedNBT != null) {
+        finalValue = parsedNBT;
+      } else if (syncMode === "mixed") {
+        if (parsedNBT != null && parsedProp != null) {
+          finalValue =
+            typeof parsedNBT === "number" && typeof parsedProp === "number"
+              ? Math.min(parsedNBT, parsedProp)
+              : (parsedNBT ?? parsedProp);
+        } else {
+          finalValue = parsedNBT ?? parsedProp;
+        }
+      } else return;
 
       if (finalValue == null) return;
-
       if (
         itemNBT[nbtKey] === finalValue &&
         palladium.getProperty(entity, propertyKey) === finalValue
@@ -77,19 +73,9 @@ StartupEvents.registry("palladium:abilities", (event) => {
       itemNBT[nbtKey] = finalValue;
       const newItem = item.withNBT(itemNBT);
 
-      if (entity.inventory) {
-        const slotMap = {
-          feet: 36,
-          legs: 37,
-          chest: 38,
-          head: 39,
-        };
-
-        if (slotMap[slotName]) {
-          entity.inventory.setItem(slotMap[slotName], newItem);
-        } else {
-          entity.setItemSlot(slotName, newItem);
-        }
+      const slotMap = { feet: 36, legs: 37, chest: 38, head: 39 };
+      if (entity.inventory && slotMap[slotName]) {
+        entity.inventory.setItem(slotMap[slotName], newItem);
       } else {
         entity.setItemSlot(slotName, newItem);
       }

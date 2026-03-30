@@ -19,50 +19,30 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
+      const item = entity.getItemBySlot(slotName);
+      if (!item || item.isEmpty()) return;
+
       const nbtKey = entry.getPropertyByName("nbtKey");
       const adjustType = entry.getPropertyByName("adjustment_type");
       const adjustAmt = entry.getPropertyByName("adjustment_amount");
 
-      const item = entity.getItemBySlot(slotName);
-      if (!item || item.isEmpty()) return;
-
       const itemNBT = item.nbt ?? {};
-      let current = Number(itemNBT[nbtKey]) || 0;
+      const current = Number(itemNBT[nbtKey]) || 0;
 
-
-      let newValue;
-      switch (adjustType) {
-        case "add":
-          newValue = current + adjustAmt;
-          break;
-        case "subtract":
-          newValue = current - adjustAmt;
-          break;
-        case "set":
-          newValue = adjustAmt;
-          break;
-        default:
-          return;
-      }
+      let newValue = current;
+      if (adjustType === "add") newValue += adjustAmt;
+      else if (adjustType === "subtract") newValue -= adjustAmt;
+      else if (adjustType === "set") newValue = adjustAmt;
+      else return;
 
       if (newValue === current) return;
 
       itemNBT[nbtKey] = newValue;
       const newItem = item.withNBT(itemNBT);
 
-      if (entity.inventory) {
-        const slotMap = {
-          feet: 36,
-          legs: 37,
-          chest: 38,
-          head: 39,
-        };
-
-        if (slotMap[slotName]) {
-          entity.inventory.setItem(slotMap[slotName], newItem);
-        } else {
-          entity.setItemSlot(slotName, newItem);
-        }
+      const slotMap = { feet: 36, legs: 37, chest: 38, head: 39 };
+      if (entity.inventory && slotMap[slotName]) {
+        entity.inventory.setItem(slotMap[slotName], newItem);
       } else {
         entity.setItemSlot(slotName, newItem);
       }

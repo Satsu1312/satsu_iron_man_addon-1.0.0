@@ -15,28 +15,22 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "satsu_iron_man_addon_mod.skill_charge",
       "The Palladium property to set",
     )
+
     .tick((entity, entry, holder, enabled) => {
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
+      const item = entity.getItemBySlot(slotName);
+      if (!item?.nbt || item.isEmpty()) return;
+
       const nbtKey = entry.getPropertyByName("nbtKey");
       const propertyKey = entry.getPropertyByName("propertyKey");
+      const rawValue = item.nbt[nbtKey];
+      if (rawValue == null) return;
 
-      const item = entity.getItemBySlot(slotName);
-      if (!item || item.isEmpty() || !item.nbt) return;
-
-      const itemNBT = item.nbt;
-      if (itemNBT[nbtKey] == null) return;
-
-      const rawValue = itemNBT[nbtKey];
-
-      let value;
-      if (!isNaN(Number(rawValue))) {
-        value = Number(rawValue);
-      } else {
-        value = String(rawValue);
-      }
-
+      const value = isNaN(Number(rawValue))
+        ? String(rawValue)
+        : Number(rawValue);
       palladium.setProperty(entity, propertyKey, value);
     });
 });
