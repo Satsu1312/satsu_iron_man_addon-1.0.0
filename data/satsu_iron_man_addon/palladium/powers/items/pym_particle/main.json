@@ -40,6 +40,30 @@
         "unlocking": []
       }
     },
+    "quantum_suit_nbt": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:body",
+      "nbtKey": "pym_particle",
+      "adjustment_type": "add",
+      "adjustment_amount": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:body",
+            "nbtKey": "pym_particle",
+            "mode": "exists"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "toggle"
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "toggle": {
       "type": "palladium:command",
       "icon": {
@@ -65,10 +89,22 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_mark_86_pym_particle",
-            "min": 0,
-            "max": 99
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:integer_property",
+                "property": "satsu_iron_man_mark_86_pym_particle",
+                "min": 0,
+                "max": 99
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:body",
+                "nbtKey": "pym_particle",
+                "min": 0,
+                "max": 99
+              }
+            ]
           },
           {
             "type": "palladium:not",
