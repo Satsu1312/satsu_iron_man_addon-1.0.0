@@ -2791,6 +2791,261 @@
         ]
       }
     },
+    "enabled_reroute_motors": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_strenght_power",
+      "test_value": "increase",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:chat_action",
+            "chat_message": "reroute power to motors",
+            "cooldown": 20
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "normal"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.13"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_reroute_motors.text": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.13\",\"color\":\"#c0c0c0\"}"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.13\",\"color\":\"#c0c0c0\"}"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
+          }
+        ]
+      }
+    },
+    "disable_reroute_motors": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_strenght_power",
+      "test_value": "normal",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:chat_action",
+            "chat_message": "dereroute power to motors",
+            "cooldown": 20
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.13"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "increase.pickaxe_velocity": {
       "type": "satsu_iron_man_addon:set_property_string",
       "hidden": true,
