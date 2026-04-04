@@ -1656,7 +1656,7 @@
         "unlocking": []
       }
     },
-    "strength.right.arm": {
+    "strength.right.arm.normal": {
       "type": "palladium:attribute_modifier",
       "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
       "title": { "translate": "ability.title.satsu.strength" },
@@ -1710,7 +1710,7 @@
         ]
       }
     },
-    "strength.left.arm": {
+    "strength.left.arm.normal": {
       "type": "palladium:attribute_modifier",
       "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
       "title": { "translate": "ability.title.satsu.strength" },
@@ -1745,6 +1745,106 @@
             "property": "satsu_iron_man_addon_strenght_power",
             "comparator": "equals",
             "compare_to": "normal"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          }
+        ]
+      }
+    },
+    "strength.right.arm.increase": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "7d39d2c3-9011-4c62-9e78-30cad82984ba",
+      "amount": 8,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon.right_arm",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          }
+        ]
+      }
+    },
+    "strength.left.arm.increase": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "3ba776c8-b98f-4a86-90c8-8a17607e53e0",
+      "amount": 8,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon.left_arm",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
           },
           {
             "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
