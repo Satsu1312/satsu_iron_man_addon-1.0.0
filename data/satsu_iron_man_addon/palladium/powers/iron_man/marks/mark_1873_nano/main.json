@@ -6364,10 +6364,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
-            "cooldown": 220,
-            "key_type": "key_bind",
-            "needs_empty_hand": false
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_shield_enabled",
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ],
         "unlocking": [
@@ -6417,11 +6417,15 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "force_field.shield.animation_timer",
-            "property": "value",
-            "min": 1,
-            "max": 7
+            "type": "satsu_iron_man_addon:pdata_boolean_toggle",
+            "data": "satsu_iron_man_addon.shield_enabling_pressed",
+            "value": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "force_field"
           }
         ]
       }
@@ -6489,12 +6493,8 @@
     },
     "force_field.knockback": {
       "type": "palladium:attribute_modifier",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
-      "title": { "translate": "ability.title.satsu.force.field" },
-      "description": { "translate": "description.force_field" },
       "hidden": true,
       "hidden_in_bar": true,
-      "gui_position": [-8, 3],
       "attribute": "minecraft:generic.knockback_resistance",
       "uuid": "e23d2ec9-1558-43b9-a8ff-60b7045ddc92",
       "amount": 2,
@@ -6503,10 +6503,10 @@
         "enabling": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "force_field.shield.animation_timer",
+            "ability": "shield_put_animation",
             "property": "value",
-            "min": 7,
-            "max": 7
+            "min": 6,
+            "max": 6
           }
         ],
         "unlocking": []
@@ -6514,12 +6514,8 @@
     },
     "force_field.knockback_not_damage": {
       "type": "palladium:attribute_modifier",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
-      "title": { "translate": "ability.title.satsu.force.field" },
-      "description": { "translate": "description.force_field" },
       "hidden": true,
       "hidden_in_bar": true,
-      "gui_position": [-8, 3],
       "attribute": "minecraft:generic.attack_damage",
       "uuid": "1556b88d-bf11-462f-8dc1-cc854edfc0c1",
       "amount": -1000000000000,
@@ -6528,10 +6524,10 @@
         "enabling": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "force_field.shield.animation_timer",
+            "ability": "shield_put_animation",
             "property": "value",
-            "min": 7,
-            "max": 7
+            "min": 6,
+            "max": 6
           }
         ],
         "unlocking": []
@@ -6541,7 +6537,7 @@
       "type": "gravecore:forcefield",
       "hidden": true,
       "hidden_in_bar": true,
-      "max_health": 440,
+      "max_health": 2000,
       "scoreboard": "null",
       "regen_rate": 1,
       "damage_sources": [
@@ -6578,14 +6574,14 @@
         "enabling": [
           {
             "type": "palladium:ability_enabled",
-            "ability": "force_field.shield.animation_timer"
+            "ability": "shield_put_animation"
           },
           {
             "type": "palladium:ability_integer_property",
-            "ability": "force_field.shield.animation_timer",
+            "ability": "shield_put_animation",
             "property": "value",
-            "min": 7,
-            "max": 7
+            "min": 6,
+            "max": 6
           }
         ],
         "unlocking": []
@@ -6600,10 +6596,10 @@
         "enabling": [
           {
             "type": "palladium:ability_integer_property",
-            "ability": "force_field.shield.animation_timer",
+            "ability": "shield_put_animation",
             "property": "value",
-            "min": 7,
-            "max": 7
+            "min": 6,
+            "max": 6
           }
         ],
         "unlocking": []
