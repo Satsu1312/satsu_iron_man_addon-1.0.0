@@ -2814,6 +2814,7 @@
       "abilities": [
         "weapons_wheel.shoulder_rockets",
         "weapons_wheel.flares",
+        "weapons_wheel.force_field",
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser",
         "weapons_wheel.flight_unlock"
@@ -2945,6 +2946,110 @@
             "max": 16
           }
         ]
+      }
+    },
+    "weapons_wheel.force_field": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/ark_force_field.png",
+      "title": { "translate": "ability.title.satsu.force.field" },
+      "description": { "translate": "description.force_field" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "no_nanoarmor_anim",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          }
+        ]
+      }
+    },
+    "force_field.set.off": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_shield_enabled",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "weapons_wheel.force_field"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_shield_enabled",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "force_field.set.on"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "force_field.set.on": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_shield_enabled",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "weapons_wheel.force_field"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_shield_enabled",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "force_field.set.off"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
       }
     },
     "energyblast.remove.ark.energy.normal": {
