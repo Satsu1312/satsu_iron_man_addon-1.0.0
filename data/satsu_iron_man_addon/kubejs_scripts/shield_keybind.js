@@ -1,4 +1,4 @@
-NetworkEvents.dataReceived("satsu_iron_man_addon.shieldEnablingKey", event => {
+NetworkEvents.dataReceived("satsu_iron_man_addon.shieldenablingkey", event => {
     const player = event.player;
     const dataKey = "satsu_iron_man_addon.shield_enabling_pressed";
     
