@@ -6,7 +6,21 @@
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body_call_it/main.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/fast_one_calling/transformation_#HIDDE.png"
+          }
+        ],
         "variables": {
+          "HIDDE": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor/call_armor_mark_7_system/activated",
+            "ability": "animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 4
+          },
           "X": {
             "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_mark_property",
@@ -14,6 +28,7 @@
           }
         }
       },
+      "output": "satsu_iron_man_addon:textures/models/iron_man/no_light/#X_0_#HIDDE",
       "animation_file": "satsu_iron_man_addon:animations/marks/mark_7_system/call.animation.geo.json",
       "animation_controller": [
         {
@@ -24,14 +39,37 @@
           }
         }
       ],
-      "conditions": []
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:armor/call_armor_mark_7_system/activated",
+          "ability": "animation_timer",
+          "property": "value",
+          "min": 0,
+          "max": 39
+        }
+      ]
     },
     {
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body_call_it/main.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man/light/#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/fast_one_calling/transformation_#HIDDE.png"
+          }
+        ],
         "variables": {
+          "HIDDE": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:armor/call_armor_mark_7_system/activated",
+            "ability": "animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 4
+          },
           "X": {
             "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_mark_property",
@@ -39,6 +77,7 @@
           }
         }
       },
+      "output": "satsu_iron_man_addon:textures/models/iron_man/light/#X_0_#HIDDE",
       "animation_file": "satsu_iron_man_addon:animations/marks/mark_7_system/call.animation.geo.json",
       "animation_controller": [
         {
@@ -51,6 +90,14 @@
       ],
       "render_type": "glow",
       "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:armor/call_armor_mark_7_system/activated",
+          "ability": "animation_timer",
+          "property": "value",
+          "min": 0,
+          "max": 39
+        },
         {
           "type": "palladium:or",
           "conditions": [

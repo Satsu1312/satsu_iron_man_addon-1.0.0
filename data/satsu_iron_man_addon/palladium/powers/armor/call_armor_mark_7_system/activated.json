@@ -3,21 +3,13 @@
   "background": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
   "icon": "satsu_iron_man_addon:textures/gui/armors/armadura_completa/mark_head_icon_4.png",
   "abilities": {
-    "energy.pulse.actived": {
+    "render_layer": {
       "type": "palladium:render_layer",
       "hidden": true,
       "hidden_in_bar": true,
       "render_layer": "satsu_iron_man_addon:armor_things/iron_man/mark_7_system/main",
       "conditions": {
         "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "animation_timer",
-            "property": "value",
-            "min": 2,
-            "max": 38
-          },
           {
             "type": "palladium:not",
             "conditions": [
@@ -35,14 +27,8 @@
     },
     "trigger": {
       "type": "geckolib:render_layer_animation",
-      "icon": "minecraft:blaze_rod",
-      "title": "null",
-      "bar_color": "light_gray",
       "hidden": true,
       "hidden_in_bar": true,
-      "list_index": -1,
-      "gui_position": "null",
-      "description": "null",
       "render_layer": "satsu_iron_man_addon:armor_things/iron_man/mark_7_system/main",
       "controller": "call_it",
       "animation_trigger": "call_to_you",
@@ -53,11 +39,44 @@
             "power": "null",
             "ability": "animation_timer",
             "property": "value",
-            "min": 3,
-            "max": 3
+            "min": 1,
+            "max": 1
           }
         ],
         "unlocking": []
+      }
+    },
+    "flight_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:fly_sound",
+      "volume": 0.1,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "animation_timer",
+            "property": "value",
+            "min": 1,
+            "max": 36
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:integer_property",
+                "property": "satsu_animation_armor",
+                "min": 1,
+                "max": 1
+              }
+            ]
+          }
+        ]
       }
     },
     "animation_timer": {
