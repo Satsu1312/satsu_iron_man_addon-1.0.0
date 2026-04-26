@@ -25,6 +25,15 @@
       "conditions": {
         "enabling": [
           {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mecano.sentinel.on.ground"
+              }
+            ]
+          },
+          {
             "type": "palladium:ability_integer_property",
             "power": "null",
             "ability": "call_sentinel_animation_timer",
@@ -57,14 +66,6 @@
                 "property": "value",
                 "min": 1,
                 "max": 36
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "power": "null",
-                "ability": "decall_sentinel_animation_timer",
-                "property": "value",
-                "min": 1,
-                "max": 36
               }
             ]
           },
@@ -89,34 +90,21 @@
       "start_value": 0,
       "max_value": 45,
       "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:has_tag",
-                "tag": "mecano.sentinel.on.ground"
-              }
-            ]
-          }
-        ],
+        "enabling": [],
         "unlocking": []
       }
     },
     "decall_sentinel_animation_timer": {
-      "type": "palladium:animation_timer",
+      "type": "palladium:dummy",
       "hidden": true,
       "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 45,
       "conditions": {
         "enabling": [
           {
             "type": "palladium:has_tag",
             "tag": "mecano.sentinel.on.ground"
           }
-        ],
-        "unlocking": []
+        ]
       }
     },
     "decall_sentinel_trigger": {
@@ -131,10 +119,14 @@
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
-            "ability": "decall_sentinel_animation_timer",
+            "ability": "call_sentinel_animation_timer",
             "property": "value",
-            "min": 1,
-            "max": 1
+            "min": 2,
+            "max": 2
+          },
+          {
+            "type": "palladium:has_tag",
+            "tag": "mecano.sentinel.on.ground"
           }
         ],
         "unlocking": []
@@ -159,6 +151,15 @@
       "capacity": "add",
       "conditions": {
         "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "mecano.sentinel.on.ground"
+              }
+            ]
+          },
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
@@ -185,33 +186,32 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
+            "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "power": "null",
-                    "ability": "call_sentinel_animation_timer",
-                    "property": "value",
-                    "min": 45,
-                    "max": 45
-                  },
-                  {
-                    "type": "palladium:ability_enabled",
-                    "power": "null",
-                    "ability": "call_sentinel_animation_timer"
-                  }
-                ]
+                "type": "palladium:has_tag",
+                "tag": "mecano.sentinel.on.ground"
               }
             ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "call_sentinel_animation_timer",
+            "property": "value",
+            "min": 45,
+            "max": 45
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "call_sentinel_animation_timer"
           }
         ],
         "unlocking": []
       }
     },
-    "decall_sentinel.remove_tag": {
+    "call_sentinel.remove_tag": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
       "hidden": true,
@@ -224,7 +224,7 @@
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
-            "ability": "decall_sentinel_animation_timer",
+            "ability": "call_sentinel_animation_timer",
             "property": "value",
             "min": 45,
             "max": 45
@@ -232,7 +232,11 @@
           {
             "type": "palladium:ability_enabled",
             "power": "null",
-            "ability": "decall_sentinel_animation_timer"
+            "ability": "call_sentinel_animation_timer"
+          },
+          {
+            "type": "palladium:has_tag",
+            "tag": "mecano.sentinel.on.ground"
           }
         ],
         "unlocking": []
