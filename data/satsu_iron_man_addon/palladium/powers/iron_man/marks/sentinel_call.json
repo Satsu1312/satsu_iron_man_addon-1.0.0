@@ -1,9 +1,11 @@
 {
-  "name": { "translate": "" },
-  "background": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
-  "icon": "satsu_iron_man_addon:textures/gui/armors/armadura_completa/mark_head_icon_4.png",
+  "name": { "translate": "ability.title.satsu.mark.32" },
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "list",
   "abilities": {
-    "render_layer": {
+    "render_layer.call_sentinel": {
       "type": "palladium:render_layer",
       "hidden": true,
       "hidden_in_bar": true,
@@ -25,7 +27,7 @@
         "unlocking": []
       }
     },
-    "trigger": {
+    "call_sentinel_trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -37,7 +39,7 @@
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
-            "ability": "animation_timer",
+            "ability": "call_sentinel_animation_timer",
             "property": "value",
             "min": 1,
             "max": 1
@@ -60,7 +62,7 @@
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
-            "ability": "animation_timer",
+            "ability": "call_sentinel_animation_timer",
             "property": "value",
             "min": 1,
             "max": 36
@@ -79,12 +81,12 @@
         ]
       }
     },
-    "animation_timer": {
+    "call_sentinel_animation_timer": {
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": true,
       "start_value": 0,
-      "max_value": 39,
+      "max_value": 45,
       "conditions": {
         "enabling": [],
         "unlocking": []
@@ -101,87 +103,26 @@
         "unlocking": []
       }
     },
-    "set.0": {
-      "type": "satsu_iron_man_addon:set_property",
+    "call_sentinel.superpower": {
+      "type": "satsu_iron_man_addon:superpower",
       "hidden": true,
       "hidden_in_bar": true,
-      "name": "satsu_animation_armor",
-      "number": 0,
+      "power": "satsu_iron_man_addon:armor/activated",
+      "capacity": "add",
       "conditions": {
         "enabling": [
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
-            "ability": "animation_timer",
+            "ability": "call_sentinel_animation_timer",
             "property": "value",
-            "min": 33,
-            "max": 33
+            "min": 44,
+            "max": 44
           },
           {
             "type": "palladium:ability_enabled",
             "power": "null",
-            "ability": "animation_timer"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 1,
-            "max": 1
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "set.1"
-              }
-            ]
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "set.1": {
-      "type": "satsu_iron_man_addon:set_property",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "name": "satsu_animation_armor",
-      "number": 1,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "animation_timer",
-            "property": "value",
-            "min": 33,
-            "max": 33
-          },
-          {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "animation_timer"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 0,
-            "max": 1000
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "set.0"
-              },
-              {
-                "type": "palladium:integer_property",
-                "property": "satsu_animation_armor",
-                "min": 1,
-                "max": 1
-              }
-            ]
+            "ability": "call_sentinel_animation_timer"
           }
         ],
         "unlocking": []
@@ -191,22 +132,22 @@
       "type": "satsu_iron_man_addon:superpower",
       "hidden": true,
       "hidden_in_bar": true,
-      "power": "satsu_iron_man_addon:armor/call_armor_mark_7_system/activated",
+      "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call",
       "capacity": "remove",
       "conditions": {
         "enabling": [
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
-            "ability": "animation_timer",
+            "ability": "call_sentinel_animation_timer",
             "property": "value",
-            "min": 39,
-            "max": 39
+            "min": 45,
+            "max": 45
           },
           {
             "type": "palladium:ability_enabled",
             "power": "null",
-            "ability": "animation_timer"
+            "ability": "call_sentinel_animation_timer"
           }
         ],
         "unlocking": []
