@@ -31,7 +31,7 @@
             "ability": "call_sentinel_animation_timer",
             "property": "value",
             "min": 0,
-            "max": 35
+            "max": 33
           },
           "X": {
             "type": "palladium:string_property",
@@ -84,7 +84,7 @@
             "ability": "call_sentinel_animation_timer",
             "property": "value",
             "min": 0,
-            "max": 35
+            "max": 33
           },
           "X": {
             "type": "palladium:string_property",
@@ -170,6 +170,99 @@
       },
       "render_type": "glow",
       "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": {
+        "base": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body_call_it/#mark_hammer/main.geo.json",
+        "variables": {
+          "mark_hammer": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          }
+        }
+      },
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/hammers/#X_0_hammers.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/#ALPHA_PATH/#HIDDE.png"
+          }
+        ],
+        "variables": {
+          "ALPHA_PATH": {
+            "type": "palladium:condition",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call",
+                "ability": "decall_sentinel_animation_timer"
+              }
+            ],
+            "true_value": "decall_sentinel",
+            "false_value": "fast_one_calling"
+          },
+          "HIDDE": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call",
+            "ability": "call_sentinel_animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 4
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/marks/mark_7_system/call.animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "call_it",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call_to_you": "call_armor",
+            "decall_armor": "decall_armor"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_mark_property",
+              "comparator": "equals",
+              "compare_to": "mark_25"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_mark_property",
+              "comparator": "equals",
+              "compare_to": "mark_26"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_mark_property",
+              "comparator": "equals",
+              "compare_to": "mark_29"
+            }
+          ]
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call",
+          "ability": "call_sentinel_animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 45
+        }
+      ]
     }
   ]
 }
