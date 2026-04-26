@@ -174,9 +174,9 @@
     {
       "type": "geckolib:default",
       "model": {
-        "base": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body_call_it/#mark_hammer/main.geo.json",
+        "base": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body_call_it/#addition/main.geo.json",
         "variables": {
-          "mark_hammer": {
+          "addition": {
             "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_mark_property",
             "fallback": "mark_1"
@@ -184,7 +184,7 @@
         }
       },
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/hammers/#X_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#additional_stuff_path/#X_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
@@ -192,6 +192,30 @@
           }
         ],
         "variables": {
+          "additional_stuff_path": {
+            "type": "palladium:condition",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_mark_property",
+                    "comparator": "equals",
+                    "compare_to": "mark_34"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_mark_property",
+                    "comparator": "equals",
+                    "compare_to": "mark_35"
+                  }
+                ]
+              }
+            ],
+            "true_value": "pinchers",
+            "false_value": "hammers"
+          },
           "ALPHA_PATH": {
             "type": "palladium:condition",
             "conditions": [
@@ -251,6 +275,18 @@
               "property": "satsu_iron_man_addon_mark_property",
               "comparator": "equals",
               "compare_to": "mark_29"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_mark_property",
+              "comparator": "equals",
+              "compare_to": "mark_34"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_mark_property",
+              "comparator": "equals",
+              "compare_to": "mark_35"
             }
           ]
         },
