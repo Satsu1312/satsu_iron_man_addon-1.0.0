@@ -25,33 +25,41 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .tick((entity, entry, holder, enabled) => {
       if (!enabled) return;
 
-      const slotName = entry.getPropertyByName("slot");
-      const nbtKey = entry.getPropertyByName("nbtKey");
-      const propertyKey = entry.getPropertyByName("propertyKey");
-      const syncMode = entry.getPropertyByName("syncMode");
+      // CORRECCIÓN: Forzamos el valor a String para evitar el ClassCastException
+      const slotName = String(entry.getPropertyByName("slot"));
+      const nbtKey = String(entry.getPropertyByName("nbtKey"));
+      const propertyKey = String(entry.getPropertyByName("propertyKey"));
+      const syncMode = String(entry.getPropertyByName("syncMode"));
 
+      // Obtener el item usando la función global definida en tu addon
       const stacksOrItem = global.getItemFromSlot(entity, slotName);
       if (!stacksOrItem) return;
 
       const item = slotName.startsWith("curios:")
         ? stacksOrItem.getStackInSlot(0)
         : stacksOrItem;
+
       if (!item || item.isEmpty()) return;
 
-      const itemNBT = item.nbt ?? {};
+      // Manejo seguro de NBT
+      const itemNBT = item.nbt || {};
       const nbtValue = itemNBT[nbtKey];
       const propValue = palladium.getProperty(entity, propertyKey);
 
+      // Normalización de valores numéricos
       const parsedNBT =
         nbtValue != null && !isNaN(Number(nbtValue))
           ? Number(nbtValue)
           : nbtValue;
+
       const parsedProp =
         propValue != null && !isNaN(Number(propValue))
           ? Number(propValue)
           : propValue;
 
       let finalValue;
+
+      // Lógica de Sincronización
       if (syncMode === "property" && parsedProp != null) {
         finalValue = parsedProp;
       } else if (syncMode === "nbt" && parsedNBT != null) {
@@ -65,18 +73,29 @@ StartupEvents.registry("palladium:abilities", (event) => {
         } else {
           finalValue = parsedNBT ?? parsedProp;
         }
-      } else return;
+      } else {
+        return;
+      }
 
       if (finalValue == null) return;
-      if (
-        itemNBT[nbtKey] === finalValue &&
-        palladium.getProperty(entity, propertyKey) === finalValue
-      )
-        return;
 
+      // Evitar bucles infinitos si los valores ya son iguales
+      // Comparamos usando Number() para asegurar igualdad numérica exacta
+      if (
+        Number(itemNBT[nbtKey]) === Number(finalValue) &&
+        Number(palladium.getProperty(entity, propertyKey)) ===
+          Number(finalValue)
+      ) {
+        return;
+      }
+
+      // Aplicar cambios
       palladium.setProperty(entity, propertyKey, finalValue);
-      itemNBT[nbtKey] = finalValue;
-      const newItem = item.withNBT(itemNBT);
+
+      // Actualizar el item con el nuevo NBT
+      let newNBT = item.nbt || {};
+      newNBT[nbtKey] = finalValue;
+      const newItem = item.withNBT(newNBT);
 
       global.setItemInSlot(entity, slotName, newItem);
     });
