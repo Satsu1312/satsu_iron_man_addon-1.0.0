@@ -6,6 +6,73 @@
   "gui_display_type": "list",
   "abilities": {
     "give_sentinel": {
+      "type": "satsu_iron_man_addon:superpower",
+      "icon": "#satsu_iron_man_addon:armor_icon_ability",
+      "title": { "translate": "ability.title.satsu.call.sentinel" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call",
+      "capacity": "add",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call"
+              }
+            ]
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 0,
+            "max": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
+                "comparison": "==",
+                "compare_to": 1,
+                "log": false
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:is_falling",
+                "distance": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_sentinel_crouch": {
       "type": "palladium:command",
       "icon": "#satsu_iron_man_addon:armor_icon_ability",
       "title": { "translate": "ability.title.satsu.call.sentinel" },
@@ -28,10 +95,22 @@
         ],
         "unlocking": [
           {
+            "type": "palladium:crouching"
+          },
+          {
             "type": "palladium:integer_property",
             "property": "satsu_animation_armor",
             "min": 0,
             "max": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call"
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -256,11 +335,35 @@
             "tag": "mecano.sentinel.on.ground"
           }
         ],
-        "unlocking": [
-        ]
+        "unlocking": []
       }
     },
     "spawn.armor.on.ground": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "icon": "#satsu_iron_man_addon:armor_icon_ability",
+      "title": { "translate": "ability.title.satsu.call.sentinel" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call",
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "mecano.sentinel.on.ground"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "choose.armor.set.animation_timer",
+            "property": "value",
+            "min": 8,
+            "max": 8
+          }
+        ]
+      }
+    },
+    "spawn.armor.on.ground_crouch": {
       "type": "palladium:command",
       "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
       "hidden": true,
@@ -276,6 +379,18 @@
         "enabling": [],
         "unlocking": [
           {
+            "type": "palladium:crouching"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:iron_man/marks/sentinel_call"
+              }
+            ]
+          },
+          {
             "type": "palladium:has_tag",
             "tag": "mecano.sentinel.on.ground"
           },
@@ -283,8 +398,8 @@
             "type": "palladium:ability_integer_property",
             "ability": "choose.armor.set.animation_timer",
             "property": "value",
-            "min": 8,
-            "max": 8
+            "min": 1,
+            "max": 1
           }
         ]
       }
