@@ -11,7 +11,7 @@ StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:minigun");
 });
 StartupEvents.registry("sound_event", (event) => {
-  event.create("satsu_iron_man_addon:new_mask_sound");
+  event.create("satsu_iron_man_addon:entity.armor.mark_close_mask");
 });
 StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:repulsor_rivals");
