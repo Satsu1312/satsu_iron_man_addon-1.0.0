@@ -1,6 +1,6 @@
 
 attribute @s minecraft:generic.max_health base set 20
-superpower add satsu_iron_man_addon:armor/activated
+superpower add satsu_iron_man_addon:armor/set_actived/set_off
 execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run function satsu_iron_man_addon:ia/swap_sentinels
 execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run kill @s
 function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground
