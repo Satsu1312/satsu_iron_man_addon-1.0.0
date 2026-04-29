@@ -393,10 +393,156 @@
       "render_type": "glow",
       "conditions": [
         {
-         "type": "palladium:integer_property",
-         "property": "satsu_iron_man_iron_man_energy",
+          "type": "palladium:integer_property",
+          "property": "satsu_iron_man_iron_man_energy",
           "min": 1,
           "max": 2147483647
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/hammers/mark_striker_hammers.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/hammers/mark_25_0.png",
+        "variables": {
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.right.arm"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main",
+          "ability": "no_nanoarmor_anim",
+          "property": "value",
+          "min": 1,
+          "max": 16
+        },
+        {
+          "type": "satsu_iron_man_addon:slot_nbt_check",
+          "slot": "chest",
+          "nbtKey": "Main_addition_right",
+          "nbtValue": "Hammer",
+          "mode": "equals"
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/hammers/mark_striker_hammers_left.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/hammers/mark_25_0.png",
+        "variables": {
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          }
+        }
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.left.arm"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main",
+          "ability": "no_nanoarmor_anim",
+          "property": "value",
+          "min": 1,
+          "max": 16
+        },
+        {
+          "type": "satsu_iron_man_addon:slot_nbt_check",
+          "slot": "chest",
+          "nbtKey": "Main_addition_left",
+          "nbtValue": "Hammer",
+          "mode": "equals"
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/silver_centurions_blades_right.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_suit_30_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/vibranuim_blades/transformation_#Blade_anim.png"
+          }
+        ],
+        "variables": {
+          "Blade_anim": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/additamens/vibranium_blades/main",
+            "ability": "Mark.30.vibranuim.blades",
+            "property": "value",
+            "min": 0,
+            "max": 6
+          }
+        }
+      },
+      "conditions": [
+        {
+          "type": "satsu_iron_man_addon:slot_nbt_check",
+          "slot": "chest",
+          "nbtKey": "Main_addition_right",
+          "nbtValue": "Blade",
+          "mode": "equals"
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/silver_centurions_blades_left.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man_suit_30_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/vibranuim_blades/transformation_#Blade_anim.png"
+          }
+        ],
+        "variables": {
+          "Blade_anim": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:marks/additamens/vibranium_blades/main",
+            "ability": "Mark.30.vibranuim.blades",
+            "property": "value",
+            "min": 0,
+            "max": 6
+          }
+        }
+      },
+      "conditions": [
+        {
+          "type": "satsu_iron_man_addon:slot_nbt_check",
+          "slot": "chest",
+          "nbtKey": "Main_addition_left",
+          "nbtValue": "Blade",
+          "mode": "equals"
         }
       ]
     }
