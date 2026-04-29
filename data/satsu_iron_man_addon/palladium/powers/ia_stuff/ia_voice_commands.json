@@ -179,16 +179,11 @@
       }
     },
     "enabled_remote": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/enable"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
       "conditions": {
         "enabling": [
           {
@@ -340,11 +335,31 @@
                 ]
               },
               {
-                "type": "palladium:item_in_slot",
-                "item": {
-                  "item": "satsu_iron_man_addon:ia_glases"
-                },
-                "slot": "curios:head"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -381,6 +396,74 @@
                     "log": false
                   }
                 ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_remote.command_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.ia_skill_stat" },
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/enable"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "enabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:ia_glases"
+            },
+            "slot": "curios:head"
+          }
+        ]
+      }
+    },
+    "enabled_remote.command_no_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.ia_skill_stat" },
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/enable_extremis_3_0"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "enabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_extremis_3_0",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -558,16 +641,11 @@
       }
     },
     "disabled_remote": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/disable"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
       "conditions": {
         "enabling": [
           {
@@ -684,8 +762,107 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "disabled_remote.command_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/disable"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "disabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "disabled_remote.command_no_glasses"
+              }
+            ]
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:ia_glases"
+            },
+            "slot": "curios:head"
+          }
+        ]
+      }
+    },
+    "disabled_remote.command_no_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/disable_extremis_3_0"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "disabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "disabled_remote.command_glasses"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_extremis_3_0",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -850,11 +1027,31 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:item_in_slot",
-                "item": {
-                  "item": "satsu_iron_man_addon:ia_glases"
-                },
-                "slot": "curios:head"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -1013,6 +1210,21 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
               }
@@ -1270,6 +1482,21 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
               }
@@ -1487,6 +1714,21 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
               }
@@ -2132,6 +2374,21 @@
                           "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
                         },
                         "slot": "chest"
+                      },
+                      {
+                        "type": "palladium:and",
+                        "conditions": [
+                          {
+                            "type": "palladium:has_power",
+                            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                          },
+                          {
+                            "type": "palladium:string_property",
+                            "property": "satsu_iron_man_addon_extremis_3_0",
+                            "comparator": "equals",
+                            "compare_to": "on"
+                          }
+                        ]
                       }
                     ]
                   }
@@ -3385,6 +3642,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3426,6 +3698,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3467,6 +3754,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3508,6 +3810,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3549,6 +3866,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3590,6 +3922,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3631,6 +3978,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3672,6 +4034,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3713,6 +4090,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3754,6 +4146,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3795,6 +4202,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3836,6 +4258,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3877,6 +4314,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }

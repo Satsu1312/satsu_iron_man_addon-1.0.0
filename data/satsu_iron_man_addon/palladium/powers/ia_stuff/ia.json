@@ -197,7 +197,7 @@
                 ]
               },
               {
-                "type": "palladium:and",
+                "type": "palladium:or",
                 "conditions": [
                   {
                     "type": "palladium:item_in_slot",
@@ -205,6 +205,21 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1074,6 +1089,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           },
@@ -1086,7 +1116,7 @@
       }
     },
     "enabled_remote": {
-      "type": "palladium:command",
+      "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/ia/abilities/remote.png",
       "title": {
         "translate": "ability.title.satsu.remote.mode"
@@ -1095,13 +1125,6 @@
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 1,
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/enable"
-      ],
-      "commands": [""],
-      "last_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/disable"
-      ],
       "conditions": {
         "enabling": [
           {
@@ -1164,7 +1187,7 @@
             ]
           },
           {
-            "type": "palladium:and",
+            "type": "palladium:or",
             "conditions": [
               {
                 "type": "palladium:item_in_slot",
@@ -1172,6 +1195,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           },
@@ -1218,6 +1256,94 @@
                 "type": "palladium:ability_unlocked",
                 "power": "satsu_iron_man_addon:ia_stuff/ia",
                 "ability": "armor_skill_bar"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_remote.command_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/enable"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/disable"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "enabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "enabled_remote.command_no_glasses"
+              }
+            ]
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:ia_glases"
+            },
+            "slot": "curios:head"
+          }
+        ]
+      }
+    },
+    "enabled_remote.command_no_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/enable_extremis_3_0"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/disable_extremis_3_0"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "enabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "enabled_remote.command_glasses"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_extremis_3_0",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -2322,10 +2448,6 @@
               "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
             },
             "slot": "chest"
-          },
-          {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:reactor_ark_power/main"
           },
           {
             "type": "palladium:not",
