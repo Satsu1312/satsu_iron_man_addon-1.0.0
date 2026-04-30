@@ -29,14 +29,31 @@ StartupEvents.registry("palladium:abilities", (event) => {
       const item = slotName.startsWith("curios:")
         ? stacksOrItem.getStackInSlot(0)
         : stacksOrItem;
+
       if (!item || item.isEmpty()) return;
 
-      const itemNBT = item.nbt ?? {};
-      if (itemNBT[nbtKey] === nbtValue) return;
+      // Obtenemos el NBT actual o un objeto vacío si no tiene
+      let itemNBT = item.nbt ?? {};
+      let changed = false;
 
-      itemNBT[nbtKey] = nbtValue;
-      const newItem = item.withNBT(itemNBT);
+      if (nbtValue === "remove") {
+        // Lógica para ELIMINAR el tag
+        if (itemNBT.hasOwnProperty(nbtKey)) {
+          delete itemNBT[nbtKey];
+          changed = true;
+        }
+      } else {
+        // Lógica para AGREGAR o MODIFICAR el tag
+        if (itemNBT[nbtKey] !== nbtValue) {
+          itemNBT[nbtKey] = nbtValue;
+          changed = true;
+        }
+      }
 
-      global.setItemInSlot(entity, slotName, newItem);
+      // Solo actualizamos el slot si hubo un cambio real para evitar lag/ghosting
+      if (changed) {
+        const newItem = item.withNBT(itemNBT);
+        global.setItemInSlot(entity, slotName, newItem);
+      }
     });
 });
