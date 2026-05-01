@@ -1,0 +1,161 @@
+{
+  "name": { "translate": "ability.title.satsu.arc_reactor" },
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "satsu_iron_man_addon:textures/item/arc_reactor_1.png",
+  "gui_display_type": "tree",
+  "abilities": {
+    "action": {
+      "type": "palladium:ability_wheel",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "abilities": ["right", "left"],
+      "texture": "null",
+      "disable_mouse_scrolling": false,
+      "disable_center_icon": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 0,
+            "key_type": "right_click",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:iron_man/classes/modular_one"
+          }
+        ]
+      }
+    },
+    "right": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/right_shoulder.png",
+      "title": { "translate": "ability.title.satsu.modular_class_remove.secondary_right" },
+      "description": { "translate": "description.satsu.modular_class_remove.secondary_right" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Secondary_addition_right",
+      "nbtValue": "Shoulder_rockets",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "Secondary_addition_right",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "left": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/left_shoulder.png",
+      "title": { "translate": "ability.title.satsu.modular_class_remove.secondary_left" },
+      "description": { "translate": "description.satsu.modular_class_remove.secondary_left" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Secondary_addition_left",
+      "nbtValue": "Shoulder_rockets",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "Secondary_addition_left",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "minecraft:entity.skeleton.step",
+      "volume": 0.8,
+      "pitch": 1.5,
+      "looping": false,
+      "play_self": true,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "left"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "clear @s satsu_iron_man_addon:additamens/shoulder_rockets 1"
+      ],
+      "last_tick_commands": [],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "left"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

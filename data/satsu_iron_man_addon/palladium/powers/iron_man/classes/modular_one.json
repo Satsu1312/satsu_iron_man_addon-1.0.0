@@ -1,0 +1,501 @@
+{
+  "name": { "translate": "ability.title.satsu.mark.32" },
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "gui_display_type": "list",
+  "abilities": {
+    "remove": {
+      "type": "palladium:ability_wheel",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "abilities": [
+        "main_left",
+        "secondary_right",
+        "main_right",
+        "secondary_left"
+      ],
+      "texture": "null",
+      "disable_mouse_scrolling": false,
+      "disable_center_icon": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:pdata_boolean",
+            "data": "satsu_iron_man_addon.modularkey_pressed",
+            "value": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "Main_addition_right",
+                "mode": "exists"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "Main_addition_left",
+                "mode": "exists"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "Secondary_addition_right",
+                "mode": "exists"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "Secondary_addition_left",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "main_right": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/right_arm.png",
+      "title": {
+        "translate": "ability.title.satsu.modular_class_remove.main_right"
+      },
+      "description": {
+        "translate": "description.satsu.modular_class_remove.main_right"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Main_addition_right",
+            "mode": "exists"
+          }
+        ]
+      }
+    },
+    "main_left": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/left_arm.png",
+      "title": {
+        "translate": "ability.title.satsu.modular_class_remove.main_left"
+      },
+      "description": {
+        "translate": "description.satsu.modular_class_remove.main_left"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Main_addition_left",
+      "nbtValue": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Main_addition_left",
+            "mode": "exists"
+          }
+        ]
+      }
+    },
+    "secondary_right": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/right_shoulder.png",
+      "title": {
+        "translate": "ability.title.satsu.modular_class_remove.secondary_right"
+      },
+      "description": {
+        "translate": "description.satsu.modular_class_remove.secondary_right"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Secondary_addition_right",
+      "nbtValue": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_right",
+            "mode": "exists"
+          }
+        ]
+      }
+    },
+    "secondary_left": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/left_shoulder.png",
+      "title": {
+        "translate": "ability.title.satsu.modular_class_remove.secondary_left"
+      },
+      "description": {
+        "translate": "description.satsu.modular_class_remove.secondary_left"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "Secondary_addition_left",
+      "nbtValue": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_left",
+            "mode": "exists"
+          }
+        ]
+      }
+    },
+    "sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "minecraft:entity.skeleton.step",
+      "volume": 0.8,
+      "pitch": 1.5,
+      "looping": false,
+      "play_self": true,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "main_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "main_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "secondary_right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "secondary_left"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_hammer.right": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/main_addition/hammer_right",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "main_right"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Main_addition_right",
+            "nbtValue": "Hammer",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_hammer.left": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/main_addition/hammer_left",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "main_left"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Main_addition_left",
+            "nbtValue": "Hammer",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_blade.right": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/main_addition/blade_right",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "main_right"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Main_addition_right",
+            "nbtValue": "Blade",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_blade.left": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/main_addition/blade_left",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "main_left"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Main_addition_left",
+            "nbtValue": "Blade",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_flame_thrower.right": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/secondary_addition/flame_thrower_right",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "secondary_right"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_right",
+            "nbtValue": "Flame_thrower",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_flame_thrower.left": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/secondary_addition/flame_thrower_left",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "secondary_left"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_left",
+            "nbtValue": "Flame_thrower",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_sonic_disruptor.right": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/secondary_addition/sonic_disruptor_right",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "secondary_right"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_right",
+            "nbtValue": "Sonic_disruptor",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_sonic_disruptor.left": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/secondary_addition/sonic_disruptor_left",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "secondary_left"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_left",
+            "nbtValue": "Sonic_disruptor",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_red_beams.right": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/secondary_addition/red_beams_right",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "secondary_right"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_right",
+            "nbtValue": "Red_beams",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_red_beams.left": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/secondary_addition/red_beams_left",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "secondary_left"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_left",
+            "nbtValue": "Red_beams",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_shoulder_rockets.right": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/secondary_addition/shoulder_rockets_right",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "secondary_right"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_right",
+            "nbtValue": "Shoulder_rockets",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "return_shoulder_rockets.left": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/classes/remove_nbt/secondary_addition/shoulder_rockets_left",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "secondary_left"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_left",
+            "nbtValue": "Shoulder_rockets",
+            "mode": "equals"
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}
