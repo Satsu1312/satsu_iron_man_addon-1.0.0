@@ -8242,13 +8242,13 @@
       "list_index": 3,
       "gui_position": [1, -3],
       "start_value": 0,
-      "max_value": 60,
+      "max_value": 100,
       "conditions": {
         "enabling": [
           {
             "type": "palladium:activation",
-            "ticks": 60,
-            "cooldown": 100,
+            "ticks": 100,
+            "cooldown": 200,
             "key_type": "key_bind",
             "needs_empty_hand": false
           }
@@ -8404,6 +8404,28 @@
         "unlocking": []
       }
     },
+    "shoulder_chest_beam.energy_beam_chest_sound": {
+      "type": "palladium:play_sound",
+      "sound": "satsu_iron_man_addon:mcu_chest_beam",
+      "looping": true,
+      "volume": 1,
+      "pitch": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "shoulder_chest_beam"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "shoulder_chest_beam",
+            "property": "value",
+            "min": 40,
+            "max": 100
+          }
+        ]
+      }
+    },
     "shoulder_chest_beam.add_power_per_tick": {
       "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
@@ -8421,7 +8443,7 @@
             "ability": "shoulder_chest_beam",
             "property": "value",
             "min": 40,
-            "max": 50
+            "max": 100
           }
         ]
       }
