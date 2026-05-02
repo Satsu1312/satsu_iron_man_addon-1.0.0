@@ -13,7 +13,8 @@
         "main_left",
         "secondary_right",
         "main_right",
-        "secondary_left"
+        "secondary_left",
+        "all"
       ],
       "texture": "null",
       "disable_mouse_scrolling": false,
@@ -180,6 +181,52 @@
         ]
       }
     },
+    "all": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": {
+        "translate": "ability.title.satsu.modular_class_remove.all"
+      },
+      "description": {
+        "translate": "description.satsu.modular_class_remove.all"
+      },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Main_addition_right",
+            "mode": "exists"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Main_addition_left",
+            "mode": "exists"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_right",
+            "mode": "exists"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "Secondary_addition_left",
+            "mode": "exists"
+          }
+        ]
+      }
+    },
     "sound": {
       "type": "palladium:play_sound",
       "hidden": true,
@@ -214,6 +261,11 @@
                 "type": "palladium:ability_enabled",
                 "power": "null",
                 "ability": "secondary_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
               }
             ]
           }
@@ -229,9 +281,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "main_right"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "main_right"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -252,9 +314,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "main_left"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "main_left"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -275,9 +347,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "main_right"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "main_right"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -298,9 +380,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "main_left"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "main_left"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -321,9 +413,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "secondary_right"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "secondary_right"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -344,9 +446,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "secondary_left"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "secondary_left"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -367,9 +479,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "secondary_right"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "secondary_right"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -390,9 +512,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "secondary_left"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "secondary_left"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -413,9 +545,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "secondary_right"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "secondary_right"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -436,9 +578,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "secondary_left"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "secondary_left"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -459,9 +611,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "secondary_right"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "secondary_right"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -482,9 +644,19 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_first_tick",
-            "power": "null",
-            "ability": "secondary_left"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "all"
+              },
+              {
+                "type": "palladium:ability_first_tick",
+                "power": "null",
+                "ability": "secondary_left"
+              }
+            ]
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
