@@ -8315,7 +8315,7 @@
           }
         ]
       }
-    }, 
+    },
     "shoulder_chest_beam.deploy": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
@@ -8381,7 +8381,7 @@
       "type": "palladium:play_sound",
       "hidden": true,
       "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.missiles_sound",
+      "sound": "satsu_iron_man_addon:entity.armor.ultra_beam",
       "volume": 1,
       "pitch": 1,
       "looping": false,
@@ -8390,33 +8390,40 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "shoulder_rockets",
-                "property": "value",
-                "min": 1,
-                "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_fireworks",
-                "property": "value",
-                "min": 1,
-                "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "rocket",
-                "property": "value",
-                "min": 15,
-                "max": 15
-              }
-            ]
+            "type": "palladium:ability_enabled",
+            "ability": "shoulder_chest_beam"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "shoulder_chest_beam",
+            "property": "value",
+            "min": 2,
+            "max": 30
           }
         ],
         "unlocking": []
+      }
+    },
+    "shoulder_chest_beam.add_power_per_tick": {
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:iron_man/marks/mark_52_d/beams/ultra_beam/main",
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "shoulder_chest_beam"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "shoulder_chest_beam",
+            "property": "value",
+            "min": 2,
+            "max": 30
+          }
+        ]
       }
     },
     "nano_increase_wheel_option.first.tick": {
