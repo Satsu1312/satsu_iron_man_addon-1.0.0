@@ -10456,6 +10456,116 @@
         ]
       }
     },
+    "integrated_blades.attack": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/vribranuim_blades_attack.png",
+      "title": { "translate": "ability.title.satsu.throw.blades.attack" },
+      "description": { "translate": "description.satsu.throw.blades.attack" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 6,
+      "gui_position": [16, 3.5],
+      "start_value": 0,
+      "max_value": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 17,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "integrated_blades"
+          }
+        ]
+      }
+    },
+    "integrated_blades.player_animation": {
+      "type": "palladium:player_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "animation": "satsu_iron_man_addon:integrated_blades_special_attack",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "integrated_blades.attack"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "integrated_blades"
+          }
+        ]
+      }
+    },
+    "integrated_blades.attack_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "execute as @s anchored eyes run particle minecraft:sweep_attack ^ ^ ^1 0.1 0.1 0.1 0 1 normal",
+        "playsound minecraft:entity.player.attack.crit master @p[distance=0..10] ~ ~ ~ 1 1"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "integrated_blades.attack",
+            "property": "value",
+            "min": 15,
+            "max": 15
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "integrated_blades.attack"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "integrated_blades.attack_damage": {
+      "type": "satsu_iron_man_addon:entity_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "damage": 20,
+      "damage_type": "minecraft:player_attack",
+      "effect": "minecraft:weakness",
+      "fire_seconds": 0,
+      "potion_seconds": 10,
+      "potion_amplifier": 1,
+      "hide_particles": false,
+      "range": 18,
+      "at": "null",
+      "by": "@s",
+      "from": "@s",
+      "command_as_entity": "null",
+      "excluded_tag": "damage_excluded_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "integrated_blades.attack",
+            "property": "value",
+            "min": 15,
+            "max": 15
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "integrated_blades.attack"
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "round_shield_animation": {
       "type": "palladium:animation_timer",
       "hidden": true,
