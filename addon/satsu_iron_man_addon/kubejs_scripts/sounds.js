@@ -17,6 +17,12 @@ StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.armor.mark_open_mask");
 });
 StartupEvents.registry("sound_event", (event) => {
+  event.create("satsu_iron_man_addon:entity.armor.nano_mark_open_mask");
+});
+StartupEvents.registry("sound_event", (event) => {
+  event.create("satsu_iron_man_addon:entity.armor.nano_mark_close_mask");
+});
+StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:repulsor_rivals");
 });
 StartupEvents.registry("sound_event", (event) => {
