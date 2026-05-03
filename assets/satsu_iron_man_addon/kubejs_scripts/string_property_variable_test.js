@@ -556,7 +556,7 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
     // Arguments: Key of the property, type of the property, default/starting value
-    event.registerProperty("player_username", "string", "LimboKid");
+    event.registerProperty("satsu_iron_man_addon_player_username", "string", "LimboKid");
   }
 });
 PalladiumEvents.registerPropertiesClientSided((event) => {

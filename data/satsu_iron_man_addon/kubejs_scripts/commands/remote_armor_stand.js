@@ -5,7 +5,7 @@ ServerEvents.commandRegistry(event => {
         Commands.literal("satsu_remote_armor_stand")
             .executes(ctx => {
                 const player = ctx.source.player;
-                let value = palladium.getProperty(player, 'player_username');
+                let value = palladium.getProperty(player, 'satsu_iron_man_addon_player_username');
                 let radius = 3;
 
                 // Obtener el valor del scoreboard grave.ID del jugador
@@ -24,7 +24,7 @@ ServerEvents.commandRegistry(event => {
 
                 if (nearbyArmorStands[0]) {
                     let armor_stand = nearbyArmorStands[0];
-                    palladium.setProperty(armor_stand, 'player_username', value);
+                    palladium.setProperty(armor_stand, 'satsu_iron_man_addon_player_username', value);
                     return 1;
                 } else return 0;
             })

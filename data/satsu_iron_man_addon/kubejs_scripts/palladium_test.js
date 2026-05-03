@@ -10,6 +10,6 @@ EntityEvents.spawned("minecraft:player", (event) => {
 
     // Usamos el método nativo de Palladium para guardar la propiedad
     // Nota: El ID debe coincidir con el que registraste en startup
-    palladium.setProperty(player, "player_username", currentName);
+    palladium.setProperty(player, "satsu_iron_man_addon_player_username", currentName);
   });
 });
