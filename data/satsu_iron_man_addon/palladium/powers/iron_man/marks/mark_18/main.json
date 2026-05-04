@@ -1731,7 +1731,33 @@
         ]
       }
     },
-    "mask_sound": {
+    "mask_open_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.mark_open_mask",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "mask.up.trigger"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "mask_close_sound": {
       "type": "palladium:play_sound",
       "hidden": true,
       "hidden_in_bar": true,
@@ -1744,8 +1770,14 @@
       "conditions": {
         "enabling": [
           {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
+          },
+          {
             "type": "palladium:ability_enabled",
-            "ability": "mask_activate"
+            "ability": "mask.on.trigger"
           }
         ],
         "unlocking": []
