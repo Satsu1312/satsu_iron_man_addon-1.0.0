@@ -125,6 +125,9 @@ StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.armor.run.sound");
 });
 StartupEvents.registry("sound_event", (event) => {
+  event.create("satsu_iron_man_addon:entity.armor.nano_run.sound");
+});
+StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.armor.use.vibranuim.blades");
 });
 StartupEvents.registry("sound_event", (event) => {
