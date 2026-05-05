@@ -119,6 +119,9 @@ StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.armor.walk.sound");
 });
 StartupEvents.registry("sound_event", (event) => {
+  event.create("satsu_iron_man_addon:entity.armor.nano_walk.sound");
+});
+StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.armor.run.sound");
 });
 StartupEvents.registry("sound_event", (event) => {
