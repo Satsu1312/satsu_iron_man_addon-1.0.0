@@ -7119,6 +7119,148 @@
         "unlocking": []
       }
     },
+    "throw_pieces_attack": {
+      "type": "palladium:dummy",
+      "icon": "minecraft:bread",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "gui_position": "null",
+      "description": "null",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_right_arm",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_right_shoulder",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_left_arm",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_left_shoulder",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_left_leg",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_right_leg",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon.chest",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_iron_man_iron_man_energy",
+                    "min": 0,
+                    "max": 1
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_iron_man_iron_man_energy",
+                    "min": -10000,
+                    "max": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "armor_animation",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shoulder_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "rocket"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "flares_flames"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "throw_pieces_head.trigger": {
       "type": "geckolib:render_layer_animation",
       "hidden": true,
@@ -7242,59 +7384,22 @@
       "type": "gravecore:aoe_damage",
       "hidden": true,
       "hidden_in_bar": true,
-      "radius": 5,
-      "damage": 3.5,
+      "radius": 6,
+      "damage": 8,
       "fire_ticks": 0,
       "damage_type": "null",
       "cone": false,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_first_tick",
             "power": "null",
             "ability": "throw_pieces_attack"
           }
         ]
       }
     },
-    "throw_pieces_attack.attribute_modifier.flight": {
-    "type": "palladium:attribute_modifier",
-    "hidden": true,
-    "hidden_in_bar": true,
-    "attribute": "palladium:flight_speed",
-    "amount": -9999,
-    "operation": 0,
-    "uuid": "06e893cc-b71c-43c2-a936-9177d0707fc4",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "throw_pieces_attack"
-          }
-        ]
-      }
-    },
-    "throw_pieces_attack.command": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [
-        "effect give @s minecraft:slowness infinite 255 true"
-      ],
-      "commands": [""],
-      "last_tick_commands": ["effect clear @s minecraft:slowness"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "throw_pieces_attack"
-          }
-        ]
-      }
-    },
-    "throw_pieces_attack": {
+    "rotate_pieces_attack": {
       "type": "palladium:dummy",
       "icon": "minecraft:bread",
       "title": "null",
@@ -7315,7 +7420,343 @@
             "allow_scrolling_when_crouching": true
           }
         ],
-        "unlocking": []
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:crouching"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_right_arm",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_right_shoulder",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_left_arm",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_left_shoulder",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_left_leg",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "bones_alpha_mask_right_leg",
+            "property": "value",
+            "min": 18,
+            "max": 18
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon.chest",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_iron_man_iron_man_energy",
+                    "min": 0,
+                    "max": 1
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_iron_man_iron_man_energy",
+                    "min": -10000,
+                    "max": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "armor_animation",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shoulder_rockets"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "rocket"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "flares_flames"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "rotate_pieces_attack.aoe_damage": {
+      "type": "gravecore:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "damage": 5,
+      "fire_ticks": 0,
+      "damage_type": "null",
+      "cone": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "rotate_pieces_attack"
+          }
+        ]
+      }
+    },
+    "rotate_pieces_attack.attribute_modifier.flight": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:flight_speed",
+      "amount": -9999,
+      "operation": 0,
+      "uuid": "06e893cc-b71c-43c2-a936-9177d0707fc4",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "rotate_pieces_attack"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "throw_pieces_attack"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "rotate_pieces_attack.attribute_modifier.jumps": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:jump_power",
+      "amount": -9999,
+      "operation": 0,
+      "uuid": "23c67a7b-34fe-40bd-a0ae-ae2f5d9af71f",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "rotate_pieces_attack"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "throw_pieces_attack"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "rotate_pieces_attack.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "effect give @s minecraft:slowness infinite 255 true"
+      ],
+      "commands": [""],
+      "last_tick_commands": ["effect clear @s minecraft:slowness"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "rotate_pieces_attack"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "throw_pieces_attack"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "rotate_pieces_head.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_41/armor/head/main",
+      "controller": "head.throw",
+      "animation_trigger": "animation.minecraft:throw_all3",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "rotate_pieces_attack"
+          }
+        ]
+      }
+    },
+    "rotate_pieces_right_arm.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_41/armor/right_arm/main",
+      "controller": "right_arm.throw",
+      "animation_trigger": "animation.minecraft:throw_all3",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "rotate_pieces_attack"
+          }
+        ]
+      }
+    },
+    "rotate_pieces_right_shoulder.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_41/armor/right_shoulder/main",
+      "controller": "right_shoulder.throw",
+      "animation_trigger": "animation.minecraft:throw_all3",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "rotate_pieces_attack"
+          }
+        ]
+      }
+    },
+    "rotate_pieces_right_leg.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_41/armor/right_leg/main",
+      "controller": "right_leg.throw",
+      "animation_trigger": "animation.minecraft:throw_all3",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "rotate_pieces_attack"
+          }
+        ]
+      }
+    },
+    "rotate_pieces_left_arm.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_41/armor/left_arm/main",
+      "controller": "left_arm.throw",
+      "animation_trigger": "animation.minecraft:throw_all3",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "rotate_pieces_attack"
+          }
+        ]
+      }
+    },
+    "rotate_pieces_left_shoulder.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_41/armor/left_shoulder/main",
+      "controller": "left_shoulder.throw",
+      "animation_trigger": "animation.minecraft:throw_all3",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "rotate_pieces_attack"
+          }
+        ]
+      }
+    },
+    "rotate_pieces_left_leg.trigger": {
+      "type": "geckolib:render_layer_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_41/armor/left_leg/main",
+      "controller": "left_leg.throw",
+      "animation_trigger": "animation.minecraft:throw_all3",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_first_tick",
+            "power": "null",
+            "ability": "rotate_pieces_attack"
+          }
+        ]
       }
     },
     "mini_fireworks.firework_projectile-no_break": {
