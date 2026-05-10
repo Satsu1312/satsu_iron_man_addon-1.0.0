@@ -18,25 +18,53 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
     )
 
     .test((entity, props) => {
-      const slotName = props.get("slot");
-      const nbtKey = props.get("nbtKey");
-      const min = props.get("min");
-      const max = props.get("max");
-      const mode = props.get("mode");
+      let slotName = props.get("slot");
+      let nbtKey = props.get("nbtKey");
+      let min = props.get("min");
+      let max = props.get("max");
+      let mode = props.get("mode");
 
-      const stacksOrItem = global.getItemFromSlot(entity, slotName);
-      if (!stacksOrItem) return false;
+      let item = null;
 
-      const item = slotName.startsWith("curios:")
-        ? stacksOrItem.getStackInSlot(0)
-        : stacksOrItem;
+      // 1. Manejo de Slots (Curios vs Standard)
+      if (slotName.startsWith("curios:")) {
+        let parts = slotName.split(":");
+        let cSlot = parts[1];
+
+        try {
+          // Cambio para KubeJS 6 (Server compatible)
+          let CuriosApi = Java.loadClass(
+            "top.theillusivec4.curios.api.CuriosApi",
+          );
+          let curioInventory = CuriosApi.getCuriosHelper()
+            .getCuriosHandler(entity)
+            .orElse(null);
+
+          if (curioInventory) {
+            let stacks = curioInventory.getStacksHandler(cSlot).orElse(null);
+            if (stacks && stacks.getSlots() > 0) {
+              item = stacks.getStackInSlot(0);
+            }
+          }
+        } catch (e) {
+          item = null;
+        }
+      } else {
+        // Funciona en Players y Armor Stands
+        item = entity.getEquipment(slotName);
+      }
+
+      // 2. Validaciones de seguridad
       if (!item || item.isEmpty() || !item.nbt) return false;
 
-      const value = Number(item.nbt[nbtKey]);
+      // 3. Conversión numérica segura
+      let value = Number(item.nbt[nbtKey]);
       if (isNaN(value)) return false;
 
+      // 4. Lógica de comparación original
       switch (mode) {
         case "range":
+        case "betweenInclusive":
           return value >= min && value <= max;
         case "greaterThan":
           return value > min;
@@ -44,8 +72,6 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
           return value < max;
         case "equals":
           return value === min;
-        case "betweenInclusive":
-          return value >= min && value <= max;
         case "betweenExclusive":
           return value > min && value < max;
         default:

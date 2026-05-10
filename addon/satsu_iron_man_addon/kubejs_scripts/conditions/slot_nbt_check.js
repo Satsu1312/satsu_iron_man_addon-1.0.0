@@ -15,29 +15,50 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       "equals",
       "Comparison mode (equals, exists, notEquals, contains, numericEquals)",
     )
-
     .test((entity, props) => {
-      const slotName = props.get("slot");
-      const nbtKey = props.get("nbtKey");
-      const nbtValue = props.get("nbtValue");
-      const mode = props.get("mode");
+      let slotName = props.get("slot");
+      let nbtKey = props.get("nbtKey");
+      let nbtValue = props.get("nbtValue");
+      let mode = props.get("mode");
 
-      const stacksOrItem = global.getItemFromSlot(entity, slotName);
-      if (!stacksOrItem) return false;
+      let item = null;
 
-      const item = slotName.startsWith("curios:")
-        ? stacksOrItem.getStackInSlot(0)
-        : stacksOrItem;
+      if (slotName.startsWith("curios:")) {
+        let parts = slotName.split(":");
+        let cSlot = parts[1];
+
+        try {
+          // Cambio clave: Usamos Java.loadClass en lugar de java()
+          let CuriosApi = Java.loadClass(
+            "top.theillusivec4.curios.api.CuriosApi",
+          );
+          let curioInventory = CuriosApi.getCuriosHelper()
+            .getCuriosHandler(entity)
+            .orElse(null);
+
+          if (curioInventory) {
+            let stacks = curioInventory.getStacksHandler(cSlot).orElse(null);
+            if (stacks && stacks.getSlots() > 0) {
+              item = stacks.getStackInSlot(0);
+            }
+          }
+        } catch (e) {
+          item = null;
+        }
+      } else {
+        item = entity.getEquipment(slotName);
+      }
+
       if (!item || item.isEmpty() || !item.nbt) return false;
 
-      const actualValue = item.nbt[nbtKey];
+      let actualValue = item.nbt[nbtKey];
       if (actualValue == null) return false;
 
       switch (mode) {
         case "equals":
-          return actualValue === nbtValue;
+          return String(actualValue) === String(nbtValue);
         case "notEquals":
-          return actualValue !== nbtValue;
+          return String(actualValue) !== String(nbtValue);
         case "exists":
           return true;
         case "contains":
