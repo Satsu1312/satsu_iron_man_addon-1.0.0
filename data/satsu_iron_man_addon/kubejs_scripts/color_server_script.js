@@ -40,3 +40,20 @@ NetworkEvents.dataReceived('satsu_apply_color', event => {
     chestItem.setTag(nbt);
   }
 });
+
+NetworkEvents.dataReceived("satsu_reset_color", event => {
+  const { player, data } = event;
+  if (!player || !data) return;
+  const nbtKey = ALLOWED_MAP[data.property];
+  if (!nbtKey) return;
+
+  const chestItem = player.getChestArmorItem();
+
+  if (!chestItem.isEmpty()) {
+    let nbt = chestItem.getOrCreateTag();
+    if (nbt.contains(nbtKey)) {
+      nbt.remove(nbtKey);
+      player.inventoryMenu.broadcastChanges();
+    }
+  }
+});

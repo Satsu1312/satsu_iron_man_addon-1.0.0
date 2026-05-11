@@ -1,3 +1,4 @@
+let resetButtonClicked = false;
 const Minecraft = Java.loadClass("net.minecraft.client.Minecraft");
 const RenderSystem = Java.loadClass("com.mojang.blaze3d.systems.RenderSystem");
 const ResourceLocation = Java.loadClass("net.minecraft.resources.ResourceLocation");
@@ -57,6 +58,17 @@ function sendCurrentModeColorFromSliders() {
   const hex = (rgb.r << 16) | (rgb.g << 8) | rgb.b;
 
   Client.player.sendData("satsu_apply_color", {
+    property: getModePropertyName(),
+    value: hex,
+  });
+}
+
+function sendResetColor() {
+  const sliderSet = getModeSliderPos();
+  const rgb = calculateRGB(sliderSet);
+  const hex = (rgb.r << 16) | (rgb.g << 8) | rgb.b;
+
+  Client.player.sendData("satsu_reset_color", {
     property: getModePropertyName(),
     value: hex,
   });
@@ -306,8 +318,11 @@ PalladiumEvents.renderPowerScreen((event) => {
       GLFW.GLFW_MOUSE_BUTTON_LEFT,
     ) === GLFW.GLFW_PRESS;
 
-  if (!leftDown) activeSlider = null;
 
+  if (!leftDown) {
+    activeSlider = null;
+    resetButtonClicked = false;
+  }
   const sliderPos = getModeSliderPos();
 
   if (leftDown && activeSlider === null) {
@@ -374,6 +389,15 @@ PalladiumEvents.renderPowerScreen((event) => {
     playClickSound();
     sendCurrentModeColorFromSliders();
   }
+
+  const resetButton = { x: applyButton.x, y: applyButton.y + 25, w: 40, h: 20 };
+if (renderButton(resetButton, "Reset", gui, mx, my, leftDown)) {
+    if (!resetButtonClicked) {
+        playClickSound();
+        sendResetColor();
+        resetButtonClicked = true;
+    }
+}
 });
 
 PalladiumEvents.renderPowerScreen((event) => {
@@ -425,8 +449,11 @@ PalladiumEvents.renderPowerScreen((event) => {
       GLFW.GLFW_MOUSE_BUTTON_LEFT,
     ) === GLFW.GLFW_PRESS;
 
-  if (!leftDown) activeSlider = null;
 
+  if (!leftDown) {
+    activeSlider = null;
+    resetButtonClicked = false;
+  }
   const sliderPos = getModeSliderPos();
 
   if (leftDown && activeSlider === null) {
@@ -493,6 +520,15 @@ PalladiumEvents.renderPowerScreen((event) => {
     playClickSound();
     sendCurrentModeColorFromSliders();
   }
+
+  const resetButton = { x: applyButton.x, y: applyButton.y + 25, w: 40, h: 20 };
+if (renderButton(resetButton, "Reset", gui, mx, my, leftDown)) {
+    if (!resetButtonClicked) {
+        playClickSound();
+        sendResetColor();
+        resetButtonClicked = true;
+    }
+}
 });
 
 PalladiumEvents.renderPowerScreen((event) => {
@@ -544,7 +580,10 @@ PalladiumEvents.renderPowerScreen((event) => {
       GLFW.GLFW_MOUSE_BUTTON_LEFT,
     ) === GLFW.GLFW_PRESS;
 
-  if (!leftDown) activeSlider = null;
+  if (!leftDown) {
+    activeSlider = null;
+    resetButtonClicked = false;
+  }
 
   const sliderPos = getModeSliderPos();
 
@@ -612,4 +651,13 @@ PalladiumEvents.renderPowerScreen((event) => {
     playClickSound();
     sendCurrentModeColorFromSliders();
   }
+
+  const resetButton = { x: applyButton.x, y: applyButton.y + 25, w: 40, h: 20 };
+if (renderButton(resetButton, "Reset", gui, mx, my, leftDown)) {
+    if (!resetButtonClicked) {
+        playClickSound();
+        sendResetColor();
+        resetButtonClicked = true;
+    }
+}
 });
