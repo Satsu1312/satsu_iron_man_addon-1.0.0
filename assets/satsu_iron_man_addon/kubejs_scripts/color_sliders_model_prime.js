@@ -12,9 +12,6 @@ const TEX = {
   button_hovered: "satsu_iron_man_addon:textures/gui/power/plaque_hover.png",
 };
 
-const SLIDER_W = 8;
-const SLIDER_H = 8;
-
 const BAR_WIDTH = 140;
 const BAR_HEIGHT = 4;
 
@@ -23,17 +20,37 @@ let sliderPosSecondary = { r: 0, g: 0, b: 0 };
 let sliderPosTertiary = { r: 0, g: 0, b: 0 };
 let sliderPosQuaternary = { r: 0, g: 0, b: 0 };
 let sliderPosQuintenary = { r: 0, g: 0, b: 0 };
+
 let activeMode = "Primary";
+const MODES = ["Primary", "Secondary", "Tertiary", "Quaternary", "Quintenary"];
 
 let activeSlider = null;
-
 let slidersInitialized = false;
+let hexInput = "";
+let lastKeyTime = 0;
 
-function makeButton(w, h) {
-  return { x: 0, y: 0, w: w, h: h, wasDown: false };
+// Objetos de botón persistentes para mantener el estado 'wasDown'
+const applyButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
+const modeButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
+const resetButtonObj = { x: 0, y: 0, w: 40, h: 20, wasDown: false };
+
+function rgbToHex(r, g, b) {
+  const toHex = (c) => {
+    const hex = Math.round(c).toString(16).toUpperCase();
+    return hex.length == 1 ? "0" + hex : hex;
+  };
+  return toHex(r) + toHex(g) + toHex(b);
 }
-const applyButton = makeButton(60, 30);
-const modeButton = makeButton(60, 30);
+
+function updateSlidersFromHex(hex, sliderSet) {
+  if (hex.length !== 6) return;
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  sliderSet.r = Math.round((r / 255) * BAR_WIDTH);
+  sliderSet.g = Math.round((g / 255) * BAR_WIDTH);
+  sliderSet.b = Math.round((b / 255) * BAR_WIDTH);
+}
 
 function playClickSound() {
   const p = Minecraft.getInstance().player;
@@ -41,88 +58,52 @@ function playClickSound() {
 }
 
 function getModePropertyName() {
-  return activeMode === "Primary"
-    ? "satsu_iron_man_addon.PrimaryColour"
-    : activeMode === "Secondary"
-      ? "satsu_iron_man_addon.SecondaryColour"
-      : activeMode === "Tertiary"
-        ? "satsu_iron_man_addon.TertiaryColour"
-      : activeMode === "Quaternary"
-        ? "satsu_iron_man_addon_beam_core_color" // NEW
-      : "satsu_iron_man_addon_beam_glow_color"; // NEW
+  const props = {
+    "Primary": "satsu_iron_man_addon.PrimaryColour",
+    "Secondary": "satsu_iron_man_addon.SecondaryColour",
+    "Tertiary": "satsu_iron_man_addon.TertiaryColour",
+    "Quaternary": "satsu_iron_man_addon_beam_core_color",
+    "Quintenary": "satsu_iron_man_addon_beam_glow_color"
+  };
+  return props[activeMode];
 }
 
 function sendCurrentModeColorFromSliders() {
   const sliderSet = getModeSliderPos();
   const rgb = calculateRGB(sliderSet);
   const hex = (rgb.r << 16) | (rgb.g << 8) | rgb.b;
-
-  Client.player.sendData("satsu_apply_color", {
-    property: getModePropertyName(),
-    value: hex,
-  });
+  Client.player.sendData("satsu_apply_color", { property: getModePropertyName(), value: hex });
 }
 
 function sendResetColor() {
-  const sliderSet = getModeSliderPos();
-  const rgb = calculateRGB(sliderSet);
-  const hex = (rgb.r << 16) | (rgb.g << 8) | rgb.b;
-
-  Client.player.sendData("satsu_reset_color", {
-    property: getModePropertyName(),
-    value: hex,
-  });
+  Client.player.sendData("satsu_reset_color", { property: getModePropertyName() });
 }
 
-function clamp(v, min, max) {
-  return Math.max(min, Math.min(max, v));
-}
-
-function clickIn(mx, my, x, y, w, h) {
-  return mx >= x && mx <= x + w && my >= y && my <= y + h;
-}
+function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+function clickIn(mx, my, x, y, w, h) { return mx >= x && mx <= x + w && my >= y && my <= y + h; }
 
 function renderButton(btn, label, gui, mx, my, leftDown) {
   const hovered = clickIn(mx, my, btn.x, btn.y, btn.w, btn.h);
-
-  gui.blit(
-    new ResourceLocation(hovered ? TEX.button_hovered : TEX.button),
-    btn.x,
-    btn.y,
-    0,
-    0,
-    btn.w,
-    btn.h,
-    btn.w,
-    btn.h,
-  );
-
+  gui.blit(new ResourceLocation(hovered ? TEX.button_hovered : TEX.button), btn.x, btn.y, 0, 0, btn.w, btn.h, btn.w, btn.h);
+  
   const mc = Minecraft.getInstance();
-  const textWidth = mc.font.width(label);
-  const textHeight = 9;
-  const textX = btn.x + (btn.w - textWidth) / 2;
-  const textY = btn.y + (btn.h - textHeight) / 2;
-
-  palladium.gui.drawString(
-    gui,
-    Component.literal(label),
-    textX,
-    textY + 2,
-    0xffffff,
-  );
-
-  const justPressed = leftDown && !btn.wasDown;
+  const textX = btn.x + (btn.w - mc.font.width(label)) / 2;
+  palladium.gui.drawString(gui, MCComponent.literal(label), textX, btn.y + (btn.h - 9) / 2 + 2, 0xffffff);
+  
+  const pressed = leftDown && !btn.wasDown && hovered;
   btn.wasDown = leftDown;
-
-  return justPressed && hovered;
+  return pressed;
 }
 
 function getModeSliderPos() {
-  if (activeMode === "Primary") return sliderPosPrimary;
-  if (activeMode === "Secondary") return sliderPosSecondary;
-  if (activeMode === "Tertiary") return sliderPosTertiary;
-  if (activeMode === "Quaternary") return sliderPosQuaternary;
-  return sliderPosQuintenary;
+  const sets = { 
+    "Primary": sliderPosPrimary, 
+    "Secondary": sliderPosSecondary, 
+    "Tertiary": sliderPosTertiary, 
+    "Quaternary": sliderPosQuaternary, 
+    "Quintenary": sliderPosQuintenary 
+  };
+  return sets[activeMode];
 }
 
 function calculateRGB(sliderSet) {
@@ -133,531 +114,128 @@ function calculateRGB(sliderSet) {
   };
 }
 
-function rgbToARGB(r, g, b) {
-  return (255 << 24) | (r << 16) | (g << 8) | b;
-}
-
-function extractRGB(intVal) {
-  return {
-    r: (intVal >> 16) & 255,
-    g: (intVal >> 8) & 255,
-    b: intVal & 255,
-  };
-}
+function rgbToARGB(r, g, b) { return (255 << 24) | (r << 16) | (g << 8) | b; }
+function extractRGB(intVal) { return { r: (intVal >> 16) & 255, g: (intVal >> 8) & 255, b: intVal & 255 }; }
 
 function drawColorBar(gui, x, y, width, height, channel) {
   for (let i = 0; i < width; i++) {
     let t = i / (width - 1);
-    let r = channel === "r" ? Math.floor(t * 255) : 0;
-    let g = channel === "g" ? Math.floor(t * 255) : 0;
-    let b = channel === "b" ? Math.floor(t * 255) : 0;
-    let col = (255 << 24) | (r << 16) | (g << 8) | b;
+    let col = (255 << 24) | ((channel === "r" ? Math.floor(t * 255) : 0) << 16) | ((channel === "g" ? Math.floor(t * 255) : 0) << 8) | (channel === "b" ? Math.floor(t * 255) : 0);
     gui.fill(x + i, y, x + i + 1, y + height, col);
   }
 }
 
 function drawSlider(gui, barX, barY, channel, sliderSet) {
-  const knobX = barX + sliderSet[channel] - SLIDER_W / 2;
-  const knobY = barY - 2;
-
-  gui.blit(
-    new ResourceLocation(TEX.slider),
-    knobX,
-    knobY,
-    0,
-    0,
-    SLIDER_W,
-    SLIDER_H,
-    SLIDER_W,
-    SLIDER_H,
-  );
-}
-
-function getColorProperty(mode) {
-  return `satsu_iron_man_addon.${mode}Colour`;
+  gui.blit(new ResourceLocation(TEX.slider), barX + sliderSet[channel] - 4, barY - 2, 0, 0, 8, 8, 8, 8);
 }
 
 function initSlidersFromProperties(entity) {
   if (slidersInitialized) return;
   slidersInitialized = true;
-
   const fallback = { r: 0, g: 86, b: 227 };
-
-  const primInt =
-    palladium.getProperty(entity, "satsu_iron_man_addon.PrimaryColour") | 0;
-  if (primInt > 0) {
-    const c = extractRGB(primInt);
-    sliderPosPrimary = {
-      r: Math.round((c.r / 255) * BAR_WIDTH),
-      g: Math.round((c.g / 255) * BAR_WIDTH),
-      b: Math.round((c.b / 255) * BAR_WIDTH),
-    };
-  } else {
-    sliderPosPrimary = {
-      r: Math.round((fallback.r / 255) * BAR_WIDTH),
-      g: Math.round((fallback.g / 255) * BAR_WIDTH),
-      b: Math.round((fallback.b / 255) * BAR_WIDTH),
-    };
-  }
-
-  const secInt =
-    palladium.getProperty(entity, "satsu_iron_man_addon.SecondaryColour") | 0;
-  if (secInt > 0) {
-    const c2 = extractRGB(secInt);
-    sliderPosSecondary = {
-      r: Math.round((c2.r / 255) * BAR_WIDTH),
-      g: Math.round((c2.g / 255) * BAR_WIDTH),
-      b: Math.round((c2.b / 255) * BAR_WIDTH),
-    };
-  } else {
-    sliderPosSecondary = {
-      r: Math.round((fallback.r / 255) * BAR_WIDTH),
-      g: Math.round((fallback.g / 255) * BAR_WIDTH),
-      b: Math.round((fallback.b / 255) * BAR_WIDTH),
-    };
-  }
-
-  const terInt =
-    palladium.getProperty(entity, "satsu_iron_man_addon.TertiaryColour") | 0;
-  if (terInt > 0) {
-    const c3 = extractRGB(terInt);
-    sliderPosTertiary = {
-      r: Math.round((c3.r / 255) * BAR_WIDTH),
-      g: Math.round((c3.g / 255) * BAR_WIDTH),
-      b: Math.round((c3.b / 255) * BAR_WIDTH),
-    };
-  } else {
-    sliderPosTertiary = {
-      r: Math.round((fallback.r / 255) * BAR_WIDTH),
-      g: Math.round((fallback.g / 255) * BAR_WIDTH),
-      b: Math.round((fallback.b / 255) * BAR_WIDTH),
-    };
-  }
-
-  const quatInt =
-    palladium.getProperty(entity, "satsu_iron_man_addon_beam_core_color") | 0;
-  if (quatInt > 0) {
-    const c4 = extractRGB(quatInt);
-    sliderPosQuaternary = {
-      r: Math.round((c4.r / 255) * BAR_WIDTH),
-      g: Math.round((c4.g / 255) * BAR_WIDTH),
-      b: Math.round((c4.b / 255) * BAR_WIDTH),
-    };
-  } else {
-    sliderPosQuaternary = {
-      r: Math.round((fallback.r / 255) * BAR_WIDTH),
-      g: Math.round((fallback.g / 255) * BAR_WIDTH),
-      b: Math.round((fallback.b / 255) * BAR_WIDTH),
-    };
-  }
-
-  const quintInt =
-    palladium.getProperty(entity, "satsu_iron_man_addon_beam_glow_color") | 0;
-  if (quintInt > 0) {
-    const c4 = extractRGB(quintInt);
-    sliderPosQuintenary = {
-      r: Math.round((c4.r / 255) * BAR_WIDTH),
-      g: Math.round((c4.g / 255) * BAR_WIDTH),
-      b: Math.round((c4.b / 255) * BAR_WIDTH),
-    };
-  } else {
-    sliderPosQuintenary = {
-      r: Math.round((fallback.r / 255) * BAR_WIDTH),
-      g: Math.round((fallback.g / 255) * BAR_WIDTH),
-      b: Math.round((fallback.b / 255) * BAR_WIDTH),
-    };
-  }
+  const mapping = [
+    { id: "satsu_iron_man_addon.PrimaryColour", key: "sliderPosPrimary" },
+    { id: "satsu_iron_man_addon.SecondaryColour", key: "sliderPosSecondary" },
+    { id: "satsu_iron_man_addon.TertiaryColour", key: "sliderPosTertiary" },
+    { id: "satsu_iron_man_addon_beam_core_color", key: "sliderPosQuaternary" },
+    { id: "satsu_iron_man_addon_beam_glow_color", key: "sliderPosQuintenary" }
+  ];
+  mapping.forEach(m => {
+    let val = palladium.getProperty(entity, m.id) | 0;
+    let c = val > 0 ? extractRGB(val) : fallback;
+    let target = (m.key === "sliderPosPrimary") ? sliderPosPrimary : (m.key === "sliderPosSecondary") ? sliderPosSecondary : (m.key === "sliderPosTertiary") ? sliderPosTertiary : (m.key === "sliderPosQuaternary") ? sliderPosQuaternary : sliderPosQuintenary;
+    target.r = Math.round((c.r / 255) * BAR_WIDTH);
+    target.g = Math.round((c.g / 255) * BAR_WIDTH);
+    target.b = Math.round((c.b / 255) * BAR_WIDTH);
+  });
 }
 
-PalladiumEvents.renderPowerScreen((event) => {
-  const mc = Minecraft.getInstance();
-  const entity = mc.player;
-  if (!entity) return;
+const TABS = ["satsu_iron_man_addon:iron_man/marks/model_prime/main", "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main", "satsu_iron_man_addon:iron_man/marks/model_72/main"];
 
-  if (!event.tab || String(event.tab) !== "satsu_iron_man_addon:iron_man/marks/model_prime/main") return;
+TABS.forEach(tabID => {
+  PalladiumEvents.renderPowerScreen((event) => {
+    const mc = Minecraft.getInstance();
+    const entity = mc.player;
+    if (!entity || !event.tab || String(event.tab) !== tabID) return;
 
-  const gui = event.guiGraphics;
-  const screen = event.screen;
+    const gui = event.guiGraphics;
+    const cx = event.screen.width / 2, cy = event.screen.height / 2;
+    const panelX = (cx - 126) | 0, panelY = (cy - 100) | 0;
+    const barX = panelX + 40, yR = panelY + 200, yG = panelY + 210, yB = panelY + 220;
 
-  const cx = screen.width / 2;
-  const cy = screen.height / 2;
+    gui.blit(new ResourceLocation(TEX.panel), panelX, panelY, 0, 0, 257, 257, 257, 257);
+    initSlidersFromProperties(entity);
+    
+    const sliderPos = getModeSliderPos();
+    const mx = event.mouseX, my = event.mouseY;
+    const leftDown = GLFW.glfwGetMouseButton(mc.getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) === GLFW.GLFW_PRESS;
 
-  const size = 257;
-  const panelX = (cx - 126) | 0;
-  const panelY = (cy - 100) | 0;
-
-  gui.blit(
-    new ResourceLocation(TEX.panel),
-    panelX,
-    panelY,
-    0,
-    0,
-    size,
-    size,
-    size,
-    size,
-  );
-
-  const barX = panelX + 40;
-  const yR = panelY + 200;
-  const yG = panelY + 210;
-  const yB = panelY + 220;
-
-  initSlidersFromProperties(entity);
-
-  drawColorBar(gui, barX, yR, BAR_WIDTH, BAR_HEIGHT, "r");
-  drawColorBar(gui, barX, yG, BAR_WIDTH, BAR_HEIGHT, "g");
-  drawColorBar(gui, barX, yB, BAR_WIDTH, BAR_HEIGHT, "b");
-
-  const mx = event.mouseX;
-  const my = event.mouseY;
-
-  const leftDown =
-    GLFW.glfwGetMouseButton(
-      mc.getWindow().getWindow(),
-      GLFW.GLFW_MOUSE_BUTTON_LEFT,
-    ) === GLFW.GLFW_PRESS;
-
-
-  if (!leftDown) {
-    activeSlider = null;
-    resetButtonClicked = false;
-  }
-  const sliderPos = getModeSliderPos();
-
-  if (leftDown && activeSlider === null) {
-    ["r", "g", "b"].forEach((ch) => {
-      if (activeSlider) return;
-      const yTop = ch === "r" ? yR : ch === "g" ? yG : yB;
-      const knobX = barX + sliderPos[ch] - SLIDER_W / 2;
-      const knobY = yTop - 2;
-
-      if (clickIn(mx, my, knobX, knobY, SLIDER_W, SLIDER_H)) {
-        activeSlider = ch;
-      }
-    });
-  }
-
-  if (leftDown && activeSlider === null) {
-    ["r", "g", "b"].forEach((ch) => {
-      const yTop = ch === "r" ? yR : ch === "g" ? yG : yB;
-      if (clickIn(mx, my, barX, yTop, BAR_WIDTH, BAR_HEIGHT)) {
-        sliderPos[ch] = clamp(mx - barX, 0, BAR_WIDTH);
-        activeSlider = ch;
-      }
-    });
-  }
-
-  if (leftDown && activeSlider !== null) {
-    sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
-  }
-
-  drawSlider(gui, barX, yR, "r", sliderPos);
-  drawSlider(gui, barX, yG, "g", sliderPos);
-  drawSlider(gui, barX, yB, "b", sliderPos);
-
-  const rgb = calculateRGB(sliderPos);
-  const previewX = barX + BAR_WIDTH + 30;
-  gui.fill(
-    previewX,
-    yR + 2,
-    previewX + 18,
-    yR + 20,
-    rgbToARGB(rgb.r, rgb.g, rgb.b),
-  );
-
-  applyButton.x = previewX - 20;
-  applyButton.y = yR + 30;
-
-  modeButton.x = applyButton.x - modeButton.w - 10;
-  modeButton.y = applyButton.y;
-  if (renderButton(modeButton, activeMode, gui, mx, my, leftDown)) {
-    playClickSound();
-    activeMode =
-      activeMode === "Primary"
-        ? "Secondary"
-        : activeMode === "Secondary"
-          ? "Tertiary"
-          : activeMode === "Tertiary"
-            ? "Quaternary"
-          : activeMode === "Quaternary"
-            ? "Quintenary"
-            : "Primary";
-  }
-
-  if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) {
-    playClickSound();
-    sendCurrentModeColorFromSliders();
-  }
-
-  const resetButton = { x: applyButton.x, y: applyButton.y + 25, w: 40, h: 20 };
-if (renderButton(resetButton, "Reset", gui, mx, my, leftDown)) {
-    if (!resetButtonClicked) {
-        playClickSound();
-        sendResetColor();
-        resetButtonClicked = true;
+    if (!leftDown) { 
+        activeSlider = null; 
+        resetButtonClicked = false;
     }
-}
-});
-
-PalladiumEvents.renderPowerScreen((event) => {
-  const mc = Minecraft.getInstance();
-  const entity = mc.player;
-  if (!entity) return;
-
-  if (!event.tab || String(event.tab) !== "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main") return;
-
-  const gui = event.guiGraphics;
-  const screen = event.screen;
-
-  const cx = screen.width / 2;
-  const cy = screen.height / 2;
-
-  const size = 257;
-  const panelX = (cx - 126) | 0;
-  const panelY = (cy - 100) | 0;
-
-  gui.blit(
-    new ResourceLocation(TEX.panel),
-    panelX,
-    panelY,
-    0,
-    0,
-    size,
-    size,
-    size,
-    size,
-  );
-
-  const barX = panelX + 40;
-  const yR = panelY + 200;
-  const yG = panelY + 210;
-  const yB = panelY + 220;
-
-  initSlidersFromProperties(entity);
-
-  drawColorBar(gui, barX, yR, BAR_WIDTH, BAR_HEIGHT, "r");
-  drawColorBar(gui, barX, yG, BAR_WIDTH, BAR_HEIGHT, "g");
-  drawColorBar(gui, barX, yB, BAR_WIDTH, BAR_HEIGHT, "b");
-
-  const mx = event.mouseX;
-  const my = event.mouseY;
-
-  const leftDown =
-    GLFW.glfwGetMouseButton(
-      mc.getWindow().getWindow(),
-      GLFW.GLFW_MOUSE_BUTTON_LEFT,
-    ) === GLFW.GLFW_PRESS;
-
-
-  if (!leftDown) {
-    activeSlider = null;
-    resetButtonClicked = false;
-  }
-  const sliderPos = getModeSliderPos();
-
-  if (leftDown && activeSlider === null) {
-    ["r", "g", "b"].forEach((ch) => {
-      if (activeSlider) return;
-      const yTop = ch === "r" ? yR : ch === "g" ? yG : yB;
-      const knobX = barX + sliderPos[ch] - SLIDER_W / 2;
-      const knobY = yTop - 2;
-
-      if (clickIn(mx, my, knobX, knobY, SLIDER_W, SLIDER_H)) {
-        activeSlider = ch;
-      }
-    });
-  }
-
-  if (leftDown && activeSlider === null) {
-    ["r", "g", "b"].forEach((ch) => {
-      const yTop = ch === "r" ? yR : ch === "g" ? yG : yB;
-      if (clickIn(mx, my, barX, yTop, BAR_WIDTH, BAR_HEIGHT)) {
-        sliderPos[ch] = clamp(mx - barX, 0, BAR_WIDTH);
-        activeSlider = ch;
-      }
-    });
-  }
-
-  if (leftDown && activeSlider !== null) {
-    sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
-  }
-
-  drawSlider(gui, barX, yR, "r", sliderPos);
-  drawSlider(gui, barX, yG, "g", sliderPos);
-  drawSlider(gui, barX, yB, "b", sliderPos);
-
-  const rgb = calculateRGB(sliderPos);
-  const previewX = barX + BAR_WIDTH + 30;
-  gui.fill(
-    previewX,
-    yR + 2,
-    previewX + 18,
-    yR + 20,
-    rgbToARGB(rgb.r, rgb.g, rgb.b),
-  );
-
-  applyButton.x = previewX - 20;
-  applyButton.y = yR + 30;
-
-  modeButton.x = applyButton.x - modeButton.w - 10;
-  modeButton.y = applyButton.y;
-  if (renderButton(modeButton, activeMode, gui, mx, my, leftDown)) {
-    playClickSound();
-    activeMode =
-      activeMode === "Primary"
-        ? "Secondary"
-        : activeMode === "Secondary"
-          ? "Tertiary"
-          : activeMode === "Tertiary"
-            ? "Quaternary"
-          : activeMode === "Quaternary"
-            ? "Quintenary"
-            : "Primary";
-  }
-
-  if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) {
-    playClickSound();
-    sendCurrentModeColorFromSliders();
-  }
-
-  const resetButton = { x: applyButton.x, y: applyButton.y + 25, w: 40, h: 20 };
-if (renderButton(resetButton, "Reset", gui, mx, my, leftDown)) {
-    if (!resetButtonClicked) {
-        playClickSound();
-        sendResetColor();
-        resetButtonClicked = true;
+    
+    if (leftDown && activeSlider === null) {
+      ["r", "g", "b"].forEach(ch => {
+        const y = ch === "r" ? yR : ch === "g" ? yG : yB;
+        if (clickIn(mx, my, barX, y, BAR_WIDTH, 4)) activeSlider = ch;
+      });
     }
-}
-});
+    if (leftDown && activeSlider !== null) sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
 
-PalladiumEvents.renderPowerScreen((event) => {
-  const mc = Minecraft.getInstance();
-  const entity = mc.player;
-  if (!entity) return;
-
-  if (!event.tab || String(event.tab) !== "satsu_iron_man_addon:iron_man/marks/model_72/main") return;
-
-  const gui = event.guiGraphics;
-  const screen = event.screen;
-
-  const cx = screen.width / 2;
-  const cy = screen.height / 2;
-
-  const size = 257;
-  const panelX = (cx - 126) | 0;
-  const panelY = (cy - 100) | 0;
-
-  gui.blit(
-    new ResourceLocation(TEX.panel),
-    panelX,
-    panelY,
-    0,
-    0,
-    size,
-    size,
-    size,
-    size,
-  );
-
-  const barX = panelX + 40;
-  const yR = panelY + 200;
-  const yG = panelY + 210;
-  const yB = panelY + 220;
-
-  initSlidersFromProperties(entity);
-
-  drawColorBar(gui, barX, yR, BAR_WIDTH, BAR_HEIGHT, "r");
-  drawColorBar(gui, barX, yG, BAR_WIDTH, BAR_HEIGHT, "g");
-  drawColorBar(gui, barX, yB, BAR_WIDTH, BAR_HEIGHT, "b");
-
-  const mx = event.mouseX;
-  const my = event.mouseY;
-
-  const leftDown =
-    GLFW.glfwGetMouseButton(
-      mc.getWindow().getWindow(),
-      GLFW.GLFW_MOUSE_BUTTON_LEFT,
-    ) === GLFW.GLFW_PRESS;
-
-  if (!leftDown) {
-    activeSlider = null;
-    resetButtonClicked = false;
-  }
-
-  const sliderPos = getModeSliderPos();
-
-  if (leftDown && activeSlider === null) {
-    ["r", "g", "b"].forEach((ch) => {
-      if (activeSlider) return;
-      const yTop = ch === "r" ? yR : ch === "g" ? yG : yB;
-      const knobX = barX + sliderPos[ch] - SLIDER_W / 2;
-      const knobY = yTop - 2;
-
-      if (clickIn(mx, my, knobX, knobY, SLIDER_W, SLIDER_H)) {
-        activeSlider = ch;
+    const previewX = barX + BAR_WIDTH + 30;
+    const isHoveringText = clickIn(mx, my, previewX - 5, yR - 12, 50, 10);
+   
+    if (isHoveringText) {
+      for (let i = 48; i <= 90; i++) {
+        if (GLFW.glfwGetKey(mc.getWindow().getWindow(), i) === GLFW.GLFW_PRESS) {
+          let char = String.fromCharCode(i);
+          if (/[0-9A-F]/.test(char) && Date.now() - lastKeyTime > 150) {
+            hexInput = (hexInput + char).slice(-6);
+            if (hexInput.length === 6) updateSlidersFromHex(hexInput, sliderPos);
+            lastKeyTime = Date.now();
+          }
+        }
       }
-    });
-  }
-
-  if (leftDown && activeSlider === null) {
-    ["r", "g", "b"].forEach((ch) => {
-      const yTop = ch === "r" ? yR : ch === "g" ? yG : yB;
-      if (clickIn(mx, my, barX, yTop, BAR_WIDTH, BAR_HEIGHT)) {
-        sliderPos[ch] = clamp(mx - barX, 0, BAR_WIDTH);
-        activeSlider = ch;
+      if (GLFW.glfwGetKey(mc.getWindow().getWindow(), GLFW.GLFW_KEY_BACKSPACE) === GLFW.GLFW_PRESS && Date.now() - lastKeyTime > 150) {
+        hexInput = hexInput.slice(0, -1);
+        lastKeyTime = Date.now();
       }
-    });
-  }
-
-  if (leftDown && activeSlider !== null) {
-    sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
-  }
-
-  drawSlider(gui, barX, yR, "r", sliderPos);
-  drawSlider(gui, barX, yG, "g", sliderPos);
-  drawSlider(gui, barX, yB, "b", sliderPos);
-
-  const rgb = calculateRGB(sliderPos);
-  const previewX = barX + BAR_WIDTH + 30;
-  gui.fill(
-    previewX,
-    yR + 2,
-    previewX + 18,
-    yR + 20,
-    rgbToARGB(rgb.r, rgb.g, rgb.b),
-  );
-
-  applyButton.x = previewX - 20;
-  applyButton.y = yR + 30;
-
-  modeButton.x = applyButton.x - modeButton.w - 10;
-  modeButton.y = applyButton.y;
-  if (renderButton(modeButton, activeMode, gui, mx, my, leftDown)) {
-    playClickSound();
-    activeMode =
-      activeMode === "Primary"
-        ? "Secondary"
-        : activeMode === "Secondary"
-          ? "Tertiary"
-          : activeMode === "Tertiary"
-            ? "Quaternary"
-          : activeMode === "Quaternary"
-            ? "Quintenary"
-            : "Primary";
-  }
-
-  if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) {
-    playClickSound();
-    sendCurrentModeColorFromSliders();
-  }
-
-  const resetButton = { x: applyButton.x, y: applyButton.y + 25, w: 40, h: 20 };
-if (renderButton(resetButton, "Reset", gui, mx, my, leftDown)) {
-    if (!resetButtonClicked) {
-        playClickSound();
-        sendResetColor();
-        resetButtonClicked = true;
+    } else {
+      hexInput = rgbToHex(calculateRGB(sliderPos).r, calculateRGB(sliderPos).g, calculateRGB(sliderPos).b);
     }
-}
+
+    ["r", "g", "b"].forEach(ch => {
+      const y = ch === "r" ? yR : ch === "g" ? yG : yB;
+      drawColorBar(gui, barX, y, BAR_WIDTH, BAR_HEIGHT, ch);
+      drawSlider(gui, barX, y, ch, sliderPos);
+    });
+
+    const rgb = calculateRGB(sliderPos);
+    const displayText = isHoveringText ? "> #" + hexInput : "#" + hexInput;
+    palladium.gui.drawString(gui, MCComponent.literal(displayText), previewX - 5, yR - 10, isHoveringText ? 0xFFFF00 : 0xFFFFFF);
+
+    gui.fill(previewX, yR + 2, previewX + 18, yR + 20, rgbToARGB(rgb.r, rgb.g, rgb.b));
+
+    applyButton.x = previewX - 20; applyButton.y = yR + 30;
+    modeButton.x = applyButton.x - 70; modeButton.y = applyButton.y;
+    resetButtonObj.x = applyButton.x; resetButtonObj.y = applyButton.y + 25;
+
+    // Lógica de cambio de modo corregida
+    if (renderButton(modeButton, activeMode, gui, mx, my, leftDown)) {
+      playClickSound();
+      let nextIndex = (MODES.indexOf(activeMode) + 1) % MODES.length;
+      activeMode = MODES[nextIndex];
+    }
+
+    if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) { 
+      playClickSound(); 
+      sendCurrentModeColorFromSliders(); 
+    }
+   
+    if (renderButton(resetButtonObj, "Reset", gui, mx, my, leftDown)) {
+      playClickSound(); 
+      sendResetColor();
+    }
+  });
 });
