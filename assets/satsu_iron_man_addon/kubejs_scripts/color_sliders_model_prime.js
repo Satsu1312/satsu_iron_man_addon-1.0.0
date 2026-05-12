@@ -203,7 +203,11 @@ TABS.forEach(tabID => {
         }
       }
 
-      if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_ENTER) === GLFW.GLFW_PRESS && Date.now() - lastKeyTime > 200) {
+      // Enter (257), Keypad Enter (335) o Espacio (32) para aplicar
+      let isEnter = GLFW.glfwGetKey(window, 257) === 1 || GLFW.glfwGetKey(window, 335) === 1;
+      let isSpace = GLFW.glfwGetKey(window, 32) === 1;
+
+      if ((isEnter || isSpace) && Date.now() - lastKeyTime > 250) {
         if (hexInput.length === 6) {
           updateSlidersFromHex(hexInput, sliderPos);
           playClickSound();
