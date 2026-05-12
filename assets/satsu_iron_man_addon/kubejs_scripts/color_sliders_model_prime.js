@@ -131,8 +131,6 @@ function drawSlider(gui, barX, barY, channel, sliderSet) {
 }
 
 function initSlidersFromProperties(entity) {
-  if (slidersInitialized) return;
-  slidersInitialized = true;
   const fallback = { r: 0, g: 86, b: 227 };
   const mapping = [
     { id: "satsu_iron_man_addon.PrimaryColour", key: "sliderPosPrimary" },
@@ -165,7 +163,11 @@ TABS.forEach(tabID => {
     const barX = panelX + 40, yR = panelY + 200, yG = panelY + 210, yB = panelY + 220;
 
     gui.blit(new ResourceLocation(TEX.panel), panelX, panelY, 0, 0, 257, 257, 257, 257);
-    initSlidersFromProperties(entity);
+    
+    if (!slidersInitialized) {
+        initSlidersFromProperties(entity);
+        slidersInitialized = true;
+    }
     
     const sliderPos = getModeSliderPos();
     const mx = event.mouseX, my = event.mouseY;
@@ -186,7 +188,7 @@ TABS.forEach(tabID => {
     if (leftDown && activeSlider !== null) sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
 
     const previewX = barX + BAR_WIDTH + 30;
-    const hexY = yR + 20; // Posición bajada del input Hex
+    const hexY = yR + 20;
     const isHoveringText = clickIn(mx, my, previewX - 5, hexY - 2, 50, 10);
    
     if (isHoveringText) {
@@ -264,6 +266,9 @@ TABS.forEach(tabID => {
     if (renderButton(resetButtonObj, "Reset", gui, mx, my, leftDown)) {
       playClickSound(); 
       sendResetColor();
+      slidersInitialized = false;
+      initSlidersFromProperties(entity);
+      return; 
     }
   });
 });
