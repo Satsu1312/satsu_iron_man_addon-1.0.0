@@ -151,7 +151,7 @@ function initSlidersFromProperties(entity) {
   });
 }
 
-const TABS = ["satsu_iron_man_addon:iron_man/marks/model_prime/main", "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main", "satsu_iron_man_addon:iron_man/marks/model_72/main"];
+const TABS = ["satsu_iron_man_addon:iron_man/marks/model_prime/main", "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main", "satsu_iron_man_addon:iron_man/marks/model_72/main", "satsu_iron_man_addon:iron_man/marks/mark_extremis/main"];
 
 TABS.forEach(tabID => {
   PalladiumEvents.renderPowerScreen((event) => {
