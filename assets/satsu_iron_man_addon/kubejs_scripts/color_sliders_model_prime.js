@@ -32,8 +32,8 @@ let lastKeyTime = 0;
 let lastUpdateCheck = 0;
 let lastInteractionTime = 0;
 
-const applyButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
-const modeButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
+const modeButton = { x: 0, y: 0, w: 50, h: 20, wasDown: false };
+const applyButton = { x: 0, y: 0, w: 40, h: 20, wasDown: false };
 const resetButtonObj = { x: 0, y: 0, w: 40, h: 20, wasDown: false };
 
 function rgbToHex(r, g, b) {
@@ -92,7 +92,7 @@ function renderButton(btn, label, gui, mx, my, leftDown) {
   
   const mc = Minecraft.getInstance();
   const textX = btn.x + (btn.w - mc.font.width(label)) / 2;
-  palladium.gui.drawString(gui, MCComponent.literal(label), textX, btn.y + (btn.h - 9) / 2 + 2, 0xffffff);
+  palladium.gui.drawString(gui, MCComponent.literal(label), textX, btn.y + (btn.h - 9) / 2 + 1, 0xffffff);
   
   const pressed = leftDown && !btn.wasDown && hovered;
   btn.wasDown = leftDown;
@@ -276,9 +276,17 @@ TABS.forEach(tabID => {
 
     gui.fill(previewX, yR + 2, previewX + 18, yR + 20, rgbToARGB(rgb.r, rgb.g, rgb.b));
 
-    applyButton.x = previewX - 20; applyButton.y = yR + 30;
-    modeButton.x = applyButton.x - 70; modeButton.y = applyButton.y;
-    resetButtonObj.x = applyButton.x; resetButtonObj.y = applyButton.y + 25;
+    const totalWidth = modeButton.w + applyButton.w + resetButtonObj.w + 10;
+    const startX = barX + (BAR_WIDTH - totalWidth) / 2 + 30;
+
+    modeButton.x = startX; 
+    modeButton.y = yR + 30;
+
+    applyButton.x = modeButton.x + modeButton.w + 5; 
+    applyButton.y = modeButton.y;
+
+    resetButtonObj.x = applyButton.x + applyButton.w + 5; 
+    resetButtonObj.y = modeButton.y;
 
     if (renderButton(modeButton, activeMode, gui, mx, my, leftDown)) {
       playClickSound();
