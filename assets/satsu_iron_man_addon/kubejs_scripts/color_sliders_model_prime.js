@@ -277,7 +277,7 @@ TABS.forEach(tabID => {
     gui.fill(previewX, yR + 2, previewX + 18, yR + 20, rgbToARGB(rgb.r, rgb.g, rgb.b));
 
     const totalWidth = modeButton.w + applyButton.w + resetButtonObj.w + 10;
-    const startX = barX + (BAR_WIDTH - totalWidth) / 2 + 30;
+    const startX = barX + (BAR_WIDTH - totalWidth) / 2 - 0;
 
     modeButton.x = startX; 
     modeButton.y = yR + 30;
