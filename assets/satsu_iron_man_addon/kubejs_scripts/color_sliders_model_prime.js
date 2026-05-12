@@ -203,6 +203,15 @@ TABS.forEach(tabID => {
         }
       }
 
+      if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_ENTER) === GLFW.GLFW_PRESS && Date.now() - lastKeyTime > 200) {
+        if (hexInput.length === 6) {
+          updateSlidersFromHex(hexInput, sliderPos);
+          playClickSound();
+          sendCurrentModeColorFromSliders();
+        }
+        lastKeyTime = Date.now();
+      }
+
       for (let i = 48; i <= 90; i++) {
         if (GLFW.glfwGetKey(window, i) === GLFW.GLFW_PRESS) {
           let char = String.fromCharCode(i);
