@@ -5,7 +5,7 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_shoulder.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_extremis_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_extremis_red.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
@@ -22,7 +22,52 @@
             "max": 18
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_shoulder/iron_man_suit_extremis_0_#LEFT_SHOULDER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_shoulder/mark_extremis_red_#LEFT_SHOULDER"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.PrimaryColour",
+        "fallback": 0
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.left.shoulder"
+          }
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_shoulder.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_extremis_gold.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/left_shoulder/#LEFT_SHOULDER.png"
+          }
+        ],
+        "variables": {
+          "LEFT_SHOULDER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_extremis/main",
+            "ability": "left_shoulder_animation",
+            "property": "value",
+            "min": 0,
+            "max": 18
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_shoulder/mark_extremis_gold_#LEFT_SHOULDER"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.SecondaryColour",
+        "fallback": 0
       },
       "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
       "animation_controller": [
@@ -57,7 +102,12 @@
             "max": 18
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_shoulder/iron_man_suit_lights_42_0_#LEFT_SHOULDER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_shoulder/iron_man_suit_lights_72_0_#LEFT_SHOULDER"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
       },
       "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
       "animation_controller": [
