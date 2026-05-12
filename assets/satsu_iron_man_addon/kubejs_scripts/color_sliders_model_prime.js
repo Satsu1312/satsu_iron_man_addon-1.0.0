@@ -186,7 +186,8 @@ TABS.forEach(tabID => {
     if (leftDown && activeSlider !== null) sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
 
     const previewX = barX + BAR_WIDTH + 30;
-    const isHoveringText = clickIn(mx, my, previewX - 5, yR - 12, 50, 10);
+    const hexY = yR + 20; // Posición bajada del input Hex
+    const isHoveringText = clickIn(mx, my, previewX - 5, hexY - 2, 50, 10);
    
     if (isHoveringText) {
       let ctrlDown = GLFW.glfwGetKey(window, GLFW.GLFW_KEY_LEFT_CONTROL) === GLFW.GLFW_PRESS || GLFW.glfwGetKey(window, GLFW.GLFW_KEY_RIGHT_CONTROL) === GLFW.GLFW_PRESS;
@@ -203,7 +204,6 @@ TABS.forEach(tabID => {
         }
       }
 
-      // Enter (257), Keypad Enter (335) o Espacio (32) para aplicar
       let isEnter = GLFW.glfwGetKey(window, 257) === 1 || GLFW.glfwGetKey(window, 335) === 1;
       let isSpace = GLFW.glfwGetKey(window, 32) === 1;
 
@@ -242,7 +242,7 @@ TABS.forEach(tabID => {
 
     const rgb = calculateRGB(sliderPos);
     const displayText = isHoveringText ? "> #" + hexInput : "#" + hexInput;
-    palladium.gui.drawString(gui, MCComponent.literal(displayText), previewX - 5, yR - 10, isHoveringText ? 0xFFFF00 : 0xFFFFFF);
+    palladium.gui.drawString(gui, MCComponent.literal(displayText), previewX - 5, hexY, isHoveringText ? 0xFFFF00 : 0xFFFFFF);
 
     gui.fill(previewX, yR + 2, previewX + 18, yR + 20, rgbToARGB(rgb.r, rgb.g, rgb.b));
 
