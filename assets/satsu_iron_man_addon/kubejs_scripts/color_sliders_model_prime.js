@@ -30,6 +30,7 @@ let hexInput = "";
 let isEditingHex = false;
 let lastKeyTime = 0;
 let lastUpdateCheck = 0;
+let lastInteractionTime = 0;
 
 const applyButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
 const modeButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
@@ -170,10 +171,11 @@ TABS.forEach(tabID => {
     const window = mc.getWindow().getWindow();
     const leftDown = GLFW.glfwGetMouseButton(window, GLFW.GLFW_MOUSE_BUTTON_LEFT) === GLFW.GLFW_PRESS;
 
-    if (!slidersInitialized || (Date.now() - lastUpdateCheck > 1000 && activeSlider === null && !leftDown)) {
+    if (!slidersInitialized || (Date.now() - lastInteractionTime > 6000 && activeSlider === null && !leftDown)) {
         initSlidersFromProperties(entity);
         slidersInitialized = true;
         lastUpdateCheck = Date.now();
+        lastInteractionTime = Date.now();
     }
     
     const sliderPos = getModeSliderPos();
@@ -186,12 +188,16 @@ TABS.forEach(tabID => {
     if (leftDown && activeSlider === null) {
       ["r", "g", "b"].forEach(ch => {
         const y = ch === "r" ? yR : ch === "g" ? yG : yB;
-        if (clickIn(mx, my, barX, y, BAR_WIDTH, 4)) activeSlider = ch;
+        if (clickIn(mx, my, barX, y, BAR_WIDTH, 4)) {
+            activeSlider = ch;
+            lastInteractionTime = Date.now();
+        }
       });
     }
     if (leftDown && activeSlider !== null) {
         sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
         isEditingHex = false;
+        lastInteractionTime = Date.now();
     }
 
     const previewX = barX + BAR_WIDTH + 30;
@@ -210,6 +216,7 @@ TABS.forEach(tabID => {
             updateSlidersFromHex(hexInput, sliderPos);
             isEditingHex = false;
             lastKeyTime = Date.now();
+            lastInteractionTime = Date.now();
           }
         }
       }
@@ -223,6 +230,7 @@ TABS.forEach(tabID => {
           playClickSound();
           sendCurrentModeColorFromSliders();
           isEditingHex = false;
+          lastInteractionTime = Date.now();
         }
         lastKeyTime = Date.now();
       }
@@ -240,6 +248,7 @@ TABS.forEach(tabID => {
                 updateSlidersFromHex(hexInput, sliderPos);
             }
             lastKeyTime = Date.now();
+            lastInteractionTime = Date.now();
           }
         }
       }
@@ -247,6 +256,7 @@ TABS.forEach(tabID => {
         isEditingHex = true;
         hexInput = hexInput.slice(0, -1);
         lastKeyTime = Date.now();
+        lastInteractionTime = Date.now();
       }
     } else {
       if (!isEditingHex) {
@@ -275,12 +285,14 @@ TABS.forEach(tabID => {
       let nextIndex = (MODES.indexOf(activeMode) + 1) % MODES.length;
       activeMode = MODES[nextIndex];
       isEditingHex = false;
+      lastInteractionTime = Date.now();
     }
 
     if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) { 
       playClickSound(); 
       sendCurrentModeColorFromSliders();
       isEditingHex = false;
+      lastInteractionTime = Date.now();
     }
    
     if (renderButton(resetButtonObj, "Reset", gui, mx, my, leftDown)) {
@@ -289,6 +301,7 @@ TABS.forEach(tabID => {
       slidersInitialized = false;
       isEditingHex = false;
       initSlidersFromProperties(entity);
+      lastInteractionTime = Date.now();
       return; 
     }
   });
