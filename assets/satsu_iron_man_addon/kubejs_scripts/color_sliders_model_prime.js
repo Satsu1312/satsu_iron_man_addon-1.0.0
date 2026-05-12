@@ -29,7 +29,6 @@ let slidersInitialized = false;
 let hexInput = "";
 let lastKeyTime = 0;
 
-// Objetos de botón persistentes para mantener el estado 'wasDown'
 const applyButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
 const modeButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
 const resetButtonObj = { x: 0, y: 0, w: 40, h: 20, wasDown: false };
@@ -43,10 +42,12 @@ function rgbToHex(r, g, b) {
 }
 
 function updateSlidersFromHex(hex, sliderSet) {
-  if (hex.length !== 6) return;
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
+  let cleanHex = hex.replace("#", "");
+  if (cleanHex.length !== 6) return;
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  if (isNaN(r) || isNaN(g) || isNaN(b)) return;
   sliderSet.r = Math.round((r / 255) * BAR_WIDTH);
   sliderSet.g = Math.round((g / 255) * BAR_WIDTH);
   sliderSet.b = Math.round((b / 255) * BAR_WIDTH);
@@ -168,7 +169,8 @@ TABS.forEach(tabID => {
     
     const sliderPos = getModeSliderPos();
     const mx = event.mouseX, my = event.mouseY;
-    const leftDown = GLFW.glfwGetMouseButton(mc.getWindow().getWindow(), GLFW.GLFW_MOUSE_BUTTON_LEFT) === GLFW.GLFW_PRESS;
+    const window = mc.getWindow().getWindow();
+    const leftDown = GLFW.glfwGetMouseButton(window, GLFW.GLFW_MOUSE_BUTTON_LEFT) === GLFW.GLFW_PRESS;
 
     if (!leftDown) { 
         activeSlider = null; 
@@ -187,8 +189,22 @@ TABS.forEach(tabID => {
     const isHoveringText = clickIn(mx, my, previewX - 5, yR - 12, 50, 10);
    
     if (isHoveringText) {
+      let ctrlDown = GLFW.glfwGetKey(window, GLFW.GLFW_KEY_LEFT_CONTROL) === GLFW.GLFW_PRESS || GLFW.glfwGetKey(window, GLFW.GLFW_KEY_RIGHT_CONTROL) === GLFW.GLFW_PRESS;
+      
+      if (ctrlDown && GLFW.glfwGetKey(window, GLFW.GLFW_KEY_V) === GLFW.GLFW_PRESS && Date.now() - lastKeyTime > 200) {
+        let clipboard = mc.keyboardHandler.getClipboard();
+        if (clipboard) {
+          let clean = clipboard.replace("#", "").trim();
+          if (/^[0-9A-Fa-f]{6}$/.test(clean)) {
+            hexInput = clean.toUpperCase();
+            updateSlidersFromHex(hexInput, sliderPos);
+            lastKeyTime = Date.now();
+          }
+        }
+      }
+
       for (let i = 48; i <= 90; i++) {
-        if (GLFW.glfwGetKey(mc.getWindow().getWindow(), i) === GLFW.GLFW_PRESS) {
+        if (GLFW.glfwGetKey(window, i) === GLFW.GLFW_PRESS) {
           let char = String.fromCharCode(i);
           if (/[0-9A-F]/.test(char) && Date.now() - lastKeyTime > 150) {
             hexInput = (hexInput + char).slice(-6);
@@ -197,7 +213,7 @@ TABS.forEach(tabID => {
           }
         }
       }
-      if (GLFW.glfwGetKey(mc.getWindow().getWindow(), GLFW.GLFW_KEY_BACKSPACE) === GLFW.GLFW_PRESS && Date.now() - lastKeyTime > 150) {
+      if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_BACKSPACE) === GLFW.GLFW_PRESS && Date.now() - lastKeyTime > 150) {
         hexInput = hexInput.slice(0, -1);
         lastKeyTime = Date.now();
       }
@@ -221,7 +237,6 @@ TABS.forEach(tabID => {
     modeButton.x = applyButton.x - 70; modeButton.y = applyButton.y;
     resetButtonObj.x = applyButton.x; resetButtonObj.y = applyButton.y + 25;
 
-    // Lógica de cambio de modo corregida
     if (renderButton(modeButton, activeMode, gui, mx, my, leftDown)) {
       playClickSound();
       let nextIndex = (MODES.indexOf(activeMode) + 1) % MODES.length;
