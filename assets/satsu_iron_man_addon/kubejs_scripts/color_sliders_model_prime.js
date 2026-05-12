@@ -308,7 +308,7 @@ TABS.forEach(tabID => {
       sendResetColor();
       initSlidersFromProperties(entity);
       isEditingHex = false;
-      lastInteractionTime = 0; 
+      lastInteractionTime = Date.now() - 6000; 
       return; 
     }
   });
