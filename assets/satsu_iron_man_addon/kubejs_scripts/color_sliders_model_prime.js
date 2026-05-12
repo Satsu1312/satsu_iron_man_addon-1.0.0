@@ -27,6 +27,7 @@ const MODES = ["Primary", "Secondary", "Tertiary", "Quaternary", "Quintenary"];
 let activeSlider = null;
 let slidersInitialized = false;
 let hexInput = "";
+let isEditingHex = false;
 let lastKeyTime = 0;
 let lastUpdateCheck = 0;
 
@@ -188,7 +189,10 @@ TABS.forEach(tabID => {
         if (clickIn(mx, my, barX, y, BAR_WIDTH, 4)) activeSlider = ch;
       });
     }
-    if (leftDown && activeSlider !== null) sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
+    if (leftDown && activeSlider !== null) {
+        sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
+        isEditingHex = false;
+    }
 
     const previewX = barX + BAR_WIDTH + 30;
     const hexY = yR + 20;
@@ -204,6 +208,7 @@ TABS.forEach(tabID => {
           if (/^[0-9A-Fa-f]{6}$/.test(clean)) {
             hexInput = clean.toUpperCase();
             updateSlidersFromHex(hexInput, sliderPos);
+            isEditingHex = false;
             lastKeyTime = Date.now();
           }
         }
@@ -217,6 +222,7 @@ TABS.forEach(tabID => {
           updateSlidersFromHex(hexInput, sliderPos);
           playClickSound();
           sendCurrentModeColorFromSliders();
+          isEditingHex = false;
         }
         lastKeyTime = Date.now();
       }
@@ -225,18 +231,27 @@ TABS.forEach(tabID => {
         if (GLFW.glfwGetKey(window, i) === GLFW.GLFW_PRESS) {
           let char = String.fromCharCode(i);
           if (/[0-9A-F]/.test(char) && Date.now() - lastKeyTime > 150) {
+            if(!isEditingHex) {
+                hexInput = "";
+                isEditingHex = true;
+            }
             hexInput = (hexInput + char).slice(-6);
-            if (hexInput.length === 6) updateSlidersFromHex(hexInput, sliderPos);
+            if (hexInput.length === 6) {
+                updateSlidersFromHex(hexInput, sliderPos);
+            }
             lastKeyTime = Date.now();
           }
         }
       }
       if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_BACKSPACE) === GLFW.GLFW_PRESS && Date.now() - lastKeyTime > 150) {
+        isEditingHex = true;
         hexInput = hexInput.slice(0, -1);
         lastKeyTime = Date.now();
       }
     } else {
-      hexInput = rgbToHex(calculateRGB(sliderPos).r, calculateRGB(sliderPos).g, calculateRGB(sliderPos).b);
+      if (!isEditingHex) {
+        hexInput = rgbToHex(calculateRGB(sliderPos).r, calculateRGB(sliderPos).g, calculateRGB(sliderPos).b);
+      }
     }
 
     ["r", "g", "b"].forEach(ch => {
@@ -259,17 +274,20 @@ TABS.forEach(tabID => {
       playClickSound();
       let nextIndex = (MODES.indexOf(activeMode) + 1) % MODES.length;
       activeMode = MODES[nextIndex];
+      isEditingHex = false;
     }
 
     if (renderButton(applyButton, "Apply", gui, mx, my, leftDown)) { 
       playClickSound(); 
-      sendCurrentModeColorFromSliders(); 
+      sendCurrentModeColorFromSliders();
+      isEditingHex = false;
     }
    
     if (renderButton(resetButtonObj, "Reset", gui, mx, my, leftDown)) {
       playClickSound(); 
       sendResetColor();
       slidersInitialized = false;
+      isEditingHex = false;
       initSlidersFromProperties(entity);
       return; 
     }
