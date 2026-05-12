@@ -306,10 +306,9 @@ TABS.forEach(tabID => {
     if (renderButton(resetButtonObj, "Reset", gui, mx, my, leftDown)) {
       playClickSound(); 
       sendResetColor();
-      slidersInitialized = false;
-      isEditingHex = false;
       initSlidersFromProperties(entity);
-      lastInteractionTime = Date.now();
+      isEditingHex = false;
+      lastInteractionTime = 0; 
       return; 
     }
   });
