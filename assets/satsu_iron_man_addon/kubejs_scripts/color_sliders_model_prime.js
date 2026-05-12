@@ -221,6 +221,11 @@ TABS.forEach(tabID => {
         }
       }
 
+      if (ctrlDown && GLFW.glfwGetKey(window, GLFW.GLFW_KEY_C) === GLFW.GLFW_PRESS && Date.now() - lastKeyTime > 200) {
+        mc.keyboardHandler.setClipboard("#" + hexInput);
+        lastKeyTime = Date.now();
+      }
+
       let isEnter = GLFW.glfwGetKey(window, 257) === 1 || GLFW.glfwGetKey(window, 335) === 1;
       let isSpace = GLFW.glfwGetKey(window, 32) === 1;
 
