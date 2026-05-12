@@ -28,6 +28,7 @@ let activeSlider = null;
 let slidersInitialized = false;
 let hexInput = "";
 let lastKeyTime = 0;
+let lastUpdateCheck = 0;
 
 const applyButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
 const modeButton = { x: 0, y: 0, w: 60, h: 30, wasDown: false };
@@ -164,15 +165,17 @@ TABS.forEach(tabID => {
 
     gui.blit(new ResourceLocation(TEX.panel), panelX, panelY, 0, 0, 257, 257, 257, 257);
     
-    if (!slidersInitialized) {
-        initSlidersFromProperties(entity);
-        slidersInitialized = true;
-    }
-    
-    const sliderPos = getModeSliderPos();
     const mx = event.mouseX, my = event.mouseY;
     const window = mc.getWindow().getWindow();
     const leftDown = GLFW.glfwGetMouseButton(window, GLFW.GLFW_MOUSE_BUTTON_LEFT) === GLFW.GLFW_PRESS;
+
+    if (!slidersInitialized || (Date.now() - lastUpdateCheck > 1000 && activeSlider === null && !leftDown)) {
+        initSlidersFromProperties(entity);
+        slidersInitialized = true;
+        lastUpdateCheck = Date.now();
+    }
+    
+    const sliderPos = getModeSliderPos();
 
     if (!leftDown) { 
         activeSlider = null; 
