@@ -1,699 +1,86 @@
-// Event for registering HUDs
-PalladiumEvents.registerGuiOverlays((event) => {
-  event.register(
-    "satsu_iron_man_addon:enemies_1",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.1"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0xffa500
-        );
-      }
-    }
-  );
+(function() {
+  // Función de traducción rápida
+  const t = (key) => Component.translate("satsu.iron.man.addon.text." + key);
 
-  event.register(
-    "satsu_iron_man_addon:enemies_2",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.2"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0xffb6c1
-        );
-      }
-    }
-  );
+  // Funciones auxiliares
+  const positions = (playerPos, axis) =>
+    Component.join("", t(axis), Math.trunc(playerPos));
 
-  event.register(
-    "satsu_iron_man_addon:enemies_3",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.3"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0x9370db
-        );
-      }
-    }
-  );
+  const ia_color = (player) =>
+    parseInt(palladium.getProperty(player, "satsu_iron_man_ia_color"), 16);
 
-  event.register(
-    "satsu_iron_man_addon:enemies_4",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.4"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0x708090
-        );
-      }
-    }
-  );
+  const armor_durability = (player) => {
+    const slot = player.getInventory().getArmor(2);
+    if (slot.isEmpty()) return Component.join("", t("armor_durablity"), t("slash"), "0/0");
+    const max = slot.maxDamage;
+    const left = max - slot.damageValue;
+    return Component.join("", t("armor_durablity"), max, t("slash"), left);
+  };
 
-  event.register(
-    "satsu_iron_man_addon:enemies_5",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.5"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0x00bfff
-        );
-      }
+  const show_label = (player, propName, propValue) => {
+    let value = palladium.getProperty(player, propValue);
+    if (["energy_on_hud", "energy_on_hud_iron_heart", "nanites_on_hud"].includes(propName)) {
+      const maxVal = palladium.getProperty(player, propValue + "_max");
+      value = Component.join("", Math.trunc((value / maxVal) * 100), t("percentage"));
     }
-  );
+    return Component.join("", t(propName), value);
+  };
 
-  event.register(
-    "satsu_iron_man_addon:enemies_6",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.6"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0xffe800
-        );
-      }
-    }
-  );
+  const speed_per_block = () =>
+    Component.join("", t("km"), Client.player.persistentData["speedBPS"]);
 
-  event.register(
-    "satsu_iron_man_addon:enemies_7",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.7"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0x09f42c
-        );
+  // Función genérica para registrar overlays
+  const registerOverlay = (event, id, abilityId, abilityKey, labelFn, x, y) => {
+    event.register(id, (mc, gui, poseStack) => {
+      const player = mc.player;
+      if (abilityUtil.isEnabled(player, abilityId, abilityKey)) {
+        guiUtil.drawString(poseStack, labelFn(player), x, y, ia_color(player));
       }
-    }
-  );
+    });
+  };
 
-  event.register(
-    "satsu_iron_man_addon:enemies_8",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.8"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0x98fb98
-        );
-      }
-    }
-  );
+  // Declaración de overlays en un arreglo
+  const overlays = [
+    ["im_wm_energy", "see.energy.im_wm", (p) => show_label(p, "energy_on_hud", "satsu_iron_man_iron_man_energy"), 50, 30],
+    ["iron_heart_energy", "see.energy.ih", (p) => show_label(p, "energy_on_hud_iron_heart", "satsu_iron_man_iron_heart_energy"), 50, 30],
+    ["nanite", "nanites_count", (p) => show_label(p, "nanites_on_hud", "satsu_iron_man_nano_counts"), 50, 200],
+    ["speed_1", "armor_on_body", (p) => show_label(p, "velocity_on_hud", "satsu_iron_man_flight_speed_choose"), 50, 40],
+    ["left_arm", "armor_on_body", (p) => show_label(p, "left_or_not", "satsu_left_arm"), 540, 60],
+    ["break_blocks", "armor_on_body", (p) => show_label(p, "break_block", "satsu_iron_man_addon_break_block_attack"), 540, 80],
+    ["weapons_system", "armor_on_body", (p) => show_label(p, "weapon_system", "satsu_armor_weapon_system"), 60, 100],
+    ["get_x", "see.energy.unlock.lock.1", (p) => positions(p.getX(), "X"), 60, 70],
+    ["get_Y", "see.energy.unlock.lock.1", (p) => positions(p.getY(), "Y"), 60, 80],
+    ["get_Z", "see.energy.unlock.lock.1", (p) => positions(p.getZ(), "Z"), 60, 90],
+    ["km", "horizon_lock", () => speed_per_block(), 400, 180],
+    ["night_vision", "see.energy.unlock.lock.1", (p) => show_label(p, "night_vision", "satsu_iron_man_addon_enable_night_vision"), 60, 250],
+    ["scan", "see.energy.unlock.lock.1", (p) => show_label(p, "scan", "satsu_iron_man_addon_enable_scan"), 60, 260],
+    ["get_armor", "armor_on_body", (p) => armor_durability(p), 550, 30],
+    ["ia_name", "see.energy.unlock.lock.1", (p) => show_label(p, "ia_name", "satsu_iron_man_ia_name"), 540, 45],
+  ];
 
-  event.register(
-    "satsu_iron_man_addon:enemies_9",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.9"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0x55fb9e
-        );
-      }
-    }
-  );
+  PalladiumEvents.registerGuiOverlays((event) => {
+    overlays.forEach(([id, abilityKey, fn, x, y]) =>
+      registerOverlay(event, "satsu_iron_man_addon:" + id, "satsu_iron_man_addon:ia_stuff/ia", abilityKey, fn, x, y)
+    );
+  });
 
-  event.register(
-    "satsu_iron_man_addon:enemies_10",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.10"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0xfe0f0f
-        );
-      }
-    }
-  );
+  // Render del jugador en inventario
+  PalladiumEvents.registerGuiOverlays((event) => {
+    const InventoryScreen = Java.loadClass("net.minecraft.client.gui.screens.inventory.InventoryScreen");
+    const Quaternionf = Java.loadClass("org.joml.Quaternionf");
 
-  event.register(
-    "satsu_iron_man_addon:enemies_11",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.11"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0x4682b4
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:enemies_12",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "scan_enemies.12"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective("enemies")
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Enemies: " + value),
-          300,
-          20,
-          0x0067fe
-        );
-      }
-    }
-  );
-});
-PalladiumEvents.registerGuiOverlays((event) => {
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_1",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.1"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0xffa500
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_2",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.2"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0xffb6c1
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_3",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.3"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0x9370db
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_4",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.4"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0x708090
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_5",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.5"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0x00bfff
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_6",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.6"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0xffe800
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_7",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.7"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0x09f42c
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_8",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.8"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0x98fb98
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_9",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.9"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0x55fb9e
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_10",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.10"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0xfe0f0f
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_11",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.11"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0x4682b4
-        );
-      }
-    }
-  );
-
-  event.register(
-    "satsu_iron_man_addon:Satsu_ark_energy_12",
-    (minecraft, gui, poseStack, partialTick, screenWidth, screenHeight) => {
-      if (
-        abilityUtil.isEnabled(
-          minecraft.player,
-          "satsu_iron_man_addon:ia_stuff/ia",
-          "see.energy.unlock.lock.12"
-        )
-      ) {
-        let username = minecraft.player.getGameProfile().getName();
-        let value = Utils.server.scoreboard
-          .getOrCreatePlayerScore(
-            username,
-            Utils.server.scoreboard.getObjective(
-              "satsu.iron.man.armor.ark.energy"
-            )
-          )
-          .getScore();
-        guiUtil.drawString(
-          poseStack,
-          Component.string("Energy: " + value),
-          50,
-          30,
-          0x0067fe
-        );
-      }
-    }
-  );
-});
+    event.register("satsu_iron_man_addon/armor_principal/iron_man_armor_test",
+      (mc, gui, poseStack) => {
+        const player = mc.player;
+        if (abilityUtil.isEnabled(player, "satsu_iron_man_addon:ia_stuff/ia", "see.energy.unlock.lock.1")) {
+          const yaw = (-(player.yBodyRot + 20) * JavaMath.PI) / 180;
+          InventoryScreen.renderEntityInInventory(
+            poseStack, 60, 170, 30,
+            new Quaternionf(Math.cos(0.5 * yaw), 0, -Math.sin(0.5 * yaw), 0),
+            null,
+            player
+          );
+        }
+      });
+  });
+})();

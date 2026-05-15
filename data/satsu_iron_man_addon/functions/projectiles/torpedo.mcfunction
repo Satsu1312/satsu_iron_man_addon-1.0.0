@@ -1,4 +1,4 @@
-playsound minecraft:entity.generic.explode neutral @p ~ ~ ~
+playsound minecraft:entity.generic.explode neutral @p[distance=0..30] ~ ~ ~
 particle minecraft:bubble ~ ~ ~
 particle minecraft:bubble ~0.1 ~ ~0.1 0 0 0 1 10
 particle minecraft:bubble ^ ^0.01 ^0.01 0 0 0 0.15 40

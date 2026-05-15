@@ -1,0 +1,283 @@
+{
+  "name": { "translate": "ability.title.satsu.extremis.power" },
+  "persistent_data": true,
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/extremis.png",
+  "background": "minecraft:textures/block/yellow_terracotta.png",
+  "icon": {
+    "type": "palladium:compound",
+    "icons": [
+      "satsu_iron_man_addon:textures/gui/extremis/dna.png",
+      "satsu_iron_man_addon:textures/gui/extremis/flame_2.png"
+    ]
+  },
+  "gui_display_type": "tree",
+  "primary_color": "#ff5a00",
+  "secondary_color": "#ffd500",
+  "energy_bars": {
+    "extremis_energy": {
+      "max": 80000,
+      "auto_increase_per_tick": 30,
+      "color": "#f77630"
+    }
+  },
+  "abilities": {
+    "infection_give_power_animation": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 125,
+      "conditions": {
+        "enabling": []
+      }
+    },
+    "infection_give_power": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "power": "satsu_iron_man_addon:extremis/main",
+      "capacity": "add",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_give_power_animation",
+            "property": "value",
+            "min": 123,
+            "max": 124
+          }
+        ]
+      }
+    },
+    "infection_remove_power": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "power": "satsu_iron_man_addon:effect/extremis_infection",
+      "capacity": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_give_power_animation",
+            "property": "value",
+            "min": 125,
+            "max": 125
+          }
+        ]
+      }
+    },
+    "infection_anim": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 25,
+      "conditions": {
+        "enabling": []
+      }
+    },
+    "damage": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["damage @s 1 minecraft:generic"],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_anim",
+            "property": "value",
+            "min": 4,
+            "max": 25
+          }
+        ]
+      }
+    },
+    "legs_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_anim",
+            "property": "value",
+            "min": 4,
+            "max": 25
+          }
+        ]
+      }
+    },
+    "legs_anim_texture": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_anim",
+            "property": "value",
+            "min": 4,
+            "max": 25
+          }
+        ]
+      }
+    },
+    "hands_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_anim",
+            "property": "value",
+            "min": 4,
+            "max": 25
+          }
+        ]
+      }
+    },
+    "hands_anim_texture": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_anim",
+            "property": "value",
+            "min": 4,
+            "max": 25
+          }
+        ]
+      }
+    },
+    "mouth_anim": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_anim",
+            "property": "value",
+            "min": 4,
+            "max": 25
+          }
+        ]
+      }
+    },
+    "mouth_anim_texture": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 3,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_anim",
+            "property": "value",
+            "min": 4,
+            "max": 25
+          }
+        ]
+      }
+    },
+    "shader_effect_white": {
+      "type": "palladium:shader_effect",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "shader": "extremis:shaders/orange.json",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "mouth_anim",
+            "property": "value",
+            "min": 8,
+            "max": 8
+          },
+          {
+            "type": "gravestone:perspective",
+            "looking": "FIRST_PERSON"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "extremis.eyes": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "extremis:infection/eyes",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "infection_anim",
+            "property": "value",
+            "min": 4,
+            "max": 25
+          }
+        ]
+      }
+    },
+    "extremis.hands": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "extremis:infection/hands",
+      "conditions": {
+        "enabling": []
+      }
+    },
+    "extremis.mouth": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "extremis:infection/mouth",
+      "conditions": {
+        "enabling": []
+      }
+    },
+    "extremis.legs": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "extremis:infection/legs",
+      "conditions": {
+        "enabling": []
+      }
+    }
+  }
+}

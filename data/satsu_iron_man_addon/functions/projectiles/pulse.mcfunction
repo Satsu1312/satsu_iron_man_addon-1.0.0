@@ -1,4 +1,4 @@
-playsound minecraft:entity.generic.explode neutral @p ~ ~ ~
+playsound minecraft:entity.generic.explode neutral @p[distance=0..30] ~ ~ ~
 particle minecraft:explosion ~ ~ ~ 0.1 0.1 0.1 1 1 normal
 particle minecraft:lava ~0.1 ~ ~0.1 0 0 0 1 3
 particle minecraft:campfire_cosy_smoke ^ ^0.01 ^0.01 0 0 0 0.15 2

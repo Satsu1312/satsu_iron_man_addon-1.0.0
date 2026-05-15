@@ -1,0 +1,67 @@
+{
+  "name": { "translate": "ability.title.armor_freezeed" },
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "abilities": {
+    "no-jump": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:jump_power",
+      "amount": -1000000,
+      "operation": 0,
+      "uuid": "a03fc89a-39ec-4b67-8af3-11c6dbe3335c",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "no-fly": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:flight_speed",
+      "amount": -1000000,
+      "operation": 0,
+      "uuid": "55e3b7f8-f122-4344-a731-9c7df326e575",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "armor_freeze.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "effect give @s minecraft:slowness infinite 255 true"
+      ],
+      "commands": [""],
+      "last_tick_commands": ["effect clear @s minecraft:slowness"],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "remove": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:effect/armor_freeze",
+      "capacity": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:armor_freeze"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

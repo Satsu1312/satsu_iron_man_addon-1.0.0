@@ -1,0 +1,77 @@
+{
+  "name": { "translate": "ability.title.satsu.ia" },
+  "icon": "satsu_iron_man_addon:ia_glases",
+  "abilities": {
+    "dummy": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "right_click",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "give.blood.normal": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "first_tick_commands": [
+        "clear @s satsu_iron_man_addon:extremis/extremis_injection 1",
+        "give @s satsu_iron_man_addon:extremis/empty_injection 1",
+        "effect give @s satsu_iron_man_addon:extremis_infection 4 255"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "dummy"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "give_infection": {
+      "type": "gravecore:potion_punch",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "effect": "satsu_iron_man_addon:extremis_infection",
+      "time": 4,
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "give_infection.remove": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [""],
+      "last_tick_commands": [
+        "clear @s satsu_iron_man_addon:extremis/extremis_injection 1",
+        "give @s satsu_iron_man_addon:extremis/empty_injection 1"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:hit_condition",
+            "mode": "entity"
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

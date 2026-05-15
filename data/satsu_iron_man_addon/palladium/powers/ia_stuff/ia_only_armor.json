@@ -24,25 +24,100 @@
       "conditions": {
         "unlocking": [
           {
+            "type": "satsu_iron_man_addon:dampened_by",
+            "effect": "satsu_iron_man_addon:armor_freeze"
+          },
+          {
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.animation.armor",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               },
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.addon.glasses.equip",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:integer_property",
+                "property": "satsu_animation_armor",
+                "min": 1,
+                "max": 1
               },
               {
-                "type": "palladium:has_tag",
-                "tag": "sentinel_one"
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "item": "satsu_iron_man_addon:ia_glases"
+                },
+                "slot": "curios:head"
+              },
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
               }
             ]
+          }
+        ]
+      }
+    },
+    "no_name_ia.remove_animation": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_ia_name",
+            "comparator": "equals",
+            "compare_to": "none"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:ia_stuff/set_names/1"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "no_name_ia.remove": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["function satsu_iron_man_addon:ia/remove_ia"],
+      "commands": [],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_ia_name",
+            "comparator": "equals",
+            "compare_to": "none"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "no_name_ia.remove_animation",
+            "min": 5,
+            "max": 5
           }
         ]
       }
