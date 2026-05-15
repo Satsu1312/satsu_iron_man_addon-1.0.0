@@ -5,7 +5,7 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/nano_armors/nano_energy_blade.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_energysword/no_light/infamous_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_energysword/no_light/model_prime/model_prime_8_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
@@ -20,11 +20,34 @@
             "property": "value",
             "min": 0,
             "max": 18
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.model.prime.color",
+            "min": 0,
+            "max": 12
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_energysword/no_light/infamous_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_energysword/no_light/model_prime/model_prime_8_0_#TIMER"
       },
-      "conditions": []
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.PrimaryColour",
+        "fallback": 0
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor.model.prime.stealth",
+              "min_score": 1,
+              "max_score": 1
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "geckolib:default",
@@ -45,12 +68,35 @@
             "property": "value",
             "min": 0,
             "max": 18
+          },
+          "X": {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.model.prime.color",
+            "min": 0,
+            "max": 12
           }
         },
         "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_energysword/light/infamous_0_#TIMER"
       },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
+      },
       "render_type": "glow",
-      "conditions": []
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:objective_score",
+              "objective": "satsu.iron.man.armor.model.prime.stealth",
+              "min_score": 1,
+              "max_score": 1
+            }
+          ]
+        }
+      ]
     }
   ]
 }
