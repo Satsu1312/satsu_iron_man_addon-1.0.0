@@ -572,6 +572,27 @@ PalladiumEvents.registerProperties((event) => {
   }
 });
 PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_mana", 'integer', 1000);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_mana_max", 'integer', 1000);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon_mana_ability', 'string', "magic_energy_aoe");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
   event.registerProperty(
     "satsu_iron_man_addon.PrimaryColour",
     "integer",

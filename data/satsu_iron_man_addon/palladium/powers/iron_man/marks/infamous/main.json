@@ -6,6 +6,19 @@
   "icon": "satsu_iron_man_addon:textures/gui/armors/armadura_completa/mark_head_icon_infamous.png",
   "gui_display_type": "tree",
   "energy_bars": {
+    "mana": {
+      "max": {
+        "type": "palladium_property",
+        "property": "satsu_iron_man_addon_mana_max",
+        "fallback": 0
+      },
+      "color": "#ff17c6",
+      "synced_value": {
+        "type": "palladium_property",
+        "property": "satsu_iron_man_addon_mana",
+        "fallback": 0
+      }
+    },
     "nanites": {
       "max": {
         "type": "palladium_property",
@@ -9832,21 +9845,26 @@
         "unlocking": []
       }
     },
-    "energy_aoe": {
-      "type": "palladium:animation_timer",
+    "magic_wheel": {
+      "type": "palladium:ability_wheel",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
-      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "title": { "translate": "ability.title.satsu.magic_wheel" },
       "hidden": true,
-      "hidden_in_bar": true,
+      "hidden_in_bar": false,
       "gui_position": [-9, -0.5],
-      "list_index": 12,
-      "start_value": 0,
-      "max_value": 20,
+      "list_index": 15,
+      "abilities": [
+        "magic_wheel.magic_energy_aoe",
+        "magic_wheel.magic_teleport",
+        "magic_wheel.magic_telekinesis"
+      ],
+      "texture": "null",
+      "disable_mouse_scrolling": false,
+      "disable_center_icon": false,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:activation",
-            "ticks": 20,
+            "type": "palladium:held",
             "cooldown": 0,
             "key_type": "key_bind",
             "needs_empty_hand": false,
@@ -9863,10 +9881,10 @@
             "ability": "waepons.choose"
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 13,
-            "max_score": 13
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
           },
           {
             "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
@@ -9889,23 +9907,340 @@
         ]
       }
     },
-    "energy_aoe.render_layer": {
+    "magic_wheel.magic_energy_aoe": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.magic_energy_aoe" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": "null",
+      "description": "null",
+      "name": "satsu_iron_man_addon_mana_ability",
+      "test_value": "magic_energy_aoe",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "magic_wheel"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "magic_wheel.magic_teleport": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.magic_teleport" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": "null",
+      "description": "null",
+      "name": "satsu_iron_man_addon_mana_ability",
+      "test_value": "magic_teleport",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "magic_wheel"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "magic_wheel.magic_telekinesis": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.magic_telekinesis" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": "null",
+      "description": "null",
+      "name": "satsu_iron_man_addon_mana_ability",
+      "test_value": "magic_telekinesis",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "magic_wheel"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "regen_mana_timer": {
+      "type": "palladium:repeating_animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 120,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": -25555555555555,
+            "max": 999
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": -25555555555555,
+            "max": 999
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "regen_mana": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_addon_mana",
+      "adjustment_type": "add",
+      "adjustment_amount": 25,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "regen_mana_timer",
+            "min": 120,
+            "max": 120
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "regen_mana_timer"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "magic_energy_aoe": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.magic_energy_aoe" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-9, -0.5],
+      "list_index": 16,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 40,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mana_ability",
+            "comparator": "equals",
+            "compare_to": "magic_energy_aoe"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "magic_energy_aoe.render_layer": {
       "type": "palladium:render_layer",
       "hidden": true,
       "hidden_in_bar": true,
-      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/infamous/magic_spell/energy_aoe",
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/infamous/magic_spell/magic_energy_aoe",
       "conditions": {
         "enabling": [
           {
             "type": "palladium:ability_enabled",
             "power": "null",
-            "ability": "energy_aoe"
+            "ability": "magic_energy_aoe"
           }
         ],
         "unlocking": []
       }
     },
-    "energy_aoe.anim": {
+    "magic_energy_aoe.anim": {
       "type": "palladium:player_animation",
       "hidden": true,
       "hidden_in_bar": true,
@@ -9915,13 +10250,13 @@
           {
             "type": "palladium:ability_enabled",
             "power": "null",
-            "ability": "energy_aoe"
+            "ability": "magic_energy_aoe"
           }
         ],
         "unlocking": []
       }
     },
-    "energy_aoe.particle_aura": {
+    "magic_energy_aoe.particle_aura": {
       "type": "gravecore:particle_aura",
       "hidden": true,
       "hidden_in_bar": true,
@@ -9939,7 +10274,7 @@
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
-            "ability": "energy_aoe",
+            "ability": "magic_energy_aoe",
             "property": "value",
             "min": 20,
             "max": 20
@@ -9948,7 +10283,7 @@
         "unlocking": []
       }
     },
-    "energy_aoe.aoe_knockback": {
+    "magic_energy_aoe.aoe_knockback": {
       "type": "gravecore:aoe_knockback",
       "hidden": true,
       "hidden_in_bar": true,
@@ -9965,7 +10300,7 @@
           {
             "type": "palladium:ability_integer_property",
             "power": "null",
-            "ability": "energy_aoe",
+            "ability": "magic_energy_aoe",
             "property": "value",
             "min": 20,
             "max": 20
@@ -9974,20 +10309,38 @@
         "unlocking": []
       }
     },
+    "magic_energy_aoe.remove_mana": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_addon_mana",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "magic_energy_aoe"
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "magic_teleport": {
       "type": "satsu_iron_man_addon:teleport",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
-      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "title": { "translate": "ability.title.satsu.magic_teleport" },
       "hidden": true,
       "hidden_in_bar": false,
       "gui_position": [-9, -0.5],
-      "list_index": 12,
+      "list_index": 16,
       "max_distance": 12,
       "conditions": {
         "enabling": [
           {
             "type": "palladium:action",
-            "cooldown": 0,
+            "cooldown": 20,
             "key_type": "key_bind",
             "needs_empty_hand": false,
             "allow_scrolling_when_crouching": true
@@ -9999,14 +10352,20 @@
             "ability": "armor"
           },
           {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
+          },
+          {
             "type": "palladium:ability_unlocked",
             "ability": "waepons.choose"
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 13,
-            "max_score": 13
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mana_ability",
+            "comparator": "equals",
+            "compare_to": "magic_teleport"
           },
           {
             "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
@@ -10029,7 +10388,25 @@
         ]
       }
     },
-    "energy_aoe.play_sound": {
+    "magic_teleport.remove_mana": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_addon_mana",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "magic_teleport"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "magic_energy_aoe.play_sound": {
       "type": "palladium:play_sound",
       "hidden": true,
       "hidden_in_bar": true,
@@ -10060,12 +10437,12 @@
                   {
                     "type": "palladium:ability_enabled",
                     "power": "null",
-                    "ability": "energy_aoe"
+                    "ability": "magic_energy_aoe"
                   },
                   {
                     "type": "palladium:ability_integer_property",
                     "power": "null",
-                    "ability": "energy_aoe",
+                    "ability": "magic_energy_aoe",
                     "property": "value",
                     "min": 20,
                     "max": 20
@@ -10112,12 +10489,12 @@
                   {
                     "type": "palladium:ability_enabled",
                     "power": "null",
-                    "ability": "energy_aoe"
+                    "ability": "magic_energy_aoe"
                   },
                   {
                     "type": "palladium:ability_integer_property",
                     "power": "null",
-                    "ability": "energy_aoe",
+                    "ability": "magic_energy_aoe",
                     "property": "value",
                     "min": 1,
                     "max": 7
@@ -10176,10 +10553,16 @@
             "ability": "waepons.choose"
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.addon.nano.armor.things",
-            "min_score": 13,
-            "max_score": 13
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mana_ability",
+            "comparator": "equals",
+            "compare_to": "magic_telekinesis"
           },
           {
             "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
@@ -10206,8 +10589,7 @@
       "type": "corewithstuff:telekinesis_push",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
       "title": { "translate": "ability.title.satsu.magic_telekinesis_push" },
-      "bar_color": "light_gray",
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": false,
       "list_index": 17,
       "gui_position": "null",
@@ -10215,11 +10597,10 @@
       "min_dist": 2,
       "max_dist": 25,
       "show_text": false,
-      "custom_text": "Pushed! Dist: %d",
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
+            "type": "palladium:held",
             "cooldown": 0,
             "key_type": "key_bind"
           }
@@ -10237,20 +10618,18 @@
       "type": "corewithstuff:telekinesis_pull",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
       "title": { "translate": "ability.title.satsu.magic_telekinesis_pull" },
-      "bar_color": "light_gray",
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": false,
       "list_index": 18,
       "gui_position": "null",
       "description": "null",
       "min_dist": 2,
       "max_dist": 25,
-      "show_text": true,
-      "custom_text": "Pulled! Dist: %d",
+      "show_text": false,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
+            "type": "palladium:held",
             "cooldown": 0,
             "key_type": "key_bind"
           }
@@ -10268,8 +10647,7 @@
       "type": "corewithstuff:telekinesis_throw",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
       "title": { "translate": "ability.title.satsu.magic_telekinesis_throw" },
-      "bar_color": "light_gray",
-      "hidden": false,
+      "hidden": true,
       "hidden_in_bar": false,
       "list_index": 19,
       "gui_position": "null",
@@ -10292,6 +10670,41 @@
             "ability": "magic_telekinesis"
           }
         ]
+      }
+    },
+    "magic_telekinesis.remove_mana": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_addon_mana",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "magic_telekinesis"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "magic_telekinesis.aim": {
+      "type": "palladium:aim",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "time": 1,
+      "arm": "main_arm",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "magic_telekinesis"
+          }
+        ],
+        "unlocking": []
       }
     },
     "grab_cannon_anim": {
