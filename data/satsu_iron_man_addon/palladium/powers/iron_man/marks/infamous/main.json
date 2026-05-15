@@ -9700,7 +9700,7 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
       "title": { "translate": "ability.title.satsu.stealht.mode" },
       "hidden": true,
-      "hidden_in_bar": false,
+      "hidden_in_bar": true,
       "gui_position": [-9, -0.5],
       "list_index": 12,
       "start_value": 0,
@@ -9837,6 +9837,61 @@
         "unlocking": []
       }
     },
+    "magic_teleport": {
+      "type": "satsu_iron_man_addon:teleport",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-9, -0.5],
+      "list_index": 12,
+      "max_distance": 12,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 13,
+            "max_score": 13
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "energy_aoe.play_sound": {
       "type": "palladium:play_sound",
       "hidden": true,
@@ -9850,12 +9905,37 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "energy_aoe",
-            "property": "value",
-            "min": 20,
-            "max": 20
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "magic_teleport"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "energy_aoe"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "null",
+                    "ability": "energy_aoe",
+                    "property": "value",
+                    "min": 20,
+                    "max": 20
+                  }
+                ]
+              }
+            ]
           }
         ],
         "unlocking": []
@@ -9877,17 +9957,37 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "energy_aoe"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "energy_aoe",
-            "property": "value",
-            "min": 1,
-            "max": 7
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "magic_teleport"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "null",
+                    "ability": "energy_aoe"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "null",
+                    "ability": "energy_aoe",
+                    "property": "value",
+                    "min": 1,
+                    "max": 7
+                  }
+                ]
+              }
+            ]
           }
         ],
         "unlocking": []
