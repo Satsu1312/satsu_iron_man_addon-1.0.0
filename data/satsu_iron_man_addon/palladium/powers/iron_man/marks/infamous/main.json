@@ -9695,6 +9695,204 @@
         "unlocking": []
       }
     },
+    "energy_aoe": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.stealht.mode" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-9, -0.5],
+      "list_index": 12,
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "waepons.choose"
+          },
+          {
+            "type": "palladium:objective_score",
+            "objective": "satsu.iron.man.addon.nano.armor.things",
+            "min_score": 13,
+            "max_score": 13
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "energy_aoe.render_layer": {
+      "type": "palladium:render_layer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/infamous/magic_spell/energy_aoe",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "energy_aoe"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "energy_aoe.anim": {
+      "type": "palladium:player_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "animation": "satsu_iron_man_addon:infamous/infamous_magic_aoe",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "energy_aoe"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "energy_aoe.particle_aura": {
+      "type": "gravecore:particle_aura",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "count": 50,
+      "start_hex": "#ff17c6",
+      "end_hex": "#ff17c6",
+      "property_start_hex": "null",
+      "property_end_hex": "null",
+      "aura_type": "wave",
+      "particle_type": "sparkle",
+      "particle_size": 1.5,
+      "visibility": 1.5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "energy_aoe",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "energy_aoe.aoe_knockback": {
+      "type": "gravecore:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 10,
+      "knockback": 1.4,
+      "invert": false,
+      "cone": false,
+      "crush": false,
+      "is_charged": false,
+      "scoreboard": "Score.Board",
+      "scoreboard_max": "Score.Board.Max",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "energy_aoe",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "energy_aoe.play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "minecraft:entity.illusioner.cast_spell",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "energy_aoe",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "magic.particle_aura": {
+      "type": "gravecore:particle_aura",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "count": 10,
+      "start_hex": "#ff17c6",
+      "end_hex": "#ff17c6",
+      "property_start_hex": "null",
+      "property_end_hex": "null",
+      "aura_type": "inner_aura",
+      "particle_type": "sparkle",
+      "particle_size": 0.5,
+      "visibility": 0.5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "energy_aoe"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "energy_aoe",
+            "property": "value",
+            "min": 1,
+            "max": 7
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "grab_cannon_anim": {
       "type": "palladium:animation_timer",
       "hidden": true,
