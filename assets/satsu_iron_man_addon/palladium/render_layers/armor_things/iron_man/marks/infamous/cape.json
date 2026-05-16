@@ -6,15 +6,20 @@
       "model_type": "palladium:caped_humanoid",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/cape/main.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/magic_cape/#magic_cape.png"
+          }
+        ],
         "variables": {
-          "STAGE": {
-            "type": "palladium:cape",
-            "bobbing": false,
-            "subtract": 9,
-            "divide": 10,
-            "max": 8,
-            "min": 0,
-            "round": "to_int"
+          "magic_cape": {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:iron_man/marks/infamous/main",
+            "ability": "magic_cape",
+            "property": "value",
+            "min": 14,
+            "max": 14
           }
         }
       },
@@ -22,19 +27,48 @@
         "type": "palladium:integer_property",
         "property": "satsu_iron_man_addon.SecondaryColour",
         "fallback": 0
-      }
+      },
+      "conditions": [
+        {
+          "type": "palladium:animation_timer_ability",
+          "power": "satsu_iron_man_addon:iron_man/marks/infamous/main",
+          "ability": "magic_cape",
+          "min": 14,
+          "max": 14
+        }
+      ]
     },
     {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/cape/hood.geo.json",
+      "model_layer": "satsu_iron_man_addon:humanoid#cape",
+      "model_type": "palladium:caped_humanoid",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/cape/hood.png"
+        "base": "satsu_iron_man_addon:textures/models/cape/mana.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/magic_cape/#magic_cape.png"
+          }
+        ],
+        "variables": {
+          "magic_cape": {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:iron_man/marks/infamous/main",
+            "ability": "magic_cape",
+            "property": "value",
+            "min": 0,
+            "max": 14
+          }
+        }
       },
-      "tint": {
-        "type": "palladium:integer_property",
-        "property": "satsu_iron_man_addon.SecondaryColour",
-        "fallback": 0
-      }
+      "conditions": [
+        {
+          "type": "palladium:animation_timer_ability",
+          "power": "satsu_iron_man_addon:iron_man/marks/infamous/main",
+          "ability": "magic_cape",
+          "min": 1,
+          "max": 13
+        }
+      ]
     }
   ]
 }
