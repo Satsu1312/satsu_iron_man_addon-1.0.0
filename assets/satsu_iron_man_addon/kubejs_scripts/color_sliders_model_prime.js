@@ -18,11 +18,11 @@ const BAR_HEIGHT = 4;
 let sliderPosPrimary = { r: 0, g: 0, b: 0 };
 let sliderPosSecondary = { r: 0, g: 0, b: 0 };
 let sliderPosTertiary = { r: 0, g: 0, b: 0 };
-let sliderPosQuaternary = { r: 0, g: 0, b: 0 };
-let sliderPosQuintenary = { r: 0, g: 0, b: 0 };
+let sliderPosCore = { r: 0, g: 0, b: 0 };
+let sliderPosRepulsor = { r: 0, g: 0, b: 0 };
 
 let activeMode = "Primary";
-const MODES = ["Primary", "Secondary", "Tertiary", "Quaternary", "Quintenary"];
+const MODES = ["Primary", "Secondary", "Tertiary", "Core", "Repulsor"];
 
 let activeSlider = null;
 let slidersInitialized = false;
@@ -66,8 +66,8 @@ function getModePropertyName() {
     "Primary": "satsu_iron_man_addon.PrimaryColour",
     "Secondary": "satsu_iron_man_addon.SecondaryColour",
     "Tertiary": "satsu_iron_man_addon.TertiaryColour",
-    "Quaternary": "satsu_iron_man_addon_beam_core_color",
-    "Quintenary": "satsu_iron_man_addon_beam_glow_color"
+    "Core": "satsu_iron_man_addon_beam_core_color",
+    "Repulsor": "satsu_iron_man_addon_beam_glow_color"
   };
   return props[activeMode];
 }
@@ -104,8 +104,8 @@ function getModeSliderPos() {
     "Primary": sliderPosPrimary, 
     "Secondary": sliderPosSecondary, 
     "Tertiary": sliderPosTertiary, 
-    "Quaternary": sliderPosQuaternary, 
-    "Quintenary": sliderPosQuintenary 
+    "Core": sliderPosCore, 
+    "Repulsor": sliderPosRepulsor 
   };
   return sets[activeMode];
 }
@@ -139,13 +139,13 @@ function initSlidersFromProperties(entity) {
     { id: "satsu_iron_man_addon.PrimaryColour", key: "sliderPosPrimary" },
     { id: "satsu_iron_man_addon.SecondaryColour", key: "sliderPosSecondary" },
     { id: "satsu_iron_man_addon.TertiaryColour", key: "sliderPosTertiary" },
-    { id: "satsu_iron_man_addon_beam_core_color", key: "sliderPosQuaternary" },
-    { id: "satsu_iron_man_addon_beam_glow_color", key: "sliderPosQuintenary" }
+    { id: "satsu_iron_man_addon_beam_core_color", key: "sliderPosCore" },
+    { id: "satsu_iron_man_addon_beam_glow_color", key: "sliderPosRepulsor" }
   ];
   mapping.forEach(m => {
     let val = palladium.getProperty(entity, m.id) | 0;
     let c = val > 0 ? extractRGB(val) : fallback;
-    let target = (m.key === "sliderPosPrimary") ? sliderPosPrimary : (m.key === "sliderPosSecondary") ? sliderPosSecondary : (m.key === "sliderPosTertiary") ? sliderPosTertiary : (m.key === "sliderPosQuaternary") ? sliderPosQuaternary : sliderPosQuintenary;
+    let target = (m.key === "sliderPosPrimary") ? sliderPosPrimary : (m.key === "sliderPosSecondary") ? sliderPosSecondary : (m.key === "sliderPosTertiary") ? sliderPosTertiary : (m.key === "sliderPosCore") ? sliderPosCore : sliderPosRepulsor;
     target.r = Math.round((c.r / 255) * BAR_WIDTH);
     target.g = Math.round((c.g / 255) * BAR_WIDTH);
     target.b = Math.round((c.b / 255) * BAR_WIDTH);
