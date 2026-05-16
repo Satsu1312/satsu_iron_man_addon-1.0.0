@@ -10998,6 +10998,174 @@
         "unlocking": []
       }
     },
+    "magic_shield": {
+      "type": "satsu_iron_man_addon:particle_dome",
+      "icon": "minecraft:shield",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 16,
+      "gui_position": "null",
+      "description": "null",
+      "particles": true,
+      "particletype": "dust 1 0.09 0.776 1",
+      "random": true,
+      "particle_count": 20,
+      "radius": 2.05,
+      "height_center": 1.1,
+      "still": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mana_ability",
+            "comparator": "equals",
+            "compare_to": "magic_shield"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "magic_shield.aoe": {
+      "type": "gravecore:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 2.5,
+      "knockback": 1,
+      "invert": false,
+      "cone": false,
+      "crush": false,
+      "is_charged": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "magic_shield"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "magic_shield.forcefield": {
+      "type": "gravecore:forcefield",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "max_health": 2000,
+      "scoreboard": "null",
+      "regen_rate": 1,
+      "damage_sources": [
+        "minecraft:damages_helmet",
+        "minecraft:bypasses_armor",
+        "minecraft:bypasses_shield",
+        "minecraft:bypasses_invulnerability",
+        "minecraft:bypasses_cooldown",
+        "minecraft:bypasses_effects",
+        "minecraft:bypasses_resistance",
+        "minecraft:bypasses_enchantments",
+        "minecraft:is_fire",
+        "minecraft:is_projectile",
+        "minecraft:witch_resistant_to",
+        "minecraft:is_explosion",
+        "minecraft:is_fall",
+        "minecraft:is_drowning",
+        "minecraft:is_freezing",
+        "minecraft:is_lightning",
+        "minecraft:no_anger",
+        "minecraft:no_impact",
+        "minecraft:always_most_significant_fall",
+        "minecraft:wither_immune_to",
+        "minecraft:ignites_armor_stands",
+        "minecraft:burns_armor_stands",
+        "minecraft:avoids_guardian_thorns",
+        "minecraft:always_triggers_silverfish",
+        "minecraft:always_hurts_ender_dragons",
+        "satsu_iron_man_addon:all",
+        "satsu_iron_man_addon:mob",
+        "satsu_iron_man_addon:player"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "magic_shield"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "magic_shield.damage_immunity": {
+      "type": "palladium:damage_immunity",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "damage_sources": ["minecraft:is_projectile", "minecraft:is_explosion"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "magic_shield"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "magic_shield.remove_mana": {
+      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_name": "satsu_iron_man_addon_mana",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "magic_shield"
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "grab_cannon_anim": {
       "type": "palladium:animation_timer",
       "hidden": true,
