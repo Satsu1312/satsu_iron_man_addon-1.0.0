@@ -9857,6 +9857,7 @@
         "magic_wheel.magic_energy_aoe",
         "magic_wheel.magic_teleport",
         "magic_wheel.magic_telekinesis",
+        "magic_wheel.magic_shield",
         "magic_wheel.magic_cape"
       ],
       "texture": "null",
@@ -10020,6 +10021,59 @@
       "description": "null",
       "name": "satsu_iron_man_addon_mana_ability",
       "test_value": "magic_telekinesis",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "magic_wheel"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_mana",
+            "min": 1,
+            "max": 25555555555555
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "magic_wheel.magic_shield": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.magic_shield" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": "null",
+      "description": "null",
+      "name": "satsu_iron_man_addon_mana_ability",
+      "test_value": "magic_shield",
       "conditions": {
         "enabling": [
           {
@@ -10951,9 +11005,8 @@
     },
     "magic_shield": {
       "type": "satsu_iron_man_addon:particle_dome",
-      "icon": "minecraft:shield",
-      "title": "null",
-      "bar_color": "light_gray",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.magic_shield" },
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 16,
