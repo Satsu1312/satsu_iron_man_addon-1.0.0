@@ -82,6 +82,18 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "",
       "Palladium property key to write onto the spawned projectile",
     )
+    .addProperty(
+      "source_property_2",
+      "string",
+      "",
+      "Second Palladium property key to read from the player",
+    )
+    .addProperty(
+      "projectile_property_2",
+      "string",
+      "",
+      "Second Palladium property key to write onto the spawned projectile",
+    )
     .tick((entity, entry, holder, enabled) => {
       if (enabled) {
         const TYPE = entry.getPropertyByName("entity_type");
@@ -99,6 +111,8 @@ StartupEvents.registry("palladium:abilities", (event) => {
         );
         const SRC_PROP = entry.getPropertyByName("source_property");
         const PROJ_PROP = entry.getPropertyByName("projectile_property");
+        const SRC_PROP_2 = entry.getPropertyByName("source_property_2");
+        const PROJ_PROP_2 = entry.getPropertyByName("projectile_property_2");
 
         for (let i = 0; i < COUNT; i++) {
           let calcYawInacc = Math.random() * 2 * YAW_INACC - YAW_INACC;
@@ -122,10 +136,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
           projectile.setPos(x, y, z);
           if (!ALIGN_VEL_WITH_CALC_ROT) {
             projectile.setDeltaMovement(
-              entity
-                .getLookAngle()
-                .scale(velocity)
-                .add(entity.getDeltaMovement()),
+              entity.getLookAngle().scale(velocity).add(entity.getDeltaMovement()),
             );
           } else {
             projectile.setDeltaMovement(
@@ -141,6 +152,13 @@ StartupEvents.registry("palladium:abilities", (event) => {
             const value = palladium.getProperty(entity, SRC_PROP);
             if (value !== null && value !== undefined) {
               palladium.setProperty(projectile, PROJ_PROP, value);
+            }
+          }
+
+          if (SRC_PROP_2 && PROJ_PROP_2) {
+            const value2 = palladium.getProperty(entity, SRC_PROP_2);
+            if (value2 !== null && value2 !== undefined) {
+              palladium.setProperty(projectile, PROJ_PROP_2, value2);
             }
           }
         }
