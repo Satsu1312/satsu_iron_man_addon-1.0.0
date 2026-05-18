@@ -17,82 +17,29 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
     )
 
     .test((entity, props) => {
-      // Control de seguridad crucial para evitar crasheos en el servidor y cliente
-      if (!entity || !entity.isLiving()) return false;
+      // 1. EL ÚNICO BLINDAJE MULTIPLAYER: Si la entidad no existe o no es válida, salimos sin crashear el servidor
+      if (!entity || typeof global.getItemFromSlot !== "function") return false;
 
       const slotName = props.get("slot");
       const nbtKey = props.get("nbtKey");
       const nbtValue = props.get("nbtValue");
       const mode = props.get("mode");
 
-      let item = null;
+      // 2. Usamos TU función original (la que sí sabe sincronizar Curios en tu entorno)
+      const stacksOrItem = global.getItemFromSlot(entity, slotName);
+      if (!stacksOrItem) return false;
 
-      // 1. Lógica Segura para ranuras de Curios
-      if (slotName.startsWith("curios:")) {
-        try {
-          // Uso de Java.type para máxima compatibilidad cross-platform/cross-thread
-          const CuriosApi = Java.type("top.theillusivecoyote.curios.api.CuriosApi");
-          const optionalHelper = CuriosApi.getCuriosHelper().getCuriosHandler(entity);
-          
-          if (optionalHelper.isPresent()) {
-            const handler = optionalHelper.get();
-            const stacksHandler = handler.getStacksHandler(slotName.substring(7));
-            if (stacksHandler.isPresent()) {
-              const itemStacks = stacksHandler.get().getStacks();
-              // Verifica que existan slots disponibles en el contenedor antes de acceder al índice 0
-              if (itemStacks && itemStacks.getSlots() > 0) {
-                item = itemStacks.getStackInSlot(0);
-              }
-            }
-          }
-        } catch (e) {
-          return false;
-        }
-      } else {
-        try {
-          // Uso de Java.type para resolver la clase EquipmentSlot de forma segura
-          const EquipmentSlot = Java.type("net.minecraft.world.entity.EquipmentSlot");
-          
-          switch (slotName) {
-            case "mainhand":
-              item = entity.getItemBySlot(EquipmentSlot.MAINHAND);
-              break;
-            case "offhand":
-              item = entity.getItemBySlot(EquipmentSlot.OFFHAND);
-              break;
-            case "head":
-              item = entity.getItemBySlot(EquipmentSlot.HEAD);
-              break;
-            case "chest":
-              item = entity.getItemBySlot(EquipmentSlot.CHEST);
-              break;
-            case "legs":
-              item = entity.getItemBySlot(EquipmentSlot.LEGS);
-              break;
-            case "feet":
-              item = entity.getItemBySlot(EquipmentSlot.FEET);
-              break;
-            default:
-              return false;
-          }
-        } catch (e) {
-          return false;
-        }
-      }
+      // 3. Tu lógica exacta del Script 1 para desempaquetar Curios
+      const item = slotName.startsWith("curios:")
+        ? stacksOrItem.getStackInSlot(0)
+        : stacksOrItem;
+      if (!item || item.isEmpty() || !item.nbt) return false;
 
-      // Si la ranura consultada no posee ningún ítem o está vacía
-      if (!item || item.isEmpty()) return false;
-
-      // 3. Lectura del NBT garantizando compatibilidad en Multiplayer
-      const tag = item.getOrCreateTag();
-      if (!tag || !tag.contains(nbtKey)) {
-        return mode === "notEquals";
-      }
-
-      // Obtención limpia del valor en formato String compatible con Rhino
-      const actualValue = tag.get(nbtKey).getAsString();
+      // 4. Tu lectura nativa de JavaScript (la que reacciona perfecto con tu JSON y el NOT)
+      const actualValue = item.nbt[nbtKey];
       if (actualValue == null) return false;
 
+      // 5. Tu switch original intacto
       switch (mode) {
         case "equals":
           return actualValue === nbtValue;
