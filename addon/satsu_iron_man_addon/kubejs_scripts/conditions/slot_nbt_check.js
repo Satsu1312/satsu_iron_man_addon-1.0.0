@@ -17,7 +17,7 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
     )
 
     .test((entity, props) => {
-      // 1. EL ÚNICO BLINDAJE MULTIPLAYER: Si la entidad no existe o no es válida, salimos sin crashear el servidor
+      // Filtro de seguridad indispensable para servidores
       if (!entity || typeof global.getItemFromSlot !== "function") return false;
 
       const slotName = props.get("slot");
@@ -25,28 +25,38 @@ StartupEvents.registry("palladium:condition_serializer", (event) => {
       const nbtValue = props.get("nbtValue");
       const mode = props.get("mode");
 
-      // 2. Usamos TU función original (la que sí sabe sincronizar Curios en tu entorno)
       const stacksOrItem = global.getItemFromSlot(entity, slotName);
       if (!stacksOrItem) return false;
 
-      // 3. Tu lógica exacta del Script 1 para desempaquetar Curios
-      const item = slotName.startsWith("curios:")
-        ? stacksOrItem.getStackInSlot(0)
-        : stacksOrItem;
+      let item = null;
+
+      // BLINDAJE MULTIPLAYER: Validamos que el contenedor de Curios sea real y tenga slots
+      if (slotName.startsWith("curios:")) {
+        try {
+          // Si el contenedor existe y tiene más de 0 slots, agarramos el primero de forma segura
+          if (typeof stacksOrItem.getSlots === "function" && stacksOrItem.getSlots() > 0) {
+            item = stacksOrItem.getStackInSlot(0);
+          }
+        } catch (e) {
+          return false; // Si coincide con un cambio de inventario abrupto, frena el crasheo
+        }
+      } else {
+        item = stacksOrItem;
+      }
+
+      // Volvemos a tu flujo original intacto basado en item.nbt
       if (!item || item.isEmpty() || !item.nbt) return false;
 
-      // 4. Tu lectura nativa de JavaScript (la que reacciona perfecto con tu JSON y el NOT)
       const actualValue = item.nbt[nbtKey];
       if (actualValue == null) return false;
 
-      // 5. Tu switch original intacto
       switch (mode) {
         case "equals":
           return actualValue === nbtValue;
         case "notEquals":
           return actualValue !== nbtValue;
         case "exists":
-          return true;
+          return true; // Mantenemos tu retorno nativo para que el NOT de Palladium funcione
         case "contains":
           return (
             typeof actualValue === "string" && actualValue.includes(nbtValue)
