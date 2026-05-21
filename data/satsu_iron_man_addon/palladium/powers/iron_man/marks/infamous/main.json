@@ -3782,7 +3782,7 @@
           {
             "type": "palladium:held",
             "ticks": 60,
-            "cooldown": 60,
+            "cooldown": 0,
             "key_type": "right_click",
             "needs_empty_hand": false
           }
@@ -3841,6 +3841,12 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "energy_canonons"
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "chest",
+                    "nbtKey": "right_repulsor_heat_not_use",
+                    "mode": "exists"
                   }
                 ]
               }
@@ -3860,7 +3866,7 @@
           {
             "type": "palladium:held",
             "ticks": 60,
-            "cooldown": 60,
+            "cooldown": 0,
             "key_type": "left_click",
             "needs_empty_hand": false
           }
@@ -3925,6 +3931,12 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "energy_canonons"
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "chest",
+                    "nbtKey": "left_repulsor_heat_not_use",
+                    "mode": "exists"
                   }
                 ]
               }
@@ -14541,6 +14553,54 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "nano_katar"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_mini.gun.right_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat",
+      "adjustment_type": "add",
+      "adjustment_amount": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "mini.gun.right",
+                "min": 10,
+                "max": 10
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_mini.gun.left_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat",
+      "adjustment_type": "add",
+      "adjustment_amount": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "mini.gun.left",
+                "min": 10,
+                "max": 10
               }
             ]
           }
