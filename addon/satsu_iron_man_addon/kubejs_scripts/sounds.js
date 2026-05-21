@@ -181,6 +181,9 @@ StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.armor.arm_missile_sound");
 });
 StartupEvents.registry("sound_event", (event) => {
+  event.create("satsu_iron_man_addon:entity.armor.repulsor_heat_sound");
+});
+StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.sound.button");
 });
 StartupEvents.registry("sound_event", (event) => {
