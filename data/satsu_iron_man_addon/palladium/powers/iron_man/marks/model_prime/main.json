@@ -10427,6 +10427,12 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "energy_canonons"
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "chest",
+                    "nbtKey": "right_repulsor_heat_not_use",
+                    "mode": "exists"
                   }
                 ]
               }
@@ -10519,6 +10525,12 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "energy_canonons"
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "chest",
+                    "nbtKey": "left_repulsor_heat_not_use",
+                    "mode": "exists"
                   }
                 ]
               }
@@ -10555,6 +10567,54 @@
       "hidden_in_bar": true,
       "emitter": ["satsu_iron_man_addon:grab_cannon/left_hand"],
       "particle_type": "minecraft:flash",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "grab_cannon_anim_left",
+                "min": 13,
+                "max": 13
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_grab_cannon_anim_right_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat",
+      "adjustment_type": "add",
+      "adjustment_amount": 250,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "grab_cannon_anim_right",
+                "min": 13,
+                "max": 13
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_grab_cannon_anim_left_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat",
+      "adjustment_type": "add",
+      "adjustment_amount": 250,
       "conditions": {
         "enabling": [
           {
