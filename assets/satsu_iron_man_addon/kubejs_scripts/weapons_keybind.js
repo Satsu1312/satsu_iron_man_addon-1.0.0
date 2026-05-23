@@ -31,6 +31,11 @@ ClientEvents.tick((event) => {
     if (global["WEAPONS_SYSTEM"] && global["WEAPONS_SYSTEM"].consumeClick()) {
       Client.player.sendData("satsu_iron_man_addon.weaponsSystemKey");
     }
+
+    // --- Lógica para el REFRESH HEAT (Sigue siendo Toggle/Click) ---
+    if (global["REFRESH_HEAT"] && global["REFRESH_HEAT"].consumeClick()) {
+      Client.player.sendData("satsu_iron_man_addon.refresh_heat");
+    }
   } else {
     // Si abres un menú mientras mantienes la tecla, forzamos que se "suelte"
     // para evitar que el efecto se quede trabado en el servidor.
