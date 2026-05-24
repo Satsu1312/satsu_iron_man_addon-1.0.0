@@ -1,7 +1,7 @@
 {
   "name": { "translate": "ability.title.satsu.mark.58_d" },
   "allow_bar_shrinking": true,
-  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "ability_bar_texture": "#satsu_iron_man_addon:iron_man/armor_hud/ability_bar_dark_tech",
   "background": "satsu_iron_man_addon:textures/block/d52_crafting_table_top.png",
   "icon": "satsu_iron_man_addon:textures/gui/armors/armadura_completa/mark_head_icon_58_d.png",
   "gui_display_type": "tree",
@@ -896,9 +896,6 @@
             "property": "satsu_iron_man_addon_nano_water_movement",
             "comparator": "equals",
             "compare_to": "on"
-          },
-          {
-            "type": "palladium:is_under_water"
           },
           {
             "type": "palladium:ability_unlocked",
@@ -7810,6 +7807,55 @@
                 "max": 13
               }
             ]
+          }
+        ]
+      }
+    },
+    "Through_walls": {
+      "type": "palladium:intangibility",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/intangibility.png",
+      "title": { "translate": "ability.title.satsu.intangibility" },
+      "description": { "translate": "description.satsu.intangibility" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 13,
+      "gui_position": [-1, -4],
+      "vertical": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:not",
+            "conditions": []
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ]
       }
