@@ -9,48 +9,80 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "Slot to check (mainhand, offhand, feet, legs, chest, head, curios:slot)",
     )
 
-    .tick((entity, entry, holder, enabled) => {
+    // ==========================================
+    // 1. PRIMER TICK: Al activar la habilidad
+    // ==========================================
+    .firstTick((entity, entry, holder, enabled) => {
       if (!enabled) return;
 
-      const slotName = entry.getPropertyByName("slot");
-
-      const stacksOrItem = global.getItemFromSlot(entity, slotName);
+      // Usamos 'var' para que Rhino no crashee en las recargas
+      var slotName = entry.getPropertyByName("slot");
+      var stacksOrItem = global.getItemFromSlot(entity, slotName);
       if (!stacksOrItem) return;
 
-      const item = slotName.startsWith("curios:")
+      var item = slotName.startsWith("curios:")
         ? stacksOrItem.getStackInSlot(0)
         : stacksOrItem;
 
       if (!item || item.isEmpty()) return;
 
-      // Clonamos o creamos el NBT base del ítem
-      let itemNBT = item.nbt ?? {};
+      var itemNBT = item.nbt ?? {};
       
-      // Minecraft guarda los encantamientos en una lista llamada 'Enchantments' (o 'id' y 'lvl')
-      // Inicializamos la lista de encantamientos si no existe
       if (!itemNBT.hasOwnProperty("Enchantments")) {
         itemNBT["Enchantments"] = [];
       }
 
-      // Verificamos si ya tiene la maldición de ligamiento en su NBT
-      let hasBinding = false;
-      for (let i = 0; i < itemNBT["Enchantments"].length; i++) {
+      var hasBinding = false;
+      for (var i = 0; i < itemNBT["Enchantments"].length; i++) {
         if (itemNBT["Enchantments"][i].id === "minecraft:binding_curse") {
           hasBinding = true;
           break;
         }
       }
 
-      // Si no la tiene, se la inyectamos directamente al formato NBT de Minecraft
       if (!hasBinding) {
         itemNBT["Enchantments"].push({
           id: "minecraft:binding_curse",
           lvl: 1
         });
 
-        // Aplicamos el nuevo NBT y actualizamos el slot usando tu método global
-        const newItem = item.withNBT(itemNBT);
-        global.setItemInSlot(entity, slotName, newItem);
+        // ELIMINAMOS la variable newItem por completo.
+        // Inyectamos el NBT directamente dentro de la función global.
+        global.setItemInSlot(entity, slotName, item.withNBT(itemNBT));
+      }
+    })
+
+    // ==========================================
+    // 2. ÚLTIMO TICK: Al desactivar la habilidad
+    // ==========================================
+    .lastTick((entity, entry, holder, enabled) => {
+      var slotName = entry.getPropertyByName("slot");
+      var stacksOrItem = global.getItemFromSlot(entity, slotName);
+      if (!stacksOrItem) return;
+
+      var item = slotName.startsWith("curios:")
+        ? stacksOrItem.getStackInSlot(0)
+        : stacksOrItem;
+
+      if (!item || item.isEmpty()) return;
+
+      var itemNBT = item.nbt ?? {};
+
+      if (itemNBT.hasOwnProperty("Enchantments")) {
+        var originalLength = itemNBT["Enchantments"].length;
+        
+        itemNBT["Enchantments"] = itemNBT["Enchantments"].filter(
+          (enchant) => enchant.id !== "minecraft:binding_curse"
+        );
+
+        if (itemNBT["Enchantments"].length !== originalLength) {
+          if (itemNBT["Enchantments"].length === 0) {
+            delete itemNBT["Enchantments"];
+          }
+          
+          // Mismo caso: inyectamos directo sin variables intermedias
+          global.setItemInSlot(entity, slotName, item.withNBT(itemNBT));
+        }
       }
     });
 });
