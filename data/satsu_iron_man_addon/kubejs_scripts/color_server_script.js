@@ -6,6 +6,8 @@ const ALLOWED_MAP = {
   "satsu_iron_man_addon_beam_glow_color": "beam_glow_color"
 };
 
+const CURIOS_SLOT = "tecnology_armor"; 
+
 NetworkEvents.dataReceived('satsu_apply_color', event => {
   const player = event.player;
   const data = event.data;
@@ -13,47 +15,59 @@ NetworkEvents.dataReceived('satsu_apply_color', event => {
   if (!player || !data) return;
 
   const prop = data.property;
-  const rawVal = data.value;
-
-  // Verificamos si la propiedad está en nuestro mapa de conversión
   const nbtKey = ALLOWED_MAP[prop];
   if (!nbtKey) return;
 
-  if (rawVal === undefined || rawVal === null) return;
-
-  // Procesamiento del color (asegurar que sea un número válido de 24 bits)
-  let value = Number(rawVal);
+  let value = Number(data.value);
   if (Number.isNaN(value)) return;
   value = Math.floor(value) & 0xFFFFFF;
 
-  // Accedemos a la pechera del jugador
-  const chestItem = player.getChestArmorItem();
+  const CuriosApi = Java.loadClass('top.theillusivec4.curios.api.CuriosApi');
+  
+  // ¡AQUÍ ESTABA EL ERROR! Cambiado a getCuriosHandler
+  CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(handler => {
+    let stacksHandler = handler.getStacksHandler(CURIOS_SLOT);
+    
+    if (stacksHandler.isPresent()) {
+      let curioStacks = stacksHandler.get().getStacks();
+      // Envolvemos el ítem para modificar el NBT con las herramientas de KubeJS
+      let kjsItem = Item.of(curioStacks.getStackInSlot(0));
 
-  if (!chestItem.isEmpty()) {
-    // Obtenemos o creamos el tag NBT
-    let nbt = chestItem.getOrCreateTag();
-    
-    // Guardamos el color con la nueva clave (ej. "main_color")
-    nbt.putInt(nbtKey, value);
-    
-    // Sincronizamos los cambios para que se apliquen correctamente
-    chestItem.setTag(nbt);
-  }
+      if (!kjsItem.isEmpty()) {
+        kjsItem.nbt.putInt(nbtKey, value);
+        
+        // Volvemos a inyectar el ítem actualizado (usando el ítem nativo)
+        curioStacks.setStackInSlot(0, kjsItem.getMinecraftItemStack());
+        player.inventoryMenu.broadcastChanges();
+      }
+    }
+  });
 });
 
 NetworkEvents.dataReceived("satsu_reset_color", event => {
   const { player, data } = event;
   if (!player || !data) return;
+  
   const nbtKey = ALLOWED_MAP[data.property];
   if (!nbtKey) return;
 
-  const chestItem = player.getChestArmorItem();
+  const CuriosApi = Java.loadClass('top.theillusivec4.curios.api.CuriosApi');
+  
+  // Cambiado a getCuriosHandler
+  CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(handler => {
+    let stacksHandler = handler.getStacksHandler(CURIOS_SLOT);
+    
+    if (stacksHandler.isPresent()) {
+      let curioStacks = stacksHandler.get().getStacks();
+      let kjsItem = Item.of(curioStacks.getStackInSlot(0));
 
-  if (!chestItem.isEmpty()) {
-    let nbt = chestItem.getOrCreateTag();
-    if (nbt.contains(nbtKey)) {
-      nbt.remove(nbtKey);
-      player.inventoryMenu.broadcastChanges();
+      if (!kjsItem.isEmpty()) {
+        if (kjsItem.nbt.contains(nbtKey)) {
+          kjsItem.nbt.remove(nbtKey);
+          curioStacks.setStackInSlot(0, kjsItem.getMinecraftItemStack());
+          player.inventoryMenu.broadcastChanges();
+        }
+      }
     }
-  }
+  });
 });
