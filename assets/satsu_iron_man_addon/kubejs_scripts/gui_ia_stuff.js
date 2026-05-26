@@ -10,10 +10,28 @@
     parseInt(palladium.getProperty(player, "satsu_iron_man_ia_color"), 16);
 
   const armor_durability = (player) => {
-    const slot = player.getInventory().getArmor(2);
-    if (slot.isEmpty()) return Component.join("", t("armor_durablity"), t("slash"), "0/0");
-    const max = slot.maxDamage;
-    const left = max - slot.damageValue;
+    // 1. Cargamos la API de Curios
+    const CuriosApi = Java.loadClass('top.theillusivec4.curios.api.CuriosApi');
+    let slotItem = Item.empty;
+
+    // 2. Buscamos el contenedor de Curios en el jugador de forma segura
+    CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(handler => {
+      let stacksHandler = handler.getStacksHandler("tecnology_armor");
+      if (stacksHandler.isPresent()) {
+        let curioStacks = stacksHandler.get().getStacks();
+        // Obtenemos el ítem del slot 0 envuelto para KubeJS
+        slotItem = Item.of(curioStacks.getStackInSlot(0));
+      }
+    });
+
+    // 3. Si el slot está vacío, devolvemos 0/0
+    if (slotItem.isEmpty()) {
+      return Component.join("", t("armor_durablity"), t("slash"), "0/0");
+    }
+
+    // 4. Calculamos la durabilidad con las propiedades nativas de KubeJS
+    const max = slotItem.maxDamage;
+    const left = max - slotItem.damageValue;
     return Component.join("", t("armor_durablity"), max, t("slash"), left);
   };
 
