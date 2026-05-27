@@ -3,7 +3,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .create("satsu_iron_man_addon:item_repairer")
     .icon(palladium.createItemIcon("minecraft:anvil"))
     .documentationDescription(
-      "Automatically repairs the item in the specified slot over time.",
+      "Automatically repairs or damages the item in the specified slot over time.",
     )
     .addProperty(
       "slot",
@@ -15,47 +15,43 @@ StartupEvents.registry("palladium:abilities", (event) => {
       "repair_amount",
       "integer",
       1,
-      "Amount of durability to restore per tick",
+      "Amount of durability to change per tick (negative values damage)",
     )
 
     .tick((entity, entry, holder, enabled) => {
-      // Si la habilidad no está activa, no hace nada
       if (!enabled) return;
 
       const slotName = entry.getPropertyByName("slot");
       const repairAmt = entry.getPropertyByName("repair_amount");
+      if (repairAmt === 0) return;
 
-      // Obtener el contenedor o ítem usando tu función global
       const stacksOrItem = global.getItemFromSlot(entity, slotName);
       if (!stacksOrItem) return;
 
-      // Validar si es un slot de Curios o un slot regular
       const item = slotName.startsWith("curios:")
         ? stacksOrItem.getStackInSlot(0)
         : stacksOrItem;
-      if (!item || item.isEmpty()) return;
+      if (!item || item.isEmpty() || !item.isDamageableItem()) return;
 
-      // En Minecraft (antes de la 1.20.5), el daño de durabilidad se guarda en el NBT bajo la key "Damage"
       const itemNBT = item.nbt ?? {};
       const currentDamage = Number(itemNBT.Damage) || 0;
+      const maxDamage = item.getMaxDamage();
 
-      // Si el daño es 0 o menor, significa que el ítem ya está al 100% de su durabilidad
-      if (currentDamage <= 0) return;
+      if (repairAmt > 0 && currentDamage <= 0) return;
+      if (repairAmt < 0 && currentDamage >= maxDamage) return;
 
-      // Calcular el nuevo valor de daño (reparar es restar daño)
       let newDamage = currentDamage - repairAmt;
 
       if (newDamage <= 0) {
-        // Si se repara por completo, eliminamos la propiedad Damage para limpiar el NBT
         delete itemNBT.Damage;
+        global.setItemInSlot(entity, slotName, item.withNBT(itemNBT));
+      } else if (newDamage >= maxDamage) {
+        let brokenItem = item.copy();
+        brokenItem.setCount(0);
+        global.setItemInSlot(entity, slotName, brokenItem);
       } else {
         itemNBT.Damage = newDamage;
+        global.setItemInSlot(entity, slotName, item.withNBT(itemNBT));
       }
-
-      // Aplicar el NBT modificado al ítem
-      const newItem = item.withNBT(itemNBT);
-
-      // Guardar el ítem reparado de vuelta en el slot del jugador/entidad
-      global.setItemInSlot(entity, slotName, newItem);
     });
 });
