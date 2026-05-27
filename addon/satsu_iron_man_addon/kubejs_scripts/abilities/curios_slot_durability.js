@@ -2,9 +2,6 @@
   const CuriosApi = Java.loadClass("top.theillusivec4.curios.api.CuriosApi");
   const CompoundTag = Java.loadClass("net.minecraft.nbt.CompoundTag");
   const ItemStack = Java.loadClass("net.minecraft.world.item.ItemStack");
-  const ForgeRegistries = Java.loadClass(
-    "net.minecraftforge.registries.ForgeRegistries",
-  );
 
   const ROOT_KEY = "satsu_iron_man_addon:curios_slot_durability";
 
@@ -14,9 +11,7 @@
   }
 
   function getContainer(entity, slot) {
-    let handler = CuriosApi.getCuriosHelper()
-      .getCuriosHandler(entity)
-      .orElse(null);
+    let handler = CuriosApi.getCuriosHelper().getCuriosHandler(entity).orElse(null);
     if (!handler) return null;
     let stacks = handler.getStacksHandler(slot).orElse(null);
     if (!stacks) return null;
@@ -48,7 +43,6 @@
         1,
         "Durability points removed per damage event",
       )
-
       .tick((entity, entry, holder, enabled) => {
         if (!entity || !entity.isPlayer()) return;
 
@@ -65,6 +59,7 @@
           let items = Array.from(entry.getPropertyByName("items") || []);
           slotTag.putString("items", items.join(","));
           root.put(slot, slotTag);
+          
           let container = getContainer(entity, slot);
           if (container) {
             for (let i = 0; i < container.getSlots(); i++) {
@@ -98,26 +93,27 @@
       if (!pData.contains(ROOT_KEY)) return;
 
       let root = pData.getCompound(ROOT_KEY);
+      let keys = root.getAllKeys();
+      if (keys.isEmpty()) return;
 
-      for (let slot of root.getAllKeys()) {
+      for (let slot of keys) {
         let slotTag = root.getCompound(slot);
-        let loss = slotTag.getInt("loss") || 1;
-        let itemsRaw = slotTag.getString("items");
-        let allowedItems = itemsRaw
-          ? itemsRaw.split(",").filter((s) => s.length > 0)
-          : [];
-
         let container = getContainer(entity, slot);
         if (!container) continue;
+
+        let loss = slotTag.getInt("loss") || 1;
+        let itemsRaw = slotTag.getString("items");
+        let allowedItems = itemsRaw ? itemsRaw.split(",").filter(Boolean) : [];
 
         for (let i = 0; i < container.getSlots(); i++) {
           let item = container.getStackInSlot(i);
           if (!item || item.isEmpty() || item.getMaxDamage() <= 0) continue;
 
           if (allowedItems.length > 0) {
-            let key = ForgeRegistries.ITEMS.getKey(item.getItem());
-            if (!key || !allowedItems.includes(key.toString())) continue;
+            let itemId = item.getItem().builtInRegistryHolder().key().location().toString();
+            if (!allowedItems.includes(itemId)) continue;
           }
+          
           let newDamage = item.getDamageValue() + loss;
           item.setDamageValue(Math.min(newDamage, item.getMaxDamage()));
         }
