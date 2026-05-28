@@ -1,7 +1,7 @@
 // Register custom animations
 PalladiumEvents.registerAnimations((event) => {
   event.registerForPower(
-    "satsu_iron_man_addon/colocacion_de_armadura.11.mark.taken",
+    "satsu_iron_man_addon/colocacion_de_armadura.11.mark_taken",
         "satsu_iron_man_addon:iron_man/marks/mark_taken/main",
     10,
     (builder) => {
@@ -9,7 +9,7 @@ PalladiumEvents.registerAnimations((event) => {
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:iron_man/marks/mark_taken/main",
-        "mark.taken_activaded_anim",
+        "mark_taken_activaded_anim",
         builder.getPartialTicks()
       );
 
