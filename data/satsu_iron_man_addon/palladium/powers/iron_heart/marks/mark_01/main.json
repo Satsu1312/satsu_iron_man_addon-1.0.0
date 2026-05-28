@@ -1357,7 +1357,7 @@
           {
             "type": "palladium:held",
             "ticks": 6,
-            "cooldown": 80,
+            "cooldown": 0,
             "key_type": "right_click",
             "needs_empty_hand": false
           }
@@ -1399,7 +1399,13 @@
                   {
                     "type": "palladium:has_effect",
                     "effect": "satsu_iron_man_addon:armor_freeze"
-                  }
+                  },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "right_repulsor_heat_not_use",
+                "mode": "exists"
+              }
                 ]
               }
             ]
@@ -1475,6 +1481,641 @@
                 "max": 5
               }
             ]
+          }
+        ]
+      }
+    },
+    "set_right_repulsor_heat": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat",
+      "nbtValue": "0",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "right_repulsor_heat",
+                "nbtValue": "0",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "set_left_repulsor_heat": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat",
+      "nbtValue": "0",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "left_repulsor_heat",
+                "nbtValue": "0",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_right_repulsor_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat",
+      "adjustment_type": "add",
+      "adjustment_amount": 200,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "energy.pulse_right",
+                "min": 5,
+                "max": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_left_repulsor_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat",
+      "adjustment_type": "add",
+      "adjustment_amount": 200,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "energy.pulse_left",
+                "min": 5,
+                "max": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_right_repulsor_beam_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat",
+      "adjustment_type": "add",
+      "adjustment_amount": 7,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "uni.beam.hand.right"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_left_repulsor_beam_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat",
+      "adjustment_type": "add",
+      "adjustment_amount": 7,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "uni.beam.hand.left"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "set_right_repulsor_heat_not_use": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat_not_use",
+      "nbtValue": "true",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "chest",
+                "nbtKey": "right_repulsor_heat",
+                "min": 1000,
+                "max": 25555555555555,
+                "mode": "range"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "refresh_heat"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "set_left_repulsor_heat_not_use": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat_not_use",
+      "nbtValue": "true",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "chest",
+                "nbtKey": "left_repulsor_heat",
+                "min": 1000,
+                "max": 25555555555555,
+                "mode": "range"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "refresh_heat"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "overheart_not_use.play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.armor.repulsor_heat_sound",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": true,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "set_right_repulsor_heat_not_use"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "set_left_repulsor_heat_not_use"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_right_repulsor_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 25,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "right_repulsor_heat",
+            "min": 25,
+            "max": 25555555555555,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "no-list:aim_main_arm"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "right_repulsor_heat_not_use",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_left_repulsor_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 25,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "left_repulsor_heat",
+            "min": 25,
+            "max": 25555555555555,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "no-list:aim_off_arm"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "left_repulsor_heat_not_use",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_reroute_right_repulsor_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 9,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_repulser_strenght",
+            "comparator": "equals",
+            "compare_to": "stronger"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "right_repulsor_heat",
+            "min": 25,
+            "max": 25555555555555,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "right_repulsor_heat_not_use",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_reroute_left_repulsor_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 9,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_repulser_strenght",
+            "comparator": "equals",
+            "compare_to": "stronger"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "left_repulsor_heat",
+            "min": 25,
+            "max": 25555555555555,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "left_repulsor_heat_not_use",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remove_HEAT_right_repulsor_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "right_repulsor_heat",
+            "min": 1,
+            "max": 25555555555555,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "right_repulsor_heat_not_use",
+            "mode": "exists"
+          }
+        ]
+      }
+    },
+    "remove_HEAT_left_repulsor_heat": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 8,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "left_repulsor_heat",
+            "min": 1,
+            "max": 25555555555555,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "chest",
+            "nbtKey": "left_repulsor_heat_not_use",
+            "mode": "exists"
+          }
+        ]
+      }
+    },
+    "remove_right_repulsor_heat_not_use": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "right_repulsor_heat_not_use",
+      "nbtValue": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "right_repulsor_heat",
+            "min": -25555555555555,
+            "max": 0,
+            "mode": "range"
+          }
+        ]
+      }
+    },
+    "remove_left_repulsor_heat_not_use": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "left_repulsor_heat_not_use",
+      "nbtValue": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "left_repulsor_heat",
+            "min": -25555555555555,
+            "max": 0,
+            "mode": "range"
+          }
+        ]
+      }
+    },
+    "heat_right_particle": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": ["satsu_iron_man_addon:over_heat/right_hand"],
+      "particle_type": "minecraft:cloud",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "right_repulsor_heat",
+            "min": 500,
+            "max": 25555555555555,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "right_repulsor_heat_not_use",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "heat_left_particle": {
+      "type": "palladium:particles",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "emitter": ["satsu_iron_man_addon:over_heat/left_hand"],
+      "particle_type": "minecraft:cloud",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "chest",
+            "nbtKey": "left_repulsor_heat",
+            "min": 500,
+            "max": 25555555555555,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "left_repulsor_heat_not_use",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "overheart_alarm.play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "block.conduit.deactivate",
+      "volume": 10,
+      "pitch": 2,
+      "looping": false,
+      "play_self": true,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "heat_right_particle"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "heat_left_particle"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "cooldown_already.play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "minecraft:ui.button.click",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": true,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "remove_right_repulsor_heat_not_use"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "remove_left_repulsor_heat_not_use"
           }
         ]
       }
