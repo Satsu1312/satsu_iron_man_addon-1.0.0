@@ -6,7 +6,7 @@ ClientEvents.tick(() => {
 
   if (!player) {
     satsuSpeedLastPos = null;
-    global["satsu_iron_man_addon.speed_kmh"] = "0.00";
+    global["speedBPS"] = "0.00";
     return;
   }
 
@@ -18,9 +18,9 @@ ClientEvents.tick(() => {
     const dz = z - satsuSpeedLastPos.z;
     //stores kmh in global hud value instead of Client.player.persistentData speedBPS
     const kmh = Math.sqrt(dx * dx + dz * dz) * 20 * 3.6;
-    global["satsu_iron_man_addon.speed_kmh"] = kmh.toFixed(2);
+    global["speedBPS"] = kmh.toFixed(2);
   } else {
-    global["satsu_iron_man_addon.speed_kmh"] = "0.00";
+    global["speedBPS"] = "0.00";
   }
 
   satsuSpeedLastPos = { x: x, z: z };

@@ -43,9 +43,9 @@
     }
     return Component.join("", t(propName), value);
   };
-
   const speed_per_block = () =>
-    Component.join("", t("km"), Client.player.persistentData["speedBPS"]);
+    //reads client kmh value instead of old persistentdata speedBPS
+    Component.join("", t("km"), global["speedBPS"] || "0.00");
 
   // Función genérica para registrar overlays
   const registerOverlay = (event, id, abilityId, abilityKey, labelFn, x, y) => {
