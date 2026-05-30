@@ -26,8 +26,9 @@ StartupEvents.registry("palladium:abilities", (event) => {
         let range = entry.getPropertyByName("range");
         let block = entity.rayTrace(range).block;
         if (block !== null) {
+          const dimension = String(entity.level.dimension);
           entity.server.runCommandSilent(
-            `execute unless block ${block.x} ${block.y} ${block.z} ${excluded_tag} run setblock ${block.x} ${block.y} ${block.z} ${blockset} ${destroy}`
+            `execute in ${dimension} unless block ${block.x} ${block.y} ${block.z} ${excluded_tag} run setblock ${block.x} ${block.y} ${block.z} ${blockset} ${destroy}`
           );
         }
       }
