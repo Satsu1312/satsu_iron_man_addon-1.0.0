@@ -26,6 +26,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
         let range = entry.getPropertyByName("range");
         let block = entity.rayTrace(range).block;
         if (block !== null) {
+          // Changed: run block breaking in the player's current dimension.
           const dimension = String(entity.level.dimension);
           entity.server.runCommandSilent(
             `execute in ${dimension} unless block ${block.x} ${block.y} ${block.z} ${excluded_tag} run setblock ${block.x} ${block.y} ${block.z} ${blockset} ${destroy}`

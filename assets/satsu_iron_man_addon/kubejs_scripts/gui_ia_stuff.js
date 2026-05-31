@@ -43,9 +43,10 @@
     }
     return Component.join("", t(propName), value);
   };
+
+  // Changed: read the client-side km/h value instead of old BPS/server data.
   const speed_per_block = () =>
-    //reads client kmh value instead of old persistentdata speedBPS
-    Component.join("", t("km"), global["speedBPS"] || "0.00");
+    Component.join("", t("kmh"), global["satsu_iron_man_addon.speed_kmh"] || "0.00");
 
   // Función genérica para registrar overlays
   const registerOverlay = (event, id, abilityId, abilityKey, labelFn, x, y) => {
@@ -62,14 +63,14 @@
     ["im_wm_energy", "see.energy.im_wm", (p) => show_label(p, "energy_on_hud", "satsu_iron_man_iron_man_energy"), 50, 30],
     ["iron_heart_energy", "see.energy.ih", (p) => show_label(p, "energy_on_hud_iron_heart", "satsu_iron_man_iron_heart_energy"), 50, 30],
     ["nanite", "nanites_count", (p) => show_label(p, "nanites_on_hud", "satsu_iron_man_nano_counts"), 50, 200],
-    ["speed_1", "armor_on_body", (p) => show_label(p, "velocity_on_hud", "satsu_iron_man_flight_speed_choose"), 50, 40],
+    // Changed: HUD speed row now shows km/h.
+    ["speed_1", "armor_on_body", () => speed_per_block(), 50, 40],
     ["left_arm", "armor_on_body", (p) => show_label(p, "left_or_not", "satsu_left_arm"), 540, 60],
     ["break_blocks", "armor_on_body", (p) => show_label(p, "break_block", "satsu_iron_man_addon_break_block_attack"), 540, 80],
     ["weapons_system", "armor_on_body", (p) => show_label(p, "weapon_system", "satsu_armor_weapon_system"), 60, 100],
     ["get_x", "see.energy.unlock.lock.1", (p) => positions(p.getX(), "X"), 60, 70],
     ["get_Y", "see.energy.unlock.lock.1", (p) => positions(p.getY(), "Y"), 60, 80],
     ["get_Z", "see.energy.unlock.lock.1", (p) => positions(p.getZ(), "Z"), 60, 90],
-    ["km", "horizon_lock", () => speed_per_block(), 400, 180],
     ["night_vision", "see.energy.unlock.lock.1", (p) => show_label(p, "night_vision", "satsu_iron_man_addon_enable_night_vision"), 60, 250],
     ["scan", "see.energy.unlock.lock.1", (p) => show_label(p, "scan", "satsu_iron_man_addon_enable_scan"), 60, 260],
     ["get_armor", "armor_on_body", (p) => armor_durability(p), 550, 30],
