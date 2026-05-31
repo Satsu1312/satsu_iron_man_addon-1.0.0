@@ -190,11 +190,11 @@ TABS.forEach(tabID => {
     const cx = event.screen.width / 2, cy = event.screen.height / 2;
     const panelX = (cx - 126) | 0, panelY = (cy - 100) | 0;
     
-    // Dimensiones y Layout del Color Picker
+    // Dimensiones y Layout del nuevo Color Picker
     const barX = panelX + 40, yR = panelY + 200;
-    const PICKER_W = 126, PICKER_H = 26;
-    const HUE_W = 6, HUE_H = 26; 
-    const hueX = barX + PICKER_W + 8; 
+    const PICKER_W = 126, PICKER_H = 26; // Picker levemente más ancho para compensar la barra fina
+    const HUE_W = 6, HUE_H = 26; // Barra de tono más delgada
+    const hueX = barX + PICKER_W + 8; // Total: 126 (picker) + 8 (separación) + 6 (barra) = 140 (BAR_WIDTH)
 
     gui.blit(new ResourceLocation(TEX.panel), panelX, panelY, 0, 0, 257, 257, 257, 257);
     
@@ -216,11 +216,12 @@ TABS.forEach(tabID => {
         resetButtonClicked = false;
     }
     
+    // Lógica de detección de clics
     if (leftDown && activePicker === null) {
       if (clickIn(mx, my, barX, yR, PICKER_W, PICKER_H)) {
           activePicker = "sv";
           lastInteractionTime = Date.now();
-      } else if (clickIn(mx, my, hueX - 2, yR, HUE_W + 4, HUE_H)) { 
+      } else if (clickIn(mx, my, hueX - 2, yR, HUE_W + 4, HUE_H)) { // Hitbox ampliada para clics fáciles en la barra delgada
           activePicker = "h";
           lastInteractionTime = Date.now();
       }
@@ -307,14 +308,13 @@ TABS.forEach(tabID => {
     }
 
     // 1. Renderizado del Cuadro 2D de Saturación / Valor (Brillo)
-    // SOLUCIÓN: Incrementamos en 1 píxel cada iteración para eliminar el "banding"
-    for (let dx = 0; dx < PICKER_W; dx++) {
-      for (let dy = 0; dy < PICKER_H; dy++) {
+    let step = 2; // Iterar cada 2 píxeles por rendimiento en GUI
+    for (let dx = 0; dx < PICKER_W; dx += step) {
+      for (let dy = 0; dy < PICKER_H; dy += step) {
         let s = dx / PICKER_W;
         let v = 1 - (dy / PICKER_H);
         let rgbBox = hsvToRgb(sliderPos.h, s, v);
-        // Dibujamos bloques de 1x1 píxel exactos
-        gui.fill(barX + dx, yR + dy, barX + dx + 1, yR + dy + 1, rgbToARGB(rgbBox.r, rgbBox.g, rgbBox.b));
+        gui.fill(barX + dx, yR + dy, Math.min(barX + dx + step, barX + PICKER_W), Math.min(yR + dy + step, yR + PICKER_H), rgbToARGB(rgbBox.r, rgbBox.g, rgbBox.b));
       }
     }
     // Indicador (Knob) del Cuadro SV
@@ -328,7 +328,7 @@ TABS.forEach(tabID => {
       let rgbHue = hsvToRgb(hueVal, 1, 1);
       gui.fill(hueX, yR + dy, hueX + HUE_W, yR + dy + 1, rgbToARGB(rgbHue.r, rgbHue.g, rgbHue.b));
     }
-    // Indicador (Knob) de la Barra Hue
+    // Indicador (Knob) de la Barra Hue (Centrado sobre la barra delgada)
     let hkY = yR + (1 - sliderPos.h) * HUE_H;
     gui.blit(new ResourceLocation(TEX.slider), hueX - 1, hkY - 4, 0, 0, 8, 8, 8, 8);
 
