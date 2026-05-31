@@ -14,7 +14,7 @@ const TEX = {
 
 const BAR_WIDTH = 140;
 
-// Variables de estado interno ahora usan HSV (hue, saturation, value) en vez de RGB directo (r, g, b)
+// Variables de estado interno usando HSV (hue, saturation, value)
 let sliderPosPrimary = { h: 0, s: 0, v: 0 };
 let sliderPosSecondary = { h: 0, s: 0, v: 0 };
 let sliderPosTertiary = { h: 0, s: 0, v: 0 };
@@ -24,7 +24,7 @@ let sliderPosRepulsor = { h: 0, s: 0, v: 0 };
 let activeMode = "Primary";
 const MODES = ["Primary", "Secondary", "Tertiary", "Core", "Repulsor"];
 
-let activePicker = null; // Reemplaza a activeSlider
+let activePicker = null; 
 let slidersInitialized = false;
 let hexInput = "";
 let isEditingHex = false;
@@ -150,7 +150,6 @@ function getModeSliderPos() {
   return sets[activeMode];
 }
 
-// Transformado para leer desde nuestro HSV y devolver RGB
 function calculateRGB(sliderSet) {
   return hsvToRgb(sliderSet.h, sliderSet.s, sliderSet.v);
 }
@@ -193,9 +192,9 @@ TABS.forEach(tabID => {
     
     // Dimensiones y Layout del nuevo Color Picker
     const barX = panelX + 40, yR = panelY + 200;
-    const PICKER_W = 120, PICKER_H = 26; 
-    const HUE_W = 15, HUE_H = 26;
-    const hueX = barX + PICKER_W + 5; // Total: 120 + 5 + 15 = 140 (BAR_WIDTH)
+    const PICKER_W = 126, PICKER_H = 26; // Picker levemente más ancho para compensar la barra fina
+    const HUE_W = 6, HUE_H = 26; // Barra de tono más delgada
+    const hueX = barX + PICKER_W + 8; // Total: 126 (picker) + 8 (separación) + 6 (barra) = 140 (BAR_WIDTH)
 
     gui.blit(new ResourceLocation(TEX.panel), panelX, panelY, 0, 0, 257, 257, 257, 257);
     
@@ -217,12 +216,12 @@ TABS.forEach(tabID => {
         resetButtonClicked = false;
     }
     
-    // Lógica de detección de clicks para el SV Picker y la Barra de Hue
+    // Lógica de detección de clics
     if (leftDown && activePicker === null) {
       if (clickIn(mx, my, barX, yR, PICKER_W, PICKER_H)) {
           activePicker = "sv";
           lastInteractionTime = Date.now();
-      } else if (clickIn(mx, my, hueX, yR, HUE_W, HUE_H)) {
+      } else if (clickIn(mx, my, hueX - 2, yR, HUE_W + 4, HUE_H)) { // Hitbox ampliada para clics fáciles en la barra delgada
           activePicker = "h";
           lastInteractionTime = Date.now();
       }
@@ -329,9 +328,9 @@ TABS.forEach(tabID => {
       let rgbHue = hsvToRgb(hueVal, 1, 1);
       gui.fill(hueX, yR + dy, hueX + HUE_W, yR + dy + 1, rgbToARGB(rgbHue.r, rgbHue.g, rgbHue.b));
     }
-    // Indicador (Knob) de la Barra Hue
+    // Indicador (Knob) de la Barra Hue (Centrado sobre la barra delgada)
     let hkY = yR + (1 - sliderPos.h) * HUE_H;
-    gui.blit(new ResourceLocation(TEX.slider), hueX - 2, hkY - 4, 0, 0, 8, 8, 8, 8);
+    gui.blit(new ResourceLocation(TEX.slider), hueX - 1, hkY - 4, 0, 0, 8, 8, 8, 8);
 
     const rgb = calculateRGB(sliderPos);
     const displayText = isHoveringText ? "> #" + hexInput : "#" + hexInput;
@@ -342,7 +341,6 @@ TABS.forEach(tabID => {
     const totalWidth = modeButton.w + applyButton.w + resetButtonObj.w + 10;
     const startX = barX + (BAR_WIDTH - totalWidth) / 2 - 0;
 
-    // Los botones mantienen la posición idéntica a la versión con los 3 sliders
     modeButton.x = startX; 
     modeButton.y = yR + 30;
 
