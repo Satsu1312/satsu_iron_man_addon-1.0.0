@@ -13,18 +13,18 @@ const TEX = {
 };
 
 const BAR_WIDTH = 140;
-const BAR_HEIGHT = 4;
 
-let sliderPosPrimary = { r: 0, g: 0, b: 0 };
-let sliderPosSecondary = { r: 0, g: 0, b: 0 };
-let sliderPosTertiary = { r: 0, g: 0, b: 0 };
-let sliderPosCore = { r: 0, g: 0, b: 0 };
-let sliderPosRepulsor = { r: 0, g: 0, b: 0 };
+// Variables de estado interno ahora usan HSV (hue, saturation, value) en vez de RGB directo (r, g, b)
+let sliderPosPrimary = { h: 0, s: 0, v: 0 };
+let sliderPosSecondary = { h: 0, s: 0, v: 0 };
+let sliderPosTertiary = { h: 0, s: 0, v: 0 };
+let sliderPosCore = { h: 0, s: 0, v: 0 };
+let sliderPosRepulsor = { h: 0, s: 0, v: 0 };
 
 let activeMode = "Primary";
 const MODES = ["Primary", "Secondary", "Tertiary", "Core", "Repulsor"];
 
-let activeSlider = null;
+let activePicker = null; // Reemplaza a activeSlider
 let slidersInitialized = false;
 let hexInput = "";
 let isEditingHex = false;
@@ -44,6 +44,44 @@ function rgbToHex(r, g, b) {
   return toHex(r) + toHex(g) + toHex(b);
 }
 
+// Funciones utilitarias para conversión RGB <-> HSV
+function hsvToRgb(h, s, v) {
+  let r, g, b;
+  let i = Math.floor(h * 6);
+  let f = h * 6 - i;
+  let p = v * (1 - s);
+  let q = v * (1 - f * s);
+  let t = v * (1 - (1 - f) * s);
+  switch (i % 6) {
+    case 0: r = v, g = t, b = p; break;
+    case 1: r = q, g = v, b = p; break;
+    case 2: r = p, g = v, b = t; break;
+    case 3: r = p, g = q, b = v; break;
+    case 4: r = t, g = p, b = v; break;
+    case 5: r = v, g = p, b = q; break;
+  }
+  return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
+}
+
+function rgbToHsv(r, g, b) {
+  r /= 255, g /= 255, b /= 255;
+  let max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h, s, v = max;
+  let d = max - min;
+  s = max === 0 ? 0 : d / max;
+  if (max === min) {
+    h = 0; 
+  } else {
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+    h /= 6;
+  }
+  return { h: h, s: s, v: v };
+}
+
 function updateSlidersFromHex(hex, sliderSet) {
   let cleanHex = hex.replace("#", "");
   if (cleanHex.length !== 6) return;
@@ -51,9 +89,11 @@ function updateSlidersFromHex(hex, sliderSet) {
   const g = parseInt(cleanHex.substring(2, 4), 16);
   const b = parseInt(cleanHex.substring(4, 6), 16);
   if (isNaN(r) || isNaN(g) || isNaN(b)) return;
-  sliderSet.r = Math.round((r / 255) * BAR_WIDTH);
-  sliderSet.g = Math.round((g / 255) * BAR_WIDTH);
-  sliderSet.b = Math.round((b / 255) * BAR_WIDTH);
+  
+  let hsv = rgbToHsv(r, g, b);
+  sliderSet.h = hsv.h;
+  sliderSet.s = hsv.s;
+  sliderSet.v = hsv.v;
 }
 
 function playClickSound() {
@@ -110,28 +150,13 @@ function getModeSliderPos() {
   return sets[activeMode];
 }
 
+// Transformado para leer desde nuestro HSV y devolver RGB
 function calculateRGB(sliderSet) {
-  return {
-    r: Math.round((sliderSet.r / BAR_WIDTH) * 255),
-    g: Math.round((sliderSet.g / BAR_WIDTH) * 255),
-    b: Math.round((sliderSet.b / BAR_WIDTH) * 255),
-  };
+  return hsvToRgb(sliderSet.h, sliderSet.s, sliderSet.v);
 }
 
 function rgbToARGB(r, g, b) { return (255 << 24) | (r << 16) | (g << 8) | b; }
 function extractRGB(intVal) { return { r: (intVal >> 16) & 255, g: (intVal >> 8) & 255, b: intVal & 255 }; }
-
-function drawColorBar(gui, x, y, width, height, channel) {
-  for (let i = 0; i < width; i++) {
-    let t = i / (width - 1);
-    let col = (255 << 24) | ((channel === "r" ? Math.floor(t * 255) : 0) << 16) | ((channel === "g" ? Math.floor(t * 255) : 0) << 8) | (channel === "b" ? Math.floor(t * 255) : 0);
-    gui.fill(x + i, y, x + i + 1, y + height, col);
-  }
-}
-
-function drawSlider(gui, barX, barY, channel, sliderSet) {
-  gui.blit(new ResourceLocation(TEX.slider), barX + sliderSet[channel] - 4, barY - 2, 0, 0, 8, 8, 8, 8);
-}
 
 function initSlidersFromProperties(entity) {
   const fallback = { r: 0, g: 86, b: 227 };
@@ -146,9 +171,11 @@ function initSlidersFromProperties(entity) {
     let val = palladium.getProperty(entity, m.id) | 0;
     let c = val > 0 ? extractRGB(val) : fallback;
     let target = (m.key === "sliderPosPrimary") ? sliderPosPrimary : (m.key === "sliderPosSecondary") ? sliderPosSecondary : (m.key === "sliderPosTertiary") ? sliderPosTertiary : (m.key === "sliderPosCore") ? sliderPosCore : sliderPosRepulsor;
-    target.r = Math.round((c.r / 255) * BAR_WIDTH);
-    target.g = Math.round((c.g / 255) * BAR_WIDTH);
-    target.b = Math.round((c.b / 255) * BAR_WIDTH);
+    
+    let hsv = rgbToHsv(c.r, c.g, c.b);
+    target.h = hsv.h;
+    target.s = hsv.s;
+    target.v = hsv.v;
   });
 }
 
@@ -163,7 +190,12 @@ TABS.forEach(tabID => {
     const gui = event.guiGraphics;
     const cx = event.screen.width / 2, cy = event.screen.height / 2;
     const panelX = (cx - 126) | 0, panelY = (cy - 100) | 0;
-    const barX = panelX + 40, yR = panelY + 200, yG = panelY + 210, yB = panelY + 220;
+    
+    // Dimensiones y Layout del nuevo Color Picker
+    const barX = panelX + 40, yR = panelY + 200;
+    const PICKER_W = 120, PICKER_H = 26; 
+    const HUE_W = 15, HUE_H = 26;
+    const hueX = barX + PICKER_W + 5; // Total: 120 + 5 + 15 = 140 (BAR_WIDTH)
 
     gui.blit(new ResourceLocation(TEX.panel), panelX, panelY, 0, 0, 257, 257, 257, 257);
     
@@ -171,7 +203,7 @@ TABS.forEach(tabID => {
     const window = mc.getWindow().getWindow();
     const leftDown = GLFW.glfwGetMouseButton(window, GLFW.GLFW_MOUSE_BUTTON_LEFT) === GLFW.GLFW_PRESS;
 
-    if (!slidersInitialized || (Date.now() - lastInteractionTime > 6000 && activeSlider === null && !leftDown)) {
+    if (!slidersInitialized || (Date.now() - lastInteractionTime > 6000 && activePicker === null && !leftDown)) {
         initSlidersFromProperties(entity);
         slidersInitialized = true;
         lastUpdateCheck = Date.now();
@@ -181,21 +213,28 @@ TABS.forEach(tabID => {
     const sliderPos = getModeSliderPos();
 
     if (!leftDown) { 
-        activeSlider = null; 
+        activePicker = null; 
         resetButtonClicked = false;
     }
     
-    if (leftDown && activeSlider === null) {
-      ["r", "g", "b"].forEach(ch => {
-        const y = ch === "r" ? yR : ch === "g" ? yG : yB;
-        if (clickIn(mx, my, barX, y, BAR_WIDTH, 4)) {
-            activeSlider = ch;
-            lastInteractionTime = Date.now();
-        }
-      });
+    // Lógica de detección de clicks para el SV Picker y la Barra de Hue
+    if (leftDown && activePicker === null) {
+      if (clickIn(mx, my, barX, yR, PICKER_W, PICKER_H)) {
+          activePicker = "sv";
+          lastInteractionTime = Date.now();
+      } else if (clickIn(mx, my, hueX, yR, HUE_W, HUE_H)) {
+          activePicker = "h";
+          lastInteractionTime = Date.now();
+      }
     }
-    if (leftDown && activeSlider !== null) {
-        sliderPos[activeSlider] = clamp(mx - barX, 0, BAR_WIDTH);
+
+    if (leftDown && activePicker !== null) {
+        if (activePicker === "sv") {
+            sliderPos.s = clamp((mx - barX) / PICKER_W, 0, 1);
+            sliderPos.v = 1 - clamp((my - yR) / PICKER_H, 0, 1);
+        } else if (activePicker === "h") {
+            sliderPos.h = 1 - clamp((my - yR) / HUE_H, 0, 1);
+        }
         isEditingHex = false;
         lastInteractionTime = Date.now();
     }
@@ -269,11 +308,30 @@ TABS.forEach(tabID => {
       }
     }
 
-    ["r", "g", "b"].forEach(ch => {
-      const y = ch === "r" ? yR : ch === "g" ? yG : yB;
-      drawColorBar(gui, barX, y, BAR_WIDTH, BAR_HEIGHT, ch);
-      drawSlider(gui, barX, y, ch, sliderPos);
-    });
+    // 1. Renderizado del Cuadro 2D de Saturación / Valor (Brillo)
+    let step = 2; // Iterar cada 2 píxeles por rendimiento en GUI
+    for (let dx = 0; dx < PICKER_W; dx += step) {
+      for (let dy = 0; dy < PICKER_H; dy += step) {
+        let s = dx / PICKER_W;
+        let v = 1 - (dy / PICKER_H);
+        let rgbBox = hsvToRgb(sliderPos.h, s, v);
+        gui.fill(barX + dx, yR + dy, Math.min(barX + dx + step, barX + PICKER_W), Math.min(yR + dy + step, yR + PICKER_H), rgbToARGB(rgbBox.r, rgbBox.g, rgbBox.b));
+      }
+    }
+    // Indicador (Knob) del Cuadro SV
+    let kx = barX + sliderPos.s * PICKER_W;
+    let ky = yR + (1 - sliderPos.v) * PICKER_H;
+    gui.blit(new ResourceLocation(TEX.slider), kx - 4, ky - 4, 0, 0, 8, 8, 8, 8);
+
+    // 2. Renderizado de la Barra Lateral de Tono (Hue)
+    for (let dy = 0; dy < HUE_H; dy++) {
+      let hueVal = 1 - (dy / HUE_H);
+      let rgbHue = hsvToRgb(hueVal, 1, 1);
+      gui.fill(hueX, yR + dy, hueX + HUE_W, yR + dy + 1, rgbToARGB(rgbHue.r, rgbHue.g, rgbHue.b));
+    }
+    // Indicador (Knob) de la Barra Hue
+    let hkY = yR + (1 - sliderPos.h) * HUE_H;
+    gui.blit(new ResourceLocation(TEX.slider), hueX - 2, hkY - 4, 0, 0, 8, 8, 8, 8);
 
     const rgb = calculateRGB(sliderPos);
     const displayText = isHoveringText ? "> #" + hexInput : "#" + hexInput;
@@ -284,6 +342,7 @@ TABS.forEach(tabID => {
     const totalWidth = modeButton.w + applyButton.w + resetButtonObj.w + 10;
     const startX = barX + (BAR_WIDTH - totalWidth) / 2 - 0;
 
+    // Los botones mantienen la posición idéntica a la versión con los 3 sliders
     modeButton.x = startX; 
     modeButton.y = yR + 30;
 
