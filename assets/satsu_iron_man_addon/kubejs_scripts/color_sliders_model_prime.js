@@ -193,8 +193,8 @@ TABS.forEach(tabID => {
     
     // Dimensiones y Layout del nuevo Color Picker
     const barX = panelX + 40, yR = panelY + 200;
-    const PICKER_W = 126, PICKER_H = 26; 
-    const HUE_W = 6, HUE_H = 26;
+    const PICKER_W = 120, PICKER_H = 26; 
+    const HUE_W = 15, HUE_H = 26;
     const hueX = barX + PICKER_W + 5; // Total: 120 + 5 + 15 = 140 (BAR_WIDTH)
 
     gui.blit(new ResourceLocation(TEX.panel), panelX, panelY, 0, 0, 257, 257, 257, 257);
