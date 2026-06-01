@@ -107,6 +107,63 @@
     },
     {
       "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/heartbreakers/chest.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_18_1.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes/transformation_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_18/main",
+            "ability": "stealht_animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/armor/no_light/chest/mark_18_1_#STEALH"
+      },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_18/main",
+          "ability": "armor_animation",
+          "property": "value",
+          "min": 1,
+          "max": 16
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_18/main",
+          "ability": "stealht_animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        },
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_iron_man_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_18_2.png",
