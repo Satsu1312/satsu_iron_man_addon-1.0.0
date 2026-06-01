@@ -329,9 +329,9 @@ TABS.forEach(tabID => {
       let rgbHue = hsvToRgb(hueVal, 1, 1);
       gui.fill(hueX, yR + dy, hueX + HUE_W, yR + dy + 1, rgbToARGB(rgbHue.r, rgbHue.g, rgbHue.b));
     }
-    // Indicador (Knob) de la Barra Hue (Centrado sobre la barra delgada)
+    // Indicador (Knob) de la Barra Hue - Reducido a 6x6 píxeles para encajar perfectamente
     let hkY = yR + (1 - sliderPos.h) * HUE_H;
-    gui.blit(new ResourceLocation(TEX.slider), hueX - 2, hkY - 4, 0, 0, 8, 8, 8, 8);
+    gui.blit(new ResourceLocation(TEX.slider), hueX, hkY - 2, 0, 0, 3, 3, 8, 8);
 
     const rgb = calculateRGB(sliderPos);
     const displayText = isHoveringText ? "> #" + hexInput : "#" + hexInput;
