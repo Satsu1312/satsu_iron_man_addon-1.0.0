@@ -47,7 +47,7 @@
         ]
       }
     },
-    "interpolate": {
+    "armor_animation": {
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": true,
@@ -57,7 +57,7 @@
         "enabling": [
           {
             "type": "palladium:command_result",
-            "command": "execute if entity @e[type=minecraft:player,sort=nearest,distance=0..2] if score @s grave.ID = @e[type=minecraft:player,limit=1,sort=nearest] grave.ID"
+            "command": "execute if entity @e[limit=1,type=wolf,nbt={Sitting:1b}] if entity @e[type=minecraft:player,sort=nearest,distance=0..2] if score @s grave.ID = @e[type=minecraft:player,limit=1,sort=nearest] grave.ID"
           }
         ]
       }
@@ -81,10 +81,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.closed.armors",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_recharge_mode",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:has_tag",

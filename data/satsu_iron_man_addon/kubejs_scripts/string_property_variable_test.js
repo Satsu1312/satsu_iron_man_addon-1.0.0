@@ -188,161 +188,175 @@ PalladiumEvents.registerProperties((event) => {
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_hud_horizon_lock", "string", "on");
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_mark_80_drone", "string", "off");
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_mark_80_drone_quantity", "integer", 1);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_tech_knowledge_points", "integer", 0);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_tech_knowledge_points_next_power", "integer", 500);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_tech_knowledge_points_next_power_requier", "integer", 1000);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_mark_86", "integer", 1);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_nano_weapons_second", "string", "none");
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_nano_counts", "integer", 10000);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_nano_counts_max", "integer", 10000);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_mark_86_pym_particle", "integer", 100);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_mark_86_pym_particle_max", "integer", 100);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
-    event.registerProperty("satsu_iron_man_ia.pickaxe_velocity", "string", "low");
+    event.registerProperty("satsu_iron_man_quantum_suit_pym_particle", "integer", 100);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_quantum_suit_pym_particle_max", "integer", 100);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_ia.pickaxe_velocity", "string", "low");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:suit_stand" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_war_machine_or_iron_patriot", "string", "war_machine");
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_quantum_suit", "string", "off");
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_mark_49_energy_deploy", "string", "off");
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_addon_break_block_attack", "string", "off");
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_addon_nano_water_movement", "string", "off");
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_iron_heart_energy", "integer", 10000);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_iron_heart_energy_max", "integer", 10000);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_iron_man_energy", "integer", 10000);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_iron_man_energy_max", "integer", 10000);
   }
 });
 PalladiumEvents.registerProperties((event) => {
   // Only register for players
-  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+  if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man.ia_enabled", "string", "on");
   }
@@ -352,6 +366,251 @@ PalladiumEvents.registerProperties((event) => {
   if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_war_machine_bullets_grenades", "string", "off");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_animation_armor", "integer", 0);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.head', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.chest', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.right_arm', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.left_arm', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.right_shoulder', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.left_shoulder', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.right_leg', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.left_leg', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon.all', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon_armor_activated', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon_armor_recharge_mode', 'string', "off");
+    }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_mark_property", "string", "mark_1");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_repulser_strenght", "string", "normal");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_device_repulser", "string", "on");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_extremis_3_0", "string", "off");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.toughness", "string", "none");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.flight_speed", "string", "none");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.strenght", "string", "none");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.durability", "string", "none");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.blast", "string", "none");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.weapons.rockets", "string", "none");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.weapons.flares", "string", "none");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_modular_armor.weapons", "string", "none");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_strenght_power", "string", "normal");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_shield_enabled", "string", "on");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "palladium:custom_projectile") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_flame_color", "string", "f0a430");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_player_username", "string", "LimboKid");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_ia_menu", "string", "off");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_mana", 'integer', 1000);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_mana_max", 'integer', 1000);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon_mana_ability', 'string', "magic_energy_aoe");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player" || "minecraft:armor_stand") {
+    // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon_cape', 'string', "off");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+      // Arguments: Key of the property, type of the property, default/starting value
+      event.registerProperty('satsu_iron_man_addon_mana_whip', 'string', "off");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_heat_repulsor", 'integer', 0);
   }
 });
 PalladiumEvents.registerProperties((event) => {

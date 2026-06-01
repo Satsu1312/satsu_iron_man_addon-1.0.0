@@ -1,0 +1,180 @@
+{
+  "name": { "translate": "ability.title.satsu.extremis_3.0" },
+  "ability_bar_texture": "satsu_iron_man_addon:textures/gui/ability_bars/extremis_3_0.png",
+  "background": "satsu_iron_man_addon:textures/block/extremis_3_0.png",
+  "icon": {
+    "type": "palladium:item",
+    "item": "satsu_iron_man_addon:extremis_3_0/phone"
+  },
+  "allow_bar_shrinking": true,
+  "abilities": {
+    "enable_virus": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/extremis_3_0/extremis_self_enable.png",
+      "title": {
+        "translate": "ability.title.satsu.extremis_3.0.enable_virus"
+      },
+      "description": {
+        "translate": "description.satsu.extremis_3_0.enable_virus"
+      },
+      "bar_color": "light_gray",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": "null",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "right_click",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+          }
+        ]
+      }
+    },
+    "virus.play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.sound.button",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": true,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "enable_virus"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "virus_stun.play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.sound.button",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": true,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "give_stun"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "virus_off": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_extremis_3_0",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "enable_virus"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_extremis_3_0",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "virus_on"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "virus_on": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_extremis_3_0",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "enable_virus"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_extremis_3_0",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "virus_off"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "give_stun": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/extremis_3_0/extremis_stun.png",
+      "title": {
+        "translate": "ability.title.satsu.extremis_3.0.stun_virus"
+      },
+      "description": {
+        "translate": "description.satsu.extremis_3_0.stun_virus"
+      },
+      "bar_color": "light_gray",
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 1,
+      "gui_position": "null",
+      "first_tick_commands": [
+        "effect give @e[distance=0.1..30] satsu_iron_man_addon:extremis_3_0_stun infinite 255"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "effect clear @e[distance=0.1..30] satsu_iron_man_addon:extremis_3_0_stun"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 140,
+            "cooldown": 300,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ]
+      }
+    }
+  }
+}

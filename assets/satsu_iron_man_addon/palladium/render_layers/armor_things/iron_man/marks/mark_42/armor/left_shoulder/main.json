@@ -5,14 +5,19 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_shoulder.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/iron_man_suit_42_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#mark_number_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/left_shoulder/#LEFT_SHOULDER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/left_shoulder/#LEFT_SHOULDER.png"
           }
         ],
         "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          },
           "LEFT_SHOULDER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
@@ -22,7 +27,7 @@
             "max": 18
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_shoulder/iron_man_suit_42_0_#LEFT_SHOULDER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_shoulder/#mark_number_0_#LEFT_SHOULDER"
       },
       "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
       "animation_controller": [
@@ -34,20 +39,33 @@
           }
         }
       ],
-      "conditions": []
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+          "ability": "left_shoulder_animation",
+          "property": "value",
+          "min": 1,
+          "max": 9999
+        }]
     },
     {
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_shoulder.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/light/iron_man_suit_lights_42_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/light/#mark_number_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/left_shoulder/#LEFT_SHOULDER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/left_shoulder/#LEFT_SHOULDER.png"
           }
         ],
         "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          },
           "LEFT_SHOULDER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
@@ -72,11 +90,19 @@
       "render_type": "glow",
       "conditions": [
         {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+          "ability": "left_shoulder_animation",
+          "property": "value",
+          "min": 1,
+          "max": 9999
+        },
+        {
           "type": "palladium:or",
           "conditions": [
             {
               "type": "palladium:integer_property",
-              "property": "satsu_iron_man_armor_arc_energy",
+              "property": "satsu_iron_man_iron_man_energy",
               "min": 1,
               "max": 2147483647
             },

@@ -5,7 +5,14 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/iron_man_suit_42_0.png"
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#mark_number_0.png",
+        "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_42"
+          }
+        }
       },
       "conditions": [
         {
@@ -21,9 +28,16 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/mask/no_light/mask_42_0.png"
+        "base": "satsu_iron_man_addon:textures/models/iron_man/mask/no_light/#mark_number_0.png",
+        "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_42"
+          }
+        }
       },
       "conditions": [
         {
@@ -41,14 +55,19 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/chest.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/iron_man_suit_42_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#mark_number_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/chesst/#CHEST.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/chesst/#CHEST.png"
           }
         ],
         "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          },
           "CHEST": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
@@ -58,7 +77,7 @@
             "max": 15
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_chest/iron_man_suit_42_0_#CHEST"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_chest/#mark_number_0_#CHEST"
       },
       "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
       "animation_controller": [
@@ -70,20 +89,34 @@
           }
         }
       ],
-      "conditions": []
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+          "ability": "chest_animation",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        }
+      ]
     },
     {
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/chest.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/light/iron_man_suit_lights_42_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/light/#mark_number_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/bones_ensamble/chesst/#CHEST.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/chesst/#CHEST.png"
           }
         ],
         "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          },
           "CHEST": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
@@ -108,11 +141,19 @@
       "render_type": "glow",
       "conditions": [
         {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+          "ability": "chest_animation",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        },
+        {
           "type": "palladium:or",
           "conditions": [
             {
               "type": "palladium:integer_property",
-              "property": "satsu_iron_man_armor_arc_energy",
+              "property": "satsu_iron_man_iron_man_energy",
               "min": 1,
               "max": 2147483647
             },

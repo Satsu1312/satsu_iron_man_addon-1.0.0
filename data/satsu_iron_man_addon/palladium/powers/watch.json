@@ -23,10 +23,50 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "recharge_energy": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:hands",
+      "nbtKey": "watch_energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hands",
+            "nbtKey": "watch_energy",
+            "min": -2147483647,
+            "max": 99,
+            "mode": "range"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_watch",
+            "comparator": "equals",
+            "compare_to": "off"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -46,9 +86,10 @@
             "ability": "dummy"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_watch",
-            "property_value": "off"
+            "comparator": "equals",
+            "compare_to": "off"
           },
           {
             "type": "palladium:not",
@@ -75,9 +116,10 @@
             "ability": "dummy"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_watch",
-            "property_value": "on"
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:not",
@@ -105,9 +147,10 @@
             "ability": "glove_animation_3"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_watch",
-            "property_value": "on"
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:not",
@@ -122,10 +165,10 @@
                     "max_score": 1
                   },
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   }
                 ]
               }
@@ -190,10 +233,10 @@
                     "max_score": 1
                   },
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   }
                 ]
               }
@@ -234,10 +277,10 @@
                     "max_score": 1
                   },
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   }
                 ]
               }
@@ -295,9 +338,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_watch",
-            "property_value": "on"
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ],
         "unlocking": []
@@ -314,9 +358,10 @@
       "conditions": {
         "enabling": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_watch",
-            "property_value": "on"
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:ability_integer_property",
@@ -365,9 +410,17 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hands",
+            "nbtKey": "watch_energy",
+            "min": 0,
+            "mode": "greaterThan"
+          },
+          {
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_watch",
-            "property_value": "on"
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:ability_integer_property",
@@ -380,10 +433,11 @@
       }
     },
     "energyblast.remove.ark.energy": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_armor_arc_energy",
+      "slot": "curios:hands",
+      "nbtKey": "watch_energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 5,
       "conditions": {
@@ -423,7 +477,7 @@
         "Appearances": [
           {
             "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/yellow"
+            "Trail": "satsu_iron_man_addon:blast/yellow/main"
           }
         ]
       },
@@ -442,7 +496,7 @@
       "type": "palladium:play_sound",
       "hidden": true,
       "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:rivals_iron_man_blast_mcu",
+      "sound": "satsu_iron_man_addon:repulsor_mcu",
       "volume": 1,
       "pitch": 1,
       "looping": false,
@@ -480,9 +534,17 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hands",
+            "nbtKey": "watch_energy",
+            "min": 0,
+            "mode": "greaterThan"
+          },
+          {
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_watch",
-            "property_value": "on"
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:ability_integer_property",
@@ -578,6 +640,27 @@
         "unlocking": []
       }
     },
+    "dampened.remove.energy": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:hands",
+      "nbtKey": "watch_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "dampened",
+            "property": "value",
+            "min": 7,
+            "max": 10
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "flash": {
       "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
@@ -601,9 +684,17 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hands",
+            "nbtKey": "watch_energy",
+            "min": 0,
+            "mode": "greaterThan"
+          },
+          {
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_watch",
-            "property_value": "on"
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:ability_integer_property",
@@ -663,6 +754,30 @@
         ]
       }
     },
+    "flash.remove.energy": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:hands",
+      "nbtKey": "watch_energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "flash",
+                "min": 9,
+                "max": 9
+              }
+            ]
+          }
+        ]
+      }
+    },
     "no-list:aim_main_arm": {
       "type": "palladium:aim",
       "hidden": true,
@@ -692,10 +807,10 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -719,10 +834,10 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -754,10 +869,10 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -784,10 +899,34 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "item_nbt_modifier.set_energy": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:hands",
+      "nbtKey": "watch_energy",
+      "nbtValue": "100",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "curios:hands",
+                "nbtKey": "watch_energy",
+                "nbtValue": "Active",
+                "mode": "exists"
               }
             ]
           }

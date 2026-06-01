@@ -17,7 +17,7 @@
       }
     },
     "paint_wm": {
-      "type": "satsu_iron_man_addon:set_property_string",
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
       "icon": "satsu_iron_man_addon:paint_bucket",
       "title": { "translate": "ability.title.satsu.paint_war_machine" },
       "description": { "translate": "description.satsu.paint_war_machine" },
@@ -26,8 +26,9 @@
       "hidden_in_bar": false,
       "list_index": 0,
       "gui_position": "null",
-      "name": "satsu_iron_man_war_machine_or_iron_patriot",
-      "test_value": "war_machine",
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "war_machine_color",
+      "nbtValue": "war_machine",
       "conditions": {
         "enabling": [
           {
@@ -40,10 +41,10 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:armor_durability",
-            "armor_piece": 2,
-            "divider": 1,
-            "operation_type": ">="
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "war_machine_color",
+            "nbtValue": "iron_patriot"
           },
           {
             "type": "palladium:and",
@@ -51,36 +52,17 @@
               {
                 "type": "palladium:item_in_slot",
                 "item": {
-                  "tag": "satsu_iron_man_addon:armors/war_machine/war_machine"
+                  "tag": "satsu_iron_man_addon:armors/war_machine/capable_of_tint"
                 },
-                "slot": "chest"
+                "slot": "curios:tecnology_armor"
               }
             ]
-          }
-        ]
-      }
-    },
-    "paint_wm.command": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [],
-      "last_tick_commands": [],
-      "commands": [
-        "function satsu_iron_man_addon:paint_bucked/iron_patriot"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "paint_wm"
           }
         ]
       }
     },
     "paint_patriot": {
-      "type": "satsu_iron_man_addon:set_property_string",
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
       "icon": "satsu_iron_man_addon:paint_bucket",
       "title": { "translate": "ability.title.satsu.paint_war_machine" },
       "description": { "translate": "description.satsu.paint_war_machine" },
@@ -89,8 +71,9 @@
       "hidden_in_bar": false,
       "list_index": 0,
       "gui_position": "null",
-      "name": "satsu_iron_man_war_machine_or_iron_patriot",
-      "test_value": "iron_patriot",
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "war_machine_color",
+      "nbtValue": "iron_patriot",
       "conditions": {
         "enabling": [
           {
@@ -103,10 +86,10 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:armor_durability",
-            "armor_piece": 2,
-            "divider": 1,
-            "operation_type": ">="
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "war_machine_color",
+            "nbtValue": "war_machine"
           },
           {
             "type": "palladium:and",
@@ -114,32 +97,134 @@
               {
                 "type": "palladium:item_in_slot",
                 "item": {
-                  "tag": "satsu_iron_man_addon:armors/war_machine/iron_patriot"
+                  "tag": "satsu_iron_man_addon:armors/war_machine/capable_of_tint"
                 },
-                "slot": "chest"
+                "slot": "curios:tecnology_armor"
               }
             ]
           }
         ]
       }
     },
-    "paint_patriot.command": {
-      "type": "palladium:command",
+    "paint_mark_42": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "icon": "satsu_iron_man_addon:paint_bucket",
+      "title": { "translate": "ability.title.satsu.paint_war_machine" },
+      "description": { "translate": "description.satsu.paint_war_machine" },
+      "bar_color": "light_gray",
       "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [],
-      "last_tick_commands": [],
-      "commands": [
-        "function satsu_iron_man_addon:paint_bucked/war_machine"
-      ],
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": "null",
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "mark_number",
+      "nbtValue": "mark_42",
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "paint_patriot"
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "mark_number",
+            "nbtValue": "mark_42_b"
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:marks/mark_42/bracelet"
+            },
+            "slot": "curios:tecnology_armor"
           }
         ]
+      }
+    },
+    "paint_mark_42_b": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "icon": "satsu_iron_man_addon:paint_bucket",
+      "title": { "translate": "ability.title.satsu.paint_war_machine" },
+      "description": { "translate": "description.satsu.paint_war_machine" },
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "gui_position": "null",
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "mark_number",
+      "nbtValue": "mark_42_b",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "mark_number",
+            "nbtValue": "mark_42"
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:marks/mark_42/bracelet"
+            },
+            "slot": "curios:tecnology_armor"
+          }
+        ]
+      }
+    },
+    "play_sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.sound.paint_can",
+      "volume": 1,
+      "pitch": 1,
+      "looping": false,
+      "play_self": false,
+      "play_others": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "paint_wm"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "paint_patriot"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "paint_mark_42"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "paint_mark_42_b"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
       }
     }
   }

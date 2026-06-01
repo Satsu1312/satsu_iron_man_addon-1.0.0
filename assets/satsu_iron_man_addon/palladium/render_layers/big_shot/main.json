@@ -3,12 +3,47 @@
   "layers": [
     {
       "model_layer": "satsu_iron_man_addon:main",
-      "texture": "satsu_iron_man_addon:textures/models/blue_tuxedo.png",
+      "texture": "satsu_iron_man_addon:textures/models/blue_tuxedo_other.png",
+      "conditions": []
+    },
+    {
+      "model_layer": "satsu_iron_man_addon:main",
+      "texture": "satsu_iron_man_addon:textures/models/blue_tuxedo_blue.png",
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.PrimaryColour",
+        "fallback": 0
+      },
+      "conditions": []
+    },
+    {
+      "model_layer": "satsu_iron_man_addon:main",
+      "texture": "satsu_iron_man_addon:textures/models/blue_tuxedo_dark_blue.png",
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.TertiaryColour",
+        "fallback": 0
+      },
+      "conditions": []
+    },
+    {
+      "model_layer": "satsu_iron_man_addon:main",
+      "texture": "satsu_iron_man_addon:textures/models/blue_tuxedo_gold.png",
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.SecondaryColour",
+        "fallback": 0
+      },
       "conditions": []
     },
     {
       "model_layer": "satsu_iron_man_addon:main",
       "texture": "satsu_iron_man_addon:textures/models/blue_tuxedo_light.png",
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
+      },
       "render_type": "glow",
       "conditions": []
     },
@@ -20,13 +55,17 @@
         "variables": {
           "X": {
             "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
             "ability": "flames",
             "property": "value"
           }
         }
       },
-      "tint": "#0be7ff",
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
+      },
       "render_type": "glow",
       "conditions": [
         {
@@ -88,13 +127,17 @@
         "variables": {
           "X": {
             "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
             "ability": "flames",
             "property": "value"
           }
         }
       },
-      "tint": "#0be7ff",
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
+      },
       "render_type": "glow",
       "conditions": [
         {
@@ -106,11 +149,11 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/nano/turbine.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/iron_man_suit_holo_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_holo_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/iron_man_suit/transformation_#water_turbine.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/nano_armor/transformation_#water_turbine.png"
           }
         ],
         "variables": {
@@ -121,7 +164,12 @@
             "property": "value"
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light/iron_man_suit_holo_0_#water_turbine"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_holo_0_#water_turbine"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
       },
       "render_type": "glow",
       "conditions": [
@@ -144,13 +192,76 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/flames/nano_turbine/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/flames/#TURBINE_FLAME.png"
+          }
+        ],
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flames",
+            "property": "value"
+          },
+          "TURBINE_FLAME": {
+            "type": "palladium:condition",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:big_shot_suit/main",
+                "ability": "water_turbine",
+                "property": "value",
+                "min": 13,
+                "max": 17
+              }
+            ],
+            "true_value": "1",
+            "false_value": "0"
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X_#TURBINE_FLAME"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_iron_man_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/all_helmet/main.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man/mask/no_light/suit_holo_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/nano_mask_new_model/nano_mask_#water_turbine.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/helmet/nano_mask_new_model/nano_mask_#water_turbine.png"
           }
         ],
         "variables": {
@@ -162,6 +273,11 @@
           }
         },
         "output": "satsu_iron_man_addon:textures/models/iron_man/mask/no_light/suit_holo_0_#water_turbine"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
       },
       "render_type": "glow",
       "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",

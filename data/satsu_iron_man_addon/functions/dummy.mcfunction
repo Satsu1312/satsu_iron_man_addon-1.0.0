@@ -31,7 +31,6 @@ scoreboard objectives add satsu.iron.man.addon.model.prime.color.black dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.color.plate dummy
 scoreboard objectives add satsu.iron.man.addon.model.prime.color dummy
 scoreboard objectives add satsu.iron.man.addon.energy.beam.powerfull dummy
-scoreboard objectives add satsu.iron.man.addon.ia.wheel.things dummy
 scoreboard objectives add satsu.iron.man.addon.nano.armor.things dummy
 scoreboard objectives remove satsu.iron.man.addon.gui.overlay.armor
 scoreboard objectives add satsu.iron.man.addon.raycast_distance dummy
@@ -70,11 +69,10 @@ scoreboard objectives add satsu.iron.man.armor.ark.beam.color.icon dummy
 scoreboard objectives add satsu.iron.man.armor.energy.pulse.flame.thrower.icon dummy
 scoreboard objectives remove satsu.iron.man.addon.altura
 scoreboard objectives remove satsu.iron.man.mask
-scoreboard objectives add satsu.iron.man.animation.armor dummy
-scoreboard objectives add satsu.iron.man.animation.armor.reset dummy
+scoreboard objectives remove satsu.iron.man.animation.armor
 scoreboard objectives remove satsu.iron.man.armor.actived.perm
 scoreboard objectives add satsu.iron.man.armor dummy
-scoreboard objectives add satsu.iron.man.armor.actived dummy
+scoreboard objectives remove satsu.iron.man.armor.actived
 scoreboard objectives remove satsu.iron.man.armor.anim
 scoreboard objectives remove satsu.iron.man.flight_speed
 scoreboard objectives add satsu.iron.man.flight_speed.choose dummy

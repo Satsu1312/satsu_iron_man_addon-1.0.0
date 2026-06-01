@@ -24,14 +24,39 @@
   },
   "abilities": {
     "give_update_0": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_mark_86_pym_particle",
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "pym_particle",
       "adjustment_type": "add",
       "adjustment_amount": 15,
       "conditions": {
         "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "toggle"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "quantum_suit_nbt": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:bracelet",
+      "nbtKey": "pym_particle",
+      "adjustment_type": "add",
+      "adjustment_amount": 15,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:bracelet",
+            "nbtKey": "pym_particle",
+            "mode": "exists"
+          },
           {
             "type": "palladium:ability_enabled",
             "ability": "toggle"
@@ -65,10 +90,23 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_mark_86_pym_particle",
-            "min": 0,
-            "max": 99
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "pym_particle",
+                "min": 0,
+                "max": 99
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:bracelet",
+                "nbtKey": "pym_particle",
+                "min": 0,
+                "max": 99
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -85,10 +123,6 @@
                     "type": "palladium:objective_score",
                     "objective": "m.ten.osmosian",
                     "min_score": 0
-                  },
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "alien"
                   },
                   {
                     "type": "palladium:has_tag",

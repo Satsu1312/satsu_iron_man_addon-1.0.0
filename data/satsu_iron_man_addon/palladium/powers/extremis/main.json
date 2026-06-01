@@ -864,8 +864,12 @@
           "satsu_iron_man_addon:textures/gui/extremis/extremis_explosion_kamikaze.png"
         ]
       },
-      "title": { "translate": "ability.title.satsu.extremis_explosion_kamikaze" },
-      "description": { "translate": "description.satsu.extremis_explosion_kamikaze" },
+      "title": {
+        "translate": "ability.title.satsu.extremis_explosion_kamikaze"
+      },
+      "description": {
+        "translate": "description.satsu.extremis_explosion_kamikaze"
+      },
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 1,
@@ -922,14 +926,13 @@
         ]
       }
     },
-    "extremis_explosion_kamikaze.command": {
+    "extremis_explosion_kamikaze.command_no_armor": {
       "type": "palladium:command",
       "hidden": true,
       "hidden_in_bar": true,
       "commands": [""],
       "last_tick_commands": [
-        "execute if entity @s[scores={satsu.iron.man.armor.actived=0}] run damage @s 22 minecraft:player_attack",
-        "execute if entity @s[scores={satsu.iron.man.armor.actived=1}] run damage @s 100 minecraft:player_attack",
+        "damage @s 22 minecraft:player_attack",
         "playsound minecraft:entity.generic.explode master @p ~ ~ ~ 1 1",
         "execute as @e[distance=0.1..10] run damage @s 22 minecraft:player_attack",
         "execute as @e[distance=0.1..10] run data merge entity @s {Fire:300}",
@@ -939,6 +942,40 @@
       "conditions": {
         "enabling": [
           {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "extremis_explosion_kamikaze"
+          }
+        ]
+      }
+    },
+    "extremis_explosion_kamikaze.command_armor": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [""],
+      "last_tick_commands": [
+        "damage @s 100 minecraft:player_attack",
+        "playsound minecraft:entity.generic.explode master @p ~ ~ ~ 1 1",
+        "execute as @e[distance=0.1..10] run damage @s 22 minecraft:player_attack",
+        "execute as @e[distance=0.1..10] run data merge entity @s {Fire:300}",
+        "particle minecraft:flame ~ ~ ~ 2.5 1 2.5 0 2000 force",
+        "energybar value subtract @s satsu_iron_man_addon:extremis/main extremis_energy 2000"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
             "type": "palladium:ability_enabled",
             "ability": "extremis_explosion_kamikaze"
           }
@@ -946,16 +983,16 @@
       }
     },
     "extremis_explosion_kamikaze.particle_aura": {
-    "type": "gravecore:particle_aura",
-    "hidden": true,
-    "hidden_in_bar": true,
-    "count": 8,
-    "start_hex": "#ff5a00",
-    "end_hex": "#e1c100",
-    "aura_type": "aura",
-    "particle_type": "smoke",
-    "particle_size": 0.9,
-    "visibility": 0.9,
+      "type": "gravecore:particle_aura",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "count": 8,
+      "start_hex": "#ff5a00",
+      "end_hex": "#e1c100",
+      "aura_type": "aura",
+      "particle_type": "smoke",
+      "particle_size": 0.9,
+      "visibility": 0.9,
       "conditions": {
         "enabling": [
           {
@@ -1817,8 +1854,7 @@
       "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "power_path": "satsu_iron_man_addon",
-      "powerid": "extremis/beams/hands/main",
+      "power": "satsu_iron_man_addon:extremis/beams/hands/main",
       "conditions": {
         "enabling": [
           {
@@ -1853,8 +1889,7 @@
       "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "power_path": "satsu_iron_man_addon",
-      "powerid": "extremis/beams/hands/left",
+      "power": "satsu_iron_man_addon:extremis/beams/hands/left",
       "conditions": {
         "enabling": [
           {
@@ -1889,8 +1924,7 @@
       "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "power_path": "satsu_iron_man_addon",
-      "powerid": "extremis/beams/hands/smelt",
+      "power": "satsu_iron_man_addon:extremis/beams/hands/smelt",
       "conditions": {
         "enabling": [
           {
@@ -1912,8 +1946,7 @@
       "type": "satsu_iron_man_addon:add_power_per_tick",
       "hidden": true,
       "hidden_in_bar": true,
-      "power_path": "satsu_iron_man_addon",
-      "powerid": "extremis/beams/mouth/main",
+      "power": "satsu_iron_man_addon:extremis/beams/mouth/main",
       "conditions": {
         "enabling": [
           {

@@ -6,7 +6,7 @@ PalladiumEvents.registerAnimations((event) => {
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-      "mark.1873.clap_smoke_hands",
+      "mark_1873.clap_smoke_hands",
       builder.getPartialTicks(),
       0,
       3
@@ -62,7 +62,7 @@ PalladiumEvents.registerAnimations((event) => {
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-      "mark.1873.clap_smoke_hands",
+      "mark_1873.clap_smoke_hands",
       builder.getPartialTicks(),
       4,
       6

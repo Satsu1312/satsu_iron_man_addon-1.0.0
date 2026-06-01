@@ -1,16 +1,84 @@
 {
-  "name": { "translate": "ability.title.satsu.mark.32" },
+  "name": { "translate": "ability.title.satsu.mark_32" },
   "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
   "background": "satsu_iron_man_addon:textures/block/crafting_table_top_gray.png",
   "icon": "#satsu_iron_man_addon:war_machine/armor_icon_ability",
   "gui_display_type": "list",
   "abilities": {
     "give_sentinel": {
+      "type": "satsu_iron_man_addon:superpower",
+      "icon": "#satsu_iron_man_addon:war_machine/armor_icon_ability",
+      "title": { "translate": "ability.title.satsu.call.sentinel" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "power": "satsu_iron_man_addon:war_machine/marks/sentinel_call",
+      "capacity": "add",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:war_machine/marks/sentinel_call"
+              }
+            ]
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 0,
+            "max": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID",
+                "comparison": "==",
+                "compare_to": 1,
+                "log": false
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:is_falling",
+                "distance": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "give_sentinel_crouch": {
       "type": "palladium:command",
       "icon": "#satsu_iron_man_addon:war_machine/armor_icon_ability",
       "title": { "translate": "ability.title.satsu.call.sentinel" },
       "hidden": true,
       "hidden_in_bar": false,
+      "list_index": 0,
       "first_tick_commands": [
         "function satsu_iron_man_addon:sentinels/spawn_false_sentinel_war_machine"
       ],
@@ -27,35 +95,22 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:arc_reactor_portable"
-                    },
-                    "slot": "curios:arc_reactor"
-                  },
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "tag": "satsu_iron_man_addon:armors/war_machine/armors"
-                    },
-                    "slot": "chest"
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:crouching"
           },
           {
-            "type": "palladium:command_result",
-            "command": "execute if entity @s[scores={satsu.iron.man.animation.armor=0}]",
-            "comparison": "==",
-            "compare_to": 1,
-            "log": false
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 0,
+            "max": 0
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:war_machine/marks/sentinel_call"
+              }
+            ]
           },
           {
             "type": "palladium:not",
@@ -87,6 +142,7 @@
       "title": { "translate": "ability.title.satsu.call.sentinel" },
       "hidden": true,
       "hidden_in_bar": false,
+      "list_index": 0,
       "start_value": 0,
       "max_value": 20,
       "conditions": {
@@ -102,35 +158,10 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:arc_reactor_portable"
-                    },
-                    "slot": "curios:arc_reactor"
-                  },
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "tag": "satsu_iron_man_addon:armors/war_machine/armors"
-                    },
-                    "slot": "chest"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "palladium:command_result",
-            "command": "execute if entity @s[scores={satsu.iron.man.animation.armor=0}]",
-            "comparison": "==",
-            "compare_to": 1,
-            "log": false
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 0,
+            "max": 0
           },
           {
             "type": "palladium:not",
@@ -152,15 +183,14 @@
       }
     },
     "give_armor_command.falling": {
-      "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:armor_icon_ability",
+      "type": "satsu_iron_man_addon:superpower",
+      "icon": "#satsu_iron_man_addon:iron_heart/armor_icon_ability",
       "title": { "translate": "ability.title.satsu.call.sentinel" },
       "hidden": true,
       "hidden_in_bar": false,
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease_nano"
-      ],
-      "commands": [""],
+      "list_index": 0,
+      "power": "satsu_iron_man_addon:armor/activated",
+      "capacity": "add",
       "conditions": {
         "enabling": [
           {
@@ -184,6 +214,7 @@
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": false,
+      "list_index": 0,
       "start_value": 0,
       "max_value": 6,
       "conditions": {
@@ -194,30 +225,6 @@
           }
         ],
         "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:arc_reactor_portable"
-                    },
-                    "slot": "curios:arc_reactor"
-                  },
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "tag": "satsu_iron_man_addon:armors/war_machine/armors"
-                    },
-                    "slot": "chest"
-                  }
-                ]
-              }
-            ]
-          },
           {
             "type": "palladium:not",
             "conditions": [
@@ -298,16 +305,16 @@
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": false,
+      "list_index": 0,
       "start_value": 0,
       "max_value": 18,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:command_result",
-            "command": "execute if entity @s[scores={satsu.iron.man.animation.armor=1}]",
-            "comparison": "==",
-            "compare_to": 1,
-            "log": false
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
           }
         ],
         "unlocking": []
@@ -328,46 +335,17 @@
             "tag": "mecano.sentinel.on.ground"
           }
         ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:arc_reactor_portable"
-                    },
-                    "slot": "curios:arc_reactor"
-                  },
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "tag": "satsu_iron_man_addon:armors/war_machine/armors"
-                    },
-                    "slot": "chest"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "unlocking": []
       }
     },
     "spawn.armor.on.ground": {
-      "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
+      "type": "satsu_iron_man_addon:add_power_per_tick",
+      "icon": "#satsu_iron_man_addon:war_machine/armor_icon_ability",
+      "title": { "translate": "ability.title.satsu.call.sentinel" },
       "hidden": true,
-      "hidden_in_bar": true,
-      "list_index": 2,
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground_back_war_machine",
-        "tag @s remove mecano.sentinel.on.ground"
-      ],
-      "commands": [""],
-      "last_tick_commands": [],
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "power": "satsu_iron_man_addon:war_machine/marks/sentinel_call",
       "conditions": {
         "enabling": [],
         "unlocking": [
@@ -385,6 +363,47 @@
         ]
       }
     },
+    "spawn.armor.on.ground_crouch": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/speed_down.png",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 2,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground_back_war_machine",
+        "tag @s remove mecano.sentinel.on.ground"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:crouching"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:war_machine/marks/sentinel_call"
+              }
+            ]
+          },
+          {
+            "type": "palladium:has_tag",
+            "tag": "mecano.sentinel.on.ground"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "choose.armor.set.animation_timer",
+            "property": "value",
+            "min": 1,
+            "max": 1
+          }
+        ]
+      }
+    },
     "sentinel_fall_flying_put": {
       "type": "palladium:command",
       "icon": "minecraft:potion",
@@ -393,7 +412,7 @@
       "hidden_in_bar": true,
       "first_tick_commands": [""],
       "commands": [
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
+        "superpower add satsu_iron_man_addon:armor/activated",
         "function satsu_iron_man_addon:sentinels/kill_one_sentinel_same_score_same_armor",
         ".failsafe"
       ],
@@ -401,8 +420,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
           },
@@ -413,10 +433,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   }
                 ]
               }
@@ -428,11 +448,6 @@
               {
                 "type": "palladium:command_result",
                 "command": "execute if entity @s[scores={satsu.iron.man.addon.Ymotion=..-2}]"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "choose.armor.set"
               }
             ]
           },
@@ -444,30 +459,6 @@
                 "objective": "satsu.iron.man.armor",
                 "min_score": "6",
                 "max_score": "49"
-              }
-            ]
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "item": "satsu_iron_man_addon:arc_reactor_portable"
-                    },
-                    "slot": "curios:arc_reactor"
-                  },
-                  {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "tag": "satsu_iron_man_addon:armors/war_machine/armors"
-                    },
-                    "slot": "chest"
-                  }
-                ]
               }
             ]
           },

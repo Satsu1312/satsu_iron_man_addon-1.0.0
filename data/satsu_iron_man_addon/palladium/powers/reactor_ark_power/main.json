@@ -1,0 +1,545 @@
+{
+  "name": { "translate": "ability.title.arc.reactor" },
+  "persistent_data": true,
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "background": "satsu_iron_man_addon:textures/gui/block/background.png",
+  "icon": "satsu_iron_man_addon:textures/item/arc_reactor_1.png",
+  "gui_display_type": "tree",
+  "allow_bar_shrinking": true,
+  "primary_color": "#2af4f5",
+  "secondary_color": "#0aacac",
+  "abilities": {
+    "armor_skill_bar": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/item/arc_reactor_2.png",
+      "title": {
+        "translate": "ability.title.satsu.armor_skill_bar"
+      },
+      "description": { "translate": "description.armor_skill_bar" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 0],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_recharge_mode",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:not",
+                    "conditions": [
+                      {
+                        "type": "satsu_iron_man_addon:dampened_by",
+                        "effect": "satsu_iron_man_addon:emp"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "dampened"
+                  },
+                  {
+                    "type": "palladium:command_result",
+                    "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "armor_skill_bar_skill_tree": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/item/arc_reactor_2.png",
+      "title": {
+        "translate": "ability.title.satsu.armor_skill_bar"
+      },
+      "description": { "translate": "description.armor_skill_bar" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, 0],
+      "conditions": {
+        "unlocking": []
+      }
+    },
+    "not.armor_activate.command": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_armor_activated",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:integer_property",
+                "property": "satsu_animation_armor",
+                "min": 1,
+                "max": 1
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "top_right": {
+      "type": "palladium:gui_overlay",
+      "texture": "#satsu_iron_man_addon:energy_pulse_enable_disable",
+      "texture_width": 32,
+      "texture_height": 32,
+      "translate": [-50, 0, 0],
+      "rotate": [0, 0, 0],
+      "scale": [1, 1, 2.5],
+      "alignment": "bottom_right",
+      "hidden": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_armor_arc_energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:reactor_ark_power/main",
+            "ability": "armor_skill_bar"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "first_tick.scoreboards": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:dummy",
+        "function satsu_iron_man_addon:set_scores"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "palladium_poisoned": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "effect give @s satsu_iron_man_addon:palladium_posioned infinite"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "effect clear @s satsu_iron_man_addon:palladium_posioned"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "ark.upgrade.max.energy.1"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "give.curse_of_binding.curios": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "curios replace arc_reactor 0 @s with satsu_iron_man_addon:arc_reactor{Enchantments:[{lvl:1,id:binding_curse}],HideFlags:1} 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "curios replace arc_reactor 0 @s with satsu_iron_man_addon:arc_reactor 1"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:arc_reactor"
+            },
+            "slot": "curios:arc_reactor"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "ark.upgrade.max.energy.2"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "decrease_scoreboard_armor": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "superpower add satsu_iron_man_addon:armor/activated",
+        "superpower add satsu_iron_man_addon:armor/parts/throw/all/off"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "tag": "satsu_iron_man_addon:armors/main"
+                    },
+                    "slot": "curios:tecnology_armor"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "remove.sentine.false.not.mecano.armors": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:armors/marks_with_sentinels/main"
+                },
+                "slot": "curios:tecnology_armor"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "remove.sentine.false.has.sentinel.one": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "commands": [""],
+      "last_tick_commands": ["tag @s add mecano.post.sentinel"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_tag",
+            "tag": "sentinel_one"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:armors/marks_with_sentinels/main"
+                },
+                "slot": "curios:tecnology_armor"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "ark_upgrades": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/item/arc_reactor_1.png",
+      "title": {
+        "translate": "ability.title.satsu.ark_upgrades"
+      },
+      "description": { "translate": "description.satsu.ark_upgrades" },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, -0.5],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:reactor_ark_power/main",
+            "ability": "armor_skill_bar_skill_tree"
+          }
+        ]
+      }
+    },
+    "ark.upgrade.thing.1": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:reactor_ark_recharge_on",
+      "title": { "translate": "ability.title.satsu.ark.reactor.upgrade.1" },
+      "description": { "translate": "description.ark.upgrade.thing.1" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "ark.upgrade.thing.3"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:reactor_ark_power/main",
+            "ability": "ark_upgrades"
+          },
+          {
+            "type": "palladium:item_buyable",
+            "ingredient": {
+              "item": "satsu_iron_man_addon:reactor_ark_recharge_off"
+            },
+            "amount": 2
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor_skill_bar_skill_tree"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ark.upgrade.max.energy.1": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:upgrade_kit",
+      "title": { "translate": "ability.title.ark.upgrade.max.energy.1" },
+      "description": {
+        "translate": "description.satsu.ark.upgrade.max.energy.1"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-0, -1],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "ark.upgrade.max.energy.2"
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "power": "satsu_iron_man_addon:reactor_ark_power/main",
+            "ability": "ark_upgrades"
+          },
+          {
+            "type": "palladium:item_buyable",
+            "ingredient": {
+              "item": "satsu_iron_man_addon:upgrade_kit"
+            },
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "ark.upgrade.max.energy.2": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:upgrade_kit2",
+      "title": { "translate": "ability.title.ark.upgrade.max.energy.2" },
+      "description": {
+        "translate": "description.satsu.ark.upgrade.max.energy.2"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, -1.5],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "ark.upgrade.max.energy.1"
+          },
+          {
+            "type": "palladium:item_buyable",
+            "ingredient": {
+              "item": "satsu_iron_man_addon:upgrade_kit2"
+            },
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "ark.upgrade.max.energy.3": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:upgrade_kit4",
+      "title": { "translate": "ability.title.ark.upgrade.max.energy.3" },
+      "description": {
+        "translate": "description.satsu.ark.upgrade.max.energy.3"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2],
+      "conditions": {
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "ark.upgrade.max.energy.2"
+          },
+          {
+            "type": "palladium:item_buyable",
+            "ingredient": {
+              "item": "satsu_iron_man_addon:upgrade_kit4"
+            },
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "flight.fall.animation": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 50,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_tag",
+                "tag": "alien"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "flight.fall.sound": {
+      "type": "palladium:play_sound",
+      "sound": "satsu_iron_man_addon:entity.armor.land",
+      "volume": 1,
+      "pitch": 1,
+      "looping": true,
+      "play_self": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:reactor_ark_power/main",
+            "ability": "flight.fall.animation",
+            "property": "value",
+            "min": 44,
+            "max": 50
+          },
+          {
+            "type": "palladium:on_ground"
+          },
+          {
+            "type": "palladium:sprinting"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "remove_old_power": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "superpower remove satsu_iron_man_addon:reactor_ark_power/main"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    }
+  }
+}

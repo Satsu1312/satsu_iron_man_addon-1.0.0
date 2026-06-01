@@ -3,13 +3,13 @@
   "layers": [
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nano_armors/nano_stabilizer.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/nano_armors/nano_stabilizer.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_stabilizer/no_light/iron_man_suit_500_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_stabilizer/no_light/model_50_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/nano_things/nano_stabilizer/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/nano_things/nano_stabilizer/transformation_#TIMER.png"
           }
         ],
         "variables": {
@@ -20,28 +20,30 @@
             "property": "value",
             "min": 0,
             "max": 12
-          },
-          "Y": {
-            "type": "palladium:integer_property",
-            "property": "satsu_mask_value",
-            "min": 0,
-            "max": 1
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_stabilizer/no_light/iron_man_suit_500_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_stabilizer/no_light/model_50_0_#TIMER"
       },
       "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
+          "ability": "nano_stabilizer",
+          "property": "value",
+          "min": 1,
+          "max": 12
+        }
       ]
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/nano_armors/nano_stabilizer.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/nano_armors/nano_stabilizer.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_stabilizer/light/iron_man_suit_500_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_stabilizer/light/model_50_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/nano_things/nano_stabilizer/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/nano_things/nano_stabilizer/transformation_#TIMER.png"
           },
           {
             "type": "palladium:color",
@@ -69,10 +71,62 @@
             "property": "satsu.model_50.color"
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_stabilizer/light/iron_man_suit_500_#S_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_stabilizer/light/model_50_#S_#TIMER"
       },
       "render_type": "glow",
       "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
+          "ability": "nano_stabilizer",
+          "property": "value",
+          "min": 1,
+          "max": 12
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/flames/stabilizer_flames/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/flames/#SHOW_UP_right.png"
+          }
+        ],
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flames",
+            "property": "value"
+          },
+          "SHOW_UP_right": {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
+            "ability": "nano_stabilizer_flames",
+            "property": "value",
+            "min": 0,
+            "max": 1
+          }
+        }
+      },
+      "tint": {
+        "type": "palladium:string_property",
+        "property": "satsu.model_50.color"
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
+          "ability": "nano_stabilizer_flames",
+          "property": "value",
+          "min": 1,
+          "max": 1
+        }
       ]
     }
   ]

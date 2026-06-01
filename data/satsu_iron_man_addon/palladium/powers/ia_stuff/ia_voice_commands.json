@@ -9,10 +9,6 @@
   "abilities": {
     "armor_skill_bar": {
       "type": "palladium:dummy",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -20,19 +16,16 @@
       "conditions": {
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man.ia_enabled",
-            "property_value": "on"
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ]
       }
     },
     "first_interaction": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -146,7 +139,7 @@
         "attribute @s minecraft:generic.max_health base set 20",
         "execute if entity @e[tag=sentinel.test,distance=0..30] run function satsu_iron_man_addon:sentinels/spawn_false_sentinel_on_ground",
         "execute if entity @e[tag=sentinel.test,distance=0..30] run tag @s add give.sentinel.one",
-        "function satsu_iron_man_addon:armor_actived/scoreboard_animation_add_and_decrease",
+        "superpower add satsu_iron_man_addon:armor/activated",
         "execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run function satsu_iron_man_addon:ia/swap_sentinels",
         "execute as @e[tag=sentinel.test] if score @s grave.ID = @p grave.ID run kill @s",
         "effect give @s minecraft:instant_health 10 2",
@@ -186,20 +179,11 @@
       }
     },
     "enabled_remote": {
-      "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
+      "type": "palladium:dummy",
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/enable"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
       "conditions": {
         "enabling": [
           {
@@ -212,7 +196,7 @@
             "item": {
               "tag": "satsu_iron_man_addon:armors/main"
             },
-            "slot": "chest"
+            "slot": "curios:tecnology_armor"
           },
           {
             "type": "palladium:not",
@@ -244,7 +228,7 @@
                 "item": {
                   "tag": "satsu_iron_man_addon:armors/not_remote/main"
                 },
-                "slot": "chest"
+                "slot": "curios:tecnology_armor"
               }
             ]
           },
@@ -262,7 +246,7 @@
                         "conditions": [
                           {
                             "type": "palladium:integer_property",
-                            "property": "satsu_iron_man_armor_arc_energy",
+                            "property": "satsu_iron_man_iron_man_energy",
                             "min": 100,
                             "max": 101
                           }
@@ -281,10 +265,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   }
                 ]
               }
@@ -351,11 +335,31 @@
                 ]
               },
               {
-                "type": "palladium:item_in_slot",
-                "item": {
-                  "item": "satsu_iron_man_addon:ia_glases"
-                },
-                "slot": "curios:head"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -398,6 +402,74 @@
         ]
       }
     },
+    "enabled_remote.command_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.ia_skill_stat" },
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/enable"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "enabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:ia_glases"
+            },
+            "slot": "curios:head"
+          }
+        ]
+      }
+    },
+    "enabled_remote.command_no_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.ia_skill_stat" },
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/enable_extremis_3_0"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "enabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_extremis_3_0",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "enabled_remote.dummy": {
       "type": "palladium:dummy",
       "hidden": true,
@@ -414,7 +486,7 @@
             "item": {
               "tag": "satsu_iron_man_addon:armors/main"
             },
-            "slot": "chest"
+            "slot": "curios:tecnology_armor"
           },
           {
             "type": "palladium:not",
@@ -454,7 +526,7 @@
             "conditions": [
               {
                 "type": "palladium:integer_property",
-                "property": "satsu_iron_man_armor_arc_energy",
+                "property": "satsu_iron_man_iron_man_energy",
                 "min": 100,
                 "max": 101
               }
@@ -569,21 +641,11 @@
       }
     },
     "disabled_remote": {
-      "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
+      "type": "palladium:dummy",
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/disable",
-        "function satsu_iron_man_addon:marks_parts/call_parts/give_all/main"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
       "conditions": {
         "enabling": [
           {
@@ -613,7 +675,7 @@
                         "conditions": [
                           {
                             "type": "palladium:integer_property",
-                            "property": "satsu_iron_man_armor_arc_energy",
+                            "property": "satsu_iron_man_iron_man_energy",
                             "min": 100,
                             "max": 101
                           }
@@ -689,10 +751,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -700,6 +762,21 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
               }
@@ -708,19 +785,98 @@
         ]
       }
     },
+    "disabled_remote.command_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/disable"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "disabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "disabled_remote.command_no_glasses"
+              }
+            ]
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "satsu_iron_man_addon:ia_glases"
+            },
+            "slot": "curios:head"
+          }
+        ]
+      }
+    },
+    "disabled_remote.command_no_glasses": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "function satsu_iron_man_addon:remote_mode/disable_extremis_3_0"
+      ],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "disabled_remote"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "disabled_remote.command_glasses"
+              }
+            ]
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:has_power",
+                "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_extremis_3_0",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "disabled_remote_energy": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/disable",
-        "function satsu_iron_man_addon:marks_parts/call_parts/give_all/main"
+        "function satsu_iron_man_addon:remote_mode/disable"
       ],
       "commands": [""],
       "last_tick_commands": [""],
@@ -731,7 +887,7 @@
             "conditions": [
               {
                 "type": "palladium:integer_property",
-                "property": "satsu_iron_man_armor_arc_energy",
+                "property": "satsu_iron_man_iron_man_energy",
                 "min": -1000000000,
                 "max": 101
               }
@@ -753,7 +909,7 @@
                         "conditions": [
                           {
                             "type": "palladium:integer_property",
-                            "property": "satsu_iron_man_armor_arc_energy",
+                            "property": "satsu_iron_man_iron_man_energy",
                             "min": 100,
                             "max": 101
                           }
@@ -835,10 +991,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -854,57 +1010,14 @@
         ]
       }
     },
-    "disabled_remote_nothing_in_chest": {
-      "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
-      "hidden": true,
-      "hidden_in_bar": true,
-      "gui_position": [0, -2.8],
-      "description": { "translate": "description.ia_skill_stat" },
-      "first_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/disable_emergency",
-        "function satsu_iron_man_addon:marks_parts/call_parts/give_all/main"
-      ],
-      "commands": [""],
-      "last_tick_commands": [""],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:command_result",
-                "command": "execute if entity @s[nbt={Inventory:[{Slot:102b}]}]"
-              }
-            ]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.remote",
-            "min_score": 1,
-            "max_score": 1
-          }
-        ]
-      }
-    },
     "disabled_remote_not_glasses": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
       "description": { "translate": "description.ia_skill_stat" },
       "first_tick_commands": [
-        "function satsu_iron_man_addon:remote_mode/disable_emergency",
-        "function satsu_iron_man_addon:marks_parts/call_parts/give_all/main"
+        "function satsu_iron_man_addon:remote_mode/disable_emergency"
       ],
       "commands": [""],
       "last_tick_commands": [""],
@@ -914,11 +1027,31 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:item_in_slot",
-                "item": {
-                  "item": "satsu_iron_man_addon:ia_glases"
-                },
-                "slot": "curios:head"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -934,12 +1067,11 @@
       }
     },
     "disabled_remote_not_glasses.set.scoreboard": {
-      "type": "satsu_iron_man_addon:scoreboard_ability",
+      "type": "satsu_iron_man_addon:set_property_string",
       "hidden": true,
       "hidden_in_bar": true,
-      "score": "satsu.iron.man.armor.actived",
-      "adjustment_type": "set",
-      "adjustment_amount": 0,
+      "name": "satsu_iron_man_addon_armor_activated",
+      "test_value": "off",
       "conditions": {
         "enabling": [
           {
@@ -952,10 +1084,6 @@
     },
     "enabled_remote_slowness.timer": {
       "type": "palladium:animation_timer",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -995,7 +1123,7 @@
                         "conditions": [
                           {
                             "type": "palladium:integer_property",
-                            "property": "satsu_iron_man_armor_arc_energy",
+                            "property": "satsu_iron_man_iron_man_energy",
                             "min": 100,
                             "max": 101
                           }
@@ -1071,10 +1199,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -1082,6 +1210,21 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
               }
@@ -1153,7 +1296,7 @@
             "item": {
               "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
             },
-            "slot": "chest"
+            "slot": "curios:tecnology_armor"
           }
         ]
       }
@@ -1181,7 +1324,7 @@
                 "item": {
                   "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
                 },
-                "slot": "chest"
+                "slot": "curios:tecnology_armor"
               }
             ]
           }
@@ -1190,10 +1333,6 @@
     },
     "enabled_night_vision": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -1240,15 +1379,33 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
-            "min": 1,
-            "max": 2147483647
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Energy",
+                "min": 1,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "Energy",
+                    "mode": "exists"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man.ia_enabled",
-            "property_value": "off"
+            "comparator": "equals",
+            "compare_to": "off"
           },
           {
             "type": "palladium:and",
@@ -1314,10 +1471,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -1325,6 +1482,21 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
               }
@@ -1346,14 +1518,16 @@
             "ability": "enabled_night_vision"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_enable_night_vision",
-            "property_value": "false"
+            "comparator": "equals",
+            "compare_to": "false"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man.ia_enabled",
-            "property_value": "off"
+            "comparator": "equals",
+            "compare_to": "off"
           }
         ]
       }
@@ -1376,24 +1550,22 @@
             ]
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_enable_night_vision",
-            "property_value": "true"
+            "comparator": "equals",
+            "compare_to": "true"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man.ia_enabled",
-            "property_value": "off"
+            "comparator": "equals",
+            "compare_to": "off"
           }
         ]
       }
     },
     "enabled_scan_enemies": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -1439,15 +1611,33 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
-            "min": 1,
-            "max": 2147483647
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Energy",
+                "min": 1,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "Energy",
+                    "mode": "exists"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man.ia_enabled",
-            "property_value": "off"
+            "comparator": "equals",
+            "compare_to": "off"
           },
           {
             "type": "palladium:and",
@@ -1513,10 +1703,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -1524,6 +1714,21 @@
                       "item": "satsu_iron_man_addon:ia_glases"
                     },
                     "slot": "curios:head"
+                  },
+                  {
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:has_power",
+                        "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_extremis_3_0",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   }
                 ]
               }
@@ -1545,14 +1750,16 @@
             "ability": "enabled_scan_enemies"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_enable_scan",
-            "property_value": "false"
+            "comparator": "equals",
+            "compare_to": "false"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man.ia_enabled",
-            "property_value": "off"
+            "comparator": "equals",
+            "compare_to": "off"
           }
         ]
       }
@@ -1575,24 +1782,223 @@
             ]
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_enable_scan",
-            "property_value": "true"
+            "comparator": "equals",
+            "compare_to": "true"
           },
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man.ia_enabled",
-            "property_value": "off"
+            "comparator": "equals",
+            "compare_to": "off"
+          }
+        ]
+      }
+    },
+    "enabled_recharge_mode": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "gui_position": [0, -2.8],
+      "description": { "translate": "description.ia_skill_stat" },
+      "first_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.recharge_mode.13\",\"color\":\"#c0c0c0\"}"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.disable.recharge_mode.13\",\"color\":\"#c0c0c0\"}"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:chat_toggle",
+            "chat_message": "recharge mode",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.13"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_recharge_mode.voice.actived.voice": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_armor_recharge_mode",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "enabled_recharge_mode"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_recharge_mode",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "comparator": "equals",
+            "compare_to": "off"
+          }
+        ]
+      }
+    },
+    "enabled_recharge_mode.voice.disable.voice": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_armor_recharge_mode",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "enabled_recharge_mode"
+              }
+            ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_recharge_mode",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man.ia_enabled",
+            "comparator": "equals",
+            "compare_to": "off"
           }
         ]
       }
     },
     "enabled_see_energy": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -1704,10 +2110,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -1725,10 +2131,6 @@
     },
     "disabled_see_energy": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -1812,10 +2214,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -1833,10 +2235,6 @@
     },
     "enabled_sentinel": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -1878,8 +2276,9 @@
             ]
           },
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
           },
@@ -1948,16 +2347,16 @@
                 "item": {
                   "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
                 },
-                "slot": "chest"
+                "slot": "curios:tecnology_armor"
               },
               {
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:and",
@@ -1974,7 +2373,22 @@
                         "item": {
                           "tag": "satsu_iron_man_addon:armors/nano_sentinel/main"
                         },
-                        "slot": "chest"
+                        "slot": "curios:tecnology_armor"
+                      },
+                      {
+                        "type": "palladium:and",
+                        "conditions": [
+                          {
+                            "type": "palladium:has_power",
+                            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                          },
+                          {
+                            "type": "palladium:string_property",
+                            "property": "satsu_iron_man_addon_extremis_3_0",
+                            "comparator": "equals",
+                            "compare_to": "on"
+                          }
+                        ]
                       }
                     ]
                   }
@@ -1987,10 +2401,6 @@
     },
     "disabled_sentinel": {
       "type": "palladium:command",
-      "icon": "#satsu_iron_man_addon:ia_icon",
-      "title": {
-        "translate": "ability.title.satsu.ia_skill_bar"
-      },
       "hidden": true,
       "hidden_in_bar": true,
       "gui_position": [0, -2.8],
@@ -2090,10 +2500,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -2125,9 +2535,10 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_reroute_flight",
-            "property_value": "false"
+            "comparator": "equals",
+            "compare_to": "false"
           },
           {
             "type": "palladium:and",
@@ -2193,10 +2604,10 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -2251,40 +2662,44 @@
         "enabling": [],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_reroute_flight",
-            "property_value": "true"
+            "comparator": "equals",
+            "compare_to": "true"
           }
         ]
       }
     },
     "reroute_flight_speed.remove_ark_energy": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
+      "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_armor_arc_energy",
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 1,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
           }
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_reroute_flight",
-            "property_value": "true"
+            "comparator": "equals",
+            "compare_to": "true"
           },
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:is_hovering_or_flying"
@@ -2293,17 +2708,8 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:ability_unlocked",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "ark.upgrade.thing.2"
-              },
-              {
                 "type": "palladium:or",
                 "conditions": [
-                  {
-                    "type": "palladium:has_tag",
-                    "tag": "alien"
-                  },
                   {
                     "type": "palladium:command_result",
                     "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
@@ -2331,9 +2737,10 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_reroute_flight",
-            "property_value": "true"
+            "comparator": "equals",
+            "compare_to": "true"
           },
           {
             "type": "palladium:and",
@@ -2399,10 +2806,546 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.actived",
-                    "min_score": 1,
-                    "max_score": 1
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_reroute_repulsors": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_repulser_strenght",
+      "test_value": "stronger",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:chat_action",
+            "chat_message": "reroute power to repulsors",
+            "cooldown": 20
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_repulser_strenght",
+            "comparator": "equals",
+            "compare_to": "normal"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.13"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_reroute_repulsors.text": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.enable.13\",\"color\":\"#c0c0c0\"}"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.repulsors.disable.13\",\"color\":\"#c0c0c0\"}"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_repulser_strenght",
+            "comparator": "equals",
+            "compare_to": "stronger"
+          }
+        ]
+      }
+    },
+    "disable_reroute_repulsors": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_repulser_strenght",
+      "test_value": "normal",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:chat_action",
+            "chat_message": "dereroute power to repulsors",
+            "cooldown": 20
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_repulser_strenght",
+            "comparator": "equals",
+            "compare_to": "stronger"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.13"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_reroute_motors": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_strenght_power",
+      "test_value": "increase",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:chat_action",
+            "chat_message": "reroute power to motors",
+            "cooldown": 20
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "normal"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.13"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "item": "satsu_iron_man_addon:ia_glases"
+                    },
+                    "slot": "curios:head"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "enabled_reroute_motors.text": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.enable.13\",\"color\":\"#c0c0c0\"}"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=1}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.1\",\"color\":\"#ffa500\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=2}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.2\",\"color\":\"#ffb6c1\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=3}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.3\",\"color\":\"#9370db\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=4}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.4\",\"color\":\"#708090\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=5}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.5\",\"color\":\"#00bfff\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=6}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.6\",\"color\":\"#ffe800\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=7}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.7\",\"color\":\"#09f42c\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=8}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.8\",\"color\":\"#98fb98\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=9}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.9\",\"color\":\"#55fb9e\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=10}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.10\",\"color\":\"#fe0f0f\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=11}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.11\",\"color\":\"#4682b4\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=12}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.12\",\"color\":\"#0067fe\"}",
+        "execute as @s[scores={satsu.iron.man.addon.ia.name=13}] run tellraw @s {\"translate\":\"satsu.iron.man.addon.text.ia.interaction.reroute.motors.disable.13\",\"color\":\"#c0c0c0\"}"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
+          }
+        ]
+      }
+    },
+    "reroute_motors.nbt_modifier": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "disable_reroute_motors": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_strenght_power",
+      "test_value": "normal",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:chat_action",
+            "chat_message": "dereroute power to motors",
+            "cooldown": 20
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
+          },
+          {
+            "type": "palladium:and",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.1"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.2"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.3"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.4"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.5"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.6"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.7"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.8"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.9"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.11"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.12"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "ia.13"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   },
                   {
                     "type": "palladium:item_in_slot",
@@ -2434,9 +3377,10 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_ia.pickaxe_velocity",
-            "property_value": "low"
+            "comparator": "equals",
+            "compare_to": "low"
           },
           {
             "type": "palladium:and",
@@ -2499,10 +3443,10 @@
                 ]
               },
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -2556,9 +3500,10 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:has_property",
+            "type": "palladium:string_property",
             "property": "satsu_iron_man_ia.pickaxe_velocity",
-            "property_value": "normal"
+            "comparator": "equals",
+            "compare_to": "normal"
           },
           {
             "type": "palladium:and",
@@ -2621,10 +3566,10 @@
                 ]
               },
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -2686,10 +3631,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -2697,6 +3642,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -2727,10 +3687,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -2738,6 +3698,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -2768,10 +3743,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -2779,6 +3754,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -2809,10 +3799,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -2820,6 +3810,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -2850,10 +3855,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -2861,6 +3866,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -2891,10 +3911,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -2902,6 +3922,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -2932,10 +3967,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -2943,6 +3978,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -2973,10 +4023,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -2984,6 +4034,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3014,10 +4079,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -3025,6 +4090,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3055,10 +4135,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -3066,6 +4146,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3096,10 +4191,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -3107,6 +4202,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3137,10 +4247,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -3148,6 +4258,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
@@ -3178,10 +4303,10 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:objective_score",
-                "objective": "satsu.iron.man.armor.actived",
-                "min_score": 1,
-                "max_score": 1
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
               },
               {
                 "type": "palladium:item_in_slot",
@@ -3189,6 +4314,21 @@
                   "item": "satsu_iron_man_addon:ia_glases"
                 },
                 "slot": "curios:head"
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_extremis_3_0",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  }
+                ]
               }
             ]
           }
