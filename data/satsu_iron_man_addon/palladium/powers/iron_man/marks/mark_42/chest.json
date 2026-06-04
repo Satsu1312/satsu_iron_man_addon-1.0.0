@@ -1,0 +1,42 @@
+{
+  "name": { "translate": "ability.title.satsu.mark_42" },
+  "allow_bar_shrinking": true,
+  "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
+  "background": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
+  "icon": "satsu_iron_man_addon:textures/gui/armors/armadura_completa/mark_head_icon_42.png",
+  "gui_display_type": "tree",
+  "abilities": {
+    "set_mark_number_name.item_nbt_property_sync": {
+      "type": "satsu_iron_man_addon:item_nbt_property_sync",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "mark_number",
+      "propertyKey": "satsu_iron_man_addon_mark_property",
+      "syncMode": "nbt"
+    },
+    "set_mark_number_name.item_nbt_modifier": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "chest",
+      "nbtKey": "mark_number",
+      "nbtValue": "mark_42",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "chest",
+                "nbtKey": "mark_number",
+                "mode": "exists"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
