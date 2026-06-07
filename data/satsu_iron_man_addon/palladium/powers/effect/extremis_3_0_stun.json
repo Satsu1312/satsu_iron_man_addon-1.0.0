@@ -1,0 +1,126 @@
+{
+  "name": { "translate": "ability.title.confusion" },
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "abilities": {
+    "no-damage": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": -1000000,
+      "operation": 0,
+      "uuid": "e07d509e-bdeb-4b9b-87e8-75b99028214e",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "no-jump": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:jump_power",
+      "amount": -1000000,
+      "operation": 0,
+      "uuid": "7f5866ad-cd4c-43d9-a785-041835e9304e",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "vibrate": {
+      "type": "palladium:vibrate",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "no-fly": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "palladium:flight_speed",
+      "amount": -1000000,
+      "operation": 0,
+      "uuid": "e9cd1502-9f79-4b31-a4a8-a1d1e5b18b06",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "paralized.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "effect give @s minecraft:slowness infinite 255 true",
+        "effect give @s minecraft:nausea infinite 2 true",
+        "effect give @s minecraft:blindness infinite 2 true"
+      ],
+      "commands": [""],
+      "last_tick_commands": [
+        "effect clear @s minecraft:slowness",
+        "effect clear @s minecraft:nausea",
+        "effect clear @s minecraft:blindness"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "remove": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:effect/extremis_3_0_stun",
+      "capacity": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:extremis_3_0_stun"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

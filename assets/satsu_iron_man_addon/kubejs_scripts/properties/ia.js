@@ -19,3 +19,17 @@ PalladiumEvents.registerPropertiesClientSided((event) => {
     event.registerProperty("satsu_ia_wheel.cook", "string", "false");
   }
 });
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_ia_wheel.recharge_mode", "string", "false");
+  }
+});
+PalladiumEvents.registerPropertiesClientSided((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_ia_wheel.stuff", "string", "none");
+  }
+});

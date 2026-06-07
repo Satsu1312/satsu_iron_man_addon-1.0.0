@@ -2,6 +2,54 @@
   "name": "Force User",
   "icon": "minecraft:arrow",
   "abilities": {
+    "animation_falling": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:is_falling",
+            "distance": 25
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "satsu_iron_man_addon:is_falling",
+            "distance": 5
+          }
+        ]
+      }
+    },
+    "animation_falling.command_land": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add land_enabled"],
+      "last_tick_commands": [""],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "animation_falling",
+            "min": 6,
+            "max": 6
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "fall_flying": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -11,37 +59,67 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor.actived",
-            "min_score": 1,
-            "max_score": 1
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           },
           {
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:armor_principal/iron_man_armor",
-                "ability": "flight.fall.animation",
-                "property": "value",
-                "min": 44,
-                "max": 50
+                "type": "palladium:has_tag",
+                "tag": "land_enabled"
               },
               {
-                "type": "palladium:ability_integer_property",
-                "power": "satsu_iron_man_addon:reactor_arc_portable/main",
-                "ability": "flight.fall.animation",
-                "property": "value",
-                "min": 44,
-                "max": 50
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "power": "satsu_iron_man_addon:reactor_ark_power/main",
+                        "ability": "flight.fall.animation",
+                        "property": "value",
+                        "min": 44,
+                        "max": 50
+                      },
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "power": "satsu_iron_man_addon:iron_heart/main_power/main",
+                        "ability": "flight.fall.animation",
+                        "property": "value",
+                        "min": 44,
+                        "max": 50
+                      },
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                        "ability": "flight.fall.animation",
+                        "property": "value",
+                        "min": 44,
+                        "max": 50
+                      },
+                      {
+                        "type": "palladium:ability_integer_property",
+                        "power": "satsu_iron_man_addon:war_machine/main_power/main",
+                        "ability": "flight.fall.animation",
+                        "property": "value",
+                        "min": 44,
+                        "max": 50
+                      }
+                    ]
+                  },
+                  {
+                    "type": "palladium:sprinting"
+                  }
+                ]
               }
             ]
           },
           {
             "type": "palladium:on_ground"
-          },
-          {
-            "type": "palladium:sprinting"
           },
           {
             "type": "palladium:not",
@@ -53,6 +131,26 @@
             ]
           }
         ]
+      }
+    },
+    "fall_flying.command_land": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s remove land_enabled"],
+      "last_tick_commands": [""],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "fall_flying",
+            "min": 6,
+            "max": 6
+          }
+        ],
+        "unlocking": []
       }
     },
     "slowness": {
@@ -84,10 +182,10 @@
                         "max": 6
                       },
                       {
-                        "type": "palladium:objective_score",
-                        "objective": "satsu.iron.man.armor.actived",
-                        "min_score": 1,
-                        "max_score": 1
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_armor_activated",
+                        "comparator": "equals",
+                        "compare_to": "on"
                       }
                     ]
                   },
@@ -177,7 +275,7 @@
                   {
                     "type": "palladium:ability_enabled",
                     "power": "satsu_iron_man_addon:iron_man/marks/mark_1873_nano/main",
-                    "ability": "mark.1873.clap_smoke_hands"
+                    "ability": "mark_1873.clap_smoke_hands"
                   }
                 ]
               }

@@ -1,0 +1,175 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body_call_it/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/#ALPHA_PATH/#HIDDE.png"
+          }
+        ],
+        "variables": {
+          "ALPHA_PATH": {
+            "type": "palladium:condition",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_heart/marks/sentinel_call",
+                "ability": "decall_sentinel_animation_timer"
+              }
+            ],
+            "true_value": "decall_sentinel",
+            "false_value": "fast_one_calling"
+          },
+          "HIDDE": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_heart/marks/sentinel_call",
+            "ability": "call_sentinel_animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 33
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          }
+        }
+      },
+      "output": "satsu_iron_man_addon:textures/models/iron_man/#ALPHA_PATH/no_light/#X_0_#HIDDE",
+      "animation_file": "satsu_iron_man_addon:animations/marks/mark_7_system/call.animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "call_it",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call_to_you": "call_armor",
+            "decall_armor": "decall_armor"
+          }
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body_call_it/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/light/#X_0.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/#ALPHA_PATH/#HIDDE.png"
+          }
+        ],
+        "variables": {
+          "ALPHA_PATH": {
+            "type": "palladium:condition",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_heart/marks/sentinel_call",
+                "ability": "decall_sentinel_animation_timer"
+              }
+            ],
+            "true_value": "decall_sentinel",
+            "false_value": "fast_one_calling"
+          },
+          "HIDDE": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_heart/marks/sentinel_call",
+            "ability": "call_sentinel_animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 33
+          },
+          "X": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          }
+        }
+      },
+      "output": "satsu_iron_man_addon:textures/models/iron_man/#ALPHA_PATH/light/#X_0_#HIDDE",
+      "animation_file": "satsu_iron_man_addon:animations/marks/mark_7_system/call.animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "call_it",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call_to_you": "call_armor",
+            "decall_armor": "decall_armor"
+          }
+        }
+      ],
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_iron_man_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:stands"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body_call_it/flames.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/fast_one_calling/flames/#SHOW.png"
+          }
+        ],
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_heart/marks/sentinel_call",
+            "ability": "flames",
+            "property": "value"
+          },
+          "SHOW": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_heart/marks/sentinel_call",
+            "ability": "call_sentinel_animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 4
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/flames/fast_one_calling/new_thruster_white_calling/#X_#SHOW"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/marks/mark_7_system/call.animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "call_it",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call_to_you": "call_armor",
+            "decall_armor": "decall_armor"
+          }
+        }
+      ],
+      "tint": {
+        "type": "palladium:string_property",
+        "property": "satsu_iron_man_addon_flame_color"
+      },
+      "render_type": "glow",
+      "conditions": []
+    }
+  ]
+}

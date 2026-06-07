@@ -1,5 +1,5 @@
 {
-  "base": "satsu_iron_man_addon:textures/gui/hud/hud_armor/armor_hud_1_#off.png",
+  "base": "satsu_iron_man_addon:textures/gui/hud/hud_armor/armor_hud_1_off_#HORIZON_LOCK.png",
   "transformers": [
     {
       "type": "palladium:color",
@@ -12,9 +12,21 @@
       "type": "palladium:string_property",
       "property": "satsu_iron_man_ia_color"
     },
-    "off": {
-      "type": "palladium:string_property",
-      "property": "satsu_iron_man_ia_hud_additional_options"
+    "HORIZON_LOCK": {
+      "type": "palladium:condition",
+      "conditions": [
+        {
+          "type": "palladium:is_hovering_or_flying"
+        },
+        {
+          "type": "palladium:string_property",
+          "property": "satsu_iron_man_hud_horizon_lock",
+          "comparator": "equals",
+          "compare_to": "on"
+        }
+      ],
+      "true_value": "horizon_lock_on",
+      "false_value": "horizon_lock_off"
     }
   }
 }

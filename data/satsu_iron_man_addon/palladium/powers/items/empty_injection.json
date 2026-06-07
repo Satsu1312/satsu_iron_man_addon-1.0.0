@@ -41,8 +41,17 @@
             "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:has_power",
-                "power": "satsu_iron_man_addon:extremis/main"
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:extremis/main"
+                  },
+                  {
+                    "type": "palladium:has_power",
+                    "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
+                  }
+                ]
               }
             ]
           }
@@ -70,6 +79,31 @@
           {
             "type": "palladium:has_power",
             "power": "satsu_iron_man_addon:extremis/main"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "give.extremis_3_0.blood": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "first_tick_commands": [
+        "clear @s satsu_iron_man_addon:extremis/empty_injection 1",
+        "give @s satsu_iron_man_addon:extremis_3_0/extremis_3_0_syringe 1"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "dummy"
+          },
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:devices/extremis_3_0/main"
           }
         ],
         "unlocking": []

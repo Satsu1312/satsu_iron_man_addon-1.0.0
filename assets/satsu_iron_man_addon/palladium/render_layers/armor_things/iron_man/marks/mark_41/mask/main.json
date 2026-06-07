@@ -3,13 +3,13 @@
   "layers": [
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mask/iron_man_mask_41_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/mask/no_light/mark_41_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/bones_ensamble/#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/helmet/parts_ensamble/#TIMER.png"
           }
         ],
         "variables": {
@@ -20,15 +20,9 @@
             "property": "value",
             "min": 0,
             "max": 17
-          },
-          "X": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min": 0,
-            "max": 53
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light/mask/iron_man_mask_41_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/mask/no_light/mark_41_0_#TIMER"
       },
       "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
       "animation_controller": [
@@ -48,14 +42,14 @@
           "type": "palladium:or",
           "conditions": [
             {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.addon.armor.head",
-              "min_score": 0,
-              "max_score": 0
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.head",
+              "comparator": "equals",
+              "compare_to": "on"
             },
             {
               "type": "palladium:entity_type_tag",
-              "entity_type_tag": "satsu_iron_man_addon:stands"
+              "entity_type_tag": "satsu_iron_man_addon:player"
             }
           ]
         }
@@ -63,13 +57,13 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/marks/all_helmet/main.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/all_helmet/main.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mask/iron_man_mask_light_41_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/mask/light/mark_light_41_0.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/helmet/bones_ensamble/#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/helmet/parts_ensamble/#TIMER.png"
           }
         ],
         "variables": {
@@ -80,15 +74,9 @@
             "property": "value",
             "min": 0,
             "max": 17
-          },
-          "X": {
-            "type": "palladium:objective_score",
-            "objective": "satsu.iron.man.armor",
-            "min": 0,
-            "max": 52
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light/mask/iron_man_mask_light_41_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/mask/light/mark_light_41_0_#TIMER"
       },
       "render_type": "glow",
       "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
@@ -109,14 +97,14 @@
           "type": "palladium:or",
           "conditions": [
             {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.addon.armor.head",
-              "min_score": 0,
-              "max_score": 0
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.head",
+              "comparator": "equals",
+              "compare_to": "on"
             },
             {
               "type": "palladium:entity_type_tag",
-              "entity_type_tag": "satsu_iron_man_addon:stands"
+              "entity_type_tag": "satsu_iron_man_addon:player"
             }
           ]
         },
@@ -125,7 +113,7 @@
           "conditions": [
             {
               "type": "palladium:integer_property",
-              "property": "satsu_iron_man_armor_arc_energy",
+              "property": "satsu_iron_man_iron_man_energy",
               "min": 1,
               "max": 2147483647
             },
