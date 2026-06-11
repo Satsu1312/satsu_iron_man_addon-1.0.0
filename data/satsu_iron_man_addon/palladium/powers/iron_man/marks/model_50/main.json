@@ -6777,6 +6777,16 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
+                "ability": "hulkbuster"
+              }
+            ]
           }
         ]
       }
@@ -9306,6 +9316,11 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "energy_canonons"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
+                    "ability": "hulkbuster"
                   }
                 ]
               }
@@ -10121,6 +10136,60 @@
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 11,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 12,
+            "cooldown": 100,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "armor_animation",
+            "property": "value",
+            "min": 1,
+            "max": 17
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster"
+          }
+        ]
+      }
+    },
+    "hulkbuster_ground_slam": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/clap_sonic.png",
+      "title": {
+        "translate": "ability.title.satsu.ground.slam"
+      },
+      "description": {
+        "translate": "description.satsu.ground.slam"
+      },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 12,
       "conditions": {
         "enabling": [
           {
