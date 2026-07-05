@@ -2964,8 +2964,6 @@
       "list_index": 2,
       "gui_position": [4.3, -1],
       "abilities": [
-        "weapons_wheel.shoulder_rockets",
-        "weapons_wheel.flares",
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser",
         "weapons_wheel.flight_unlock"
@@ -2990,98 +2988,6 @@
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "armor_animation",
-            "property": "value",
-            "min": 15,
-            "max": 16
-          }
-        ]
-      }
-    },
-    "weapons_wheel.shoulder_rockets": {
-      "type": "satsu_iron_man_addon:set_property",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/shoulder_rocket.png",
-      "title": { "translate": "ability.title.satsu.fireworks" },
-      "description": { "translate": "description.Fireworks" },
-      "hidden": false,
-      "hidden_in_bar": false,
-      "list_index": 2,
-      "gui_position": [1, -3],
-      "name": "satsu_armor_weapon",
-      "number": 1,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_wheel",
-            "cooldown": 0
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "armor_animation",
-            "property": "value",
-            "min": 15,
-            "max": 16
-          }
-        ]
-      }
-    },
-    "weapons_wheel.flares": {
-      "type": "satsu_iron_man_addon:set_property",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
-      "title": { "translate": "ability.title.satsu.flare.flame" },
-      "description": { "translate": "description.satsu.flare.flame" },
-      "hidden": false,
-      "hidden_in_bar": false,
-      "list_index": 2,
-      "gui_position": [-1, -3],
-      "name": "satsu_armor_weapon",
-      "number": 2,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_wheel",
-            "cooldown": 0
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
           },
           {
             "type": "palladium:string_property",
@@ -4628,244 +4534,6 @@
         ]
       }
     },
-    "shoulder_rockets": {
-      "type": "palladium:repeating_animation_timer",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/shoulder_rocket.png",
-      "title": { "translate": "ability.title.satsu.fireworks" },
-      "description": { "translate": "description.Fireworks" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "list_index": 3,
-      "gui_position": [1, -3],
-      "start_value": 0,
-      "max_value": 20,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:activation",
-            "ticks": 20,
-            "cooldown": 100,
-            "key_type": "key_bind",
-            "needs_empty_hand": false
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_armor_weapon",
-            "min": 1,
-            "max": 1
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_armor_weapon_system",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "vibranuim.blades.attack"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "shoulder_rockets.play_sound": {
-      "type": "palladium:play_sound",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.missiles_sound",
-      "volume": 1,
-      "pitch": 1,
-      "looping": false,
-      "play_self": false,
-      "play_others": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "shoulder_rockets",
-                "property": "value",
-                "min": 1,
-                "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_fireworks",
-                "property": "value",
-                "min": 1,
-                "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "rocket",
-                "property": "value",
-                "min": 15,
-                "max": 15
-              }
-            ]
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "flares_flames": {
-      "type": "palladium:repeating_animation_timer",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
-      "entity_type": "palladium:custom_projectile",
-      "title": { "translate": "ability.title.satsu.flare.flame" },
-      "description": { "translate": "description.satsu.flare.flame" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "list_index": 3,
-      "start_value": 0,
-      "max_value": 20,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:activation",
-            "ticks": 20,
-            "cooldown": 160,
-            "key_type": "key_bind",
-            "needs_empty_hand": false
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_armor_weapon",
-            "min": 2,
-            "max": 2
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_armor_weapon_system",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "vibranuim.blades.attack"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "flares_flames.sound": {
-      "type": "palladium:play_sound",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.flare_flames_sound",
-      "volume": 1,
-      "pitch": 1,
-      "looping": false,
-      "play_self": false,
-      "play_others": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "flares_flames",
-                    "property": "value",
-                    "min": 9,
-                    "max": 9
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "nano_flares_flames"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_flares_flames",
-                    "property": "value",
-                    "min": 10,
-                    "max": 10
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
     "Mark.33.vibranuim.blades": {
       "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/vribranuim_blades.png",
@@ -5123,6 +4791,147 @@
             ]
           }
         ]
+      }
+    },
+    "electro_magnetic_aoe": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/mob_effect/emp.png",
+      "title": { "translate": "ability.title.satsu.emp" },
+      "description": { "translate": "description.satsu.emp" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 3,
+      "gui_position": [8.5, 5.5],
+      "start_value": 0,
+      "max_value": 20,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 20,
+            "cooldown": 300,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:not",
+            "conditions": []
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "electro_magnetic_aoe.player_animation": {
+      "type": "palladium:player_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "animation": "satsu_iron_man_addon:mark_33_aoe",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "electro_magnetic_aoe"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "armor_sentinel_anim",
+                    "property": "value",
+                    "min": 1,
+                    "max": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "electro_magnetic_aoe.command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "first_tick_commands": [
+        "playsound minecraft:block.beacon.activate master @a[distance=0..20] ~ ~ ~ 1 1",
+        "effect give @e[distance=0.1..5] satsu_iron_man_addon:emp_damage 10 2",
+        "particle satsu_iron_man_addon:electrify_effect ~ ~ ~ 1 2 3 0.01 100"
+      ],
+      "commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "electro_magnetic_aoe"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "electro_magnetic_aoe",
+            "property": "value",
+            "min": 19,
+            "max": 19
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "electro_magnetic_aoe.knockback": {
+      "type": "gravecore:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "knockback": 1.5,
+      "invert": false,
+      "cone": false,
+      "crush": false,
+      "is_charged": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "electro_magnetic_aoe"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "null",
+            "ability": "electro_magnetic_aoe",
+            "property": "value",
+            "min": 20,
+            "max": 20
+          }
+        ],
+        "unlocking": []
       }
     },
     "energy_pulse_projectile.right_normal": {
@@ -5409,346 +5218,6 @@
         ]
       }
     },
-    "mini_fireworks.firework_projectile-no_break": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 2.5,
-      "swinging_arm": "none",
-      "yawOffset": -35,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "Damage": 8,
-        "Size": 0.1,
-        "Gravity": 0.0,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/fire_work",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/fire_work",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_break_block_attack",
-            "comparator": "equals",
-            "compare_to": "off"
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "shoulder_rockets",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_fireworks",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "mini_fireworks.firework_projectile.2-no_break": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 2.5,
-      "swinging_arm": "none",
-      "yawOffset": 35,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "Damage": 8,
-        "Size": 0.1,
-        "Gravity": 0.0,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/fire_work",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/fire_work",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_break_block_attack",
-            "comparator": "equals",
-            "compare_to": "off"
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "shoulder_rockets",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_fireworks",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "mini_fireworks.firework_projectile-break": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 2.5,
-      "swinging_arm": "none",
-      "yawOffset": -35,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "ExplosionRadius": 1,
-        "ExplosionBlockInteraction": "BREAK",
-        "Damage": 8,
-        "Size": 0.1,
-        "Gravity": 0.0,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/fire_work",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/fire_work",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_break_block_attack",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "shoulder_rockets",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_fireworks",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "mini_fireworks.firework_projectile.2-break": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 2.5,
-      "swinging_arm": "none",
-      "yawOffset": 35,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "ExplosionRadius": 1,
-        "ExplosionBlockInteraction": "BREAK",
-        "Damage": 8,
-        "Size": 0.1,
-        "Gravity": 0.0,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/fire_work",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/fire_work",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:fireworks_hand"
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_break_block_attack",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "shoulder_rockets",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_fireworks",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "flares_flames.left": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 3,
-      "swinging_arm": "none",
-      "yawOffset": -50,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "Damage": 0,
-        "Size": 0.1,
-        "Gravity": 0.3,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:flame_flare"
-          },
-          {
-            "Type": "particles",
-            "ParticleType": "minecraft:firework",
-            "Spread": 0.1
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "flares_flames"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "flares_flames",
-            "property": "value",
-            "min": 19,
-            "max": 19
-          }
-        ]
-      }
-    },
-    "flares_flames.right": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 3,
-      "swinging_arm": "none",
-      "yawOffset": 50,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "Damage": 0,
-        "Size": 0.1,
-        "Gravity": 0.3,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:flame_flare"
-          },
-          {
-            "Type": "particles",
-            "ParticleType": "minecraft:firework",
-            "Spread": 0.1
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "flares_flames"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "flares_flames",
-            "property": "value",
-            "min": 19,
-            "max": 19
-          }
-        ]
-      }
-    },
     "no-list:show_both_arms": {
       "type": "palladium:show_both_arms",
       "hidden": true,
@@ -5924,14 +5393,14 @@
         ]
       }
     },
-    "mini_fireworks.remove.ark.energy": {
+    "electro_magnetic_aoe.remove.ark.energy": {
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
       "slot": "curios:tecnology_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
-      "adjustment_amount": 12,
+      "adjustment_amount": 600,
       "conditions": {
         "enabling": [
           {
@@ -5939,43 +5408,10 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "shoulder_rockets",
+                "ability": "electro_magnetic_aoe",
                 "property": "value",
-                "min": 8,
+                "min": 20,
                 "max": 20
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "nano_fireworks",
-                "property": "value",
-                "min": 8,
-                "max": 20
-              }
-            ]
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "flare_flames.remove.ark.energy": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "subtract",
-      "adjustment_amount": 20,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "flares_flames",
-                "property": "value",
-                "min": 19,
-                "max": 19
               }
             ]
           }
@@ -6240,6 +5676,99 @@
             "type": "palladium:is_hovering_or_flying"
           }
         ]
+      }
+    },
+    "is_hurt.get_energy": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 140,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:is_hurt",
+            "min_damage": 2
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": -2147483647,
+            "max": 28001
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "is_hurt.get_energy.2": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 280,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:is_hurt",
+            "min_damage": 10
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": -2147483647,
+            "max": 28001
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "is_hurt.get_energy.3": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 340,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:is_hurt",
+            "min_damage": 20
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": -2147483647,
+            "max": 28001
+          }
+        ],
+        "unlocking": []
       }
     },
     "low_energy_alarm": {
