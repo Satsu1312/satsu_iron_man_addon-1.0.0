@@ -6201,15 +6201,6 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "hulkbuster"
-              }
-            ]
           }
         ]
       }
@@ -8188,15 +8179,6 @@
                 ]
               }
             ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "hulkbuster"
-              }
-            ]
           }
         ]
       }
@@ -8219,6 +8201,15 @@
           {
             "type": "palladium:ability_enabled",
             "ability": "force_field"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "hulkbuster"
+              }
+            ]
           }
         ]
       }
@@ -8272,6 +8263,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "nano_flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "hulkbuster"
                   }
                 ]
               }
@@ -8291,11 +8286,23 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "shield_put_animation",
-            "property": "value",
-            "min": 6,
-            "max": 6
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shield_put_animation",
+                "property": "value",
+                "min": 6,
+                "max": 6
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shield_put_animation.hulkbuster",
+                "property": "value",
+                "min": 6,
+                "max": 6
+              }
+            ]
           }
         ],
         "unlocking": []
@@ -8312,11 +8319,23 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "shield_put_animation",
-            "property": "value",
-            "min": 6,
-            "max": 6
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shield_put_animation",
+                "property": "value",
+                "min": 6,
+                "max": 6
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shield_put_animation.hulkbuster",
+                "property": "value",
+                "min": 6,
+                "max": 6
+              }
+            ]
           }
         ],
         "unlocking": []
@@ -8362,15 +8381,41 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_enabled",
-            "ability": "shield_put_animation"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "shield_put_animation",
-            "property": "value",
-            "min": 6,
-            "max": 6
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shield_put_animation"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "shield_put_animation",
+                    "property": "value",
+                    "min": 6,
+                    "max": 6
+                  }
+                ]
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shield_put_animation.hulkbuster"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "shield_put_animation.hulkbuster",
+                    "property": "value",
+                    "min": 6,
+                    "max": 6
+                  }
+                ]
+              }
+            ]
           }
         ],
         "unlocking": []
@@ -8384,11 +8429,23 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:ability_integer_property",
-            "ability": "shield_put_animation",
-            "property": "value",
-            "min": 6,
-            "max": 6
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shield_put_animation",
+                "property": "value",
+                "min": 6,
+                "max": 6
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "shield_put_animation.hulkbuster",
+                "property": "value",
+                "min": 6,
+                "max": 6
+              }
+            ]
           }
         ],
         "unlocking": []
@@ -8410,6 +8467,32 @@
             "property": "value",
             "min": 7,
             "max": 7
+          }
+        ]
+      }
+    },
+    "shield_put_animation.hulkbuster": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 6,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:pdata_boolean_toggle",
+            "data": "satsu_iron_man_addon.shield_enabling_pressed",
+            "value": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "force_field"
           }
         ]
       }
@@ -10657,7 +10740,7 @@
       "first_tick_commands": [
         "scale set pehkui:eye_height 1.3",
         "scale set pehkui:hitbox_height 1.18",
-        "scale set pehkui:hitbox_width 1.20",
+        "scale set pehkui:hitbox_width 3",
         "superpower add satsu_iron_man_addon:iron_man/marks/model_prime/hulkbuster/main"
       ],
       "commands": [""],
