@@ -1,0 +1,75 @@
+{
+  "name": { "translate": "ability.title.posioned" },
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "abilities": {
+    "superpower": {
+      "type": "satsu_iron_man_addon:effect_immunity",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "effect": "satsu_iron_man_addon:palladium_posioned",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "remove": {
+      "type": "satsu_iron_man_addon:superpower",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "power": "satsu_iron_man_addon:effect/palladium_posioned_cure",
+      "capacity": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:palladium_posioned_cure"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 0,
+      "first_tick_commands": [
+        "effect give @s satsu_iron_man_addon:palladium_posioned infinite 2"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:has_power",
+            "power": "satsu_iron_man_addon:reactor_ark_power/not_update/main"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:palladium_posioned"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:has_effect",
+                "effect": "satsu_iron_man_addon:palladium_posioned_cure"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

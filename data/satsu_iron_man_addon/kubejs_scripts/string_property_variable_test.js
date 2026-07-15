@@ -330,6 +330,13 @@ PalladiumEvents.registerProperties((event) => {
   // Only register for players
   if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_nano_flight_boost", "string", "off");
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+    // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_iron_heart_energy", "integer", 10000);
   }
 });
@@ -611,6 +618,13 @@ PalladiumEvents.registerProperties((event) => {
   if (event.getEntityType() === "minecraft:player") {
     // Arguments: Key of the property, type of the property, default/starting value
     event.registerProperty("satsu_iron_man_addon_heat_repulsor", 'integer', 0);
+  }
+});
+PalladiumEvents.registerProperties((event) => {
+  // Only register for players
+  if (event.getEntityType() === "minecraft:player") {
+    // Arguments: Key of the property, type of the property, default/starting value
+    event.registerProperty("satsu_iron_man_addon_transform_hulkbusters", 'string', "off");
   }
 });
 PalladiumEvents.registerProperties((event) => {

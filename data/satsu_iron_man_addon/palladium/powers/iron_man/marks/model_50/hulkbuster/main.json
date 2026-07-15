@@ -22,6 +22,41 @@
     }
   },
   "abilities": {
+    "no_armor": {
+      "type": "palladium:restrict_slots",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slots": [
+        "curios:body"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:has_tag",
+                    "tag": "alien"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "remove.energy": {
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
@@ -348,7 +383,7 @@
       "type": "palladium:size",
       "hidden": true,
       "hidden_in_bar": true,
-      "scale": 1.35,
+      "scale": 1.6,
       "conditions": {
         "enabling": [
           {
@@ -379,6 +414,27 @@
           }
         ],
         "unlocking": []
+      }
+    },
+    "sonic_clap.player_animation": {
+      "type": "palladium:player_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "animation": "satsu_iron_man_addon:model_50_sonic_clap",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "sonic_clap",
+            "property": "value",
+            "min": 1,
+            "max": 10
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "sonic_clap"
+          }
+        ]
       }
     },
     "sonic_clap.projectile_no_break": {
@@ -505,6 +561,174 @@
             "ability": "sonic_clap"
           }
         ]
+      }
+    },
+    "ground_slam": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.hulkbuster" },
+      "description": { "translate": "description.satsu.hulkbuster" },
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": 11,
+      "max_distance": 5,
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
+            "ability": "hulkbuster_ground_slam"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "ground_slam.animation": {
+      "type": "palladium:player_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "animation": "satsu_iron_man_addon:model_50_hulkbuster_attacks.ground_slam",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "ground_slam",
+            "property": "value",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground_slam"
+          }
+        ]
+      }
+    },
+    "ground_slam.command:not_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s add ground_slam"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 0 normal",
+        "execute at @s run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[tag=!ground_slam,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": ["tag @s remove ground_slam"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "ground_slam",
+            "property": "value",
+            "min": 10,
+            "max": 10
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground_slam"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "ground_slam.command_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s add ground_slam"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 0 normal",
+        "execute at @s run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.1 100 force",
+        "execute as @e[tag=!ground_slam,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": [
+        "execute as @s unless block ~2 ~-2 ~2 #satsu_iron_man_addon:no_destroy run fill ~-1 ~-1 ~-2 ~2 ~-2 ~2 minecraft:air destroy",
+        "tag @s remove ground_slam"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "ground_slam",
+            "property": "value",
+            "min": 10,
+            "max": 10
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground_slam"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "ground_slam.aoe_knockback": {
+      "type": "gravestone:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "knockback": 1.5,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "ground_slam",
+            "property": "value",
+            "min": 10,
+            "max": 10
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground_slam"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "ground_slam.aoe_damage": {
+      "type": "gravestone:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "damage": 26,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "ground_slam",
+            "property": "value",
+            "min": 10,
+            "max": 10
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "ground_slam"
+          }
+        ],
+        "unlocking": []
       }
     }
   }

@@ -1576,6 +1576,7 @@
         "energy_beam_increase_wheel_2",
         "energy_beam_increase_wheel_3"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -2144,6 +2145,7 @@
         "nano_weapons_wheel.water_movement",
         "weapons_wheel.flight_unlock"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -4027,7 +4029,7 @@
             "type": "palladium:integer_property",
             "property": "satsu_iron_man_flight_speed_choose",
             "min": 0,
-            "max": 406
+            "max": 206
           }
         ]
       }
@@ -4070,7 +4072,7 @@
             "type": "palladium:integer_property",
             "property": "satsu_iron_man_flight_speed_choose",
             "min": 2,
-            "max": 410
+            "max": 210
           }
         ]
       }
@@ -4082,7 +4084,7 @@
       "slot": "curios:tecnology_armor",
       "nbtKey": "Flight_velocity",
       "adjustment_type": "set",
-      "adjustment_amount": 408,
+      "adjustment_amount": 208,
       "conditions": {
         "enabling": [
           {
@@ -4121,7 +4123,7 @@
             "type": "palladium:integer_property",
             "property": "satsu_iron_man_flight_speed_choose",
             "min": 0,
-            "max": 406
+            "max": 206
           }
         ]
       }
@@ -4172,7 +4174,7 @@
             "type": "palladium:integer_property",
             "property": "satsu_iron_man_flight_speed_choose",
             "min": 2,
-            "max": 410
+            "max": 210
           }
         ]
       }
@@ -4197,8 +4199,10 @@
         "nano_weapons_wheel.nano_hand_blade",
         "nano_weapons_wheel.force_field",
         "nano_weapons_wheel.nano_health_spray",
-        "nano_weapons_wheel_nano_stabilizer"
+        "nano_weapons_wheel_nano_stabilizer",
+        "nano_weapons_wheel_nano_flight_boost"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -4244,7 +4248,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
           }
         ]
@@ -4270,7 +4274,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
           }
         ]
@@ -4292,7 +4296,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
           }
         ]
@@ -4382,7 +4386,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
           }
         ]
@@ -4466,7 +4470,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
           }
         ]
@@ -4556,7 +4560,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
           }
         ]
@@ -4737,7 +4741,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
           }
         ]
@@ -4915,7 +4919,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "weapons_wheel"
           }
         ]
@@ -4939,7 +4943,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "weapons_wheel"
           }
         ]
@@ -5296,7 +5300,7 @@
         "unlocking": []
       }
     },
-    "flight_anim": {
+    "nano_flight_boost": {
       "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": true,
@@ -5325,10 +5329,10 @@
                     "type": "palladium:is_fast_flying"
                   },
                   {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_iron_man_flight_speed_choose",
-                    "min": 254,
-                    "max": 10000000000
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_nano_flight_boost",
+                    "comparator": "equals",
+                    "compare_to": "on"
                   }
                 ]
               },
@@ -5348,6 +5352,24 @@
             "property": "satsu_iron_man_addon_armor_activated",
             "comparator": "equals",
             "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "nano_flight_boost.stat": {
+      "type": "satsu_iron_man_addon:property_stat_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "property_value": "satsu_iron_man_flight_speed_choose",
+      "Division_Amount": "200",
+      "Attribute_Type": "palladium:flight_speed",
+      "UUID": "db936433-4e33-4c6e-b8fc-f9463567b6c7",
+      "gui_position": [1, 0.5],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_flight_boost"
           }
         ]
       }
@@ -5437,6 +5459,91 @@
         "unlocking": []
       }
     },
+    "nano_weapons_wheel_nano_flight_boost": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/nano/nano_flight_boost.png",
+      "title": { "translate": "ability.title.satsu.flight_boost" },
+      "description": { "translate": "description.satsu.flight_boost" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "gui_position": [1, -4],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_wheel",
+            "cooldown": 0
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "nano_weapons_wheel"
+          }
+        ]
+      }
+    },
+    "nano_flight_boost_off": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_nano_flight_boost",
+      "test_value": "off",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_weapons_wheel_nano_flight_boost"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_nano_flight_boost",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_flight_boost_on"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "nano_flight_boost_on": {
+      "type": "satsu_iron_man_addon:set_property_string",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_iron_man_addon_nano_flight_boost",
+      "test_value": "on",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "nano_weapons_wheel_nano_flight_boost"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_nano_flight_boost",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "nano_flight_boost_off"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "nano_weapons_wheel.nano_health_spray": {
       "type": "satsu_iron_man_addon:scoreboard_ability",
       "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/nano_health_spray.png",
@@ -5456,7 +5563,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "nano_weapons_wheel"
           }
         ]
@@ -8826,7 +8933,7 @@
               },
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "flight_anim",
+                "ability": "nano_flight_boost",
                 "min": "1",
                 "max": "8"
               },
