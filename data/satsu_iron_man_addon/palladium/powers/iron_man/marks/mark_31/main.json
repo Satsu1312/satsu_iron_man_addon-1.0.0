@@ -390,6 +390,36 @@
         ]
       }
     },
+    "class_2": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/vribranuim_blades.png",
+      "title": { "translate": "ability.title.class.silver.centurion" },
+      "description": {
+        "translate": "description.iron.man.class.silver.centurion"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-0.5, 0],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "puting": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
@@ -6050,6 +6080,99 @@
             "max_score": 2
           }
         ]
+      }
+    },
+    "is_hurt.get_energy": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 140,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:is_hurt",
+            "min_damage": 2
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": -2147483647,
+            "max": 28001
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "is_hurt.get_energy.2": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 280,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:is_hurt",
+            "min_damage": 10
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": -2147483647,
+            "max": 28001
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "is_hurt.get_energy.3": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
+      "adjustment_type": "add",
+      "adjustment_amount": 340,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:is_hurt",
+            "min_damage": 20
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_animation_armor",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": -2147483647,
+            "max": 28001
+          }
+        ],
+        "unlocking": []
       }
     },
     "low_energy_alarm": {
