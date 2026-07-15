@@ -30,21 +30,6 @@ PalladiumEvents.registerAnimations((event) => {
           .setZRotDegrees(30)
           .animate("InOutCubic", progress);
       }
-      //if third person
-      if (!builder.isFirstPerson()) {
-        builder
-          .get("right_arm")
-          .setXRotDegrees(-90)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder
-          .get("left_arm")
-          .setXRotDegrees(-90)
-          .setYRotDegrees(0)
-          .setZRotDegrees(0)
-          .animate("InOutCubic", progress);
-      }
     }
   });
   event.registerForPower("satsu_iron_man_addon/marks/model_50/sonic_clap2",
@@ -75,21 +60,6 @@ PalladiumEvents.registerAnimations((event) => {
           .setXRotDegrees(-33)
           .setYRotDegrees(30)
           .setZRotDegrees(30)
-          .animate("InOutCubic", progress);
-      }
-      //if third person
-      if (!builder.isFirstPerson()) {
-        builder
-          .get("right_arm")
-          .setXRotDegrees(-90)
-          .setYRotDegrees(-23)
-          .setZRotDegrees(0)
-          .animate("InOutCubic", progress);
-        builder
-          .get("left_arm")
-          .setXRotDegrees(-90)
-          .setYRotDegrees(23)
-          .setZRotDegrees(0)
           .animate("InOutCubic", progress);
       }
     }
