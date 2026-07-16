@@ -4728,6 +4728,250 @@
         ]
       }
     },
+    "tiger_pounce.facing": {
+      "type": "gravecore:movement",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.tiger_pounce" },
+      "description": { "translate": "description.satsu.tiger_pounce" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "motion_scale": 1.3,
+      "direction": "facing",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 6,
+            "cooldown": 30,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_armor_weapon",
+            "min": 2,
+            "max": 2
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_armor_weapon_system",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_katar.attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "tiger_pounce.backward": {
+      "type": "gravecore:movement",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.tiger_pounce" },
+      "description": { "translate": "description.satsu.tiger_pounce" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "motion_scale": 1.3,
+      "direction": "backward",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 6,
+            "cooldown": 30,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:crouching"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_armor_weapon",
+            "min": 2,
+            "max": 2
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_armor_weapon_system",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_katar.attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "tiger_pounce.aoe_damage": {
+      "type": "gravecore:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 2,
+      "damage": 4.5,
+      "fire_ticks": 0,
+      "damage_type": "null",
+      "cone": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "tiger_pounce.facing"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "tiger_pounce.backward"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "tiger_pounce.aoe_knockback": {
+      "type": "gravecore:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 1.5,
+      "knockback": 0.25,
+      "invert": false,
+      "cone": false,
+      "crush": false,
+      "is_charged": false,
+      "scoreboard": "Score.Board",
+      "scoreboard_max": "Score.Board.Max",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "tiger_pounce.facing"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "tiger_pounce.backward"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "tiger_pounce.remove.ark.energy": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Energy",
+      "adjustment_type": "subtract",
+      "adjustment_amount": 25,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "tiger_pounce.facing"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "tiger_pounce.backward"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "energy_pulse_projectile.right_normal": {
       "type": "gravecore:projectile",
       "hidden": true,
