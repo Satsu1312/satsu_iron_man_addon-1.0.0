@@ -4371,20 +4371,36 @@
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:ability_enabled",
-                "ability": "increase.flight_speed"
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "increase.flight_speed"
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_iron_man_flight_speed_choose",
+                    "min": 252,
+                    "max": 252
+                  }
+                ]
               },
               {
-                "type": "palladium:ability_enabled",
-                "ability": "increase.max.flight_speed"
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "increase.max.flight_speed"
+                  },
+                  {
+                    "type": "palladium:integer_property",
+                    "property": "satsu_iron_man_flight_speed_choose",
+                    "min": 0,
+                    "max": 254
+                  }
+                ]
               }
             ]
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_flight_speed_choose",
-            "min": 254,
-            "max": 254
           }
         ]
       }
@@ -4530,6 +4546,302 @@
             "property": "satsu_iron_man_flight_speed_choose",
             "min": 2,
             "max": 254
+          }
+        ]
+      }
+    },
+    "fly_damage-60": {
+      "type": "gravecore:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 6,
+      "damage": 4,
+      "fire_ticks": 0,
+      "damage_type": "null",
+      "cone": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_flight_speed_choose",
+            "min": 60,
+            "max": 180
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flight.fall.animation",
+            "property": "value",
+            "min": 35,
+            "max": 50
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:is_fast_flying"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "armor_animation",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          }
+        ]
+      }
+    },
+    "fly_damage-180": {
+      "type": "gravecore:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 6,
+      "damage": 8,
+      "fire_ticks": 0,
+      "damage_type": "null",
+      "cone": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_flight_speed_choose",
+            "min": 180,
+            "max": 230
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flight.fall.animation",
+            "property": "value",
+            "min": 35,
+            "max": 50
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:is_fast_flying"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "armor_animation",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          }
+        ]
+      }
+    },
+    "fly_damage-230": {
+      "type": "gravecore:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 6,
+      "damage": 12,
+      "fire_ticks": 0,
+      "damage_type": "null",
+      "cone": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_flight_speed_choose",
+            "min": 230,
+            "max": 254
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flight.fall.animation",
+            "property": "value",
+            "min": 35,
+            "max": 50
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:is_fast_flying"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "armor_animation",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          }
+        ]
+      }
+    },
+    "destroy_blocks": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [""],
+      "last_tick_commands": [""],
+      "commands": ["fill ~-3 ~-3 ~-3 ~3 ~3 ~3 air destroy"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flight.fall.animation",
+            "property": "value",
+            "min": 35,
+            "max": 50
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_flight_speed_choose",
+            "min": 60,
+            "max": 254
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:is_fast_flying"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "armor_animation",
+            "property": "value",
+            "min": 15,
+            "max": 16
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
           }
         ]
       }
