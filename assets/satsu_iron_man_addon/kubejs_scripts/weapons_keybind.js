@@ -32,6 +32,11 @@ ClientEvents.tick((event) => {
       Client.player.sendData("satsu_iron_man_addon.weaponsSystemKey");
     }
 
+    // --- Lógica para el SISTEMA DE ARMAS (Sigue siendo Toggle/Click) ---
+    if (global["TARGET_LOCK"] && global["TARGET_LOCK"].consumeClick()) {
+      Client.player.sendData("satsu_iron_man_addon.targetLockKey");
+    }
+
     // --- Lógica para el REFRESH HEAT (Sigue siendo Toggle/Click) ---
     if (global["REFRESH_HEAT"] && global["REFRESH_HEAT"].consumeClick()) {
       Client.player.sendData("satsu_iron_man_addon.refresh_heat");
