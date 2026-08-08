@@ -390,6 +390,36 @@
         ]
       }
     },
+    "class_2": {
+      "type": "palladium:dummy",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/pincher_red.png",
+      "title": { "translate": "ability.title.class.danger.control" },
+      "description": {
+        "translate": "description.iron.man.class.danger.control"
+      },
+      "hidden": false,
+      "hidden_in_bar": true,
+      "gui_position": [-0.5, 0],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "puting": {
       "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
@@ -4891,7 +4921,6 @@
     "flares_flames": {
       "type": "palladium:repeating_animation_timer",
       "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
-      "entity_type": "palladium:custom_projectile",
       "title": { "translate": "ability.title.satsu.flare.flame" },
       "description": { "translate": "description.satsu.flare.flame" },
       "hidden": true,
@@ -4919,6 +4948,82 @@
             "property": "satsu_armor_weapon",
             "min": 2,
             "max": 2
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_armor_weapon_system",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_katar.attack"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "grab": {
+      "type": "palladium:command",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/pincher_red.png",
+      "title": { "translate": "ability.title.satsu.pincher_both" },
+      "description": { "translate": "description.satsu.pincher_both" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "gui_position": [-8, 3.95],
+      "list_index": 4,
+      "first_tick_commands": [
+        "execute anchored eyes run function satsu_iron_man_addon:raycast/pick_two_entities/main"
+      ],
+      "commands": [
+        "execute anchored feet rotated ~ 0 if entity @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] run tp @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] ^ ^0.4 ^1.2",
+        "execute if entity @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] run tag @s add grave.pick.grabbing",
+        "execute unless entity @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] run scoreboard players add @s grave.pick.timer 1"
+      ],
+      "last_tick_commands": [
+        "tag @s remove grave.pick.grabbing",
+        "tag @e[sort=nearest,limit=2,tag=grave.pick.picked,distance=0..9] remove grave.pick.picked",
+        "scoreboard players set @s grave.pick.timer 0"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
