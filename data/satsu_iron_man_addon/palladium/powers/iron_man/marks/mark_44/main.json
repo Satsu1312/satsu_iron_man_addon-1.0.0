@@ -5006,6 +5006,187 @@
         ]
       }
     },
+    "hulkbuster_jump": {
+      "type": "gravecore:movement",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.hulkbuster_jump" },
+      "description": { "translate": "description.satsu.hulkbuster_jump" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 3,
+      "gui_position": "null",
+      "motion_scale": 0.1,
+      "direction": "up",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:looking_down",
+                    "range": 90
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:looking_up",
+                    "range": 90
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "hulkbuster_jump_commands": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add hulkbuster_jump"],
+      "last_tick_commands": [],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "hulkbuster_jump"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump_bum": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "hulkbuster_jump"
+              }
+            ]
+          },
+          {
+            "type": "palladium:has_tag",
+            "tag": "hulkbuster_jump"
+          },
+          {
+            "type": "palladium:on_ground"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump_bum.no_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 25 normal",
+        "execute at @s run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.001 115 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true",
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s remove hulkbuster_jump"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_jump_bum"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump_bum.break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 25 normal",
+        "execute at @s run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.001 115 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true",
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "execute as @s unless block ~2 ~-2 ~2 #satsu_iron_man_addon:no_destroy run fill ~-1 ~-1 ~-2 ~2 ~-2 ~2 minecraft:air destroy",
+        "tag @s remove hulkbuster_jump"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_jump_bum"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump.aoe_knockback": {
+      "type": "gravestone:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 7,
+      "knockback": 1.4,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_jump_bum"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump.aoe_damage": {
+      "type": "gravestone:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 7,
+      "damage": 16,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_jump_bum"
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "energy_pulse_projectile.right_normal": {
       "type": "gravecore:projectile",
       "hidden": true,
