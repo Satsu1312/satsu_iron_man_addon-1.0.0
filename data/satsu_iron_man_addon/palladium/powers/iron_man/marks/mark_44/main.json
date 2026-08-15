@@ -217,10 +217,34 @@
         "scale reset pehkui:block_reach",
         "scale reset pehkui:entity_reach"
       ],
-      "commands": [
-        "effect give @s minecraft:slowness 2 2 true",
-        "effect give @s minecraft:resistance 2 2 true"
-      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+            },
+            "slot": "curios:hulkbuster_armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "multi_effect_modifier": {
+      "type": "satsu_iron_man_addon:multi_effect_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "effects": ["minecraft:slowness", "minecraft:resistance"],
+      "amplifiers": ["2", "2"],
+      "show_particles": ["false", "false"],
+      "dummy": "0",
       "conditions": {
         "enabling": [],
         "unlocking": [
