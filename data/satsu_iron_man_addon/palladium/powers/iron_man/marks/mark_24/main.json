@@ -591,7 +591,7 @@
       "hidden_in_bar": true,
       "attribute": "palladium:flight_speed",
       "uuid": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
-      "amount": 0.75,
+      "amount": 0.55,
       "operation": 0,
       "gui_position": [1, 0.5],
       "conditions": {
@@ -654,7 +654,7 @@
       "hidden_in_bar": true,
       "attribute": "palladium:flight_speed",
       "uuid": "0062294e-6726-456b-95e7-f352c3c2d1b8",
-      "amount": 0.75,
+      "amount": 0.25,
       "operation": 0,
       "conditions": {
         "enabling": [
@@ -809,7 +809,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "property_value": "satsu_iron_man_flight_speed_choose",
-      "Division_Amount": "200",
+      "Division_Amount": "285",
       "Attribute_Type": "palladium:flight_speed",
       "UUID": "e85d2ec9-1558-43b9-a8ff-60b7045ddc92",
       "gui_position": [1, 0.5],
@@ -1564,6 +1564,50 @@
       "hidden_in_bar": true,
       "gui_position": [1.35, -1.25],
       "damage_sources": ["minecraft:is_projectile"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "multi_effect_modifier": {
+      "type": "satsu_iron_man_addon:multi_effect_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "effects": ["minecraft:slowness", "minecraft:resistance"],
+      "amplifiers": ["0", "0"],
+      "show_particles": ["false", "false"],
+      "dummy": "0",
       "conditions": {
         "enabling": [
           {
@@ -5345,6 +5389,79 @@
                 "property": "value",
                 "min": 1,
                 "max": 6
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Baluarte": {
+      "type": "satsu_iron_man_addon:multi_effect_modifier",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.one.rocket" },
+      "description": { "translate": "description.satsu.one.rocket" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "effects": ["minecraft:slowness", "minecraft:resistance"],
+      "amplifiers": ["2", "3"],
+      "show_particles": ["false", "false"],
+      "dummy": "0",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 160,
+            "cooldown": 340,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_armor_weapon_system",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_armor_weapon_system",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_katar.attack"
+                  }
+                ]
               }
             ]
           }
