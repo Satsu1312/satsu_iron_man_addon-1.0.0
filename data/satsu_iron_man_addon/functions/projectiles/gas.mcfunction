@@ -1,0 +1,1 @@
+execute as @e[tag=!maximum.pulse,sort=nearest,distance=0..4.5] at @s if entity @s[type=!#satsu_iron_man_addon:items] run effect give @s satsu_iron_man_addon:blind 5 2 false

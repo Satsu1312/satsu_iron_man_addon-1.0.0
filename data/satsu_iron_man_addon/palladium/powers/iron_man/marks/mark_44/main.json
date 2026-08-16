@@ -2571,7 +2571,7 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
+                    "ability": "gas"
                   }
                 ]
               }
@@ -2928,7 +2928,7 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
+                "ability": "gas"
               }
             ]
           }
@@ -3228,9 +3228,9 @@
     },
     "weapons_wheel.flares": {
       "type": "satsu_iron_man_addon:set_property",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
-      "title": { "translate": "ability.title.satsu.flare.flame" },
-      "description": { "translate": "description.satsu.flare.flame" },
+      "icon": "satsu_iron_man_addon:textures/gui/armors/gas.png",
+      "title": { "translate": "ability.title.satsu.gas" },
+      "description": { "translate": "description.satsu.gas" },
       "hidden": false,
       "hidden_in_bar": false,
       "list_index": 1,
@@ -4882,12 +4882,11 @@
         "unlocking": []
       }
     },
-    "flares_flames": {
-      "type": "palladium:repeating_animation_timer",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
-      "entity_type": "palladium:custom_projectile",
-      "title": { "translate": "ability.title.satsu.flare.flame" },
-      "description": { "translate": "description.satsu.flare.flame" },
+    "gas": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/gas.png",
+      "title": { "translate": "ability.title.satsu.gas" },
+      "description": { "translate": "description.satsu.gas" },
       "hidden": true,
       "hidden_in_bar": false,
       "list_index": 2,
@@ -4897,7 +4896,7 @@
         "enabling": [
           {
             "type": "palladium:activation",
-            "ticks": 20,
+            "ticks": 40,
             "cooldown": 160,
             "key_type": "key_bind",
             "needs_empty_hand": false
@@ -4954,54 +4953,50 @@
         ]
       }
     },
-    "flares_flames.sound": {
-      "type": "palladium:play_sound",
+    "gas_projectile.right": {
+      "type": "gravecore:projectile",
       "hidden": true,
       "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.flare_flames_sound",
-      "volume": 1,
-      "pitch": 1,
-      "looping": false,
-      "play_self": false,
-      "play_others": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOffset": 120,
+      "pitchOffset": 0,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 0.4,
+        "Damage": 1.5,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/gas",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/gas",
+        "Appearances": [
+          {
+            "Type": "particles",
+            "ParticleType": "minecraft:cloud",
+            "Spread": 0.3
+          }
+        ]
+      },
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "flares_flames",
-                    "property": "value",
-                    "min": 9,
-                    "max": 9
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_enabled",
-                    "ability": "nano_flares_flames"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_flares_flames",
-                    "property": "value",
-                    "min": 10,
-                    "max": 10
-                  }
-                ]
-              }
-            ]
+            "type": "palladium:ability_enabled",
+            "ability": "gas",
+            "min": 1,
+            "max": 20
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "gas",
+            "min": 1,
+            "max": 20
           }
         ]
       }
@@ -5202,7 +5197,7 @@
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.5,
-        "Damage": 7.5,
+        "Damage": 14.5,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -5249,7 +5244,7 @@
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.5,
-        "Damage": 7.5,
+        "Damage": 14.5,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -5296,7 +5291,7 @@
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.5,
-        "Damage": 8,
+        "Damage": 15,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -5343,7 +5338,7 @@
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.5,
-        "Damage": 8,
+        "Damage": 15,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -5429,10 +5424,6 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "energy.pulse_left"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
               }
             ]
           }
@@ -5464,7 +5455,7 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
+                "ability": "gas"
               }
             ]
           }
@@ -5711,106 +5702,6 @@
         ]
       }
     },
-    "flares_flames.left": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 3,
-      "swinging_arm": "none",
-      "yawOffset": -50,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "Damage": 0,
-        "Size": 0.1,
-        "Gravity": 0.3,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:flame_flare"
-          },
-          {
-            "Type": "particles",
-            "ParticleType": "minecraft:firework",
-            "Spread": 0.1
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "flares_flames"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "flares_flames",
-            "property": "value",
-            "min": 19,
-            "max": 19
-          }
-        ]
-      }
-    },
-    "flares_flames.right": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 3,
-      "swinging_arm": "none",
-      "yawOffset": 50,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "Damage": 0,
-        "Size": 0.1,
-        "Gravity": 0.3,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:flame_flare"
-          },
-          {
-            "Type": "particles",
-            "ParticleType": "minecraft:firework",
-            "Spread": 0.1
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "flares_flames"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "flares_flames",
-            "property": "value",
-            "min": 19,
-            "max": 19
-          }
-        ]
-      }
-    },
     "no-list:show_both_arms": {
       "type": "palladium:show_both_arms",
       "hidden": true,
@@ -5831,10 +5722,6 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "uni.beam.hand.left"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
               }
             ]
           }
@@ -5863,7 +5750,7 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
+                "ability": "gas"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -5914,7 +5801,7 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
+                    "ability": "gas"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -6012,7 +5899,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "flares_flames",
+                "ability": "gas",
                 "property": "value",
                 "min": 19,
                 "max": 19
