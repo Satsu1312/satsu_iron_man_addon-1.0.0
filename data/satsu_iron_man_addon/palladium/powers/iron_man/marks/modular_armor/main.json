@@ -846,7 +846,7 @@
       }
     },
     "durability": {
-      "type": "satsu_iron_man_addon:multi_attribute_modifier",
+      "type": "palladium:dummy",
       "icon": "minecraft:iron_chestplate",
       "title": { "translate": "ability.title.satsu.durability" },
       "description": { "translate": "description.satsu.durability" },
@@ -857,7 +857,7 @@
         "minecraft:generic.armor",
         "minecraft:generic.armor_toughness"
       ],
-      "amounts": ["20", "5"],
+      "amounts": ["15", "2"],
       "operations": ["addition", "addition"],
       "uuids": [
         "b379de99-9744-4cd1-83ca-ed123bb07291",
@@ -905,6 +905,147 @@
                 "max_score": 1
               }
             ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "durability_1": {
+      "type": "satsu_iron_man_addon:multi_attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attributes": [
+        "minecraft:generic.armor",
+        "minecraft:generic.armor_toughness"
+      ],
+      "amounts": ["15", "2"],
+      "operations": ["addition", "addition"],
+      "uuids": [
+        "b379de99-9744-4cd1-83ca-ed123bb07291",
+        "b719de99-9744-4cd1-83ca-ed123bb07291"
+      ],
+      "dummy": "0",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_1",
+            "mode": "equals"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "durability"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "durability_2": {
+      "type": "satsu_iron_man_addon:multi_attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attributes": [
+        "minecraft:generic.armor",
+        "minecraft:generic.armor_toughness"
+      ],
+      "amounts": ["20", "5"],
+      "operations": ["addition", "addition"],
+      "uuids": [
+        "b379de99-9744-4cd1-83ca-ed123bb07291",
+        "b719de99-9744-4cd1-83ca-ed123bb07291"
+      ],
+      "dummy": "0",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_2",
+            "mode": "equals"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "durability"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "durability_3": {
+      "type": "satsu_iron_man_addon:multi_attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attributes": [
+        "minecraft:generic.armor",
+        "minecraft:generic.armor_toughness"
+      ],
+      "amounts": ["25", "15"],
+      "operations": ["addition", "addition"],
+      "uuids": [
+        "b379de99-9744-4cd1-83ca-ed123bb07291",
+        "b719de99-9744-4cd1-83ca-ed123bb07291"
+      ],
+      "dummy": "0",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_3",
+            "mode": "equals"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "durability"
           }
         ],
         "unlocking": [
@@ -981,18 +1122,14 @@
         "unlocking": []
       }
     },
-    "strength.normal": {
-      "type": "palladium:attribute_modifier",
+    "strength": {
+      "type": "palladium:dummy",
       "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
       "title": { "translate": "ability.title.satsu.strength" },
       "description": { "translate": "description.satsu.strength" },
       "hidden": false,
       "hidden_in_bar": true,
       "gui_position": [1, -0.6],
-      "attribute": "minecraft:generic.attack_damage",
-      "uuid": "f780d74f-5bab-432d-b60d-0748e5788bd8",
-      "amount": 5.5,
-      "operation": 0,
       "conditions": {
         "enabling": [
           {
@@ -1014,12 +1151,6 @@
             "property": "satsu_iron_man_addon_armor_activated",
             "comparator": "equals",
             "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_strenght_power",
-            "comparator": "equals",
-            "compare_to": "normal"
           },
           {
             "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
@@ -1049,16 +1180,35 @@
         ]
       }
     },
-    "strength.increase": {
+    "strength_1.normal": {
       "type": "palladium:attribute_modifier",
       "hidden": true,
       "hidden_in_bar": true,
       "attribute": "minecraft:generic.attack_damage",
-      "uuid": "e8109847-da93-4693-a9aa-3e51107cd576",
-      "amount": 11.5,
+      "uuid": "f780d74f-5bab-432d-b60d-0748e5788bd8",
+      "amount": 10,
       "operation": 0,
       "conditions": {
         "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_1",
+            "mode": "equals"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "strength"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "normal"
+          }
+        ],
+        "unlocking": [
           {
             "type": "palladium:or",
             "conditions": [
@@ -1072,27 +1222,220 @@
                 "ability": "enable_armor"
               }
             ]
+          }
+        ]
+      }
+    },
+    "strength_1.increase": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "e8109847-da93-4693-a9aa-3e51107cd576",
+      "amount": 21.5,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_1",
+            "mode": "equals"
           },
           {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
+            "type": "palladium:ability_enabled",
+            "ability": "strength"
           },
           {
             "type": "palladium:string_property",
             "property": "satsu_iron_man_addon_strenght_power",
             "comparator": "equals",
             "compare_to": "increase"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "strength_2.normal": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "f780d74f-5bab-432d-b60d-0748e5788bd8",
+      "amount": 3,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_2",
+            "mode": "equals"
           },
           {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            "type": "palladium:ability_enabled",
+            "ability": "strength"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "normal"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "strength_2.increase": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "e8109847-da93-4693-a9aa-3e51107cd576",
+      "amount": 6.5,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_2",
+            "mode": "equals"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "strength"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "strength_3.normal": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "f780d74f-5bab-432d-b60d-0748e5788bd8",
+      "amount": 5.5,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_3",
+            "mode": "equals"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "strength"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "normal"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "strength_3.increase": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attribute": "minecraft:generic.attack_damage",
+      "uuid": "e8109847-da93-4693-a9aa-3e51107cd576",
+      "amount": 11.5,
+      "operation": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Stadistic_Armor",
+            "nbtValue": "armor_stats_3",
+            "mode": "equals"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "strength"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_strenght_power",
+            "comparator": "equals",
+            "compare_to": "increase"
           }
         ],
         "unlocking": [
