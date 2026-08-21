@@ -4304,7 +4304,7 @@
         "enabling": [
           {
             "type": "palladium:held",
-            "cooldown": 90,
+            "cooldown": 25,
             "key_type": "key_bind",
             "needs_empty_hand": false
           }
@@ -4326,6 +4326,111 @@
             "property": "satsu_iron_man_addon_armor_activated",
             "comparator": "equals",
             "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "sonic_dampened_aoe": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/sonic_howl.png",
+      "title": { "translate": "ability.title.satsu.dampened.sound" },
+      "description": { "translate": "description.satsu.dampened.sound" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "gui_position": [-8, 4.95],
+      "start_value": 0,
+      "max_value": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 25,
+            "cooldown": 220,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "sonic_dampened_aoe.sound": {
+      "type": "palladium:play_sound",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "sound": "satsu_iron_man_addon:entity.effect.dampened_sonic",
+      "volume": 0.3,
+      "pitch": 1,
+      "looping": true,
+      "play_self": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "sonic_dampened_aoe",
+            "property": "value",
+            "min": 8,
+            "max": 10
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "sonic_dampened_aoe.effect": {
+      "type": "satsu_iron_man_addon:aoe_effect_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "effect": "satsu_iron_man_addon:dampened_sonic",
+      "amplifier": 2,
+      "range": 15,
+      "duration": 160,
+      "show_particles": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "sonic_dampened_aoe",
+            "property": "value",
+            "min": 8,
+            "max": 10
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "sonic_dampened_aoe_command": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["particle satsu_iron_man_addon:sonic_clap ~ ~ ~ 2 2 2 0.01 25 normal"],
+      "commands": [""],
+      "last_tick_commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "sonic_dampened_aoe",
+            "property": "value",
+            "min": 8,
+            "max": 10
           }
         ]
       }
@@ -4588,6 +4693,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "sonic_dampened_aoe"
               }
             ]
           }
@@ -4628,6 +4737,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "mk.36.sonic_dampened"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "sonic_dampened_aoe"
               }
             ]
           }
@@ -4658,6 +4771,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "sonic_dampened_aoe"
               }
             ]
           }
