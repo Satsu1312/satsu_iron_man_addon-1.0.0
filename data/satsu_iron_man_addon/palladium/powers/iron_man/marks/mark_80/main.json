@@ -11822,60 +11822,6 @@
           ]
         }
       },
-      "nano_energy_boosters": {
-        "type": "palladium:animation_timer",
-        "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/nano/energy_boosters.png",
-        "title": { "translate": "ability.title.satsu.energy.boosters" },
-        "description": { "translate": "description.satsu.energy.boosters" },
-        "hidden": true,
-        "hidden_in_bar": false,
-        "gui_position": [-9, -0.5],
-        "list_index": 10,
-        "start_value": 0,
-        "max_value": 20,
-        "conditions": {
-          "enabling": [
-            {
-              "type": "palladium:toggle",
-              "cooldown": 120,
-              "key_type": "key_bind",
-              "needs_empty_hand": false
-            }
-          ],
-          "unlocking": [
-            {
-              "type": "palladium:ability_unlocked",
-              "ability": "armor"
-            },
-            {
-              "type": "palladium:ability_unlocked",
-              "ability": "nano_group.nano_weapons_wheel"
-            },
-            {
-              "type": "palladium:ability_integer_property",
-              "ability": "chest_animation",
-              "property": "value",
-              "min": 17,
-              "max": 17
-            },
-            {
-              "type": "palladium:objective_score",
-              "objective": "satsu.iron.man.addon.nano.armor.things",
-              "min_score": 6,
-              "max_score": 6
-            },
-            {
-              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-              "powers": [
-                "satsu_iron_man_addon:extremis/main",
-                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-              ],
-              "namespaces": [],
-              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-            }
-          ]
-        }
-      },
       "nano_health_spray": {
         "type": "palladium:animation_timer",
         "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/nano_health_spray.png",
@@ -12620,6 +12566,12 @@
                   "ability": "nano_group.nano_stabilizer",
                   "min": "1",
                   "max": "8"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "nano_group.nano_drone",
+                  "min": "1",
+                  "max": "8"
                 }
               ]
             }
@@ -12905,6 +12857,25 @@
             {
               "type": "palladium:ability_integer_property",
               "ability": "water_turbine",
+              "min": "1",
+              "max": "1000"
+            }
+          ]
+        }
+      },
+      "remove_nanite.nano_drone": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Nanites",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 1,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "nano_drone",
               "min": "1",
               "max": "1000"
             }
