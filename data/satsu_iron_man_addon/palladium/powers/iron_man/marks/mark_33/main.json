@@ -4685,12 +4685,12 @@
     "electro_magnetic_aoe": {
       "type": "palladium:animation_timer",
       "icon": "satsu_iron_man_addon:textures/mob_effect/emp.png",
-      "title": { "translate": "ability.title.satsu.emp" },
-      "description": { "translate": "description.satsu.emp" },
-      "hidden": true,
+      "title": { "translate": "ability.title.satsu.silver_centurion_emp" },
+      "description": { "translate": "description.satsu.silver_centurion_emp_33" },
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 3,
-      "gui_position": [8.5, 5.5],
+      "gui_position": [0, -2.5],
       "start_value": 0,
       "max_value": 20,
       "conditions": {
@@ -4729,98 +4729,100 @@
         ]
       }
     },
-    "electro_magnetic_aoe.player_animation": {
-      "type": "palladium:player_animation",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "animation": "satsu_iron_man_addon:mark_33_aoe",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "electro_magnetic_aoe"
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:command_result",
-                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
-              },
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "power": "satsu_iron_man_addon:kube_animations",
-                    "ability": "armor_sentinel_anim",
-                    "property": "value",
-                    "min": 1,
-                    "max": 6
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "electro_magnetic_aoe.command": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": false,
-      "first_tick_commands": [
-        "playsound satsu_iron_man_addon:entity.sound.silver_centurion_emp master @a[distance=0..20] ~ ~ ~ 1 1",
-        "effect give @e[distance=0.1..5] satsu_iron_man_addon:emp_damage 10 2",
-        "particle satsu_iron_man_addon:electrify_effect ~ ~ ~ 1 2 3 0.01 100"
-      ],
-      "commands": [],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "electro_magnetic_aoe"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "electro_magnetic_aoe",
-            "property": "value",
-            "min": 19,
-            "max": 19
-          }
+    "electro_magnetic_aoe_group": {
+      "player_animation": {
+        "type": "palladium:player_animation",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "animation": "satsu_iron_man_addon:mark_33_aoe",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "electro_magnetic_aoe"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:command_result",
+                  "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+                },
+                {
+                  "type": "palladium:or",
+                  "conditions": [
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "power": "satsu_iron_man_addon:kube_animations",
+                      "ability": "armor_sentinel_anim",
+                      "property": "value",
+                      "min": 1,
+                      "max": 6
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "command": {
+        "type": "palladium:command",
+        "hidden": true,
+        "hidden_in_bar": false,
+        "first_tick_commands": [
+          "playsound satsu_iron_man_addon:entity.sound.silver_centurion_emp master @a[distance=0..20] ~ ~ ~ 1 1",
+          "effect give @e[distance=0.1..5] satsu_iron_man_addon:emp_damage 10 2",
+          "particle satsu_iron_man_addon:electrify_effect ~ ~ ~ 1 2 3 0.01 100"
         ],
-        "unlocking": []
-      }
-    },
-    "electro_magnetic_aoe.knockback": {
-      "type": "gravecore:aoe_knockback",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "radius": 5,
-      "knockback": 1.5,
-      "invert": false,
-      "cone": false,
-      "crush": false,
-      "is_charged": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "power": "null",
-            "ability": "electro_magnetic_aoe"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "electro_magnetic_aoe",
-            "property": "value",
-            "min": 20,
-            "max": 20
-          }
-        ],
-        "unlocking": []
+        "commands": [],
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "power": "null",
+              "ability": "electro_magnetic_aoe"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "null",
+              "ability": "electro_magnetic_aoe",
+              "property": "value",
+              "min": 19,
+              "max": 19
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "knockback": {
+        "type": "gravecore:aoe_knockback",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "radius": 5,
+        "knockback": 1.5,
+        "invert": false,
+        "cone": false,
+        "crush": false,
+        "is_charged": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "power": "null",
+              "ability": "electro_magnetic_aoe"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "null",
+              "ability": "electro_magnetic_aoe",
+              "property": "value",
+              "min": 20,
+              "max": 20
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
     "energy_pulse_projectile.right_normal": {

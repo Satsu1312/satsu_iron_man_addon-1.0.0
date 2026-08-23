@@ -4703,126 +4703,153 @@
       }
     },
     "ground_dash": {
-      "type": "palladium:animation_timer",
-      "icon": "minecraft:fire_charge",
-      "title": "null",
-      "bar_color": "light_gray",
-      "hidden": false,
-      "hidden_in_bar": false,
-      "list_index": 4,
-      "start_value": 0,
-      "max_value": 10,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:activation",
-            "ticks": 10,
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
-          }
+      "ground_dash": {
+        "type": "palladium:animation_timer",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/jump_backward.png",
+        "title": { "translate": "ability.title.satsu.ground_dash" },
+        "description": { "translate": "description.satsu.ground_dash" },
+        "hidden": false,
+        "hidden_in_bar": false,
+        "list_index": 4,
+        "gui_position": [-1, -3],
+        "start_value": 0,
+        "max_value": 10,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:activation",
+              "ticks": 10,
+              "cooldown": 0,
+              "key_type": "key_bind",
+              "needs_empty_hand": false,
+              "allow_scrolling_when_crouching": true
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "armor_animation",
+              "property": "value",
+              "min": 15,
+              "max": 16
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "satsu_iron_man_addon:iron_man/main_power/main",
+              "ability": "flight.fall.animation",
+              "property": "value",
+              "min": 35,
+              "max": 50
+            },
+            {
+              "type": "satsu_iron_man_addon:looking_down",
+              "range": 90
+            }
+          ]
+        }
+      },
+      "ground_dash.movement": {
+        "type": "gravecore:movement",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "motion_scale": 20.1,
+        "direction": "facing",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:looking_down",
+              "range": 90
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:on_ground"
+                }
+              ]
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "null",
+              "ability": "ground_dash.ground_dash",
+              "property": "value",
+              "min": 1,
+              "max": 10
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "ground_dash.aoe_damage": {
+        "type": "gravecore:aoe_damage",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "radius": 10,
+        "damage": 12,
+        "fire_ticks": 0,
+        "damage_type": "null",
+        "cone": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:on_ground"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "null",
+              "ability": "ground_dash.ground_dash",
+              "property": "value",
+              "min": 9,
+              "max": 10
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "command": {
+        "type": "palladium:command",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "first_tick_commands": [],
+        "last_tick_commands": [],
+        "commands": [
+          "damage @s 6 minecraft:player_attack",
+          "particle minecraft:explosion_emitter ~ ~ ~ 1 0 1 0.1 2 force",
+          "playsound minecraft:block.netherite_block.fall master @a ~ ~ ~ 1 0.7"
         ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:iron_man/main_power/main",
-            "ability": "flight.fall.animation",
-            "property": "value",
-            "min": 35,
-            "max": 50
-          },
-          {
-            "type": "satsu_iron_man_addon:looking_down",
-            "range": 90
-          }
-        ]
-      }
-    },
-    "ground_dash.movement": {
-      "type": "gravecore:movement",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "motion_scale": 20.1,
-      "direction": "facing",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:looking_down",
-            "range": 90
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:on_ground"
-              }
-            ]
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "ground_dash",
-            "property": "value",
-            "min": 1,
-            "max": 10
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "ground_dash.aoe_damage": {
-      "type": "gravecore:aoe_damage",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "radius": 10,
-      "damage": 12,
-      "fire_ticks": 0,
-      "damage_type": "null",
-      "cone": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:on_ground"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "ground_dash",
-            "property": "value",
-            "min": 9,
-            "max": 10
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "command": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "first_tick_commands": [],
-      "last_tick_commands": [],
-      "commands": [
-        "damage @s 6 minecraft:player_attack",
-        "particle minecraft:explosion_emitter ~ ~ ~ 1 0 1 0.1 2 force",
-        "playsound minecraft:block.netherite_block.fall master @a ~ ~ ~ 1 0.7"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:on_ground"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "power": "null",
-            "ability": "ground_dash",
-            "property": "value",
-            "min": 9,
-            "max": 10
-          }
-        ],
-        "unlocking": []
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:on_ground"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "null",
+              "ability": "ground_dash.ground_dash",
+              "property": "value",
+              "min": 9,
+              "max": 10
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
     "red_beams.right_arm": {
