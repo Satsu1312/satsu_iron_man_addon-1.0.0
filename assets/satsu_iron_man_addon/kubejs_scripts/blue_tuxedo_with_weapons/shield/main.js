@@ -6,7 +6,7 @@ PalladiumEvents.registerAnimations((event) => {
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:big_shot_suit/main",
-      "shield_put_animation",
+      "nano_group.shield_put_animation",
       builder.getPartialTicks()
     );
 
