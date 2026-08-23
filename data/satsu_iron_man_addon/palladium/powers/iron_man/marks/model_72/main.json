@@ -9308,132 +9308,134 @@
         ]
       }
     },
-    "electro_magnetic_shield.command": {
-      "type": "palladium:command",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "commands": [
-        "effect give @e[distance=0.1..3] satsu_iron_man_addon:emp 5"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "electro_magnetic_shield"
-          }
+    "electro_magnetic_shield_group": {
+      "command": {
+        "type": "palladium:command",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "commands": [
+          "effect give @e[distance=0.1..3] satsu_iron_man_addon:emp 5"
         ],
-        "unlocking": []
-      }
-    },
-    "electro_magnetic_shield.shield": {
-      "type": "gravecore:forcefield",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "max_health": 2000,
-      "scoreboard": "null",
-      "regen_rate": 1,
-      "damage_sources": [
-        "minecraft:damages_helmet",
-        "minecraft:bypasses_armor",
-        "minecraft:bypasses_shield",
-        "minecraft:bypasses_invulnerability",
-        "minecraft:bypasses_cooldown",
-        "minecraft:bypasses_effects",
-        "minecraft:bypasses_resistance",
-        "minecraft:bypasses_enchantments",
-        "minecraft:is_fire",
-        "minecraft:is_projectile",
-        "minecraft:witch_resistant_to",
-        "minecraft:is_explosion",
-        "minecraft:is_fall",
-        "minecraft:is_drowning",
-        "minecraft:is_freezing",
-        "minecraft:is_lightning",
-        "minecraft:no_anger",
-        "minecraft:no_impact",
-        "minecraft:always_most_significant_fall",
-        "minecraft:wither_immune_to",
-        "minecraft:ignites_armor_stands",
-        "minecraft:burns_armor_stands",
-        "minecraft:avoids_guardian_thorns",
-        "minecraft:always_triggers_silverfish",
-        "minecraft:always_hurts_ender_dragons",
-        "satsu_iron_man_addon:all",
-        "satsu_iron_man_addon:mob",
-        "satsu_iron_man_addon:player"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "electro_magnetic_shield"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "electro_magnetic_shield",
-            "property": "value",
-            "min": 7,
-            "max": 7
-          }
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "electro_magnetic_shield"
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "shield": {
+        "type": "gravecore:forcefield",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "max_health": 2000,
+        "scoreboard": "null",
+        "regen_rate": 1,
+        "damage_sources": [
+          "minecraft:damages_helmet",
+          "minecraft:bypasses_armor",
+          "minecraft:bypasses_shield",
+          "minecraft:bypasses_invulnerability",
+          "minecraft:bypasses_cooldown",
+          "minecraft:bypasses_effects",
+          "minecraft:bypasses_resistance",
+          "minecraft:bypasses_enchantments",
+          "minecraft:is_fire",
+          "minecraft:is_projectile",
+          "minecraft:witch_resistant_to",
+          "minecraft:is_explosion",
+          "minecraft:is_fall",
+          "minecraft:is_drowning",
+          "minecraft:is_freezing",
+          "minecraft:is_lightning",
+          "minecraft:no_anger",
+          "minecraft:no_impact",
+          "minecraft:always_most_significant_fall",
+          "minecraft:wither_immune_to",
+          "minecraft:ignites_armor_stands",
+          "minecraft:burns_armor_stands",
+          "minecraft:avoids_guardian_thorns",
+          "minecraft:always_triggers_silverfish",
+          "minecraft:always_hurts_ender_dragons",
+          "satsu_iron_man_addon:all",
+          "satsu_iron_man_addon:mob",
+          "satsu_iron_man_addon:player"
         ],
-        "unlocking": []
-      }
-    },
-    "electro_magnetic_shield.damage_immunity": {
-      "type": "palladium:damage_immunity",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "damage_sources": ["minecraft:is_projectile", "minecraft:is_explosion"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "electro_magnetic_shield.shield",
-            "property": "value",
-            "min": 7,
-            "max": 7
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "electro_magnetic_shield.aoe_knockback": {
-      "type": "gravecore:aoe_knockback",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "radius": 3,
-      "knockback": 1.2,
-      "invert": false,
-      "cone": false,
-      "crush": false,
-      "is_charged": false,
-      "scoreboard": "Score.Board",
-      "scoreboard_max": "Score.Board.Max",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "electro_magnetic_shield"
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "remove_ark_energy.electro_magnetic_shield": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "subtract",
-      "adjustment_amount": 22,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "electro_magnetic_shield"
-          }
-        ]
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "electro_magnetic_shield"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "electro_magnetic_shield",
+              "property": "value",
+              "min": 7,
+              "max": 7
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "damage_immunity": {
+        "type": "palladium:damage_immunity",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "damage_sources": ["minecraft:is_projectile", "minecraft:is_explosion"],
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "electro_magnetic_shield.shield",
+              "property": "value",
+              "min": 7,
+              "max": 7
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "aoe_knockback": {
+        "type": "gravecore:aoe_knockback",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "radius": 3,
+        "knockback": 0.4,
+        "invert": false,
+        "cone": false,
+        "crush": false,
+        "is_charged": false,
+        "scoreboard": "Score.Board",
+        "scoreboard_max": "Score.Board.Max",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "electro_magnetic_shield"
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "remove_ark_energy": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 22,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "electro_magnetic_shield"
+            }
+          ]
+        }
       }
     },
     "weapons_wheel.emp": {
