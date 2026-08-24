@@ -179,7 +179,7 @@ function initSlidersFromProperties(entity) {
   });
 }
 
-const TABS = ["satsu_iron_man_addon:iron_man/marks/model_prime/main", "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main", "satsu_iron_man_addon:iron_man/marks/model_72/main", "satsu_iron_man_addon:iron_man/marks/mark_extremis/main", "satsu_iron_man_addon:big_shot_suit/main", "satsu_iron_man_addon:iron_man/marks/infamous/main"];
+const TABS = ["satsu_iron_man_addon:iron_man/marks/model_prime/main", "satsu_iron_man_addon:iron_man/marks/modular_armor/main", "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main", "satsu_iron_man_addon:iron_man/marks/model_72/main", "satsu_iron_man_addon:iron_man/marks/mark_extremis/main", "satsu_iron_man_addon:big_shot_suit/main", "satsu_iron_man_addon:iron_man/marks/infamous/main"];
 
 TABS.forEach(tabID => {
   PalladiumEvents.renderPowerScreen((event) => {
