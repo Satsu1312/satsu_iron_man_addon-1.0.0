@@ -1,10 +1,10 @@
 PalladiumEvents.registerAnimations((event) => {
-  event.registerForPower("satsu_iron_man_addon/iron_man/marks/mark_42/blade_attack",
-      "satsu_iron_man_addon:iron_man/marks/mark_42/main", 10, (builder) => {
+  event.registerForPower("satsu_iron_man_addon/iron_man/marks/modular_armor/blade_attack",
+      "satsu_iron_man_addon:iron_man/marks/modular_armor/main", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
-      "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+      "satsu_iron_man_addon:iron_man/marks/modular_armor/main",
       "modular_class.vibranuim.blades.attack",
       builder.getPartialTicks(),
       0,
@@ -15,7 +15,7 @@ PalladiumEvents.registerAnimations((event) => {
     if (
       palladium.abilities.isEnabled(
         builder.getPlayer(),
-        "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+        "satsu_iron_man_addon:iron_man/marks/modular_armor/main",
         "modular_class.vibranuim.blades.attack"
       )
     )
@@ -62,12 +62,12 @@ PalladiumEvents.registerAnimations((event) => {
       }
     }
   });
-  event.registerForPower("satsu_iron_man_addon/iron_man/marks/mark_42/blade_attack_2",
-      "satsu_iron_man_addon:iron_man/marks/mark_42/main", 10, (builder) => {
+  event.registerForPower("satsu_iron_man_addon/iron_man/marks/modular_armor/blade_attack_2",
+      "satsu_iron_man_addon:iron_man/marks/modular_armor/main", 10, (builder) => {
     // Gets the current animation timer progress from the ability, returned value is a number from 0.0 to 1.0
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
-      "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+      "satsu_iron_man_addon:iron_man/marks/modular_armor/main",
       "modular_class.vibranuim.blades.attack",
       builder.getPartialTicks(),
       6,
@@ -78,7 +78,7 @@ PalladiumEvents.registerAnimations((event) => {
     if (
       palladium.abilities.isEnabled(
         builder.getPlayer(),
-        "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+        "satsu_iron_man_addon:iron_man/marks/modular_armor/main",
         "modular_class.vibranuim.blades.attack"
       )
     )
