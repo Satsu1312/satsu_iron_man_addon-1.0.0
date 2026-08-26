@@ -3134,6 +3134,7 @@
         "weapons_wheel.red_beams",
         "weapons_wheel.flight_unlock"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -7515,6 +7516,138 @@
               }
             ]
           }
+        },
+        "right": {
+          "type": "palladium:dummy",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "modular_class.hook.main"
+              }
+            ],
+            "unlocking": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Energy",
+                "min": 1,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_armor_activated",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "armor_animation",
+                "property": "value",
+                "min": 17,
+                "max": 18
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Secondary_addition_right",
+                "nbtValue": "Hook",
+                "mode": "equals"
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "modular_class.drills.ground.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "left": {
+          "type": "palladium:dummy",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "modular_class.hook.main"
+              }
+            ],
+            "unlocking": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Energy",
+                "min": 1,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_armor_activated",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "armor_animation",
+                "property": "value",
+                "min": 17,
+                "max": 18
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Secondary_addition_left",
+                "nbtValue": "Hook",
+                "mode": "equals"
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "modular_class.drills.ground.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       }
     },
@@ -7784,6 +7917,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "modular_class.flame_thrower.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "modular_class.hook.left"
               }
             ]
           }
@@ -7828,6 +7965,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "modular_class.flame_thrower.right"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "modular_class.hook.right"
               }
             ]
           }
@@ -8078,6 +8219,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "modular_class.flame_thrower.left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "modular_class.hook.left"
               }
             ]
           }
