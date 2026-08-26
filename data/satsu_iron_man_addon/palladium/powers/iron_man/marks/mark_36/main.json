@@ -1167,118 +1167,6 @@
         ]
       }
     },
-    "pickaxe.velocity": {
-      "type": "palladium:attribute_modifier",
-      "icon": "minecraft:golden_pickaxe",
-      "title": { "translate": "ability.title.satsu.pickaxe.velocity" },
-      "description": { "translate": "description.satsu.pickaxe.velocity" },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [-1.35, -1.25],
-      "attribute": "palladium:destroy_speed",
-      "amount": 83,
-      "operation": 0,
-      "uuid": "f517d74f-5bab-432d-b60d-0890e6448bd8",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_ia.pickaxe_velocity",
-            "comparator": "equals",
-            "compare_to": "normal"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "pickaxe.velocity.low": {
-      "type": "palladium:attribute_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "attribute": "palladium:destroy_speed",
-      "amount": 0.1,
-      "operation": 0,
-      "uuid": "a7bd1382-d54a-46d2-8c19-905eb046c020",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_ia.pickaxe_velocity",
-            "comparator": "equals",
-            "compare_to": "low"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
     "hide_player": {
       "type": "palladium:hide_body_part",
       "hidden": true,
@@ -4406,22 +4294,28 @@
       "icon": "satsu_iron_man_addon:textures/gui/armors/sonic_howl.png",
       "title": { "translate": "ability.title.satsu.dampened.sound" },
       "description": { "translate": "description.satsu.dampened.sound" },
-      "hidden": true,
+      "hidden": false,
       "hidden_in_bar": false,
       "list_index": 3,
-      "gui_position": [-8, 4.95],
+      "gui_position": [-1, -3],
       "start_value": 0,
       "max_value": 10,
       "conditions": {
         "enabling": [
           {
             "type": "palladium:held",
-            "cooldown": 90,
+            "cooldown": 25,
             "key_type": "key_bind",
             "needs_empty_hand": false
           }
         ],
         "unlocking": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_armor_weapon_system",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
             "slot": "curios:tecnology_armor",
@@ -4440,6 +4334,121 @@
             "compare_to": "on"
           }
         ]
+      }
+    },
+    "sonic_aoe": {
+      "sonic_dampened_aoe": {
+        "type": "palladium:animation_timer",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/sonic_howl.png",
+        "title": { "translate": "ability.title.satsu.dampened_aoe" },
+        "description": { "translate": "description.satsu.dampened_aoe" },
+        "hidden": false,
+        "hidden_in_bar": false,
+        "list_index": 4,
+        "gui_position": [1, -3],
+        "start_value": 0,
+        "max_value": 10,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:activation",
+              "ticks": 25,
+              "cooldown": 220,
+              "key_type": "key_bind",
+              "needs_empty_hand": false
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_armor_weapon_system",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            }
+          ]
+        }
+      },
+      "sonic_dampened_aoe.sound": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "satsu_iron_man_addon:entity.effect.dampened_sonic",
+        "volume": 0.3,
+        "pitch": 1,
+        "looping": true,
+        "play_self": true,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "sonic_aoe.sonic_dampened_aoe",
+              "property": "value",
+              "min": 8,
+              "max": 10
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "sonic_dampened_aoe.effect": {
+        "type": "satsu_iron_man_addon:aoe_effect_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "effect": "satsu_iron_man_addon:dampened_sonic",
+        "amplifier": 2,
+        "range": 15,
+        "duration": 160,
+        "show_particles": true,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "sonic_aoe.sonic_dampened_aoe",
+              "property": "value",
+              "min": 8,
+              "max": 10
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "sonic_dampened_aoe_command": {
+        "type": "palladium:command",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "first_tick_commands": [
+          "particle satsu_iron_man_addon:sonic_clap ~ ~ ~ 2 2 2 0.01 25 normal"
+        ],
+        "commands": [""],
+        "last_tick_commands": [""],
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "sonic_aoe.sonic_dampened_aoe",
+              "property": "value",
+              "min": 8,
+              "max": 10
+            }
+          ]
+        }
       }
     },
     "energy_pulse_projectile.right_normal": {
@@ -4700,6 +4709,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "sonic_aoe.sonic_dampened_aoe"
               }
             ]
           }
@@ -4740,6 +4753,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "mk.36.sonic_dampened"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "sonic_aoe.sonic_dampened_aoe"
               }
             ]
           }
@@ -4770,6 +4787,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "sonic_aoe.sonic_dampened_aoe"
               }
             ]
           }
