@@ -6878,6 +6878,10 @@
                     {
                       "type": "palladium:ability_enabled",
                       "ability": "flares_flames"
+                    },
+                    {
+                      "type": "palladium:ability_enabled",
+                      "ability": "modular_class.stealth.main"
                     }
                   ]
                 }
@@ -7172,6 +7176,10 @@
                     {
                       "type": "palladium:ability_enabled",
                       "ability": "flares_flames"
+                    },
+                    {
+                      "type": "palladium:ability_enabled",
+                      "ability": "modular_class.stealth.main"
                     }
                   ]
                 }
@@ -10423,6 +10431,188 @@
               }
             ],
             "unlocking": []
+          }
+        }
+      },
+      "stealth": {
+        "main": {
+          "type": "palladium:dummy",
+          "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+          "title": { "translate": "ability.title.satsu.stealht.mode" },
+          "hidden": true,
+          "hidden_in_bar": false,
+          "list_index": 10,
+          "gui_position": [-2.5, 3.5],
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:toggle",
+                "cooldown": 0,
+                "key_type": "key_bind",
+                "needs_empty_hand": false
+              }
+            ],
+            "unlocking": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Energy",
+                "min": 1,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_armor_activated",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "satsu_iron_man_addon:iron_man/marks/mark_41/main",
+                "ability": "armor_animation",
+                "property": "value",
+                "min": 16,
+                "max": 1000000000
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "Secondary_addition_right",
+                    "nbtValue": "Stealth",
+                    "mode": "equals"
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "Secondary_addition_left",
+                    "nbtValue": "Stealth",
+                    "mode": "equals"
+                  }
+                ]
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "modular_class.drills.ground.attack"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "throw_pieces_attack.main"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "rotate_pieces_attack.main"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "animation_timer": {
+          "type": "palladium:animation_timer",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "max_value": 20,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:and",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "ability": "armor"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "modular_class.stealth.main"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "invisibility": {
+          "type": "palladium:invisibility",
+          "icon": "satsu_iron_man_addon:textures/gui/armors/invis.png",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "gui_position": [-1, -1],
+          "conditions": {
+            "unlocking": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "modular_class.stealth.animation_timer",
+                    "property": "value",
+                    "min": 20,
+                    "max": 20
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "invis_command": {
+          "type": "palladium:command",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "commands": ["effect give @s minecraft:invisibility 1 255 true"],
+          "conditions": {
+            "unlocking": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "modular_class.stealth.animation_timer",
+                "property": "value",
+                "min": 20,
+                "max": 20
+              }
+            ]
+          }
+        },
+        "remove.ark.energy": {
+          "type": "satsu_iron_man_addon:nbt_modifier",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "Energy",
+          "adjustment_type": "subtract",
+          "adjustment_amount": 10,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "modular_class.stealth.animation_timer",
+                "property": "value",
+                "min": 20,
+                "max": 20
+              }
+            ]
           }
         }
       }

@@ -146,6 +146,40 @@
     },
     {
       "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/stealth_variation/main.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/modular_armor/main",
+            "ability": "modular_class.stealth.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/modular_armor/stealth_variation/main_#STEALH"
+      },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/modular_armor/main",
+          "ability": "modular_class.stealth.animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/hammers/mark_striker_hammers.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/hammers/mark_25_0.png",

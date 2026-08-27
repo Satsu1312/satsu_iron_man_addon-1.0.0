@@ -402,6 +402,85 @@
     },
     {
       "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/stealth_variation/main.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main",
+            "ability": "modular_class.stealth.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_legion_prototype/stealth_variation/main_#STEALH"
+      },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main",
+          "ability": "modular_class.stealth.animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/mark_07/flaps.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/stealth_variation/main.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main",
+            "ability": "modular_class.stealth.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_legion_prototype_flaps/stealth_variation/main_#STEALH"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/mark_07_flaps.geo.json",
+      "animation_controller": [
+        {
+          "name": "flaps",
+          "transition_tick_time": 10,
+          "triggers": {
+            "flying_flaps": "flames_flaps",
+            "turn_off": "turn_off"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/iron_legion_prototype/main",
+          "ability": "modular_class.stealth.animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/hammers/mark_striker_hammers.geo.json",
       "texture": {
         "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/hammers/mark_25_0.png",
