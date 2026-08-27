@@ -1,6 +1,9 @@
 (function() {
   const $Block = Java.loadClass('net.minecraft.world.level.block.Block');
   const $BlockPosArgument = Java.loadClass('net.minecraft.commands.arguments.coordinates.BlockPosArgument');
+  const SILK_TOOL = Item.of('minecraft:diamond_pickaxe').enchant('minecraft:silk_touch', 1);
+  const FORTUNE_TOOL = Item.of('minecraft:diamond_pickaxe').enchant('minecraft:fortune', 3);
+  const DEFAULT_TOOL = Item.of('minecraft:diamond_pickaxe');
 
   ServerEvents.commandRegistry(event => {
     const { commands: Commands, arguments: Arguments } = event;
@@ -17,7 +20,7 @@
               let from = $BlockPosArgument.getLoadedBlockPos(ctx, 'from');
               let to = $BlockPosArgument.getLoadedBlockPos(ctx, 'to');
 
-              let hasValidCuriosItem = false;
+              let activeMineMode = "none";
               try {
                 let playerNbt = player.nbt;
                 if (playerNbt && playerNbt.ForgeCaps) {
@@ -45,11 +48,14 @@
                                   enabled = tag.getString ? tag.getString("enabled_mine") : (tag.enabled_mine || "");
                                 } catch (e) {}
 
-                                let isModeSilk = (mode === 'silk_touch');
                                 let isEnabled = (enabled === 'true' || enabled === true || enabled === '1' || enabled === 1);
 
-                                if (isModeSilk && isEnabled) {
-                                  hasValidCuriosItem = true;
+                                if (isEnabled) {
+                                  if (mode === 'silk_touch') {
+                                    activeMineMode = "silk_touch";
+                                  } else if (mode === 'fortune') {
+                                    activeMineMode = "fortune";
+                                  }
                                 }
                               }
                             }
@@ -61,9 +67,12 @@
                 }
               } catch (error) {}
 
-              let tool = hasValidCuriosItem 
-                ? Item.of('minecraft:diamond_pickaxe').enchant('minecraft:silk_touch', 1) 
-                : Item.of('minecraft:diamond_pickaxe');
+              let tool = DEFAULT_TOOL;
+              if (activeMineMode === 'silk_touch') {
+                tool = SILK_TOOL;
+              } else if (activeMineMode === 'fortune') {
+                tool = FORTUNE_TOOL;
+              }
 
               BlockPos.betweenClosed(from, to).forEach(pos => {
                 let blockState = level.getBlockState(pos);

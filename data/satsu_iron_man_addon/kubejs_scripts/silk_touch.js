@@ -1,6 +1,7 @@
 (function() {
   const $Block = Java.loadClass('net.minecraft.world.level.block.Block');
   const SILK_TOOL = Item.of('minecraft:diamond_pickaxe').enchant('minecraft:silk_touch', 1);
+  const FORTUNE_TOOL = Item.of('minecraft:diamond_pickaxe').enchant('minecraft:fortune', 3);
   const AIR_STATE = Block.id('minecraft:air').blockState;
 
   BlockEvents.broken(event => {
@@ -8,7 +9,8 @@
 
     if (!player || player.creative) return;
 
-    let hasValidCuriosItem = false;
+    let activeMineMode = "none";
+    
     try {
       let playerNbt = player.nbt;
       if (playerNbt && playerNbt.ForgeCaps) {
@@ -17,20 +19,12 @@
         if (curiosCap && curiosCap.Curios) {
           curiosCap.Curios.forEach(slotGroup => {
             if (slotGroup.Identifier === 'tecnology_armor') {
-              console.info("[Satsu Debug] Encontrado tecnology_armor, navegando StacksHandler.Stacks.Items");
-              
               if (slotGroup.StacksHandler && slotGroup.StacksHandler.Stacks && slotGroup.StacksHandler.Stacks.Items) {
                 let itemsList = slotGroup.StacksHandler.Stacks.Items;
                 
                 itemsList.forEach((slotItem, index) => {
-                  console.info("[Satsu Debug] Revisando item en índice " + index + ": " + slotItem);
-                  
                   if (slotItem) {
                     let tag = slotItem.tag || null;
-                    
-                    if (slotItem.id) {
-                      console.info("[Satsu Debug] ID del item: " + slotItem.id);
-                    }
 
                     if (tag) {
                       let mode = "";
@@ -38,45 +32,34 @@
 
                       try {
                         mode = tag.getString ? tag.getString("mine_mode") : (tag.mine_mode || "");
-                      } catch (e) {
-                        console.info("[Satsu Debug] Error leyendo mine_mode: " + e);
-                      }
+                      } catch (e) {}
 
                       try {
                         enabled = tag.getString ? tag.getString("enabled_mine") : (tag.enabled_mine || "");
-                      } catch (e) {
-                        console.info("[Satsu Debug] Error leyendo enabled_mine: " + e);
-                      }
+                      } catch (e) {}
 
-                      console.info("[Satsu Debug] Valores leídos -> mine_mode: '" + mode + "' | enabled_mine: '" + enabled + "'");
-
-                      let isModeSilk = (mode === 'silk_touch');
                       let isEnabled = (enabled === 'true' || enabled === true || enabled === '1' || enabled === 1);
 
-                      if (isModeSilk && isEnabled) {
-                        hasValidCuriosItem = true;
-                        console.info("[Satsu Debug] ¡ÉXITO! Las condiciones coinciden perfectamente.");
-                      } else {
-                        console.info("[Satsu Debug] No coincide. isModeSilk: " + isModeSilk + ", isEnabled: " + isEnabled);
+                      if (isEnabled) {
+                        if (mode === 'silk_touch') {
+                          activeMineMode = "silk_touch";
+                        } else if (mode === 'fortune') {
+                          activeMineMode = "fortune";
+                        }
                       }
-                    } else {
-                      console.info("[Satsu Debug] El item no tiene tag.");
                     }
                   }
                 });
-              } else {
-                console.info("[Satsu Debug] La ruta StacksHandler.Stacks.Items no está disponible.");
               }
             }
           });
         }
       }
-    } catch (error) {
-      console.info("[Satsu Debug] Error crítico general en Try/Catch: " + error);
-    }
+    } catch (error) {}
 
-    console.info("[Satsu Debug] Estado final de hasValidCuriosItem: " + hasValidCuriosItem);
-    if (!hasValidCuriosItem) return;
+    if (activeMineMode === "none") return;
+
+    let activeTool = (activeMineMode === 'silk_touch') ? SILK_TOOL : FORTUNE_TOOL;
 
     try {
       let drops = $Block.getDrops(
@@ -85,7 +68,7 @@
         block.pos,
         null,
         player,
-        SILK_TOOL
+        activeTool
       );
 
       if (drops && drops.length > 0) {
