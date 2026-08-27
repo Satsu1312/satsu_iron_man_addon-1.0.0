@@ -8,7 +8,7 @@
 
     let isSilkActive = false;
     try {
-      var satsuPropVal = palladium.getProperty(player, "satsu_iron_man_addon_silk_touch_active");
+      var satsuPropVal = palladium.getProperty(player, "satsu_iron_man_addon_silk_touch");
       
       if (satsuPropVal === true || String(satsuPropVal).toLowerCase() === "true" || satsuPropVal === 1 || satsuPropVal === "1") {
         isSilkActive = true;
