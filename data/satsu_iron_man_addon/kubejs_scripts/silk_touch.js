@@ -9,16 +9,12 @@
     let isSilkActive = false;
     try {
       var satsuPropVal = palladium.getProperty(player, "satsu_iron_man_addon_silk_touch_active");
-      console.log("[Iron Man Addon] [DEBUG] propVal: " + satsuPropVal + " (tipo: " + typeof satsuPropVal + ")");
       
       if (satsuPropVal === true || String(satsuPropVal).toLowerCase() === "true" || satsuPropVal === 1 || satsuPropVal === "1") {
         isSilkActive = true;
       }
-    } catch (error) {
-      console.log("[Iron Man Addon] [DEBUG] Error leyendo propiedad: " + error);
-    }
+    } catch (error) {}
 
-    console.log("[Iron Man Addon] [DEBUG] isSilkActive final: " + isSilkActive);
     if (!isSilkActive) return;
 
     try {
@@ -32,8 +28,6 @@
         player,
         silkTool
       );
-
-      console.log("[Iron Man Addon] [DEBUG] Drops encontrados: " + (drops ? drops.length : "null/undefined"));
 
       if (drops && drops.length > 0) {
         drops.forEach(drop => {
