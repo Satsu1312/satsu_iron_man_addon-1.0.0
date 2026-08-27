@@ -17,17 +17,51 @@
               let from = $BlockPosArgument.getLoadedBlockPos(ctx, 'from');
               let to = $BlockPosArgument.getLoadedBlockPos(ctx, 'to');
 
-              // 1. Verificación de tu propiedad personalizada en el jugador
-              let isSilkActive = false;
+              let hasValidCuriosItem = false;
               try {
-                var satsuPropVal = palladium.getProperty(player, "satsu_iron_man_addon_silk_touch");
-                if (satsuPropVal === true || String(satsuPropVal).toLowerCase() === "true" || satsuPropVal === 1 || satsuPropVal === "1") {
-                  isSilkActive = true;
+                let playerNbt = player.nbt;
+                if (playerNbt && playerNbt.ForgeCaps) {
+                  let curiosCap = playerNbt.ForgeCaps.get('curios:inventory');
+                  
+                  if (curiosCap && curiosCap.Curios) {
+                    curiosCap.Curios.forEach(slotGroup => {
+                      if (slotGroup.Identifier === 'tecnology_armor') {
+                        if (slotGroup.StacksHandler && slotGroup.StacksHandler.Stacks && slotGroup.StacksHandler.Stacks.Items) {
+                          let itemsList = slotGroup.StacksHandler.Stacks.Items;
+                          
+                          itemsList.forEach(slotItem => {
+                            if (slotItem) {
+                              let tag = slotItem.tag || null;
+
+                              if (tag) {
+                                let mode = "";
+                                let enabled = "";
+
+                                try {
+                                  mode = tag.getString ? tag.getString("mine_mode") : (tag.mine_mode || "");
+                                } catch (e) {}
+
+                                try {
+                                  enabled = tag.getString ? tag.getString("enabled_mine") : (tag.enabled_mine || "");
+                                } catch (e) {}
+
+                                let isModeSilk = (mode === 'silk_touch');
+                                let isEnabled = (enabled === 'true' || enabled === true || enabled === '1' || enabled === 1);
+
+                                if (isModeSilk && isEnabled) {
+                                  hasValidCuriosItem = true;
+                                }
+                              }
+                            }
+                          });
+                        }
+                      }
+                    });
+                  }
                 }
               } catch (error) {}
 
-              // Herramienta a usar en getDrops: Toque de seda si la propiedad está activa, o pico normal si no lo está
-              let tool = isSilkActive 
+              let tool = hasValidCuriosItem 
                 ? Item.of('minecraft:diamond_pickaxe').enchant('minecraft:silk_touch', 1) 
                 : Item.of('minecraft:diamond_pickaxe');
 
