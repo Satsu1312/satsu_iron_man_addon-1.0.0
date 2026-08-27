@@ -1,5 +1,7 @@
 (function() {
   const $Block = Java.loadClass('net.minecraft.world.level.block.Block');
+  const SILK_TOOL = Item.of('minecraft:diamond_pickaxe').enchant('minecraft:silk_touch', 1);
+  const AIR_STATE = Block.id('minecraft:air').blockState;
 
   BlockEvents.broken(event => {
     const { block, level, player } = event;
@@ -9,36 +11,29 @@
     let isSilkActive = false;
     try {
       var satsuPropVal = palladium.getProperty(player, "satsu_iron_man_addon_silk_touch");
-      
-      if (satsuPropVal === true || String(satsuPropVal).toLowerCase() === "true" || satsuPropVal === 1 || satsuPropVal === "1") {
-        isSilkActive = true;
-      }
+      isSilkActive = (satsuPropVal === true || satsuPropVal === 1 || satsuPropVal === "true" || satsuPropVal === "1");
     } catch (error) {}
 
     if (!isSilkActive) return;
 
     try {
-      let silkTool = Item.of('minecraft:diamond_pickaxe').enchant('minecraft:silk_touch', 1);
-
       let drops = $Block.getDrops(
         block.blockState,
         level,
         block.pos,
         null,
         player,
-        silkTool
+        SILK_TOOL
       );
 
       if (drops && drops.length > 0) {
-        drops.forEach(drop => {
-          block.popItem(Item.of(drop));
-        });
+        for (let i = 0; i < drops.length; i++) {
+          block.popItem(Item.of(drops[i]));
+        }
         
-        level.setBlockAndUpdate(block.pos, Block.id('minecraft:air').blockState);
+        level.setBlockAndUpdate(block.pos, AIR_STATE);
         event.cancel();
       }
-    } catch (error) {
-      console.error("[Iron Man Addon] Error en Silk Touch KubeJS: " + error);
-    }
+    } catch (error) {}
   });
 })();
