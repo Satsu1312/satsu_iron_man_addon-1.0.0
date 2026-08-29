@@ -10,7 +10,6 @@
 
     event.register(
       Commands.literal('satsu_destroy')
-        .requires(src => src.hasPermission(2))
         .then(Commands.argument('from', Arguments.BLOCK_POS.create(event))
           .then(Commands.argument('to', Arguments.BLOCK_POS.create(event))
             .executes(ctx => {
