@@ -2447,79 +2447,6 @@
         "enabling": []
       }
     },
-    "fire_resistance": {
-      "type": "palladium:damage_immunity",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/fire_resistance.png",
-      "title": { "translate": "ability.title.satsu.fire_resistance" },
-      "description": { "translate": "description.iron.man.fire_resistance" },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [-1.35, -2.3],
-      "damage_sources": [
-        "minecraft:is_fire",
-        "minecraft:ignites_armor_stands",
-        "minecraft:is_freezing"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "armor_animation",
-            "property": "value",
-            "min": 17,
-            "max": 18
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "fire_resistance_no_burn": {
-      "type": "gravecore:no_burn",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "fire_resistance"
-          },
-          {
-            "type": "palladium:is_on_fire"
-          }
-        ],
-        "unlocking": []
-      }
-    },
     "projectile_resistance": {
       "type": "palladium:damage_immunity",
       "icon": {
@@ -2700,127 +2627,53 @@
         "unlocking": []
       }
     },
-    "aquatic_breath": {
-      "type": "palladium:command",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/aquatic_breath.png",
-      "title": { "translate": "ability.title.satsu.aquatic_breath" },
-      "description": { "translate": "description.iron.man.aquatic_breath" },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [1.35, -2.3],
-      "first_tick_commands": [
-        "effect give @s minecraft:water_breathing infinite 2 true"
-      ],
-      "commands": [""],
-      "last_tick_commands": ["effect clear @s minecraft:water_breathing"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:in_water"
-                  },
-                  {
-                    "type": "palladium:string_property",
-                    "property": "satsu_iron_man_addon_armor_activated",
-                    "comparator": "equals",
-                    "compare_to": "on"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "armor_animation",
-                    "property": "value",
-                    "min": 17,
-                    "max": 18
-                  },
-                  {
-                    "type": "palladium:not",
-                    "conditions": [
-                      {
-                        "type": "palladium:and",
-                        "conditions": [
-                          {
-                            "type": "palladium:string_property",
-                            "property": "satsu_iron_man_addon_armor_activated",
-                            "comparator": "equals",
-                            "compare_to": "on"
-                          },
-                          {
-                            "type": "palladium:integer_property",
-                            "property": "satsu_mask_value",
-                            "min": 0,
-                            "max": 0
-                          },
-                          {
-                            "type": "palladium:string_property",
-                            "property": "satsu_iron_man_addon.head",
-                            "comparator": "equals",
-                            "compare_to": "on"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:objective_score",
-                    "objective": "satsu.iron.man.armor.remote",
-                    "min_score": 1,
-                    "max_score": 1
-                  },
-                  {
-                    "type": "palladium:in_water"
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "irradiated_effect_immunity": {
-      "type": "satsu_iron_man_addon:effect_immunity",
+    "underwater_breath_momentary.first_tick": {
+      "type": "palladium:animation_timer",
       "hidden": true,
       "hidden_in_bar": true,
-      "effect": "alexscaves:irradiated",
+      "start_value": 0,
+      "max_value": 2,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:mod_loaded",
-            "mod_id": "alexscaves"
+            "type": "palladium:is_under_water"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "underwater_breath_momentary": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "effect give @s minecraft:water_breathing 10 1 true"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "underwater_breath_momentary.first_tick",
+            "property": "value",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "type": "palladium:integer_property",
+            "property": "satsu_mask_value",
+            "min": 1,
+            "max": 1
           },
           {
             "type": "palladium:ability_integer_property",
             "ability": "armor_animation",
             "property": "value",
-            "min": 17,
-            "max": 18
+            "min": 15,
+            "max": 16
           }
-        ]
+        ],
+        "unlocking": []
       }
     },
     "particles.right_hand.left_hand": {
@@ -2863,6 +2716,13 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "no-list:aim_main_arm"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "modular_class.stealth.animation_timer",
+                    "property": "value",
+                    "min": 20,
+                    "max": 20
                   }
                 ]
               }
@@ -2913,6 +2773,23 @@
             "property": "value",
             "min": 18,
             "max": 18
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "modular_class.stealth.animation_timer",
+                    "property": "value",
+                    "min": 20,
+                    "max": 20
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
