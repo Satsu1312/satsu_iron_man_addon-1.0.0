@@ -2,8 +2,108 @@
   "name": { "translate": "ability.title.blooded" },
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "abilities": {
-    "size": {
-      "type": "corewithstuff:size_change",
+    "animation_timer": {
+      "type": "palladium:animation_timer",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "start_value": 0,
+      "max_value": 50,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "ticks": 40,
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "animation_timer_hulkbuster": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "start_value": 0,
+      "max_value": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation_timer"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "animation_timer",
+            "min": 1,
+            "max": 46
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "render_layer_animation": {
+      "type": "geckolib:render_layer_animation",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_44/armor/colocation",
+      "controller": "hulkbuster_animation",
+      "animation_trigger": "colocation",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation_timer"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "animation_timer",
+            "min": 1,
+            "max": 1
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "render_layer": {
+      "type": "palladium:render_layer",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_44/armor/colocation",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "player_animation": {
+      "type": "palladium:player_animation",
       "icon": "minecraft:blaze_rod",
       "title": "null",
       "bar_color": "light_gray",
@@ -12,29 +112,153 @@
       "list_index": -1,
       "gui_position": "null",
       "description": "null",
-      "base": 1.85,
-      "hitbox_width": 2,
-      "hitbox_height": 1.2,
-      "eye_height": 1,
-      "model_width": 1,
-      "model_height": 1,
-      "jump_height": 1,
-      "block_reach": 1,
-      "attack_reach": 1,
-      "step_height": 1,
-      "third_person": 1,
-      "duration": 1,
+      "animation": "satsu_iron_man_addon:player_colocation_mark_44",
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:toggle",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation_timer"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "animation_timer",
+            "min": 1,
+            "max": 1
           }
         ],
         "unlocking": []
+      }
+    },
+    "hide_body_part": {
+      "type": "palladium:hide_body_part",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "body_parts": [
+        "chest",
+        "right_arm",
+        "left_arm",
+        "right_leg",
+        "left_leg",
+        "head_overlay",
+        "chest_overlay",
+        "right_arm_overlay",
+        "left_arm_overlay",
+        "right_leg_overlay",
+        "left_leg_overlay"
+      ],
+      "affects_first_person": true,
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation_timer"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "animation_timer",
+            "min": 35,
+            "max": 45
+          }
+        ]
+      }
+    },
+    "hide_body_head": {
+      "type": "palladium:hide_body_part",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "body_parts": ["head", "head_overlay"],
+      "affects_first_person": true,
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation_timer"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "animation_timer",
+            "min": 45,
+            "max": 45
+          }
+        ]
+      }
+    },
+    "set_property_string": {
+      "type": "satsu_iron_man_addon:set_property",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_animation_armor",
+      "number": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "animation_timer"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "power": "null",
+            "ability": "animation_timer",
+            "min": 45,
+            "max": 45
+          }
+        ]
+      }
+    },
+    "set_property_string.off": {
+      "type": "satsu_iron_man_addon:set_property",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_animation_armor",
+      "number": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                },
+                "slot": "curios:hulkbuster_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:armors/main"
+                },
+                "slot": "curios:tecnology_armor"
+              }
+            ]
+          }
+        ]
       }
     }
   }
