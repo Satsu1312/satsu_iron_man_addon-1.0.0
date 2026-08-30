@@ -5,7 +5,7 @@ PalladiumEvents.registerAnimations((event) => {
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:iron_man/marks/mark_81/main",
-      "nano_katar.attack",
+      "nano_group.nano_katar.attack",
       builder.getPartialTicks(),
       0,
       6
@@ -16,7 +16,7 @@ PalladiumEvents.registerAnimations((event) => {
       palladium.abilities.isEnabled(
         builder.getPlayer(),
         "satsu_iron_man_addon:iron_man/marks/mark_81/main",
-        "nano_katar.attack"
+        "nano_group.nano_katar.attack"
       )
     )
     if (progress > 0.0) {
@@ -68,7 +68,7 @@ PalladiumEvents.registerAnimations((event) => {
     const progress = animationUtil.getAnimationTimerAbilityValue(
       builder.getPlayer(),
       "satsu_iron_man_addon:iron_man/marks/mark_81/main",
-      "nano_katar.attack",
+      "nano_group.nano_katar.attack",
       builder.getPartialTicks(),
       6,
       15
@@ -79,7 +79,7 @@ PalladiumEvents.registerAnimations((event) => {
       palladium.abilities.isEnabled(
         builder.getPlayer(),
         "satsu_iron_man_addon:iron_man/marks/mark_81/main",
-        "nano_katar.attack"
+        "nano_group.nano_katar.attack"
       )
     )
     if (progress > 0.0) {
