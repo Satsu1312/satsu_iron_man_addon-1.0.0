@@ -130,6 +130,40 @@
           ]
         }
       ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_leg.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/stealth_variation/main.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_41/main",
+            "ability": "modular_class.stealth.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/mark_41/stealth_variation/left_leg/main_#STEALH"
+      },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_41/main",
+          "ability": "modular_class.stealth.animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        }
+      ]
     }
   ]
 }

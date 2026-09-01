@@ -1230,58 +1230,6 @@
         ]
       }
     },
-    "pickaxe.velocity": {
-      "type": "palladium:attribute_modifier",
-      "icon": "minecraft:golden_pickaxe",
-      "title": { "translate": "ability.title.satsu.pickaxe.velocity" },
-      "description": { "translate": "description.satsu.pickaxe.velocity" },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [-1.35, -1.25],
-      "attribute": "palladium:destroy_speed",
-      "amount": 69,
-      "operation": 0,
-      "uuid": "f517d74f-5bab-432d-b60d-0890e6448bd8",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
     "hide_player": {
       "type": "palladium:hide_body_part",
       "hidden": true,
@@ -1604,6 +1552,12 @@
             "property": "satsu_mask_value",
             "min": 0,
             "max": 0
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ]
       }
@@ -1674,7 +1628,7 @@
                     "ability": "armor_animation",
                     "property": "value",
                     "min": 12,
-                    "max": 13
+                    "max": 16
                   },
                   {
                     "type": "palladium:string_property",
@@ -5400,6 +5354,9 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "ground.attack"
+                  },
+                  {
+                    "type": "palladium:crouching"
                   }
                 ]
               }
@@ -5513,7 +5470,7 @@
       ],
       "last_tick_commands": [
         "effect clear @s minecraft:slowness",
-        "execute as @s unless block ~2 ~-5 ~2 #satsu_iron_man_addon:no_destroy run fill ~-2 ~-1 ~-2 ~2 ~-5 ~2 minecraft:air destroy"
+        "satsu_destroy ~-2 ~-1 ~-2 ~2 ~-5 ~2"
       ],
       "conditions": {
         "enabling": [
@@ -5679,7 +5636,7 @@
         "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
       ],
       "last_tick_commands": [
-        "execute as @s unless block ~2 ~-2 ~2 #satsu_iron_man_addon:no_destroy run fill ~-1 ~-1 ~-2 ~2 ~-2 ~2 minecraft:air destroy",
+        "satsu_destroy ~-1 ~-1 ~-2 ~2 ~-2 ~2",
         "tag @s remove striker.ground.attack"
       ],
       "conditions": {
@@ -5751,6 +5708,495 @@
           }
         ],
         "unlocking": []
+      }
+    },
+    "mine": {
+      "main": {
+        "type": "palladium:animation_timer",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+        "title": { "translate": "ability.title.satsu.active_drills" },
+        "description": { "translate": "description.satsu.active_drills" },
+        "hidden": true,
+        "hidden_in_bar": false,
+        "list_index": 12,
+        "gui_position": [5.4, 5.5],
+        "start_value": 0,
+        "max_value": 10,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:toggle",
+              "cooldown": 0,
+              "key_type": "key_bind",
+              "needs_empty_hand": false,
+              "allow_scrolling_when_crouching": true
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:or",
+                  "conditions": [
+                    {
+                      "type": "palladium:ability_enabled",
+                      "ability": "drill.ground"
+                    },
+                    {
+                      "type": "palladium:ability_enabled",
+                      "ability": "ground.attack"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "mine": {
+        "type": "satsu_iron_man_addon:mine",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "range": 1.8,
+        "excluded_tag": "#satsu_iron_man_addon:no_destroy",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "power": "null",
+              "ability": "mine.main"
+            },
+            {
+              "type": "palladium:animation_timer_ability",
+              "power": "null",
+              "ability": "mine.main",
+              "min": 5,
+              "max": 10
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "play_sound": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "satsu_iron_man_addon:striker.dig.repeat",
+        "volume": 1,
+        "pitch": 1,
+        "looping": true,
+        "play_self": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:animation_timer_ability",
+              "power": "null",
+              "ability": "mine.main",
+              "min": 5,
+              "max": 10
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "restrict_slots": {
+        "type": "palladium:restrict_slots",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "list_index": -1,
+        "gui_position": "null",
+        "description": "null",
+        "slots": ["offhand"],
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:animation_timer_ability",
+              "power": "null",
+              "ability": "mine.main",
+              "min": 5,
+              "max": 10
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "remove.ark.energy": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 2,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "mine.main"
+            }
+          ]
+        }
+      }
+    },
+    "drill_animations": {
+      "repeating_animation_timer": {
+        "type": "palladium:animation_timer",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "start_value": 0,
+        "max_value": 3,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "drill.ground"
+                },
+                {
+                  "type": "palladium:animation_timer_ability",
+                  "power": "null",
+                  "ability": "mine.main",
+                  "min": 5,
+                  "max": 10
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "repeating": {
+        "type": "geckolib:render_layer_animation",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_29/hammer/main",
+        "controller": "hammer_animations",
+        "animation_trigger": "drill_repeating",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:animation_timer_ability",
+              "power": "null",
+              "ability": "drill_animations.repeating_animation_timer",
+              "min": 2,
+              "max": 2
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "off": {
+        "type": "geckolib:render_layer_animation",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/mark_29/hammer/main",
+        "controller": "hammer_animations",
+        "animation_trigger": "drill_off",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:animation_timer_ability",
+              "power": "null",
+              "ability": "drill_animations.repeating_animation_timer",
+              "min": 0,
+              "max": 1
+            }
+          ],
+          "unlocking": []
+        }
+      }
+    },
+    "mine_mode": {
+      "turn_it_on_off": {
+        "on": {
+          "type": "satsu_iron_man_addon:item_nbt_modifier",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "enabled_mine",
+          "nbtValue": "true",
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              },
+              {
+                "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+                "powers": [
+                  "satsu_iron_man_addon:extremis/main",
+                  "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+                ],
+                "namespaces": [],
+                "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+              }
+            ]
+          }
+        },
+        "off": {
+          "type": "satsu_iron_man_addon:item_nbt_modifier",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "enabled_mine",
+          "nbtValue": "remove",
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_unlocked",
+                    "ability": "armor"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_armor_activated",
+                    "comparator": "equals",
+                    "compare_to": "on"
+                  },
+                  {
+                    "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+                    "powers": [
+                      "satsu_iron_man_addon:extremis/main",
+                      "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+                    ],
+                    "namespaces": [],
+                    "ignore_powers": [
+                      "fsang:space_power",
+                      "fsang_hero:dampened"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "change_mode": {
+        "set_mine_mode": {
+          "type": "satsu_iron_man_addon:item_nbt_modifier",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "mine_mode",
+          "nbtValue": "fortune",
+          "conditions": {
+            "enabling": [],
+            "unlocking": [
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "mine_mode",
+                    "mode": "exists"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "silk_touch": {
+          "type": "satsu_iron_man_addon:item_nbt_modifier",
+          "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/silk_touch.png",
+          "title": { "translate": "ability.title.satsu.dril.ground" },
+          "description": { "translate": "description.satsu.dril.ground" },
+          "hidden": true,
+          "hidden_in_bar": false,
+          "list_index": 10,
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "mine_mode",
+          "nbtValue": "silk_touch",
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:action",
+                "cooldown": 0,
+                "key_type": "key_bind",
+                "needs_empty_hand": false,
+                "allow_scrolling_when_crouching": true
+              }
+            ],
+            "unlocking": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Energy",
+                "min": 1,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              },
+              {
+                "type": "palladium:crouching"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "mine_mode",
+                "nbtValue": "fortune",
+                "mode": "equals"
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "ground.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "silk_touch.play_sound": {
+          "type": "palladium:play_sound",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "sound": "minecraft:entity.experience_orb.pickup",
+          "volume": 0.5,
+          "pitch": 1.8,
+          "looping": false,
+          "play_self": true,
+          "play_others": false,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "mine_mode.change_mode.silk_touch"
+              }
+            ]
+          }
+        },
+        "fortune": {
+          "type": "satsu_iron_man_addon:item_nbt_modifier",
+          "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/fortune.png",
+          "title": { "translate": "ability.title.satsu.dril.ground" },
+          "description": { "translate": "description.satsu.dril.ground" },
+          "hidden": true,
+          "hidden_in_bar": false,
+          "list_index": 10,
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "mine_mode",
+          "nbtValue": "fortune",
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:action",
+                "cooldown": 0,
+                "key_type": "key_bind",
+                "needs_empty_hand": false,
+                "allow_scrolling_when_crouching": true
+              }
+            ],
+            "unlocking": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Energy",
+                "min": 1,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              },
+              {
+                "type": "palladium:crouching"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "mine_mode",
+                "nbtValue": "silk_touch",
+                "mode": "equals"
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "palladium:or",
+                    "conditions": [
+                      {
+                        "type": "palladium:ability_enabled",
+                        "ability": "ground.attack"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "fortune.play_sound": {
+          "type": "palladium:play_sound",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "sound": "minecraft:block.amethyst_block.break",
+          "volume": 1,
+          "pitch": 1.2,
+          "looping": false,
+          "play_self": true,
+          "play_others": false,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "mine_mode.change_mode.fortune"
+              }
+            ]
+          }
+        }
       }
     },
     "energy_pulse_projectile.right_normal": {
@@ -5995,6 +6441,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "energy.pulse_left"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "mine.main"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -6396,6 +6846,10 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "mine.main"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "uni.beam.hand.left"
               },
               {
@@ -6606,13 +7060,6 @@
       "adjustment_amount": 1,
       "conditions": {
         "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "drill.ground",
-            "property": "value",
-            "min": 1,
-            "max": 32
-          },
           {
             "type": "palladium:ability_enabled",
             "ability": "drill.ground"
