@@ -7722,6 +7722,28 @@
         ]
       }
     },
+    "set.flight_speed": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Flight_velocity",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Flight_velocity",
+            "min": -255555555,
+            "max": -2,
+            "mode": "range"
+          }
+        ]
+      }
+    },
     "increase.flight_speed": {
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
@@ -7734,7 +7756,8 @@
         "enabling": [
           {
             "type": "palladium:action",
-            "key_type": "scroll_up"
+            "key_type": "scroll_up",
+            "allow_scrolling_when_crouching": false
           }
         ],
         "unlocking": [
@@ -7777,7 +7800,8 @@
         "enabling": [
           {
             "type": "palladium:action",
-            "key_type": "scroll_down"
+            "key_type": "scroll_down",
+            "allow_scrolling_when_crouching": false
           }
         ],
         "unlocking": [
@@ -7819,9 +7843,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
-            "key_type": "scroll_up",
-            "allow_scrolling_when_crouching": false
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "increase.flight_speed"
           },
           {
             "type": "palladium:crouching"
@@ -7829,26 +7853,16 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
             "type": "palladium:ability_unlocked",
             "ability": "armor"
           },
           {
+            "type": "palladium:ability_unlocked",
+            "ability": "increase.flight_speed"
+          },
+          {
             "type": "palladium:ability_enabled",
             "ability": "flight_speed.move"
-          },
-          {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:ia_stuff/ia"
           },
           {
             "type": "palladium:integer_property",
@@ -7870,9 +7884,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
-            "key_type": "scroll_down",
-            "allow_scrolling_when_crouching": false
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "remove.flight_speed"
           },
           {
             "type": "palladium:crouching"
@@ -7891,15 +7905,8 @@
             "ability": "armor"
           },
           {
-            "type": "palladium:ability_enabled",
-            "ability": "flight_speed.move"
-          },
-          {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:ia_stuff/ia"
+            "type": "palladium:ability_unlocked",
+            "ability": "remove.flight_speed"
           },
           {
             "type": "palladium:integer_property",
