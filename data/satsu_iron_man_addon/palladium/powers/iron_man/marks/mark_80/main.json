@@ -7448,6 +7448,28 @@
         ]
       }
     },
+    "set.flight_speed": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "Flight_velocity",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Flight_velocity",
+            "min": -255555555,
+            "max": -2,
+            "mode": "range"
+          }
+        ]
+      }
+    },
     "increase.flight_speed": {
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
@@ -7460,7 +7482,8 @@
         "enabling": [
           {
             "type": "palladium:action",
-            "key_type": "scroll_up"
+            "key_type": "scroll_up",
+            "allow_scrolling_when_crouching": false
           }
         ],
         "unlocking": [
@@ -7503,7 +7526,8 @@
         "enabling": [
           {
             "type": "palladium:action",
-            "key_type": "scroll_down"
+            "key_type": "scroll_down",
+            "allow_scrolling_when_crouching": false
           }
         ],
         "unlocking": [
@@ -7545,9 +7569,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
-            "key_type": "scroll_up",
-            "allow_scrolling_when_crouching": false
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "increase.flight_speed"
           },
           {
             "type": "palladium:crouching"
@@ -7555,26 +7579,16 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
             "type": "palladium:ability_unlocked",
             "ability": "armor"
           },
           {
+            "type": "palladium:ability_unlocked",
+            "ability": "increase.flight_speed"
+          },
+          {
             "type": "palladium:ability_enabled",
             "ability": "flight_speed.move"
-          },
-          {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:ia_stuff/ia"
           },
           {
             "type": "palladium:integer_property",
@@ -7596,9 +7610,9 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
-            "key_type": "scroll_down",
-            "allow_scrolling_when_crouching": false
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "remove.flight_speed"
           },
           {
             "type": "palladium:crouching"
@@ -7617,21 +7631,61 @@
             "ability": "armor"
           },
           {
-            "type": "palladium:ability_enabled",
-            "ability": "flight_speed.move"
-          },
-          {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:ia_stuff/ia"
+            "type": "palladium:ability_unlocked",
+            "ability": "remove.flight_speed"
           },
           {
             "type": "palladium:integer_property",
             "property": "satsu_iron_man_flight_speed_choose",
             "min": 2,
             "max": 208
+          }
+        ]
+      }
+    },
+    "particle_flight_explosion": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "execute at @s run particle explosion ~ ~ ~ 0.3 0.1 0.3 0.05 5 normal",
+        "execute at @s run playsound entity.generic.explode player @s ~ ~ ~ 1.0 1.8"
+      ],
+      "last_tick_commands": [],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:is_fast_flying"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Flight_velocity",
+            "min": 100,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ]
       }
@@ -15305,259 +15359,261 @@
         ]
       }
     },
-    "repair_self": {
-      "type": "satsu_iron_man_addon:add_power_per_tick",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "power": "satsu_iron_man_addon:iron_man/marks/mark_80/repair_self/main",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Nanites",
-            "min": 400,
-            "max": 2147483647
-          },
-          {
-            "type": "satsu_iron_man_addon:armor_durability",
-            "slot": "tecnology_armor",
-            "divider": 1,
-            "operation_type": "<"
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:is_hovering_or_flying"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "set_max.satsu_iron_man_nano_counts_max": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_nano_counts_max",
-      "adjustment_type": "set",
-      "adjustment_amount": 15000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_first_tick",
-            "ability": "armor"
-          }
-        ]
-      }
-    },
-    "satsu_iron_man_nano_counts.item_nbt_modifier": {
-      "type": "satsu_iron_man_addon:item_nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Nanites",
-      "nbtValue": "1000000",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "satsu_iron_man_addon:slot_nbt_range_check",
-                "slot": "curios:tecnology_armor",
-                "nbtKey": "Nanites",
-                "min": -2147483647,
-                "max": 2147483647
-              }
-            ]
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "satsu_iron_man_nano_counts.item_nbt_property_sync": {
-      "type": "satsu_iron_man_addon:item_nbt_property_sync",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Nanites",
-      "propertyKey": "satsu_iron_man_nano_counts",
-      "syncMode": "nbt",
-      "conditions": {
-        "enabling": [],
-        "unlocking": []
-      }
-    },
-    "set.satsu_iron_man_nano_counts": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Nanites",
-      "adjustment_type": "set",
-      "adjustment_amount": 15000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Nanites",
-            "min": 15001,
-            "max": 2147483647
-          }
-        ]
-      }
-    },
-    "recharge.satsu_iron_man_nano_counts.timer": {
-      "type": "palladium:repeating_animation_timer",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "start_value": 0,
-      "max_value": 20,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Nanites",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          }
-        ]
-      }
-    },
-    "recharge.satsu_iron_man_nano_counts": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Nanites",
-      "adjustment_type": "add",
-      "adjustment_amount": 50,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "recharge.satsu_iron_man_nano_counts.timer",
-            "property": "value",
-            "min": 20,
-            "max": 20
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:or",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.propulsor_anim",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_flight_boost",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_sword",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_katar",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_hand_blade",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_rial",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_grenade_launcher_anim",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "rocket",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.grab_cannon_anim",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_mallet",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_fireworks",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_flares_flames",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_energy_boosters",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.nano_stabilizer",
-                    "min": "1",
-                    "max": "200"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "nano_group.force_field.shield.animation_timer",
-                    "min": "1",
-                    "max": "7"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "water_turbine",
-                    "min": "1",
-                    "max": "18"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+    "nanites": {
+      "repair_self": {
+        "type": "satsu_iron_man_addon:add_power_per_tick",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "power": "satsu_iron_man_addon:iron_man/marks/mark_80/repair_self/main",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Nanites",
+              "min": 400,
+              "max": 2147483647
+            },
+            {
+              "type": "satsu_iron_man_addon:armor_durability",
+              "slot": "tecnology_armor",
+              "divider": 1,
+              "operation_type": "<"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:is_hovering_or_flying"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "set_max.satsu_iron_man_nano_counts_max": {
+        "type": "satsu_iron_man_addon:palladium_property_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_name": "satsu_iron_man_nano_counts_max",
+        "adjustment_type": "set",
+        "adjustment_amount": 15000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_first_tick",
+              "ability": "armor"
+            }
+          ]
+        }
+      },
+      "satsu_iron_man_nano_counts.item_nbt_modifier": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Nanites",
+        "nbtValue": "1000000",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "Nanites",
+                  "min": -2147483647,
+                  "max": 2147483647
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "satsu_iron_man_nano_counts.item_nbt_property_sync": {
+        "type": "satsu_iron_man_addon:item_nbt_property_sync",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Nanites",
+        "propertyKey": "satsu_iron_man_nano_counts",
+        "syncMode": "nbt",
+        "conditions": {
+          "enabling": [],
+          "unlocking": []
+        }
+      },
+      "set.satsu_iron_man_nano_counts": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Nanites",
+        "adjustment_type": "set",
+        "adjustment_amount": 15000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Nanites",
+              "min": 15001,
+              "max": 2147483647
+            }
+          ]
+        }
+      },
+      "recharge.satsu_iron_man_nano_counts.timer": {
+        "type": "palladium:repeating_animation_timer",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "start_value": 0,
+        "max_value": 20,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Nanites",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            }
+          ]
+        }
+      },
+      "recharge.satsu_iron_man_nano_counts": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Nanites",
+        "adjustment_type": "add",
+        "adjustment_amount": 50,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "nanites.recharge.satsu_iron_man_nano_counts.timer",
+              "property": "value",
+              "min": 20,
+              "max": 20
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:or",
+                  "conditions": [
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.propulsor_anim",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_flight_boost",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_sword",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_katar",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_hand_blade",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_rial",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_grenade_launcher_anim",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "rocket",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.grab_cannon_anim",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_mallet",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_fireworks",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_flares_flames",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_energy_boosters",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.nano_stabilizer",
+                      "min": "1",
+                      "max": "200"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "nano_group.force_field.shield.animation_timer",
+                      "min": "1",
+                      "max": "7"
+                    },
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "water_turbine",
+                      "min": "1",
+                      "max": "18"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
       }
     },
     "give_desestabilizer": {
@@ -15592,159 +15648,161 @@
         ]
       }
     },
-    "low_energy_alarm": {
-      "type": "palladium:play_sound",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.alert_sound",
-      "volume": 1,
-      "pitch": 1,
-      "looping": true,
-      "play_self": true,
-      "play_others": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 800
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 1,
-            "max": 1
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "recharge_energy": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "add",
-      "adjustment_amount": 250,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:command_result",
-                    "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
-                  },
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_animation_armor",
-                    "min": 1,
-                    "max": 1
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_animation_armor",
-                    "min": 0,
-                    "max": 0
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": -2147483647,
-            "max": 85001
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "recharge_energy.closed": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "add",
-      "adjustment_amount": 300,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_recharge_mode",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 1,
-            "max": 1
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": -2147483647,
-            "max": 85001
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "set_energy_85000..": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "set",
-      "adjustment_amount": 85000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 85001,
-            "max": 2147483647
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "set_energy_85000..max": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_iron_man_energy_max",
-      "adjustment_type": "set",
-      "adjustment_amount": 85000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 0,
-            "max": 2147483647
-          }
-        ],
-        "unlocking": []
+    "energy": {
+      "low_energy_alarm": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "satsu_iron_man_addon:entity.armor.alert_sound",
+        "volume": 1,
+        "pitch": 1,
+        "looping": true,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 800
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_animation_armor",
+              "min": 1,
+              "max": 1
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "add",
+        "adjustment_amount": 250,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:command_result",
+                      "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+                    },
+                    {
+                      "type": "palladium:integer_property",
+                      "property": "satsu_animation_armor",
+                      "min": 1,
+                      "max": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:integer_property",
+                      "property": "satsu_animation_armor",
+                      "min": 0,
+                      "max": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": -2147483647,
+              "max": 85001
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy.closed": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "add",
+        "adjustment_amount": 300,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_recharge_mode",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_animation_armor",
+              "min": 1,
+              "max": 1
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": -2147483647,
+              "max": 85001
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "set_energy_85000..": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "set",
+        "adjustment_amount": 85000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 85001,
+              "max": 2147483647
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "set_energy_85000..max": {
+        "type": "satsu_iron_man_addon:palladium_property_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_name": "satsu_iron_man_iron_man_energy_max",
+        "adjustment_type": "set",
+        "adjustment_amount": 85000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 0,
+              "max": 2147483647
+            }
+          ],
+          "unlocking": []
+        }
       }
     }
   }
