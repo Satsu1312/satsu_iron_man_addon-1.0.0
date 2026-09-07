@@ -5,7 +5,7 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/head.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_red.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
@@ -13,11 +13,6 @@
           }
         ],
         "variables": {
-          "mark_number": {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_mark_property",
-            "fallback": "mark_1"
-          },
           "HEAD": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
@@ -27,7 +22,12 @@
             "max": 17
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_head/model_75_0_#HEAD"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_head/model_75_red_#HEAD"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.PrimaryColour",
+        "fallback": 0
       },
       "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
       "animation_controller": [
@@ -41,12 +41,170 @@
       ],
       "conditions": [
         {
-          "type": "palladium:ability_integer_property",
-          "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-          "ability": "head_animation",
-          "property": "value",
-          "min": 1,
-          "max": 20
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/head.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_gold.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/head/#HEAD.png"
+          }
+        ],
+        "variables": {
+          "HEAD": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "head_animation",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_head/model_75_gold_#HEAD"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.SecondaryColour",
+        "fallback": 0
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.head"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/head.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_gray.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/head/#HEAD.png"
+          }
+        ],
+        "variables": {
+          "HEAD": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "head_animation",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_head/model_75_gray_#HEAD"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.TertiaryColour",
+        "fallback": 0
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.head"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/head.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_gray.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/head/#HEAD.png"
+          }
+        ],
+        "variables": {
+          "HEAD": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "head_animation",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_head/model_75_gray_#HEAD"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.head"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
         }
       ]
     },
@@ -62,11 +220,6 @@
           }
         ],
         "variables": {
-          "mark_number": {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_mark_property",
-            "fallback": "mark_1"
-          },
           "HEAD": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
@@ -76,7 +229,12 @@
             "max": 17
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_head/light/model_75_0_#HEAD"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_head/iron_man_suit_lights_72_0_#HEAD"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
       },
       "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
       "animation_controller": [
@@ -90,14 +248,6 @@
       ],
       "render_type": "glow",
       "conditions": [
-        {
-          "type": "palladium:ability_integer_property",
-          "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-          "ability": "head_animation",
-          "property": "value",
-          "min": 1,
-          "max": 20
-        },
         {
           "type": "palladium:not",
           "conditions": [
@@ -124,40 +274,6 @@
               "entity_type_tag": "satsu_iron_man_addon:stands"
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/head.geo.json",
-      "texture": {
-        "base": "satsu_iron_man_addon:textures/models/stealth_variation/main.png",
-        "transformers": [
-          {
-            "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
-          }
-        ],
-        "variables": {
-          "STEALH": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-            "ability": "modular_class.stealth.animation_timer",
-            "property": "value",
-            "min": 0,
-            "max": 17
-          }
-        },
-        "output": "satsu_iron_man_addon:textures/models/model_75/stealth_variation/head/main_#STEALH"
-      },
-      "conditions": [
-        {
-          "type": "palladium:ability_integer_property",
-          "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-          "ability": "modular_class.stealth.animation_timer",
-          "property": "value",
-          "min": 1,
-          "max": 20
         }
       ]
     }

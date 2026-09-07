@@ -5,7 +5,7 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_arm.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_0.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_red.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
@@ -13,11 +13,6 @@
           }
         ],
         "variables": {
-          "mark_number": {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_mark_property",
-            "fallback": "mark_1"
-          },
           "LEFT_ARM": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
@@ -27,7 +22,12 @@
             "max": 18
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_arm/model_75_0_#LEFT_ARM"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_arm/model_75_red_#LEFT_ARM"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.PrimaryColour",
+        "fallback": 0
       },
       "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
       "animation_controller": [
@@ -41,12 +41,170 @@
       ],
       "conditions": [
         {
-          "type": "palladium:ability_integer_property",
-          "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-          "ability": "left_arm_animation",
-          "property": "value",
-          "min": 1,
-          "max": 9999
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_arm.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_gold.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/left_arm/#LEFT_ARM.png"
+          }
+        ],
+        "variables": {
+          "LEFT_ARM": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "left_arm_animation",
+            "property": "value",
+            "min": 0,
+            "max": 18
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_arm/model_75_gold_#LEFT_ARM"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.SecondaryColour",
+        "fallback": 0
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.left.arm"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_arm.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_gray.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/left_arm/#LEFT_ARM.png"
+          }
+        ],
+        "variables": {
+          "LEFT_ARM": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "left_arm_animation",
+            "property": "value",
+            "min": 0,
+            "max": 18
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_arm/model_75_gray_#LEFT_ARM"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.TertiaryColour",
+        "fallback": 0
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.left.arm"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_arm.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_75_gray.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/left_arm/#LEFT_ARM.png"
+          }
+        ],
+        "variables": {
+          "LEFT_ARM": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "left_arm_animation",
+            "property": "value",
+            "min": 0,
+            "max": 18
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_arm/model_75_gray_#LEFT_ARM"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
+      "animation_controller": [
+        {
+          "name": "call.part.control",
+          "transition_tick_time": 10,
+          "triggers": {
+            "call.part": "animation.minecraft:call.left.arm"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
         }
       ]
     },
@@ -62,11 +220,6 @@
           }
         ],
         "variables": {
-          "mark_number": {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_mark_property",
-            "fallback": "mark_1"
-          },
           "LEFT_ARM": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
@@ -76,7 +229,12 @@
             "max": 18
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_arm/light/model_75_0_#LEFT_ARM"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light_left_arm/iron_man_suit_lights_72_0_#LEFT_ARM"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon_beam_core_color",
+        "fallback": 0
       },
       "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
       "animation_controller": [
@@ -90,14 +248,6 @@
       ],
       "render_type": "glow",
       "conditions": [
-        {
-          "type": "palladium:ability_integer_property",
-          "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-          "ability": "left_arm_animation",
-          "property": "value",
-          "min": 1,
-          "max": 9999
-        },
         {
           "type": "palladium:not",
           "conditions": [
@@ -129,116 +279,113 @@
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/hammers/mark_striker_hammers_left.geo.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/nano_armors/each_arms/left/rocket_launcher_first_person.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/hammers/mark_25_0.png",
-        "variables": {
-          "X": {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_mark_property",
-            "fallback": "mark_1"
+        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_rocket_launcher/no_light/model_72_red.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/nano_things/rocket_launcher/rocket_launcher_#TIMER.png"
           }
-        }
-      },
-      "animation_file": "satsu_iron_man_addon:animations/call_right_arm.geo.json",
-      "animation_controller": [
-        {
-          "name": "call.part.control",
-          "transition_tick_time": 10,
-          "triggers": {
-            "call.part": "animation.minecraft:call.left.arm"
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "wrist.cannon.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 5
           }
         },
-        {
-          "name": "hammer_animations",
-          "transition_tick_time": 10,
-          "triggers": {
-            "drill_repeating": "drill_repeating",
-            "drill_off": "drill_off"
-          }
-        }
-      ],
+        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_rocket_launcher/left/no_light/model_75_red_#TIMER"
+      },
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.PrimaryColour",
+        "fallback": 0
+      },
       "conditions": [
         {
           "type": "palladium:ability_integer_property",
           "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
           "ability": "left_arm_animation",
           "property": "value",
-          "min": 1,
+          "min": 18,
           "max": 18
-        },
-        {
-          "type": "satsu_iron_man_addon:slot_nbt_check",
-          "slot": "curios:tecnology_armor",
-          "nbtKey": "Main_addition_left",
-          "nbtValue": "Hammer",
-          "mode": "equals"
         }
       ]
     },
     {
       "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/silver_centurions_blades_left.json",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/nano_armors/each_arms/left/rocket_launcher_first_person.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/vibranium_blades.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_rocket_launcher/no_light/model_72_gray.png",
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/vibranuim_blades/transformation_#Blade_anim.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/nano_things/rocket_launcher/rocket_launcher_#TIMER.png"
           }
         ],
         "variables": {
-          "Blade_anim": {
+          "TIMER": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-            "ability": "modular_class.blades.vibranuim.blades",
+            "ability": "wrist.cannon.animation_timer",
             "property": "value",
             "min": 0,
-            "max": 6
+            "max": 5
           }
-        }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_rocket_launcher/left/no_light/model_75_gray_#TIMER"
       },
-      "conditions": [
-        {
-          "type": "satsu_iron_man_addon:slot_nbt_check",
-          "slot": "curios:tecnology_armor",
-          "nbtKey": "Main_addition_left",
-          "nbtValue": "Blade",
-          "mode": "equals"
-        }
-      ]
-    },
-    {
-      "type": "geckolib:default",
-      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_arm.geo.json",
-      "texture": {
-        "base": "satsu_iron_man_addon:textures/models/stealth_variation/main.png",
-        "transformers": [
-          {
-            "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
-          }
-        ],
-        "variables": {
-          "STEALH": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-            "ability": "modular_class.stealth.animation_timer",
-            "property": "value",
-            "min": 0,
-            "max": 17
-          }
-        },
-        "output": "satsu_iron_man_addon:textures/models/model_75/stealth_variation/left_arm/main_#STEALH"
+      "tint": {
+        "type": "palladium:integer_property",
+        "property": "satsu_iron_man_addon.TertiaryColour",
+        "fallback": 0
       },
       "conditions": [
         {
           "type": "palladium:ability_integer_property",
           "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
-          "ability": "modular_class.stealth.animation_timer",
+          "ability": "left_arm_animation",
           "property": "value",
-          "min": 1,
-          "max": 20
+          "min": 18,
+          "max": 18
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/nano_armors/each_arms/left/rocket_launcher_first_person.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_rocket_launcher/no_light/model_72_gray.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/nano_things/rocket_launcher/rocket_launcher_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "wrist.cannon.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 5
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/iron_man/nano_stuff/nano_rocket_launcher/left/no_light/model_75_gray_#TIMER"
+      },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+          "ability": "left_arm_animation",
+          "property": "value",
+          "min": 18,
+          "max": 18
         }
       ]
     }
