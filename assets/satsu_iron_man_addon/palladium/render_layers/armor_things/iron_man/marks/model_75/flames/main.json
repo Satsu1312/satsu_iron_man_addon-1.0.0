@@ -192,6 +192,54 @@
           ]
         }
       ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/flames/model_75/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/flames/new_thruster_white/#X.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/flames/#SHOW_UP_wings.png"
+          }
+        ],
+        "variables": {
+          "X": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flames",
+            "property": "value"
+          },
+          "SHOW_UP_wings": {
+            "type": "palladium:animation_timer_ability",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_75/main",
+            "ability": "stabilizer.stabilizer_flames",
+            "property": "value",
+            "min": 0,
+            "max": 1
+          }
+        }
+      },
+      "tint": {
+        "type": "palladium:string_property",
+        "property": "satsu_iron_man_addon_flame_color"
+      },
+      "render_type": "glow",
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
