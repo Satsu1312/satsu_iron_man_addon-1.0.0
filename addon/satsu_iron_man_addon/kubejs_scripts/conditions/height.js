@@ -1,17 +1,16 @@
 StartupEvents.registry("palladium:condition_serializer", (event) => {
-  event
-    .create("satsy_iron_man_addon:height_bool_condition")
-
+  event.create("satsy_iron_man_addon:height_bool_condition")
     // Propiedades de altura mínima y máxima
-    .addProperty("min_height", "integer", -64, "how low you can go")
-    .addProperty("max_height", "integer", 320, "how high you can go")
-
+    .addProperty("min_height", "integer", -64, "Altura mínima permitida")
+    .addProperty("max_height", "integer", 320, "Altura máxima permitida")
     .test((entity, properties) => {
-      const minHeight = properties.get("min_height");
-      const maxHeight = properties.get("max_height");
-      const currentY = entity.getY();
+      // Protección de seguridad: evita crasheos si la entidad no existe temporalmente
+      if (!entity) return false;
 
-      // Comprueba que la entidad esté DENTRO del rango [minHeight, maxHeight]
-      return currentY >= minHeight && currentY <= maxHeight;
+      const currentY = entity.getY();
+      
+      // Comprobación directa del rango [minHeight, maxHeight]
+      return currentY >= properties.get("min_height") && 
+             currentY <= properties.get("max_height");
     });
 });
