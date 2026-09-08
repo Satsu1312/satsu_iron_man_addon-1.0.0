@@ -4985,6 +4985,56 @@
         "unlocking": []
       }
     },
+    "activate_armor.non_crouching": {
+      "type": "satsu_iron_man_addon:superpower",
+      "icon": "#satsu_iron_man_addon:enable_armor_icon",
+      "title": { "translate": "ability.title.satsu.call.armor" },
+      "description": { "translate": "description.armor_skill_bar" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 0,
+      "power": "satsu_iron_man_addon:armor/parts/throw/all",
+      "capacity": "add",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:crouching"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "call": {
       "type": "palladium:ability_wheel",
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
@@ -4994,7 +5044,6 @@
       "hidden_in_bar": false,
       "list_index": 0,
       "abilities": [
-        "call.all",
         "call.chest",
         "call.head",
         "call.right_leg",
@@ -5037,31 +5086,6 @@
                 "max_score": 1
               }
             ]
-          }
-        ]
-      }
-    },
-    "call.all": {
-      "type": "satsu_iron_man_addon:superpower",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/marks_abilities/call/all.png",
-      "title": { "translate": "ability.title.satsu.part.all" },
-      "description": { "translate": "description.satsu.part.all" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "list_index": 0,
-      "power": "satsu_iron_man_addon:armor/parts/throw/all",
-      "capacity": "add",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_wheel",
-            "cooldown": 0
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "call"
           }
         ]
       }
@@ -5508,6 +5532,9 @@
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
+          },
+          {
+            "type": "palladium:crouching"
           },
           {
             "type": "palladium:ability_unlocked",
