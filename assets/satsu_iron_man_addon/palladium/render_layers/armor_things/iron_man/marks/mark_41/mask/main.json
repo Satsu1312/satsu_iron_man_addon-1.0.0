@@ -183,6 +183,93 @@
           "max": 20
         }
       ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/additaments/mysterio.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/additaments/mysterio.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/parts_ensamble/head/#MYSTERIO.png"
+          }
+        ],
+        "variables": {
+          "MYSTERIO": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_41/main",
+            "ability": "bones_alpha_mask_head",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/additaments/mark_41/mysterio_#MYSTERIO"
+      },
+      "animation_file": "satsu_iron_man_addon:animations/new_mask_animation.geo.json",
+      "animation_controller": [
+        {
+          "name": "mask.up",
+          "transition_tick_time": 10,
+          "triggers": {
+            "mask.up": "open",
+            "mask.on": "close",
+            "call.part.head": "animation.minecraft:call.head",
+            "call.part.front": "animation.minecraft:call.front"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        },
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "satsu_iron_man_addon:iron_man/marks/mark_41/main",
+              "ability": "bones_alpha_mask_head",
+              "property": "value",
+              "min": 16,
+              "max": 18
+            },
+            {
+              "type": "palladium:entity_type_tag",
+              "entity_type_tag": "satsu_iron_man_addon:player"
+            }
+          ]
+        },
+        {
+          "type": "palladium:or",
+          "conditions": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Secondary_addition_right",
+              "nbtValue": "Mysterio",
+              "mode": "equals"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Secondary_addition_left",
+              "nbtValue": "Mysterio",
+              "mode": "equals"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
