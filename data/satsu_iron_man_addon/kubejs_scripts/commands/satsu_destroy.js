@@ -1,6 +1,7 @@
 (function() {
   const $Block = Java.loadClass('net.minecraft.world.level.block.Block');
   const $BlockPosArgument = Java.loadClass('net.minecraft.commands.arguments.coordinates.BlockPosArgument');
+
   const SILK_TOOL = Item.of('minecraft:diamond_pickaxe').enchant('minecraft:silk_touch', 1);
   const FORTUNE_TOOL = Item.of('minecraft:diamond_pickaxe').enchant('minecraft:fortune', 3);
   const DEFAULT_TOOL = Item.of('minecraft:diamond_pickaxe');
@@ -74,9 +75,14 @@
               }
 
               BlockPos.betweenClosed(from, to).forEach(pos => {
-                let blockState = level.getBlockState(pos);
+                let block = level.getBlock(pos);
+                let blockState = block.blockState;
 
-                if (!blockState.isAir() && !blockState.is('satsu_iron_man_addon:no_destroy')) {
+                // Verificamos usando el método integrado de KubeJS
+                let hasNoDestroyTag = block.hasTag('satsu_iron_man_addon:no_destroy');
+
+                // Solo rompe si NO es aire y NO pertenece al tag protegido
+                if (!block.air && !hasNoDestroyTag) {
                   let drops = $Block.getDrops(
                     blockState,
                     level,

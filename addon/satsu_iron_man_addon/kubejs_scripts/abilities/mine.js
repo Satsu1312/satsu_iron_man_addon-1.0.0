@@ -38,6 +38,8 @@ StartupEvents.registry("palladium:abilities", (event) => {
           var blockState = targetBlock.blockState;
           var pos = targetBlock.pos;
 
+          if (targetBlock.air) return;
+
           // Obtener el ID del bloque de forma segura en KubeJS
           var blockId = "";
           try {
@@ -50,20 +52,23 @@ StartupEvents.registry("palladium:abilities", (event) => {
             }
           }
 
-          // Verificamos si cumple con la exclusión (soportando Tags con # y bloques planos)
+          // Verificación robusta usando la propiedad excluded_tag del JSON
           var isExcluded = false;
           try {
-            if (propExcludedTag.startsWith("#")) {
-              var tagName = propExcludedTag.substring(1);
-              isExcluded = blockState.in(tagName);
-            } else {
-              isExcluded = blockState.is(propExcludedTag);
+            if (propExcludedTag) {
+              if (propExcludedTag.startsWith("#")) {
+                var tagName = propExcludedTag.substring(1);
+                isExcluded = targetBlock.hasTag(tagName);
+              } else {
+                isExcluded = (blockId === propExcludedTag.toLowerCase() || targetBlock.hasTag(propExcludedTag));
+              }
             }
           } catch (e) {
             isExcluded = (blockId === propExcludedTag.toLowerCase());
           }
 
-          if (blockState.isAir() || isExcluded) return;
+          // Si es aire o pertenece al tag/bloque excluido, no hace nada
+          if (isExcluded) return;
 
           // 1. LÓGICA DE CURIOS NBT PARA LEER SILK TOUCH / FORTUNE
           var activeMineMode = "none";
@@ -190,10 +195,10 @@ StartupEvents.registry("palladium:abilities", (event) => {
             // Fallback para cualquier otro mineral de mod que soltaría XP (excluyendo metales básicos)
             else if (
               blockId.includes("ore") && 
-              !blockId.includes("iron") && 
-              !blockId.includes("gold") && 
-              !blockId.includes("copper") && 
-              !blockId.includes("debris")
+              blockId.includes("iron") && 
+              blockId.includes("gold") && 
+              blockId.includes("copper") && 
+              blockId.includes("debris")
             ) {
               expAmount = Utils.random.nextInt(3) + 1; // 1 a 3 XP
             }
@@ -210,7 +215,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
             }
           }
 
-          // 5. APLICAR EL CAMBIO DE BLOQUE
+          // 5. APLICAR EL CAMBIO DE BLOQUE SEGÚN PROPIEDAD BLOCKSET
           if (propBlockSet && propBlockSet !== "minecraft:air") {
             worldLevel.setBlockAndUpdate(pos, Block.id(propBlockSet).blockState);
           } else {
