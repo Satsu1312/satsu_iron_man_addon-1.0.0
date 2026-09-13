@@ -2719,292 +2719,640 @@
         }
       }
     },
-    "strength.right.arm.normal": {
-      "type": "palladium:attribute_modifier",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
-      "title": { "translate": "ability.title.satsu.strength" },
-      "description": { "translate": "description.satsu.strength" },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [1, -0.6],
-      "attribute": "minecraft:generic.attack_damage",
-      "uuid": "f780d74f-5bab-432d-b60d-0748e5788bd8",
-      "amount": 4,
-      "operation": 0,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon.right_arm",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_strenght_power",
-            "comparator": "equals",
-            "compare_to": "normal"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
+    "strength": {
+      "strength.right.arm.normal": {
+        "type": "palladium:attribute_modifier",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+        "title": { "translate": "ability.title.satsu.strength" },
+        "description": { "translate": "description.satsu.strength" },
+        "hidden": false,
+        "hidden_in_bar": true,
+        "gui_position": [1, -0.6],
+        "attribute": "minecraft:generic.attack_damage",
+        "uuid": "f780d74f-5bab-432d-b60d-0748e5788bd8",
+        "amount": 4,
+        "operation": 0,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.right_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_strenght_power",
+              "comparator": "equals",
+              "compare_to": "normal"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "model_75_energy",
+              "nbtValue": "inside",
+              "mode": "equals"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "strength.left.arm.normal": {
+        "type": "palladium:attribute_modifier",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+        "title": { "translate": "ability.title.satsu.strength" },
+        "description": { "translate": "description.satsu.strength" },
+        "hidden": true,
+        "hidden_in_bar": true,
+        "gui_position": [3.5, 0.5],
+        "attribute": "minecraft:generic.attack_damage",
+        "uuid": "48b453d4-7e07-4950-83dd-b58d5fcf8a30",
+        "amount": 4,
+        "operation": 0,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.left_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_strenght_power",
+              "comparator": "equals",
+              "compare_to": "normal"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "model_75_energy",
+              "nbtValue": "inside",
+              "mode": "equals"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "strength.right.arm.increase": {
+        "type": "palladium:attribute_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "attribute": "minecraft:generic.attack_damage",
+        "uuid": "414c4a92-b9c7-42d4-a33e-18d88735aa2d",
+        "amount": 8,
+        "operation": 0,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.right_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_strenght_power",
+              "comparator": "equals",
+              "compare_to": "increase"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "model_75_energy",
+              "nbtValue": "inside",
+              "mode": "equals"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "strength.left.arm.increase": {
+        "type": "palladium:attribute_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "attribute": "minecraft:generic.attack_damage",
+        "uuid": "97005ad3-ba7d-4924-974a-5139eb01c82d",
+        "amount": 8,
+        "operation": 0,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.left_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_strenght_power",
+              "comparator": "equals",
+              "compare_to": "increase"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "model_75_energy",
+              "nbtValue": "inside",
+              "mode": "equals"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
       }
     },
-    "strength.left.arm.normal": {
-      "type": "palladium:attribute_modifier",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
-      "title": { "translate": "ability.title.satsu.strength" },
-      "description": { "translate": "description.satsu.strength" },
-      "hidden": true,
-      "hidden_in_bar": true,
-      "gui_position": [3.5, 0.5],
-      "attribute": "minecraft:generic.attack_damage",
-      "uuid": "48b453d4-7e07-4950-83dd-b58d5fcf8a30",
-      "amount": 4,
-      "operation": 0,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon.left_arm",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_strenght_power",
-            "comparator": "equals",
-            "compare_to": "normal"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "strength.right.arm.increase": {
-      "type": "palladium:attribute_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "attribute": "minecraft:generic.attack_damage",
-      "uuid": "414c4a92-b9c7-42d4-a33e-18d88735aa2d",
-      "amount": 8,
-      "operation": 0,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon.right_arm",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_strenght_power",
-            "comparator": "equals",
-            "compare_to": "increase"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "strength.left.arm.increase": {
-      "type": "palladium:attribute_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "attribute": "minecraft:generic.attack_damage",
-      "uuid": "97005ad3-ba7d-4924-974a-5139eb01c82d",
-      "amount": 8,
-      "operation": 0,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon.left_arm",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_strenght_power",
-            "comparator": "equals",
-            "compare_to": "increase"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
+    "strength_out": {
+      "strength.right.arm.normal": {
+        "type": "palladium:attribute_modifier",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+        "title": { "translate": "ability.title.satsu.strength" },
+        "description": { "translate": "description.satsu.strength" },
+        "hidden": false,
+        "hidden_in_bar": true,
+        "gui_position": [1, -0.6],
+        "attribute": "minecraft:generic.attack_damage",
+        "uuid": "73602c87-9812-4fb1-9c06-c14a2ec411d0",
+        "amount": 9,
+        "operation": 0,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.right_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_strenght_power",
+              "comparator": "equals",
+              "compare_to": "normal"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "model_75_energy",
+              "nbtValue": "outside",
+              "mode": "equals"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "strength.left.arm.normal": {
+        "type": "palladium:attribute_modifier",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/strength.png",
+        "title": { "translate": "ability.title.satsu.strength" },
+        "description": { "translate": "description.satsu.strength" },
+        "hidden": true,
+        "hidden_in_bar": true,
+        "gui_position": [3.5, 0.5],
+        "attribute": "minecraft:generic.attack_damage",
+        "uuid": "6d669efb-648c-4e35-9dc1-fe4a3dfb1a31",
+        "amount": 9,
+        "operation": 0,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.left_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_strenght_power",
+              "comparator": "equals",
+              "compare_to": "normal"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "model_75_energy",
+              "nbtValue": "outside",
+              "mode": "equals"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "strength.right.arm.increase": {
+        "type": "palladium:attribute_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "attribute": "minecraft:generic.attack_damage",
+        "uuid": "e9c81e7e-4a56-4c4c-acd0-fec6ce78bebc",
+        "amount": 12,
+        "operation": 0,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.right_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_strenght_power",
+              "comparator": "equals",
+              "compare_to": "increase"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "model_75_energy",
+              "nbtValue": "outside",
+              "mode": "equals"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "strength.left.arm.increase": {
+        "type": "palladium:attribute_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "attribute": "minecraft:generic.attack_damage",
+        "uuid": "246b803f-c742-40eb-87de-2680642408fc",
+        "amount": 12,
+        "operation": 0,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.left_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_strenght_power",
+              "comparator": "equals",
+              "compare_to": "increase"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "model_75_energy",
+              "nbtValue": "outside",
+              "mode": "equals"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
       }
     },
     "fall_resistance": {
@@ -7981,10 +8329,10 @@
       "mysterio": {
         "type": "satsu_iron_man_addon:set_property",
         "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/mysterio.png",
-          "title": { "translate": "ability.title.satsu.mysterio" },
-          "description": {
-            "translate": "description.satsu.additamens.mysterio"
-          },
+        "title": { "translate": "ability.title.satsu.mysterio" },
+        "description": {
+          "translate": "description.satsu.additamens.mysterio"
+        },
         "hidden": false,
         "hidden_in_bar": false,
         "gui_position": [0, -4.65],
@@ -14881,10 +15229,10 @@
           }
         },
         "render_layer": {
-        "type": "palladium:render_layer",
-        "hidden": true,
-        "hidden_in_bar": true,
-        "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/model_75/light/main",
+          "type": "palladium:render_layer",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "render_layer": "satsu_iron_man_addon:armor_things/iron_man/marks/model_75/light/main",
           "conditions": {
             "enabling": [
               {
