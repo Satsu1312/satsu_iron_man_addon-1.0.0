@@ -11,6 +11,15 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
     let hasItem = storage[posKey] != undefined;
 
     if (!hasItem && !item.isEmpty()) {
+        // Validamos si el ítem tiene alguno de los dos tags permitidos
+        let validTag1 = item.hasTag('satsu_iron_man_addon:armors/main');
+        let validTag2 = item.hasTag('satsu_iron_man_addon:armors/iron_man/hulkbusters/main');
+
+        if (!validTag1 && !validTag2) {
+            player.tell('¡Este ítem no es compatible con el reactor!');
+            return;
+        }
+
         // Guardamos las propiedades clave del ítem de forma manual y segura
         storage[posKey] = {
             id: item.id,
