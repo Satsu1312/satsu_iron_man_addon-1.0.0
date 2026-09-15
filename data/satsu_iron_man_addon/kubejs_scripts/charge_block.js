@@ -11,29 +11,32 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
     let hasItem = storage[posKey] != undefined;
 
     if (!hasItem && !item.isEmpty()) {
-        // Validamos si el ítem tiene alguno de los dos tags permitidos
         let validTag1 = item.hasTag('satsu_iron_man_addon:armors/main');
         let validTag2 = item.hasTag('satsu_iron_man_addon:armors/iron_man/hulkbusters/main');
 
         if (!validTag1 && !validTag2) {
-            player.tell('¡Este ítem no es compatible con el reactor!');
             return;
         }
 
-        // Guardamos las propiedades clave del ítem de forma manual y segura
+        // Guardamos el ítem
         storage[posKey] = {
             id: item.id,
             count: 1,
             nbt: item.nbt ? item.nbt.copy() : null
         };
+
+        // Consumimos el ítem en la mano del servidor
         item.count--;
         
-        player.tell('¡Ítem colocado en el reactor!');
+        // Forzamos al cliente a sincronizar el inventario completo (el slot seleccionado)
+        player.sendData('update_inventory'); // O forzamos el slot actual
+        player.inventory.selectedHotbarSlot = player.inventory.selectedHotbarSlot; // Truco de refresco de slot
+
+        event.cancel(); // Evita que el cliente haga predicciones raras de animación
 
     } else if (hasItem && item.isEmpty()) {
         let savedData = storage[posKey];
 
-        // Reconstruimos el ítem usando su ID y le devolvemos su NBT original intacto
         let recoveredItem = Item.of(savedData.id, savedData.count);
         if (savedData.nbt) {
             recoveredItem.nbt = savedData.nbt;
@@ -42,7 +45,7 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         player.setHeldItem(hand, recoveredItem);
         delete storage[posKey];
         
-        player.tell('¡Has retirado el ítem del reactor!');
+        event.cancel();
     }
 });
 
@@ -75,18 +78,15 @@ LevelEvents.tick(event => {
 
         let savedData = storage[posKey];
         
-        // Si el ítem tiene NBT, incrementamos la energía dentro de él
         if (savedData && savedData.nbt) {
             try {
                 let currentEnergy = savedData.nbt.contains('Energy') ? savedData.nbt.getDouble('Energy') : 0.0;
-                let maxEnergy = 100000.0; // Ajusta tu máximo si lo requieres
+                let maxEnergy = 100000.0;
                 
                 if (currentEnergy < maxEnergy) {
                     savedData.nbt.putDouble('Energy', currentEnergy + 10.0);
                 }
-            } catch(e) {
-                // Previene cualquier interrupción en el tick
-            }
+            } catch(e) {}
         }
     }
 });
