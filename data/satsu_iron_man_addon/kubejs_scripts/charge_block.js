@@ -25,10 +25,10 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         item.count--;
         
         // Forzamos al cliente a sincronizar el inventario completo (el slot seleccionado)
-        player.sendData('update_inventory'); // O forzamos el slot actual
-        player.inventory.selectedHotbarSlot = player.inventory.selectedHotbarSlot; // Truco de refresco de slot
+        player.sendData('update_inventory');
+        player.inventory.selectedHotbarSlot = player.inventory.selectedHotbarSlot;
 
-        event.cancel(); // Evita que el cliente haga predicciones raras de animación
+        event.cancel();
 
     } else if (hasItem && item.isEmpty()) {
         let savedData = storage[posKey];
@@ -48,7 +48,7 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
 LevelEvents.tick(event => {
     let level = event.level;
     if (level.isClientSide()) return;
-    if (level.getTime() % 20 != 0) return;
+    // Se eliminó la validación del módulo de 20 para que corra en cada tick
 
     let serverData = Utils.server.persistentData;
     let storage = serverData.reactorStorage;
@@ -77,7 +77,7 @@ LevelEvents.tick(event => {
         if (savedData && savedData.nbt) {
             try {
                 let currentEnergy = savedData.nbt.contains('Energy') ? savedData.nbt.getDouble('Energy') : 0.0;
-                let maxEnergy = 100000.0;
+                let maxEnergy = 10000000.0;
                 
                 let chargeRate = savedData.nbt.contains('Energy_Charge') ? savedData.nbt.getDouble('Energy_Charge') : 10.0;
                 
