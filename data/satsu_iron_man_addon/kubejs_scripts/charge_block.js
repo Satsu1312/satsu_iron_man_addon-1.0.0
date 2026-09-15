@@ -24,9 +24,8 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
 
         item.count--;
         
-        // Forzamos al cliente a sincronizar el inventario completo (el slot seleccionado)
+        // Forzamos sincronización de datos con el cliente sin usar propiedades de Java inválidas
         player.sendData('update_inventory');
-        player.inventory.selectedHotbarSlot = player.inventory.selectedHotbarSlot;
 
         event.cancel();
 
@@ -48,7 +47,6 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
 LevelEvents.tick(event => {
     let level = event.level;
     if (level.isClientSide()) return;
-    // Se eliminó la validación del módulo de 20 para que corra en cada tick
 
     let serverData = Utils.server.persistentData;
     let storage = serverData.reactorStorage;
@@ -88,4 +86,33 @@ LevelEvents.tick(event => {
             } catch(e) {}
         }
     }
+});
+BlockEvents.broken('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
+    let { block, level } = event;
+    if (level.isClientSide()) return;
+
+    let posKey = `${block.x},${block.y},${block.z},${level.dimension}`;
+    let serverData = Utils.server.persistentData;
+    let storage = serverData.reactorStorage;
+
+    if (!storage || !storage[posKey]) return;
+
+    let savedData = storage[posKey];
+
+    // Reconstruimos el ítem exacto con su ID, cantidad y todos sus NBTs
+    let droppedItem = Item.of(savedData.id, savedData.count);
+    if (savedData.nbt) {
+        droppedItem.nbt = savedData.nbt;
+    }
+
+    // Soltamos el ítem en el centro del bloque destruido
+    let itemEntity = level.createEntity('item');
+    itemEntity.x = block.x + 0.5;
+    itemEntity.y = block.y + 0.5;
+    itemEntity.z = block.z + 0.5;
+    itemEntity.item = droppedItem;
+    itemEntity.spawn();
+
+    // Borramos el registro del almacenamiento
+    delete storage[posKey];
 });
