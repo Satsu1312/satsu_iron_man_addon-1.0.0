@@ -14,18 +14,14 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         let validTag1 = item.hasTag('satsu_iron_man_addon:armors/main');
         let validTag2 = item.hasTag('satsu_iron_man_addon:armors/iron_man/hulkbusters/main');
 
-        if (!validTag1 && !validTag2) {
-            return;
-        }
+        if (!validTag1 && !validTag2) return;
 
-        // Guardamos el ítem
         storage[posKey] = {
             id: item.id,
             count: 1,
             nbt: item.nbt ? item.nbt.copy() : null
         };
 
-        // Consumimos el ítem en la mano del servidor
         item.count--;
         
         // Forzamos al cliente a sincronizar el inventario completo (el slot seleccionado)
@@ -83,8 +79,11 @@ LevelEvents.tick(event => {
                 let currentEnergy = savedData.nbt.contains('Energy') ? savedData.nbt.getDouble('Energy') : 0.0;
                 let maxEnergy = 100000.0;
                 
+                let chargeRate = savedData.nbt.contains('Energy_Charge') ? savedData.nbt.getDouble('Energy_Charge') : 10.0;
+                
                 if (currentEnergy < maxEnergy) {
-                    savedData.nbt.putDouble('Energy', currentEnergy + 10.0);
+                    let nuevaEnergia = currentEnergy + chargeRate;
+                    savedData.nbt.putDouble('Energy', nuevaEnergia);
                 }
             } catch(e) {}
         }
