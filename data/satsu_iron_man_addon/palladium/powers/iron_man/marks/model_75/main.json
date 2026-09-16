@@ -7487,6 +7487,10 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
+                    "ability": "electro_magnetic_cannon.main"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
                     "ability": "modular_class.drills.ground.attack"
                   },
                   {
@@ -7614,6 +7618,10 @@
                     "ability": "flares_flames"
                   },
                   {
+                    "type": "palladium:ability_enabled",
+                    "ability": "electro_magnetic_cannon.main"
+                  },
+                  {
                     "type": "palladium:string_property",
                     "property": "satsu_iron_man_addon_repulser",
                     "comparator": "equals",
@@ -7680,6 +7688,7 @@
           "weapons_wheel.shoulder_rockets",
           "weapons_wheel.rocket",
           "weapons_wheel.flares",
+          "weapons_wheel.electro_magnetic_cannon",
           "weapons_wheel.sonic_dampened",
           "weapons_wheel.flame_thrower",
           "weapons_wheel.cyro_bombs",
@@ -9172,6 +9181,10 @@
                       },
                       {
                         "type": "palladium:ability_enabled",
+                        "ability": "electro_magnetic_cannon.main"
+                      },
+                      {
+                        "type": "palladium:ability_enabled",
                         "ability": "torpedos"
                       }
                     ]
@@ -9494,6 +9507,88 @@
             }
           ],
           "unlocking": []
+        }
+      },
+      "electro_magnetic_cannon": {
+        "type": "satsu_iron_man_addon:set_property",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/electro_magnetic_cannon.png",
+        "title": { "translate": "ability.title.satsu.electro_magnetic_cannon" },
+        "description": {
+          "translate": "description.satsu.electro_magnetic_cannon"
+        },
+        "hidden": false,
+        "hidden_in_bar": false,
+        "gui_position": [0, -2.5],
+        "name": "satsu_armor_weapon",
+        "number": 10,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_wheel",
+              "cooldown": 0
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "right_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "left_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                }
+              ]
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon.right_arm",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                },
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon.left_arm",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                }
+              ]
+            }
+          ]
         }
       }
     },
@@ -10859,6 +10954,10 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
+                    "ability": "electro_magnetic_cannon.main"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
                     "ability": "nano_sword"
                   },
                   {
@@ -10962,6 +11061,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "nano_sword"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "electro_magnetic_cannon.main"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -15643,6 +15746,201 @@
         }
       }
     },
+    "electro_magnetic_cannon": {
+      "main": {
+        "type": "palladium:animation_timer",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/electro_magnetic_cannon.png",
+        "title": { "translate": "ability.title.satsu.electro_magnetic_cannon" },
+        "description": {
+          "translate": "description.satsu.electro_magnetic_cannon"
+        },
+        "hidden": true,
+        "hidden_in_bar": false,
+        "list_index": 3,
+        "start_value": 0,
+        "max_value": 20,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:activation",
+              "ticks": 25,
+              "cooldown": 60,
+              "key_type": "key_bind",
+              "needs_empty_hand": false
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_armor_weapon",
+              "min": 10,
+              "max": 10
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_armor_weapon_system",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.right_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon.left_arm",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:or",
+                  "conditions": [
+                    {
+                      "type": "palladium:ability_enabled",
+                      "ability": "nano_katar.attack"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "right": {
+        "type": "gravecore:projectile",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "entity_type": "palladium:custom_projectile",
+        "velocity": 2.5,
+        "swinging_arm": "none",
+        "yawOffset": 20,
+        "pitchOffset": 25,
+        "inaccuracy": 0,
+        "damage_from_player": false,
+        "ignore_player_movement": false,
+        "entity_data": {
+          "SetEntityOnFireSeconds": 8,
+          "KnockbackStrength": 1.5,
+          "Damage": 13.5,
+          "Size": 0.1,
+          "Gravity": 0.0,
+          "Lifetime": 60,
+          "DieOnEntityHit": true,
+          "DieOnBlockHit": true,
+          "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
+          "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
+          "Appearances": [
+            {
+              "Type": "trail",
+              "Trail": "satsu_iron_man_addon:electric/main"
+            }
+          ]
+        },
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:animation_timer_ability",
+              "ability": "electro_magnetic_cannon.main",
+              "min": 1,
+              "max": 20
+            },
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "electro_magnetic_cannon.main"
+            }
+          ]
+        }
+      },
+      "left": {
+        "type": "gravecore:projectile",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "entity_type": "palladium:custom_projectile",
+        "velocity": 2.5,
+        "swinging_arm": "none",
+        "yawOffset": -20,
+        "pitchOffset": 25,
+        "inaccuracy": 0,
+        "damage_from_player": false,
+        "ignore_player_movement": false,
+        "entity_data": {
+          "SetEntityOnFireSeconds": 8,
+          "KnockbackStrength": 1.5,
+          "Damage": 13.5,
+          "Size": 0.1,
+          "Gravity": 0.0,
+          "Lifetime": 60,
+          "DieOnEntityHit": true,
+          "DieOnBlockHit": true,
+          "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
+          "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
+          "Appearances": [
+            {
+              "Type": "trail",
+              "Trail": "satsu_iron_man_addon:electric/main"
+            }
+          ]
+        },
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:animation_timer_ability",
+              "ability": "electro_magnetic_cannon.main",
+              "min": 1,
+              "max": 20
+            },
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "electro_magnetic_cannon.main"
+            }
+          ]
+        }
+      },
+      "remove.ark.energy": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 20,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "electro_magnetic_cannon.main"
+            }
+          ],
+          "unlocking": []
+        }
+      }
+    },
     "red_beams.right_arm": {
       "type": "palladium:dummy",
       "hidden": true,
@@ -15706,6 +16004,10 @@
               {
                 "type": "palladium:or",
                 "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "electro_magnetic_cannon.main"
+                  },
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "modular_class.drills.ground.attack"
@@ -15796,6 +16098,10 @@
               {
                 "type": "palladium:or",
                 "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "electro_magnetic_cannon.main"
+                  },
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "modular_class.drills.ground.attack"
@@ -16400,6 +16706,10 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "electro_magnetic_cannon.main"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "modular_class.sonic_dampened.projectil.left"
               },
               {
@@ -16453,6 +16763,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "electro_magnetic_cannon.main"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -16950,6 +17264,10 @@
               },
               {
                 "type": "palladium:ability_enabled",
+                "ability": "electro_magnetic_cannon.main"
+              },
+              {
+                "type": "palladium:ability_enabled",
                 "ability": "modular_class.sonic_dampened.projectil.left"
               },
               {
@@ -17007,6 +17325,10 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "electro_magnetic_cannon.main"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -17070,6 +17392,10 @@
                   {
                     "type": "palladium:ability_enabled",
                     "ability": "flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "electro_magnetic_cannon.main"
                   },
                   {
                     "type": "palladium:ability_enabled",
