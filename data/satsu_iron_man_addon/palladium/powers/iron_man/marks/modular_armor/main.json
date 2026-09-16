@@ -11120,159 +11120,186 @@
         ]
       }
     },
-    "low_energy_alarm": {
-      "type": "palladium:play_sound",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.alert_sound",
-      "volume": 1,
-      "pitch": 1,
-      "looping": true,
-      "play_self": true,
-      "play_others": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 800
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 1,
-            "max": 1
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "recharge_energy": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "add",
-      "adjustment_amount": 27,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:command_result",
-                    "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
-                  },
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_animation_armor",
-                    "min": 1,
-                    "max": 1
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_animation_armor",
-                    "min": 0,
-                    "max": 0
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": -2147483647,
-            "max": 42001
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "recharge_energy.closed": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "add",
-      "adjustment_amount": 50,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_recharge_mode",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 1,
-            "max": 1
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": -2147483647,
-            "max": 42001
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "set_energy_42000..": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "set",
-      "adjustment_amount": 42000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 42001,
-            "max": 2147483647
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "set_energy_42000..max": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_iron_man_energy_max",
-      "adjustment_type": "set",
-      "adjustment_amount": 42000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 0,
-            "max": 2147483647
-          }
-        ],
-        "unlocking": []
+    "energy": {
+      "low_energy_alarm": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "satsu_iron_man_addon:entity.armor.alert_sound",
+        "volume": 1,
+        "pitch": 1,
+        "looping": true,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 800
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_animation_armor",
+              "min": 1,
+              "max": 1
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy_value": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy_Charge",
+        "adjustment_type": "add",
+        "adjustment_amount": "27",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "Energy_Charge",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "add",
+        "adjustment_amount": 27,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:command_result",
+                      "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+                    },
+                    {
+                      "type": "palladium:integer_property",
+                      "property": "satsu_animation_armor",
+                      "min": 1,
+                      "max": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:integer_property",
+                      "property": "satsu_animation_armor",
+                      "min": 0,
+                      "max": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": -2147483647,
+              "max": 42001
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy.closed": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "add",
+        "adjustment_amount": 50,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_recharge_mode",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_animation_armor",
+              "min": 1,
+              "max": 1
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": -2147483647,
+              "max": 42001
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "set_energy_42000..": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "set",
+        "adjustment_amount": 42000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 42001,
+              "max": 2147483647
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "set_energy_42000..max": {
+        "type": "satsu_iron_man_addon:palladium_property_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_name": "satsu_iron_man_iron_man_energy_max",
+        "adjustment_type": "set",
+        "adjustment_amount": 42000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 0,
+              "max": 2147483647
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
     "color_group": {
