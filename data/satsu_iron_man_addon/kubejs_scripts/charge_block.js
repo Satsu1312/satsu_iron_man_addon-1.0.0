@@ -28,14 +28,17 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
             nbt: item.nbt ? item.nbt.copy() : null
         };
 
-        console.info(`[Reactor Log] Ítem guardado en storage: ${item.id}. Vaciando la mano de forma limpia.`);
+        console.info(`[Reactor Log] Ítem guardado en storage: ${item.id}. Limpiando la mano.`);
         
-        // Vaciamos la mano usando setHeldItem en lugar de item.count-- para evitar desincronización
-        player.setHeldItem(hand, Air.of()); 
+        // Vaciamos el ítem de la mano
+        item.count = 0; 
         
+        // Forzamos la sincronización profunda del menú/inventario para evitar el ítem fantasma en el cliente
+        if (player.containerMenu) {
+            player.containerMenu.sendAllDataToRemote();
+        }
         if (player.inventory && typeof player.inventory.sendChanges === 'function') {
             player.inventory.sendChanges();
-            console.info(`[Reactor Log] Sincronización de inventario forzada.`);
         }
 
         event.cancel();
@@ -52,9 +55,11 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         player.setHeldItem(hand, recoveredItem);
         delete storage[posKey];
         
+        if (player.containerMenu) {
+            player.containerMenu.sendAllDataToRemote();
+        }
         if (player.inventory && typeof player.inventory.sendChanges === 'function') {
             player.inventory.sendChanges();
-            console.info(`[Reactor Log] Ítem entregado a la mano y inventario sincronizado.`);
         }
 
         event.cancel();
