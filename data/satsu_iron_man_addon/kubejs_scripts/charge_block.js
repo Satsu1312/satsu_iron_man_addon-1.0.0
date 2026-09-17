@@ -9,12 +9,18 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
     let storage = serverData.reactorStorage;
 
     let hasItem = storage[posKey] != undefined;
+    console.info(`[Reactor Log] Clic derecho detectado en bloque. ¿Ya tiene ítem guardado?: ${hasItem} | Ítem en mano: ${item.id}`);
 
     if (!hasItem && !item.isEmpty()) {
         let validTag1 = item.hasTag('satsu_iron_man_addon:armors/main');
         let validTag2 = item.hasTag('satsu_iron_man_addon:armors/iron_man/hulkbusters/main');
 
-        if (!validTag1 && !validTag2) return;
+        console.info(`[Reactor Log] Validando tags -> ¿Tag main?: ${validTag1} | ¿Tag hulkbusters?: ${validTag2}`);
+
+        if (!validTag1 && !validTag2) {
+            console.info(`[Reactor Log] El ítem no tiene los tags requeridos, se ignora.`);
+            return;
+        }
 
         storage[posKey] = {
             id: item.id,
@@ -22,15 +28,21 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
             nbt: item.nbt ? item.nbt.copy() : null
         };
 
-        item.count--;
+        console.info(`[Reactor Log] Ítem guardado en storage: ${item.id}. Vaciando la mano de forma limpia.`);
         
-        // Forzamos sincronización de datos con el cliente sin usar propiedades de Java inválidas
-        player.sendData('update_inventory');
+        // Vaciamos la mano usando setHeldItem en lugar de item.count-- para evitar desincronización
+        player.setHeldItem(hand, Air.of()); 
+        
+        if (player.inventory && typeof player.inventory.sendChanges === 'function') {
+            player.inventory.sendChanges();
+            console.info(`[Reactor Log] Sincronización de inventario forzada.`);
+        }
 
         event.cancel();
 
     } else if (hasItem && item.isEmpty()) {
         let savedData = storage[posKey];
+        console.info(`[Reactor Log] Recuperando ítem del reactor: ${savedData.id}`);
 
         let recoveredItem = Item.of(savedData.id, savedData.count);
         if (savedData.nbt) {
@@ -40,7 +52,14 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         player.setHeldItem(hand, recoveredItem);
         delete storage[posKey];
         
+        if (player.inventory && typeof player.inventory.sendChanges === 'function') {
+            player.inventory.sendChanges();
+            console.info(`[Reactor Log] Ítem entregado a la mano y inventario sincronizado.`);
+        }
+
         event.cancel();
+    } else {
+        console.info(`[Reactor Log] Condición no cumplida (hasItem: ${hasItem}, ítem en mano vacío?: ${item.isEmpty()})`);
     }
 });
 
@@ -76,7 +95,6 @@ LevelEvents.tick(event => {
             try {
                 let currentEnergy = savedData.nbt.contains('Energy') ? savedData.nbt.getDouble('Energy') : 0.0;
                 let maxEnergy = 10000000.0;
-                
                 let chargeRate = savedData.nbt.contains('Energy_Charge') ? savedData.nbt.getDouble('Energy_Charge') : 10.0;
                 
                 if (currentEnergy < maxEnergy) {
@@ -87,6 +105,7 @@ LevelEvents.tick(event => {
         }
     }
 });
+
 BlockEvents.broken('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
     let { block, level } = event;
     if (level.isClientSide()) return;
@@ -98,14 +117,13 @@ BlockEvents.broken('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
     if (!storage || !storage[posKey]) return;
 
     let savedData = storage[posKey];
+    console.info(`[Reactor Log] Bloque roto. Soltando ítem guardado: ${savedData.id}`);
 
-    // Reconstruimos el ítem exacto con su ID, cantidad y todos sus NBTs
     let droppedItem = Item.of(savedData.id, savedData.count);
     if (savedData.nbt) {
         droppedItem.nbt = savedData.nbt;
     }
 
-    // Soltamos el ítem en el centro del bloque destruido
     let itemEntity = level.createEntity('item');
     itemEntity.x = block.x + 0.5;
     itemEntity.y = block.y + 0.5;
@@ -113,6 +131,5 @@ BlockEvents.broken('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
     itemEntity.item = droppedItem;
     itemEntity.spawn();
 
-    // Borramos el registro del almacenamiento
     delete storage[posKey];
 });
