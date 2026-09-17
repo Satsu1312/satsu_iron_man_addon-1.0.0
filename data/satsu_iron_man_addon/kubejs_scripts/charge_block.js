@@ -9,16 +9,12 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
     let storage = serverData.reactorStorage;
 
     let hasItem = storage[posKey] != undefined;
-    console.info(`[Reactor Log] Clic derecho detectado en bloque. ¿Ya tiene ítem guardado?: ${hasItem} | Ítem en mano: ${item.id}`);
 
     if (!hasItem && !item.isEmpty()) {
         let validTag1 = item.hasTag('satsu_iron_man_addon:armors/main');
         let validTag2 = item.hasTag('satsu_iron_man_addon:armors/iron_man/hulkbusters/main');
 
-        console.info(`[Reactor Log] Validando tags -> ¿Tag main?: ${validTag1} | ¿Tag hulkbusters?: ${validTag2}`);
-
         if (!validTag1 && !validTag2) {
-            console.info(`[Reactor Log] El ítem no tiene los tags requeridos, se ignora.`);
             return;
         }
 
@@ -28,12 +24,8 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
             nbt: item.nbt ? item.nbt.copy() : null
         };
 
-        console.info(`[Reactor Log] Ítem guardado en storage: ${item.id}. Limpiando la mano.`);
-        
-        // Vaciamos el ítem de la mano
         item.count = 0; 
         
-        // Forzamos la sincronización profunda del menú/inventario para evitar el ítem fantasma en el cliente
         if (player.containerMenu) {
             player.containerMenu.sendAllDataToRemote();
         }
@@ -45,7 +37,6 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
 
     } else if (hasItem && item.isEmpty()) {
         let savedData = storage[posKey];
-        console.info(`[Reactor Log] Recuperando ítem del reactor: ${savedData.id}`);
 
         let recoveredItem = Item.of(savedData.id, savedData.count);
         if (savedData.nbt) {
@@ -63,8 +54,6 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         }
 
         event.cancel();
-    } else {
-        console.info(`[Reactor Log] Condición no cumplida (hasItem: ${hasItem}, ítem en mano vacío?: ${item.isEmpty()})`);
     }
 });
 
@@ -122,7 +111,6 @@ BlockEvents.broken('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
     if (!storage || !storage[posKey]) return;
 
     let savedData = storage[posKey];
-    console.info(`[Reactor Log] Bloque roto. Soltando ítem guardado: ${savedData.id}`);
 
     let droppedItem = Item.of(savedData.id, savedData.count);
     if (savedData.nbt) {
