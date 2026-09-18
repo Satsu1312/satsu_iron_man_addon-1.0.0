@@ -6,11 +6,11 @@ function syncPlayerInventory(player) {
 }
 
 BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
-    let { block, player, hand, item } = event;
+    let { block, player, hand, item, level } = event;
 
     if (hand !== 'MAIN_HAND') return;
 
-    let posKey = `${block.x},${block.y},${block.z},${block.level.dimension}`;
+    let posKey = `${block.x},${block.y},${block.z},${level.dimension}`;
     let storage = Utils.server.persistentData.reactorStorage || {};
     Utils.server.persistentData.reactorStorage = storage;
 
@@ -28,6 +28,7 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         };
 
         item.count = 0;
+        level.playSound(null, block.x + 0.5, block.y + 0.5, block.z + 0.5, 'block.end_portal_frame.fill', 'blocks', 1.0, 1.0);
         syncPlayerInventory(player);
         event.cancel();
 
@@ -42,6 +43,7 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         player.setHeldItem(hand, recoveredItem);
         delete storage[posKey];
         
+        level.playSound(null, block.x + 0.5, block.y + 0.5, block.z + 0.5, 'block.end_portal_frame.fill', 'blocks', 1.0, 1.0);
         syncPlayerInventory(player);
         event.cancel();
     }
