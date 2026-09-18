@@ -14,7 +14,9 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         let validTag1 = item.hasTag('satsu_iron_man_addon:armors/main');
         let validTag2 = item.hasTag('satsu_iron_man_addon:armors/iron_man/hulkbusters/main');
 
-        if (!validTag1 && !validTag2) return;
+        if (!validTag1 && !validTag2) {
+            return;
+        }
 
         storage[posKey] = {
             id: item.id,
@@ -22,10 +24,14 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
             nbt: item.nbt ? item.nbt.copy() : null
         };
 
-        item.count--;
+        item.count = 0; 
         
-        // Forzamos sincronización de datos con el cliente sin usar propiedades de Java inválidas
-        player.sendData('update_inventory');
+        if (player.containerMenu) {
+            player.containerMenu.sendAllDataToRemote();
+        }
+        if (player.inventory && typeof player.inventory.sendChanges === 'function') {
+            player.inventory.sendChanges();
+        }
 
         event.cancel();
 
@@ -40,6 +46,13 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
         player.setHeldItem(hand, recoveredItem);
         delete storage[posKey];
         
+        if (player.containerMenu) {
+            player.containerMenu.sendAllDataToRemote();
+        }
+        if (player.inventory && typeof player.inventory.sendChanges === 'function') {
+            player.inventory.sendChanges();
+        }
+
         event.cancel();
     }
 });
@@ -76,7 +89,6 @@ LevelEvents.tick(event => {
             try {
                 let currentEnergy = savedData.nbt.contains('Energy') ? savedData.nbt.getDouble('Energy') : 0.0;
                 let maxEnergy = 10000000.0;
-                
                 let chargeRate = savedData.nbt.contains('Energy_Charge') ? savedData.nbt.getDouble('Energy_Charge') : 10.0;
                 
                 if (currentEnergy < maxEnergy) {
@@ -87,6 +99,7 @@ LevelEvents.tick(event => {
         }
     }
 });
+
 BlockEvents.broken('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
     let { block, level } = event;
     if (level.isClientSide()) return;
@@ -99,13 +112,11 @@ BlockEvents.broken('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
 
     let savedData = storage[posKey];
 
-    // Reconstruimos el ítem exacto con su ID, cantidad y todos sus NBTs
     let droppedItem = Item.of(savedData.id, savedData.count);
     if (savedData.nbt) {
         droppedItem.nbt = savedData.nbt;
     }
 
-    // Soltamos el ítem en el centro del bloque destruido
     let itemEntity = level.createEntity('item');
     itemEntity.x = block.x + 0.5;
     itemEntity.y = block.y + 0.5;
@@ -113,6 +124,5 @@ BlockEvents.broken('satsu_iron_man_addon:reactor_ark_recharge_on', event => {
     itemEntity.item = droppedItem;
     itemEntity.spawn();
 
-    // Borramos el registro del almacenamiento
     delete storage[posKey];
 });
