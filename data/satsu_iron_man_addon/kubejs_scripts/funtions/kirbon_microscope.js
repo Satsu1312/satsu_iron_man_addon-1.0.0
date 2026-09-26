@@ -23,13 +23,15 @@ BlockEvents.rightClicked('satsu_iron_man_addon:kirbon_microscope', event => {
             return;
         }
 
+        // Guardamos las coordenadas explícitamente dentro del objeto para evitar cruces
         storage[posKey] = {
             id: item.id,
             count: 1,
+            x: block.x,
+            y: block.y,
+            z: block.z,
             nbt: item.nbt ? item.nbt.copy() : null
         };
-
-        console.info(`[Kirbon Microscope] Extractor colocado en ${posKey}`);
 
         item.count = 0;
         level.playSound(null, block.x + 0.5, block.y + 0.5, block.z + 0.5, 'block.end_portal_frame.fill', 'blocks', 1.0, 1.0);
@@ -47,8 +49,6 @@ BlockEvents.rightClicked('satsu_iron_man_addon:kirbon_microscope', event => {
         player.setHeldItem(hand, recoveredItem);
         delete storage[posKey];
         
-        console.info(`[Kirbon Microscope] Extractor retirado de ${posKey}`);
-
         level.playSound(null, block.x + 0.5, block.y + 0.5, block.z + 0.5, 'block.end_portal_frame.fill', 'blocks', 1.0, 1.0);
         syncPlayerInventory(player);
         event.cancel();
@@ -67,13 +67,21 @@ LevelEvents.tick(event => {
 
     let currentDim = level.dimension.toString();
 
-    for (let posKey in storage) {
+    // Hacemos una copia de las keys para evitar modificaciones concurrentes en el mapa mientras iteramos
+    let keys = Object.keys(storage);
+
+    for (let i = 0; i < keys.length; i++) {
+        let posKey = keys[i];
         let parts = posKey.split(',');
         if (parts[3] !== currentDim) continue;
 
-        let x = parseInt(parts[0], 10);
-        let y = parseInt(parts[1], 10);
-        let z = parseInt(parts[2], 10);
+        let savedData = storage[posKey];
+        if (!savedData) continue;
+
+        // Usamos las coordenadas guardadas de manera individual para este bloque exacto
+        let x = savedData.x !== undefined ? savedData.x : parseInt(parts[0], 10);
+        let y = savedData.y !== undefined ? savedData.y : parseInt(parts[1], 10);
+        let z = savedData.z !== undefined ? savedData.z : parseInt(parts[2], 10);
 
         let block = level.getBlock(x, y, z);
         if (block.id !== 'satsu_iron_man_addon:kirbon_microscope') {
@@ -81,9 +89,7 @@ LevelEvents.tick(event => {
             continue;
         }
 
-        let savedData = storage[posKey];
-        if (savedData && savedData.id === 'satsu_iron_man_addon:kirbon_extractor') {
-            // Asegurarnos de que el NBT exista como un compuesto válido
+        if (savedData.id === 'satsu_iron_man_addon:kirbon_extractor') {
             if (!savedData.nbt) {
                 savedData.nbt = {};
             }
@@ -94,21 +100,19 @@ LevelEvents.tick(event => {
                 
                 currentKirbon += chargeRate;
 
-                console.info(`[Kirbon Microscope en ${posKey}] Kirbon actual: ${currentKirbon} / 6000`);
-
                 // Cuando llega o supera la meta
                 if (currentKirbon >= 6000.0) {
-                    // Reiniciamos el acumulador restando la meta (o poniéndolo en 0)
                     currentKirbon = 0.0;
 
                     let rewardItem = Item.of('satsu_iron_man_addon:kirbon_particle', 1);
                     let itemEntity = level.createEntity('item');
                     itemEntity.setItem(rewardItem);
+                    
+                    // Spawnea estrictamente en las coordenadas de este microscopio específico
                     itemEntity.setPos(x + 0.5, y + 1.0, z + 0.5);
                     itemEntity.spawn();
 
-                    console.info(`[Kirbon Microscope] ¡Recompensa generada en ${posKey}! Reiniciando contador a 0.`);
-                    level.playSound(null, x + 0.5, y + 0.5, block.y + 0.5, 'entity.experience_orb.pickup', 'blocks', 1.0, 1.2);
+                    level.playSound(null, x + 0.5, y + 0.5, z + 0.5, 'entity.experience_orb.pickup', 'blocks', 1.0, 1.2);
                 }
 
                 // Guardar de forma robusta en el NBT
@@ -118,12 +122,10 @@ LevelEvents.tick(event => {
                     savedData.nbt.kirbon = currentKirbon;
                 }
 
-                // Forzamos a actualizar el almacenamiento persistente para que no pierda la referencia
+                // Actualizamos de forma independiente en el almacenamiento
                 storage[posKey] = savedData;
 
-            } catch (e) {
-                console.error(`[Kirbon Microscope Error] ${e}`);
-            }
+            } catch (e) {}
         }
     }
 });
@@ -150,6 +152,5 @@ BlockEvents.broken('satsu_iron_man_addon:kirbon_microscope', event => {
     itemEntity.item = droppedItem;
     itemEntity.spawn();
 
-    console.info(`[Kirbon Microscope] Bloque roto en ${posKey}, devolviendo extractor con NBT.`);
     delete storage[posKey];
 });
