@@ -17,7 +17,10 @@ BlockEvents.rightClicked('satsu_iron_man_addon:reactor_ark_recharge_on', event =
     let hasItem = storage[posKey] !== undefined;
 
     if (!hasItem && !item.isEmpty()) {
-        if (!item.hasTag('satsu_iron_man_addon:armors/main') && !item.hasTag('satsu_iron_man_addon:armors/iron_man/hulkbusters/main')) {
+        // Se agregó la validación para el nuevo tag
+        if (!item.hasTag('satsu_iron_man_addon:armors/main') && 
+            !item.hasTag('satsu_iron_man_addon:armors/iron_man/hulkbusters/main') && 
+            !item.hasTag('satsu_iron_man_addon:chargable/main')) {
             return;
         }
 
