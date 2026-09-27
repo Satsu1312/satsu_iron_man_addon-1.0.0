@@ -1,16 +1,14 @@
-const ScaleTypes = Java.loadClass("virtuoel.pehkui.api.ScaleTypes");
-
 StartupEvents.registry("palladium:abilities", (event) => {
   event
-    .create("satsu_iron_man_addon:pehkui_property_scale")
-    .icon(palladium.createItemIcon("pehkui:gold_sword"))
+    .create("satsu_iron_man_addon:pehkui_property_defense_scale")
+    .icon(palladium.createItemIcon("pehkui:gold_shield"))
     .documentationDescription(
-      "Modifica la escala de ataque de Pehkui basándose en una propiedad de Palladium."
+      "Modifica la escala de defensa de Pehkui basándose en una propiedad de Palladium."
     )
     .addProperty(
       "property_value",
       "string",
-      "satsu_iron_man_addon_scale_damage",
+      "satsu_iron_man_addon_scale_defense", // <-- Propiedad por defecto recomendada para defensa
       "Name of the Palladium property to use for value"
     )
     .addProperty(
@@ -23,7 +21,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .tick((entity, entry, holder, enabled) => {
       if (!enabled || !entity.isPlayer()) return;
 
-      // Obtenemos los valores limpiamente usando el formato que funciona en tu otro script
+      // Lectura limpia usando el formato estándar de tu script funcional
       const division = entry.getPropertyByName("Division_Amount");
       const palladiumProperty = entry.getPropertyByName("property_value");
       
@@ -32,7 +30,7 @@ StartupEvents.registry("palladium:abilities", (event) => {
       if (propertyValue != null && division !== 0) {
         let finalScale = propertyValue / division;
 
-        const scaleData = ScaleTypes.ATTACK.getScaleData(entity);
+        const scaleData = ScaleTypes.DEFENSE.getScaleData(entity);
         if (scaleData) {
           scaleData.setTargetScale(finalScale);
         }
@@ -42,8 +40,8 @@ StartupEvents.registry("palladium:abilities", (event) => {
     .lastTick((entity, entry, holder, enabled) => {
       if (!entity.isPlayer()) return;
 
-      // Al desactivarse la habilidad, restablecemos la escala a su valor normal (1.0)
-      const scaleData = ScaleTypes.ATTACK.getScaleData(entity);
+      // Al desactivarse, restablece la escala de defensa a la normalidad (1.0)
+      const scaleData = ScaleTypes.DEFENSE.getScaleData(entity);
       if (scaleData) {
         scaleData.setTargetScale(1.0);
       }

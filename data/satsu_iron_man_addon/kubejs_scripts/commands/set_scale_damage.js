@@ -2,22 +2,23 @@ ServerEvents.commandRegistry((event) => {
   const { commands: Commands, arguments: Arguments } = event;
 
   event.register(
-    Commands.literal("satsu_set_scale_damage")
+    Commands.literal("satsu_set_scale")
       .requires((source) => source.hasPermission(2))
       .then(
-        Commands.argument("value", Arguments.INTEGER.create(event))
+        Commands.argument("value", Arguments.FLOAT.create(event))
           .executes((ctx) => {
             const player = ctx.source.player;
-            const value = Arguments.INTEGER.getResult(ctx, "value");
+            const value = Arguments.FLOAT.getResult(ctx, "value");
             
-            if (value < 1 || value > 5) {
+            // Validamos que el float esté entre 0.2 y 5.0 (puedes ajustar el máximo si lo necesitas)
+            if (value < 0.2 || value > 5.0) {
               return 0;
             }
 
             const property = "satsu_iron_man_addon_scale_damage";
             palladium.setProperty(player, property, value);
 
-            return value;
+            return 1;
           }),
       ),
   );
