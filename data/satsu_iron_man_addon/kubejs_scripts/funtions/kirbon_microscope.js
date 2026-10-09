@@ -96,7 +96,8 @@ LevelEvents.tick(event => {
 
             try {
                 let currentKirbon = (savedData.nbt.contains && savedData.nbt.contains('kirbon')) ? savedData.nbt.getDouble('kirbon') : 0.0;
-                let chargeRate = (savedData.nbt.contains && savedData.nbt.contains('Energy_Charge')) ? savedData.nbt.getDouble('Energy_Charge') : 1.0;
+                // Cambiado a 20.0 por defecto para que sume de 20 en 20 por segundo
+                let chargeRate = (savedData.nbt.contains && savedData.nbt.contains('Energy_Charge')) ? savedData.nbt.getDouble('Energy_Charge') : 20.0;
                 
                 currentKirbon += chargeRate;
 
