@@ -131,14 +131,28 @@
       "type": "geckolib:default",
       "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/head.geo.json",
       "texture": {
-        "base": "satsu_iron_man_addon:textures/models/stealth_variation/main.png",
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#mark_number_0.png",
         "transformers": [
+          {
+            "type": "palladium:color",
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "ignore_blank": true
+          },
           {
             "type": "palladium:alpha_mask",
             "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
           }
         ],
         "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          },
           "STEALH": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
@@ -148,7 +162,7 @@
             "max": 17
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/mark_42/stealth_variation/head/main_#STEALH"
+        "output": "satsu_iron_man_addon:textures/models/mark_42/stealth_variation/head/#mark_number_0_#STEALH"
       },
       "conditions": [
         {
