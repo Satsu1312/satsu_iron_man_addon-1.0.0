@@ -95,6 +95,53 @@
         }
       ],
       "render_type": "glow"
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/right_arm.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/watch.png",
+        "transformers": [
+          {
+            "type": "palladium:color",
+            "color": [
+              255,
+              0,
+              0
+            ],
+            "ignore_blank": true
+          },
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/heat_repulsor/right_arm/#RIGHT_HEAT.png"
+          }
+        ],
+        "variables": {
+          "RIGHT_HEAT": {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_heat_repulsor_watch",
+            "fallback": 0,
+            "divide": 50,
+            "min": 0,
+            "max": 20
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/watch_#RIGHT_HEAT"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_watch",
+              "comparator": "equals",
+              "compare_to": "off"
+            }
+          ]
+        }
+      ],
+      "render_type": "glow"
     }
   ]
 }
