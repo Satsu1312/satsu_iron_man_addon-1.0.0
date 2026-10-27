@@ -5,24 +5,26 @@ ServerEvents.tick(event => {
         // Validación de seguridad por si el jugador es nulo o se está desconectando
         if (!player) return
 
-        let hasFreezeResistanceAbility = false
+        let isAbilityEnabled = false
 
-        // Escaneamos las habilidades activas del jugador usando Palladium
+        // Escaneamos las entradas de habilidades usando Palladium
         try {
             palladium.abilities.getEntries(player).forEach(entry => {
                 const abilityId = entry.getConfiguration()?.ability?.id;
                 
-                // Reemplaza con el ID exacto de la habilidad de Palladium de tu traje ártico
                 if (abilityId === "satsu_iron_man_addon:freeze_prevent") {
-                    hasFreezeResistanceAbility = true;
+                    // Verificamos si la entrada específica está habilitada en este preciso tick
+                    if (entry.isEnabled()) {
+                        isAbilityEnabled = true;
+                    }
                 }
             });
         } catch(e) {}
 
-        // Si el jugador no tiene la habilidad activa, nos saltamos lo demás
-        if (!hasFreezeResistanceAbility) return
+        // Si la habilidad no está habilitada, el script se detiene aquí para ahorrar recursos
+        if (!isAbilityEnabled) return
 
-        // Si la tiene activa y acumula frío, limpiamos el congelamiento al instante
+        // Si está habilitada y el jugador acumula frío, limpiamos el congelamiento al instante
         if (player.ticksFrozen > 0) {
             player.setTicksFrozen(0)
         }
