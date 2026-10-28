@@ -9,7 +9,7 @@ PalladiumEvents.registerAnimations((event) => {
       const progress = animationUtil.getAnimationTimerAbilityValue(
         builder.getPlayer(),
         "satsu_iron_man_addon:iron_man/marks/model_37_iron_destroyer/main",
-        "nano_mallet.ground_attack.animation",
+        "nano_mallet_ground_attack_animation",
         builder.getPartialTicks()
       );
 

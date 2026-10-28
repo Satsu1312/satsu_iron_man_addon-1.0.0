@@ -56,10 +56,25 @@
                 "type": "palladium:or",
                 "conditions": [
                   {
+                    "type": "satsu_iron_man_addon:uuid_nbt_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "locked_uuid",
+                    "nbtValue": "Active",
+                    "mode": "notEquals",
+                    "usePlayerUUID": "true"
+                  },
+                  {
                     "type": "palladium:string_property",
                     "property": "satsu_iron_man_addon_armor_recharge_mode",
                     "comparator": "equals",
                     "compare_to": "on"
+                  },
+                  {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                    },
+                    "slot": "curios:hulkbuster_armor"
                   },
                   {
                     "type": "palladium:has_tag",
@@ -70,6 +85,29 @@
             ]
           }
         ]
+      }
+    },
+    "scale": {
+      "damage": {
+        "type": "satsu_iron_man_addon:pehkui_property_scale",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_value": "satsu_iron_man_addon_scale_damage",
+        "Division_Amount": "1",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
     "walk.sound": {
@@ -296,7 +334,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "flight_anim",
+                "ability": "nano_flight_boost",
                 "property": "value",
                 "min": 14,
                 "max": 16
@@ -648,86 +686,6 @@
         ]
       }
     },
-    "pickaxe.velocity": {
-      "type": "palladium:attribute_modifier",
-      "icon": "minecraft:golden_pickaxe",
-      "title": { "translate": "ability.title.satsu.pickaxe.velocity" },
-      "description": { "translate": "description.satsu.pickaxe.velocity" },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [-1.35, -1.25],
-      "attribute": "palladium:destroy_speed",
-      "amount": 15,
-      "operation": 0,
-      "uuid": "f517d74f-5bab-432d-b60d-0890e6448bd8",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_ia.pickaxe_velocity",
-            "comparator": "equals",
-            "compare_to": "normal"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          }
-        ]
-      }
-    },
-    "pickaxe.velocity.low": {
-      "type": "palladium:attribute_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "attribute": "palladium:destroy_speed",
-      "amount": 0.1,
-      "operation": 0,
-      "uuid": "a7bd1382-d54a-46d2-8c19-905eb046c020",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_ia.pickaxe_velocity",
-            "comparator": "equals",
-            "compare_to": "low"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          }
-        ]
-      }
-    },
     "hide_player": {
       "type": "palladium:hide_body_part",
       "hidden": true,
@@ -763,7 +721,6 @@
         "feet",
         "legs",
         "head",
-        "curios:back",
         "curios:main_addition_right",
         "curios:main_addition_left",
         "curios:secondary_addition_right",
@@ -799,7 +756,24 @@
       "hidden": true,
       "hidden_in_bar": true,
       "name": "satsu_iron_man_addon_flame_color",
-      "test_value": "f0a430"
+      "test_value": "f0a430",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                },
+                "slot": "curios:hulkbuster_armor"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
     },
     "projectile_resistance": {
       "type": "palladium:damage_immunity",
@@ -1043,6 +1017,7 @@
         "energy_beam_increase_wheel_2",
         "energy_beam_increase_wheel_3"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -1730,12 +1705,6 @@
             "mode": "range"
           },
           {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
             "type": "palladium:not",
             "conditions": [
               {
@@ -1770,12 +1739,6 @@
             "min": 25,
             "max": 25555555555555,
             "mode": "range"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
           },
           {
             "type": "palladium:not",
@@ -1820,12 +1783,6 @@
             "mode": "range"
           },
           {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
             "type": "palladium:not",
             "conditions": [
               {
@@ -1864,12 +1821,6 @@
             "mode": "range"
           },
           {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
             "type": "palladium:not",
             "conditions": [
               {
@@ -1902,12 +1853,6 @@
             "mode": "range"
           },
           {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
             "type": "satsu_iron_man_addon:slot_nbt_check",
             "slot": "curios:tecnology_armor",
             "nbtKey": "right_repulsor_heat_not_use",
@@ -1933,12 +1878,6 @@
             "min": 1,
             "max": 25555555555555,
             "mode": "range"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
@@ -1998,12 +1937,6 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
             "slot": "curios:tecnology_armor",
             "nbtKey": "right_repulsor_heat",
@@ -2033,12 +1966,6 @@
       "particle_type": "minecraft:cloud",
       "conditions": {
         "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
             "slot": "curios:tecnology_armor",
@@ -2102,12 +2029,6 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
             "type": "palladium:ability_enabled",
             "ability": "remove_right_repulsor_heat_not_use"
           },
@@ -2133,7 +2054,8 @@
         "enabling": [
           {
             "type": "satsy_iron_man_addon:height_bool_condition",
-            "max_height": 366
+            "max_height": 25555555555555,
+            "min_height": 366
           },
           {
             "type": "palladium:string_property",
@@ -2543,104 +2465,204 @@
         ]
       }
     },
-    "set_energy_5000..": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "set",
-      "adjustment_amount": 5000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 5001,
-            "max": 2147483647
-          }
-        ],
-        "unlocking": []
+    "energy": {
+      "set_energy_5000..": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "set",
+        "adjustment_amount": 5000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 5001,
+              "max": 2147483647
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "low_energy_alarm": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "satsu_iron_man_addon:entity.armor.alert_sound",
+        "volume": 1,
+        "pitch": 1,
+        "looping": true,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 800
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_animation_armor",
+              "min": 1,
+              "max": 1
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy_value": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy_Charge",
+        "adjustment_type": "add",
+        "adjustment_amount": "25",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "Energy_Charge",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "add",
+        "adjustment_amount": 25,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:command_result",
+                  "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+                }
+              ]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": -2147483647,
+              "max": 5001
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "set_energy_5000..max": {
+        "type": "satsu_iron_man_addon:palladium_property_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_name": "satsu_iron_man_iron_heart_energy_max",
+        "adjustment_type": "set",
+        "adjustment_amount": 5000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 0,
+              "max": 2147483647
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
-    "low_energy_alarm": {
-      "type": "palladium:play_sound",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.alert_sound",
-      "volume": 1,
-      "pitch": 1,
-      "looping": true,
-      "play_self": true,
-      "play_others": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 800
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 1,
-            "max": 1
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "recharge_energy": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "add",
-      "adjustment_amount": 25,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:command_result",
-                "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
-              }
-            ]
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": -2147483647,
-            "max": 5001
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "set_energy_5000..max": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_iron_heart_energy_max",
-      "adjustment_type": "set",
-      "adjustment_amount": 5000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 0,
-            "max": 2147483647
-          }
-        ],
-        "unlocking": []
+    "locking_uuid": {
+      "set_uuid": {
+        "type": "satsu_iron_man_addon:uuid_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "locked_uuid",
+        "usePlayerUUID": "true",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_ia_uuid_lock",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:uuid_nbt_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "locked_uuid",
+                  "nbtValue": "Active",
+                  "mode": "exists",
+                  "usePlayerUUID": "true"
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "remove_uuid": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "locked_uuid",
+        "nbtValue": "remove",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_ia_uuid_lock",
+              "comparator": "equals",
+              "compare_to": "off"
+            },
+            {
+              "type": "satsu_iron_man_addon:uuid_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "locked_uuid",
+              "nbtValue": "Active",
+              "mode": "exists",
+              "usePlayerUUID": "true"
+            }
+          ],
+          "unlocking": []
+        }
       }
     }
   }

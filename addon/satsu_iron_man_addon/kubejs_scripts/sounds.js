@@ -8,6 +8,9 @@ StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:striker.dig");
 });
 StartupEvents.registry("sound_event", (event) => {
+  event.create("satsu_iron_man_addon:striker.dig.repeat");
+});
+StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:minigun");
 });
 StartupEvents.registry("sound_event", (event) => {
@@ -188,4 +191,7 @@ StartupEvents.registry("sound_event", (event) => {
 });
 StartupEvents.registry("sound_event", (event) => {
   event.create("satsu_iron_man_addon:entity.sound.paint_can");
+});
+StartupEvents.registry("sound_event", (event) => {
+  event.create("satsu_iron_man_addon:entity.sound.silver_centurion_emp");
 });

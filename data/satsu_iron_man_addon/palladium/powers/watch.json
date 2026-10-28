@@ -38,7 +38,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "slot": "curios:hands",
-      "nbtKey": "watch_energy",
+      "nbtKey": "Energy",
       "adjustment_type": "add",
       "adjustment_amount": 1,
       "conditions": {
@@ -46,9 +46,9 @@
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
             "slot": "curios:hands",
-            "nbtKey": "watch_energy",
+            "nbtKey": "Energy",
             "min": -2147483647,
-            "max": 99,
+            "max": 299,
             "mode": "range"
           },
           {
@@ -412,7 +412,7 @@
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
             "slot": "curios:hands",
-            "nbtKey": "watch_energy",
+            "nbtKey": "Energy",
             "min": 0,
             "mode": "greaterThan"
           },
@@ -428,6 +428,17 @@
             "property": "value",
             "min": 8,
             "max": 8
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "slot": "curios:hands",
+                "nbtKey": "repulsor_heat_not_use",
+                "mode": "exists"
+              }
+            ]
           }
         ]
       }
@@ -437,7 +448,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "slot": "curios:hands",
-      "nbtKey": "watch_energy",
+      "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 5,
       "conditions": {
@@ -465,7 +476,7 @@
       "ignore_player_movement": false,
       "entity_data": {
         "SetEntityOnFireSeconds": 0,
-        "KnockbackStrength": 1,
+        "KnockbackStrength": 1.2,
         "Damage": 1.5,
         "Size": 0.1,
         "Gravity": 0.0,
@@ -536,7 +547,7 @@
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
             "slot": "curios:hands",
-            "nbtKey": "watch_energy",
+            "nbtKey": "Energy",
             "min": 0,
             "mode": "greaterThan"
           },
@@ -645,9 +656,9 @@
       "hidden": true,
       "hidden_in_bar": true,
       "slot": "curios:hands",
-      "nbtKey": "watch_energy",
+      "nbtKey": "Energy",
       "adjustment_type": "subtract",
-      "adjustment_amount": 1,
+      "adjustment_amount": 3,
       "conditions": {
         "enabling": [
           {
@@ -686,7 +697,7 @@
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
             "slot": "curios:hands",
-            "nbtKey": "watch_energy",
+            "nbtKey": "Energy",
             "min": 0,
             "mode": "greaterThan"
           },
@@ -759,9 +770,9 @@
       "hidden": true,
       "hidden_in_bar": true,
       "slot": "curios:hands",
-      "nbtKey": "watch_energy",
+      "nbtKey": "Energy",
       "adjustment_type": "subtract",
-      "adjustment_amount": 5,
+      "adjustment_amount": 15,
       "conditions": {
         "enabling": [
           {
@@ -914,23 +925,294 @@
       "hidden": true,
       "hidden_in_bar": true,
       "slot": "curios:hands",
-      "nbtKey": "watch_energy",
-      "nbtValue": "100",
+      "nbtKey": "Energy",
+      "nbtValue": "300",
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:not",
+            "type": "palladium:or",
             "conditions": [
               {
-                "type": "satsu_iron_man_addon:slot_nbt_check",
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
                 "slot": "curios:hands",
-                "nbtKey": "watch_energy",
-                "nbtValue": "Active",
-                "mode": "exists"
+                "nbtKey": "Energy",
+                "min": 301,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:not",
+                "conditions": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_check",
+                    "slot": "curios:hands",
+                    "nbtKey": "Energy",
+                    "nbtValue": "Active",
+                    "mode": "exists"
+                  }
+                ]
               }
             ]
           }
         ]
+      }
+    },
+    "heat": {
+      "set_repulsor_heat": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hands",
+        "nbtKey": "repulsor_heat",
+        "nbtValue": "0",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:hands",
+                  "nbtKey": "repulsor_heat",
+                  "nbtValue": "0",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "give_repulsor_heat": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hands",
+        "nbtKey": "repulsor_heat",
+        "adjustment_type": "add",
+        "adjustment_amount": 200,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:animation_timer_ability",
+                  "ability": "energy.pulse_right",
+                  "min": 5,
+                  "max": 5
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "set_repulsor_heat_not_use": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hands",
+        "nbtKey": "repulsor_heat_not_use",
+        "nbtValue": "true",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:hands",
+                  "nbtKey": "repulsor_heat",
+                  "min": 1000,
+                  "max": 25555555555555,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "refresh_heat"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "overheart_not_use.play_sound": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "satsu_iron_man_addon:entity.armor.repulsor_heat_sound",
+        "volume": 1,
+        "pitch": 1,
+        "looping": false,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "heat.set_repulsor_heat_not_use"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "remove_repulsor_heat": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hands",
+        "nbtKey": "repulsor_heat",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 25,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:hands",
+              "nbtKey": "repulsor_heat",
+              "min": 25,
+              "max": 25555555555555,
+              "mode": "range"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "no-list:aim_main_arm"
+                },
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:hands",
+                  "nbtKey": "repulsor_heat_not_use",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "remove_HEAT_repulsor_heat": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hands",
+        "nbtKey": "repulsor_heat",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 8,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:hands",
+              "nbtKey": "repulsor_heat",
+              "min": 1,
+              "max": 25555555555555,
+              "mode": "range"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:hands",
+              "nbtKey": "repulsor_heat_not_use",
+              "mode": "exists"
+            }
+          ]
+        }
+      },
+      "remove_repulsor_heat_not_use": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hands",
+        "nbtKey": "repulsor_heat_not_use",
+        "nbtValue": "remove",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:hands",
+              "nbtKey": "repulsor_heat",
+              "min": -25555555555555,
+              "max": 0,
+              "mode": "range"
+            }
+          ]
+        }
+      },
+      "heat_right_particle": {
+        "type": "palladium:particles",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "emitter": ["satsu_iron_man_addon:over_heat/right_hand"],
+        "particle_type": "minecraft:cloud",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:hands",
+              "nbtKey": "repulsor_heat",
+              "min": 500,
+              "max": 25555555555555,
+              "mode": "range"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:hands",
+                  "nbtKey": "repulsor_heat_not_use",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "overheart_alarm.play_sound": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "minecraft:ui.button.click",
+        "volume": 10,
+        "pitch": 1,
+        "looping": false,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "heat.heat_right_particle"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "cooldown_already.play_sound": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "minecraft:ui.button.click",
+        "volume": 1,
+        "pitch": 1,
+        "looping": false,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "heat.remove_repulsor_heat_not_use"
+            }
+          ]
+        }
       }
     }
   }

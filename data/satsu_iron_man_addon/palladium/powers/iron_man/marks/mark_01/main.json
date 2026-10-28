@@ -33,6 +33,12 @@
         "enabling": [],
         "unlocking": [
           {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "chest",
+            "divider": 4,
+            "operation_type": ">"
+          },
+          {
             "type": "palladium:has_power",
             "power": "satsu_iron_man_addon:reactor_ark_power/main"
           },
@@ -62,6 +68,13 @@
                     "compare_to": "on"
                   },
                   {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                    },
+                    "slot": "curios:hulkbuster_armor"
+                  },
+                  {
                     "type": "palladium:has_tag",
                     "tag": "dampened"
                   }
@@ -70,6 +83,62 @@
             ]
           }
         ]
+      }
+    },
+    "scale": {
+      "damage": {
+        "type": "satsu_iron_man_addon:pehkui_property_scale",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_value": "satsu_iron_man_addon_scale_damage",
+        "Division_Amount": "1",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "defense": {
+        "type": "satsu_iron_man_addon:pehkui_property_defense_scale",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_value": "satsu_iron_man_addon_scale_damage",
+        "Division_Amount": "1",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
     "walk.sound": {
@@ -312,23 +381,6 @@
         "unlocking": []
       }
     },
-    "pickaxe.velocity": {
-      "type": "palladium:attribute_modifier",
-      "icon": "minecraft:golden_pickaxe",
-      "title": { "translate": "ability.title.satsu.pickaxe.velocity" },
-      "description": { "translate": "description.satsu.pickaxe.velocity" },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [-1.35, -1.25],
-      "attribute": "palladium:destroy_speed",
-      "amount": 5,
-      "operation": 0,
-      "uuid": "f517d74f-5bab-432d-b60d-0890e6448bd8",
-      "conditions": {
-        "enabling": [],
-        "unlocking": []
-      }
-    },
     "hide_player": {
       "type": "palladium:hide_body_part",
       "hidden": true,
@@ -425,7 +477,24 @@
       "hidden": true,
       "hidden_in_bar": true,
       "name": "satsu_iron_man_addon_flame_color",
-      "test_value": "f0a430"
+      "test_value": "f0a430",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                },
+                "slot": "curios:hulkbuster_armor"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
     },
     "set.scoreboard.armor.13.mk1": {
       "type": "palladium:command",
@@ -489,6 +558,12 @@
             "property": "satsu_mask_value",
             "min": 0,
             "max": 0
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ]
       }
@@ -559,7 +634,7 @@
                     "ability": "armor_animation",
                     "property": "value",
                     "min": 12,
-                    "max": 13
+                    "max": 16
                   },
                   {
                     "type": "palladium:string_property",
@@ -585,7 +660,8 @@
         "enabling": [
           {
             "type": "satsy_iron_man_addon:height_bool_condition",
-            "max_height": 300
+            "min_height": 300,
+            "max_height": 25555555555555
           },
           {
             "type": "palladium:string_property",

@@ -16,15 +16,22 @@
 
     // 2. Buscamos el contenedor de Curios en el jugador de forma segura
     CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(handler => {
-      let stacksHandler = handler.getStacksHandler("tecnology_armor");
-      if (stacksHandler.isPresent()) {
-        let curioStacks = stacksHandler.get().getStacks();
-        // Obtenemos el ítem del slot 0 envuelto para KubeJS
-        slotItem = Item.of(curioStacks.getStackInSlot(0));
-      }
+      // Función auxiliar interna para extraer el ítem de un slot específico
+      const getItemFromSlot = (slotName) => {
+        let stacksHandler = handler.getStacksHandler(slotName);
+        if (stacksHandler.isPresent()) {
+          let stack = stacksHandler.get().getStacks().getStackInSlot(0);
+          let item = Item.of(stack);
+          return item.isEmpty() ? null : item;
+        }
+        return null;
+      };
+
+      // Lógica OR: Evalúa hulkbuster_armor primero; si no encuentra ítem, busca en tecnology_armor
+      slotItem = getItemFromSlot("hulkbuster_armor") || getItemFromSlot("tecnology_armor") || Item.empty;
     });
 
-    // 3. Si el slot está vacío, devolvemos 0/0
+    // 3. Si ambos slots están vacíos, devolvemos 0/0
     if (slotItem.isEmpty()) {
       return Component.join("", t("armor_durablity"), t("slash"), "0/0");
     }
@@ -43,8 +50,9 @@
     }
     return Component.join("", t(propName), value);
   };
+
   const speed_per_block = () =>
-    //reads client kmh value instead of old persistentdata speedBPS
+    // Reads client kmh value instead of old persistentdata speedBPS
     Component.join("", t("km"), global["speedBPS"] || "0.00");
 
   // Función genérica para registrar overlays
@@ -60,7 +68,7 @@
   // Declaración de overlays en un arreglo
   const overlays = [
     ["im_wm_energy", "see.energy.im_wm", (p) => show_label(p, "energy_on_hud", "satsu_iron_man_iron_man_energy"), 50, 30],
-    ["iron_heart_energy", "see.energy.ih", (p) => show_label(p, "energy_on_hud_iron_heart", "satsu_iron_man_iron_heart_energy"), 50, 30],
+    ["iron_heart_energy", "see.energy.ih", (p) => show_label(p, "energy_on_hud_iron_heart", "satsu_iron_heart_energy"), 50, 30],
     ["nanite", "nanites_count", (p) => show_label(p, "nanites_on_hud", "satsu_iron_man_nano_counts"), 50, 200],
     ["speed_1", "armor_on_body", (p) => show_label(p, "velocity_on_hud", "satsu_iron_man_flight_speed_choose"), 50, 40],
     ["left_arm", "armor_on_body", (p) => show_label(p, "left_or_not", "satsu_left_arm"), 540, 60],

@@ -1,0 +1,70 @@
+{
+  "name": { "translate": "ability.title.blooded" },
+  "icon": "#satsu_iron_man_addon:armor_icon_ability",
+  "abilities": {
+    "remove": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "icon": "minecraft:diamond",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:tecnology_armor",
+      "nbtKey": "locked_uuid",
+      "nbtValue": "remove",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 0,
+            "key_type": "right_click",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:uuid_nbt_check",
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "locked_uuid",
+            "mode": "equals",
+            "usePlayerUUID": "true"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "command": {
+      "type": "palladium:command",
+      "icon": "minecraft:diamond",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "clear @s satsu_iron_man_addon:unlinking_key 1",
+        "title @s actionbar {\"translate\":\"satsu.iron.man.addon.text.unlinking_key_activated\"}"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "remove"
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

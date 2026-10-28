@@ -3,7 +3,7 @@
   "allow_bar_shrinking": true,
   "ability_bar_texture": "#satsu_iron_man_addon:armor_hud/ability_bar",
   "background": "satsu_iron_man_addon:textures/block/crafting_table_top.png",
-  "icon": "satsu_iron_man_addon:textures/gui/armors/armadura_completa/mark_head_icon_44.png",
+  "icon": "satsu_iron_man_addon:textures/item/marks/mark_44/main.png",
   "gui_display_type": "tree",
   "energy_bars": {
     "energy": {
@@ -123,6 +123,14 @@
               }
             ]
           }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 4,
+            "operation_type": ">"
+          }
         ]
       }
     },
@@ -175,9 +183,212 @@
         "unlocking": []
       }
     },
+    "size": {
+      "type": "palladium:size",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "scale": 1.75,
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+            },
+            "slot": "curios:hulkbuster_armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "commands": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "scale set pehkui:hitbox_width 1.9",
+        "scale set pehkui:hitbox_height 1.2",
+        "scale set pehkui:eye_height 1.3",
+        "scale set pehkui:block_reach 1.5",
+        "scale set pehkui:entity_reach 1.5"
+      ],
+      "last_tick_commands": [
+        "scale reset pehkui:hitbox_width",
+        "scale reset pehkui:hitbox_height",
+        "scale reset pehkui:eye_height",
+        "scale reset pehkui:block_reach",
+        "scale reset pehkui:entity_reach"
+      ],
+      "commands": [""],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+            },
+            "slot": "curios:hulkbuster_armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "multi_effect_modifier": {
+      "type": "satsu_iron_man_addon:multi_effect_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "effects": ["minecraft:slowness", "minecraft:resistance"],
+      "amplifiers": ["2", "2"],
+      "show_particles": ["false", "false"],
+      "dummy": "0",
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+            },
+            "slot": "curios:hulkbuster_armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "jump": {
+      "type": "satsu_iron_man_addon:multi_attribute_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "attributes": ["palladium:jump_power"],
+      "amounts": ["1"],
+      "operations": ["addition"],
+      "uuids": ["b379de99-9744-4cd1-83ca-ed123bb07291"],
+      "dummy": "0",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+            "powers": [
+              "satsu_iron_man_addon:extremis/main",
+              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+            ],
+            "namespaces": [],
+            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:objective_score",
+                "objective": "satsu.iron.man.armor.remote",
+                "min_score": 1,
+                "max_score": 1
+              }
+            ]
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                "ability": "enable_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "hide_body_part": {
+      "type": "palladium:hide_body_part",
+      "icon": "minecraft:blaze_rod",
+      "title": "null",
+      "bar_color": "light_gray",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "list_index": -1,
+      "gui_position": "null",
+      "description": "null",
+      "body_parts": [
+        "head",
+        "chest",
+        "right_arm",
+        "left_arm",
+        "right_leg",
+        "left_leg",
+        "head_overlay",
+        "chest_overlay",
+        "right_arm_overlay",
+        "left_arm_overlay",
+        "right_leg_overlay",
+        "left_leg_overlay"
+      ],
+      "affects_first_person": true,
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+            },
+            "slot": "curios:hulkbuster_armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
     "armor": {
       "type": "palladium:dummy",
-      "icon": "#satsu_iron_man_addon:armor_icon_ability",
+      "icon": "satsu_iron_man_addon:textures/item/marks/mark_44/main.png",
       "title": { "translate": "ability.title.satsu.mark_44" },
       "description": { "translate": "description.iron.man.mark_44" },
       "hidden": false,
@@ -226,32 +437,196 @@
         ]
       }
     },
-    "puting": {
-      "type": "palladium:dummy",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
-      "title": {
-        "translate": "ability.title.satsu.metodo.de.colocacion.llamado"
+    "scale": {
+      "damage": {
+        "type": "satsu_iron_man_addon:pehkui_property_scale",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_value": "satsu_iron_man_addon_scale_damage",
+        "Division_Amount": "1",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            }
+          ],
+          "unlocking": []
+        }
       },
-      "description": {
-        "translate": "description.satsu.metodo.de.colocacion.llamado"
-      },
-      "hidden": false,
+      "defense": {
+        "type": "satsu_iron_man_addon:pehkui_property_defense_scale",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_value": "satsu_iron_man_addon_scale_damage",
+        "Division_Amount": "1",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            }
+          ],
+          "unlocking": []
+        }
+      }
+    },
+    "flames_up": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
       "hidden_in_bar": true,
-      "gui_position": [0.5, 0],
+      "start_value": 0,
+      "max_value": 1,
       "conditions": {
-        "enabling": [],
-        "unlocking": [
+        "enabling": [
           {
             "type": "palladium:or",
             "conditions": [
               {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
+                "type": "palladium:is_hovering_or_flying"
               },
               {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
+                "type": "satsu_iron_man_addon:is_jumping_up"
+              }
+            ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "energy.pulse_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "energy.pulse_left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "uni.beam.hand.right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "uni.beam.hand.left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams.right_arm"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "red_beams.left_arm"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "mini.gun.right",
+                    "property": "value",
+                    "min": "1",
+                    "max": "10"
+                  },
+                  {
+                    "type": "palladium:ability_integer_property",
+                    "ability": "mini.gun.left",
+                    "property": "value",
+                    "min": "1",
+                    "max": "10"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_mallet"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_grenade_launcher_left"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_grenade_launcher_right"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_flares_flames"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "nano_fireworks"
+                  },
+                  {
+                    "type": "palladium:ability_enabled",
+                    "ability": "maximun.pulse.animation"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "flames_down": {
+      "type": "palladium:animation_timer",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "start_value": 0,
+      "max_value": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "satsu_iron_man_addon:is_jumping_up"
+              }
+            ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_integer_property",
+                "ability": "nano_flight_boost",
+                "property": "value",
+                "min": 14,
+                "max": 16
               }
             ]
           }
@@ -266,7 +641,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "attribute": "palladium:flight_speed",
-      "uuid": "e40d2ec9-1558-43b9-a8ff-60b7045ddc92",
+      "uuid": "7775dea3-8ec0-4d09-a87c-2816c6449a7b",
       "amount": 0.77,
       "operation": 0,
       "gui_position": [1, 0.5],
@@ -274,7 +649,7 @@
         "enabling": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -308,6 +683,12 @@
         ],
         "unlocking": [
           {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 4,
+            "operation_type": ">"
+          },
+          {
             "type": "palladium:or",
             "conditions": [
               {
@@ -329,7 +710,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "attribute": "palladium:flight_speed",
-      "uuid": "0062294e-6726-456b-95e7-f352c3c2d1b8",
+      "uuid": "dba70121-cd6e-4056-a360-fc56c4e0c302",
       "amount": 0.77,
       "operation": 0,
       "conditions": {
@@ -342,7 +723,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -404,7 +785,15 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:is_hovering_or_flying"
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:is_hovering_or_flying"
+              },
+              {
+                "type": "satsu_iron_man_addon:is_jumping_up"
+              }
+            ]
           },
           {
             "type": "palladium:ability_enabled",
@@ -485,15 +874,23 @@
       "hidden": true,
       "hidden_in_bar": true,
       "property_value": "satsu_iron_man_flight_speed_choose",
-      "Division_Amount": "200",
+      "Division_Amount": "125",
       "Attribute_Type": "palladium:flight_speed",
-      "UUID": "e85d2ec9-1558-43b9-a8ff-60b7045ddc92",
+      "UUID": "26dc2a80-b6e0-4581-b8f0-dee5c87bff7a",
       "gui_position": [1, 0.5],
       "conditions": {
         "enabling": [
           {
             "type": "palladium:ability_enabled",
             "ability": "flight"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 2,
+            "operation_type": ">"
           }
         ]
       }
@@ -502,7 +899,7 @@
       "type": "satsu_iron_man_addon:item_nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Flight_velocity",
       "nbtValue": "0",
       "conditions": {
@@ -513,7 +910,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_range_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "Flight_velocity",
                 "min": -2147483647,
                 "max": 2147483647
@@ -527,7 +924,7 @@
       "type": "satsu_iron_man_addon:item_nbt_property_sync",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Flight_velocity",
       "propertyKey": "satsu_iron_man_flight_speed_choose",
       "syncMode": "nbt",
@@ -539,6 +936,48 @@
             "ability": "armor"
           }
         ]
+      }
+    },
+    "flight.fall.screenshake": {
+      "type": "gravecore:screenshake",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "intensity": 1,
+      "duration": 2,
+      "distance": 10,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/main_power/main",
+            "ability": "flight.fall.animation",
+            "property": "value",
+            "min": 44,
+            "max": 50
+          },
+          {
+            "type": "palladium:on_ground"
+          },
+          {
+            "type": "palladium:sprinting"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              }
+            ]
+          }
+        ],
+        "unlocking": []
       }
     },
     "durability": {
@@ -553,7 +992,7 @@
         "minecraft:generic.armor",
         "minecraft:generic.armor_toughness"
       ],
-      "amounts": ["34", "20"],
+      "amounts": ["55", "35"],
       "operations": ["addition", "addition"],
       "uuids": [
         "b379de99-9744-4cd1-83ca-ed123bb07291",
@@ -629,7 +1068,7 @@
         "minecraft:generic.armor",
         "minecraft:generic.armor_toughness"
       ],
-      "amounts": ["8", "1"],
+      "amounts": ["12", "1"],
       "operations": ["addition", "addition"],
       "uuids": [
         "b679de99-9744-4cd1-83ca-ed123bb07291",
@@ -686,8 +1125,8 @@
       "hidden_in_bar": true,
       "gui_position": [1, -0.6],
       "attribute": "minecraft:generic.attack_damage",
-      "uuid": "f780d74f-5bab-432d-b60d-0748e5788bd8",
-      "amount": 20,
+      "uuid": "2a1798f4-a125-42d8-a4dc-63340ce6402a",
+      "amount": 55,
       "operation": 0,
       "conditions": {
         "enabling": [
@@ -750,8 +1189,8 @@
       "hidden": true,
       "hidden_in_bar": true,
       "attribute": "minecraft:generic.attack_damage",
-      "uuid": "e8109847-da93-4693-a9aa-3e51107cd576",
-      "amount": 40,
+      "uuid": "a25ee3e3-eaa3-46b8-b286-783ad9948dfc",
+      "amount": 75,
       "operation": 0,
       "conditions": {
         "enabling": [
@@ -818,7 +1257,7 @@
       "hidden_in_bar": true,
       "gui_position": [4.3, 0.5],
       "attribute": "palladium:fall_resistance",
-      "uuid": "388be4fb-af04-42f2-8948-e6ccdc0d99e2",
+      "uuid": "491e74c5-62e8-4ede-81c2-503bb743ae70",
       "amount": 259,
       "operation": 0,
       "conditions": {
@@ -885,66 +1324,6 @@
       "uuid": "f517d74f-5bab-432d-b60d-0890e6448bd8",
       "conditions": {
         "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_ia.pickaxe_velocity",
-            "comparator": "equals",
-            "compare_to": "normal"
-          },
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "pickaxe.velocity.low": {
-      "type": "palladium:attribute_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "attribute": "palladium:destroy_speed",
-      "amount": 0.1,
-      "operation": 0,
-      "uuid": "a7bd1382-d54a-46d2-8c19-905eb046c020",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_ia.pickaxe_velocity",
-            "comparator": "equals",
-            "compare_to": "low"
-          },
           {
             "type": "palladium:ability_unlocked",
             "ability": "armor"
@@ -1025,31 +1404,6 @@
         ]
       }
     },
-    "curse_of_binding_modifier": {
-      "type": "satsu_iron_man_addon:curse_of_binding_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ]
-      }
-    },
     "no_armor": {
       "type": "palladium:restrict_slots",
       "hidden": true,
@@ -1059,7 +1413,6 @@
         "feet",
         "legs",
         "head",
-        "curios:back",
         "curios:main_addition_right",
         "curios:main_addition_left",
         "curios:secondary_addition_right",
@@ -1100,9 +1453,9 @@
           {
             "type": "palladium:item_in_slot",
             "item": {
-              "tag": "satsu_iron_man_addon:armors/main"
+              "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
             },
-            "slot": "curios:tecnology_armor"
+            "slot": "curios:hulkbuster_armor"
           },
           {
             "type": "palladium:string_property",
@@ -1132,13 +1485,6 @@
           }
         ]
       }
-    },
-    "set_mark_number_name": {
-      "type": "satsu_iron_man_addon:set_property_string",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "name": "satsu_iron_man_addon_mark_property",
-      "test_value": "mark_44"
     },
     "set_flame_color": {
       "type": "satsu_iron_man_addon:set_property_string",
@@ -1174,7 +1520,8 @@
           },
           {
             "type": "satsy_iron_man_addon:height_bool_condition",
-            "max_height": 1010
+            "min_height": 1010,
+            "max_height": 120000
           },
           {
             "type": "palladium:string_property",
@@ -1208,7 +1555,8 @@
           },
           {
             "type": "satsy_iron_man_addon:height_bool_condition",
-            "max_height": 1010
+            "min_height": 1010,
+            "max_height": 120000
           },
           {
             "type": "palladium:string_property",
@@ -1494,6 +1842,12 @@
             "property": "satsu_mask_value",
             "min": 0,
             "max": 0
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ]
       }
@@ -1564,7 +1918,7 @@
                     "ability": "armor_animation",
                     "property": "value",
                     "min": 12,
-                    "max": 13
+                    "max": 16
                   },
                   {
                     "type": "palladium:string_property",
@@ -1833,8 +2187,7 @@
       "icon": "#satsu_iron_man_addon:enable_armor_icon",
       "title": { "translate": "ability.title.satsu.enable_armor" },
       "hidden": true,
-      "hidden_in_bar": false,
-      "list_index": 0,
+      "hidden_in_bar": true,
       "power": "satsu_iron_man_addon:armor/actived_sentry/set_0",
       "capacity": "add",
       "conditions": {
@@ -2037,7 +2390,7 @@
         "unlocking": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2051,6 +2404,13 @@
             "property": "satsu_iron_man_addon_armor_activated",
             "comparator": "equals",
             "compare_to": "on"
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -2122,7 +2482,7 @@
       "description": { "translate": "description.energy_beam" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 1,
+      "list_index": 0,
       "gui_position": [-1, -1.8],
       "start_value": 0,
       "max_value": 6,
@@ -2157,6 +2517,12 @@
         ],
         "unlocking": [
           {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 3,
+            "operation_type": ">"
+          },
+          {
             "type": "palladium:ability_unlocked",
             "ability": "armor"
           },
@@ -2170,7 +2536,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2204,11 +2570,18 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
+                    "ability": "gas"
                   }
                 ]
               }
             ]
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -2267,13 +2640,14 @@
       "description": { "translate": "description.energy_beam" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 1,
+      "list_index": 0,
       "gui_position": [4.3, -1],
       "abilities": [
         "energy_beam_increase_wheel_1",
         "energy_beam_increase_wheel_2",
         "energy_beam_increase_wheel_3"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -2286,7 +2660,7 @@
         "unlocking": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2306,6 +2680,13 @@
             "property": "value",
             "min": 15,
             "max": 16
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -2331,6 +2712,13 @@
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
           }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
+          }
         ]
       }
     },
@@ -2355,6 +2743,13 @@
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
           }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
+          }
         ]
       }
     },
@@ -2378,6 +2773,13 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -2405,7 +2807,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2422,6 +2824,13 @@
             "property": "value",
             "min": 15,
             "max": 16
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -2473,6 +2882,15 @@
             "property": "satsu_armor_weapon_system",
             "comparator": "equals",
             "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse.actived"
+              }
+            ]
           }
         ]
       }
@@ -2494,7 +2912,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2560,7 +2978,7 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
+                "ability": "gas"
               }
             ]
           }
@@ -2612,8 +3030,14 @@
         ],
         "unlocking": [
           {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 3,
+            "operation_type": ">"
+          },
+          {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2659,7 +3083,7 @@
                   },
                   {
                     "type": "satsu_iron_man_addon:slot_nbt_check",
-                    "slot": "curios:tecnology_armor",
+                    "slot": "curios:hulkbuster_armor",
                     "nbtKey": "right_repulsor_heat_not_use",
                     "mode": "exists"
                   }
@@ -2688,8 +3112,14 @@
         ],
         "unlocking": [
           {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 3,
+            "operation_type": ">"
+          },
+          {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2741,7 +3171,7 @@
                   },
                   {
                     "type": "satsu_iron_man_addon:slot_nbt_check",
-                    "slot": "curios:tecnology_armor",
+                    "slot": "curios:hulkbuster_armor",
                     "nbtKey": "left_repulsor_heat_not_use",
                     "mode": "exists"
                   }
@@ -2765,15 +3195,16 @@
       "description": { "translate": "description.satsu.armor.weapons.choose" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 2,
+      "list_index": 1,
       "gui_position": [4.3, -1],
       "abilities": [
         "weapons_wheel.shoulder_rockets",
-        "weapons_wheel.flares",
+        "weapons_wheel.gas",
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser",
         "weapons_wheel.flight_unlock"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -2790,7 +3221,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2807,6 +3238,12 @@
             "property": "value",
             "min": 15,
             "max": 16
+          },
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -2818,7 +3255,7 @@
       "description": { "translate": "description.Fireworks" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 2,
+      "list_index": 1,
       "gui_position": [1, -3],
       "name": "satsu_armor_weapon",
       "number": 1,
@@ -2832,7 +3269,7 @@
         "unlocking": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2854,17 +3291,24 @@
             "min": 15,
             "max": 16
           }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
+          }
         ]
       }
     },
-    "weapons_wheel.flares": {
+    "weapons_wheel.gas": {
       "type": "satsu_iron_man_addon:set_property",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
-      "title": { "translate": "ability.title.satsu.flare.flame" },
-      "description": { "translate": "description.satsu.flare.flame" },
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/neutral_gas.png",
+      "title": { "translate": "ability.title.satsu.gas" },
+      "description": { "translate": "description.satsu.gas" },
       "hidden": false,
       "hidden_in_bar": false,
-      "list_index": 2,
+      "list_index": 1,
       "gui_position": [-1, -3],
       "name": "satsu_armor_weapon",
       "number": 2,
@@ -2878,7 +3322,7 @@
         "unlocking": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -2900,6 +3344,13 @@
             "min": 15,
             "max": 16
           }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
+          }
         ]
       }
     },
@@ -2907,7 +3358,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 10,
@@ -2943,7 +3394,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 20,
@@ -2979,7 +3430,7 @@
       "type": "satsu_iron_man_addon:item_nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "right_repulsor_heat",
       "nbtValue": "0",
       "conditions": {
@@ -2989,7 +3440,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "right_repulsor_heat",
                 "nbtValue": "0",
                 "mode": "exists"
@@ -3003,7 +3454,7 @@
       "type": "satsu_iron_man_addon:item_nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "left_repulsor_heat",
       "nbtValue": "0",
       "conditions": {
@@ -3013,7 +3464,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "left_repulsor_heat",
                 "nbtValue": "0",
                 "mode": "exists"
@@ -3027,7 +3478,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "right_repulsor_heat",
       "adjustment_type": "add",
       "adjustment_amount": 200,
@@ -3051,7 +3502,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "left_repulsor_heat",
       "adjustment_type": "add",
       "adjustment_amount": 200,
@@ -3075,7 +3526,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "right_repulsor_heat",
       "adjustment_type": "add",
       "adjustment_amount": 7,
@@ -3097,7 +3548,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "left_repulsor_heat",
       "adjustment_type": "add",
       "adjustment_amount": 7,
@@ -3119,7 +3570,7 @@
       "type": "satsu_iron_man_addon:item_nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "right_repulsor_heat_not_use",
       "nbtValue": "true",
       "conditions": {
@@ -3129,7 +3580,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_range_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "right_repulsor_heat",
                 "min": 1000,
                 "max": 25555555555555,
@@ -3148,7 +3599,7 @@
       "type": "satsu_iron_man_addon:item_nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "left_repulsor_heat_not_use",
       "nbtValue": "true",
       "conditions": {
@@ -3158,7 +3609,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_range_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "left_repulsor_heat",
                 "min": 1000,
                 "max": 25555555555555,
@@ -3205,7 +3656,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "right_repulsor_heat",
       "adjustment_type": "subtract",
       "adjustment_amount": 25,
@@ -3213,7 +3664,7 @@
         "enabling": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "right_repulsor_heat",
             "min": 25,
             "max": 25555555555555,
@@ -3234,7 +3685,7 @@
               },
               {
                 "type": "satsu_iron_man_addon:slot_nbt_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "right_repulsor_heat_not_use",
                 "mode": "exists"
               }
@@ -3247,7 +3698,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "left_repulsor_heat",
       "adjustment_type": "subtract",
       "adjustment_amount": 25,
@@ -3255,7 +3706,7 @@
         "enabling": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "left_repulsor_heat",
             "min": 25,
             "max": 25555555555555,
@@ -3276,7 +3727,7 @@
               },
               {
                 "type": "satsu_iron_man_addon:slot_nbt_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "left_repulsor_heat_not_use",
                 "mode": "exists"
               }
@@ -3289,7 +3740,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "right_repulsor_heat",
       "adjustment_type": "subtract",
       "adjustment_amount": 9,
@@ -3303,7 +3754,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "right_repulsor_heat",
             "min": 25,
             "max": 25555555555555,
@@ -3320,7 +3771,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "right_repulsor_heat_not_use",
                 "mode": "exists"
               }
@@ -3333,7 +3784,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "left_repulsor_heat",
       "adjustment_type": "subtract",
       "adjustment_amount": 9,
@@ -3347,7 +3798,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "left_repulsor_heat",
             "min": 25,
             "max": 25555555555555,
@@ -3364,7 +3815,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "left_repulsor_heat_not_use",
                 "mode": "exists"
               }
@@ -3377,7 +3828,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "right_repulsor_heat",
       "adjustment_type": "subtract",
       "adjustment_amount": 8,
@@ -3385,7 +3836,7 @@
         "enabling": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "right_repulsor_heat",
             "min": 1,
             "max": 25555555555555,
@@ -3399,7 +3850,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "right_repulsor_heat_not_use",
             "mode": "exists"
           }
@@ -3410,7 +3861,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "left_repulsor_heat",
       "adjustment_type": "subtract",
       "adjustment_amount": 8,
@@ -3418,7 +3869,7 @@
         "enabling": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "left_repulsor_heat",
             "min": 1,
             "max": 25555555555555,
@@ -3432,7 +3883,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "left_repulsor_heat_not_use",
             "mode": "exists"
           }
@@ -3443,14 +3894,14 @@
       "type": "satsu_iron_man_addon:item_nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "right_repulsor_heat_not_use",
       "nbtValue": "remove",
       "conditions": {
         "enabling": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "right_repulsor_heat",
             "min": -25555555555555,
             "max": 0,
@@ -3463,14 +3914,14 @@
       "type": "satsu_iron_man_addon:item_nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "left_repulsor_heat_not_use",
       "nbtValue": "remove",
       "conditions": {
         "enabling": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "left_repulsor_heat",
             "min": -25555555555555,
             "max": 0,
@@ -3495,7 +3946,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "right_repulsor_heat",
             "min": 500,
             "max": 25555555555555,
@@ -3506,7 +3957,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "right_repulsor_heat_not_use",
                 "mode": "exists"
               }
@@ -3531,7 +3982,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "left_repulsor_heat",
             "min": 500,
             "max": 25555555555555,
@@ -3542,7 +3993,7 @@
             "conditions": [
               {
                 "type": "satsu_iron_man_addon:slot_nbt_check",
-                "slot": "curios:tecnology_armor",
+                "slot": "curios:hulkbuster_armor",
                 "nbtKey": "left_repulsor_heat_not_use",
                 "mode": "exists"
               }
@@ -3639,7 +4090,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -3656,6 +4107,13 @@
             "property": "value",
             "min": 15,
             "max": 16
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -3691,7 +4149,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -3708,6 +4166,13 @@
             "property": "value",
             "min": 15,
             "max": 16
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -3728,8 +4193,14 @@
         ],
         "unlocking": [
           {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 3,
+            "operation_type": ">"
+          },
+          {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -3771,7 +4242,7 @@
                 "conditions": [
                   {
                     "type": "satsu_iron_man_addon:slot_nbt_check",
-                    "slot": "curios:tecnology_armor",
+                    "slot": "curios:hulkbuster_armor",
                     "nbtKey": "right_repulsor_heat_not_use",
                     "mode": "exists"
                   },
@@ -3802,8 +4273,14 @@
         ],
         "unlocking": [
           {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 3,
+            "operation_type": ">"
+          },
+          {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -3851,7 +4328,7 @@
                 "conditions": [
                   {
                     "type": "satsu_iron_man_addon:slot_nbt_check",
-                    "slot": "curios:tecnology_armor",
+                    "slot": "curios:hulkbuster_armor",
                     "nbtKey": "left_repulsor_heat_not_use",
                     "mode": "exists"
                   },
@@ -3870,7 +4347,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 3,
@@ -3907,7 +4384,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 6,
@@ -3939,7 +4416,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 9,
@@ -4095,6 +4572,13 @@
               }
             ]
           }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
+          }
         ]
       }
     },
@@ -4140,7 +4624,7 @@
         "unlocking": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -4193,7 +4677,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -4211,11 +4695,33 @@
         ]
       }
     },
+    "set.flight_speed": {
+      "type": "satsu_iron_man_addon:nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:hulkbuster_armor",
+      "nbtKey": "Flight_velocity",
+      "adjustment_type": "set",
+      "adjustment_amount": 0,
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hulkbuster_armor",
+            "nbtKey": "Flight_velocity",
+            "min": -255555555,
+            "max": -2,
+            "mode": "range"
+          }
+        ]
+      }
+    },
     "increase.flight_speed": {
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Flight_velocity",
       "adjustment_type": "add",
       "adjustment_amount": 2,
@@ -4223,13 +4729,14 @@
         "enabling": [
           {
             "type": "palladium:action",
-            "key_type": "scroll_up"
+            "key_type": "scroll_up",
+            "allow_scrolling_when_crouching": false
           }
         ],
         "unlocking": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -4258,7 +4765,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Flight_velocity",
       "adjustment_type": "subtract",
       "adjustment_amount": 2,
@@ -4266,13 +4773,14 @@
         "enabling": [
           {
             "type": "palladium:action",
-            "key_type": "scroll_down"
+            "key_type": "scroll_down",
+            "allow_scrolling_when_crouching": false
           }
         ],
         "unlocking": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -4301,16 +4809,16 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Flight_velocity",
       "adjustment_type": "set",
       "adjustment_amount": 168,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
-            "key_type": "scroll_up",
-            "allow_scrolling_when_crouching": false
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "increase.flight_speed"
           },
           {
             "type": "palladium:crouching"
@@ -4318,26 +4826,16 @@
         ],
         "unlocking": [
           {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
             "type": "palladium:ability_unlocked",
             "ability": "armor"
           },
           {
+            "type": "palladium:ability_unlocked",
+            "ability": "increase.flight_speed"
+          },
+          {
             "type": "palladium:ability_enabled",
             "ability": "flight_speed.move"
-          },
-          {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:ia_stuff/ia"
           },
           {
             "type": "palladium:integer_property",
@@ -4352,16 +4850,16 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Flight_velocity",
       "adjustment_type": "set",
       "adjustment_amount": 0,
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:action",
-            "key_type": "scroll_down",
-            "allow_scrolling_when_crouching": false
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "remove.flight_speed"
           },
           {
             "type": "palladium:crouching"
@@ -4370,7 +4868,7 @@
         "unlocking": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -4380,21 +4878,61 @@
             "ability": "armor"
           },
           {
-            "type": "palladium:ability_enabled",
-            "ability": "flight_speed.move"
-          },
-          {
-            "type": "palladium:is_hovering_or_flying"
-          },
-          {
-            "type": "palladium:has_power",
-            "power": "satsu_iron_man_addon:ia_stuff/ia"
+            "type": "palladium:ability_unlocked",
+            "ability": "remove.flight_speed"
           },
           {
             "type": "palladium:integer_property",
             "property": "satsu_iron_man_flight_speed_choose",
             "min": 2,
             "max": 168
+          }
+        ]
+      }
+    },
+    "particle_flight_explosion": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "execute at @s run particle satsu_iron_man_addon:sonic_explosion ~ ~ ~ 0.3 0.1 0.3 0.05 5 normal",
+        "execute at @s run playsound entity.generic.explode player @s ~ ~ ~ 1.0 1.8"
+      ],
+      "last_tick_commands": [],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:is_hovering_or_flying"
+          },
+          {
+            "type": "palladium:is_fast_flying"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hulkbuster_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hulkbuster_armor",
+            "nbtKey": "Flight_velocity",
+            "min": 100,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
           }
         ]
       }
@@ -4406,7 +4944,7 @@
       "description": { "translate": "description.Fireworks" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 3,
+      "list_index": 2,
       "gui_position": [1, -3],
       "start_value": 0,
       "max_value": 20,
@@ -4433,7 +4971,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -4467,6 +5005,12 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
           }
         ]
       }
@@ -4513,22 +5057,21 @@
         "unlocking": []
       }
     },
-    "flares_flames": {
-      "type": "palladium:repeating_animation_timer",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
-      "entity_type": "palladium:custom_projectile",
-      "title": { "translate": "ability.title.satsu.flare.flame" },
-      "description": { "translate": "description.satsu.flare.flame" },
+    "gas": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/neutral_gas.png",
+      "title": { "translate": "ability.title.satsu.gas" },
+      "description": { "translate": "description.satsu.gas" },
       "hidden": true,
       "hidden_in_bar": false,
-      "list_index": 3,
+      "list_index": 2,
       "start_value": 0,
-      "max_value": 20,
+      "max_value": 15,
       "conditions": {
         "enabling": [
           {
             "type": "palladium:activation",
-            "ticks": 20,
+            "ticks": 40,
             "cooldown": 160,
             "key_type": "key_bind",
             "needs_empty_hand": false
@@ -4547,7 +5090,7 @@
           },
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -4582,59 +5125,510 @@
               }
             ]
           }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
+          }
         ]
       }
     },
-    "flares_flames.sound": {
-      "type": "palladium:play_sound",
+    "gas_projectile.right": {
+      "type": "gravecore:projectile",
       "hidden": true,
       "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.flare_flames_sound",
-      "volume": 1,
-      "pitch": 1,
-      "looping": false,
-      "play_self": false,
-      "play_others": false,
+      "entity_type": "palladium:custom_projectile",
+      "velocity": 2.5,
+      "swinging_arm": "none",
+      "yawOffset": 120,
+      "pitchOffset": 0,
+      "inaccuracy": 0,
+      "damage_from_player": false,
+      "ignore_player_movement": false,
+      "entity_data": {
+        "SetEntityOnFireSeconds": 0,
+        "KnockbackStrength": 0.4,
+        "Damage": 0.5,
+        "Size": 0.1,
+        "Gravity": 0.0,
+        "Lifetime": 60,
+        "DieOnEntityHit": true,
+        "DieOnBlockHit": true,
+        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/gas",
+        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/gas",
+        "Appearances": [
+          {
+            "Type": "particles",
+            "ParticleType": "minecraft:cloud",
+            "Spread": 0.3
+          }
+        ]
+      },
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:or",
+            "type": "palladium:ability_enabled",
+            "ability": "gas"
+          },
+          {
+            "type": "palladium:animation_timer_ability",
+            "ability": "gas",
+            "min": 1,
+            "max": 14
+          }
+        ]
+      }
+    },
+    "hulkbuster_jump": {
+      "type": "gravecore:movement",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/abilities/jump_forward.png",
+      "title": { "translate": "ability.title.satsu.hulkbuster_jump" },
+      "description": { "translate": "description.satsu.hulkbuster_jump" },
+      "hidden": false,
+      "hidden_in_bar": false,
+      "list_index": 3,
+      "gui_position": [0.5, -3.5],
+      "motion_scale": 0.1,
+      "direction": "up",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 160,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:on_ground"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hulkbuster_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
             "conditions": [
               {
-                "type": "palladium:and",
+                "type": "palladium:or",
                 "conditions": [
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
-                  },
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "flares_flames",
-                    "property": "value",
-                    "min": 9,
-                    "max": 9
+                    "ability": "nano_katar.attack"
                   }
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
               {
-                "type": "palladium:and",
+                "type": "palladium:or",
                 "conditions": [
                   {
-                    "type": "palladium:ability_enabled",
-                    "ability": "nano_flares_flames"
+                    "type": "satsu_iron_man_addon:looking_down",
+                    "range": 90
                   },
                   {
+                    "type": "satsu_iron_man_addon:looking_up",
+                    "range": 90
+                  }
+                ]
+              }
+            ]
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
+          }
+        ]
+      }
+    },
+    "hulkbuster_jump_commands": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": ["tag @s add hulkbuster_jump"],
+      "last_tick_commands": [],
+      "commands": [""],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "power": "null",
+            "ability": "hulkbuster_jump"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump_bum": {
+      "type": "palladium:dummy",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "hulkbuster_jump"
+              }
+            ]
+          },
+          {
+            "type": "palladium:has_tag",
+            "tag": "hulkbuster_jump"
+          },
+          {
+            "type": "palladium:on_ground"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump_bum.no_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 50 normal",
+        "execute at @s run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.001 115 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true",
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s remove hulkbuster_jump"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_jump_bum"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump_bum.break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 50 normal",
+        "execute at @s run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.001 115 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true",
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "execute as @s unless block ~2 ~-2 ~2 #satsu_iron_man_addon:no_destroy run fill ~-1 ~-1 ~-2 ~2 ~-2 ~2 minecraft:air destroy",
+        "tag @s remove hulkbuster_jump"
+      ],
+      "commands": [""],
+      "last_tick_commands": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_jump_bum"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump.aoe_knockback": {
+      "type": "gravestone:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 7,
+      "knockback": 1.4,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_jump_bum"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_jump.aoe_damage": {
+      "type": "gravestone:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 7,
+      "damage": 16,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_jump_bum"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_ground_attack": {
+      "type": "palladium:animation_timer",
+      "icon": "satsu_iron_man_addon:textures/gui/armors/placeholder.png",
+      "title": { "translate": "ability.title.satsu.ground.attack" },
+      "description": { "translate": "description.satsu.ground.attack" },
+      "hidden": true,
+      "hidden_in_bar": false,
+      "list_index": 4,
+      "gui_position": [5.4, 5.5],
+      "start_value": 0,
+      "max_value": 12,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:activation",
+            "ticks": 12,
+            "cooldown": 120,
+            "key_type": "key_bind",
+            "needs_empty_hand": false
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:on_ground"
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "satsu_iron_man_addon:slot_nbt_range_check",
+            "slot": "curios:hulkbuster_armor",
+            "nbtKey": "Energy",
+            "min": 1,
+            "max": 2147483647
+          },
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "armor"
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ,
+          {
+            "type": "satsu_iron_man_addon:armor_durability",
+            "slot": "hulkbuster_armor",
+            "divider": 5,
+            "operation_type": ">"
+          }
+        ]
+      }
+    },
+    "ground_attack_for_mark_with_hammer": {
+      "type": "palladium:player_animation",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "animation": "satsu_iron_man_addon:ground_attack",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "hulkbuster_ground_attack",
+            "property": "value",
+            "min": 1,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_ground_attack"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:command_result",
+                "command": "execute if entity @e[tag=sentinel,sort=nearest,distance=0..] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID"
+              },
+              {
+                "type": "palladium:or",
+                "conditions": [
+                  {
                     "type": "palladium:ability_integer_property",
-                    "ability": "nano_flares_flames",
+                    "power": "satsu_iron_man_addon:kube_animations",
+                    "ability": "armor_sentinel_anim",
                     "property": "value",
-                    "min": 10,
-                    "max": 10
+                    "min": 1,
+                    "max": 6
                   }
                 ]
               }
             ]
           }
         ]
+      }
+    },
+    "hulkbuster_ground_attack.command:not_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s add striker.ground.attack"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 50 normal",
+        "execute at @s run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.001 115 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": ["tag @s remove striker.ground.attack"],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "off"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "hulkbuster_ground_attack",
+            "property": "value",
+            "min": 12,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_ground_attack"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_ground_attack.command_break": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "first_tick_commands": [
+        "playsound minecraft:entity.generic.explode ambient @a[distance=0..10] ~ ~ ~ 1 1.5",
+        "tag @s add striker.ground.attack"
+      ],
+      "commands": [
+        "particle explosion ~ ~ ~ 0 0 0 1 50 normal",
+        "execute at @s run particle block minecraft:dirt ~ ~ ~ 5 2 5 0.001 115 force",
+        "execute as @e[tag=!striker.ground.attack,distance=..6] run effect give @s slowness 6 2 true"
+      ],
+      "last_tick_commands": [
+        "execute as @s unless block ~2 ~-2 ~2 #satsu_iron_man_addon:no_destroy run fill ~-1 ~-1 ~-2 ~2 ~-2 ~2 minecraft:air destroy",
+        "tag @s remove striker.ground.attack"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "on"
+          },
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "hulkbuster_ground_attack",
+            "property": "value",
+            "min": 12,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_ground_attack"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_ground_attack.aoe_knockback": {
+      "type": "gravestone:aoe_knockback",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "knockback": 1.6,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "hulkbuster_ground_attack",
+            "property": "value",
+            "min": 12,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_ground_attack"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hulkbuster_ground_attack.aoe_damage": {
+      "type": "gravestone:aoe_damage",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "radius": 5,
+      "damage": 18,
+      "tag_ex": "exclusion_tag",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_integer_property",
+            "ability": "hulkbuster_ground_attack",
+            "property": "value",
+            "min": 12,
+            "max": 12
+          },
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "hulkbuster_ground_attack"
+          }
+        ],
+        "unlocking": []
       }
     },
     "energy_pulse_projectile.right_normal": {
@@ -4644,15 +5638,15 @@
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
-      "yawOffset": 20,
-      "pitchOffset": 25,
+      "yawOffset": 120,
+      "pitchOffset": 0,
       "inaccuracy": 0,
       "damage_from_player": false,
       "ignore_player_movement": false,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.5,
-        "Damage": 7.5,
+        "Damage": 14.5,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -4691,15 +5685,15 @@
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
-      "yawOffset": -20,
-      "pitchOffset": 25,
+      "yawOffset": -120,
+      "pitchOffset": 0,
       "inaccuracy": 0,
       "damage_from_player": false,
       "ignore_player_movement": false,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.5,
-        "Damage": 7.5,
+        "Damage": 14.5,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -4738,15 +5732,15 @@
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
-      "yawOffset": 20,
-      "pitchOffset": 25,
+      "yawOffset": 120,
+      "pitchOffset": 0,
       "inaccuracy": 0,
       "damage_from_player": false,
       "ignore_player_movement": false,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.5,
-        "Damage": 8,
+        "Damage": 15,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -4785,15 +5779,15 @@
       "entity_type": "palladium:custom_projectile",
       "velocity": 2.5,
       "swinging_arm": "none",
-      "yawOffset": -20,
-      "pitchOffset": 25,
+      "yawOffset": -120,
+      "pitchOffset": 0,
       "inaccuracy": 0,
       "damage_from_player": false,
       "ignore_player_movement": false,
       "entity_data": {
         "SetEntityOnFireSeconds": 8,
         "KnockbackStrength": 1.5,
-        "Damage": 8,
+        "Damage": 15,
         "Size": 0.1,
         "Gravity": 0.0,
         "Lifetime": 60,
@@ -4879,10 +5873,6 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "energy.pulse_left"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
               }
             ]
           }
@@ -4914,7 +5904,7 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
+                "ability": "gas"
               }
             ]
           }
@@ -5161,106 +6151,6 @@
         ]
       }
     },
-    "flares_flames.left": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 3,
-      "swinging_arm": "none",
-      "yawOffset": -50,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "Damage": 0,
-        "Size": 0.1,
-        "Gravity": 0.3,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:flame_flare"
-          },
-          {
-            "Type": "particles",
-            "ParticleType": "minecraft:firework",
-            "Spread": 0.1
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "flares_flames"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "flares_flames",
-            "property": "value",
-            "min": 19,
-            "max": 19
-          }
-        ]
-      }
-    },
-    "flares_flames.right": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 3,
-      "swinging_arm": "none",
-      "yawOffset": 50,
-      "pitchOffset": 55,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "KnockbackStrength": 0,
-        "Damage": 0,
-        "Size": 0.1,
-        "Gravity": 0.3,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/flame_flare",
-        "Appearances": [
-          {
-            "Type": "renderLayer",
-            "RenderLayer": "satsu_iron_man_addon:flame_flare"
-          },
-          {
-            "Type": "particles",
-            "ParticleType": "minecraft:firework",
-            "Spread": 0.1
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "flares_flames"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "flares_flames",
-            "property": "value",
-            "min": 19,
-            "max": 19
-          }
-        ]
-      }
-    },
     "no-list:show_both_arms": {
       "type": "palladium:show_both_arms",
       "hidden": true,
@@ -5281,10 +6171,6 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "uni.beam.hand.left"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
               }
             ]
           }
@@ -5313,7 +6199,7 @@
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "flares_flames"
+                "ability": "gas"
               },
               {
                 "type": "palladium:ability_enabled",
@@ -5364,7 +6250,7 @@
                   },
                   {
                     "type": "palladium:ability_enabled",
-                    "ability": "flares_flames"
+                    "ability": "gas"
                   },
                   {
                     "type": "palladium:ability_enabled",
@@ -5418,7 +6304,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 12,
@@ -5451,7 +6337,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 20,
@@ -5462,7 +6348,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "flares_flames",
+                "ability": "gas",
                 "property": "value",
                 "min": 19,
                 "max": 19
@@ -5554,7 +6440,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 1,
@@ -5562,7 +6448,7 @@
         "enabling": [
           {
             "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
+            "slot": "curios:hulkbuster_armor",
             "nbtKey": "Energy",
             "min": 1,
             "max": 2147483647
@@ -5599,7 +6485,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 4,
@@ -5630,7 +6516,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 8,
@@ -5656,7 +6542,7 @@
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
       "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
+      "slot": "curios:hulkbuster_armor",
       "nbtKey": "Energy",
       "adjustment_type": "subtract",
       "adjustment_amount": 16,
@@ -5710,160 +6596,239 @@
         ]
       }
     },
-    "low_energy_alarm": {
-      "type": "palladium:play_sound",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "sound": "satsu_iron_man_addon:entity.armor.alert_sound",
-      "volume": 1,
-      "pitch": 1,
-      "looping": true,
-      "play_self": true,
-      "play_others": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 800
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 1,
-            "max": 1
-          }
-        ],
-        "unlocking": []
+    "energy": {
+      "low_energy_alarm": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "satsu_iron_man_addon:entity.armor.alert_sound",
+        "volume": 1,
+        "pitch": 1,
+        "looping": true,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:hulkbuster_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 800
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_animation_armor",
+              "min": 1,
+              "max": 1
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy_value": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hulkbuster_armor",
+        "nbtKey": "Energy_Charge",
+        "nbtValue": "7",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:hulkbuster_armor",
+                  "nbtKey": "Energy_Charge",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hulkbuster_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "add",
+        "adjustment_amount": 7,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:command_result",
+                      "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
+                    }
+                  ]
+                },
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:command_result",
+                      "command": "execute at @e[tag=sentinel,limit=1,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on",
+                      "comparison": "==",
+                      "compare_to": 1,
+                      "log": false
+                    },
+                    {
+                      "type": "palladium:integer_property",
+                      "property": "satsu_animation_armor",
+                      "min": 0,
+                      "max": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:hulkbuster_armor",
+              "nbtKey": "Energy",
+              "min": -2147483647,
+              "max": 60001
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "recharge_energy.closed": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hulkbuster_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "add",
+        "adjustment_amount": 4,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_recharge_mode",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_animation_armor",
+              "min": 1,
+              "max": 1
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:hulkbuster_armor",
+              "nbtKey": "Energy",
+              "min": -2147483647,
+              "max": 60001
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "set_energy_60000..": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hulkbuster_armor",
+        "nbtKey": "Energy",
+        "adjustment_type": "set",
+        "adjustment_amount": 60000,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:hulkbuster_armor",
+              "nbtKey": "Energy",
+              "min": 60001,
+              "max": 2147483647
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
-    "recharge_energy": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "add",
-      "adjustment_amount": 7,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:command_result",
-                    "command": "execute as @s if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:command_result",
-                    "command": "execute at @e[tag=sentinel,limit=1,sort=nearest] if score @s grave.ID = @e[tag=sentinel,limit=1,sort=nearest] grave.ID if block ~ ~-1 ~ satsu_iron_man_addon:reactor_ark_recharge_on",
-                    "comparison": "==",
-                    "compare_to": 1,
-                    "log": false
-                  },
-                  {
-                    "type": "palladium:integer_property",
-                    "property": "satsu_animation_armor",
-                    "min": 0,
-                    "max": 0
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": -2147483647,
-            "max": 60001
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "recharge_energy.closed": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "add",
-      "adjustment_amount": 4,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_recharge_mode",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_animation_armor",
-            "min": 1,
-            "max": 1
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": -2147483647,
-            "max": 60001
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "set_energy_60000..": {
-      "type": "satsu_iron_man_addon:nbt_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "slot": "curios:tecnology_armor",
-      "nbtKey": "Energy",
-      "adjustment_type": "set",
-      "adjustment_amount": 60000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 60001,
-            "max": 2147483647
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "set_energy_60000..max": {
-      "type": "satsu_iron_man_addon:palladium_property_modifier",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "property_name": "satsu_iron_man_iron_man_energy_max",
-      "adjustment_type": "set",
-      "adjustment_amount": 60000,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 0,
-            "max": 2147483647
-          }
-        ],
-        "unlocking": []
+    "locking_uuid": {
+      "set_uuid": {
+        "type": "satsu_iron_man_addon:uuid_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hulkbuster_armor",
+        "nbtKey": "locked_uuid",
+        "usePlayerUUID": "true",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_ia_uuid_lock",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:uuid_nbt_check",
+                  "slot": "curios:hulkbuster_armor",
+                  "nbtKey": "locked_uuid",
+                  "nbtValue": "Active",
+                  "mode": "exists",
+                  "usePlayerUUID": "true"
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "remove_uuid": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:hulkbuster_armor",
+        "nbtKey": "locked_uuid",
+        "nbtValue": "remove",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_ia_uuid_lock",
+              "comparator": "equals",
+              "compare_to": "off"
+            },
+            {
+              "type": "satsu_iron_man_addon:uuid_nbt_check",
+              "slot": "curios:hulkbuster_armor",
+              "nbtKey": "locked_uuid",
+              "nbtValue": "Active",
+              "mode": "exists",
+              "usePlayerUUID": "true"
+            }
+          ],
+          "unlocking": []
+        }
       }
     }
   }

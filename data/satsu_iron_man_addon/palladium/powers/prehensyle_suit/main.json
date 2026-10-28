@@ -62,6 +62,13 @@
                     "compare_to": "on"
                   },
                   {
+                    "type": "palladium:item_in_slot",
+                    "item": {
+                      "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                    },
+                    "slot": "curios:hulkbuster_armor"
+                  },
+                  {
                     "type": "palladium:has_tag",
                     "tag": "dampened"
                   }
@@ -70,6 +77,62 @@
             ]
           }
         ]
+      }
+    },
+    "scale": {
+      "damage": {
+        "type": "satsu_iron_man_addon:pehkui_property_scale",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_value": "satsu_iron_man_addon_scale_damage",
+        "Division_Amount": "1",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "defense": {
+        "type": "satsu_iron_man_addon:pehkui_property_defense_scale",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "property_value": "satsu_iron_man_addon_scale_damage",
+        "Division_Amount": "1",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
     "walk.sound": {
@@ -474,7 +537,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "flight_anim",
+                "ability": "nano_flight_boost",
                 "property": "value",
                 "min": 14,
                 "max": 16
@@ -507,7 +570,7 @@
             "conditions": [
               {
                 "type": "palladium:ability_integer_property",
-                "ability": "flight_anim",
+                "ability": "nano_flight_boost",
                 "property": "value",
                 "min": 14,
                 "max": 16
@@ -946,7 +1009,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "property_value": "satsu_iron_man_flight_speed_choose",
-      "Division_Amount": "200",
+      "Division_Amount": "125",
       "Attribute_Type": "palladium:flight_speed",
       "UUID": "e85d2ec9-1558-43b9-a8ff-60b7045ddc92",
       "gui_position": [1, 0.5],
@@ -3364,6 +3427,7 @@
         "call.left_leg",
         "call.sentinel"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -3417,7 +3481,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "call"
           }
         ]
@@ -3441,7 +3505,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "call"
           }
         ]
@@ -3465,7 +3529,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "call"
           }
         ]
@@ -3489,7 +3553,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "call"
           }
         ]
@@ -3513,7 +3577,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "call"
           }
         ]
@@ -3537,7 +3601,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "call"
           }
         ]
@@ -3561,7 +3625,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "call"
           }
         ]
@@ -3585,7 +3649,7 @@
         ],
         "unlocking": [
           {
-            "type": "palladium:ability_enabled",
+            "type": "palladium:ability_unlocked",
             "ability": "call"
           }
         ]
@@ -3755,6 +3819,7 @@
         "energy_beam_increase_wheel_2",
         "energy_beam_increase_wheel_3"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,
@@ -3980,6 +4045,15 @@
             "property": "satsu_armor_weapon_system",
             "comparator": "equals",
             "compare_to": "on"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy.pulse.actived"
+              }
+            ]
           }
         ]
       }
@@ -4322,6 +4396,7 @@
         "weapons_wheel.ark_beam_for_hands",
         "weapons_wheel.repulser"
       ],
+      "hide_locked": true,
       "texture": "null",
       "disable_mouse_scrolling": false,
       "disable_center_icon": false,

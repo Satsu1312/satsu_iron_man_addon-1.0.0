@@ -1,0 +1,128 @@
+{
+  "name": { "translate": "ability.title.satsu.mark.80" },
+  "icon": "satsu_iron_man_addon:textures/gui/armors/armadura_completa/mark_head_icon_80.png",
+  "abilities": {
+    "set_property_string": {
+      "type": "satsu_iron_man_addon:set_property",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_animation_armor",
+      "number": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+            },
+            "slot": "curios:hulkbuster_armor"
+          }
+        ]
+      }
+    },
+    "set_property_string.off": {
+      "type": "satsu_iron_man_addon:set_property",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "name": "satsu_animation_armor",
+      "number": 0,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                },
+                "slot": "curios:hulkbuster_armor"
+              }
+            ]
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "palladium:item_in_slot",
+                "item": {
+                  "tag": "satsu_iron_man_addon:armors/main"
+                },
+                "slot": "curios:tecnology_armor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "curios_slot_durability": {
+      "type": "satsu_iron_man_addon:curios_slot_durability",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "curios_slot": "hulkbuster_armor",
+      "items": [],
+      "durability_loss": 1,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "store": {
+      "type": "corewithstuff:store",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "store_hotbar": false,
+      "store_inventory": false,
+      "store_armor": true,
+      "store_offhand": false,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_armor_activated",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
+    "item_nbt_modifier": {
+      "type": "satsu_iron_man_addon:item_nbt_modifier",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "slot": "curios:hulkbuster_armor",
+      "nbtKey": "Energy",
+      "nbtValue": "1000000",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+            },
+            "slot": "curios:hulkbuster_armor"
+          },
+          {
+            "type": "palladium:not",
+            "conditions": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:hulkbuster_armor",
+                "nbtKey": "Energy",
+                "min": -2147483647,
+                "max": 2147483647
+              }
+            ]
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

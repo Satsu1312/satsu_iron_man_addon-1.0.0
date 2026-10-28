@@ -43,7 +43,20 @@
           }
         }
       ],
-      "conditions": []
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "geckolib:default",
@@ -90,6 +103,18 @@
       "render_type": "glow",
       "conditions": [
         {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        },
+        {
           "type": "palladium:or",
           "conditions": [
             {
@@ -103,6 +128,49 @@
               "entity_type_tag": "satsu_iron_man_addon:stands"
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/right_shoulder.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_41_0.png",
+        "transformers": [
+          {
+            "type": "palladium:color",
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "ignore_blank": true
+          },
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_41/main",
+            "ability": "modular_class.stealth.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/mark_41/stealth_variation/right_shoulder/main_#STEALH"
+      },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_41/main",
+          "ability": "modular_class.stealth.animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 20
         }
       ]
     }

@@ -99,6 +99,18 @@
           "max": 9999
         },
         {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        },
+        {
           "type": "palladium:or",
           "conditions": [
             {
@@ -136,6 +148,14 @@
           "triggers": {
             "call.part": "animation.minecraft:call.left.arm"
           }
+        },
+        {
+          "name": "hammer_animations",
+          "transition_tick_time": 10,
+          "triggers": {
+            "drill_repeating": "drill_repeating",
+            "drill_off": "drill_off"
+          }
         }
       ],
       "conditions": [
@@ -171,7 +191,7 @@
           "Blade_anim": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
-            "ability": "modular_class.vibranuim.blades",
+            "ability": "modular_class.blades.vibranuim.blades",
             "property": "value",
             "min": 0,
             "max": 6
@@ -185,6 +205,122 @@
           "nbtKey": "Main_addition_left",
           "nbtValue": "Blade",
           "mode": "equals"
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_arm.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#mark_number_0.png",
+        "transformers": [
+          {
+            "type": "palladium:color",
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "ignore_blank": true
+          },
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/stealh_modes_gray/transformation_#STEALH.png"
+          }
+        ],
+        "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          },
+          "STEALH": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+            "ability": "modular_class.stealth.animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/mark_42/stealth_variation/left_arm/#mark_number_0_#STEALH"
+      },
+      "conditions": [
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+          "ability": "modular_class.stealth.animation_timer",
+          "property": "value",
+          "min": 1,
+          "max": 20
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/each_part/left_arm.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/#mark_number_0.png",
+        "transformers": [
+          {
+            "type": "palladium:color",
+            "color": [
+              255,
+              0,
+              0
+            ],
+            "ignore_blank": true
+          },
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/heat_repulsor/left_arm/#LEFT_HEAT.png"
+          }
+        ],
+        "variables": {
+          "mark_number": {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_mark_property",
+            "fallback": "mark_1"
+          },
+          "LEFT_HEAT": {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_heat_repulsor_left",
+            "fallback": 0,
+            "divide": 50,
+            "min": 0,
+            "max": 20
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/hand_heat/iron_man_marks_mark_42_left_arm_#LEFT_HEAT"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        },
+        {
+          "type": "satsu_iron_man_addon:slot_nbt_range_check",
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "left_repulsor_heat",
+          "min": 50,
+          "max": 25555555555555,
+          "mode": "range"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_42/main",
+          "ability": "left_arm_animation",
+          "property": "value",
+          "min": 1,
+          "max": 18
         }
       ]
     }
