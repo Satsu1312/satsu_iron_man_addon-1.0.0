@@ -2221,8 +2221,7 @@
             "property": "satsu_iron_man_addon_armor_activated",
             "comparator": "equals",
             "compare_to": "on"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2392,8 +2391,7 @@
                 ]
               }
             ]
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2497,8 +2495,7 @@
             "property": "value",
             "min": 15,
             "max": 16
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2528,8 +2525,7 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2559,8 +2555,7 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2590,8 +2585,7 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2641,8 +2635,7 @@
             "property": "value",
             "min": 15,
             "max": 16
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -3107,8 +3100,7 @@
             "property": "value",
             "min": 15,
             "max": 16
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -3160,8 +3152,7 @@
             "property": "value",
             "min": 15,
             "max": 16
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -3400,7 +3391,7 @@
                   "type": "satsu_iron_man_addon:slot_nbt_range_check",
                   "slot": "curios:tecnology_armor",
                   "nbtKey": "right_repulsor_heat",
-                  "min": 1000,
+                  "min": 3000,
                   "max": 25555555555555,
                   "mode": "range"
                 },
@@ -3429,7 +3420,7 @@
                   "type": "satsu_iron_man_addon:slot_nbt_range_check",
                   "slot": "curios:tecnology_armor",
                   "nbtKey": "left_repulsor_heat",
-                  "min": 1000,
+                  "min": 3000,
                   "max": 25555555555555,
                   "mode": "range"
                 },
@@ -3766,7 +3757,7 @@
                   "type": "satsu_iron_man_addon:slot_nbt_range_check",
                   "slot": "curios:tecnology_armor",
                   "nbtKey": "right_repulsor_heat",
-                  "min": 500,
+                  "min": 2200,
                   "max": 25555555555555,
                   "mode": "range"
                 },
@@ -3774,7 +3765,7 @@
                   "type": "satsu_iron_man_addon:slot_nbt_range_check",
                   "slot": "curios:tecnology_armor",
                   "nbtKey": "left_repulsor_heat",
-                  "min": 500,
+                  "min": 2200,
                   "max": 25555555555555,
                   "mode": "range"
                 }
@@ -3940,7 +3931,7 @@
               "type": "satsu_iron_man_addon:slot_nbt_range_check",
               "slot": "curios:tecnology_armor",
               "nbtKey": "right_repulsor_heat",
-              "min": 500,
+              "min": 2500,
               "max": 25555555555555,
               "mode": "range"
             },
@@ -3976,7 +3967,7 @@
               "type": "satsu_iron_man_addon:slot_nbt_range_check",
               "slot": "curios:tecnology_armor",
               "nbtKey": "left_repulsor_heat",
-              "min": 500,
+              "min": 2500,
               "max": 25555555555555,
               "mode": "range"
             },
@@ -4052,6 +4043,400 @@
         }
       }
     },
+    "body_heat": {
+      "set_body_heat": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "body_heat",
+        "nbtValue": "0",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "nbtValue": "0",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "give_body_heat": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "body_heat",
+        "adjustment_type": "add",
+        "adjustment_amount": 200,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "right_repulsor_heat",
+                  "min": 1000,
+                  "max": 25555555555555,
+                  "mode": "range"
+                },
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "left_repulsor_heat",
+                  "min": 1000,
+                  "max": 25555555555555,
+                  "mode": "range"
+                }
+              ]
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:animation_timer_ability",
+                  "ability": "energy.pulse_right",
+                  "min": 5,
+                  "max": 5
+                },
+                {
+                  "type": "palladium:animation_timer_ability",
+                  "ability": "energy.pulse_left",
+                  "min": 5,
+                  "max": 5
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "give_body_beam_heat": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "body_heat",
+        "adjustment_type": "add",
+        "adjustment_amount": 7,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "right_repulsor_heat",
+                  "min": 1000,
+                  "max": 25555555555555,
+                  "mode": "range"
+                },
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "left_repulsor_heat",
+                  "min": 1000,
+                  "max": 25555555555555,
+                  "mode": "range"
+                }
+              ]
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "uni.beam.hand.right"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "uni.beam.hand.left"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "set_body_heat_not_use": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "body_heat_not_use",
+        "nbtValue": "true",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 1000,
+                  "max": 25555555555555,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "heat_repulsors.refresh_heat"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "overheart_not_use.play_sound": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "satsu_iron_man_addon:entity.armor.repulsor_heat_sound",
+        "volume": 1,
+        "pitch": 1,
+        "looping": false,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "body_heat.set_body_heat_not_use"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "remove_body_heat": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "body_heat",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 5,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "body_heat",
+              "min": -1,
+              "max": 25555555555555,
+              "mode": "range"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "no-list:aim_main_arm"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "no-list:aim_off_arm"
+                },
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat_not_use",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "remove_HEAT_body_heat": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "body_heat",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 2,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "body_heat",
+              "min": -1,
+              "max": 25555555555555,
+              "mode": "range"
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "body_heat_not_use",
+              "mode": "exists"
+            }
+          ]
+        }
+      },
+      "remove_body_heat_not_use": {
+        "type": "satsu_iron_man_addon:item_nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "body_heat_not_use",
+        "nbtValue": "remove",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "body_heat",
+              "min": -25555555555555,
+              "max": 0,
+              "mode": "range"
+            }
+          ]
+        }
+      },
+      "refresh_heat.body": {
+        "type": "satsu_iron_man_addon:nbt_modifier",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "slot": "curios:tecnology_armor",
+        "nbtKey": "body_heat",
+        "adjustment_type": "subtract",
+        "adjustment_amount": 25,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "body_heat",
+              "min": 1,
+              "max": 25555555555555,
+              "mode": "range"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "refresh_repulsors",
+              "mode": "exists"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "body_heat_not_use",
+              "mode": "exists"
+            }
+          ]
+        }
+      },
+      "heat_body_particle": {
+        "type": "palladium:particles",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "emitter": ["satsu_iron_man_addon:body/heat/main"],
+        "particle_type": "minecraft:cloud",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "body_heat",
+              "min": 750,
+              "max": 25555555555555,
+              "mode": "range"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat_not_use",
+                  "mode": "exists"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "overheart_alarm.play_sound": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "minecraft:ui.button.click",
+        "volume": 10,
+        "pitch": 1,
+        "looping": false,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "heat_body.heat_body_particle"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "cooldown_already.play_sound": {
+        "type": "palladium:play_sound",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "sound": "minecraft:ui.button.click",
+        "volume": 1,
+        "pitch": 1,
+        "looping": false,
+        "play_self": true,
+        "play_others": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "body_heat.remove_body_heat_not_use"
+            }
+          ]
+        }
+      }
+    },
     "weapons_wheel.ark_beam_for_hands": {
       "type": "satsu_iron_man_addon:set_property_string",
       "icon": "#satsu_iron_man_addon:ark_beam_hand",
@@ -4100,8 +4485,7 @@
             "property": "value",
             "min": 15,
             "max": 16
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -4159,8 +4543,7 @@
             "property": "value",
             "min": 15,
             "max": 16
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -4564,8 +4947,7 @@
                 "ability": "enable_armor"
               }
             ]
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -5214,8 +5596,7 @@
             "property": "satsu_iron_man_addon_armor_activated",
             "comparator": "equals",
             "compare_to": "on"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -5284,192 +5665,1233 @@
         ]
       }
     },
-    "energy_pulse_projectile.right_normal": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 2.5,
-      "swinging_arm": "none",
-      "yawOffset": 20,
-      "pitchOffset": 25,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "SetEntityOnFireSeconds": 8,
-        "KnockbackStrength": 1.5,
-        "Damage": 7.5,
-        "Size": 0.1,
-        "Gravity": 0.0,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
-        "Appearances": [
-          {
-            "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/main"
+    "body_heat_abilities": {
+      "aoe_fire": {
+        "main": {
+          "type": "palladium:animation_timer",
+          "icon": "satsu_iron_man_addon:textures/gui/armors/fire_resistance.png",
+          "title": { "translate": "ability.title.satsu.aoe_fire" },
+          "description": { "translate": "description.satsu.aoe_fire" },
+          "hidden": false,
+          "hidden_in_bar": false,
+          "list_index": 5,
+          "gui_position": [-0, -1.5],
+          "start_value": 0,
+          "max_value": 20,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:activation",
+                "ticks": 20,
+                "cooldown": 120,
+                "key_type": "key_bind",
+                "needs_empty_hand": false
+              }
+            ],
+            "unlocking": [
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "body_heat",
+                "min": 200,
+                "max": 255555555555555555,
+                "mode": "range"
+              },
+              {
+                "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                "slot": "curios:tecnology_armor",
+                "nbtKey": "Energy",
+                "min": 1,
+                "max": 2147483647
+              },
+              {
+                "type": "palladium:ability_unlocked",
+                "ability": "armor"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_armor_activated",
+                "comparator": "equals",
+                "compare_to": "on"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_armor_weapon_system",
+                "comparator": "equals",
+                "compare_to": "on"
+              },
+              {
+                "type": "satsu_iron_man_addon:armor_durability",
+                "slot": "tecnology_armor",
+                "divider": 5,
+                "operation_type": ">"
+              }
+            ]
           }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_repulser_strenght",
-            "comparator": "equals",
-            "compare_to": "normal"
+        },
+        "particle_aura": {
+          "type": "gravecore:particle_aura",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "count": 8,
+          "start_hex": "#ee5112",
+          "end_hex": "#ee1212",
+          "property_start_hex": "null",
+          "property_end_hex": "null",
+          "aura_type": "aura",
+          "particle_type": "smoke",
+          "particle_size": 0.9,
+          "visibility": 0.9,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main",
+                "property": "value",
+                "min": 1,
+                "max": 20
+              }
+            ],
+            "unlocking": []
+          }
+        },
+        "command_aura": {
+          "type": "palladium:command",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "first_tick_commands": [],
+          "last_tick_commands": [],
+          "commands": [
+            "execute at @s run particle lava ~ ~1 ~ 1.5 1 1.5 0.1 80 force",
+            "execute at @p run particle flame ~ ~0.5 ~ 0.5 0.5 0.5 0.02 10 force"
+          ],
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main",
+                "property": "value",
+                "min": 15,
+                "max": 20
+              }
+            ],
+            "unlocking": []
+          }
+        },
+        "play_sound": {
+          "type": "palladium:play_sound",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "sound": "minecraft:item.firecharge.use",
+          "volume": 3.5,
+          "pitch": 1,
+          "looping": false,
+          "play_self": false,
+          "play_others": false,
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main"
+              },
+              {
+                "type": "palladium:ability_integer_property",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main",
+                "property": "value",
+                "min": 15,
+                "max": 20
+              }
+            ],
+            "unlocking": []
+          }
+        },
+        "fire_200-550": {
+          "aoe_damage": {
+            "type": "gravecore:aoe_damage",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "radius": 10,
+            "damage": 10.6,
+            "fire_ticks": 10,
+            "damage_type": "null",
+            "cone": false,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 200,
+                  "max": 550,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ],
+              "unlocking": []
+            }
           },
-          {
-            "type": "palladium:animation_timer_ability",
-            "ability": "energy.pulse_right",
-            "min": 5,
-            "max": 5
+          "aoe_knockback": {
+            "type": "gravecore:aoe_knockback",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "radius": 10,
+            "knockback": 0.5,
+            "invert": false,
+            "cone": false,
+            "crush": false,
+            "is_charged": false,
+            "scoreboard": "Score.Board",
+            "scoreboard_max": "Score.Board.Max",
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 200,
+                  "max": 550,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ],
+              "unlocking": []
+            }
+          },
+          "remove_body_heat": {
+            "type": "satsu_iron_man_addon:nbt_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "body_heat",
+            "adjustment_type": "subtract",
+            "adjustment_amount": 260,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 200,
+                  "max": 550,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ]
+            }
+          },
+          "remove_energy": {
+            "type": "satsu_iron_man_addon:nbt_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "adjustment_type": "subtract",
+            "adjustment_amount": 260,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 200,
+                  "max": 550,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ]
+            }
           }
-        ]
+        },
+        "fire_551-750": {
+          "aoe_damage": {
+            "type": "gravecore:aoe_damage",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "radius": 10,
+            "damage": 12.6,
+            "fire_ticks": 14,
+            "damage_type": "null",
+            "cone": false,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 551,
+                  "max": 750,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ],
+              "unlocking": []
+            }
+          },
+          "aoe_knockback": {
+            "type": "gravecore:aoe_knockback",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "radius": 10,
+            "knockback": 0.5,
+            "invert": false,
+            "cone": false,
+            "crush": false,
+            "is_charged": false,
+            "scoreboard": "Score.Board",
+            "scoreboard_max": "Score.Board.Max",
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 551,
+                  "max": 750,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ],
+              "unlocking": []
+            }
+          },
+          "remove_body_heat": {
+            "type": "satsu_iron_man_addon:nbt_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "body_heat",
+            "adjustment_type": "subtract",
+            "adjustment_amount": 460,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 551,
+                  "max": 750,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ]
+            }
+          },
+          "remove_energy": {
+            "type": "satsu_iron_man_addon:nbt_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "adjustment_type": "subtract",
+            "adjustment_amount": 460,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 551,
+                  "max": 750,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ]
+            }
+          }
+        },
+        "fire_751-XXX": {
+          "aoe_damage": {
+            "type": "gravecore:aoe_damage",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "radius": 10,
+            "damage": 15.6,
+            "fire_ticks": 25,
+            "damage_type": "null",
+            "cone": false,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 751,
+                  "max": 25555555555555,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ],
+              "unlocking": []
+            }
+          },
+          "aoe_knockback": {
+            "type": "gravecore:aoe_knockback",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "radius": 10,
+            "knockback": 0.5,
+            "invert": false,
+            "cone": false,
+            "crush": false,
+            "is_charged": false,
+            "scoreboard": "Score.Board",
+            "scoreboard_max": "Score.Board.Max",
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 751,
+                  "max": 25555555555555,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ],
+              "unlocking": []
+            }
+          },
+          "remove_body_heat": {
+            "type": "satsu_iron_man_addon:nbt_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "body_heat",
+            "adjustment_type": "subtract",
+            "adjustment_amount": 890,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 751,
+                  "max": 25555555555555,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ]
+            }
+          },
+          "remove_energy": {
+            "type": "satsu_iron_man_addon:nbt_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "slot": "curios:tecnology_armor",
+            "nbtKey": "Energy",
+            "adjustment_type": "subtract",
+            "adjustment_amount": 890,
+            "conditions": {
+              "enabling": [
+                {
+                  "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                  "slot": "curios:tecnology_armor",
+                  "nbtKey": "body_heat",
+                  "min": 751,
+                  "max": 25555555555555,
+                  "mode": "range"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main"
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "power": "null",
+                  "ability": "body_heat_abilities.aoe_fire.main",
+                  "property": "value",
+                  "min": 20,
+                  "max": 20
+                }
+              ]
+            }
+          }
+        }
       }
     },
-    "energy_pulse_projectile.left_normal": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 2.5,
-      "swinging_arm": "none",
-      "yawOffset": -20,
-      "pitchOffset": 25,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "SetEntityOnFireSeconds": 8,
-        "KnockbackStrength": 1.5,
-        "Damage": 7.5,
-        "Size": 0.1,
-        "Gravity": 0.0,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
-        "Appearances": [
-          {
-            "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/main"
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_repulser_strenght",
-            "comparator": "equals",
-            "compare_to": "normal"
+    "projectiles": {
+      "pulse": {
+        "right_normal": {
+          "type": "gravecore:projectile",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "entity_type": "palladium:custom_projectile",
+          "velocity": 2.5,
+          "swinging_arm": "none",
+          "yawOffset": 20,
+          "pitchOffset": 25,
+          "inaccuracy": 0,
+          "damage_from_player": false,
+          "ignore_player_movement": false,
+          "entity_data": {
+            "SetEntityOnFireSeconds": 8,
+            "KnockbackStrength": 1.5,
+            "Damage": 7.5,
+            "Size": 0.1,
+            "Gravity": 0.0,
+            "Lifetime": 60,
+            "DieOnEntityHit": true,
+            "DieOnBlockHit": true,
+            "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
+            "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
+            "Appearances": [
+              {
+                "Type": "trail",
+                "Trail": "satsu_iron_man_addon:blast/yellow/main"
+              }
+            ]
           },
-          {
-            "type": "palladium:animation_timer_ability",
-            "ability": "energy.pulse_left",
-            "min": 5,
-            "max": 5
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_repulser_strenght",
+                "comparator": "equals",
+                "compare_to": "normal"
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "energy.pulse_right",
+                "min": 5,
+                "max": 5
+              }
+            ]
           }
-        ]
-      }
-    },
-    "energy_pulse_projectile.right_stronger": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 2.5,
-      "swinging_arm": "none",
-      "yawOffset": 20,
-      "pitchOffset": 25,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "SetEntityOnFireSeconds": 8,
-        "KnockbackStrength": 1.5,
-        "Damage": 8,
-        "Size": 0.1,
-        "Gravity": 0.0,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
-        "Appearances": [
-          {
-            "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/main"
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_repulser_strenght",
-            "comparator": "equals",
-            "compare_to": "stronger"
+        },
+        "left_normal": {
+          "type": "gravecore:projectile",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "entity_type": "palladium:custom_projectile",
+          "velocity": 2.5,
+          "swinging_arm": "none",
+          "yawOffset": -20,
+          "pitchOffset": 25,
+          "inaccuracy": 0,
+          "damage_from_player": false,
+          "ignore_player_movement": false,
+          "entity_data": {
+            "SetEntityOnFireSeconds": 8,
+            "KnockbackStrength": 1.5,
+            "Damage": 7.5,
+            "Size": 0.1,
+            "Gravity": 0.0,
+            "Lifetime": 60,
+            "DieOnEntityHit": true,
+            "DieOnBlockHit": true,
+            "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
+            "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
+            "Appearances": [
+              {
+                "Type": "trail",
+                "Trail": "satsu_iron_man_addon:blast/yellow/main"
+              }
+            ]
           },
-          {
-            "type": "palladium:animation_timer_ability",
-            "ability": "energy.pulse_right",
-            "min": 5,
-            "max": 5
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_repulser_strenght",
+                "comparator": "equals",
+                "compare_to": "normal"
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "energy.pulse_left",
+                "min": 5,
+                "max": 5
+              }
+            ]
           }
-        ]
-      }
-    },
-    "energy_pulse_projectile.left_stronger": {
-      "type": "gravecore:projectile",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "entity_type": "palladium:custom_projectile",
-      "velocity": 2.5,
-      "swinging_arm": "none",
-      "yawOffset": -20,
-      "pitchOffset": 25,
-      "inaccuracy": 0,
-      "damage_from_player": false,
-      "ignore_player_movement": false,
-      "entity_data": {
-        "SetEntityOnFireSeconds": 8,
-        "KnockbackStrength": 1.5,
-        "Damage": 8,
-        "Size": 0.1,
-        "Gravity": 0.0,
-        "Lifetime": 60,
-        "DieOnEntityHit": true,
-        "DieOnBlockHit": true,
-        "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
-        "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
-        "Appearances": [
-          {
-            "Type": "trail",
-            "Trail": "satsu_iron_man_addon:blast/yellow/main"
-          }
-        ]
-      },
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_repulser_strenght",
-            "comparator": "equals",
-            "compare_to": "stronger"
+        },
+        "right_stronger": {
+          "type": "gravecore:projectile",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "entity_type": "palladium:custom_projectile",
+          "velocity": 2.5,
+          "swinging_arm": "none",
+          "yawOffset": 20,
+          "pitchOffset": 25,
+          "inaccuracy": 0,
+          "damage_from_player": false,
+          "ignore_player_movement": false,
+          "entity_data": {
+            "SetEntityOnFireSeconds": 8,
+            "KnockbackStrength": 1.5,
+            "Damage": 8,
+            "Size": 0.1,
+            "Gravity": 0.0,
+            "Lifetime": 60,
+            "DieOnEntityHit": true,
+            "DieOnBlockHit": true,
+            "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
+            "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
+            "Appearances": [
+              {
+                "Type": "trail",
+                "Trail": "satsu_iron_man_addon:blast/yellow/main"
+              }
+            ]
           },
-          {
-            "type": "palladium:animation_timer_ability",
-            "ability": "energy.pulse_left",
-            "min": 5,
-            "max": 5
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_repulser_strenght",
+                "comparator": "equals",
+                "compare_to": "stronger"
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "energy.pulse_right",
+                "min": 5,
+                "max": 5
+              }
+            ]
           }
-        ]
+        },
+        "left_stronger": {
+          "type": "gravecore:projectile",
+          "hidden": true,
+          "hidden_in_bar": true,
+          "entity_type": "palladium:custom_projectile",
+          "velocity": 2.5,
+          "swinging_arm": "none",
+          "yawOffset": -20,
+          "pitchOffset": 25,
+          "inaccuracy": 0,
+          "damage_from_player": false,
+          "ignore_player_movement": false,
+          "entity_data": {
+            "SetEntityOnFireSeconds": 8,
+            "KnockbackStrength": 1.5,
+            "Damage": 8,
+            "Size": 0.1,
+            "Gravity": 0.0,
+            "Lifetime": 60,
+            "DieOnEntityHit": true,
+            "DieOnBlockHit": true,
+            "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/pulse",
+            "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/pulse",
+            "Appearances": [
+              {
+                "Type": "trail",
+                "Trail": "satsu_iron_man_addon:blast/yellow/main"
+              }
+            ]
+          },
+          "conditions": {
+            "enabling": [
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_repulser_strenght",
+                "comparator": "equals",
+                "compare_to": "stronger"
+              },
+              {
+                "type": "palladium:animation_timer_ability",
+                "ability": "energy.pulse_left",
+                "min": 5,
+                "max": 5
+              }
+            ]
+          }
+        },
+        "heat": {
+          "1": {
+            "right_normal": {
+              "type": "gravecore:projectile",
+              "hidden": true,
+              "hidden_in_bar": true,
+              "entity_type": "palladium:custom_projectile",
+              "velocity": 2.5,
+              "swinging_arm": "none",
+              "yawOffset": 20,
+              "pitchOffset": 25,
+              "inaccuracy": 0,
+              "damage_from_player": false,
+              "ignore_player_movement": false,
+              "entity_data": {
+                "SetEntityOnFireSeconds": 12,
+                "KnockbackStrength": 1.5,
+                "Damage": 7.5,
+                "Size": 0.1,
+                "Gravity": 0.0,
+                "Lifetime": 60,
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/heat_class/1",
+                "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/heat_class/1",
+                "Appearances": [
+                  {
+                    "Type": "trail",
+                    "Trail": "satsu_iron_man_addon:blast/yellow/main"
+                  }
+                ]
+              },
+              "conditions": {
+                "enabling": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "body_heat",
+                    "min": 200,
+                    "max": 650,
+                    "mode": "range"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_repulser_strenght",
+                    "comparator": "equals",
+                    "compare_to": "normal"
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "ability": "energy.pulse_right",
+                    "min": 5,
+                    "max": 5
+                  }
+                ]
+              }
+            },
+            "left_normal": {
+              "type": "gravecore:projectile",
+              "hidden": true,
+              "hidden_in_bar": true,
+              "entity_type": "palladium:custom_projectile",
+              "velocity": 2.5,
+              "swinging_arm": "none",
+              "yawOffset": -20,
+              "pitchOffset": 25,
+              "inaccuracy": 0,
+              "damage_from_player": false,
+              "ignore_player_movement": false,
+              "entity_data": {
+                "SetEntityOnFireSeconds": 12,
+                "KnockbackStrength": 1.5,
+                "Damage": 7.5,
+                "Size": 0.1,
+                "Gravity": 0.0,
+                "Lifetime": 60,
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/heat_class/1",
+                "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/heat_class/1",
+                "Appearances": [
+                  {
+                    "Type": "trail",
+                    "Trail": "satsu_iron_man_addon:blast/yellow/main"
+                  }
+                ]
+              },
+              "conditions": {
+                "enabling": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "body_heat",
+                    "min": 200,
+                    "max": 650,
+                    "mode": "range"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_repulser_strenght",
+                    "comparator": "equals",
+                    "compare_to": "normal"
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "ability": "energy.pulse_left",
+                    "min": 5,
+                    "max": 5
+                  }
+                ]
+              }
+            },
+            "right_stronger": {
+              "type": "gravecore:projectile",
+              "hidden": true,
+              "hidden_in_bar": true,
+              "entity_type": "palladium:custom_projectile",
+              "velocity": 2.5,
+              "swinging_arm": "none",
+              "yawOffset": 20,
+              "pitchOffset": 25,
+              "inaccuracy": 0,
+              "damage_from_player": false,
+              "ignore_player_movement": false,
+              "entity_data": {
+                "SetEntityOnFireSeconds": 12,
+                "KnockbackStrength": 1.5,
+                "Damage": 8,
+                "Size": 0.1,
+                "Gravity": 0.0,
+                "Lifetime": 60,
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/heat_class/1",
+                "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/heat_class/1",
+                "Appearances": [
+                  {
+                    "Type": "trail",
+                    "Trail": "satsu_iron_man_addon:blast/yellow/main"
+                  }
+                ]
+              },
+              "conditions": {
+                "enabling": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "body_heat",
+                    "min": 200,
+                    "max": 650,
+                    "mode": "range"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_repulser_strenght",
+                    "comparator": "equals",
+                    "compare_to": "stronger"
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "ability": "energy.pulse_right",
+                    "min": 5,
+                    "max": 5
+                  }
+                ]
+              }
+            },
+            "left_stronger": {
+              "type": "gravecore:projectile",
+              "hidden": true,
+              "hidden_in_bar": true,
+              "entity_type": "palladium:custom_projectile",
+              "velocity": 2.5,
+              "swinging_arm": "none",
+              "yawOffset": -20,
+              "pitchOffset": 25,
+              "inaccuracy": 0,
+              "damage_from_player": false,
+              "ignore_player_movement": false,
+              "entity_data": {
+                "SetEntityOnFireSeconds": 12,
+                "KnockbackStrength": 1.5,
+                "Damage": 8,
+                "Size": 0.1,
+                "Gravity": 0.0,
+                "Lifetime": 60,
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/heat_class/1",
+                "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/heat_class/1",
+                "Appearances": [
+                  {
+                    "Type": "trail",
+                    "Trail": "satsu_iron_man_addon:blast/yellow/main"
+                  }
+                ]
+              },
+              "conditions": {
+                "enabling": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "body_heat",
+                    "min": 200,
+                    "max": 650,
+                    "mode": "range"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_repulser_strenght",
+                    "comparator": "equals",
+                    "compare_to": "stronger"
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "ability": "energy.pulse_left",
+                    "min": 5,
+                    "max": 5
+                  }
+                ]
+              }
+            }
+          },
+          "2": {
+            "right_normal": {
+              "type": "gravecore:projectile",
+              "hidden": true,
+              "hidden_in_bar": true,
+              "entity_type": "palladium:custom_projectile",
+              "velocity": 2.5,
+              "swinging_arm": "none",
+              "yawOffset": 20,
+              "pitchOffset": 25,
+              "inaccuracy": 0,
+              "damage_from_player": false,
+              "ignore_player_movement": false,
+              "entity_data": {
+                "SetEntityOnFireSeconds": 16,
+                "KnockbackStrength": 1.5,
+                "Damage": 7.5,
+                "Size": 0.1,
+                "Gravity": 0.0,
+                "Lifetime": 60,
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/heat_class/2",
+                "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/heat_class/2",
+                "Appearances": [
+                  {
+                    "Type": "trail",
+                    "Trail": "satsu_iron_man_addon:blast/yellow/main"
+                  }
+                ]
+              },
+              "conditions": {
+                "enabling": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "body_heat",
+                    "min": 651,
+                    "max": 25555555,
+                    "mode": "range"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_repulser_strenght",
+                    "comparator": "equals",
+                    "compare_to": "normal"
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "ability": "energy.pulse_right",
+                    "min": 5,
+                    "max": 5
+                  }
+                ]
+              }
+            },
+            "left_normal": {
+              "type": "gravecore:projectile",
+              "hidden": true,
+              "hidden_in_bar": true,
+              "entity_type": "palladium:custom_projectile",
+              "velocity": 2.5,
+              "swinging_arm": "none",
+              "yawOffset": -20,
+              "pitchOffset": 25,
+              "inaccuracy": 0,
+              "damage_from_player": false,
+              "ignore_player_movement": false,
+              "entity_data": {
+                "SetEntityOnFireSeconds": 16,
+                "KnockbackStrength": 1.5,
+                "Damage": 7.5,
+                "Size": 0.1,
+                "Gravity": 0.0,
+                "Lifetime": 60,
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/heat_class/2",
+                "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/heat_class/2",
+                "Appearances": [
+                  {
+                    "Type": "trail",
+                    "Trail": "satsu_iron_man_addon:blast/yellow/main"
+                  }
+                ]
+              },
+              "conditions": {
+                "enabling": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "body_heat",
+                    "min": 651,
+                    "max": 25555555,
+                    "mode": "range"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_repulser_strenght",
+                    "comparator": "equals",
+                    "compare_to": "normal"
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "ability": "energy.pulse_left",
+                    "min": 5,
+                    "max": 5
+                  }
+                ]
+              }
+            },
+            "right_stronger": {
+              "type": "gravecore:projectile",
+              "hidden": true,
+              "hidden_in_bar": true,
+              "entity_type": "palladium:custom_projectile",
+              "velocity": 2.5,
+              "swinging_arm": "none",
+              "yawOffset": 20,
+              "pitchOffset": 25,
+              "inaccuracy": 0,
+              "damage_from_player": false,
+              "ignore_player_movement": false,
+              "entity_data": {
+                "SetEntityOnFireSeconds": 16,
+                "KnockbackStrength": 1.5,
+                "Damage": 8,
+                "Size": 0.1,
+                "Gravity": 0.0,
+                "Lifetime": 60,
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/heat_class/2",
+                "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/heat_class/2",
+                "Appearances": [
+                  {
+                    "Type": "trail",
+                    "Trail": "satsu_iron_man_addon:blast/yellow/main"
+                  }
+                ]
+              },
+              "conditions": {
+                "enabling": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "body_heat",
+                    "min": 651,
+                    "max": 25555555,
+                    "mode": "range"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_repulser_strenght",
+                    "comparator": "equals",
+                    "compare_to": "stronger"
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "ability": "energy.pulse_right",
+                    "min": 5,
+                    "max": 5
+                  }
+                ]
+              }
+            },
+            "left_stronger": {
+              "type": "gravecore:projectile",
+              "hidden": true,
+              "hidden_in_bar": true,
+              "entity_type": "palladium:custom_projectile",
+              "velocity": 2.5,
+              "swinging_arm": "none",
+              "yawOffset": -20,
+              "pitchOffset": 25,
+              "inaccuracy": 0,
+              "damage_from_player": false,
+              "ignore_player_movement": false,
+              "entity_data": {
+                "SetEntityOnFireSeconds": 16,
+                "KnockbackStrength": 1.5,
+                "Damage": 8,
+                "Size": 0.1,
+                "Gravity": 0.0,
+                "Lifetime": 60,
+                "DieOnEntityHit": true,
+                "DieOnBlockHit": true,
+                "CommandOnEntityHit": "function satsu_iron_man_addon:projectiles/heat_class/2",
+                "CommandOnBlockHit": "function satsu_iron_man_addon:projectiles/heat_class/2",
+                "Appearances": [
+                  {
+                    "Type": "trail",
+                    "Trail": "satsu_iron_man_addon:blast/yellow/main"
+                  }
+                ]
+              },
+              "conditions": {
+                "enabling": [
+                  {
+                    "type": "satsu_iron_man_addon:slot_nbt_range_check",
+                    "slot": "curios:tecnology_armor",
+                    "nbtKey": "body_heat",
+                    "min": 651,
+                    "max": 25555555,
+                    "mode": "range"
+                  },
+                  {
+                    "type": "palladium:string_property",
+                    "property": "satsu_iron_man_addon_repulser_strenght",
+                    "comparator": "equals",
+                    "compare_to": "stronger"
+                  },
+                  {
+                    "type": "palladium:animation_timer_ability",
+                    "ability": "energy.pulse_left",
+                    "min": 5,
+                    "max": 5
+                  }
+                ]
+              }
+            }
+          }
+        }
       }
     },
     "energyblast.throw.sound": {
@@ -5489,19 +6911,19 @@
             "conditions": [
               {
                 "type": "palladium:ability_enabled",
-                "ability": "energy_pulse_projectile.right_normal"
+                "ability": "projectiles.pulse.right_normal"
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "energy_pulse_projectile.left_normal"
+                "ability": "projectiles.pulse.left_normal"
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "energy_pulse_projectile.right_stronger"
+                "ability": "projectiles.pulse.right_stronger"
               },
               {
                 "type": "palladium:ability_enabled",
-                "ability": "energy_pulse_projectile.left_stronger"
+                "ability": "projectiles.pulse.left_stronger"
               }
             ]
           }
@@ -5530,6 +6952,11 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main"
               }
             ]
           }
@@ -5562,6 +6989,11 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main"
               }
             ]
           }
@@ -5932,6 +7364,11 @@
               {
                 "type": "palladium:ability_enabled",
                 "ability": "flares_flames"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "power": "null",
+                "ability": "body_heat_abilities.aoe_fire.main"
               }
             ]
           }
