@@ -538,6 +538,124 @@
           "max": 16
         }
       ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/full_body/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_23_0.png",
+        "transformers": [
+          {
+            "type": "palladium:color",
+            "color": [255, 0, 0],
+            "ignore_blank": true
+          },
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/heat_class/body/#BODY_HEAT.png"
+          }
+        ],
+        "variables": {
+          "BODY_HEAT": {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_body_heat",
+            "fallback": 0,
+            "divide": 50,
+            "min": 5,
+            "max": 20
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/hand_heat/iron_man_marks_mark_23_armor/heat_class_#BODY_HEAT"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        },
+        {
+          "type": "satsu_iron_man_addon:slot_nbt_range_check",
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "body_heat",
+          "min": 50,
+          "max": 25555555555555,
+          "mode": "range"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_23/main",
+          "ability": "armor_animation",
+          "property": "value",
+          "min": 16,
+          "max": 16
+        }
+      ]
+    },
+    {
+      "type": "geckolib:default",
+      "model": "satsu_iron_man_addon:geo/armor_models/iron_man/mark_23_40/main.geo.json",
+      "texture": {
+        "base": "satsu_iron_man_addon:textures/models/iron_man/no_light/mark_23_0.png",
+        "transformers": [
+          {
+            "type": "palladium:color",
+            "color": [255, 0, 0],
+            "ignore_blank": true
+          },
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/heat_class/body/#BODY_HEAT.png"
+          }
+        ],
+        "variables": {
+          "BODY_HEAT": {
+            "type": "palladium:integer_property",
+            "property": "satsu_iron_man_addon_body_heat",
+            "fallback": 0,
+            "divide": 50,
+            "min": 5,
+            "max": 20
+          }
+        },
+        "output": "satsu_iron_man_addon:textures/models/hand_heat/iron_man_marks_mark_23_armor/model/heat_class_#BODY_HEAT"
+      },
+      "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:item_in_slot",
+              "item": {
+                "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+              },
+              "slot": "curios:hulkbuster_armor"
+            }
+          ]
+        },
+        {
+          "type": "satsu_iron_man_addon:slot_nbt_range_check",
+          "slot": "curios:tecnology_armor",
+          "nbtKey": "body_heat",
+          "min": 50,
+          "max": 25555555555555,
+          "mode": "range"
+        },
+        {
+          "type": "palladium:ability_integer_property",
+          "power": "satsu_iron_man_addon:iron_man/marks/mark_23/main",
+          "ability": "armor_animation",
+          "property": "value",
+          "min": 16,
+          "max": 16
+        }
+      ]
     }
   ]
 }
