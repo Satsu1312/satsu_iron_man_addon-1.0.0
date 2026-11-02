@@ -3926,78 +3926,6 @@
         ]
       }
     },
-    "weapons_wheel.Energy.Pulse": {
-      "type": "palladium:dummy",
-      "icon": "#satsu_iron_man_addon:ark_disable_enable",
-      "title": {
-        "translate": "ability.title.satsu.disable.energy.beam.or.pulse"
-      },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:pdata_boolean",
-            "data": "satsu_iron_man_addon.weaponsSystemKey_pressed",
-            "value": true
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "right_arm_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "left_arm_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              }
-            ]
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:string_property",
-                "property": "satsu_iron_man_addon.right_arm",
-                "comparator": "equals",
-                "compare_to": "on"
-              },
-              {
-                "type": "palladium:string_property",
-                "property": "satsu_iron_man_addon.left_arm",
-                "comparator": "equals",
-                "compare_to": "on"
-              }
-            ]
-          }
-        ]
-      }
-    },
     "energy.pulse.actived": {
       "type": "satsu_iron_man_addon:set_property_string",
       "hidden": true,
@@ -4378,85 +4306,296 @@
       }
     },
     "weapons_wheel": {
-      "type": "palladium:ability_wheel",
-      "icon": {
-        "type": "palladium:compound",
-        "icons": [
-          "#satsu_iron_man_addon:ark_disable_enable",
-          "satsu_iron_man_addon:textures/gui/armors/personalizate_things.png"
-        ]
-      },
-      "title": { "translate": "ability.title.satsu.weapons.choose" },
-      "description": { "translate": "description.satsu.armor.weapons.choose" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "list_index": 2,
-      "gui_position": [4.3, -1],
-      "abilities": [
-        "weapons_wheel.ark_beam_for_hands",
-        "weapons_wheel.repulser"
-      ],
-      "hide_locked": true,
-      "texture": "null",
-      "disable_mouse_scrolling": false,
-      "disable_center_icon": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:held"
-          }
+      "main": {
+        "type": "palladium:ability_wheel",
+        "icon": {
+          "type": "palladium:compound",
+          "icons": [
+            "#satsu_iron_man_addon:ark_disable_enable",
+            "satsu_iron_man_addon:textures/gui/armors/personalizate_things.png"
+          ]
+        },
+        "title": { "translate": "ability.title.satsu.weapons.choose" },
+        "description": { "translate": "description.satsu.armor.weapons.choose" },
+        "hidden": true,
+        "hidden_in_bar": false,
+        "list_index": 2,
+        "gui_position": [4.3, -1],
+        "abilities": [
+          "weapons_wheel.ark_beam_for_hands",
+          "weapons_wheel.repulser"
         ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "right_arm_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "left_arm_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "right_leg_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "left_leg_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              }
-            ]
-          }
-        ]
+        "hide_locked": true,
+        "texture": "null",
+        "disable_mouse_scrolling": false,
+        "disable_center_icon": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:held"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "right_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "left_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "right_leg_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "left_leg_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Energy.Pulse": {
+        "type": "palladium:dummy",
+        "icon": "#satsu_iron_man_addon:ark_disable_enable",
+        "title": {
+          "translate": "ability.title.satsu.disable.energy.beam.or.pulse"
+        },
+        "hidden": true,
+        "hidden_in_bar": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:pdata_boolean",
+              "data": "satsu_iron_man_addon.weaponsSystemKey_pressed",
+              "value": true
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "right_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "left_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                }
+              ]
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon.right_arm",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                },
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon.left_arm",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "ark_beam_for_hands": {
+        "type": "satsu_iron_man_addon:set_property_string",
+        "icon": "#satsu_iron_man_addon:ark_beam_hand",
+        "title": { "translate": "ability.title.satsu.ark.beam.for.hands" },
+        "description": { "translate": "description.satsu.ark.beam.for.hands" },
+        "hidden": true,
+        "hidden_in_bar": false,
+        "gui_position": [0, 2.55],
+        "name": "satsu_iron_man_addon_repulser",
+        "test_value": "beam",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_wheel",
+              "cooldown": 0
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon_repulser",
+                  "comparator": "equals",
+                  "compare_to": "beam"
+                }
+              ]
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "right_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "left_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                }
+              ]
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon.right_arm",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                },
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon.left_arm",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "repulser": {
+        "type": "satsu_iron_man_addon:set_property_string",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/repulser/repulser_0_on.png",
+        "title": { "translate": "ability.title.satsu.Energy.Pulse" },
+        "description": { "translate": "description.Energy.Pulse" },
+        "hidden": true,
+        "hidden_in_bar": false,
+        "gui_position": [0, 2.55],
+        "name": "satsu_iron_man_addon_repulser",
+        "test_value": "repulser",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_wheel",
+              "cooldown": 0
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon_repulser",
+                  "comparator": "equals",
+                  "compare_to": "repulser"
+                }
+              ]
+            },
+            {
+              "type": "palladium:integer_property",
+              "property": "satsu_iron_man_armor_arc_energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "right_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                },
+                {
+                  "type": "palladium:ability_integer_property",
+                  "ability": "left_arm_animation",
+                  "property": "value",
+                  "min": 18,
+                  "max": 18
+                }
+              ]
+            }
+          ]
+        }
       }
     },
     "energyblast.remove.ark.energy": {
@@ -5119,143 +5258,6 @@
           {
             "type": "palladium:ability_enabled",
             "ability": "remove_left_repulsor_heat_not_use"
-          }
-        ]
-      }
-    },
-    "weapons_wheel.ark_beam_for_hands": {
-      "type": "satsu_iron_man_addon:set_property_string",
-      "icon": "#satsu_iron_man_addon:ark_beam_hand",
-      "title": { "translate": "ability.title.satsu.ark.beam.for.hands" },
-      "description": { "translate": "description.satsu.ark.beam.for.hands" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "gui_position": [0, 2.55],
-      "name": "satsu_iron_man_addon_repulser",
-      "test_value": "beam",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_wheel",
-            "cooldown": 0
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:string_property",
-                "property": "satsu_iron_man_addon_repulser",
-                "comparator": "equals",
-                "compare_to": "beam"
-              }
-            ]
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "right_arm_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "left_arm_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              }
-            ]
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:string_property",
-                "property": "satsu_iron_man_addon.right_arm",
-                "comparator": "equals",
-                "compare_to": "on"
-              },
-              {
-                "type": "palladium:string_property",
-                "property": "satsu_iron_man_addon.left_arm",
-                "comparator": "equals",
-                "compare_to": "on"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "weapons_wheel.repulser": {
-      "type": "satsu_iron_man_addon:set_property_string",
-      "icon": "satsu_iron_man_addon:textures/gui/armors/repulser/repulser_0_on.png",
-      "title": { "translate": "ability.title.satsu.Energy.Pulse" },
-      "description": { "translate": "description.Energy.Pulse" },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "gui_position": [0, 2.55],
-      "name": "satsu_iron_man_addon_repulser",
-      "test_value": "repulser",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_wheel",
-            "cooldown": 0
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:string_property",
-                "property": "satsu_iron_man_addon_repulser",
-                "comparator": "equals",
-                "compare_to": "repulser"
-              }
-            ]
-          },
-          {
-            "type": "palladium:integer_property",
-            "property": "satsu_iron_man_armor_arc_energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "right_arm_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              },
-              {
-                "type": "palladium:ability_integer_property",
-                "ability": "left_arm_animation",
-                "property": "value",
-                "min": 18,
-                "max": 18
-              }
-            ]
           }
         ]
       }
