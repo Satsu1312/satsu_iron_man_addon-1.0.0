@@ -22,165 +22,167 @@
   },
   "abilities": {
     "hud_armor": {
-      "type": "palladium:gui_overlay",
-      "texture": "#satsu_iron_man_addon:armor_hud/armor_hud",
-      "texture_width": 256,
-      "texture_height": 256,
-      "translate": [0, 0, 0],
-      "rotate": [0, 0, 0],
-      "scale": [1, 1, 1],
-      "alignment": "stretch",
-      "hidden": true,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "armor_animation",
-                    "property": "value",
-                    "min": 13,
-                    "max": 16
-                  },
-                  {
-                    "type": "gravestone:perspective",
-                    "looking": "FIRST_PERSON"
-                  },
-                  {
-                    "type": "palladium:not",
-                    "conditions": [
-                      {
-                        "type": "palladium:integer_property",
-                        "property": "satsu_mask_value",
-                        "min": 0,
-                        "max": 0
-                      }
-                    ]
-                  },
-                  {
-                    "type": "palladium:string_property",
-                    "property": "satsu_iron_man_armor_hud_perspective",
-                    "comparator": "equals",
-                    "compare_to": "first_person"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:ability_integer_property",
-                    "ability": "armor_animation",
-                    "property": "value",
-                    "min": 13,
-                    "max": 16
-                  },
-                  {
-                    "type": "palladium:not",
-                    "conditions": [
-                      {
-                        "type": "palladium:integer_property",
-                        "property": "satsu_mask_value",
-                        "min": 0,
-                        "max": 0
-                      }
-                    ]
-                  },
-                  {
-                    "type": "palladium:string_property",
-                    "property": "satsu_iron_man_armor_hud_perspective",
-                    "comparator": "equals",
-                    "compare_to": "third_person"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:string_property",
-                "property": "satsu_iron_man_armor_hud_perspective",
-                "comparator": "equals",
-                "compare_to": "false"
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:item_in_slot",
-                "item": {
-                  "item": "satsu_iron_man_addon:ia_glases"
+      "main": {
+        "type": "palladium:gui_overlay",
+        "texture": "#satsu_iron_man_addon:armor_hud/armor_hud",
+        "texture_width": 256,
+        "texture_height": 256,
+        "translate": [0, 0, 0],
+        "rotate": [0, 0, 0],
+        "scale": [1, 1, 1],
+        "alignment": "stretch",
+        "hidden": true,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "armor_animation",
+                      "property": "value",
+                      "min": 13,
+                      "max": 16
+                    },
+                    {
+                      "type": "gravestone:perspective",
+                      "looking": "FIRST_PERSON"
+                    },
+                    {
+                      "type": "palladium:not",
+                      "conditions": [
+                        {
+                          "type": "palladium:integer_property",
+                          "property": "satsu_mask_value",
+                          "min": 0,
+                          "max": 0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "palladium:string_property",
+                      "property": "satsu_iron_man_armor_hud_perspective",
+                      "comparator": "equals",
+                      "compare_to": "first_person"
+                    }
+                  ]
                 },
-                "slot": "curios:head"
-              }
-            ]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "satsu_iron_man_addon:armor_durability",
-            "slot": "tecnology_armor",
-            "divider": 4,
-            "operation_type": ">"
-          }
-        ]
-      }
-    },
-    "hud_armor_variable.enable": {
-      "type": "satsu_iron_man_addon:set_property_string",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "name": "satsu_iron_man_armor_hud_enabled",
-      "test_value": "true",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "hud_armor"
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "hud_armor_variable.disable": {
-      "type": "satsu_iron_man_addon:set_property_string",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "name": "satsu_iron_man_armor_hud_enabled",
-      "test_value": "false",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "hud_armor"
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:item_in_slot",
-                "item": {
-                  "item": "satsu_iron_man_addon:ia_glases"
-                },
-                "slot": "curios:head"
-              }
-            ]
-          }
-        ],
-        "unlocking": []
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:ability_integer_property",
+                      "ability": "armor_animation",
+                      "property": "value",
+                      "min": 13,
+                      "max": 16
+                    },
+                    {
+                      "type": "palladium:not",
+                      "conditions": [
+                        {
+                          "type": "palladium:integer_property",
+                          "property": "satsu_mask_value",
+                          "min": 0,
+                          "max": 0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "palladium:string_property",
+                      "property": "satsu_iron_man_armor_hud_perspective",
+                      "comparator": "equals",
+                      "compare_to": "third_person"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_armor_hud_perspective",
+                  "comparator": "equals",
+                  "compare_to": "false"
+                }
+              ]
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:item_in_slot",
+                  "item": {
+                    "item": "satsu_iron_man_addon:ia_glases"
+                  },
+                  "slot": "curios:head"
+                }
+              ]
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "satsu_iron_man_addon:armor_durability",
+              "slot": "tecnology_armor",
+              "divider": 4,
+              "operation_type": ">"
+            }
+          ]
+        }
+      },
+      "hud_armor_variable.enable": {
+        "type": "satsu_iron_man_addon:set_property_string",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "name": "satsu_iron_man_armor_hud_enabled",
+        "test_value": "true",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "hud_armor.main"
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "hud_armor_variable.disable": {
+        "type": "satsu_iron_man_addon:set_property_string",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "name": "satsu_iron_man_armor_hud_enabled",
+        "test_value": "false",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "hud_armor.main"
+                }
+              ]
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:item_in_slot",
+                  "item": {
+                    "item": "satsu_iron_man_addon:ia_glases"
+                  },
+                  "slot": "curios:head"
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
     "armor": {
@@ -1536,56 +1538,6 @@
         "enabling": []
       }
     },
-    "projectile_resistance": {
-      "type": "palladium:damage_immunity",
-      "icon": {
-        "type": "palladium:compound",
-        "icons": ["minecraft:arrow", "minecraft:barrier"]
-      },
-      "title": { "translate": "ability.title.satsu.projectile_resistance" },
-      "description": {
-        "translate": "description.iron.man.projectile_resistance"
-      },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [1.35, -1.25],
-      "damage_sources": ["minecraft:is_projectile"],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
-            "powers": [
-              "satsu_iron_man_addon:extremis/main",
-              "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
-            ],
-            "namespaces": [],
-            "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:iron_man/main_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
-      }
-    },
     "mask.up.animation_timer": {
       "type": "palladium:animation_timer",
       "hidden": true,
@@ -1740,6 +1692,92 @@
           }
         ],
         "unlocking": []
+      }
+    },
+    "inmmunities": {
+      "projectile_resistance": {
+        "type": "palladium:damage_immunity",
+        "icon": {
+          "type": "palladium:compound",
+          "icons": ["minecraft:arrow", "minecraft:barrier"]
+        },
+        "title": { "translate": "ability.title.satsu.projectile_resistance" },
+        "description": {
+          "translate": "description.iron.man.projectile_resistance"
+        },
+        "hidden": false,
+        "hidden_in_bar": true,
+        "gui_position": [1.35, -1.25],
+        "damage_sources": ["minecraft:is_projectile"],
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "satsu_iron_man_addon:disable_if_have_power_or_namespace",
+              "powers": [
+                "satsu_iron_man_addon:extremis/main",
+                "satsu_iron_man_addon:ia_stuff/block_sentinel_functions/main"
+              ],
+              "namespaces": [],
+              "ignore_powers": ["fsang:space_power", "fsang_hero:dampened"]
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "tacz": {
+        "type": "palladium:damage_immunity",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "damage_sources": ["satsu_iron_man_addon:tacz"],
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:mod_loaded",
+              "mod_id": "tacz"
+            },
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "inmmunities.projectile_resistance"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
       }
     },
     "particles.right_hand.left_hand": {
@@ -2555,57 +2593,6 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
-          }
-        ,
-          {
-            "type": "satsu_iron_man_addon:armor_durability",
-            "slot": "tecnology_armor",
-            "divider": 5,
-            "operation_type": ">"
-          }
-        ]
-      }
-    },
-    "weapons_wheel.Energy.Pulse": {
-      "type": "palladium:dummy",
-      "icon": "#satsu_iron_man_addon:ark_disable_enable",
-      "title": {
-        "translate": "ability.title.satsu.disable.energy.beam.or.pulse"
-      },
-      "hidden": true,
-      "hidden_in_bar": false,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "satsu_iron_man_addon:pdata_boolean",
-            "data": "satsu_iron_man_addon.weaponsSystemKey_pressed",
-            "value": true
-          }
-        ],
-        "unlocking": [
-          {
-            "type": "palladium:ability_unlocked",
-            "ability": "armor"
-          },
-          {
-            "type": "satsu_iron_man_addon:slot_nbt_range_check",
-            "slot": "curios:tecnology_armor",
-            "nbtKey": "Energy",
-            "min": 1,
-            "max": 2147483647
-          },
-          {
-            "type": "palladium:string_property",
-            "property": "satsu_iron_man_addon_armor_activated",
-            "comparator": "equals",
-            "compare_to": "on"
-          },
-          {
-            "type": "palladium:ability_integer_property",
-            "ability": "armor_animation",
-            "property": "value",
-            "min": 15,
-            "max": 16
           }
         ,
           {
@@ -3946,6 +3933,58 @@
               "objective": "satsu.iron.man.flight.set",
               "min_score": 2,
               "max_score": 2
+            }
+          ]
+        }
+      }
+      ,
+      "Energy.Pulse": {
+        "type": "palladium:dummy",
+        "icon": "#satsu_iron_man_addon:ark_disable_enable",
+        "title": {
+          "translate": "ability.title.satsu.disable.energy.beam.or.pulse"
+        },
+        "hidden": true,
+        "hidden_in_bar": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "satsu_iron_man_addon:pdata_boolean",
+              "data": "satsu_iron_man_addon.weaponsSystemKey_pressed",
+              "value": true
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "ability": "armor_animation",
+              "property": "value",
+              "min": 15,
+              "max": 16
+            }
+          ,
+            {
+              "type": "satsu_iron_man_addon:armor_durability",
+              "slot": "tecnology_armor",
+              "divider": 5,
+              "operation_type": ">"
             }
           ]
         }
