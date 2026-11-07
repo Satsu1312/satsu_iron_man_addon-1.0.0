@@ -2,6 +2,36 @@
   "name": "energy_beams_hands",
   "icon": "#satsu_iron_man_addon:armor_icon_ability",
   "abilities": {
+    "destroy_block": {
+      "type": "satsu_iron_man_addon:destroy_block",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "range": 20,
+      "excluded_tag": "#satsu_iron_man_addon:no_destroy",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:or",
+            "conditions": [
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_beam_hand_uni_bram"
+              },
+              {
+                "type": "palladium:ability_enabled",
+                "ability": "energy_beam_hand_uni_bram.left"
+              }
+            ]
+          },
+          {
+            "type": "palladium:string_property",
+            "property": "satsu_iron_man_addon_break_block_attack",
+            "comparator": "equals",
+            "compare_to": "on"
+          }
+        ]
+      }
+    },
     "remove.energy.red_beams": {
       "type": "satsu_iron_man_addon:nbt_modifier",
       "hidden": true,
@@ -36,7 +66,7 @@
       "hidden_in_bar": false,
       "energy_beam": "satsu_iron_man_addon:uni_beams_hand/red_mini/uni_beam_hand",
       "damage_type": "null",
-      "damage": 10,
+      "damage": 0,
       "max_distance": 20,
       "speed": 0.8,
       "cause_fire": false,
@@ -59,7 +89,7 @@
       "hidden_in_bar": false,
       "energy_beam": "satsu_iron_man_addon:uni_beams_hand/red_mini/uni_beam_hand_left",
       "damage_type": "null",
-      "damage": 10,
+      "damage": 0,
       "max_distance": 20,
       "speed": 0.8,
       "cause_fire": false,
