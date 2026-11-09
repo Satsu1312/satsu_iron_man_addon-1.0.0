@@ -68,11 +68,22 @@
                     "compare_to": "on"
                   },
                   {
-                    "type": "palladium:item_in_slot",
-                    "item": {
-                      "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
-                    },
-                    "slot": "curios:hulkbuster_armor"
+                    "type": "palladium:and",
+                    "conditions": [
+                      {
+                        "type": "palladium:item_in_slot",
+                        "item": {
+                          "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                        },
+                        "slot": "curios:hulkbuster_armor"
+                      },
+                      {
+                        "type": "palladium:string_property",
+                        "property": "satsu_iron_man_addon_transform_hulkbusters",
+                        "comparator": "equals",
+                        "compare_to": "on"
+                      }
+                    ]
                   },
                   {
                     "type": "palladium:has_tag",
@@ -489,6 +500,12 @@
                   "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
                 },
                 "slot": "curios:hulkbuster_armor"
+              },
+              {
+                "type": "palladium:string_property",
+                "property": "satsu_iron_man_addon_transform_hulkbusters",
+                "comparator": "equals",
+                "compare_to": "on"
               }
             ]
           }
@@ -509,40 +526,6 @@
       ],
       "conditions": {
         "enabling": []
-      }
-    },
-    "projectile_resistance": {
-      "type": "palladium:damage_immunity",
-      "icon": {
-        "type": "palladium:compound",
-        "icons": ["minecraft:arrow", "minecraft:barrier"]
-      },
-      "title": { "translate": "ability.title.satsu.projectile_resistance" },
-      "description": {
-        "translate": "description.iron.man.projectile_resistance"
-      },
-      "hidden": false,
-      "hidden_in_bar": true,
-      "gui_position": [1.35, -1.25],
-      "damage_sources": ["minecraft:is_projectile"],
-      "conditions": {
-        "enabling": [],
-        "unlocking": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:ability_unlocked",
-                "ability": "armor"
-              },
-              {
-                "type": "palladium:ability_enabled",
-                "power": "satsu_iron_man_addon:reactor_ark_power/main",
-                "ability": "enable_armor"
-              }
-            ]
-          }
-        ]
       }
     },
     "mask.up.animation_timer": {
@@ -987,6 +970,76 @@
             ]
           }
         ]
+      }
+    },
+    "inmmunities": {
+      "projectile_resistance": {
+        "type": "palladium:damage_immunity",
+        "icon": {
+          "type": "palladium:compound",
+          "icons": ["minecraft:arrow", "minecraft:barrier"]
+        },
+        "title": { "translate": "ability.title.satsu.projectile_resistance" },
+        "description": {
+          "translate": "description.iron.man.projectile_resistance"
+        },
+        "hidden": false,
+        "hidden_in_bar": true,
+        "gui_position": [1.35, -1.25],
+        "damage_sources": ["minecraft:is_projectile"],
+        "conditions": {
+          "enabling": [],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:reactor_ark_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "tacz": {
+        "type": "palladium:damage_immunity",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "damage_sources": ["satsu_iron_man_addon:tacz"],
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:mod_loaded",
+              "mod_id": "tacz"
+            },
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "inmmunities.projectile_resistance"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:ability_unlocked",
+                  "ability": "armor"
+                },
+                {
+                  "type": "palladium:ability_enabled",
+                  "power": "satsu_iron_man_addon:iron_man/main_power/main",
+                  "ability": "enable_armor"
+                }
+              ]
+            }
+          ]
+        }
       }
     },
     "particles.right_hand.left_hand": {

@@ -4,97 +4,99 @@
   "gui_display_type": "tree",
   "abilities": {
     "hud_armor": {
-      "type": "palladium:gui_overlay",
-      "texture": "#satsu_iron_man_addon:armor_hud/armor_hud",
-      "texture_width": 256,
-      "texture_height": 256,
-      "translate": [0, 0, 0],
-      "rotate": [0, 0, 0],
-      "scale": [1, 1, 1],
-      "alignment": "stretch",
-      "hidden": true,
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:or",
-            "conditions": [
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "gravestone:perspective",
-                    "looking": "FIRST_PERSON"
-                  },
-                  {
-                    "type": "palladium:string_property",
-                    "property": "satsu_iron_man_armor_hud_perspective",
-                    "comparator": "equals",
-                    "compare_to": "first_person"
-                  }
-                ]
-              },
-              {
-                "type": "palladium:and",
-                "conditions": [
-                  {
-                    "type": "palladium:string_property",
-                    "property": "satsu_iron_man_armor_hud_perspective",
-                    "comparator": "equals",
-                    "compare_to": "third_person"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:string_property",
-                "property": "satsu_iron_man_armor_hud_perspective",
-                "comparator": "equals",
-                "compare_to": "false"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "hud_armor_variable.enable": {
-      "type": "satsu_iron_man_addon:set_property_string",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "name": "satsu_iron_man_armor_hud_enabled",
-      "test_value": "true",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:ability_enabled",
-            "ability": "hud_armor"
-          }
-        ],
-        "unlocking": []
-      }
-    },
-    "hud_armor_variable.disable": {
-      "type": "satsu_iron_man_addon:set_property_string",
-      "hidden": true,
-      "hidden_in_bar": true,
-      "name": "satsu_iron_man_armor_hud_enabled",
-      "test_value": "false",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:not",
-            "conditions": [
-              {
-                "type": "palladium:ability_enabled",
-                "ability": "hud_armor"
-              }
-            ]
-          }
-        ],
-        "unlocking": []
+      "main": {
+        "type": "palladium:gui_overlay",
+        "texture": "#satsu_iron_man_addon:armor_hud/armor_hud",
+        "texture_width": 256,
+        "texture_height": 256,
+        "translate": [0, 0, 0],
+        "rotate": [0, 0, 0],
+        "scale": [1, 1, 1],
+        "alignment": "stretch",
+        "hidden": true,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "gravestone:perspective",
+                      "looking": "FIRST_PERSON"
+                    },
+                    {
+                      "type": "palladium:string_property",
+                      "property": "satsu_iron_man_armor_hud_perspective",
+                      "comparator": "equals",
+                      "compare_to": "first_person"
+                    }
+                  ]
+                },
+                {
+                  "type": "palladium:and",
+                  "conditions": [
+                    {
+                      "type": "palladium:string_property",
+                      "property": "satsu_iron_man_armor_hud_perspective",
+                      "comparator": "equals",
+                      "compare_to": "third_person"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_armor_hud_perspective",
+                  "comparator": "equals",
+                  "compare_to": "false"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "hud_armor_variable.enable": {
+        "type": "satsu_iron_man_addon:set_property_string",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "name": "satsu_iron_man_armor_hud_enabled",
+        "test_value": "true",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "ability": "hud_armor.main"
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "hud_armor_variable.disable": {
+        "type": "satsu_iron_man_addon:set_property_string",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "name": "satsu_iron_man_armor_hud_enabled",
+        "test_value": "false",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:ability_enabled",
+                  "ability": "hud_armor.main"
+                }
+              ]
+            }
+          ],
+          "unlocking": []
+        }
       }
     }
   }

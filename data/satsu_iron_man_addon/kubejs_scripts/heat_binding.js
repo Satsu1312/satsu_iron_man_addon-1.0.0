@@ -7,6 +7,7 @@ PlayerEvents.tick(event => {
 
   let rightHeat = 0.0;
   let leftHeat = 0.0;
+  let bodyHeat = 0.0;
   let foundArmor = false;
 
   try {
@@ -27,9 +28,11 @@ PlayerEvents.tick(event => {
                     try {
                       let rawRight = tag.getFloat ? tag.getFloat("right_repulsor_heat") : (tag.right_repulsor_heat || 0.0);
                       let rawLeft = tag.getFloat ? tag.getFloat("left_repulsor_heat") : (tag.left_repulsor_heat || 0.0);
+                      let rawBody = tag.getFloat ? tag.getFloat("body_heat") : (tag.body_heat || 0.0);
                       
                       rightHeat = parseFloat(rawRight);
                       leftHeat = parseFloat(rawLeft);
+                      bodyHeat = parseFloat(rawBody);
                       foundArmor = true;
                     } catch (e) {}
                   }
@@ -45,6 +48,7 @@ PlayerEvents.tick(event => {
   if (foundArmor) {
     palladium.setProperty(player, "satsu_iron_man_addon_heat_repulsor_right", rightHeat);
     palladium.setProperty(player, "satsu_iron_man_addon_heat_repulsor_left", leftHeat);
+    palladium.setProperty(player, "satsu_iron_man_addon_body_heat", bodyHeat);
   }
 });
 PlayerEvents.tick(event => {
