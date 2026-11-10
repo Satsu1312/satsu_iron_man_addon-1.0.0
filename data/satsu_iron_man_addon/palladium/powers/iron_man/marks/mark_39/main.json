@@ -2303,8 +2303,7 @@
             "property": "satsu_iron_man_addon_armor_activated",
             "comparator": "equals",
             "compare_to": "on"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2474,8 +2473,7 @@
                 ]
               }
             ]
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2579,8 +2577,7 @@
             "property": "value",
             "min": 15,
             "max": 16
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2610,8 +2607,7 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2641,8 +2637,7 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -2672,8 +2667,7 @@
           {
             "type": "palladium:ability_unlocked",
             "ability": "energy_beam_increase_wheel"
-          }
-        ,
+          },
           {
             "type": "satsu_iron_man_addon:armor_durability",
             "slot": "tecnology_armor",
@@ -3041,7 +3035,9 @@
           ]
         },
         "title": { "translate": "ability.title.satsu.weapons.choose" },
-        "description": { "translate": "description.satsu.armor.weapons.choose" },
+        "description": {
+          "translate": "description.satsu.armor.weapons.choose"
+        },
         "hidden": true,
         "hidden_in_bar": false,
         "list_index": 2,
@@ -3137,8 +3133,7 @@
               "property": "value",
               "min": 15,
               "max": 16
-            }
-          ,
+            },
             {
               "type": "satsu_iron_man_addon:armor_durability",
               "slot": "tecnology_armor",
@@ -3190,8 +3185,7 @@
               "property": "value",
               "min": 15,
               "max": 16
-            }
-          ,
+            },
             {
               "type": "satsu_iron_man_addon:armor_durability",
               "slot": "tecnology_armor",
@@ -3243,8 +3237,7 @@
               "property": "value",
               "min": 15,
               "max": 16
-            }
-          ,
+            },
             {
               "type": "satsu_iron_man_addon:armor_durability",
               "slot": "tecnology_armor",
@@ -3302,8 +3295,7 @@
               "property": "value",
               "min": 15,
               "max": 16
-            }
-          ,
+            },
             {
               "type": "satsu_iron_man_addon:armor_durability",
               "slot": "tecnology_armor",
@@ -3361,8 +3353,7 @@
               "property": "value",
               "min": 15,
               "max": 16
-            }
-          ,
+            },
             {
               "type": "satsu_iron_man_addon:armor_durability",
               "slot": "tecnology_armor",
@@ -3404,8 +3395,7 @@
                   "ability": "enable_armor"
                 }
               ]
-            }
-          ,
+            },
             {
               "type": "satsu_iron_man_addon:armor_durability",
               "slot": "tecnology_armor",
@@ -5262,6 +5252,160 @@
             ]
           }
         ]
+      }
+    },
+    "space_boost": {
+      "main": {
+        "type": "palladium:repeating_animation_timer",
+        "icon": "satsu_iron_man_addon:textures/gui/armors/flare_flame.png",
+        "title": { "translate": "ability.title.satsu.flare.flame" },
+        "description": { "translate": "description.satsu.flare.flame" },
+        "hidden": true,
+        "hidden_in_bar": false,
+        "list_index": 3,
+        "start_value": 0,
+        "max_value": 140,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:or",
+              "conditions": [
+                {
+                  "type": "satsu_iron_man_addon:looking_up",
+                  "range": 90
+                },
+                {
+                  "type": "satsu_iron_man_addon:looking_down",
+                  "range": 90
+                }
+              ]
+            },
+            {
+              "type": "palladium:is_hovering_or_flying"
+            }
+          ],
+          "unlocking": [
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "armor"
+            },
+            {
+              "type": "satsu_iron_man_addon:slot_nbt_range_check",
+              "slot": "curios:tecnology_armor",
+              "nbtKey": "Energy",
+              "min": 1,
+              "max": 2147483647
+            },
+            {
+              "type": "palladium:string_property",
+              "property": "satsu_iron_man_addon_armor_activated",
+              "comparator": "equals",
+              "compare_to": "on"
+            },
+            {
+              "type": "palladium:not",
+              "conditions": [
+                {
+                  "type": "palladium:or",
+                  "conditions": [
+                    {
+                      "type": "palladium:ability_enabled",
+                      "ability": "nano_katar.attack"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "satsu_iron_man_addon:armor_durability",
+              "slot": "tecnology_armor",
+              "divider": 5,
+              "operation_type": ">"
+            }
+          ]
+        }
+      },
+      "movement": {
+        "type": "gravecore:movement",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "motion_scale": 9,
+        "direction": "facing",
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "power": "null",
+              "ability": "space_boost.main"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "null",
+              "ability": "space_boost.main",
+              "property": "value",
+              "min": 25,
+              "max": 139
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "command": {
+        "type": "palladium:command",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "first_tick_commands": [
+          "execute at @s run particle satsu_iron_man_addon:sonic_explosion ~ ~ ~ 0.3 0.1 0.3 0.05 5 normal",
+          "execute at @s run playsound entity.generic.explode player @s ~ ~ ~ 1.0 1.8"
+        ],
+        "last_tick_commands": [],
+        "commands": [""],
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "power": "null",
+              "ability": "space_boost.main"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "null",
+              "ability": "space_boost.main",
+              "property": "value",
+              "min": 25,
+              "max": 139
+            }
+          ],
+          "unlocking": []
+        }
+      },
+      "aoe_damage": {
+        "type": "gravecore:aoe_damage",
+        "hidden": true,
+        "hidden_in_bar": true,
+        "radius": 10,
+        "damage": 7,
+        "fire_ticks": 0,
+        "damage_type": "null",
+        "cone": false,
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_enabled",
+              "power": "null",
+              "ability": "space_boost.main"
+            },
+            {
+              "type": "palladium:ability_integer_property",
+              "power": "null",
+              "ability": "space_boost.main",
+              "property": "value",
+              "min": 25,
+              "max": 35
+            }
+          ],
+          "unlocking": []
+        }
       }
     },
     "energy_pulse_projectile.right_normal": {
