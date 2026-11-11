@@ -53,7 +53,9 @@
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
             "ability": "armor_animation",
-            "property": "value"
+            "property": "value",
+            "min": 0,
+            "max": 17
           },
           "Y": {
             "type": "palladium:integer_property",
@@ -62,7 +64,7 @@
             "max": 1
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_500_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/no_light/model_50_0_#TIMER"
       },
       "conditions": [
         {
@@ -75,6 +77,29 @@
               "property": "value",
               "min": 4,
               "max": 6
+            }
+          ]
+        },
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:and",
+              "conditions": [
+                {
+                  "type": "palladium:item_in_slot",
+                  "item": {
+                    "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                  },
+                  "slot": "curios:hulkbuster_armor"
+                },
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon_transform_hulkbusters",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                }
+              ]
             }
           ]
         }
@@ -96,10 +121,12 @@
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
             "ability": "armor_animation",
-            "property": "value"
+            "property": "value",
+            "min": 0,
+            "max": 17
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_lights_500_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/light/model_50_0_#TIMER"
       },
       "tint": {
         "type": "palladium:string_property",
@@ -168,24 +195,26 @@
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/nano_armor/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/nano_armor/transformation_#MASK.png"
           }
         ],
         "variables": {
-          "TIMER": {
-            "type": "palladium:ability_integer_property",
-            "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
-            "ability": "mask_animation_timer",
-            "property": "value"
-          },
           "Y": {
             "type": "palladium:integer_property",
             "property": "satsu_mask_value",
             "min": 0,
             "max": 1
+          },
+          "MASK": {
+            "type": "palladium:ability_integer_property",
+            "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
+            "ability": "mask_animation_timer",
+            "property": "value",
+            "min": 0,
+            "max": 17
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_500_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/mask/no_light/model_50_0_#MASK"
       },
       "conditions": [
         {
@@ -200,6 +229,29 @@
               "max": 6
             }
           ]
+        },
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:and",
+              "conditions": [
+                {
+                  "type": "palladium:item_in_slot",
+                  "item": {
+                    "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                  },
+                  "slot": "curios:hulkbuster_armor"
+                },
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon_transform_hulkbusters",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -211,18 +263,20 @@
         "transformers": [
           {
             "type": "palladium:alpha_mask",
-            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/nano_armor/transformation_#TIMER.png"
+            "mask": "satsu_iron_man_addon:textures/models/alpha_masks/armors/ensamble/nano_armor/transformation_#MASK.png"
           }
         ],
         "variables": {
-          "TIMER": {
+          "MASK": {
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
             "ability": "mask_animation_timer",
-            "property": "value"
+            "property": "value",
+            "min": 0,
+            "max": 17
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_lights_500_0_#TIMER"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/mask/light/model_50_0_#MASK"
       },
       "tint": {
         "type": "palladium:string_property",
@@ -240,6 +294,29 @@
               "property": "value",
               "min": 4,
               "max": 6
+            }
+          ]
+        },
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:and",
+              "conditions": [
+                {
+                  "type": "palladium:item_in_slot",
+                  "item": {
+                    "tag": "satsu_iron_man_addon:armors/iron_man/hulkbusters/main"
+                  },
+                  "slot": "curios:hulkbuster_armor"
+                },
+                {
+                  "type": "palladium:string_property",
+                  "property": "satsu_iron_man_addon_transform_hulkbusters",
+                  "comparator": "equals",
+                  "compare_to": "on"
+                }
+              ]
             }
           ]
         },
@@ -299,14 +376,16 @@
             "type": "palladium:ability_integer_property",
             "power": "satsu_iron_man_addon:iron_man/marks/model_50/main",
             "ability": "mask_animation_timer",
-            "property": "value"
+            "property": "value",
+            "min": 0,
+            "max": 17
           },
           "S": {
             "type": "palladium:string_property",
             "property": "satsu.model_50.color"
           }
         },
-        "output": "satsu_iron_man_addon:textures/models/armor/iron_man_suit_lights_500_0_#MASK"
+        "output": "satsu_iron_man_addon:textures/models/iron_man/mask/light/model_50_0_#MASK"
       },
       "tint": {
         "type": "palladium:string_property",
